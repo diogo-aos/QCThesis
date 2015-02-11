@@ -1,2 +1,2 @@
-# thesis
+# Quantum Clustering Thesis
 42
