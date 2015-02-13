@@ -1,11 +1,19 @@
-# needs:
+import numpy as np
+from datetime import datetime
+from sklearn.cluster import KMeans
+
+import oracle
+import qubitLib
+import DaviesBouldin
+
+# Receives:
 #  - mixture
 #  - numOracles
 #  - numClusters
 #  - qubitStringLen
 #  - qGenerations
 #  - 
-# returns:
+# Returns:
 #  - qk_timings_cg
 #  - qk_centroids (centroids of oracles from last generation)
 #  - qk_assignment(assignment of oracles from last generation)
