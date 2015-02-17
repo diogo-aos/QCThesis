@@ -7,54 +7,50 @@ import oracle
 import qubitLib
 import DaviesBouldin
 
-import QK-Means
-import K-Means
+import QK_Means
+import K_Means
 
 import pickle
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--data", help="where to read data from",type=str)
+parser.add_argument("-c", "--clusters", help="number of clusters",type=int)
+parser.add_argument("-o", "--oracles", help="number of oracles",type=int)
+parser.add_argument("-s", "--stringLen", help="length of qubit strings",type=int)
+parser.add_argument("-g", "--generations", help="number of generations",type=int)
+parser.add_argument("-r", "--rounds", help="number of rounds",type=int)
+parser.add_argument("-f", "--factor", help="iteration factor for K-Means",type=float)
+args = parser.parse_args()
+
 #########################################################
 # file names
 filenames=dict()
-filenames['data']='data'
-filenames['qk']='qk_rounds'
-filenames['k']='k_rounds'
+filenames['data']=args.data
+filenames['qk']=args.data+'_'+'qk'
+filenames['k']=args.data+'_'+'k'
 
-
-# gaussian parameters
-numPoints=200
-numGaussians=6
 
 # Quantum parameters
-numClusters=15
-numOracles=5
-qubitStringLen=5
-qGenerations=100
-numRounds=5
+numClusters=args.clusters
+numOracles=args.oracles
+qubitStringLen=args.stringLen
+qGenerations=args.generations
+numRounds=args.rounds
 
 # Normal parameters
-initsPercentage=1.15 # multiplier factor for numOracles * qGenerations for the number of inits
+initsPercentage=args.factor # multiplier factor for numOracles * qGenerations for the number of inits
 
+# load data from file
+pkl_file = open(filenames['data'], 'rb')
+data = pickle.load(pkl_file)
+pkl_file.close()
 
-#########################################################
+mixture=data['data']
+dim=data['dim']
 
-# generate gaussians
-
-pointsPerGaussian=numPoints/numGaussians
-gMix=list()
-gMix.append(np.random.normal((-5,3),[0.25,2],(pointsPerGaussian,2)))
-gMix.append(np.random.normal((2,-2),[0.25,0.25],(pointsPerGaussian,2)))
-gMix.append(np.random.normal((2,10),[0.75,0.25],(pointsPerGaussian,2)))
-gMix.append(np.random.normal((-3,2),[0.3,0.3],(pointsPerGaussian,2)))
-gMix.append(np.random.normal((3,7),[0.3,0.3],(pointsPerGaussian,2)))
-gMix.append(np.random.normal((-2,7),[0.3,1],(pointsPerGaussian,2)))
-
-
-mixture=np.concatenate(tuple(gMix))
-
-# save to file
-output = open(filenames['data']+'.pkl', 'wb')
-pickle.dump(mixture, output)
-output.close()
-print 'Data saved to '+filenames['data']+'.pkl'
+del data
 
 #########################################################
 
@@ -63,11 +59,19 @@ print 'Data saved to '+filenames['data']+'.pkl'
 #########################################################
 
 print 'Initiating QK-Means...'
+
 qk_results=list()
 for i in range(numRounds):
-    print 'round ',i
-    qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg=qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations)
+
+    start = datetime.now()
+
+    qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg=QK_Means.qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim)
     qk_results.append([qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg])
+
+    round=(datetime.now() - start).total_seconds()
+    print float(i+1)*100/numRounds,'%\t','round ', i,':',round,'s  -  estimated:',(float(numRounds-1)-i)*round,'s / ',(float(numRounds-1)-i)*round/60,'m'
+
+
 
 #########################################################
 print 'Preparing data structures...'
@@ -83,15 +87,19 @@ for i in range(numRounds):
     qk_rounds['assignment'].append(qk_results[i][1])
     qk_rounds['fitness'].append(qk_results[i][2])
     qk_rounds['times'].append(qk_results[i][3])
+
     
 # assign data to clusters
-qk_rounds['assignedData']=list() #assigned data for the best solution in each round
+qk_rounds['assignedData']=[None]*numRounds #assigned data for the best solution in each round
 
-for i in range(numRounds):
-    # assign clusters to data
-    best=int(qk_rounds['fitness'][i][-1,-1])
-    qk_assignment=qk_rounds['assignment'][i]
-    
+for r in range(numRounds):
+    # only assign for best solution
+    best=int(qk_rounds['fitness'][r][-1,-1])
+    qk_assignment=qk_rounds['assignment'][r]
+
+    # store only best centroids
+    qk_rounds['centroids'][r]=qk_rounds['centroids'][r][best]
+
     qk_assignedData = [None]*numClusters
     for i,j in enumerate(qk_assignment[best]):
         if qk_assignedData[j] != None:
@@ -99,7 +107,8 @@ for i in range(numRounds):
         else:
             qk_assignedData[j] = mixture[i]
     
-    qk_rounds['assignedData'].append(qk_assignedData)
+    qk_rounds['assignedData'][r]=qk_assignedData
+
 
 # convert computation times
 qk_rounds['total time'] = list()
@@ -109,30 +118,51 @@ for i in range(numRounds):
     qk_total = np.sum(np.array(qk_times))
     qk_rounds['total time'].append(qk_total)
 
-# convert population fitness data
-qk_rounds['best evolution'] = list()
-qk_rounds['pop variance'] = list()
-qk_rounds['pop mean'] = list()
+
+# compute population's fitness evolution (best solution, mean, variance) per generation
+qk_rounds['best evolution'] = [None]*numRounds
+qk_rounds['pop variance'] = [None]*numRounds
+qk_rounds['pop mean'] = [None]*numRounds
 
 for i in range(numRounds):
     bestSeq=[]
     bestSeqIndex=[]
     fitnessEvolution=qk_rounds['fitness'][i]
-    for i in range(0,fitnessEvolution.shape[0]):
-        bestSeq.append(fitnessEvolution[i,fitnessEvolution[i,-1]])
+    for j in range(0,fitnessEvolution.shape[0]):
+        bestSeq.append(fitnessEvolution[j,fitnessEvolution[j,-1]])
     bestSeq=np.array(bestSeq)
     
     genVar=np.zeros(qGenerations)
     genMean=np.zeros(qGenerations)
     
-    for i,ar in enumerate(fitnessEvolution):
-        genVar[i]=np.var(ar[:-1])
-        genMean[i]=np.mean(ar[:-1])
+    for j,ar in enumerate(fitnessEvolution):
+        genVar[j]=np.var(ar[:-1])
+        genMean[j]=np.mean(ar[:-1])
         
-    qk_rounds['best evolution'].append(bestSeq)
-    qk_rounds['pop variance'].append(genVar)
-    qk_rounds['pop mean'].append(genMean)
+    qk_rounds['best evolution'][i]=bestSeq
+    qk_rounds['pop variance'][i]=genVar
+    qk_rounds['pop mean'][i]=genMean
 
+
+qk_rounds['fitness best']=[None]*numRounds
+qk_rounds['fitness worst']=[None]*numRounds
+qk_rounds['fitness mean']=[None]*numRounds
+qk_rounds['fitness variance']=[None]*numRounds
+
+for i in range(numRounds):
+	qk_rounds['fitness best'][i]=qk_rounds['best evolution'][i][-1]
+	qk_rounds['fitness worst'][i]=np.min(qk_rounds['fitness'][i])
+	qk_rounds['fitness mean']=qk_rounds['pop mean'][i][-1]
+	qk_rounds['fitness variance']=qk_rounds['pop variance'][i][-1]
+
+del qk_results
+del qk_rounds['fitness']
+del qk_rounds['times']
+del qk_rounds['assignment']
+
+
+#print "keys stored:"
+#print qk_rounds.keys()
 
 # save to file
 output = open(filenames['qk']+'.pkl', 'wb')
@@ -146,12 +176,18 @@ print 'Initiating K-Means...'
 
 numInits=np.int(qGenerations*numOracles*initsPercentage)
 
+print "Each round will have ",numInits," K-Means initializations."
+
 k_results=list()
 
 for i in range(numRounds):
-    print 'round ',i
-    k_centroids,k_assignment,k_timings=k_means(mixture,numClusters,numInits)
+    start=datetime.now()
+
+    k_centroids,k_assignment,k_timings=K_Means.k_means(mixture,numClusters,numInits)
     k_results.append([k_centroids,k_assignment,k_timings])
+
+    round=(datetime.now() - start).total_seconds()
+    print float(i+1)*100/numRounds,'%\t','round ', i,':',round,'s  -  estimated:',(float(numRounds-1)-i)*round,'s / ',(float(numRounds-1)-i)*round/60,'m'
 
 print 'Preparing K-Means data structures...'
 
@@ -165,23 +201,6 @@ for i in range(numRounds):
     k_rounds['assignment'].append(k_results[i][1])
     k_rounds['times'].append(k_results[i][2])
     
-# assign data to clusters
-k_rounds['assignedData']=list() #assigned data for the best solution in each round
-
-for i in range(numRounds):
-    # assign clusters to data
-    best=int(qk_rounds['fitness'][i][-1,-1])
-    k_assignment=k_rounds['assignment'][i]
-    
-    k_assignedData = [None]*numClusters
-    for i,j in enumerate(k_assignment[best]):
-        if k_assignedData[j] != None:
-            k_assignedData[j] = np.vstack((k_assignedData[j],mixture[i]))
-        else:
-            k_assignedData[j] = mixture[i]
-    
-    k_rounds['assignedData'].append(k_assignedData)
-    
 
 # compute computation times
 k_rounds['total time'] = list()
@@ -191,30 +210,69 @@ for i in range(numRounds):
     k_total = np.sum(np.array(k_times))
     k_rounds['total time'].append(k_total)
 
-k_time_mean = np.mean(np.array(k_rounds['total time']))
-k_time_var = np.var(np.array(k_rounds['total time']))
-
-k_rounds['fastest round']=np.argmin(np.array(k_rounds['total time']))
-k_rounds['slowest round']=np.argmax(np.array(k_rounds['total time']))
-
-k_time_best = k_rounds['total time'][k_rounds['fastest round']]
-k_time_worst = k_rounds['total time'][k_rounds['slowest round']]
-
 #compute fitnesses
-k_rounds['fitness']=list()
-start=datetime.now()
-k_bestScore=np.inf
+k_rounds['fitness']=[np.inf]*numRounds
+k_rounds['fitness best']=[np.inf]*numRounds
+k_rounds['fitness worst']=[0]*numRounds
+k_rounds['fitness best index']=[None]*numRounds
+k_rounds['best centroids']=[None]*numRounds
+
+print 'Computing fitness score...'
 for i in range(numRounds):
-    print 'round ',i
-    init_scores=list()
+    start=datetime.now()
+    k_rounds['fitness'][i]=[None]*numInits
     for j in range(numInits):
         k_score=DaviesBouldin.DaviesBouldin(mixture,k_rounds['centroids'][i][j],k_rounds['assignment'][i][j])
-        init_scores.append(k_score.eval())
-    k_rounds['fitness'].append(np.array(init_scores))
-    m=np.min(init_scores)
-    if m < k_bestScore:
-        k_bestScore=m
-        k_rounds['best fit round']=i
+        k_rounds['fitness'][i][j]=k_score.eval()
+
+        # store best score & index
+        if k_rounds['fitness'][i][j]<k_rounds['fitness best'][i]:
+        	k_rounds['fitness best'][i]=k_rounds['fitness'][i][j]
+        	k_rounds['fitness best index'][i]=j
+        # store worst score
+        if  k_rounds['fitness'][i][j]>k_rounds['fitness worst'][i]:
+        	k_rounds['fitness worst'][i]= k_rounds['fitness'][i][j]
+
+    # store fitness' mean and variance of current round
+    k_rounds['fitness mean']=np.mean(k_rounds['fitness'][i])
+    k_rounds['fitness variance']=np.var(k_rounds['fitness'][i])
+
+    # store centroids of fittest solution
+    k_rounds['best centroids'][i]=k_rounds['centroids'][i][k_rounds['fitness best index'][i]]
+
+    round=(datetime.now() - start).total_seconds()
+    print float(i+1)*100/numRounds,'%\t','round ', i,':',round,'s  -  estimated:',(float(numRounds-1)-i)*round,'s / ',(float(numRounds-1)-i)*round/60,'m'
+
+
+k_rounds['centroids']=k_rounds['best centroids']
+
+
+
+# assign data to clusters
+k_rounds['assignedData']=[None]*numRounds #assigned data for the best solution in each round
+
+for r in range(numRounds):
+    # assign clusters to data
+    k_assignment=k_rounds['assignment'][r][k_rounds['fitness best index'][r]]
+    
+    k_assignedData = [None]*numClusters
+    for i,j in enumerate(k_assignment):
+        if k_assignedData[j] != None:
+            k_assignedData[j] = np.vstack((k_assignedData[j],mixture[i]))
+        else:
+            k_assignedData[j] = mixture[i]
+    
+    k_rounds['assignedData'][r]=k_assignedData
+
+del k_results
+del k_rounds['assignment']
+del k_rounds['fitness best index']
+del k_rounds['best centroids']
+del k_rounds['fitness']
+del k_rounds['times']
+
+#print "keys stored:"
+#print k_rounds.keys()
 
 # save to file
 output = open(filenames['k']+'.pkl', 'wb')

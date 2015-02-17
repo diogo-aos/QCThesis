@@ -6,6 +6,7 @@ import oracle
 import qubitLib
 import DaviesBouldin
 
+
 # Receives:
 #  - mixture
 #  - numOracles
@@ -18,9 +19,10 @@ import DaviesBouldin
 #  - qk_centroids (centroids of oracles from last generation)
 #  - qk_assignment(assignment of oracles from last generation)
 #  - fitnessEvolution
-def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations):
-    fitnessEvolution = np.zeros((qGenerations,numOracles+1))
-    
+def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim):
+    fitnessEvolution = np.zeros((qGenerations,numOracles+1)) #+1 for the column that indicates the best score in each gen
+
+
     qk_timings_cg = list()
     start = datetime.now()
     
@@ -33,7 +35,7 @@ def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations):
     
     for i in range(0,numOracles):
         oras.append(oracle.Oracle())
-        oras[i].initialization(numClusters*2,qubitStringLen)
+        oras[i].initialization(numClusters*dim,qubitStringLen)
         oras[i].collapse()
     
     qk_timings_cg.append((datetime.now() - start).total_seconds())
@@ -74,9 +76,7 @@ def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations):
         for i in range(0,numOracles):
             fitnessEvolution[qGen_,i]=oras[i].score
             fitnessEvolution[qGen_,-1]=best
-        print '.', # simple "progress bar"
+
         start = datetime.now()
-        
-    print 'Done!'
-    
+
     return qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg

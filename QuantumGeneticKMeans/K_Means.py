@@ -36,4 +36,4 @@ def k_means(mixture,numClusters,numInits):
 		k_timings_cg.append((datetime.now() - start).total_seconds())
 		start=datetime.now()
 
-	return k_centroids,qk_assignment,k_timings_cg
+	return k_centroids,k_assignment,k_timings_cg
