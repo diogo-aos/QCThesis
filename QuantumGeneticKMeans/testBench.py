@@ -31,9 +31,9 @@ tailString=args.tailString
 
 filenames=dict()
 filenames['data']=args.data
-filenames['qk'] = args.data + '_' + 'qk' + tailString
-filenames['k'] = args.data + '_' + 'k' + tailString
-filenames['params'] = args.data + '_' + 'params' + tailString
+filenames['qk'] = args.data[:-4] + '_' + 'qk' + tailString
+filenames['k'] = args.data[:-4] + '_' + 'k' + tailString
+filenames['params'] = args.data[:-4] + '_' + 'params' + tailString
 
 # Quantum parameters
 numClusters=args.clusters
@@ -196,8 +196,8 @@ k_results=list()
 for i in range(numRounds):
     start=datetime.now()
 
-    k_centroids,k_assignment,k_timings=K_Means.k_means(mixture,numClusters,numInits)
-    k_results.append([k_centroids,k_assignment,k_timings])
+    k_centroids,k_assignment,k_timings,k_intertia=K_Means.k_means(mixture,numClusters,numInits)
+    k_results.append([k_centroids,k_assignment,k_timings,k_intertia])
 
     round=(datetime.now() - start).total_seconds()
     print float(i+1)*100/numRounds,'%\t','round ', i,':',round,'s  -  estimated:',(float(numRounds-1)-i)*round,'s / ',(float(numRounds-1)-i)*round/60,'m'
@@ -208,12 +208,13 @@ k_rounds=dict()
 k_rounds['centroids']=list()
 k_rounds['assignment']=list()
 k_rounds['times']=list()
+k_rounds['inertia']=list()
 
 for i in range(numRounds):
     k_rounds['centroids'].append(k_results[i][0])
     k_rounds['assignment'].append(k_results[i][1])
     k_rounds['times'].append(k_results[i][2])
-    
+    k_rounds['inertia'].append(k_results[i][3])
 
 # compute computation times
 k_rounds['total time'] = list()
@@ -231,6 +232,9 @@ k_rounds['fitness variance']=[0]*numRounds
 k_rounds['best centroids']=[None]*numRounds
 k_rounds['fitness times']=[None]*numRounds
 k_rounds['fitness best index']=[None]*numRounds
+
+k_rounds['inertia best']=[np.inf]*numRounds
+
 
 print 'Computing fitness score...'
 for i in range(numRounds):
