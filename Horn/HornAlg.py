@@ -1,17 +1,39 @@
 import numpy as np
 from sklearn import preprocessing
 
-def pcaFun(x):
-	x=crabsData
+def pcaFun(x, whiten=False):
 	avg=np.mean(x,axis=0)
+
+	# center data
 	cX=x-avg
-	matX=np.matrix(x)
 
-	C=matX.T*matX
+	# compute covariance matrix
+	C=cX.T.dot(cX)
 
+	# compute eig
 	eigVals,eigVect=np.linalg.eig(C)
 
-	projX=matX*eigVect.T
+	# get decresing order of eigVals (index)
+	eigValOrder=eigVals.argsort()[::-1]
+
+	#sort eigenthings
+	sortedEigVect=np.zeros(eigVect.shape)
+	sortedEigVal=np.zeros(eigVals.shape)
+
+	for i,j in enumerate(eigValOrder):
+		sortedEigVect[:,i]=eigVect[:,j]
+		sortedEigVal[i]=eigVals[j]
+
+	# project data
+	projX=cX.dot(sortedEigVect)
+
+	if whiten is True:
+		e = 0.00005
+		projX = projX / ((sortedEigVal + e) ** 0.5)
+
+	return projX
+
+
 
 # function graddesc(xyData,q,[steps])
 # purpose: performing quantum clustering in and moving the 
@@ -227,12 +249,7 @@ def fineCluster(xyData,minD):
 		D = pow(D,0.5)
 
 		clust = np.where(D<minD,clustInd,clust)
-		
-		"""
-		i=(clust==0).nonzero()[0] # indeces of zero elements
-		if i.shape[0] > 0:
-			i=i[0]
-			"""
+
 		#index of first unclestered datapoint
 		i=np.argmin(clust)
 
@@ -240,16 +257,16 @@ def fineCluster(xyData,minD):
 
 	return clust
 
-def fineCluster2(xyData,V,minD):
+def fineCluster2(xyData,pV,minD):
 	
 	n = xyData.shape[0]
 	clust = np.zeros(n)
 
 	# index of points sorted by potential
-	sortedArgV=V.argsort()
+	sortedUnclust=pV.argsort()
 
 	# index of unclestered point with lowest potential
-	i=sortedArgV[0]
+	i=sortedUnclust[0]
 
 	# fist cluster index is 1
 	clustInd=1
@@ -265,13 +282,16 @@ def fineCluster2(xyData,V,minD):
 		
 		# index of non clustered points
 		# unclust=[x for x in clust if x == 0]
-		unclust= clust.nonzero()[0]
+		clusted= clust.nonzero()[0]
 
 		# sorted index of non clustered points
-		sortedArgV=[x for x in sortedArgV if x not in unclust]
+		sortedUnclust=[x for x in sortedUnclust if x not in clusted]
+
+		if len(sortedUnclust) == 0:
+			break
 
 		#index of unclestered point with lowest potential
-		i=sortedArgV[0]
+		i=sortedUnclust[0]
 
 		clustInd += 1
 
