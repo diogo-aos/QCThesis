@@ -1,22 +1,33 @@
 import numpy as np
 from sklearn import preprocessing
 
-def pcaFun(x, whiten=False):
-	avg=np.mean(x,axis=0)
+def pcaFun(x, whiten=False,e=0, type='cov'):
+	# x 		:	n x m numpy.array of n points and m dimensions
+	# whiten	:	boolean parameter - whiten data or not
+	# e 		:	normalization parameter for whitening data
+
+	n,d = x.shape
 
 	# center data
+	avg=np.mean(x,axis=0)
 	cX=x-avg
 
 	# compute covariance matrix
-	C=cX.T.dot(cX)
+	if type=='cov' :
+		C=cX.T.dot(cX)
+		C /= n
+	elif type=='corr':
+		C=np.corrcoef(x,rowvar=0, bias=1)
+	else:
+		raise Exception('Incompatible argument value \
+			\'type='+str(type)+'\'')
 
 	# compute eig
 	eigVals,eigVect=np.linalg.eig(C)
 
-	# get decresing order of eigVals (index)
-	eigValOrder=eigVals.argsort()[::-1]
-
 	#sort eigenthings
+	eigValOrder=eigVals.argsort()[::-1] #descending eigen indeces
+	
 	sortedEigVect=np.zeros(eigVect.shape)
 	sortedEigVal=np.zeros(eigVals.shape)
 
@@ -28,10 +39,10 @@ def pcaFun(x, whiten=False):
 	projX=cX.dot(sortedEigVect)
 
 	if whiten is True:
-		e = 0.00005
-		projX = projX / ((sortedEigVal + e) ** 0.5)
+		whiten_vect = np.sqrt((sortedEigVal + e)) ** (-1)
+		projX = projX / whiten_vect
 
-	return projX
+	return projX, sortedEigVal, sortedEigVect
 
 
 
