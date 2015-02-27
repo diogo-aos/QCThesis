@@ -246,38 +246,20 @@ def qc(ri,**kwargs):
 # clust=fineCluster(xyData,minD) cluster xyData points when closer than minD
 # output: clust=vector the cluter index that is asigned to each data point
 #        (it's cluster serial #)
-def fineCluster(xyData,minD):
-	
-	n = xyData.shape[0]
-	clust = np.zeros(n)
-	i=0
-	clustInd=1
-	while np.min(clust)==0:
-		x=xyData[i]
-
-		# euclidean distance form 1 point to others
-		D = np.sum(pow(x-xyData,2),axis=1)
-		D = pow(D,0.5)
-
-		clust = np.where(D<minD,clustInd,clust)
-
-		#index of first unclestered datapoint
-		i=np.argmin(clust)
-
-		clustInd += 1
-
-	return clust
-
-def fineCluster2(xyData,pV,minD):
+def fineCluster(xyData,minD,potential=None):
 	
 	n = xyData.shape[0]
 	clust = np.zeros(n)
 
-	# index of points sorted by potential
-	sortedUnclust=pV.argsort()
+	if potential is not None:
+		# index of points sorted by potential
+		sortedUnclust=potential.argsort()
 
-	# index of unclestered point with lowest potential
-	i=sortedUnclust[0]
+		# index of unclestered point with lowest potential
+		i=sortedUnclust[0]
+	else:
+		i=0
+
 
 	# fist cluster index is 1
 	clustInd=1
@@ -295,17 +277,19 @@ def fineCluster2(xyData,pV,minD):
 		# unclust=[x for x in clust if x == 0]
 		clusted= clust.nonzero()[0]
 
-		# sorted index of non clustered points
-		sortedUnclust=[x for x in sortedUnclust if x not in clusted]
+		if potential is not None:
+			# sorted index of non clustered points
+			sortedUnclust=[x for x in sortedUnclust if x not in clusted]
 
-		if len(sortedUnclust) == 0:
-			break
+			if len(sortedUnclust) == 0:
+				break
 
-		#index of unclestered point with lowest potential
-		i=sortedUnclust[0]
+			#index of unclestered point with lowest potential
+			i=sortedUnclust[0]
+		else:
+			#index of first unclestered datapoint
+			i=np.argmin(clust)
 
 		clustInd += 1
 
 	return clust
-
-
