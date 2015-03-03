@@ -1,49 +1,65 @@
 import numpy as np
 from sklearn import preprocessing
 
-def pcaFun(x, whiten=False,e=0, type='cov'):
+def pcaFun(x, whiten=False,e=0, type='cov', method='svd',center=True,normalize=False):
 	# x 		:	n x m numpy.array of n points and m dimensions
 	# whiten	:	boolean parameter - whiten data or not
 	# e 		:	normalization parameter for whitening data
 
 	n,d = x.shape
 
-	# center data
-	avg=np.mean(x,axis=0)
-	cX=x-avg
+	# normalize
+	if normalize:
+		x=sklearn.normalize(x,axis=0)
 
-	# compute covariance matrix
-	if type=='cov' :
-		C=cX.T.dot(cX)
-		C /= n
-	elif type=='corr':
-		C=np.corrcoef(x,rowvar=0, bias=1)
+	# center data
+	if center:
+		avg=np.mean(x,axis=0)
+		x=x-avg
+
+	if method=='eig':
+		# compute covariance matrix
+		if type=='cov':
+			C=x.T.dot(x)
+			C /= n
+		elif type=='corr':
+			C=np.corrcoef(x,rowvar=0, bias=1)
+		else:
+			raise Exception('Incompatible argument value \
+				\'type='+str(type)+'\'')
+
+		# compute eig
+		eigVals,eigVect=np.linalg.eig(C)
+
+		#sort eigenthings
+		eigValOrder=eigVals.argsort()[::-1] #descending eigen indeces
+		
+		sortedEigVect=np.zeros(eigVect.shape)
+		sortedEigVal=np.zeros(eigVals.shape)
+
+		for i,j in enumerate(eigValOrder):
+			sortedEigVect[:,i]=eigVect[:,j]
+			sortedEigVal[i]=eigVals[j]
+
+		comps = sortedEigVect
+		eigs = sortedEigVal
+
+	elif method=='svd':
+		U,S,V = np.linalg.svd(x)
+		comps=V.T
+		eigs= (S**2) / n
 	else:
 		raise Exception('Incompatible argument value \
-			\'type='+str(type)+'\'')
-
-	# compute eig
-	eigVals,eigVect=np.linalg.eig(C)
-
-	#sort eigenthings
-	eigValOrder=eigVals.argsort()[::-1] #descending eigen indeces
-	
-	sortedEigVect=np.zeros(eigVect.shape)
-	sortedEigVal=np.zeros(eigVals.shape)
-
-	for i,j in enumerate(eigValOrder):
-		sortedEigVect[:,i]=eigVect[:,j]
-		sortedEigVal[i]=eigVals[j]
+				\'method='+str(method)+'\'')
 
 	# project data
-	projX=cX.dot(sortedEigVect)
+	projX=x.dot(comps)
 
 	if whiten is True:
-		whiten_vect = np.sqrt((sortedEigVal + e)) ** (-1)
+		whiten_vect = np.sqrt((eigs + e))
 		projX = projX / whiten_vect
 
-	return projX, sortedEigVal, sortedEigVect
-
+	return projX, comps, eigs
 
 
 # function graddesc(xyData,q,[steps])
@@ -243,15 +259,21 @@ def qc(ri,**kwargs):
 
 	return V,P,E,dV
 
+
 # clust=fineCluster(xyData,minD) cluster xyData points when closer than minD
 # output: clust=vector the cluter index that is asigned to each data point
 #        (it's cluster serial #)
 def fineCluster(xyData,minD,potential=None):
 	
+	if potential is not None:
+		usePotential=True
+	else:
+		usePotential=False
+
 	n = xyData.shape[0]
 	clust = np.zeros(n)
 
-	if potential is not None:
+	if usePotential:
 		# index of points sorted by potential
 		sortedUnclust=potential.argsort()
 
@@ -260,15 +282,14 @@ def fineCluster(xyData,minD,potential=None):
 	else:
 		i=0
 
-
 	# fist cluster index is 1
 	clustInd=1
 
 	while np.min(clust)==0:
 		x=xyData[i]
 
-		# euclidean distance form 1 point to others
-		D = np.sum(pow(x-xyData,2),axis=1)
+		# euclidean distance from ith point to others
+		D = np.sum(pow(xyData-x,2),axis=1)
 		D = pow(D,0.5)
 
 		clust = np.where(D<minD,clustInd,clust)
@@ -277,7 +298,7 @@ def fineCluster(xyData,minD,potential=None):
 		# unclust=[x for x in clust if x == 0]
 		clusted= clust.nonzero()[0]
 
-		if potential is not None:
+		if usePotential:
 			# sorted index of non clustered points
 			sortedUnclust=[x for x in sortedUnclust if x not in clusted]
 
