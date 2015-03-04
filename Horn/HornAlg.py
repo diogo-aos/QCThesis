@@ -1,13 +1,22 @@
 import numpy as np
 from sklearn import preprocessing
 
-def pcaFun(x, whiten=False,e=0, type='cov', method='svd',center=True,normalize=False):
+def _corr(C):
+	R=np.empty_like(C)
+	#compute correlation from covariance
+	for i,ci in enumerate(C):
+		for j,cij in enumerate(ci):
+			R[i,j] = cij / np.sqrt(C[i,i] * C[j,j])
+	return R
+
+def pcaFun(x, whiten=False,e=0, type='cov', method='svd',
+			center=True,normalize=False):
 	# x 		:	n x m numpy.array of n points and m dimensions
 	# whiten	:	boolean parameter - whiten data or not
 	# e 		:	normalization parameter for whitening data
 
 	n,d = x.shape
-
+	oX=x
 	# normalize
 	if normalize:
 		x=sklearn.normalize(x,axis=0)
@@ -23,7 +32,10 @@ def pcaFun(x, whiten=False,e=0, type='cov', method='svd',center=True,normalize=F
 			C=x.T.dot(x)
 			C /= n
 		elif type=='corr':
-			C=np.corrcoef(x,rowvar=0, bias=1)
+			#C=np.corrcoef(x,rowvar=0, bias=1)
+			C=x.T.dot(x)
+			C /= n
+			C=_corr(C)
 		else:
 			raise Exception('Incompatible argument value \
 				\'type='+str(type)+'\'')
