@@ -19,10 +19,11 @@ import DaviesBouldin
 #  - qk_centroids (centroids of oracles from last generation)
 #  - qk_assignment(assignment of oracles from last generation)
 #  - fitnessEvolution
-def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim):
+def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim,timeDB=False):
     fitnessEvolution = np.zeros((qGenerations,numOracles+1)) #+1 for the column that indicates the best score in each gen
 
-
+    if timeDB:
+        db_timings = list() #timing list for Davies-Bouldin index computation
     qk_timings_cg = list()
     start = datetime.now()
     
@@ -53,8 +54,14 @@ def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim):
             ora.setIntArrays(np.concatenate(qk_centroids[i]))
         
         ## Compute fitness
+            if timeDB:
+                db_start = datetime.now()
             score = DaviesBouldin.DaviesBouldin(mixture,qk_centroids[i],qk_assignment[i])
             ora.score = score.eval()
+
+            if timeDB:
+                db_timings.append((datetime.now() - db_start).total_seconds())
+
         
         ## Store best from this generation
         for i in range(1,numOracles):
@@ -78,5 +85,8 @@ def qk_means(mixture,numOracles,numClusters,qubitStringLen,qGenerations,dim):
             fitnessEvolution[qGen_,-1]=best
 
         start = datetime.now()
+
+    if timeDB:
+        return qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg,db_timings
 
     return qk_centroids,qk_assignment,fitnessEvolution,qk_timings_cg
