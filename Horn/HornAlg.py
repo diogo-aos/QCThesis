@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn import preprocessing
+from datetime import datetime
 
 def _corr(C):
 	R=np.empty_like(C)
@@ -86,6 +87,12 @@ def pcaFun(x, whiten=False,e=0, type='cov', method='svd',
 
 def graddesc(xyData,**kwargs):
 
+	"""
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+					Argument treatment
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	"""
+
 	argKeys = kwargs.keys()
 
 	if 'steps' in argKeys:
@@ -137,18 +144,39 @@ def graddesc(xyData,**kwargs):
 				timelapse_list=kwargs['timelapse_list']
 			elif 'timelapse_percent' in argKeys:
 				timelapse_percent=kwargs['timelapse_percent']
-				timelapse_list=range(steps)[::int(steps*timelapse_percent)]
+				list_inc=int(steps/(steps*timelapse_percent))
+				if list_inc == 0:
+					list_inc = 1
+				timelapse_list=range(steps)[::list_inc]
 			else:
 				timelapse_percent=0.25
+				list_inc=int(steps/(steps*timelapse_percent))
+				if list_inc == 0:
+					list_inc = 1
+				timelapse_list=range(steps)[::list_inc]
 				timelapse_list=range(steps)[::int(steps*timelapse_percent)]
 	else:
 		timelapse=False
+
+	if 'timeit' in argKeys:
+		timeit=kwargs['timeit']
+		#timings=np.zeros(steps+1) #+1 for the total time
+		timings=datetime.now()
+	else:
+		timeit=False
+
 
 	# add more states to timelapse list
 	if timelapse:
 		if timelapse_count in timelapse_list:
 			tD.append(D)
-		timelapse_count += 1	
+		timelapse_count += 1
+
+	"""
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+					Algorithm starts here
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	"""
 
 	# first run
 	V,P,E,dV = qc(xyData,q=q,r=D)
@@ -165,19 +193,43 @@ def graddesc(xyData,**kwargs):
 			if timelapse:
 				if timelapse_count in timelapse_list:
 					tD.append(D)
-				timelapse_count += 1			
+				timelapse_count += 1		
+
+			"""	
+			if timeit:
+				start_time=datetime.now()"""
 
 			# perform Quantum Clustering
 			V,P,E,dV = qc(xyData,q=q,r=D)
+
+			"""
+			if timeit:
+				timeings[i*4]=(datetime.now() - start).total_seconds()"""
 		eta*=0.5
+
+
+	"""
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+					Algorithm ends here
+	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	"""
+	if timeit:
+		timings=(datetime.now() - timings).total_seconds()
 
 	if timelapse:
 		tD.append(D)
 		D=tD
 
+	returnList=[D,V,E]
+
 	if return_eta:
-		return D,V,E,eta
-	return D,V,E
+		returnList.append(eta)
+
+	if timeit:
+		returnList.append(timings)
+
+	#returnList.append(timelapse_list)
+	return returnList
 	
 
 # function qc
@@ -275,7 +327,7 @@ def qc(ri,**kwargs):
 # clust=fineCluster(xyData,minD) cluster xyData points when closer than minD
 # output: clust=vector the cluter index that is asigned to each data point
 #        (it's cluster serial #)
-def fineCluster(xyData,minD,potential=None):
+def fineCluster(xyData,minD,potential=None,timeit=False):
 	
 	if potential is not None:
 		usePotential=True
@@ -284,6 +336,9 @@ def fineCluster(xyData,minD,potential=None):
 
 	n = xyData.shape[0]
 	clust = np.zeros(n)
+
+	if timeit:
+		timings=datetime.now()
 
 	if usePotential:
 		# index of points sorted by potential
@@ -324,5 +379,12 @@ def fineCluster(xyData,minD,potential=None):
 			i=np.argmin(clust)
 
 		clustInd += 1
+
+	if timeit:
+		timings=(datetime.now()-timings).total_seconds()
+
+	returnList=[clust]
+	if timeit:
+		return clust,timings
 
 	return clust
