@@ -372,10 +372,10 @@ def fineCluster(xyData,minD,potential=None,timeit=False):
 			if len(sortedUnclust) == 0:
 				break
 
-			#index of unclestered point with lowest potential
+			#index of unclustered point with lowest potential
 			i=sortedUnclust[0]
 		else:
-			#index of first unclestered datapoint
+			#index of first unclustered datapoint
 			i=np.argmin(clust)
 
 		clustInd += 1
