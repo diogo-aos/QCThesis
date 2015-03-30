@@ -1,3 +1,8 @@
+---
+title: Meisterwork
+author: Diogo Silva
+---
+
 # Structure
 The scope of the thesis is Big Data and Cluster Ensembles. To both, a main requirement is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them having execution speed in mind.
 
@@ -11,7 +16,24 @@ The second path is the computational intelligence approach, i.e.  to use quantum
 
 ## Quantum bit
 
-The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and 
+The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and ...
+
+Introduce the concept further
+
+Several clustering algorithms [4-6], as well as optimization problems [7], are modelled after this concept. To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm [5] was chosen as a case study.
+
+## Quantum K-Means
+### Description of the algorithm
+
+The Quantum K-Means algorithm, as is described in [5], is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
+
+(describe algorithm...)
+
+
+The algorithm implemented and tested is a variant of the one described in [5]. The genetic operations of cross-over and mutation are taken away. This decision was based on the [8], stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability.
+
+### Testing 
+The testing was aimed at benchmarking both accuracy and speed. 
 
 ## Schrödinger equation
 The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in [2,3] This function will be the wave function in the Schrodinger equation. Having this information we'll compute the potential function that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) [2].
@@ -20,8 +42,16 @@ This potential function is almost like the inverse of a probability density func
 
 Both methods take as input parameter the variance of the parzen-window estimator $$sigma$$.
 
-
 # References
 [1] N. Wiebe, A. Kapoor, and K. Svore, “Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning,” p. 31, 2014.
 [2] D. Horn and A. Gottlieb, “The Method of Quantum Clustering.,” NIPS, no. 1, 2001.
 [3] M. Weinstein and D. Horn, “Dynamic quantum clustering: a method for visual exploration of structures in data,” Phys. Rev. E - Stat. Nonlinear, Soft Matter Phys., vol. 80, no. 6, pp. 1–15, Dec. 2009.
+
+
+[4] E. Casper and C. Hung, “Quantum Modeled Clustering Algorithms for Image Segmentation,” vol. 2, no. March, pp. 1–21, 2013.
+[5] E. Casper, C.-C. Hung, E. Jung, and M. Yang, “A Quantum-Modeled K-Means Clustering Algorithm for Multi-band Image Segmentation.” [Online]. Available: http://delivery.acm.org/10.1145/2410000/2401639/p158-casper.pdf?ip=193.136.132.10&id=2401639&acc=ACTIVE SERVICE&key=2E5699D25B4FE09E.F7A57B2C5B227641.4D4702B0C3E38B35.4D4702B0C3E38B35&CFID=476955365&CFTOKEN=55494231&__acm__=1423057410_0d77d9b5028cb3. [Accessed: 04-Feb-2015].
+[6] J. Xiao, Y. Yan, J. Zhang, and Y. Tang, “A quantum-inspired genetic algorithm for k-means clustering,” Expert Syst. Appl., vol. 37, pp. 4966–4973, 2010.
+
+[7] H. Wang, J. Liu, J. Zhi, and C. Fu, “The Improvement of Quantum Genetic Algorithm and Its Application on Function Optimization,” vol. 2013, no. 1, 2013.
+
+[8] W. Liu, H. Chen, Q. Yan, Z. Liu, J. Xu, and Y. Zheng, “A novel quantum-inspired evolutionary algorithm based on variable angle-distance rotation,” 2010 IEEE World Congr. Comput. Intell. WCCI 2010 - 2010 IEEE Congr. Evol. Comput. CEC 2010, 2010.
