@@ -12,7 +12,7 @@ from timeit import default_timer as timer # timing
 
 
 ##generate data
-n = 1e6
+n = 2e6
 d = 2
 k = 20
 
@@ -35,12 +35,15 @@ start = timer()
 grouperCUDA = K_Means()
 grouperCUDA.fit(data,k,iters=3,cuda=True)
 times['cuda'] = timer() - start
+del grouperCUDA
 
 start = timer()
 grouperNP = K_Means()
 grouperNP.fit(data,k,cuda=False)
 times['numpy'] = timer() - start
+del grouperNP
 
 print 'Times'
 print 'CUDA ','\t',times['cuda']
 print 'NumPy','\t',times['numpy']
+

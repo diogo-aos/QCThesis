@@ -177,7 +177,7 @@ def graddesc(xyData,**kwargs):
 					Algorithm starts here
 	* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	"""
-
+		
 	# first run
 	V,P,E,dV = qc(xyData,q=q,r=D)
 

@@ -23,7 +23,7 @@ class testAttributes:
     computedCentroids = None
 
 ##generate data
-n = 1e4
+n = 2e6
 d = 2
 k = 20
 
@@ -72,3 +72,5 @@ att_np.assign,att_np.groupedData = grouper._assign_data(data,att_np.dist_mat)
 
 # Centroid calculation
 att_np.computedCentroids = grouper._np_recompute_centroids(att_np.groupedData)
+
+del data, groundTruth, grouper

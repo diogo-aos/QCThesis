@@ -130,7 +130,10 @@ class K_Means:
     
             blockDim = blockWidth, blockHeight
             gridDim = np.int(gridWidth), np.int(gridHeight)
-            
+        
+        self.blockDim = blockDim
+        self.gridDim = gridDim        
+        
         distShape =  N,K
         dist_mat = np.empty(distShape,dtype=data.dtype)
         
@@ -205,3 +208,8 @@ class K_Means:
             centroids[k] = np.mean(grouped_data[k],axis=0)
         
         return centroids
+
+
+    def _cu_mean(self):
+
+        pass

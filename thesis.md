@@ -1,5 +1,5 @@
 ---
-title: Meisterwork
+title: Speeding up clustering ensembles
 author: Diogo Silva
 ---
 
@@ -30,10 +30,25 @@ The Quantum K-Means algorithm, as is described in [5], is based on the classical
 (describe algorithm...)
 
 
-The algorithm implemented and tested is a variant of the one described in [5]. The genetic operations of cross-over and mutation are taken away. This decision was based on the [8], stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability.
+The algorithm implemented and tested is a variant of the one described in [5]. The genetic operations of cross-over and mutation are taken away. This decision was based on the findings of [8], stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability.
 
 ### Testing 
-The testing was aimed at benchmarking both accuracy and speed. 
+The testing was aimed at benchmarking both accuracy and speed. The input used was synthetic data, namely, Gaussian mixtures with variable cardinality and dimensionality. The results
+
+(copy of report)
+
+Regarding the Quantum K-Means (QK-Means), the tests were performed using 10 oracles, a qubit string length of 8 and 100 generations per round. The \textit{classical} K-Means was executed using the \textit{k-means++} centroid initialization method. Since QK-Means executes a classical K-Means for each oracle each generation, the number of initializations for K-Means was $\#oracles \times \#generations \times factor$, where $factor$ is a adjustable multiplier. Each test had 20 rounds.
+
+All tests were done with 6 clusters (natural number of clusters). Two tests were done with the two dimensional dataset: one with a $factor=1.10$ (increase initializations by 10\%) and another with $factor=1$. I'll call these tests T1 and T2. The test done with the six dimensional dataset (T3) used $factor=1.10$.
+
+### Results
+
+#### Timing results
+
+(table)
+
+The mean computation time of classical K-Means is an order of magnitude lower than that of QK-Means. However, in classical K-Means the solution typically chosen if the one with lowest sum of euclidean distances of points to their attributed centroid. To make a fair comparisson between the two algorithms, the Davies-Bouldin index of all classical K-Means solutions was computed and used as the criterea to choose the best solution. When this is done, we can see that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations. In T2, possibly the fairest comparisson, the computation times become very similar with only a 2\% difference between the two algorithms.
+
 
 ## Schrödinger equation
 The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in [2,3] This function will be the wave function in the Schrodinger equation. Having this information we'll compute the potential function that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) [2].
