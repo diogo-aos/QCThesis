@@ -5,16 +5,10 @@ Created on Fri Mar 27 15:32:02 2015
 @author: Diogo Silva
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Mar 27 09:06:18 2015
-
-@author: Diogo Silva
-"""
-
 import numpy as np
 from K_Means import *
 from sklearn import datasets # generate gaussian mixture
+from timeit import default_timer as timer # timing
 
 class testAttributes:
     dist_mat = None
@@ -48,16 +42,26 @@ att_cu_auto = testAttributes()
 grouper = K_Means(N=n,D=d,K=k)
 centroids = grouper._init_centroids(data)
 
+times = dict()
+
 
 # Distance matrix
+start = timer()
 att_np.dist_mat = grouper._np_calc_dists(data,centroids)
+times["dist_mat np"] = timer() - start
 
+start = timer()
 att_cu_man.dist_mat = grouper._cu_calc_dists(data,centroids,gridDim=None,
-                                     blockDim=None,memManage='manual',
+                                     blockDim=None,memManage='auto',
                                      keepDataRef=False)
+times["dist_mat cuda manual"] = timer() - start
+
+start = timer()
 att_cu_auto.dist_mat  = grouper._cu_calc_dists(data,centroids,gridDim=None,
                                      blockDim=None,memManage='auto',
                                      keepDataRef=False)
+times["dist_mat cuda auto"] = timer() - start
+
 
 print "Distance matrix"
 print "Numpy == CUDA Man:    ",'\t', np.allclose(att_np.dist_mat,
@@ -68,9 +72,18 @@ print "CUDA Auto == CUDA Man:",'\t', np.allclose(att_cu_auto.dist_mat,
                                                  att_cu_man.dist_mat)
 
 # Assignment and grouped data
+start = timer()
 att_np.assign,att_np.groupedData = grouper._assign_data(data,att_np.dist_mat)
+times["assign and group"] = timer() - start
+
 
 # Centroid calculation
+start = timer()
 att_np.computedCentroids = grouper._np_recompute_centroids(att_np.groupedData)
+times["centroid computation"] = timer() - start
 
-del data, groundTruth, grouper
+print att_np.computedCentroids
+
+print "Times"
+for k,v in times.iteritems():
+    print k,': ',v

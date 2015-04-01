@@ -17,9 +17,21 @@ class K_Means:
         self.D = D
         self.K = K
         
-        self._cudaDataRef = None 
+        self._cudaDataRef = None
         
-    def fit(self,data,K,iters=3,cuda=False):
+        self.__cuda = True
+        self.__cuda_mem = "auto"
+
+    @property    
+    def cuda_mem(self):
+        return self.__cuda_mem
+
+    @cuda_mem.setter
+    def cuda_mem(self,cuda_mem):
+        if cuda_mem not in ['manual','auto']:
+            raise Exception("cuda_mem = \'manual\' or \'auto\'")
+    
+    def fit(self,data,K,iters=3,cuda=True):
         
         N,D = data.shape
             
@@ -89,7 +101,7 @@ class K_Means:
         return dist_mat
     
     def _cu_calc_dists(self,data,centroids,gridDim=None,blockDim=None,
-                       memManage='manual',keepDataRef=True):
+                       memManage='auto',keepDataRef=True):
         """
         TODO:
             - deal with gigantic data / distance matrix
@@ -103,7 +115,9 @@ class K_Means:
         N,D = data.shape
         K,cD = centroids.shape
         
-        if memManage not in ('manual','auto'):
+        self.cuda_mem = memManage
+        
+        if self.__cuda_mem  not in ('manual','auto'):
             raise Exception("Invalid value for \'memManage\'.")
 
             
@@ -137,7 +151,7 @@ class K_Means:
         distShape =  N,K
         dist_mat = np.empty(distShape,dtype=data.dtype)
         
-        if memManage == 'manual':
+        if self.__cuda_mem == 'manual':
             
             if keepDataRef:
                 if self._cudaDataRef is None:
@@ -156,7 +170,7 @@ class K_Means:
             dDists.copy_to_host(ary=dist_mat)
             numbapro.cuda.synchronize()
 
-        elif memManage == 'auto':
+        elif self.__cuda_mem == 'auto':
             self._cu_dist_kernel[gridDim,blockDim](data,centroids,dist_mat) 
         
         return dist_mat

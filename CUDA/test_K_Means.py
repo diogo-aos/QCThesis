@@ -12,7 +12,7 @@ from timeit import default_timer as timer # timing
 
 
 ##generate data
-n = 2e6
+n = 1e6
 d = 2
 k = 20
 
@@ -33,6 +33,7 @@ times=dict() #dicitonary to store times
 
 start = timer()
 grouperCUDA = K_Means()
+grouperCUDA.cuda_mem = "a2uto"
 grouperCUDA.fit(data,k,iters=3,cuda=True)
 times['cuda'] = timer() - start
 del grouperCUDA
