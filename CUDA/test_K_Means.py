@@ -6,13 +6,13 @@ Created on Fri Mar 27 09:06:18 2015
 """
 
 import numpy as np
-from K_Means import *
+from K_Means2 import *
 from sklearn import datasets # generate gaussian mixture
 from timeit import default_timer as timer # timing
 
 
 ##generate data
-n = 1e6
+n = 2e6
 d = 2
 k = 20
 
@@ -28,23 +28,25 @@ print 'Memory used by data:  \t',n * d * 4 / 1024,'\t','KBytes'
 #data = np.random.random((n,d)).astype(np.float32)
 data, groundTruth = datasets.make_blobs(n_samples=n,n_features=d,centers=k,
                                         center_box=(-1000.0,1000.0))
+data = data.astype(np.float32)
 
 times=dict() #dicitonary to store times
 
 start = timer()
 grouperCUDA = K_Means()
-grouperCUDA.cuda_mem = "a2uto"
+grouperCUDA._cuda_mem = "manual"
 grouperCUDA.fit(data,k,iters=3,cuda=True)
 times['cuda'] = timer() - start
-del grouperCUDA
+
+#del grouperCUDA
+
 
 start = timer()
 grouperNP = K_Means()
 grouperNP.fit(data,k,cuda=False)
 times['numpy'] = timer() - start
-del grouperNP
+#del grouperNP
 
 print 'Times'
 print 'CUDA ','\t',times['cuda']
 print 'NumPy','\t',times['numpy']
-

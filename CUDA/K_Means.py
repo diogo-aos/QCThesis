@@ -32,7 +32,10 @@ class K_Means:
             raise Exception("cuda_mem = \'manual\' or \'auto\'")
     
     def fit(self,data,K,iters=3,cuda=True):
-        
+ 
+        if iters == 0:
+            return
+       
         N,D = data.shape
             
         self.N = N
@@ -40,9 +43,6 @@ class K_Means:
         self.K = K
         
         centroids = self._init_centroids(data)
-        
-        if iters == 0:
-            return
         
         for i in xrange(iters):
             dist_mat = self._calc_dists(data,centroids,cuda=cuda)
@@ -125,7 +125,7 @@ class K_Means:
             #dists shape
             
 
-            MAX_THREADS_BLOCK = 28 * 20 # GT520M has 48 CUDA cores
+            MAX_THREADS_BLOCK = 16 * 20 # GT520M has 48 CUDA cores
             MAX_GRID_XYZ_DIM = 65535
 
             if K <= 28:
@@ -134,7 +134,7 @@ class K_Means:
                 blockHeight = np.int(blockHeight)
             else:
                 blockWidth = 20
-                blockHeight = 28
+                blockHeight = 16
 
             # grid width/height is the number of blocks necessary to fill
             # the columns/rows of the matrix
