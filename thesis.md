@@ -3,7 +3,8 @@ title: Speeding up clustering ensembles
 author: Diogo Silva
 ---
 
-# Structure
+# Structured
+
 The scope of the thesis is Big Data and Cluster Ensembles. To both, a main requirement is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them having execution speed in mind.
 
 The initial research was under the algorithmic path. More specifically, exploring quantum clustering algorithms. The findings of this exploration were unproductive and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found: GPU and distributed (among several machines).
@@ -174,18 +175,18 @@ Table 3: The values represent generations.
 | T1   | 17.25 | 70.2875  | 3    | 33    |
 | T3   | 28.05 | 568.6475 | 2    | 90    |
 
-![Population mean evolution on each round](/home/chiroptera/workspace/thesis_writing_git/QCThesis/rsc/QK_Means/img/bi_nofactor_mean.png)
+![Population mean evolution on each round](rsc/QK_Means/img/bi_nofactor_mean.png)
 Figure 2: DB index mean of the population in T2. Only 4 rounds represented.
 
-![Population mean evolution on each round](/home/chiroptera/workspace/thesis_writing_git/QCThesis/rsc/QK_Means/img/bi_nofactor_var.png)
+![Population mean evolution on each round](rsc/QK_Means/img/bi_nofactor_var.png)
 Figure 3: Figure 3: DB index variance of the population in T2. Only 4 rounds represented.
 
 
-![Fitness evolution on each round T2](/home/chiroptera/workspace/thesis_writing_git/QCThesis/rsc/QK_Means/img/bi_nofactor_evo.png)
+![Fitness evolution on each round T2](rsc/QK_Means/img/bi_nofactor_evo.png)
 Figure 4: DB index of best solution in T2.
 
 
-![Fitness evolution on each round T3](/home/chiroptera/workspace/thesis_writing_git/QCThesis/rsc/QK_Means/img/sex_evo.png)
+![Fitness evolution on each round T3](rsc/QK_Means/img/sex_evo.png)
 Figure 5: DB index of best solution in T3.
 
 
