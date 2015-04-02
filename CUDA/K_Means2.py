@@ -5,15 +5,9 @@ Created on Wed Apr  1 10:54:02 2015
 @author: Diogo Silva
 """
 
-"""
-Created on Fri Mar 27 08:53:20 2015
-
-@author: Diogo Silva
-"""
-
 import numpy as np
 import numbapro
-from numbapro import *
+from numbapro import *  
 
 import sys, traceback
 
@@ -128,6 +122,7 @@ class K_Means:
                 - now it only works if matrix width is <=28
         """
         
+      
         
         N,D = data.shape
         K,cD = centroids.shape
