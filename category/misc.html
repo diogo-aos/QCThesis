@@ -1,110 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Random Access Knowledge - misc</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="/theme/css/style.css">
+	<!--<link rel="stylesheet/less" type="text/css" href="/theme/css/style.less">-->
+	<!--<script src="/theme/js/less.js" type="text/javascript"></script>-->
+	<link rel="stylesheet" type="text/css" href="/theme/css/pygments.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:800,400,300|Inconsolata' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+	<link href="/" type="application/atom+xml" rel="alternate" title="Random Access Knowledge ATOM Feed" />
+
+
+		<title>Random Access Knowledge</title>
+		<meta charset="utf-8" />
 </head>
+<body>
+	<section id="sidebar">
+		<figure id="user_logo">
+            <a href=""><div class="logo">&nbsp;</div></a>
+		</figure>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">Random Access Knowledge </a></h1>
-                <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
+		<div class="user_meta">
+            <h1 id="user"><a href="" class="">Diogo Silva</a></h1>
+			<h2></h2>
+			<ul>
+					<li><a href="http://rak.diogoaos.eu">Blog</a></li>
+			</ul>
+		</div>
+		<footer>
+			<address>
+				Powered by <a href="http://pelican.notmyidea.org/">Pelican</a>,
+		                theme by <a href="https://github.com/wting/pelican-svbtle">wting</a>.
+			</address>
+		</footer>
+	</section>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/hosting-pelican-website-in-dropbox.html">Hosting Pelican website in Dropbox</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2015-03-31T10:19:00+02:00">
-                Published: Ter 31 Março 2015
-        </abbr>
+	<section id="posts">
+	<header>
+		<h1>Diogo Silva's blog</h1>
+		<h3>
+			<script type="text/javascript">
+				var currentDate = new Date();
+				var day = currentDate.getDate();
+				var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+				var month = monthNames[currentDate.getMonth()].toUpperCase();
+				var year = currentDate.getFullYear();
+				document.write(month + " " + day + ", " + year);
+			</script>
+		</h3>
+	</header>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/diogo-silva.html">Diogo Silva</a>
-        </address>
-<p>In <a href="/category/misc.html">misc</a>. </p>
-
-</footer><!-- /.post-info --><p>This entry will serve as a short documentation on how to set up a Pelican website hosted in Dropbox. I'm running Ubuntu, so the commands used work in that environment. Analogue steps can be taken for PC and Mac.</p>
+	<dl>
+		<ol>
+				<li>
+					<h1 class="title">
+						<a href="/hosting-pelican-website-in-dropbox.html" rel="bookmark" title="Permalink to Hosting Pelican website in Dropbox">Hosting Pelican website in Dropbox</a>
+					</h1>
+					<abbr class="published" title="2015-03-31T10:19:00+02:00">Ter 31 Março 2015</abbr>
+				<div class="entry-content"> <p>This entry will serve as a short documentation on how to set up a Pelican website hosted in Dropbox. I'm running Ubuntu, so the commands used work in that environment. Analogue steps can be taken for PC and Mac.</p>
 <h1>Setting up Dropbox</h1>
-<p>I will forego the details of creating a <a href="https://www.dropbox.com/">Dropbox</a> account. Just make sure that you have a Public directory as that is what will serve your website.</p>
-<h1>Setting up Pelican</h1>
-<h2>Why Pelican?</h2>
-<p>I chose <a href="http://blog.getpelican.com/">Pelican</a> because it's a Python based static site generator. Being Python means I can understand the code and develop it further for my own needs. Being a static site generator basicly means that I can host it in a variety of places (e.g. GitHub), manage it easily and publish by uploading a simple file and running a script (which I don't even have to run if I upload the final HTML). Plus, I can write in simple <em>markdown</em>.</p>
-<h2>Installation</h2>
-<p>If you have <a href="https://pypi.python.org/pypi/pip">pip</a> the installation is as forward as</p>
-<div class="highlight"><pre>pip install pelican
-pip install markdown
-</pre></div>
+<p>I will forego the details of creating ...</p> </div>
+				</li>
+		</ol>
+	</dl>
 
-
-<p><em>Run <code>pip install markdown</code> only if you want to write in markdown</em>.</p>
-<p>And it's done. Easy right?</p>
-<h2>Setting up</h2>
-<p>Now there's two options to setting up Pelican in Dropbox:
-- have the whole Pelican setup inside Dropbox;
-- have only the static sites you want Dropbox to serve.</p>
-<p>I went with the former because I wanted to have the whole thing self-contained. This will allow me to easily rebuild the website from anywhere with access to Dropbox and Python. I might change this in the future. I'll tell how to do the later as well.</p>
-<p>Navigate to the <em>Public</em> folder in Dropbox. I recommend creating a folder to hold your website. We'll run the Pelican <em>quickstart</em> method to setup the whole thing.</p>
-<div class="highlight"><pre>mkdir -p mywebsite
-pelican-quickstart
-</pre></div>
-
-
-<p>The application will ask several questions to assist in creating the website. You can skip most of them and let Pelican set up with default values. When asked <code>What is your URL prefix?</code>, answer <code>Y</code> if you have a custom domain set up (I'll cover this later) and specify that domain.</p>
-<p>I said I would tell to set up with the second option (have only the static sites you want Dropbox to serve), and this is done in this step. When asked <code>Do you want to upload your website using Dropbox? (y/N)</code>, answer <code>y</code>. Then, write down the directory to which Pelican should publish the website (this still has to be inside the <em>Public</em> folder - it can be the <em>Public</em> folder itself). The rest of the Pelican set up may or may not be inside the <em>Public</em> folder - if it is, I recommend for it to be in a different directory that the one used to <publish class=""></publish></p>
-<div class="highlight"><pre>&gt; Where <span class="k">do </span>you want to create your new web site? <span class="o">[</span>.<span class="o">]</span> 
-&gt; What will be the title of this web site? MyTestWebsite
-&gt; Who will be the author of this web site? DiogoAOS
-&gt; What will be the default language of this web site? <span class="o">[</span>en<span class="o">]</span> 
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span class="o">(</span>Y/n<span class="o">)</span> Y
-&gt; What is your URL prefix? <span class="o">(</span>see above example; no trailing slash<span class="o">)</span> http://www.diogoaos.eu
-&gt; Do you want to <span class="nb">enable </span>article pagination? <span class="o">(</span>Y/n<span class="o">)</span> 
-&gt; How many articles per page <span class="k">do </span>you want? <span class="o">[</span>10<span class="o">]</span> 
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span class="o">(</span>Y/n<span class="o">)</span> 
-&gt; Do you want an auto-reload &amp; simpleHTTP script to assist with theme and site development? <span class="o">(</span>Y/n<span class="o">)</span> 
-&gt; Do you want to upload your website using FTP? <span class="o">(</span>y/N<span class="o">)</span> 
-&gt; Do you want to upload your website using SSH? <span class="o">(</span>y/N<span class="o">)</span> 
-&gt; Do you want to upload your website using Dropbox? <span class="o">(</span>y/N<span class="o">)</span> 
-&gt; Do you want to upload your website using S3? <span class="o">(</span>y/N<span class="o">)</span> 
-&gt; Do you want to upload your website using Rackspace Cloud Files? <span class="o">(</span>y/N<span class="o">)</span> 
-&gt; Do you want to upload your website using GitHub Pages? <span class="o">(</span>y/N<span class="o">)</span>
-</pre></div>
-
-
-<p>From inside the Pelican folder, run <code>make publish</code> to publish your whole website. There are other options to the <code>make</code> script, but I won't go into detail here.</p>
-<p>You can now access you Dropbox hosted website. To get the link go into your website directory using the website navigator, enter the <em>output</em> folder, click the <em>index.html</em> file and click the <em>Copy public link</em> button on the top.</p>
-<p><img src="images/dropbox_copy_link.png" alt="Dropbox copy public link button" style="width: 600px;" align="middle" /></p>
-<p>That is the direct link for you website. It is also the link you'd use to redirect your custom domain. Test drive the website by pasting the link into the browser. If the website looks like the image below, don't be alarmed - it's a absolute path problem.</p>
-<p><img src="images/pelican_abs_link.jpg" alt="Broken style" style="width: 400px;" align="middle" /></p>
-<p>By default, Pelican uses absolute paths on all it's links. That means the HTML files are trying go the resources that are actually inside the computer (which Dropbox can't access) instead of the ones that are inside the website directory. The configuration file <em>pelicanconf.py</em> in the Pelican folder has to be modified to use relative paths. Open this file and search for <em>RELATIVE_URLS</em>. By default, it's already there commented. If it isn't just add the following to the end.</p>
-<div class="highlight"><pre><span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">True</span>
-</pre></div>
-
-
-<p>This file is responsible for a <a href="http://docs.getpelican.com/en/latest/settings.html">myriad</a> of configuration settings in Pelican. It's written in Pythn syntax so you can add comments to the configurations by writing after a <code>#</code>.</p>
-<p><code>make devserver</code>
-<code>make stopserver</code></p>                </article>
 <p class="paginator">
-    Page 1 / 1
 </p>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+	</section>
 
 </body>
 </html>
