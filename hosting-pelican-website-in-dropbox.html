@@ -3,7 +3,7 @@
 <head>
         <meta charset="utf-8" />
         <title>Hosting Pelican website in Dropbox</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link rel="stylesheet" href="./theme/css/main.css" />
 
         <!--[if IE]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -12,16 +12,16 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="/">Random Access Knowledge </a></h1>
+                <h1><a href="./">Random Access Knowledge </a></h1>
                 <nav><ul>
-                    <li class="active"><a href="/category/misc.html">misc</a></li>
+                    <li class="active"><a href="./category/misc.html">misc</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/hosting-pelican-website-in-dropbox.html" rel="bookmark"
+        <a href="./hosting-pelican-website-in-dropbox.html" rel="bookmark"
            title="Permalink to Hosting Pelican website in Dropbox">Hosting Pelican website in Dropbox</a></h1>
     </header>
 
@@ -32,9 +32,9 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="/author/diogo-silva.html">Diogo Silva</a>
+                By                         <a class="url fn" href="./author/diogo-silva.html">Diogo Silva</a>
         </address>
-<p>In <a href="/category/misc.html">misc</a>. </p>
+<p>In <a href="./category/misc.html">misc</a>. </p>
 
 </footer><!-- /.post-info -->      <p>This entry will serve as a short documentation on how to set up a Pelican website hosted in Dropbox. I'm running Ubuntu, so the commands used work in that environment. Analogue steps can be taken for PC and Mac.</p>
 <h1>Setting up Dropbox</h1>
@@ -85,9 +85,9 @@ pelican-quickstart
 
 <p>From inside the Pelican folder, run <code>make publish</code> to publish your whole website. There are other options to the <code>make</code> script, but I won't go into detail here.</p>
 <p>You can now access you Dropbox hosted website. To get the link go into your website directory using the website navigator, enter the <em>output</em> folder, click the <em>index.html</em> file and click the <em>Copy public link</em> button on the top.</p>
-<p><img src="../img/dropbox_copy_link.png" alt="Dropbox copy public link button" style="width: 600px;" align="middle" /></p>
+<p><img src="images/dropbox_copy_link.png" alt="Dropbox copy public link button" style="width: 600px;" align="middle" /></p>
 <p>That is the direct link for you website. It is also the link you'd use to redirect your custom domain. Test drive the website by pasting the link into the browser. If the website looks like the image below, don't be alarmed - it's a absolute path problem.</p>
-<p><img src="../img/pelican_abs_link.jpg" alt="Broken style" style="width: 400px;" align="middle" /></p>
+<p><img src="images/pelican_abs_link.jpg" alt="Broken style" style="width: 400px;" align="middle" /></p>
 <p>By default, Pelican uses absolute paths on all it's links. That means the HTML files are trying go the resources that are actually inside the computer (which Dropbox can't access) instead of the ones that are inside the website directory. The configuration file <em>pelicanconf.py</em> in the Pelican folder has to be modified to use relative paths. Open this file and search for <em>RELATIVE_URLS</em>. By default, it's already there commented. If it isn't just add the following to the end.</p>
 <div class="highlight"><pre><span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">True</span>
 </pre></div>
@@ -101,23 +101,6 @@ pelican-quickstart
   </article>
 </section>
         <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
