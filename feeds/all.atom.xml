@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Random Access Knowledge</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2015-03-31T10:19:00+02:00</updated><entry><title>Hosting Pelican website in Dropbox</title><link href="/hosting-pelican-website-in-dropbox.html" rel="alternate"></link><updated>2015-03-31T10:19:00+02:00</updated><author><name>Diogo Silva</name></author><id>tag:,2015-03-31:hosting-pelican-website-in-dropbox.html</id><summary type="html">&lt;p&gt;This entry will serve as a short documentation on how to set up a Pelican website hosted in Dropbox. I'm running Ubuntu, so the commands used work in that environment. Analogue steps can be taken for PC and Mac.&lt;/p&gt;
+&lt;h1&gt;Setting up Dropbox&lt;/h1&gt;
+&lt;p&gt;I will forego the details of creating a &lt;a href="https://www.dropbox.com/"&gt;Dropbox&lt;/a&gt; account. Just make sure that you have a Public directory as that is what will serve your website.&lt;/p&gt;
+&lt;h1&gt;Setting up Pelican&lt;/h1&gt;
+&lt;h2&gt;Why Pelican?&lt;/h2&gt;
+&lt;p&gt;I chose &lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt; because it's a Python based static site generator. Being Python means I can understand the code and develop it further for my own needs. Being a static site generator basicly means that I can host it in a variety of places (e.g. GitHub), manage it easily and publish by uploading a simple file and running a script (which I don't even have to run if I upload the final HTML). Plus, I can write in simple &lt;em&gt;markdown&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Installation&lt;/h2&gt;
+&lt;p&gt;If you have &lt;a href="https://pypi.python.org/pypi/pip"&gt;pip&lt;/a&gt; the installation is as forward as&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;pip install pelican
+pip install markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Run &lt;code&gt;pip install markdown&lt;/code&gt; only if you want to write in markdown&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;And it's done. Easy right?&lt;/p&gt;
+&lt;h2&gt;Setting up&lt;/h2&gt;
+&lt;p&gt;Now there's two options to setting up Pelican in Dropbox:
+- have the whole Pelican setup inside Dropbox;
+- have only the static sites you want Dropbox to serve.&lt;/p&gt;
+&lt;p&gt;I went with the former because I wanted to have the whole thing self-contained. This will allow me to easily rebuild the website from anywhere with access to Dropbox and Python. I might change this in the future. I'll tell how to do the later as well.&lt;/p&gt;
+&lt;p&gt;Navigate to the &lt;em&gt;Public&lt;/em&gt; folder in Dropbox. I recommend creating a folder to hold your website. We'll run the Pelican &lt;em&gt;quickstart&lt;/em&gt; method to setup the whole thing.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;mkdir -p mywebsite
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The application will ask several questions to assist in creating the website. You can skip most of them and let Pelican set up with default values. When asked &lt;code&gt;What is your URL prefix?&lt;/code&gt;, answer &lt;code&gt;Y&lt;/code&gt; if you have a custom domain set up (I'll cover this later) and specify that domain.&lt;/p&gt;
+&lt;p&gt;I said I would tell to set up with the second option (have only the static sites you want Dropbox to serve), and this is done in this step. When asked &lt;code&gt;Do you want to upload your website using Dropbox? (y/N)&lt;/code&gt;, answer &lt;code&gt;y&lt;/code&gt;. Then, write down the directory to which Pelican should publish the website (this still has to be inside the &lt;em&gt;Public&lt;/em&gt; folder - it can be the &lt;em&gt;Public&lt;/em&gt; folder itself). The rest of the Pelican set up may or may not be inside the &lt;em&gt;Public&lt;/em&gt; folder - if it is, I recommend for it to be in a different directory that the one used to &lt;publish class=""&gt;&lt;/publish&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&amp;gt; Where &lt;span class="k"&gt;do &lt;/span&gt;you want to create your new web site? &lt;span class="o"&gt;[&lt;/span&gt;.&lt;span class="o"&gt;]&lt;/span&gt; 
+&amp;gt; What will be the title of this web site? MyTestWebsite
+&amp;gt; Who will be the author of this web site? DiogoAOS
+&amp;gt; What will be the default language of this web site? &lt;span class="o"&gt;[&lt;/span&gt;en&lt;span class="o"&gt;]&lt;/span&gt; 
+&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; Y
+&amp;gt; What is your URL prefix? &lt;span class="o"&gt;(&lt;/span&gt;see above example; no trailing slash&lt;span class="o"&gt;)&lt;/span&gt; http://www.diogoaos.eu
+&amp;gt; Do you want to &lt;span class="nb"&gt;enable &lt;/span&gt;article pagination? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; How many articles per page &lt;span class="k"&gt;do &lt;/span&gt;you want? &lt;span class="o"&gt;[&lt;/span&gt;10&lt;span class="o"&gt;]&lt;/span&gt; 
+&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want an auto-reload &amp;amp; simpleHTTP script to assist with theme and site development? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using FTP? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using SSH? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using Dropbox? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using S3? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using Rackspace Cloud Files? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; 
+&amp;gt; Do you want to upload your website using GitHub Pages? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;From inside the Pelican folder, run &lt;code&gt;make publish&lt;/code&gt; to publish your whole website. There are other options to the &lt;code&gt;make&lt;/code&gt; script, but I won't go into detail here.&lt;/p&gt;
+&lt;p&gt;You can now access you Dropbox hosted website. To get the link go into your website directory using the website navigator, enter the &lt;em&gt;output&lt;/em&gt; folder, click the &lt;em&gt;index.html&lt;/em&gt; file and click the &lt;em&gt;Copy public link&lt;/em&gt; button on the top.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/dropbox_copy_link.png" alt="Dropbox copy public link button" style="width: 600px;" align="middle" /&gt;&lt;/p&gt;
+&lt;p&gt;That is the direct link for you website. It is also the link you'd use to redirect your custom domain. Test drive the website by pasting the link into the browser. If the website looks like the image below, don't be alarmed - it's a absolute path problem.&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/pelican_abs_link.jpg" alt="Broken style" style="width: 400px;" align="middle" /&gt;&lt;/p&gt;
+&lt;p&gt;By default, Pelican uses absolute paths on all it's links. That means the HTML files are trying go the resources that are actually inside the computer (which Dropbox can't access) instead of the ones that are inside the website directory. The configuration file &lt;em&gt;pelicanconf.py&lt;/em&gt; in the Pelican folder has to be modified to use relative paths. Open this file and search for &lt;em&gt;RELATIVE_URLS&lt;/em&gt;. By default, it's already there commented. If it isn't just add the following to the end.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;RELATIVE_URLS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This file is responsible for a &lt;a href="http://docs.getpelican.com/en/latest/settings.html"&gt;myriad&lt;/a&gt; of configuration settings in Pelican. It's written in Pythn syntax so you can add comments to the configurations by writing after a &lt;code&gt;#&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;make devserver&lt;/code&gt;
+&lt;code&gt;make stopserver&lt;/code&gt;&lt;/p&gt;</summary></entry></feed>
