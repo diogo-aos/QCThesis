@@ -1,29 +1,44 @@
 ---
-title: Speeding up clustering ensembles
-author: Diogo Silva
+    title: Speeding up clustering ensembles
+        author: Diogo Silva
 ---
 
-# Structured
+# Abreviations
 
-The scope of the thesis is Big Data and Cluster Ensembles. To both, a main requirement is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them having execution speed in mind.
+|ABRE|Description|
+|----|-----------|
+|QK-Means|Quantum K-Means|
+|qubit|Quantum bit|
+|PCA|Principal Component Analysis|
+|PC|Principal Component|
 
-The initial research was under the algorithmic path. More specifically, exploring quantum clustering algorithms. The findings of this exploration were unproductive and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found: GPU and distributed (among several machines).
+`[ TOC ]`
+
+# Structure
+
+The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
+
+The initial research was under the algorithmic path. More specifically, exploring quantum clustering algorithms. The findings of this exploration were unproductive and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPU and distributed (among several machines). While the first is a readily available resource in common machines, the second is more able to address problems dealing with very large datasets.
 
 # Quantum Clustering
 
-There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This is basically converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. [1]. Most literature on this path is also quite theoretical since quantum computers or quantum circuits are not easily available. This path can be seen as part of the bigger problem of quantum computing and quantum information processing. 
+There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This is basically converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. [1]. Most literature on this path is also quite theoretical since quantum computers or quantum circuits are not easily available. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
+
+<!-- #TODO get refs for not being feasable; Feynmann; I think washington course had something -->
+
+An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems is a very hard task by itself and literature suggest is not feasable. Given that the scope of the thesis is to accelerate clustering, having the extra overhead 
 
 The second path is the computational intelligence approach, i.e.  to use quantum inspired algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two other branches. One comprehends the algorithms based on the concept of the quantum bit, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other branch models data as a quantum system and uses the Schrödinger equation to evolve it.
+
+[1] N. Wiebe, A. Kapoor, and K. Svore, “Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning,” p. 31, 2014.
 
 ## Quantum bit
 
 The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and ...
 
-### (Introduce the concept further)
+<!-- taken from notebook -->
 
-The implemented algorithm is described in more detail in [1,3].
-
-This algorithm is based on the quantum bit (qubit) model. A qubit can have any value between 0 and 1 (superposition property) until it is observed, which is when the system collapses to either state. However, the probability with which the system collapses to either state  may be different. The superposition property or linear combination of states can be expressed as
+A qubit can have any value between 0 and 1 (superposition property) until it is observed, which is when the system collapses to either state. However, the probability with which the system collapses to either state  may be different. The superposition property or linear combination of states can be expressed as
 
 $$
 [\psi] = \alpha[0] + \beta[1]
@@ -58,18 +73,30 @@ $$
 
 The probability of observing the state $[000]$ will be $|\alpha_1|^2 \times |\alpha_2|^2 \times |\alpha_3|^2$
 
-To use this model for computing purposes, black-box objects called *oracles* are used. Oracles contain strings of qubits and generate their own input by observing the state of the qubits. After collapsing, the qubit value becomes analog to a classical bit. Each string of qubits represents a number, so the number of qubits in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
+To use this model for computing purposes, black-box objects called *oracles* are used.
 
-### (continued)
+<!-- end of notebook -->
 
-Several clustering algorithms [4-6], as well as optimization problems [7], are modelled after this concept. To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm [5] was chosen as a case study.
+<!-- #TODO get ref -->
+[Def from wiki: In complexity theory and computability theory, an oracle machine is an abstract machine used to study decision problems. It can be visualized as a Turing machine with a black box, called an oracle, which is able to decide certain decision problems in a single operation. The problem can be of any complexity class. Even undecidable problems, like the halting problem, can be used.](http://en.wikipedia.org/wiki/Oracle_machine)
+
+In this context, oracles contain strings of qubits and generate their own input by observing the state of the qubits. After collapsing, the qubit value becomes analog to a classical bit.
+
+<!-- #TODO get ref : see washington quantum computing classes -->
+As it stands, oracles aren't quantum systems or even simulate them. The most appropriate description would be a probabilistic Turing machine.
+
+Each string of qubits represents a number, so the number of qubits in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
+
 
 ## Quantum K-Means
+
+Several clustering algorithms [4-6], as well as optimization problems [7], are modelled after this concept. To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm based on [5] was chosen as a case study.
+
 ### Description of the algorithm
 
-The Quantum K-Means algorithm, as is described in [5], is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
+The Quantum K-Means (QK-Means) algorithm, as is described in [5], is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
 
-#### (describe algorithm... - from notebook)
+<!-- (describe algorithm... - from notebook) -->
 
 The algorithm has the following steps:
 1. initialize population of oracles
@@ -79,13 +106,16 @@ The algorithm has the following steps:
 5. Store
 6. Quantum Rotation Gate
 7. Collapse oracles
-8. Repeat 3-7 until generation (iteration) limit is reached
+8. Quantum cross-over and mutation
+9. Repeat 3-7 until generation (iteration) limit is reached
+
+The algorithm implemented and tested is a variant of the one described in [5]. The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox, but were not implemented due to the suggestion from [1]. This decision was based on the findings of [8], stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle.
 
 ####  Initialize population of oracles
-The oracles are created in this step and all qubit coefficients are initialized with $\frac{1}{\sqrt{2}}$, so that the system will observe either state with equal probability.
+The oracles are created in this step and all qubit coefficients are initialized with $\frac{1}{\sqrt{2}}$, so that the system will observe either state with equal probability. This value is chosen taken into account the necessary normalization of the coefficients.
 
 #### Collapse oracles
-Collapsing the oracles implies making an observation of each qubit of each qubit string in each oracle. This is done by first choosing a coefficient to use (which is irrelevant), e.g. $\alpha$. Then, we generate a random value $r$ between 0 and 1. If $\alpha \ge r$ then the system collapses to $[0]$, otherwise to $[1]$.
+Collapsing the oracles implies making an observation of each qubit of each qubit string in each oracle. This is done by first choosing a coefficient to use (either can be used), e.g. $\alpha$. Then, a random value $r$ between 0 and 1 is generated. If $\alpha \ge r$ then the system collapses to $[0]$, otherwise to $[1]$.
 
 #### K-Means
 In this step we convert the binary representation of the qubit strings to base 10 and use them those values as initial centroids for K-Means. For each oracle, classical K-Means is then executed until it stabilizes or reaches the iteration limit. The solution centroids are returned to the oracles in binary representation.
@@ -97,55 +127,49 @@ Cluster fitness is computed using the Davies-Bouldin index for each oracle. The 
 The best scoring oracle is stored.
 
 #### Quantum Rotation Gate
-So far, we've had classical K-Means with a complex random number generation for the centroids and complicated datastructures. This is the step that fundamentally differs from the classical version. In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one. The basic idea is to shift the qubit coefficients of the least scoring oracles so they'll have a higher probability of collapsing into initial centroid values closer to the best solution so far. This way, in future generations, we'll not initiate with the best centroids so far (which will not converge further into a better solution) but we'll be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm). In conclusion, we want to look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
+So far, we've had classical K-Means with a complex random number generation for the centroids and complicated data structures. This is the step that fundamentally differs from the classical version. In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one. The basic idea is to shift the qubit coefficients of the least scoring oracles so they'll have a higher probability of collapsing into initial centroid values closer to the best solution so far. This way, in future generations, we'll not initiate with the best centroids so far (which will not converge further into a better solution) but we'll be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm). In conclusion, we want to look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
 
-In the original formulation of this algorithm two extra step existed to further increase diversity: quantum crossover and quantum mutation inversion. Both are part of the genetic algorithms toolbox, but were not implemented due to the suggestion from [1] that they are unnecessary steps with the careful choice of the rotatin angle.
-
-#### (continue)
+<!-- (end of notebook entry) -->
 
 
-The algorithm implemented and tested is a variant of the one described in [5]. The genetic operations of cross-over and mutation are taken away. This decision was based on the findings of [8], stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability.
-
-### Testing 
+### Testing and Results
 The testing was aimed at benchmarking both accuracy and speed. The input used was synthetic data, namely, Gaussian mixtures with variable cardinality and dimensionality. The results
 
 (copy of report)
 
-Regarding the Quantum K-Means (QK-Means), the tests were performed using 10 oracles, a qubit string length of 8 and 100 generations per round. The \textit{classical} K-Means was executed using the \textit{k-means++} centroid initialization method. Since QK-Means executes a classical K-Means for each oracle each generation, the number of initializations for K-Means was $\#oracles \times \#generations \times factor$, where $factor$ is a adjustable multiplier. Each test had 20 rounds.
+Regarding the Quantum K-Means (QK-Means), the tests were performed using 10 oracles, a qubit string length of 8 and 100 generations per round. The *classical* K-Means was executed using the *k-means++* centroid initialization method. Since QK-Means executes a classical K-Means for each oracle each generation, the number of initializations for K-Means was $num.oracles \times num.generations \times factor$, where $factor$ is an adjustable multiplier. Each test had 20 rounds.
 
-All tests were done with 6 clusters (natural number of clusters). Two tests were done with the two dimensional dataset: one with a $factor=1.10$ (increase initializations by 10\%) and another with $factor=1$. I'll call these tests T1 and T2. The test done with the six dimensional dataset (T3) used $factor=1.10$.
-
-### Results
+All tests were done with 6 clusters (natural number of clusters). Two tests were done with the two dimensional dataset: one with a $factor=1.10$ (increase initializations by $10\%$) and another with $factor=1$. I'll call these tests T1 and T2, respectively. The test done with the six dimensional dataset (T3) used $factor=1.10$.
 
 #### Timing results
 
-Table 1: Timing results for the different algorithms in the different tests. Fitness time
-refers to the time that took to compute the DB index of each solution of classical
-K-Means. All time values are the average over 20 rounds and are displayed in seconds.
+<!-- table in csv format available in resource directory -->
 
-| Dataset               | Algorithm         | Mean        | Variance    | Best      | Worst     |
-|-----------------------|-------------------|-------------|-------------|-----------|-----------|
-| T1                    | QK-Means          | 62.02642975 | 0.077065212 | 61.620424 | 62.579969 |
-| bi36                  | K-Means           | 6.4774672   | 0.002501651 | 6.352554  | 6.585451  |
-|                       | K-Means + fitness | 70.2238286  | 0.022223755 | 69.889105 | 70.548572 |
-|                       | fitness           | 63.7463614  | 0.019722105 | 63.536551 | 63.963121 |
-| T2                    | QK-Means          | 64.22347165 | 0.056559152 | 63.807367 | 64.807373 |
-| bi36 noFactor K-Means | K-Means           | 5.71167475  | 0.004903253 | 5.581391  | 5.877091  |
-|                       | K-Means + fitness | 62.7021533  | 0.066919692 | 63.417207 | 62.180021 |
-|                       | fitness           | 56.99047855 | 0.062016439 | 56.59863  | 57.540116 |
-| T3                    | QK-Means          | 74.4917966  | 0.067688312 | 74.12105  | 74.976446 |
-| sex36                 | K-Means           | 8.291648    | 0.007015777 | 8.160859  | 8.426203  |
-|                       | K-Means + fitness | 72.36315915 | 0.05727269  | 71.856457 | 73.031841 |
-|                       | fitness           | 64.07151115 | 0.050256913 | 63.695598 | 64.605638 |
+Table 1: Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.
+
+|Dataset|Algorithm|Mean|Variance|Best|Worst|
+|-------|---------|----|--------|----|-----|
+|T1| QK-Means          | 62.02642975 | 0.077065212 | 61.620424 | 62.579969 |
+|bi36| K-Means           | 6.4774672   | 0.002501651 | 6.352554  | 6.585451  |
+|| K-Means + fitness | 70.2238286  | 0.022223755 | 69.889105 | 70.548572 |
+|| fitness           | 63.7463614  | 0.019722105 | 63.536551 | 63.963121 |
+|T2| QK-Means          | 64.22347165 | 0.056559152 | 63.807367 | 64.807373 |
+|bi36 noFactor K-Means| K-Means| 5.71167475  | 0.004903253 | 5.581391  | 5.877091  |
+|| K-Means + fitness | 62.7021533  | 0.066919692 | 63.417207 | 62.180021 |
+|| fitness           | 56.99047855 | 0.062016439 | 56.59863  | 57.540116 |
+|T3| QK-Means          | 74.4917966  | 0.067688312 | 74.12105  | 74.976446 |
+|sex36| K-Means           | 8.291648    | 0.007015777 | 8.160859  | 8.426203  |
+|| K-Means + fitness | 72.36315915 | 0.05727269  | 71.856457 | 73.031841 |
+|| fitness           | 64.07151115 | 0.050256913 | 63.695598 | 64.605638 |
 
 The mean computation time of classical K-Means is an order of magnitude lower than that of QK-Means. However, in classical K-Means the solution typically chosen is the one with lowest sum of squared euclidean distances of points to their attributed centroid. To make a fair comparisson between the two algorithms, the Davies-Bouldin index of all classical K-Means solutions was computed and used as the criterea to choose the best solution. When this is done, we can see that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations. In T2, possibly the fairest comparisson, the computation times become very similar with only a 2\% difference between the two algorithms.
 
 #### Accuracy
 ##### Comparing K-Means and QK-Means
 
-Table 2: All values displayed are the average over 20 rounds, except for the Overall best
-which shows the best result in any round. The values represent the Davies-Bouldin
-fitness index (low is better).
+<!-- table in csv format available in resource directory -->
+
+Table 2: All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).
 
 | Dataset | Algorithm | Best        | Worst       | Mean        | Variance    | Overall best |
 |---------|-----------|-------------|-------------|-------------|-------------|--------------|
@@ -167,6 +191,7 @@ would expect for the population’s fitness variance to decrease over the genera
 
 Analyzing the evolution of the DB index of the best solution over the generations (Fig. 4 and 5) gives some insight on the rate of convergence. In both tests it’s clear that the best solution is often reached in a quarter of the total generations. More detail can be seen in the following table.
 
+<!-- table in csv format available in resource directory -->
 
 Table 3: The values represent generations.
 
@@ -191,13 +216,18 @@ Figure 5: DB index of best solution in T3.
 
 
 ## Schrödinger equation
-The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in [2,3] This function will be the wave function in the Schrodinger equation. Having this information we'll compute the potential function that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) [2].
 
-This potential function is almost like the inverse of a probability density function. Minima of the potential correspond to intervals in space where points are together. So minima will naturally correspond to cluster centers [2]. The computation of the potential function on every point in space is a costly computation effort though, so what is done in one method is to compute the potential on the input data and converge this points toward the minima in the potential function. This is done with the gradient descent method in [2]. Another method [3] is to think of the input data as particles and use Hamiltonian operator to evolve the quantum system in the time-dependant Schrodinger equation. Given enough time steps, the particles will oscilate around potential minima.
+The other approach to clustering mustering inspirations form quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb (<!-- #TODO add ref -->).
 
-Both methods take as input parameter the variance of the parzen-window estimator $sigma$.
+### Horn and Gottlieb's algorithm
 
-### (from notebook Horn accuracy)
+The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in [2,3]. This function will be the wave function in the Schrödinger equation. Having this information we'll compute the potential function that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) [2].
+
+This potential function is akin to the inverse of a probability density function. Minima of the potential correspond to intervals in space where points are together. So minima will naturally correspond to cluster centers [2]. The potential of every point in space is a costly computation. One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function. This is done with the gradient descent method in [2]. Another method [3] is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependant Schrödinger equation. Given enough time steps, the particles will converge to and oscillate around potential minima.
+
+Both methods take as input parameter the variance $\sigma$ of the parzen-window estimator.
+
+<!-- (from notebook Horn accuracy) -->
 This method starts off by creating a Parzen-window density estimation of the input data by associating a Gaussian with each point, such that
 
 $$ \psi (\mathbf{x}) = \sum ^N _{i=1} e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}} $$
@@ -205,7 +235,7 @@ $$ \psi (\mathbf{x}) = \sum ^N _{i=1} e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_
 where $N$ is the total number of points in the dataset, $\sigma$ is the variance and $\psi$ is the probability density estimation. $\psi$ is chosen to be the wave function in Schrödinger's equation. The details of why this is are better described in [1-4]. Schrödinger's equation is solved in order of the potential function $V(x)$, whose minima will be the centers of the clusters of our data:
 
 $$
-V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
+V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
 = E - \frac{d}{2} + \frac {1}{2 \sigma^2 \psi} \sum ^N _{i=1} \left \| \mathbf{x}-\mathbf{x}_i \right \| ^2 e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}}
 $$
 
@@ -215,13 +245,45 @@ $$
 E = - min \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
 $$
 
-With all of this, $V(x)$ can be computed. However, it's very computationally intensive to compute V(x) to the whole space, so we only compute the value of this function close to the datapoints. This should not be problematic since clusters' centers are generally close to the datapoints themselves. Even so, the minima may not lie on the datapoints themselves, so what we do is compute the potential at all datapoints and then apply the gradient descent method to move them to regions in space with lower potential.
+With all of this, $V(x)$ can be computed. However, it's very computationally intensive to compute V(x) to the whole space, so we only compute the value of this function close to the data points. This should not be problematic since clusters' centers are generally close to the data points themselves. Even so, the minima may not lie on the data points themselves, so what we do is compute the potential at all data points and then apply the gradient descent method to move them to regions in space with lower potential.
 
-There is another method to evolve the system other then by gradient descent which is explained in [4] and complements this on the Dynamic Quantum Clustering algorithm.
-### (continue)
+There is another method to evolve the system other then by gradient descent which is explained in [4]. Together, this methodsmake the Dynamic Quantum Clustering algorithm <!-- #TODO add ref -->.
+<!-- (continue) -->
+
+<!-- describe the fine cluster algorithm; critique how this is done; what was developed; what  -->
+
+### Testing and Results
+
+<!-- 
+#TODO
+Put in accuracy results for crab,iris and gaussian mixtures  
+Put in timing results
+-->
+
+The accuracy of this algorithm was tested with real world datasets, namely, the crab and iris datasets available at the UCI Machine Learning Repository <!-- #TODO add ref for repository -->. 
+
+#### Iris data
+
+The iris dataset ([available at the UCI ML repository](http://archive.ics.uci.edu/ml/datasets/Iris)) has 3 classes each with 50 datapoints each. There are 4 features. The data is preprocessed using Principal Component Analysis (PCA). The natural clustering can be observed in Fig. I1. 
+
+<!-- #TODO saved image from ipython -->
+![Fitness evolution on each round T2](rsc/Horn/img/iris_natural.png)
+Fig. I1 - Plot of the two first principal components (PC).
+
+We choose $\sigma=\frac{1}{4}$ to reproduce the experiments in [3]. We use only the first two PC here, which account for $95.8\%$ of the energy.
+
+![Fitness evolution on each round T2](rsc/Horn/img/iris_2pc_cluster.png)
+Fig. I2 - Plots of the converged data datapoints and final clustering for 2 PC.
+
+For the sake of completeness, I also clustered over all PCs.
+![Fitness evolution on each round T2](rsc/Horn/img/iris_allpc_cluster.png)
+Fig. I3 - Plots of the converged data datapoints and final clustering for all PC.
+
 
 # References
+
 [1] N. Wiebe, A. Kapoor, and K. Svore, “Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning,” p. 31, 2014.
+
 [2] D. Horn and A. Gottlieb, “The Method of Quantum Clustering.,” NIPS, no. 1, 2001.
 [3] M. Weinstein and D. Horn, “Dynamic quantum clustering: a method for visual exploration of structures in data,” Phys. Rev. E - Stat. Nonlinear, Soft Matter Phys., vol. 80, no. 6, pp. 1–15, Dec. 2009.
 

@@ -12,6 +12,15 @@ Use citer. Pandoc produces ugly HTML - see workaround.
 
 
 # Programming
+## git
+`git clone [-b <mybranch>] [--single-branch] <rep> [dest_folder]`
+
+This will clone a specific branch *mybranch* from a repository *rep* into the folder *dest_folder* and speficy that only that branch should be cloned (*--single-branch*).
+
+`git remote set-url origin git@github.com/Username/Repository.git`
+
+This will change https to ssh.
+
 ## Challenges
 [HackerRank](https://www.hackerrank.com)
 
@@ -29,17 +38,80 @@ http://askubuntu.com/questions/457446/ubuntu-14-04-nvidia-prime-is-it-supported-
 
 tag:nvidia-prime
 
+## Installing ubuntu restricted drivers through command line
+tag: linux,ubuntu
+
+### For 12.04 and below
+
+The additional drivers program has a command line interface, jockey-text:
+
+Use
+
+`jockey-text --list`
+
+to get a list of available drivers and their status, then use
+
+the init lines are required only for graphics drivers
+```bash
+sudo init 1
+jockey-text --enable=DRIVER
+sudo init 2
+```
+
+where DRIVER is the one you got from the list. For example:
+
+`jockey-text --enable=firmware:b43`
+
+To install the Broadcom B43 wireless driver.
+
+For your graphics card, you will get a choice of the proprietary driver from the manufacturer and a free alternative. You have to either restart the system entirely (recommended) or restart the display server:
+- log out and back in
+- Depending on what display manager, you can use one of the following commands:
+    + Default Ubuntu (with LightDM): `sudo restart lightdm `
+    + Gnome (with GDM): `sudo restart gdm`
+    + KDE (with KDM): `sudo restart kdm`
+    + For MDM: `sudo restart mdm`
+
+Note: From 12.10, Kubuntu also uses LightDM.
+
+
+
+### For 14.04
+`sudo ubuntu-drivers list`
+
+Will show all the driver packages which apply to your current system. You can then
+
+`sudo ubuntu-drivers autoinstall `
+
+to install all the packages you need, or you can do:
+
+`sudo ubuntu-drivers devices`
+
+to show you which devices need drivers, and their corresponding package names.
+
 
 
 # Python
 ## Profiling
 
-This blog                           [post](https://zapier.com/engineering/profiling-python-boss/) describes nicely how to profile Python code. For quick reference, there is **cProfile** and **line_profiler**. The latter is not included by default in Anaconda.
+This blog [post](https://zapier.com/engineering/profiling-python-boss/) describes nicely how to profile Python code. For quick reference, there is **cProfile** and **line_profiler**. The latter is not included by default in Anaconda.
 
 In **cProfile** we just `import cProfile` and profile the code we want with `cProfile.run("testFunc(arg1,arg2)")`. The code should be written as a string so it can be evaluated by `exec`.
 
+also [this](http://pynash.org/2013/03/06/timing-and-profiling.html)
+
 # CUDA
 ## timeout CUDA display
+
+## NumbaPro + CUDA
+To install NumbaPro, the simplest way is to install Anaconda and then do
+
+```
+conda update conda
+conda install accelerate
+```
+
+This will not have CUDA working though. The CUDA driver's installation is the responsibility of the user. At the time of writing the appropriate driver is CUDA 5.5. To install download from internet ([link for Linux 64](http://developer.download.nvidia.com/compute/cuda/5_5/rel/installers/cuda_5.5.22_linux_64.run)) and run the `.run` file.
 
 # Testing
 ## virtualenv
