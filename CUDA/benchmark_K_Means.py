@@ -17,7 +17,8 @@ Testbench for K_Means
 """
 
 import numpy as np
-from K_Means2 import *
+import K_Means3
+from K_Means3 import *
 from sklearn import datasets # generate gaussian mixture
 from timeit import default_timer as timer # timing
 
@@ -46,85 +47,211 @@ logger.info('Start of logging.')
 # - dimensionality - number of dimensions
 # - clusters . number of clusters to use
 # - rounds - number of rounds to repeat tests
-# - iters - number of iterations of convergence
+# - iters - number of iterations or convergence
 
 cardinality = [1e3, 5e3, 1e4, 5e4, 1e5, 5e5, 1e6, 2e6, 4e6]
 dimensionality = [2]
+nat_clusters = [20]
 clusters = [10, 20, 30, 100, 500]
 rounds = 10 
-iters=[3]
+iterations=[3]
 
-# Setting up datastrutures
-bench_results = dict()
-bench_resutlts['cuda']=list()
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                            HELPER FUNCTIONS
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-
-def generateData(n,d):
+def generateData(n,d,k):
     # Generate data
     data, groundTruth = datasets.make_blobs(n_samples=n,n_features=d,centers=k,
                                             center_box=(-1000.0,1000.0))
     data = data.astype(np.float32)  
     
     return data
-    
-def runCUDA(data,k,iters):
-    # setup    
-    grouperCUDA = K_Means()
-    grouperCUDA._cuda_mem = "manual"
-    
-    # cluster
-    start = timer()    
-    grouperCUDA.fit(data,k,iters=iters,cuda=True)
-    time = timer() - start
-    
-    return time
 
-def runNP(data,k,iters):
-    # setup    
-    grouperCUDA = K_Means()
-    grouperCUDA._cuda_mem = "manual"
-    
-    # cluster
-    start = timer()    
-    grouperCUDA.fit(data,k,iters=iters,cuda=True)
-    time = timer() - start
-    
-    return time    
+import pickle
 
+def readPickle(filename):
+    """
+    Receives a filename to read from, opens the file, loads the pickled data 
+    inside to memory and returns an object with that data.
+    """
+
+    pkl_file = open(filename, 'rb')
+    data = pickle.load(pkl_file)
+    pkl_file.close()
+    return data
+    
+def writePickle(filename,data):
+    """
+    Receives a filename to write to and the data to write, opens the file, 
+    writes the data to the file.
+    """
+    
+    output = open(filename, 'wb')
+    pickle.dump(data, output)
+    output.close()
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                            CUDA
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+logger.info("CUDA")
+
+# iterate on number of datapoints
 for i,n in enumerate(cardinality):
+
+    # iterate on dimension of data
     for i,d in enumerate(dimensionality):
-        
-        # generate data
-        data = generateData(n,d,k)      
-        
-        for i,k in enumerate(clusters): 
+
+        # iterate on number of natural clusters in mix
+        for i,nc in enumerate(nat_clusters):
+
+            log_str = "N={0},D={1},NATC={2}".format(n,d,nc)
+            logger.info('Generating data:' + log_str)
+
+            # generate data
+            data = generateData(n,d,nc)      
             
-            for r in xrange(rounds):
+            # iterate on number of clusters to find
+            for i,k in enumerate(clusters):
                 
-                #cuda
-                start = timer()
-                grouperCUDA = K_Means()
-                grouperCUDA._cuda_mem = "manual"
-                grouperCUDA.fit(data,k,iters=3,mode="cuda")
-                times['cuda'] = timer() - start
+                # iterate on the iterations to perform
+                for i,iters in enumerate(iterations):
+
+                    rounds_times = list()
+                    
+                    r = 0
+                    while r < rounds:
+                        log_str = "N={0},D={1},NATC={2},K={3},ITERS={4},ROUND={5}".format(n,d,nc,k,iters,r)
+                        logger.info('CUDA clustering:' + log_str)
+
+                        start = timer()
+                        grouperCUDA = K_Means()
+                        grouperCUDA._centroid_mode="index"
+                        try:
+                            grouperCUDA.fit(data, k, iters=iters, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except:
+                            logger.info('CUDA: BAD ITERATION')
+                            continue    
+                        runtime = timer() - start
+                        rounds_times.append(runtime)
+
+                        r += 1
+
+                    record = ("cuda",n,d,nc,k,iters)
+                    bench_results[record] = rounds_times
+                    del grouperCUDA
+
+            del data
+
+writePickle("CUDA_results.pkl",bench_results)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                            NUMPY
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+logger.info("NUMPY")
+
+# iterate on number of datapoints
+for i,n in enumerate(cardinality):
+
+    # iterate on dimension of data
+    for i,d in enumerate(dimensionality):
+
+        # iterate on number of natural clusters in mix
+        for i,nc in enumerate(nat_clusters):
+
+            log_str = "N={0},D={1},NATC={2}".format(n,d,nc)
+            logger.info('Generating data:' + log_str)
+
+            # generate data
+            data = generateData(n,d,nc)      
+            
+            # iterate on number of clusters to find
+            for i,k in enumerate(clusters):
                 
-                #numpy                
-                start = timer()
-                grouperNP = K_Means()
-                grouperNP.fit(data,k,mode="numpy")
-                times['numpy'] = timer() - start
+                # iterate on the iterations to perform
+                for i,iters in enumerate(iterations):
+
+                    rounds_times = list()
+                    
+                    r = 0
+                    while r < rounds:
+                        log_str = "N={0},D={1},NATC={2},K={3},ITERS={4},ROUND={5}".format(n,d,nc,k,iters,r)
+                        logger.info('NumPy clustering:' + log_str)
+
+                        start = timer()
+                        grouperNP = K_Means()
+                        grouperNP._centroid_mode="index"
+                        try:
+                            grouperNP.fit(data, k, iters=iters, mode="numpy", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except:
+                            logger.info('NumPy: BAD ITERATION')
+                            continue    
+                        runtime = timer() - start
+                        rounds_times.append(runtime)
+
+                        r += 1
+
+                    record = ("numpy",n,d,nc,k,iters)
+                    bench_results[record] = rounds_times
+                    del grouperNP
+
+            del data
+
+writePickle("NumPy_results.pkl",bench_results)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                            PYTHON
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+logger.info("PYTHON")
+
+# iterate on number of datapoints
+for i,n in enumerate(cardinality):
+
+    # iterate on dimension of data
+    for i,d in enumerate(dimensionality):
+
+        # iterate on number of natural clusters in mix
+        for i,nc in enumerate(nat_clusters):
+
+            log_str = "N={0},D={1},NATC={2}".format(n,d,nc)
+            logger.info('Generating data:' + log_str)
+
+            # generate data
+            data = generateData(n,d,nc)      
+            
+            # iterate on number of clusters to find
+            for i,k in enumerate(clusters):
                 
-                #python
-                start = timer()
-                grouperP = K_Means()
-                grouperP.fit(data,k,mode="python")
-                times['numpy'] = timer() - start
-                
+                # iterate on the iterations to perform
+                for i,iters in enumerate(iterations):
 
-# Testing CUDA
+                    rounds_times = list()
+                    
+                    r = 0
+                    while r < rounds:
+                        log_str = "N={0},D={1},NATC={2},K={3},ITERS={4},ROUND={5}".format(n,d,nc,k,iters,r)
+                        logger.info('Python clustering:' + log_str)
 
+                        start = timer()
+                        grouperP = K_Means()
+                        grouperP._centroid_mode="index"
+                        try:
+                            grouperP.fit(data, k, iters=iters, mode="python", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except:
+                            logger.info('Python: BAD ITERATION')
+                            continue    
+                        runtime = timer() - start
+                        rounds_times.append(runtime)
 
-# Testing NumPy
+                        r += 1
 
+                    record = ("numpy",n,d,nc,k,iters)
+                    bench_results[record] = rounds_times
+                    del grouperP
 
-# Testing Python
+            del data
+
+writePickle("Python_results.pkl",bench_results)
