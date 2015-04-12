@@ -1,0 +1,5 @@
+11-04-2015
+
+Running the some quick tests in the *mariana* computer at INESC-ID I realized that the speedup was quite bad (<2). This, using the algorithm that computes the entire distance matrix. One of the big underlying problems is having an assignment time very big. The implementation of this part involved copying the whole dataset and rearranging it. Even taking only in consideration the optimized component, the speedup was low (<10).
+
+I decided to change the way to compute things. Instead of computing the whole distance matrix and label the data points afterwards, the algorithm now labels mediately. The kernel for each data point computes the best label. This is the way it's done in some articles (it was a big mistake not reading more thoroughly the literature) and much more efficient. The speedup in the optimized part of the code is huge comparing with NumPy itself (>400). There is a HUGE bottleneck in the centroid recomputation. Even though the first part is much faster, overall it's slower that the previous implementation.

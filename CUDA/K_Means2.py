@@ -20,13 +20,22 @@ class K_Means:
         self.D = D
         self.K = K
         
-        self._cudaDataRef = None
+        self._converge = False       
+        self._mode = "cuda"
         
+        self._error = None
+
+        self._cudaDataRef = None
         self._cuda = True
         self._cuda_mem = "auto"
         self._gridDim = None
         self._blockDim = None
         self._dist_kernel = 0 # 0 = normal index, 1 = special grid index
+
+
+        # outputs
+        self.inertia_ = None
+        self._iters = 0
         
     """
     def get_cuda_mem(self):
@@ -41,23 +50,52 @@ class K_Means:
     """
     
     
-    def fit(self, data, K, iters=3, cuda=True, cuda_mem = 'auto'):
+    def fit(self, data, K, iters=3, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300):
         
         N,D = data.shape
             
         self.N = N
         self.D = D
         self.K = K
+
+        # TODO check parameters, check iters is number or "converge"
+
+        self._mode = mode
         
         self.centroids = self._init_centroids(data)
         
         if iters == 0:
             return
         
-        for i in xrange(iters):
-            dist_mat = self._calc_dists(data,self.centroids,cuda=cuda)
+        if iters == "converge":
+            self._converge = True
+            self._maxiters = max_iters
+        else:
+            self._maxiters = iters
+        
+        stopcond = False
+        self._iters = 0
+
+        while not stopcond:
+            dist_mat = self._calc_dists(data,self.centroids)
             assign,grouped_data = self._assign_data(data,dist_mat)
             self.centroids =  self._np_recompute_centroids(grouped_data)
+
+            self._iters += 1 #increment iteration counter
+
+            # evaluate stop condition
+            if self._converge:
+                # stop if reached max iterations
+                if self._iters >= self._maxiters:
+                    stopcond = True
+                # stop if convergence tolerance achieved
+                elif self._error <= tol:
+                    stopcond = True
+            else:
+                # stop if total number of iterations performed
+                if self._iters >= self._maxiters:
+                    stopcond = True
+
 
     def _init_centroids(self,data):
         
@@ -68,30 +106,38 @@ class K_Means:
         for k in xrange(self.K):
             centroids[k] = data[random_init[k]]
         
-        self.centroids = centroids
+        #self.centroids = centroids
         
         return centroids
 
-    def _calc_dists(self,data,centroids,cuda=False):
-        if cuda:
+    def _calc_dists(self,data,centroids):
+        if self._mode == "cuda":
             dist_mat = self._cu_calc_dists(data,centroids,gridDim=None,
                                            blockDim=None)#,memManage='manual')
-        else:
+        elif self._mode == "numpy":
             dist_mat = self._np_calc_dists(data,centroids)
-            
+
+        elif self._mode == "python":
+            dist_mat = self._py_calc_dists(data,centroids)
+        
+        
         return dist_mat
             
-    def _py_calc_dists(data,centroids):
+    def _py_calc_dists(self,data,centroids):
         N,D = data.shape
         K,cD = centroids.shape
 
-        for n in range(N):
-            for k in range(K):
+        dist_mat = np.empty((N,K),dtype=data.dtype)
+
+        for n in xrange(N):
+            for k in xrange(K):
                 dist=0
-                for d in range(dim):
-                    diff = a[n,d]-b[k,d]
+                for d in xrange(D):
+                    diff = data[n,d]-centroids[k,d]
                     dist += diff ** 2
-                c[n,k]=dist
+                dist_mat[n,k]=dist
+                
+        return dist_mat
             
     def _np_calc_dists(self,data,centroids):
         """
@@ -142,7 +188,7 @@ class K_Means:
             #dists shape
             
 
-            MAX_THREADS_BLOCK = 20 * 16 # GT520M has 48 CUDA cores
+            MAX_THREADS_BLOCK = 512 # GT520M has 48 CUDA cores
             MAX_GRID_XYZ_DIM = 65535
 
             if K <= 28:
@@ -207,6 +253,10 @@ class K_Means:
         return dist_mat
         
     def _cu_dist_kernel(self,a,b,c,gridDim,blockDim):
+        """
+        Wraper to choose between kernels.
+        """
+
         try:
             if self._dist_kernel == 0:
                 self._cu_dist_kernel_normal[gridDim,blockDim](a,b,c)
@@ -239,6 +289,7 @@ class K_Means:
     @numbapro.cuda.jit("void(float32[:,:], float32[:,:], float32[:,:])")
     def _cu_dist_kernel_special_grid(a,b,c):
         """
+        This kernel can handle very 
         TODO:
         - fix for wide matrix
         """
@@ -284,8 +335,43 @@ class K_Means:
         
         assign = np.argmin(dist_mat,axis=1)
         
+        if self._converge:
+            all_dists = dist_mat.min(axis=1)
+            inertia = all_dists.sum()
+
+            self._error = self.inertia_ - inertia_
+            self.inertia_ = inertia
+
+
+        
         grouped_data=[[] for i in xrange(K)]
         
+        for n in xrange(N):
+            # add datum i to its assigned cluster assign[i]
+            grouped_data[assign[n]].append(data[n])
+        
+        for k in xrange(K):
+            grouped_data[k] = np.array(grouped_data[k])
+        
+        return assign,grouped_data
+        
+        
+        def _assign_compute_centroids(self,data,dist_mat):
+        
+        N,K = dist_mat.shape
+        
+        assign = np.argmin(dist_mat,axis=1)
+        
+        if self._converge:
+            all_dists = dist_mat.min(axis=1)
+            inertia = all_dists.sum()
+
+            self._error = self.inertia_ - inertia_
+            self.inertia_ = inertia
+
+
+        
+        grouped_data=[[] for i in xrange(K)]
         
         for n in xrange(N):
             # add datum i to its assigned cluster assign[i]
