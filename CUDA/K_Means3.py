@@ -565,7 +565,7 @@ class K_Means:
         N,D = data.shape
         K,D = centroids.shape       
         
-        new_centroids = np.zeros_like(centroids)
+        new_centroids = centroids.copy()
         centroid_count = np.zeros(K,dtype=np.int32)
 
         # sort labels and data by cluster
@@ -578,6 +578,33 @@ class K_Means:
 
         # print "\nlabelChangedIndex\t",labelChangedIndex
   
+        #
+        #  DEALS WITH EMPTY CLUSTERS
+        #
+
+        nonEmptyClusters = labelChangedIndex.shape[0]
+
+        # first iteration
+        startIndex,endIndex = 0,labelChangedIndex[0]
+        clusterID = labels[startIndex]
+        new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
+
+        # middle iterations
+        for k in xrange(1,nonEmptyClusters-1):
+            startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
+            clusterID = labels[startIndex]
+            new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
+
+        # last iteration
+        startIndex = labelChangedIndex[-1]
+        clusterID = labels[startIndex]
+        new_centroids[clusterID] = sortedData[startIndex:].mean(axis=0)
+
+        """
+        #
+        #  DOESN'T DEAL WITH EMPTY CLUSTERS
+        #
+
         # first iteration
         startIndex,endIndex = 0,labelChangedIndex[0]
         new_centroids[0] = sortedData[startIndex:endIndex].mean(axis=0)
@@ -590,7 +617,9 @@ class K_Means:
         # last iteration
         startIndex = labelChangedIndex[-1]
         new_centroids[-1] = sortedData[startIndex:].mean(axis=0)
-            
+        """
+
+
         return new_centroids
     
     def _np_recompute_centroids_iter(self,data,centroids,labels):

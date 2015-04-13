@@ -29,16 +29,23 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+# create a logging format
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
 # create a file handler
 handler = logging.FileHandler('benchmark_K_Means.log')
 handler.setLevel(logging.INFO)
-
-# create a logging format
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
+
+# create a console handler
+consoleHandler = logging.StreamHandler()
+consoleHandler.setLevel(logging.INFO)
+consoleHandler.setFormatter(formatter)
 
 # add the handlers to the logger
 logger.addHandler(handler)
+logger.addHandler(consoleHandler)
+
 logger.info('Start of logging.')
 
 # datasets configs to use - program will iterate over each combination of 
@@ -61,8 +68,10 @@ iterations=[3]
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 def generateData(n,d,k):
+    n_int = np.int(n)
+
     # Generate data
-    data, groundTruth = datasets.make_blobs(n_samples=n,n_features=d,centers=k,
+    data, groundTruth = datasets.make_blobs(n_samples=n_int,n_features=d,centers=k,
                                             center_box=(-1000.0,1000.0))
     data = data.astype(np.float32)  
     
@@ -96,6 +105,7 @@ def writePickle(filename,data):
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("CUDA")
+bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
@@ -128,12 +138,14 @@ for i,n in enumerate(cardinality):
                         start = timer()
                         grouperCUDA = K_Means()
                         grouperCUDA._centroid_mode="index"
+                        grouperCUDA.fit(data, k, iters=iters, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300)
                         try:
                             grouperCUDA.fit(data, k, iters=iters, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300)
                         except:
                             logger.info('CUDA: BAD ITERATION')
                             continue    
                         runtime = timer() - start
+                        logger.info('CUDA time:' + str(runtime))
                         rounds_times.append(runtime)
 
                         r += 1
@@ -151,6 +163,7 @@ writePickle("CUDA_results.pkl",bench_results)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("NUMPY")
+bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
@@ -206,6 +219,7 @@ writePickle("NumPy_results.pkl",bench_results)
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("PYTHON")
+bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
