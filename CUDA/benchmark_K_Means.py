@@ -22,11 +22,13 @@ from K_Means3 import *
 from sklearn import datasets # generate gaussian mixture
 from timeit import default_timer as timer # timing
 
+import sys
 
 # Setup logging
 import logging
 
-logger = logging.getLogger(__name__)
+# Status logging
+logger = logging.getLogger('status')
 logger.setLevel(logging.INFO)
 
 # create a logging format
@@ -46,6 +48,18 @@ consoleHandler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.addHandler(consoleHandler)
 
+# Results logging
+resultsLogger = logging.getLogger('results')
+resultsLogger.setLevel(logging.INFO)
+
+# create a file handler for results
+resultsHandler = logging.FileHandler('results.csv')
+resultsHandler.setLevel(logging.INFO)
+
+resultsLogger.addHandler(resultsHandler)
+
+
+resultsLogger.info('type,N,D,NATC,K,iters,R,time') #csv header
 logger.info('Start of logging.')
 
 # datasets configs to use - program will iterate over each combination of 
@@ -59,7 +73,7 @@ logger.info('Start of logging.')
 cardinality = [1e3, 5e3, 1e4, 5e4, 1e5, 5e5, 1e6, 2e6, 4e6]
 dimensionality = [2]
 nat_clusters = [20]
-clusters = [10, 20, 30, 100, 500]
+clusters = [5, 10, 20, 30, 40, 50, 100, 250, 500]
 rounds = 10 
 iterations=[3]
 
@@ -79,33 +93,11 @@ def generateData(n,d,k):
 
 import pickle
 
-def readPickle(filename):
-    """
-    Receives a filename to read from, opens the file, loads the pickled data 
-    inside to memory and returns an object with that data.
-    """
-
-    pkl_file = open(filename, 'rb')
-    data = pickle.load(pkl_file)
-    pkl_file.close()
-    return data
-    
-def writePickle(filename,data):
-    """
-    Receives a filename to write to and the data to write, opens the file, 
-    writes the data to the file.
-    """
-    
-    output = open(filename, 'wb')
-    pickle.dump(data, output)
-    output.close()
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                            CUDA
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("CUDA")
-bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
@@ -141,6 +133,11 @@ for i,n in enumerate(cardinality):
                         grouperCUDA.fit(data, k, iters=iters, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300)
                         try:
                             grouperCUDA.fit(data, k, iters=iters, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except KeyboardInterrupt:
+                            print "Cleaning up..."
+                            del grouperCUDA, data
+                            print "Exiting..."
+                            sys.exit(0)
                         except:
                             logger.info('CUDA: BAD ITERATION')
                             continue    
@@ -148,22 +145,22 @@ for i,n in enumerate(cardinality):
                         logger.info('CUDA time:' + str(runtime))
                         rounds_times.append(runtime)
 
+                        # save results
+                        result_line = "cuda,{0},{1},{2},{3},{4},{5},{6}".format(n,d,nc,k,iters,r,runtime)
+                        resultsLogger.info(result_line)
+
                         r += 1
 
-                    record = ("cuda",n,d,nc,k,iters)
-                    bench_results[record] = rounds_times
                     del grouperCUDA
 
             del data
 
-writePickle("CUDA_results.pkl",bench_results)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                            NUMPY
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("NUMPY")
-bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
@@ -198,28 +195,35 @@ for i,n in enumerate(cardinality):
                         grouperNP._centroid_mode="index"
                         try:
                             grouperNP.fit(data, k, iters=iters, mode="numpy", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except KeyboardInterrupt:
+                            print "Cleaning up..."
+                            del grouperNP, data
+                            print "Exiting..."
+                            sys.exit(0)                        
                         except:
                             logger.info('NumPy: BAD ITERATION')
-                            continue    
+                            continue
                         runtime = timer() - start
-                        rounds_times.append(runtime)
+
+
+                        logger.info('NumPy time:' + str(runtime)) # status logging
+
+                        # save results
+                        result_line = "numpy,{0},{1},{2},{3},{4},{5},{6}".format(n,d,nc,k,iters,r,runtime)
+                        resultsLogger.info(result_line)
 
                         r += 1
 
-                    record = ("numpy",n,d,nc,k,iters)
-                    bench_results[record] = rounds_times
                     del grouperNP
 
             del data
 
-writePickle("NumPy_results.pkl",bench_results)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                            PYTHON
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 logger.info("PYTHON")
-bench_results = dict()
 
 # iterate on number of datapoints
 for i,n in enumerate(cardinality):
@@ -254,18 +258,23 @@ for i,n in enumerate(cardinality):
                         grouperP._centroid_mode="index"
                         try:
                             grouperP.fit(data, k, iters=iters, mode="python", cuda_mem='manual',tol=1e-4,max_iters=300)
+                        except KeyboardInterrupt:
+                            print "Cleaning up..."
+                            del grouperP, data
+                            print "Exiting..."
+                            sys.exit(0)                          
                         except:
                             logger.info('Python: BAD ITERATION')
                             continue    
                         runtime = timer() - start
-                        rounds_times.append(runtime)
+                        logger.info('Python time:' + str(runtime))
+
+                        # save results
+                        result_line = "python,{0},{1},{2},{3},{4},{5},{6}".format(n,d,nc,k,iters,r,runtime)
+                        resultsLogger.info(result_line)
 
                         r += 1
 
-                    record = ("numpy",n,d,nc,k,iters)
-                    bench_results[record] = rounds_times
                     del grouperP
 
             del data
-
-writePickle("Python_results.pkl",bench_results)
