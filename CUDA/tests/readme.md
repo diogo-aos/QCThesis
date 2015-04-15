@@ -6,3 +6,6 @@ each round.
 
 The datasets were Gaussian mixtures, generated on the spot and not stored.
 
+# test1v2
+Same as test1 but results are saved in .csv. This format is human readable, more flexible to work with and Pandas reads it really fast.
+

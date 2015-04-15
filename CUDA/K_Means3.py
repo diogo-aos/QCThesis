@@ -589,6 +589,9 @@ class K_Means:
         clusterID = labels[startIndex]
         new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
 
+        cluster_labels=list()
+        cluster_labels.append(labels_sorted[startIndex:endIndex])
+
         # middle iterations
         for k in xrange(1,nonEmptyClusters-1):
             startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
