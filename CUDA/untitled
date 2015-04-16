@@ -1,0 +1,4 @@
+Worked 1h on researching about how to implement the mean computation for centroids. Notes for next sessions:
+- CUDA **streams** make it possible to have data transfer and computation in concurrency. 
+- **Reduction** can be the ideal way of computing the mean. Using reduction one can easily compute the sum of the arrays on each dimension. From there it's only a matter of dividing by the number of points assigned to each centroid.
+- Investigate the use of high-level functionality, e.g. vectorize, gu-vectorize, reduce from numbapro.

@@ -11,7 +11,7 @@ data. That means that each centroid will have a distance of 0 to at
 least one datum, and that datum should be assigned for sure to that 
 centroid!
 
-
+# Pandas
 
 ```
 for key, grp in df.groupby(level=['index1']):

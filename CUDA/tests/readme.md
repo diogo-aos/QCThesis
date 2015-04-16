@@ -6,6 +6,14 @@ each round.
 
 The datasets were Gaussian mixtures, generated on the spot and not stored.
 
-# test1v2
+Machine used was mariana at INESC-ID.
+
+# Test 1 v2
 Same as test1 but results are saved in .csv. This format is human readable, more flexible to work with and Pandas reads it really fast.
 
+Machine used was mariana at INESC-ID.
+
+# Test 1 v3
+Same as test1 but results are saved in .csv. This format is human readable, more flexible to work with and Pandas reads it really fast.
+
+Machine used was Mighty4 at IT.
