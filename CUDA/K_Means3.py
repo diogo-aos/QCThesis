@@ -615,8 +615,10 @@ class K_Means:
         Those indeces are then used to partition the data and compute the mean.
 
         It's very fast.
-        A major drawback is that it crashes on empty clusters. It also
-        replicates data.
+        It replicates data. Bad if data is huge. Workarounds:
+        - sort in place.
+        - don't sort data, get mean from indexing original data directly
+        # TODO check which option is faster
         """
         # change to get dimension from class or search a non-empty cluster
         #dim = grouped_data[0][0].shape[1]
@@ -678,27 +680,6 @@ class K_Means:
         # remove empty clusters
         emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]
         new_centroids = np.delete(new_centroids,emptyClusters,axis=0)
-
-
-        """
-        #
-        #  DOESN'T DEAL WITH EMPTY CLUSTERS
-        #
-
-        # first iteration
-        startIndex,endIndex = 0,labelChangedIndex[0]
-        new_centroids[0] = sortedData[startIndex:endIndex].mean(axis=0)
-
-        # middle iterations
-        for k in xrange(1,K-1):
-            startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
-            new_centroids[k] = sortedData[startIndex:endIndex].mean(axis=0)
-
-        # last iteration
-        startIndex = labelChangedIndex[-1]
-        new_centroids[-1] = sortedData[startIndex:].mean(axis=0)
-        """
-
 
         return new_centroids
     
