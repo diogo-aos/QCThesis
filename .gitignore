@@ -1,2 +1,6 @@
 .pyc
 sftp-config.json
+.mat
+notebooks/.ipynb_checkpoints/
+.sass-cache/
+

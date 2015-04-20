@@ -44,7 +44,8 @@ class K_Means:
 
         # outputs
         self.inertia_ = None
-        self._iters = 3
+        self._iters = 0
+        self._maxiters = 3
         self._converge = False       
 
         
@@ -118,6 +119,7 @@ class K_Means:
             self._converge = True
             self._maxiters = max_iters
         else:
+            self._converge = False
             self._maxiters = iters
         
         stopcond = False
@@ -126,7 +128,6 @@ class K_Means:
         while not stopcond:
             labels = self._label(data,self.centroids)
             
-            #assign,grouped_data = self._assign_data(data,dist_mat)
             self.centroids =  self._recompute_centroids(data,self.centroids,labels)
 
             self._iters += 1 #increment iteration counter
@@ -146,18 +147,6 @@ class K_Means:
         
         self.labels_ = labels
 
-    def _recompute_centroids(self,data,centroids,labels):
-        if self._centroid_mode == "group":
-            new_centroids = self._np_recompute_centroids_group(data,centroids,labels)
-        elif self._centroid_mode == "index":
-            new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
-        elif self._centroid_mode == "iter":
-            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
-        else:
-            raise Exception("centroid mode invalid:",self._centroid_mode)
-
-        return new_centroids
-
     def _init_centroids(self,data):
         
         centroids = np.empty((self.K,self.D),dtype=data.dtype)
@@ -170,6 +159,25 @@ class K_Means:
         #self.centroids = centroids
         
         return centroids
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                COMPUTE LABELS                                     # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+
+
 
     def _label(self,data,centroids):
         if self._mode == "cuda":
@@ -245,14 +253,16 @@ class K_Means:
         C,cD = centroids.shape
 
         labels = np.zeros(N,dtype=np.int32)
-        
+
         # first iteration of all datapoints outside loop
+        # distance from points to centroid 0
         best_dist = data - centroids[0]
         best_dist = best_dist ** 2
-        best_dist = best_dist.sum(axis=1)
+        best_dist = best_dist.sum(axis=1) 
 
 
         for c in xrange(1,C):
+            # distance from points to centroid c
             dist = data - centroids[c]
             dist = dist ** 2
             dist = dist.sum(axis=1)
@@ -260,13 +270,18 @@ class K_Means:
             thisCluster = np.full(N,c,dtype=np.int32)
             labels = np.where(dist < best_dist,thisCluster,labels)
             best_dist = np.where(dist < best_dist,dist,best_dist)
-            
-        return labels
+        
+        if self._converge:
+            return labels,best_dist
+        else:
+            return labels
 
     def _np_label_fast_2(self,data,centroids):
         """
+        slower than fast
+
         #TODO:
-        - user nditer
+        - use nditer
 
         """
         N,D = data.shape
@@ -311,10 +326,14 @@ class K_Means:
             #dists shape
             
             blockHeight = self._MAX_THREADS_BLOCK
-            blockDim = 1, blockHeight
+            blockWidth = 1
+            blockDim = blockWidth, blockHeight
             
+            # threads per block
             tpb = np.prod(blockDim)
-            bpg = np.int(np.ceil(np.float(N) / tpb))
+
+            # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
+            bpg = np.int(np.ceil(np.float(N) / tpb)) 
             
 
             # if grid dimension is bigger than MAX_GRID_XYZ_DIM,
@@ -391,6 +410,10 @@ class K_Means:
     # data, centroids, labels
     @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
     def _cu_label_kernel_normal(a,b,c):
+    
+        """
+        Computes the labels of each data point without storing the distances.
+        """
         # thread ID inside block
         tx = cuda.threadIdx.x
         ty = cuda.threadIdx.y
@@ -446,6 +469,11 @@ class K_Means:
     # data, centroids, labels
     @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
     def _cu_label_kernel_dists(a,b,c,dists):
+
+        """
+        Computes the labels of each data point storing the distances.
+        """
+
         # thread ID inside block
         tx = cuda.threadIdx.x
         ty = cuda.threadIdx.y
@@ -498,6 +526,36 @@ class K_Means:
 
         c[n] = best_label
         dists[n] = best_dist
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                             RECOMPUTE CENTROIDS                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # #                                                                                   # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+
+
+    def _recompute_centroids(self,data,centroids,labels):
+        if self._centroid_mode == "group":
+            new_centroids = self._np_recompute_centroids_group(data,centroids,labels)
+        elif self._centroid_mode == "index":
+            new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
+        elif self._centroid_mode == "iter":
+            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+        else:
+            raise Exception("centroid mode invalid:",self._centroid_mode)
+
+        return new_centroids
+
 
     def _cu_centroids(data,centroids,labels):
         pass
@@ -565,7 +623,8 @@ class K_Means:
         N,D = data.shape
         K,D = centroids.shape       
         
-        new_centroids = centroids.copy()
+        #new_centroids = centroids.copy()
+        new_centroids = np.zeros_like(centroids)
         centroid_count = np.zeros(K,dtype=np.int32)
 
         # sort labels and data by cluster
@@ -573,35 +632,53 @@ class K_Means:
         labels = labels[labels_sorted]
         sortedData = data[labels_sorted]
 
-        # changed indeces array
+        # array storing the dataset indices where the clustering changes (after the it has been ordered)
+        # this stores every i-th index where the i-th label is different from the (i+1)-th label
         labelChangedIndex = np.where(labels[1:] != labels[:-1])[0] + 1
 
-        # print "\nlabelChangedIndex\t",labelChangedIndex
-  
         #
         #  DEALS WITH EMPTY CLUSTERS
         #
 
-        nonEmptyClusters = labelChangedIndex.shape[0]
+        # number of empty clusters is equal to the number of indices that partition
+        # the labels plus 1
+        nonEmptyClusters = labelChangedIndex.shape[0] + 1
 
-        # first iteration
+        ## first iteration
+        # start and end index of first cluster in labels
         startIndex,endIndex = 0,labelChangedIndex[0]
+
+        # the cluster number is given by the label of the start index
         clusterID = labels[startIndex]
+
+        # slice the data and compute the mean
         new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
 
-        cluster_labels=list()
-        cluster_labels.append(labels_sorted[startIndex:endIndex])
+        ## store the last labels separated in respective clusters
+        # should only be executed in last iteration
+        self.partition=list()
+        self.partition.append(labels_sorted[startIndex:endIndex])
 
-        # middle iterations
+        ## middle iterations
         for k in xrange(1,nonEmptyClusters-1):
             startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
             clusterID = labels[startIndex]
             new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
 
+            # store the last labels separated in respective clusters
+            self.partition.append(labels_sorted[startIndex:endIndex])
+
         # last iteration
         startIndex = labelChangedIndex[-1]
         clusterID = labels[startIndex]
         new_centroids[clusterID] = sortedData[startIndex:].mean(axis=0)
+
+        self.partition.append(labels_sorted[startIndex:endIndex])
+
+        # remove empty clusters
+        emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]
+        new_centroids = np.delete(new_centroids,emptyClusters,axis=0)
+
 
         """
         #

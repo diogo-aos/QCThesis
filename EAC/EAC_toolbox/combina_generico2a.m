@@ -29,7 +29,7 @@ function combina_generico2a(files_prefix,ns,vector_fich,methods,n_c,directo)
 %   Portugal
 % 
 
-%n_clusterings - nº de ficheiros
+%n_clusterings - nï¿½ de ficheiros
 n_clusterings=length(vector_fich);
 
 assocs=zeros(ns,ns);
@@ -47,11 +47,11 @@ end
 nassocs=assocs/n_clusterings;
 %-------------------------------------------------------------
 
-if exist([directo '\eac'],'dir')
-    cd([directo '\eac'])
+if exist([directo '/eac'],'dir')
+    cd([directo '/eac'])
 else
     mkdir(directo,['eac'])
-    cd([directo '\eac'])
+    cd([directo '/eac'])
 end
 
 %-------------------- visualizacao assocs --------------------
@@ -66,12 +66,12 @@ print(gcf,'-djpeg','-noui',[files_prefix 'assocs' '.jpg']);
 save([files_prefix 'nassoc.mat'],'nassocs');
 
 %-------------------- extraccao da particao final ------------
-%para usar com qualquer método hierarquico para obtenção do cluster final.
+%para usar com qualquer mï¿½todo hierarquico para obtenï¿½ï¿½o do cluster final.
 for o=1:length(methods)
     method=methods{o};
     cd([directo])
     Z=apply_hierq2nassocs1(nassocs,method);
-    cd([directo '\eac'])
+    cd([directo '/eac'])
     files_prefix2=[files_prefix method];
     %k-livre
     [nc_stable, nsamples_in_cluster, clusters_m ]= get_nc_stable_from_SL_dendro(Z, ns);

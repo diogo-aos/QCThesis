@@ -4,7 +4,7 @@
 %file that contains the data. Format:......
 fich='cigar_data.txt';
 %directory where the data is located.
-directo='E:\arlourenco\clustering\matlab-tools\combination-toolbox';  
+directo='/home/chiroptera/workspace/QCThesis/EAC/EAC_toolbox/';  
 cd(directo)
 %number of natural clusters 
 n_c=4;
