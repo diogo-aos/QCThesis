@@ -1,6 +1,6 @@
-.pyc
+*.pyc
 sftp-config.json
-.mat
+*.mat
 notebooks/.ipynb_checkpoints/
 .sass-cache/
 
