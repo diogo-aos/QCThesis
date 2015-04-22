@@ -1,0 +1,214 @@
+2015-04-21 16:35:55,721 - status - INFO - Start of logging.
+2015-04-21 16:35:55,722 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-21 16:36:05,310 - status - INFO - Generating partition: #0, clusters=[11]
+2015-04-21 16:36:05,334 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-21 16:36:05,336 - status - INFO - Generating partition: #1, clusters=[16]
+2015-04-21 16:36:05,351 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-21 16:36:05,353 - status - INFO - Generating partition: #2, clusters=[24]
+2015-04-21 16:36:05,365 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-21 16:36:05,367 - status - INFO - Generating partition: #3, clusters=[17]
+2015-04-21 16:36:05,378 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-21 16:36:05,380 - status - INFO - Generating partition: #4, clusters=[14]
+2015-04-21 16:36:28,104 - status - INFO - Start of logging.
+2015-04-21 16:36:28,104 - status - INFO - Start of logging.
+2015-04-21 16:36:28,106 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-21 16:36:28,106 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-21 16:36:28,112 - status - INFO - Generating partition: #0, clusters=[10]
+2015-04-21 16:36:28,112 - status - INFO - Generating partition: #0, clusters=[10]
+2015-04-21 16:36:28,125 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-21 16:36:28,125 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-21 16:36:28,129 - status - INFO - Generating partition: #1, clusters=[19]
+2015-04-21 16:36:28,129 - status - INFO - Generating partition: #1, clusters=[19]
+2015-04-21 16:36:28,147 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-21 16:36:28,147 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-21 16:36:28,151 - status - INFO - Generating partition: #2, clusters=[10]
+2015-04-21 16:36:28,151 - status - INFO - Generating partition: #2, clusters=[10]
+2015-04-21 16:36:28,167 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-21 16:36:28,167 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-21 16:36:28,170 - status - INFO - Generating partition: #3, clusters=[23]
+2015-04-21 16:36:28,170 - status - INFO - Generating partition: #3, clusters=[23]
+2015-04-21 16:36:28,184 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-21 16:36:28,184 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-21 16:36:28,187 - status - INFO - Generating partition: #4, clusters=[9]
+2015-04-21 16:36:28,187 - status - INFO - Generating partition: #4, clusters=[9]
+2015-04-21 16:36:28,199 - status - INFO - Saved partition: test/syn_cem_partition_4.csv
+2015-04-21 16:36:28,199 - status - INFO - Saved partition: test/syn_cem_partition_4.csv
+2015-04-21 16:36:28,202 - status - INFO - Generating partition: #5, clusters=[24]
+2015-04-21 16:36:28,202 - status - INFO - Generating partition: #5, clusters=[24]
+2015-04-21 16:36:28,215 - status - INFO - Saved partition: test/syn_cem_partition_5.csv
+2015-04-21 16:36:28,215 - status - INFO - Saved partition: test/syn_cem_partition_5.csv
+2015-04-21 16:36:28,218 - status - INFO - Generating partition: #6, clusters=[20]
+2015-04-21 16:36:28,218 - status - INFO - Generating partition: #6, clusters=[20]
+2015-04-21 16:36:28,232 - status - INFO - Saved partition: test/syn_cem_partition_6.csv
+2015-04-21 16:36:28,232 - status - INFO - Saved partition: test/syn_cem_partition_6.csv
+2015-04-21 16:36:28,235 - status - INFO - Generating partition: #7, clusters=[4]
+2015-04-21 16:36:28,235 - status - INFO - Generating partition: #7, clusters=[4]
+2015-04-21 16:36:28,249 - status - INFO - Saved partition: test/syn_cem_partition_7.csv
+2015-04-21 16:36:28,249 - status - INFO - Saved partition: test/syn_cem_partition_7.csv
+2015-04-21 16:36:28,252 - status - INFO - Generating partition: #8, clusters=[12]
+2015-04-21 16:36:28,252 - status - INFO - Generating partition: #8, clusters=[12]
+2015-04-21 16:36:28,264 - status - INFO - Saved partition: test/syn_cem_partition_8.csv
+2015-04-21 16:36:28,264 - status - INFO - Saved partition: test/syn_cem_partition_8.csv
+2015-04-21 16:36:28,267 - status - INFO - Generating partition: #9, clusters=[21]
+2015-04-21 16:36:28,267 - status - INFO - Generating partition: #9, clusters=[21]
+2015-04-21 16:36:28,280 - status - INFO - Saved partition: test/syn_cem_partition_9.csv
+2015-04-21 16:36:28,280 - status - INFO - Saved partition: test/syn_cem_partition_9.csv
+2015-04-21 16:36:28,283 - status - INFO - Generating partition: #10, clusters=[8]
+2015-04-21 16:36:28,283 - status - INFO - Generating partition: #10, clusters=[8]
+2015-04-21 16:36:28,295 - status - INFO - Saved partition: test/syn_cem_partition_10.csv
+2015-04-21 16:36:28,295 - status - INFO - Saved partition: test/syn_cem_partition_10.csv
+2015-04-21 16:36:28,298 - status - INFO - Generating partition: #11, clusters=[17]
+2015-04-21 16:36:28,298 - status - INFO - Generating partition: #11, clusters=[17]
+2015-04-21 16:36:28,311 - status - INFO - Saved partition: test/syn_cem_partition_11.csv
+2015-04-21 16:36:28,311 - status - INFO - Saved partition: test/syn_cem_partition_11.csv
+2015-04-21 16:36:28,314 - status - INFO - Generating partition: #12, clusters=[4]
+2015-04-21 16:36:28,314 - status - INFO - Generating partition: #12, clusters=[4]
+2015-04-21 16:36:28,325 - status - INFO - Saved partition: test/syn_cem_partition_12.csv
+2015-04-21 16:36:28,325 - status - INFO - Saved partition: test/syn_cem_partition_12.csv
+2015-04-21 16:36:28,328 - status - INFO - Generating partition: #13, clusters=[9]
+2015-04-21 16:36:28,328 - status - INFO - Generating partition: #13, clusters=[9]
+2015-04-21 16:36:28,340 - status - INFO - Saved partition: test/syn_cem_partition_13.csv
+2015-04-21 16:36:28,340 - status - INFO - Saved partition: test/syn_cem_partition_13.csv
+2015-04-21 16:36:28,343 - status - INFO - Generating partition: #14, clusters=[18]
+2015-04-21 16:36:28,343 - status - INFO - Generating partition: #14, clusters=[18]
+2015-04-21 16:36:28,355 - status - INFO - Saved partition: test/syn_cem_partition_14.csv
+2015-04-21 16:36:28,355 - status - INFO - Saved partition: test/syn_cem_partition_14.csv
+2015-04-21 16:36:28,359 - status - INFO - Generating partition: #15, clusters=[13]
+2015-04-21 16:36:28,359 - status - INFO - Generating partition: #15, clusters=[13]
+2015-04-21 16:36:28,372 - status - INFO - Saved partition: test/syn_cem_partition_15.csv
+2015-04-21 16:36:28,372 - status - INFO - Saved partition: test/syn_cem_partition_15.csv
+2015-04-21 16:36:28,375 - status - INFO - Generating partition: #16, clusters=[23]
+2015-04-21 16:36:28,375 - status - INFO - Generating partition: #16, clusters=[23]
+2015-04-21 16:36:28,387 - status - INFO - Saved partition: test/syn_cem_partition_16.csv
+2015-04-21 16:36:28,387 - status - INFO - Saved partition: test/syn_cem_partition_16.csv
+2015-04-21 16:36:28,390 - status - INFO - Generating partition: #17, clusters=[12]
+2015-04-21 16:36:28,390 - status - INFO - Generating partition: #17, clusters=[12]
+2015-04-21 16:36:28,401 - status - INFO - Saved partition: test/syn_cem_partition_17.csv
+2015-04-21 16:36:28,401 - status - INFO - Saved partition: test/syn_cem_partition_17.csv
+2015-04-21 16:36:28,403 - status - INFO - Generating partition: #18, clusters=[21]
+2015-04-21 16:36:28,403 - status - INFO - Generating partition: #18, clusters=[21]
+2015-04-21 16:36:28,415 - status - INFO - Saved partition: test/syn_cem_partition_18.csv
+2015-04-21 16:36:28,415 - status - INFO - Saved partition: test/syn_cem_partition_18.csv
+2015-04-21 16:36:28,417 - status - INFO - Generating partition: #19, clusters=[24]
+2015-04-21 16:36:28,417 - status - INFO - Generating partition: #19, clusters=[24]
+2015-04-21 16:36:28,430 - status - INFO - Saved partition: test/syn_cem_partition_19.csv
+2015-04-21 16:36:28,430 - status - INFO - Saved partition: test/syn_cem_partition_19.csv
+2015-04-22 09:26:06,445 - status - INFO - Start of logging.
+2015-04-22 09:26:06,473 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-22 09:26:07,968 - status - INFO - Generating partition: #0, clusters=[4]
+2015-04-22 09:26:08,008 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-22 09:26:08,011 - status - INFO - Generating partition: #1, clusters=[8]
+2015-04-22 09:26:08,030 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-22 09:26:08,032 - status - INFO - Generating partition: #2, clusters=[5]
+2015-04-22 09:26:08,048 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-22 09:26:08,051 - status - INFO - Generating partition: #3, clusters=[24]
+2015-04-22 09:26:08,072 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-22 09:26:08,075 - status - INFO - Generating partition: #4, clusters=[19]
+2015-04-22 09:26:08,093 - status - INFO - Saved partition: test/syn_cem_partition_4.csv
+2015-04-22 09:26:08,095 - status - INFO - Generating partition: #5, clusters=[20]
+2015-04-22 09:26:08,116 - status - INFO - Saved partition: test/syn_cem_partition_5.csv
+2015-04-22 09:26:08,119 - status - INFO - Generating partition: #6, clusters=[10]
+2015-04-22 09:26:08,135 - status - INFO - Saved partition: test/syn_cem_partition_6.csv
+2015-04-22 09:26:08,138 - status - INFO - Generating partition: #7, clusters=[7]
+2015-04-22 09:26:08,154 - status - INFO - Saved partition: test/syn_cem_partition_7.csv
+2015-04-22 09:26:08,157 - status - INFO - Generating partition: #8, clusters=[7]
+2015-04-22 09:26:08,173 - status - INFO - Saved partition: test/syn_cem_partition_8.csv
+2015-04-22 09:26:08,176 - status - INFO - Generating partition: #9, clusters=[10]
+2015-04-22 09:26:08,192 - status - INFO - Saved partition: test/syn_cem_partition_9.csv
+2015-04-22 09:26:08,195 - status - INFO - Generating partition: #10, clusters=[21]
+2015-04-22 09:26:08,213 - status - INFO - Saved partition: test/syn_cem_partition_10.csv
+2015-04-22 09:26:08,216 - status - INFO - Generating partition: #11, clusters=[6]
+2015-04-22 09:26:08,235 - status - INFO - Saved partition: test/syn_cem_partition_11.csv
+2015-04-22 09:26:08,238 - status - INFO - Generating partition: #12, clusters=[8]
+2015-04-22 09:26:08,254 - status - INFO - Saved partition: test/syn_cem_partition_12.csv
+2015-04-22 09:26:08,256 - status - INFO - Generating partition: #13, clusters=[5]
+2015-04-22 09:26:08,270 - status - INFO - Saved partition: test/syn_cem_partition_13.csv
+2015-04-22 09:26:08,272 - status - INFO - Generating partition: #14, clusters=[21]
+2015-04-22 09:26:08,290 - status - INFO - Saved partition: test/syn_cem_partition_14.csv
+2015-04-22 09:26:08,293 - status - INFO - Generating partition: #15, clusters=[11]
+2015-04-22 09:26:08,309 - status - INFO - Saved partition: test/syn_cem_partition_15.csv
+2015-04-22 09:26:08,312 - status - INFO - Generating partition: #16, clusters=[21]
+2015-04-22 09:26:30,627 - status - INFO - Start of logging.
+2015-04-22 09:26:30,627 - status - INFO - Start of logging.
+2015-04-22 09:26:30,630 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-22 09:26:30,630 - status - INFO - Generating data:nsamples=100,ndims=2,centers=6
+2015-04-22 09:26:30,637 - status - INFO - Generating partition: #0, clusters=[11]
+2015-04-22 09:26:30,637 - status - INFO - Generating partition: #0, clusters=[11]
+2015-04-22 09:26:30,654 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-22 09:26:30,654 - status - INFO - Saved partition: test/syn_cem_partition_0.csv
+2015-04-22 09:26:30,658 - status - INFO - Generating partition: #1, clusters=[13]
+2015-04-22 09:26:30,658 - status - INFO - Generating partition: #1, clusters=[13]
+2015-04-22 09:26:30,675 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-22 09:26:30,675 - status - INFO - Saved partition: test/syn_cem_partition_1.csv
+2015-04-22 09:26:30,679 - status - INFO - Generating partition: #2, clusters=[17]
+2015-04-22 09:26:30,679 - status - INFO - Generating partition: #2, clusters=[17]
+2015-04-22 09:26:30,698 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-22 09:26:30,698 - status - INFO - Saved partition: test/syn_cem_partition_2.csv
+2015-04-22 09:26:30,702 - status - INFO - Generating partition: #3, clusters=[12]
+2015-04-22 09:26:30,702 - status - INFO - Generating partition: #3, clusters=[12]
+2015-04-22 09:26:30,721 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-22 09:26:30,721 - status - INFO - Saved partition: test/syn_cem_partition_3.csv
+2015-04-22 09:26:30,724 - status - INFO - Generating partition: #4, clusters=[11]
+2015-04-22 09:26:30,724 - status - INFO - Generating partition: #4, clusters=[11]
+2015-04-22 09:26:30,742 - status - INFO - Saved partition: test/syn_cem_partition_4.csv
+2015-04-22 09:26:30,742 - status - INFO - Saved partition: test/syn_cem_partition_4.csv
+2015-04-22 09:26:30,746 - status - INFO - Generating partition: #5, clusters=[8]
+2015-04-22 09:26:30,746 - status - INFO - Generating partition: #5, clusters=[8]
+2015-04-22 09:26:30,763 - status - INFO - Saved partition: test/syn_cem_partition_5.csv
+2015-04-22 09:26:30,763 - status - INFO - Saved partition: test/syn_cem_partition_5.csv
+2015-04-22 09:26:30,767 - status - INFO - Generating partition: #6, clusters=[4]
+2015-04-22 09:26:30,767 - status - INFO - Generating partition: #6, clusters=[4]
+2015-04-22 09:26:30,784 - status - INFO - Saved partition: test/syn_cem_partition_6.csv
+2015-04-22 09:26:30,784 - status - INFO - Saved partition: test/syn_cem_partition_6.csv
+2015-04-22 09:26:30,788 - status - INFO - Generating partition: #7, clusters=[6]
+2015-04-22 09:26:30,788 - status - INFO - Generating partition: #7, clusters=[6]
+2015-04-22 09:26:30,804 - status - INFO - Saved partition: test/syn_cem_partition_7.csv
+2015-04-22 09:26:30,804 - status - INFO - Saved partition: test/syn_cem_partition_7.csv
+2015-04-22 09:26:30,808 - status - INFO - Generating partition: #8, clusters=[9]
+2015-04-22 09:26:30,808 - status - INFO - Generating partition: #8, clusters=[9]
+2015-04-22 09:26:30,824 - status - INFO - Saved partition: test/syn_cem_partition_8.csv
+2015-04-22 09:26:30,824 - status - INFO - Saved partition: test/syn_cem_partition_8.csv
+2015-04-22 09:26:30,828 - status - INFO - Generating partition: #9, clusters=[22]
+2015-04-22 09:26:30,828 - status - INFO - Generating partition: #9, clusters=[22]
+2015-04-22 09:26:30,848 - status - INFO - Saved partition: test/syn_cem_partition_9.csv
+2015-04-22 09:26:30,848 - status - INFO - Saved partition: test/syn_cem_partition_9.csv
+2015-04-22 09:26:30,851 - status - INFO - Generating partition: #10, clusters=[14]
+2015-04-22 09:26:30,851 - status - INFO - Generating partition: #10, clusters=[14]
+2015-04-22 09:26:30,868 - status - INFO - Saved partition: test/syn_cem_partition_10.csv
+2015-04-22 09:26:30,868 - status - INFO - Saved partition: test/syn_cem_partition_10.csv
+2015-04-22 09:26:30,872 - status - INFO - Generating partition: #11, clusters=[11]
+2015-04-22 09:26:30,872 - status - INFO - Generating partition: #11, clusters=[11]
+2015-04-22 09:26:30,889 - status - INFO - Saved partition: test/syn_cem_partition_11.csv
+2015-04-22 09:26:30,889 - status - INFO - Saved partition: test/syn_cem_partition_11.csv
+2015-04-22 09:26:30,893 - status - INFO - Generating partition: #12, clusters=[10]
+2015-04-22 09:26:30,893 - status - INFO - Generating partition: #12, clusters=[10]
+2015-04-22 09:26:30,910 - status - INFO - Saved partition: test/syn_cem_partition_12.csv
+2015-04-22 09:26:30,910 - status - INFO - Saved partition: test/syn_cem_partition_12.csv
+2015-04-22 09:26:30,914 - status - INFO - Generating partition: #13, clusters=[24]
+2015-04-22 09:26:30,914 - status - INFO - Generating partition: #13, clusters=[24]
+2015-04-22 09:26:30,935 - status - INFO - Saved partition: test/syn_cem_partition_13.csv
+2015-04-22 09:26:30,935 - status - INFO - Saved partition: test/syn_cem_partition_13.csv
+2015-04-22 09:26:30,938 - status - INFO - Generating partition: #14, clusters=[11]
+2015-04-22 09:26:30,938 - status - INFO - Generating partition: #14, clusters=[11]
+2015-04-22 09:26:30,956 - status - INFO - Saved partition: test/syn_cem_partition_14.csv
+2015-04-22 09:26:30,956 - status - INFO - Saved partition: test/syn_cem_partition_14.csv
+2015-04-22 09:26:30,959 - status - INFO - Generating partition: #15, clusters=[16]
+2015-04-22 09:26:30,959 - status - INFO - Generating partition: #15, clusters=[16]
+2015-04-22 09:26:30,978 - status - INFO - Saved partition: test/syn_cem_partition_15.csv
+2015-04-22 09:26:30,978 - status - INFO - Saved partition: test/syn_cem_partition_15.csv
+2015-04-22 09:26:30,981 - status - INFO - Generating partition: #16, clusters=[23]
+2015-04-22 09:26:30,981 - status - INFO - Generating partition: #16, clusters=[23]
+2015-04-22 09:26:31,001 - status - INFO - Saved partition: test/syn_cem_partition_16.csv
+2015-04-22 09:26:31,001 - status - INFO - Saved partition: test/syn_cem_partition_16.csv
+2015-04-22 09:26:31,004 - status - INFO - Generating partition: #17, clusters=[21]
+2015-04-22 09:26:31,004 - status - INFO - Generating partition: #17, clusters=[21]
+2015-04-22 09:26:31,023 - status - INFO - Saved partition: test/syn_cem_partition_17.csv
+2015-04-22 09:26:31,023 - status - INFO - Saved partition: test/syn_cem_partition_17.csv
+2015-04-22 09:26:31,026 - status - INFO - Generating partition: #18, clusters=[9]
+2015-04-22 09:26:31,026 - status - INFO - Generating partition: #18, clusters=[9]
+2015-04-22 09:26:31,043 - status - INFO - Saved partition: test/syn_cem_partition_18.csv
+2015-04-22 09:26:31,043 - status - INFO - Saved partition: test/syn_cem_partition_18.csv
+2015-04-22 09:26:31,047 - status - INFO - Generating partition: #19, clusters=[5]
+2015-04-22 09:26:31,047 - status - INFO - Generating partition: #19, clusters=[5]
+2015-04-22 09:26:31,063 - status - INFO - Saved partition: test/syn_cem_partition_19.csv
+2015-04-22 09:26:31,063 - status - INFO - Saved partition: test/syn_cem_partition_19.csv
