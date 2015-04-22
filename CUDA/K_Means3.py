@@ -48,56 +48,6 @@ class K_Means:
         self._maxiters = 3
         self._converge = False       
 
-        
-    def fit_debug(self, data, K, iters=3, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300):
-        
-        N,D = data.shape
-            
-        self.N = N
-        self.D = D
-        self.K = K
-        self._mode = mode
-        self.centroids = self._init_centroids(data)
-
-        if iters == 0:
-            return
-        if iters == "converge":
-            self._converge = True
-            self._maxiters = max_iters
-        else:
-            self._maxiters = iters
-        
-        stopcond = False
-        self._iters = 0
-        
-        print data.dtype, self.centroids.dtype
-        
-        while not stopcond:
-            self.labels = self._cu_label(data,self.centroids)
-            self.labels2 = self._np_label(data,self.centroids)
-
-            print "cu_labels == np_labels:",np.allclose(self.labels,self.labels2)
-            
-            self.centroids =  self._np_recompute_centroids_group(data,self.centroids,self.labels2)
-            self.centroids2 =  self._np_recompute_centroids_index(data,self.centroids,self.labels2)
-
-            print "centroids_group == centroids_index:",np.allclose(self.centroids,self.centroids2)
-
-            self._iters += 1 #increment iteration counter
-
-            # evaluate stop condition
-            if self._converge:
-                # stop if reached max iterations
-                if self._iters >= self._maxiters:
-                    stopcond = True
-                # stop if convergence tolerance achieved
-                elif self._error <= tol:
-                    stopcond = True
-            else:
-                # stop if total number of iterations performed
-                if self._iters >= self._maxiters:
-                    stopcond = True
-    
     def fit(self, data, K, iters=3, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300):
         
         N,D = data.shape
@@ -156,8 +106,6 @@ class K_Means:
         for k in xrange(self.K):
             centroids[k] = data[random_init[k]]
         
-        #self.centroids = centroids
-        
         return centroids
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -176,9 +124,6 @@ class K_Means:
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-
-
-
     def _label(self,data,centroids):
         if self._mode == "cuda":
             labels = self._cu_label(data,centroids,gridDim=None,
@@ -193,15 +138,15 @@ class K_Means:
         return labels
 
     def _py_sqrd_euclidean(self,a,b):
+        """
+        Euclidean distance between points a and b.
+        """
         dist=0
         for d in xrange(a.shape[0]):
             dist += (a[d] - b[d])**2
         return dist
             
     def _py_label(self,data,centroids):
-        """
-        WARNING THIS IS COMPUTING          **** DISTANCE ****
-        """
 
         N,D = data.shape
         K,cD = centroids.shape
@@ -581,8 +526,6 @@ class K_Means:
         gh = cuda.gridDim.y
 
 
-
-
     def _np_recompute_centroids_group(self,data,centroids,labels):
         """
         Iterates over data. Makes a list of data for each cluster.
@@ -627,7 +570,6 @@ class K_Means:
         
         #new_centroids = centroids.copy()
         new_centroids = np.zeros_like(centroids)
-        centroid_count = np.zeros(K,dtype=np.int32)
 
         # sort labels and data by cluster
         labels_sorted = labels.argsort()
@@ -675,7 +617,7 @@ class K_Means:
         clusterID = labels[startIndex]
         new_centroids[clusterID] = sortedData[startIndex:].mean(axis=0)
 
-        self.partition.append(labels_sorted[startIndex:endIndex])
+        self.partition.append(labels_sorted[startIndex:])
 
         # remove empty clusters
         emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]

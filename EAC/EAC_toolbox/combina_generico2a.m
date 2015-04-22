@@ -22,7 +22,7 @@ function combina_generico2a(files_prefix,ns,vector_fich,methods,n_c,directo)
 %Fixed k: [files_prefix method '-fixed-k-Stable-combined.mat']
 %Also the co-association matrix is saved in a .mat file. ([files_prefix 'nassoc.mat'])
 %--------------------------------------------------------------------------
-% Written by:
+% Written by: 
 %   Ana Fred & Andre Lourenco
 %   Instituto Superior Tecnico
 %   1049-001 Lisboa
@@ -84,6 +84,3 @@ for o=1:length(methods)
     save([files_prefix2 '-k-fixo-Stable-combined.mat'],'nsamples_in_cluster', 'clusters_m');
 end
 %-------------------------------------------------------------
-
-
-
