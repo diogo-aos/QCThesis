@@ -6,7 +6,7 @@ function Z=apply_hierq2nassocs1(nassocs,method)
 %       'average'  --- average distance
 %       'centroid' --- center of mass distance
 %       'ward'     --- inner squared distance
-%se method=[] ent„o single link È usado
+%se method=[] ent√£o single link √© usado
 
 Z=[];
 [m, n] = size(nassocs);

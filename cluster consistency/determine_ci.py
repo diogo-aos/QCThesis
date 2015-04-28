@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+Created on 
+
+@author: Diogo Silva
+
+TODO:
+- save number of elements per cluster somewhere to use for B and C in match,
+  instead of performing the computations
+- mode where CxN matrix is not built, instead every cluster is converted to binary every time
+- don't use matrix multiplication to check shared (benchmark performance)
+"""
+
 import numpy as np
 
 class ConsistencyIndex:
@@ -6,6 +19,17 @@ class ConsistencyIndex:
 		self.N = N
 
 	def score(self,clusts1,clusts2,format='array',N=None):
+		"""
+		clusts1,clusts2 	: the two partitions to match
+		format 				: format of partitions: 'array' or 'list';
+			'array'			: partition is an
+							  array with the length of the number of samples
+							  where the i-th row has the cluster the i-th samples
+							  belongs to;
+			'list'			: partition is a list of arrays, the k-th array
+							  has the indices of the samples that belong to it.
+
+		"""
 
 		if format=='list':
 			clusts1_=self._convertIndexToPos(clusts=clusts1,N=self.N)
@@ -27,12 +51,6 @@ class ConsistencyIndex:
 
 
 	def _match_(self,clusts1,clusts2,n_clusts1=None,n_clusts2=None,N=None):
-		# clusts are the partitions and their format is 'array' bu default
-		# format can be:
-		# 	'array'	:	array of N length the ith value is the cluster 
-		#				number (1,2,3,...) for the ith sample
-		#	'list'	:	list of arrays, where each array is a collection
-		#				of the samples' indeces that belong to some cluster
 
 
 		# these copies will be altered
@@ -45,19 +63,30 @@ class ConsistencyIndex:
 		if n_clusts2 is None:
 			n_clusts2 = clusts2_.shape[0]
 
+		# total shared samples between clusters of both partitions
 		n_shared = 0
 
 		for it in range(np.min([n_clusts1,n_clusts2])):
 
-			#compute best match of clusters
+			#compute best match between all clusters of both partitions
 			max_coef=0
 			k,l = -1,-1
 			savedA = -1
 			for i in range(n_clusts1):
 				for j in range(n_clusts2):
+					## compute match coefficient
+
+					# number of matches between cluster i of partition 1 and j of 2
 					A = clusts1_[i,:].dot(clusts2_[j,:])
-					B = clusts1_[i,:].dot(clusts1_[j,:])
-					C = clusts2_[i,:].dot(clusts2_[j,:])
+
+					# number of samples in clust 1
+					B = clusts1_[i,:].dot(clusts1_[i,:])
+					#B = clusts1_[i,:].nonzero()
+
+					# number of samples in clust 2
+					C = clusts2_[j,:].dot(clusts2_[j,:])
+					#C = clusts2_[i,:].nonzero()
+
 					match_coef = A / (B + C - A)
 
 					if match_coef > max_coef:
@@ -67,10 +96,11 @@ class ConsistencyIndex:
 			# increment shared samples
 			n_shared += savedA
 
-			# delete clusters from partitions
+			# delete clusters (rows) from partitions
 			clusts1 = np.delete(clusts1,k,axis=0)
-			clusts2 = np.delete(clusts2,k,axis=0)
+			clusts2 = np.delete(clusts2,l,axis=0)
 
+			# decrement number of clusters
 			n_clusts1 -= 1
 			n_clusts2 -= 1
 
@@ -87,8 +117,9 @@ class ConsistencyIndex:
 			raise Exception("A clustering partition must be provided.")
 		
 		if N == None:
-		# replace this by invoking a function that counts the number of samples
-			raise Exception("The number of samples must be provided.")
+			N = 0
+			for c in clusts:
+				N += c.size
 
 		if n_clusts == None:
 			n_clusts=len(clusts)

@@ -2,7 +2,7 @@ function [nc_stable, ns_in_cl, clusts ]= get_nc_stable_from_SL_dendro(Z,ns)
 
 %determina o cluster de maior lifetime
 
-%finding the maximum lifetime jump on the dendrogram
+%finding the maximum lifetime jump on the dendkrogram
 dif=Z(2:end,3)-Z(1:end-1,3);
 [maximo,indice]=max(dif);
 

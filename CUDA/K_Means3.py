@@ -3,6 +3,12 @@
 Created on Wed Apr  1 10:54:02 2015
 
 @author: Diogo Silva
+
+TODO:
+- test cuda return distances
+- implement cuda distance reduce job
+- converge mode in all label functions (low priority since those are not in use)
+- improve cuda labels with local block memory
 """
 
 import numpy as np
@@ -25,11 +31,10 @@ class K_Means:
         self._mode = "cuda" #label mode
         self._centroid_mode = "index"
         
-        self._error = None
 
         # cuda stuff
-        self._cudaDataHanle = None
-        self._cudaLabelsHanle = None
+        self._cudaDataHandle = None
+        self._cudaLabelsHandle = None
         self._cudaCentroidHandle = None
         
         self._cuda = True
@@ -42,11 +47,15 @@ class K_Means:
         self._MAX_THREADS_BLOCK = 512
         self._MAX_GRID_XYZ_DIM = 65535
 
-        # outputs
-        self.inertia_ = None
-        self._iters = 0
+
+        # execution flow
+        self._last_iter = False
         self._maxiters = 3
-        self._converge = False       
+        self._converge = False   
+
+        # outputs
+        self.inertia_ = np.inf
+        self.iters_ = 0    
 
     def fit(self, data, K, iters=3, mode="cuda", cuda_mem='manual',tol=1e-4,max_iters=300):
         
@@ -73,29 +82,41 @@ class K_Means:
             self._maxiters = iters
         
         stopcond = False
-        self._iters = 0
+        self.iters_ = 0
 
         while not stopcond:
+            # compute labels
             labels = self._label(data,self.centroids)
-            
-            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
 
-            self._iters += 1 #increment iteration counter
+            self.iters_ += 1 #increment iteration counter
 
-            # evaluate stop condition
+            ## evaluate stop conditions
+            # convergence condition
             if self._converge:
-                # stop if reached max iterations
-                if self._iters >= self._maxiters:
-                    stopcond = True
+                # compute new inertia
+                new_inertia = self._dists.sum()
+
+                # compute error
+                error = np.abs(new_inertia - self.inertia_)
+                self._error = error
+                # save new inertia
+                self.inertia_ = new_inertia
+
                 # stop if convergence tolerance achieved
-                elif self._error <= tol:
+                if error <= tol:
                     stopcond = True
-            else:
-                # stop if total number of iterations performed
-                if self._iters >= self._maxiters:
-                    stopcond = True
+                    self._last_iter = True
+
+            # iteration condition
+            if self.iters_ >= self._maxiters:
+                stopcond = True
+                self._last_iter = True
+
+            # compute new centroids
+            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
         
         self.labels_ = labels
+
 
     def _init_centroids(self,data):
         
@@ -125,6 +146,15 @@ class K_Means:
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
     def _label(self,data,centroids):
+        """
+        results is a tuple of labels (pos 0) and distances (pos 1) when
+        self._converge == True
+        """
+
+        # we need array for distances to check convergence
+        if self._converge:
+            self._dists = np.array(self.N,dtype=np.float32)
+
         if self._mode == "cuda":
             labels = self._cu_label(data,centroids,gridDim=None,
                                            blockDim=None)#,memManage='manual')
@@ -133,7 +163,6 @@ class K_Means:
 
         elif self._mode == "python":
             labels = self._py_label(data,centroids)
-        
         
         return labels
 
@@ -164,7 +193,12 @@ class K_Means:
                 if dist < best_dist:
                     best_dist = dist
                     best_label = k
+
+                    if self._converge:
+                        self._dists[n] = best_dist
+
             labels[n] = best_label
+
         return labels
             
     def _np_label(self,data,centroids):
@@ -217,9 +251,9 @@ class K_Means:
             best_dist = np.where(dist < best_dist,dist,best_dist)
         
         if self._converge:
-            return labels,best_dist
-        else:
-            return labels
+           self._dists = best_dist
+
+        return labels
 
     def _np_label_fast_2(self,data,centroids):
         """
@@ -303,30 +337,48 @@ class K_Means:
         
         
         if self._cuda_mem == 'manual':
-            # copy data and centroids, allocate memory
+            # copy dataset and centroids, allocate memory
+
+            # check if handle for data should be kept
+            # this avoids redundant data transfer
             if keepDataRef:
-                if self._cudaDataHanle is None:
+                # if dataset has not been sent to device, send it and save handle
+                if self._cudaDataHandle is None:
                     dData = cuda.to_device(data)
-                    self._cudaDataHanle = dData
+                    self._cudaDataHandle = dData
+                # otherwise just use handle
                 else:
-                    dData = self._cudaDataHanle
+                    dData = self._cudaDataHandle
             else:
                 dData = cuda.to_device(data)
-                
+            
             dCentroids = cuda.to_device(centroids)
             dLabels = numbapro.cuda.device_array_like(labels)
+
+            if self._converge:
+                dDists = numbapro.cuda.device_array_like(self._dists)
+                self._distsHandle = dDists
             
             self._cudaLabelsHandle = dLabels
             self._cudaCentroidsHandle = dCentroids
             
             self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
             
+            # synchronize threads before copying data
             numbapro.cuda.synchronize()
+
+            # copy labels from device to host
             dLabels.copy_to_host(ary=labels)
-            
+
+            # copy distance to centroids from device to host
+            if self._converge:
+                dDists.copy_to_host(ary=self._dists)
 
         elif self._cuda_mem == 'auto':
-            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim) 
+            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+
+        else:
+            raise ValueError("CUDA memory management type may either be \'manual\' or \'auto\'.")
         
         return labels
         
@@ -334,9 +386,12 @@ class K_Means:
         """
         Wraper to choose between kernels.
         """
-        
-        if self._iters == "converge":
-            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self.dists)
+        # if converging and manual memory management, use distance handle
+        if self._converge and self._cuda_mem == 'manual':
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+        # if converging and auto memory management, use distance array
+        elif self._converge and self._cuda_mem == 'auto':
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
         else:
             self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
 
@@ -525,7 +580,7 @@ class K_Means:
         gw = cuda.gridDim.x
         gh = cuda.gridDim.y
 
-
+        pass
     def _np_recompute_centroids_group(self,data,centroids,labels):
         """
         Iterates over data. Makes a list of data for each cluster.
@@ -598,10 +653,11 @@ class K_Means:
         # slice the data and compute the mean
         new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
 
-        ## store the last labels separated in respective clusters
-        # should only be executed in last iteration
-        self.partition=list()
-        self.partition.append(labels_sorted[startIndex:endIndex])
+        # add cluster to final partition
+        # should only be executed in last iteration of K-Means
+        if self._last_iter:
+            self.partition=list()
+            self.partition.append(labels_sorted[startIndex:endIndex])
 
         ## middle iterations
         for k in xrange(1,nonEmptyClusters-1):
@@ -609,15 +665,18 @@ class K_Means:
             clusterID = labels[startIndex]
             new_centroids[clusterID] = sortedData[startIndex:endIndex].mean(axis=0)
 
-            # store the last labels separated in respective clusters
-            self.partition.append(labels_sorted[startIndex:endIndex])
+             # add clusters to final partition
+            if self._last_iter:
+                self.partition.append(labels_sorted[startIndex:endIndex])
 
         # last iteration
         startIndex = labelChangedIndex[-1]
         clusterID = labels[startIndex]
         new_centroids[clusterID] = sortedData[startIndex:].mean(axis=0)
 
-        self.partition.append(labels_sorted[startIndex:])
+        # add cluster to final partition
+        if self._last_iter:
+            self.partition.append(labels_sorted[startIndex:])
 
         # remove empty clusters
         emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]

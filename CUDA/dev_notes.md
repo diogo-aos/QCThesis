@@ -19,3 +19,10 @@ for key, grp in df.groupby(level=['index1']):
 ```
 `grp.reset_index(level=0,inplace=True)` puts indeces as columns.
 `grp.index.levels[i]` gets a list of the values of the index in level _i_
+
+# The juice of EAC
+## Gather partitions
+The first step is to collect different partitions of the data, i.e. a partition ensemble.
+
+## Combine evidence
+The second step is combining the ensemble in such a way that we can then extract a final clustering. This step uses a voting mechanism.

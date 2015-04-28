@@ -1,6 +1,9 @@
 *.pyc
-sftp-config.json
 *.mat
+
+sftp-config.json
+EAC/K_Means3.py
+
 notebooks/.ipynb_checkpoints/
 .sass-cache/
-EAC/K_Means3.py
+EAC/test/

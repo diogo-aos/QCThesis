@@ -9,7 +9,6 @@ features of the Matlab toolbox plus addressing NxK co-association
 matrices.
 
 TODO:
-- choose K-Nearest Neighbours
 - clustering of non-square co-association matrix
 - link everything
 - add sanity checks on number of samples of partitions
@@ -35,7 +34,7 @@ class EAC():
 		self.npartitions = 0
 
 	def fit(self,ensemble,files=False,assoc_mode="full",prot_mode="random",
-			nprot=None,link='single'):
+			nprot=None,link='single',build_only=False):
 		"""
 		ensemble 		: list of partitions; each partition is a list of arrays (clusterings);
 						  each array contains the indices of the cluster's data;  if files=True,
@@ -80,7 +79,7 @@ class EAC():
 		self._diss_assoc = self._diss_assoc.max() - self._diss_assoc # transform in dissimilarity
 
 		# apply linkage
-		if assoc_mode is "full":
+		if assoc_mode is "full" and not build_only:
 		
 			self.hierarchy = self._apply_linkage(self._diss_assoc,link)
 
@@ -261,10 +260,11 @@ class EAC():
 				## all prototypes in cluster - columns to select
 				# in1d checks common values between two 1-D arrays (a,b) and returns boolean array
 				# with the shape of a with value True on the indices of common values
-				k_in_cluster = np.where(np.in1d(k_labels,n_in_cluster))
+				k_in_cluster = np.where(np.in1d(k_labels,n_in_cluster))[0]
+
+				if k_in_cluster.size == 0:
+					continue
 				
-	            if k_in_cluster.size == 0:
-	                continue
 
 				# this indexing selects the rows and columns specified by n_in_cluster and k_in_cluster
 				assoc_mat[n_in_cluster[:,np.newaxis],k_in_cluster] += 1 # np.newaxis is alias for None
@@ -288,10 +288,10 @@ class EAC():
 				# update row j of matrix
 				for j in n_in_cluster:
 					# all prototypes in cluster - columns to select
-					k_in_cluster = np.where(np.in1d(k_neighbours[j],n_in_cluster))
+					k_in_cluster = np.where(np.in1d(k_neighbours[j],n_in_cluster))[0]
 
-		            if k_in_cluster.size == 0:
-		                continue
+					if k_in_cluster.size == 0:
+						continue
 
 					# this indexing selects the rows and columns specified by n_in_cluster and k_in_cluster
 					assoc_mat[j,k_in_cluster] += 1 # np.newaxis is alias for None
