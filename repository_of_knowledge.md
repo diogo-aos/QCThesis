@@ -31,6 +31,33 @@ This will change https to ssh.
 
 tag: ssh,filesystem
 
+## Keep SSH alive
+tag:ssh
+
+[link](http://www.maketecheasier.com/keep-ssh-connections-alive-in-linux/)
+
+Edit or create the config file `$HOME/.ssh/config`
+
+Add the following:
+```
+Host *
+  ServerAliveInterval 60
+```
+
+This will send a package every 60 seconds of inactivity. Change as desired. Save and exit. Restart SSH service:
+
+`sudo service ssh restart`
+
+This may be applied system wide in the `/etc/ssh/ssh_config` config file.
+
+## Share folders through Samba
+
+[see this instructions](https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated,%20Simple%20and%20Brief%20Way!)
+
+tag:samba,network
+date:25-04-2015
+
+
 ## NVIDIA + Intel
 use driver 331
 [askUbuntu](http://askubuntu.com/questions/452556/how-to-set-up-nvidia-optimus-bumblebee-in-14-04)
@@ -134,3 +161,11 @@ user@host:$ source virt_envs/virt1/bin/activate
 (virt1)user@host:$ desactivate
 ```
 
+# Android
+## How I returned a Samsung W I8150 to stock
+
+Odin
+use clockworkrom (CWR) to wipe everything
+burn new image
+
+you can also use the odin to install CWR and then install a ROM from CWR or install an image directly from Odin.
