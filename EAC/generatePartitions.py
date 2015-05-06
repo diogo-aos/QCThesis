@@ -72,8 +72,10 @@ if args.data == "synthetic":
 else:
     synthetic_data = False
     data_filename = args.data
-    wo_ext = args.data.split(".csv")[0]
-    filename_base = args.directory + wo_ext + "_" + args.sufix
+    #wo_ext = args.data.split(".csv")[0]
+    #filename_base = args.directory + wo_ext + "_" + args.sufix
+    filename_base = args.directory + args.sufix
+
 
 # synthetic data parameters
 if synthetic_data:
@@ -189,7 +191,7 @@ def savePartitionToFile(partition,filename):
 
 for p in xrange(npartitions):
     
-    nclusters = np.random.randint(minclusters,maxclusters,1)
+    nclusters = np.random.randint(minclusters,maxclusters)
     
     log_str = "#{0}, clusters={1}".format(p,nclusters)
     logger.info('Generating partition: ' + log_str)

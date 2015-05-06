@@ -22,6 +22,7 @@ from scipy.cluster.hierarchy import linkage
 from scipy.spatial.distance import squareform
 from sklearn.neighbors import NearestNeighbors
 from K_Means3 import K_Means
+from random import sample
 
 class EAC():
 
@@ -152,8 +153,9 @@ class EAC():
 		
 
 	def _build_random_prototypes(self,nprot,nsamples):
-		# select nprot random samples from the dataset
-		return np.random.randint(0,nsamples,nprot)
+
+		# select nprot unique random samples from the dataset
+		return sample(xrange(nsamples),nprot)
 
 	def _build_knn_prototypes(self,nprot,data):
 		# K-Nearest Neighbours algorithm
@@ -245,7 +247,7 @@ class EAC():
 	def _update_coassoc_k(self,assoc_mat,clusters,k_labels):
 		"""
 		Updates an NxK co-association matrix.
-		k_labels is an array of length K where the k-th element is the index of a data point 
+		k_labels is an array (List, not np.ndarray) of length K where the k-th element is the index of a data point 
 		that corresponds to the k-th prototype.
 		"""
 

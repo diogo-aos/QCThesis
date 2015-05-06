@@ -15,6 +15,8 @@ import numpy as np
 import numbapro
 from numbapro import *  
 
+from random import sample
+
 import sys, traceback
 from timeit import default_timer as timer
 
@@ -65,7 +67,7 @@ class K_Means:
         self.D = D
         self.K = K
 
-        # TODO check parameters, check iters is number or "converge"
+        # TODO check parameters, check iters is numberf or "converge"
 
         self._mode = mode
         
@@ -121,12 +123,13 @@ class K_Means:
     def _init_centroids(self,data):
         
         centroids = np.empty((self.K,self.D),dtype=data.dtype)
-        random_init = np.random.randint(0,self.N,self.K)
+        #random_init = np.random.randint(0,self.N,self.K)
+        
+        random_init = sample(xrange(self.N),self.K)
         self.init_seed = random_init
-        
-        for k in xrange(self.K):
-            centroids[k] = data[random_init[k]]
-        
+
+        centroids = data[random_init]
+
         return centroids
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -246,10 +249,12 @@ class K_Means:
             dist = dist ** 2
             dist = dist.sum(axis=1)
             
-            thisCluster = np.full(N,c,dtype=np.int32)
-            labels = np.where(dist < best_dist,thisCluster,labels)
-            best_dist = np.where(dist < best_dist,dist,best_dist)
-        
+            #thisCluster = np.full(N,c,dtype=np.int32)
+            #labels = np.where(dist < bestd_ist,thisCluster,labels)
+            labels[dist<best_dist] = c
+            best_dist = np.minimum(dist,best_dist)
+
+
         if self._converge:
            self._dists = best_dist
 
@@ -645,7 +650,13 @@ class K_Means:
 
         ## first iteration
         # start and end index of first cluster in labels
-        startIndex,endIndex = 0,labelChangedIndex[0]
+        try:
+            startIndex,endIndex = 0,labelChangedIndex[0]
+        except IndexError:
+            print "labels: ",labels
+            print "centroids: ",centroids
+            print "labelChangedIndex: ",labelChangedIndex
+            print labelChangedIndex[0] #generate original error
 
         # the cluster number is given by the label of the start index
         clusterID = labels[startIndex]
@@ -681,6 +692,10 @@ class K_Means:
         # remove empty clusters
         emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]
         new_centroids = np.delete(new_centroids,emptyClusters,axis=0)
+
+        if np.unique(new_centroids).shape[0] == 0:
+            print "centroids: ",new_centroids
+            raise ValueError("centroids empty.")
 
         return new_centroids
     
