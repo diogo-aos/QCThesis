@@ -14,7 +14,7 @@ TODO:
 - add sanity checks on number of samples of partitions
 - robust exception handling
 - fix centroid-based prototype creation
-- convert dissimilarity matrix to float32
+- convert dissimilarity matrix to float32 (why?)
 """
 
 import numpy as np
