@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  5 MAY 2015 13:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 MAY 2015 11:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -386,7 +386,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (./thesis.aux)
+) (./thesis.aux
+(./introduction.aux) (./context.aux) (./state_of_art.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -494,11 +495,11 @@ e
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./thesis.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+LaTeX Font Info:    Try loading font information for U+msa on input line 3.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -509,135 +510,194 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 52.
+\openout2 = `introduction.aux'.
+
+ (./introduction.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 52.
- [2] [3] [4] [5]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
+) [2
+
+]
+\openout2 = `context.aux'.
+
+ (./context.tex)
+[3
+
+
+]
+\openout2 = `state_of_art.aux'.
+
+ (./state_of_art.tex) [4
+
+
+] [5
+
+] [6] [7] [8]
 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mean.pn
-g, id=26, 586.8324pt x 442.2924pt>
+g, id=37, 586.8324pt x 442.2924pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_me
 an.png Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mea
 n.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
-/img/bi_nofactor_mean.png used on input line 259.
+/img/bi_nofactor_mean.png used on input line 231.
 (pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var.png
-, id=28, 586.8324pt x 442.2924pt>
+, id=39, 586.8324pt x 442.2924pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_va
 r.png Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var
 .png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
-/img/bi_nofactor_var.png used on input line 266.
+/img/bi_nofactor_var.png used on input line 238.
 (pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
- [6 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mea
-n.png>]
+
 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo.png
-, id=33, 586.8324pt x 442.2924pt>
+, id=40, 586.8324pt x 442.2924pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_ev
 o.png Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo
 .png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
-/img/bi_nofactor_evo.png used on input line 276.
+/img/bi_nofactor_evo.png used on input line 248.
 (pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
 
-</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png, id=34,
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png, id=41,
  586.8324pt x 442.2924pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png Gr
 aphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
-/img/sex_evo.png used on input line 284.
+/img/sex_evo.png used on input line 256.
 (pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var.
-png> </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_ev
-o.png>] [8 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.
-png>]
-</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png, id=50
+[9 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mean
+.png>] [10 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofac
+tor_var.png> </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nof
+actor_evo.png>] [11 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img
+/sex_evo.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png, id=60
 , 578.16pt x 397.485pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png G
 raphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
-/iris_natural.png used on input line 364.
+/iris_natural.png used on input line 340.
 (pdftex.def)             Requested size: 289.07928pt x 198.742pt.
 
+[12 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>]
 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.png, i
-d=51, 1156.32pt x 433.62pt>
+d=65, 1156.32pt x 433.62pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.p
 ng Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.pn
 g>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
-/iris_2pc_cluster.png used on input line 374.
-(pdftex.def)             Requested size: 289.07928pt x 108.40472pt.
+/iris_2pc_cluster.png used on input line 351.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.png,
- id=52, 1156.32pt x 433.62pt>
+ id=66, 1156.32pt x 433.62pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster
 .png Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.
 png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
-/iris_allpc_cluster.png used on input line 384.
+/iris_allpc_cluster.png used on input line 362.
 (pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
- [9 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>]
+
 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png, id=
-57, 488.68974pt x 381.87468pt>
+67, 488.68974pt x 381.87468pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png
  Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
-/crab_2pc_covar.png used on input line 397.
+/crab_2pc_covar.png used on input line 375.
 (pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
-[10 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.pn
-g> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.p
-ng>] [11 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar
-.png>] (./thesis.aux) ) 
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cluster.
+png, id=68, 1156.32pt x 867.24pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clu
+ster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clus
+ter.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_cluster.png used on input line 382.
+(pdftex.def)             Requested size: 455.24411pt x 341.42464pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+.png, id=69, 488.68974pt x 381.87468pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered.png used on input line 389.
+(pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+_cluster.png, id=70, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered_cluster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered_cluster.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered_cluster.png used on input line 396.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+ [13 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.p
+ng> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.
+png>] [14 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_cova
+r.png> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_c
+luster.png>] [15 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2
+pc_covar_centered.png> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/
+crab_2pc_covar_centered_cluster.png>] (./thesis.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) [16] (./thesis.aux (./introduction.aux) (./context.aux) (./state_of_art.aux))
+ ) 
 Here is how much of TeX's memory you used:
- 3545 strings out of 495004
- 48740 string characters out of 6180663
- 121436 words of memory out of 5000000
- 6684 multiletter control sequences out of 15000+600000
- 7476 words of font info for 29 fonts, out of 8000000 for 9000
+ 3593 strings out of 495004
+ 50401 string characters out of 6180663
+ 124236 words of memory out of 5000000
+ 6704 multiletter control sequences out of 15000+600000
+ 7822 words of font info for 30 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 38i,13n,24p,942b,228s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb>
-Output written on thesis.pdf (11 pages, 1609176 bytes).
+ 38i,13n,24p,942b,230s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on thesis.pdf (16 pages, 2498626 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

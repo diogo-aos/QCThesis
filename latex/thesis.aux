@@ -3,58 +3,61 @@
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Abbreviations}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{1}}
-\newlabel{intro}{{2}{1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Objectives}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Problem context}{2}}
-\newlabel{sec:context}{{4}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Evidence Accumulation Clustering}{2}}
-\newlabel{sec:eac}{{4.1}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Big Data}{2}}
-\newlabel{sec:bigdata}{{4.2}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Quantum Clustering}{2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quantum bit}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Quantum K-Means}{3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Description of the algorithm}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Initialize population of oracles}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Collapse oracles}{4}}
-\@writefile{toc}{\contentsline {paragraph}{K-Means}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Compute cluster fitness}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Store}{4}}
-\@writefile{toc}{\contentsline {paragraph}{Quantum Rotation Gate}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Testing and Results}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.}}{5}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).}}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.}}{6}}
-\newlabel{fig:db_index_mean_t2}{{1}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.}}{7}}
-\newlabel{fig:db_index_var_t2}{{2}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces DB index of best solution in T2.}}{7}}
-\newlabel{fig:qk_db_index_best_evo_t2}{{3}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Wave equation}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Horn and Gottlieb's algorithm}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces DB index of best solution in T3.}}{8}}
-\newlabel{fig:qk_db_index_best_evo_t3}{{4}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The values represent generations.}}{8}}
-\newlabel{tab:db_index_t1_t3}{{3}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Testing and Results}{9}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Iris data}{9}}
-\newlabel{sec:horn_iris}{{5.3.3}{9}}
-\newlabel{fig:iris_natural}{{5.3.3}{9}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Plot of the two first principal components (PC).}}{9}}
-\newlabel{fig:iris_2pc_cluster}{{5.3.3}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.}}{10}}
-\newlabel{fig:iris_allpc_cluster}{{5.3.3}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Plots of the converged data data points and final clustering for all PC.}}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Crab data}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}References}{10}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Parallel computing - GPGPU}{10}}
-\newlabel{fig:crab_2pc_covar}{{5.3.4}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Representation of the crab data projected over PC 2 and 3.}}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Short Survey of available GPGPU frameworks}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Comparison and choice}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Overview of CUDA}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}EAC for Big Data}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}overview of EAC}{11}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Partition generation}{11}}
+\@input{introduction.aux}
+\@input{context.aux}
+\@input{state_of_art.aux}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Abbreviations}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Quantum Clustering}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Quantum bit}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Quantum K-Means}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Description of the algorithm}{6}}
+\@writefile{toc}{\contentsline {paragraph}{Initialize population of oracles}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Collapse oracles}{7}}
+\@writefile{toc}{\contentsline {paragraph}{K-Means}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Compute cluster fitness}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Store}{7}}
+\@writefile{toc}{\contentsline {paragraph}{Quantum Rotation Gate}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Testing and Results}{7}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.}}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).}}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.}}{9}}
+\newlabel{fig:db_index_mean_t2}{{1}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces The values represent generations.}}{9}}
+\newlabel{tab:db_index_t1_t3}{{3}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Discussion}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.}}{10}}
+\newlabel{fig:db_index_var_t2}{{2}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces DB index of best solution in T2.}}{10}}
+\newlabel{fig:qk_db_index_best_evo_t2}{{3}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces DB index of best solution in T3.}}{11}}
+\newlabel{fig:qk_db_index_best_evo_t3}{{4}{11}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Wave equation}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.1}Horn and Gottlieb's algorithm}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.2}Testing and Results}{12}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.3}Iris data}{12}}
+\newlabel{sec:horn_iris}{{5.3.3}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Plot of the two first principal components (PC).}}{12}}
+\newlabel{fig:iris_natural}{{5}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.}}{13}}
+\newlabel{fig:iris_2pc_cluster}{{6}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.}}{13}}
+\newlabel{fig:iris_allpc_cluster}{{7}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.3.4}Crab data}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Representation of the crab data projected over PC 2 and 3.}}{14}}
+\newlabel{fig:crab_2pc_covar}{{8}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Representation of the crab data projected over PC 2 and 3.}}{14}}
+\newlabel{fig:crab_2pc_covar_cluster}{{9}{14}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Representation of the crab data projected over PC 2 and 3.}}{15}}
+\newlabel{fig:crab_2pc_covar_centered}{{10}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Representation of the crab data projected over PC 2 and 3.}}{15}}
+\newlabel{fig:crab_2pc_covar_centered_cluster}{{11}{15}}
+\bibstyle{plain}
+\bibdata{library}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}References}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Parallel computing - GPGPU}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Short Survey of available GPGPU frameworks}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Comparison and choice}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Overview of CUDA}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}EAC for Big Data}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}overview of EAC}{16}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Partition generation}{16}}

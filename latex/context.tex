@@ -1,0 +1,55 @@
+\section{Context}
+\label{sec:context}
+
+\subsection{Clustering with EAC}
+
+\subsubsection{Clustering}
+\label{sec:clustering}
+
+%this is mostly taken from Jain's 50 years beyond K-Means
+Advances in technology currently allow society to collect and store unprecedented ammount and variety of data. Since data is mostly stored electronically, it presents a potential for automatic data analysis and thus creation of information and knowledge. A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks. Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning. %The task of learning is...
+Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
+
+Cluster analysis is the backbone of the present work. %\citep{Jain2010}
+defined the goal of data clustering as the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on unstructured data. And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, pearson correlation) and separate those that are dissimilar. %big example of unclestered data and pretended clustering, as in Jain(2010)
+
+Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
+%provide references to all of this
+% see https://sites.google.com/site/dataclusteringalgorithms/clustering-algorithm-applications
+% has applications with articles
+\begin{itemize}
+\item image segmentation in the field of image processing;
+\item generation of hierarchical structure for easy access and retrieval of information systems;
+\item recommender systems by grouping a users by their behavious and/or preferences;
+\item clustering customers for targeted marketing in 
+\item clustering gene expression data in biology;
+\item grouping of 
+\end{itemize}
+
+
+
+\subsubsection{Ensemble Clustering}
+\label{sec:eac}
+
+
+Data from real world problems appear in different configurations regarding shape, size, sparsity, etc. %taken from Fred(2005)
+Different clustering algorithms are appropriate for different data configurations, e.g. K-Means using euclidean distance as metric tends to group patterns in hyperspheres so it is more appropriate for data structure is formed by hypershere like clusters.%see http://cstheory.stackexchange.com/questions/17693/hyperspherical-nature-of-k-means-and-similar-clustering-methods for paper reference and justification
+If the true structure of the data at hand is heterogeneous in configuration a single clustering algorithm might perform well for some part of the data while other performs well for some other part. The underlying idea behind ensemble clustering is to use multiple clusterings from one or more clustering algorithms and combine them in such a way that the final clustering is better than any of the individual ones.
+
+overview of EAC
+
+examples of applications
+
+advantages
+
+disadvantages
+
+
+
+\subsection{The Big Data paradigm}
+\label{sec:bigdata}
+
+examples of success application
+
+characteristics and challenges
+

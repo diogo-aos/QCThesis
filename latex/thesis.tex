@@ -22,6 +22,13 @@
 
 \tableofcontents
 
+\include{introduction}
+
+\include{context}
+
+\include{state_of_art}
+
+
 
 \section{Abbreviations}
 
@@ -34,56 +41,21 @@
 |SVD|Singular Value Decomposition
 |GPGPU|General-Purpose Computing on Graphics Processing Units
 
-\section{Introduction}
-\label{intro}
-%TODO
-% problems under Big Data paradihm
-% typical challenges with Big Data
-% why EAC?
-% combination of both
-
-The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
-
-The initial research was under the algorithmic path. More specifically, exploring quantum clustering algorithms. The findings of this exploration were unproductive and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPU and distributed (among several machines). While the first is a readily available resource in common machines, the second is more able to address problems dealing with very large datasets.
-
-\section{Objectives}
-The main objectives for this work are:
-\begin{itemize}
-\item Aplication of Evidence Accumulation Clustering in Big Data
-\item Exploration of methods that may be included in the EAC paradigm under Big Data constraints
-\item Study of quantum inspired clustering algorithms and evaluation of viability of integration in EAC
-\item Study of parallel computation techniques and evaluation of viability of integration in EAC
-\end{itemize}
-
-\section{Problem context}
-\label{sec:context}
-
-\subsection{Evidence Accumulation Clustering}
-\label{sec:eac}
-
-overview of EAC
-
-examples of applications
-
-advantages
-
-disadvantages
 
 
-\subsection{Big Data}
-\label{sec:bigdata}
-
-challenges
 
 \section{Quantum Clustering}
 
-There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This is basically converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. [1]. Most literature on this path is also quite theoretical since quantum computers or quantum circuits are not easily available. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
+The field of quantum computing has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
+There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. [1]. Most literature on this path is also mostly theoretical since quantum circuits are not easily available and a working feasible quantum computer has yet to be invented. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
 
-% #TODO get refs for not being feasable; Feynmann; I think washington course had something -->
+% #TODO get refs for simulation of quantum systems not being feasable; Feynmann; I think washington course had something -->
 
-An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems is a very hard task by itself and literature suggest is not feasible. Given that the scope of the thesis is to accelerate clustering, having the extra overhead 
+An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems is a very hard task by itself and literature suggest is not feasible. Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would allow speedups.
 
 The second path is the computational intelligence approach, i.e.  to use quantum inspired algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two other branches. One comprehends the algorithms based on the concept of the quantum bit, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other branch models data as a quantum system and uses the Schrödinger equation to evolve it.
+
+In the following two sections these approaches for quantum inspired computational intelligence are explored.
 
 [1] N. Wiebe, A. Kapoor, and K. Svore, “Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning,” p. 31, 2014.
 
@@ -299,13 +271,18 @@ Analysing the evolution of the DB index of the best solution over the generation
 \label{tab:db_index_t1_t3}
 \end{table}
 
+\subsubsection{Discussion}
 
+Results show that most computational cost (90\% on T1) lies on the evaluation of the solutions obtained from each oracle. This is a costly but necessary step in this algorithm. Moreover, and even though EAC doesn't require its input partitions to be accurate, the quality of the solutions, measured with the Davies-Bouldin index, from QK-Means doesn't differ from that of K-Means. This two facts make the use of this algorithm in EAC prohibitive, as no benefits in compuational time are gained.
 
-
+It should be noted that the target application of the tests presented differs from that of the original authors and although no accuracy gains were observed in these results, the results might differ on different applications.
 
 \subsection{Wave equation}
 
-The other approach to clustering mustering inspirations form quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb (% #TODO add ref -->).
+The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb and was later extended by Weisenberg? and Horn.
+
+%TODO
+% add ref
 
 \subsubsection{Horn and Gottlieb's algorithm}
 
@@ -343,14 +320,14 @@ There is another method to evolve the system other then by gradient descent whic
 \subsubsection{Testing and Results}
 
 
-TODO
-Put in accuracy results for crab,iris and gaussian mixtures  
-Put in timing results
+%TODO
+%Put in accuracy results for crab,iris and gaussian mixtures  
+%Put in timing results
 
 
 The accuracy of this algorithm was tested with real world datasets, namely, the crab and iris datasets available at the UCI Machine Learning Repository.
 
-% #TODO add ref for repository -->
+%TODO add ref for repository -->
 
 \subsubsection{Iris data}
 \label{sec:horn_iris}
@@ -359,56 +336,79 @@ The iris dataset ([available at the UCI ML repository](http://archive.ics.uci.ed
 % #TODO saved image from ipython -->
 
 \begin{figure}[hbtp]
-\label{fig:iris_natural}
 \centering
 \includegraphics[scale=0.5]{Horn/img/iris_natural.png}
 \caption{Plot of the two first principal components (PC).}
+\label{fig:iris_natural}
+
 \end{figure}
 
-I chose $\sigma=\frac{1}{4}$ to reproduce the experiments in [3]. Only the first two PC are used here, which account for $95.8\%$ of the energy. The clustering results can be seen in Fig. \ref{fig:iris_2pc_cluster} and have an accuracy of 86 computed with consistency index.
+I chose $\sigma=\frac{1}{4}$ to reproduce the experiments in [3]. Only the first two PC are used here, which account for $95.8\%$ of the energy. The clustering results can be seen in Fig. \ref{fig:iris_2pc_cluster} and have an accuracy of 86\% computed with consistency index.
 
 
 \begin{figure}[hbtp]
-\label{fig:iris_2pc_cluster}
 \centering
 \includegraphics[width=\textwidth]{Horn/img/iris_2pc_cluster.png}
 \caption{Plots of the converged data data points and final clustering for 2 PC.}
+\label{fig:iris_2pc_cluster}
+
 \end{figure}
 
-For the sake of completeness, Fig. \ref{fig:iris_allpc_cluster} shows the results
-
- I also clustered over all PCs. The clustering results can be seen in Fig. \ref{fig:iris_allpc_cluster} and have an accuracy of 82.67 computed with consistency index.
+For the sake of completeness, Fig. \ref{fig:iris_allpc_cluster} shows the clustering over all PCs. This solution has an accuracy of 82.67\% computed with consistency index.
 
 
 \begin{figure}[hbtp]
-\label{fig:iris_allpc_cluster}
 \centering
 \includegraphics[width=\textwidth]{Horn/img/iris_allpc_cluster.png}
-\caption{Plots of the converged data data points and final clustering for all PC.}
+\caption{Plots of the converged data data points and final clustering for all PC of Iris data.}
+\label{fig:iris_allpc_cluster}
 \end{figure}
 
 
 \subsubsection{Crab data}
 
 
-The crabs dataset has 200 samples and describes 5 morphological measurements on 50 crabs each of two colour forms and both sexes (total of 200 crabs), of the species Leptograpsus variegatus collected at Fremantle, Western Audstralia. After a preprocessing using PCA with covariance matrix and uncentred data, the dataset is represented in Fig. \ref{fig:crab_2pc_covar}.% #TODO add reference to dataset -->
+The crabs dataset has 200 samples and describes 5 morphological measurements on 50 crabs each of two colour forms and both sexes (total of 200 crabs), of the species Leptograpsus variegatus collected at Fremantle, Western Australia. After a preprocessing using PCA with covariance matrix and uncentred data, the dataset is represented in Fig. \ref{fig:crab_2pc_covar}.% #TODO add reference to dataset -->
 
 \begin{figure}[hbtp]
-\label{fig:crab_2pc_covar}
 \centering
 \includegraphics[scale=0.5]{Horn/img/crab_2pc_covar.png}
 \caption{Representation of the crab data projected over PC 2 and 3.}
+\label{fig:crab_2pc_covar}
 \end{figure}
 
-Initial work was aiming to reproduce results from [2], but lack of detail on the preprocessing used made it an harder task. Several preprocessings were used, namely whitening or not the data, centring it or not, using covariance versus correlation and different methods of computing the PCs through eigenvalue decomposition or Singular Value Decomposition (SVD). The closest representation to that of the [2] is the one if Fig. C1.
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\textwidth]{Horn/img/crab_2pc_covar_cluster.png}
+\caption{Representation of the crab data projected over PC 2 and 3.}
+\label{fig:crab_2pc_covar_cluster}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{Horn/img/crab_2pc_covar_centered.png}
+\caption{Representation of the crab data projected over PC 2 and 3.}
+\label{fig:crab_2pc_covar_centered}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\textwidth]{Horn/img/crab_2pc_covar_centered_cluster.png}
+\caption{Representation of the crab data projected over PC 2 and 3.}
+\label{fig:crab_2pc_covar_centered_cluster}
+\end{figure}
+
+
+Initial work aimed at reproducing results from [2], but lack of detail on the preprocessing used made it an harder task. Several preprocessings were used, namely whitening or not the data, centring it or not, using covariance versus correlation and different methods of computing the PCs through eigenvalue decomposition or Singular Value Decomposition (SVD). The closest representation to that of the [2] is the one if Fig. C1.
 
 
 
-Covariance uncentred consistency index = 0.43
-Covariance centred consistency index = 0.225
 
-all pc covariance uncentred consistency index = 0.395
-all dimensions original data consistency index = 0.so in25
+Covariance uncentred consistency index = 0.815
+Covariance centred consistency index = 0.91
+
+all pc covariance uncentred consistency index = 0.63
+all dimensions original data consistency index = 0.34
 
 
 
@@ -434,9 +434,12 @@ The second direction of the work was given to parallel computing, more speficall
 
 
 \subsection{Comparison and choice}
-It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and harder to program. CUDA is easy to program, performs really good since it was designed alongside with the hardware itself but only works on NVIDIA devices.
+It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and hard to program. Programming under CUDA, performs well since it was designed alongside with the hardware itself but only works on NVIDIA devices.
 
 \subsection{Overview of CUDA}
+
+
+
 
 \section{EAC for Big Data}
 Short intro of what EAC is all about, the direction taken (GPU for acceleration), the challenges of big data, ...
@@ -446,8 +449,8 @@ Short intro of what EAC is all about, the direction taken (GPU for acceleration)
 \subsection{Partition generation}
 This is the part 
 
-
-
+\bibliographystyle{plain}
+\bibliography{library}
 
 
 \end{document}

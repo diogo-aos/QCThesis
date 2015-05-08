@@ -302,7 +302,7 @@ Covariance uncentred consistency index = 0.43
 Covariance centred consistency index = 0.225
 
 all pc covariance uncentred consistency index = 0.395
-all dimensions original data consistency index = 0.25
+all dimensions original data consistency index = 0.so in25
 
 
 
