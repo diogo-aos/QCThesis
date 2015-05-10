@@ -1,3 +1,14 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{Fred2005}
+Ana N~L Fred and Anil~K Jain.
+\newblock {Combining multiple clusterings using evidence accumulation}.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  27(6):835--850, 2005.
+
+\bibitem{Jain2010}
+Anil~K Jain.
+\newblock {Data clustering: 50 years beyond K-means}.
+\newblock {\em Pattern Recognition Letters}, 31(8):651--666, 2010.
 
 \end{thebibliography}
