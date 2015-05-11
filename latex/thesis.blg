@@ -4,11 +4,12 @@ The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: context.aux
 A level-1 auxiliary file: state_of_art.aux
+A level-1 auxiliary file: results.aux
 The style file: plain.bst
 Database file #1: library.bib
 You've used 2 entries,
             2118 wiz_defined-function locations,
-            519 strings with 4343 characters,
+            520 strings with 4354 characters,
 and the built_in function-call counts, 650 in all, are:
 = -- 67
 > -- 20
