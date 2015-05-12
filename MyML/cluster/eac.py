@@ -18,7 +18,7 @@ TODO:
 """
 
 import numpy as np
-from scipy.cluster.hierarchy import linkage
+from scipy.cluster.hierarchy import linkage,dendrogram
 from scipy.spatial.distance import squareform
 from sklearn.neighbors import NearestNeighbors
 from .K_Means3 import K_Means
@@ -33,6 +33,7 @@ class EAC():
 
 		self.data = data
 		self.npartitions = 0
+
 
 	def fit(self,ensemble,files=False,assoc_mode="full",prot_mode="random",
 			nprot=None,link='single',build_only=False):
@@ -74,17 +75,6 @@ class EAC():
 		else:
 			for partition in ensemble:
 				self._update_coassoc_matrix(partition) # update co-association matrix
-
-		# transform votes in dissimilarity matrix
-		self._diss_assoc = self._coassoc / self.npartitions # normalize
-		self._diss_assoc = self._diss_assoc.max() - self._diss_assoc # transform in dissimilarity
-
-		# apply linkage
-		if assoc_mode is "full" and not build_only:
-		
-			self.hierarchy = self._apply_linkage(self._diss_assoc,link)
-
-		pass
 
 	def _create_coassoc(self,mode,nsamples,nprot=None):
 
@@ -259,7 +249,7 @@ class EAC():
 				# all data points in cluster - rows to select
 				n_in_cluster = clusters[i]
 
-				## all prototypes in cluster - columns to select
+				## select prototypes present in cluster - columns to select
 				# in1d checks common values between two 1-D arrays (a,b) and returns boolean array
 				# with the shape of a with value True on the indices of common values
 				k_in_cluster = np.where(np.in1d(k_labels,n_in_cluster))[0]
@@ -341,7 +331,7 @@ class EAC():
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-	def _apply_linkage(self,assoc_mat,method='single'):
+	def _apply_linkage(self,assoc_mat=None,method='single'):
 		"""
 		SciPy linkage wants a distance array of format pdist. SciPy squareform 
 		converts between the two formats.
@@ -351,11 +341,101 @@ class EAC():
 					  'average', 'weighted', 'centroid', 'median', 'ward'
 		"""
 
-		condensed_assoc = squareform(assoc_mat)
+		if assoc_mat is None:
+			assoc_mat = self._coassoc
 
-		# convert pair-wise similarity array (assoc_mat->condensed_assoc) to dissimilarity
-		condensed_diss_assoc = condensed_assoc.max() - condensed_assoc
+		# this should go after the squareform since there is only the upper
+		# triangle to compute
+		normalized_diassoc = (self.npartitions - assoc_mat)#/self.npartitions
 
-		Z = linkage(condensed_diss_assoc,method=method)
+		condensed_diassoc = squareform(normalized_diassoc)
+
+		Z = linkage(condensed_diassoc,method=method)
+		self._Z = Z
 
 		return Z
+
+	def _clusterFromLinkage(self,Z=None,nclusters=None):
+		"""
+		Finds the cluster of highest lifetime. Computes the number of clusters
+		according to highest lifetime. Determines the clusters form dendrogram.
+		"""
+
+		if Z is None:
+			Z = self._Z
+
+		if nclusters is None:
+			# lifetime is here computed as the distance difference between 
+			# any two consecutive nodes, i.e. the distance between passing
+			# from n to n-1 clusters
+
+			lifetimes = Z[1:,2] - Z[:-1,2]
+
+			m_index = np.argmax(lifetimes)
+
+			indices = np.where(Z[:,2]>Z[m_index,2])[0]
+			if indices.size == 0:
+				cont = 1
+			else:
+				cont = indices.size +1 
+
+			# store maximum lifetime
+			th = Z[m_index,2]
+
+			#testing the situation when only 1 cluster is present
+			#max>2*min_interval -> nc=1
+			close_to_zero_indices = np.where(np.isclose(lifetimes,0))
+			minimum = np.min(lifetimes[close_to_zero_indices])
+
+			if th < 2 * minimum:
+				cont = 1
+
+			nc_stable = cont
+
+		else:
+			nc_stable=nclusters
+
+		if nc_stable > 1:
+			# only the labels are of interest
+			R=dendrogram(Z,p=nc_stable,truncate_mode='lastp',no_plot=True)
+
+			# manual cluster parent leaves - should be more efficient
+			# TODO
+			# leaves=list()
+			# fifo=[-1]
+			# count = 1
+			# while(count<nc_stable):
+			# 	x=fifo[0]
+			# 	c1,c2=Z[x,:2]
+			# 	fifo.append(c1)
+			# 	fifo.append(c2)
+			# 	fifo.remove(x)
+			# 	count += 1
+
+			leaves=R['leaves'] # parent leaves of clusters
+			labels=self._buildLabels(Z,leaves)
+		else:
+			labels = None
+
+		return labels
+
+	def _buildLabels(self,Z,parents):
+	    labels=np.empty(self._N) # allocate array for labels
+	    for i,p in enumerate(parents):
+	        fifo=[p]
+	        while(len(fifo)>0):
+	            x=fifo[0] # get new node to check
+	            c1,c2=Z[x-self._N,:2] # nodes that current node contains
+	            fifo.remove(x) # remove checked node
+
+	            if c1 < self._N: # check if node is leaf (pattern)
+	                labels[c1]=i # assign cluster to pattern
+	            else:
+	                fifo.append(c1) # add node to list of nodes to check
+
+	            if c2 < self._N:
+	                labels[c2]=i
+	            else:
+	                fifo.append(c2)
+
+	    return labels
