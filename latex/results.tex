@@ -113,7 +113,7 @@ Results show that most computational cost (90\% on T1) lies on the evaluation of
 
 It should be noted that the target application of the tests presented differs from that of the original authors and although no accuracy gains were observed in these results, the results might differ on different applications.
 
-\subsection{Horn's algorithm}
+\subsection{Horn and Gottlieb's algorithm}
 
 
 \subsubsection{Testing and Results}
@@ -201,10 +201,18 @@ The crabs dataset has 200 samples and describes 5 morphological measurements on 
 Initial work aimed at reproducing results from [2], but lack of detail on the preprocessing used made it an harder task. Several preprocessings were used, namely whitening or not the data, centring it or not, using covariance versus correlation and different methods of computing the PCs through eigenvalue decomposition or Singular Value Decomposition (SVD). The closest representation to that of the [2] is the one if Fig. C1.
 
 
-
+%TODO finish crab
 
 Covariance uncentred consistency index = 0.815
 Covariance centred consistency index = 0.91
 
 all pc covariance uncentred consistency index = 0.63
 all dimensions original data consistency index = 0.34
+
+
+\subsection{GPGPU K-Means}
+
+
+
+
+\subsection{K-prototypes influence on coassocs}
