@@ -33,13 +33,7 @@
 \contentsline {subsubsection}{\numberline {4.3.2}Comparison and choice}{8}
 \contentsline {subsubsection}{\numberline {4.3.3}Overview of CUDA}{8}
 \contentsline {section}{\numberline {5}Methodology}{9}
-\contentsline {section}{\numberline {6}Results}{10}
-\contentsline {subsection}{\numberline {6.1}Quantum K-Means}{10}
-\contentsline {subsubsection}{\numberline {6.1.1}Testing and Results}{10}
-\contentsline {subsubsection}{\numberline {6.1.2}Discussion}{13}
-\contentsline {subsection}{\numberline {6.2}Horn's algorithm}{13}
-\contentsline {subsubsection}{\numberline {6.2.1}Testing and Results}{13}
-\contentsline {subsubsection}{\numberline {6.2.2}Iris data}{13}
-\contentsline {subsubsection}{\numberline {6.2.3}Crab data}{15}
-\contentsline {section}{\numberline {7}Discussion?}{18}
-\contentsline {subsection}{\numberline {7.1}References}{18}
+\contentsline {subsection}{\numberline {5.1}Quantum Clustering}{9}
+\contentsline {section}{\numberline {6}GPGPU K-Means}{9}
+\contentsline {section}{\numberline {7}Discussion?}{10}
+\contentsline {subsection}{\numberline {7.1}References}{10}
