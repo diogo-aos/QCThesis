@@ -127,6 +127,16 @@ In **cProfile** we just `import cProfile` and profile the code we want with `cPr
 
 also [this](http://pynash.org/2013/03/06/timing-and-profiling.html)
 
+## IPython connect to remote SSH
+A notebook creates a kernel-id.json file in IPYTHONDIR/profile/security/. Get this file. Execute:
+
+ipython qtconsole --existing kernel-id.json --ssh myusername@myserver
+
+
+Requires: pexpect package
+
+tag:ipython,ssh
+
 # CUDA
 ## timeout CUDA display
 
