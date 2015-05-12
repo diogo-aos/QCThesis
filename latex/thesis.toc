@@ -37,4 +37,3 @@
 \contentsline {subsection}{\numberline {5.2}GPGPU K-Means}{9}
 \contentsline {subsection}{\numberline {5.3}Dealing with space complexity of coassocs}{9}
 \contentsline {section}{\numberline {6}Discussion?}{10}
-\contentsline {subsection}{\numberline {6.1}References}{10}

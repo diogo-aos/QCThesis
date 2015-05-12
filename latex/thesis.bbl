@@ -1,4 +1,14 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Casper2013}
+Ellis Casper and Chih-cheng Hung.
+\newblock {Quantum Modeled Clustering Algorithms for Image Segmentation 1}.
+\newblock 2(March):1--21, 2013.
+
+\bibitem{Casper}
+Ellis Casper, Chih-Cheng Hung, Edward Jung, and Ming Yang.
+\newblock {A Quantum-Modeled K-Means Clustering Algorithm for Multi-band Image
+  Segmentation}.
 
 \bibitem{Fred2005}
 Ana N~L Fred and Anil~K Jain.
@@ -6,9 +16,51 @@ Ana N~L Fred and Anil~K Jain.
 \newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
   27(6):835--850, 2005.
 
+\bibitem{Horn2001b}
+David Horn and Assaf Gottlieb.
+\newblock {Algorithm for Data Clustering in Pattern Recognition Problems Based
+  on Quantum Mechanics}.
+\newblock {\em Physical Review Letters}, 88(1):1--4, 2001.
+
+\bibitem{Horn2001a}
+David Horn and Assaf Gottlieb.
+\newblock {The Method of Quantum Clustering.}
+\newblock {\em NIPS}, (1), 2001.
+
 \bibitem{Jain2010}
 Anil~K Jain.
 \newblock {Data clustering: 50 years beyond K-means}.
 \newblock {\em Pattern Recognition Letters}, 31(8):651--666, 2010.
+
+\bibitem{Liu2010}
+Wenjie Liu, Hanwu Chen, Qiaoqiao Yan, Zhihao Liu, Juan Xu, and Yu~Zheng.
+\newblock {A novel quantum-inspired evolutionary algorithm based on variable
+  angle-distance rotation}.
+\newblock {\em 2010 IEEE World Congress on Computational Intelligence, WCCI
+  2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
+
+\bibitem{Wang2013}
+Huaixiao Wang, Jianyong Liu, Jun Zhi, and Chengqun Fu.
+\newblock {The Improvement of Quantum Genetic Algorithm and Its Application on
+  Function Optimization}.
+\newblock 2013(1), 2013.
+
+\bibitem{Weinstein2009}
+Marvin Weinstein and David Horn.
+\newblock {Dynamic quantum clustering: a method for visual exploration of
+  structures in data}.
+\newblock {\em Physical Review E - Statistical, Nonlinear, and Soft Matter
+  Physics}, 80(6):1--15, December 2009.
+
+\bibitem{Wiebe2014}
+Nathan Wiebe, Ashish Kapoor, and Krysta Svore.
+\newblock {Quantum Algorithms for Nearest-Neighbor Methods for Supervised and
+  Unsupervised Learning}.
+\newblock page~31, 2014.
+
+\bibitem{Xiao2010}
+Jing Xiao, YuPing Yan, Jun Zhang, and Yong Tang.
+\newblock {A quantum-inspired genetic algorithm for k-means clustering}.
+\newblock {\em Expert Systems with Applications}, 37:4966--4973, 2010.
 
 \end{thebibliography}
