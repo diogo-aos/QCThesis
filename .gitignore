@@ -1,1 +1,8 @@
-.pyc
+.aux
+.synctex.gz
+.toc
+.bbl
+.blg
+.log
+.dvi
+.pdf
