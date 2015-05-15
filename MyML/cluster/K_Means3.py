@@ -9,6 +9,7 @@ TODO:
 - implement cuda distance reduce job
 - converge mode in all label functions (low priority since those are not in use)
 - improve cuda labels with local block memory
+- make sure that cuda labels returns the distance array every iteration (centroid computation needs it)
 """
 
 import numpy as np
@@ -17,22 +18,32 @@ from numbapro import *
 
 from random import sample
 
-import sys, traceback
-from timeit import default_timer as timer
+#import sys, traceback
+#from timeit import default_timer as timer
 
 
 class K_Means:       
        
     
-    def __init__(self,nclusters=None,iters=3,mode="cuda",cuda_mem='manual',tol=1e-4,max_iters=300):
+    def __init__(self,nclusters=None,iters=3,mode="cuda",cuda_mem='manual',tol=1e-4,max_iters=300,centroids='random'):
 
         self._mode = mode #label mode
         self._centroid_mode = "index"
 
         self.K = nclusters
 
-        # TODO check parameters, check iters is numberf or "converge"
+        # TODO check parameters, check iters iterss numberf or "converge"
 
+        if centroids == 'random':
+            self._centroid_type = centroids
+        elif type(centroids) is np.ndarray:
+            if centroids.shape[0] != nclusters:
+                raise Exception("Number of clusters indicated different from number of centroids supplied.")
+            self._centroid_type = "supplied"
+            self.centroids = centroids
+
+        else:
+            raise ValueError('Centroid may be \'random\' or an ndarray containing the centroids to use.')
 
         if iters == 0:
             return
@@ -46,8 +57,7 @@ class K_Means:
 
         # execution flow
         self._last_iter = False
-        self._maxiters = 3
-        self._converge = False   
+        self._tol = tol
 
         # outputs
         self.inertia_ = np.inf
@@ -80,7 +90,10 @@ class K_Means:
         self.N = N
         self.D = D        
         
-        self.centroids = self._init_centroids(data)
+        # if random centroids, than get them
+        # otherwise they're already there
+        if self._centroid_type == "random":
+            self.centroids = self._init_centroids(data)
 
         stopcond = False
         self.iters_ = 0
@@ -104,7 +117,7 @@ class K_Means:
                 self.inertia_ = new_inertia
 
                 # stop if convergence tolerance achieved
-                if error <= tol:
+                if error <= self._tol:
                     stopcond = True
                     self._last_iter = True
 
@@ -121,11 +134,11 @@ class K_Means:
 
     def _init_centroids(self,data):
         
-        centroids = np.empty((self.K,self.D),dtype=data.dtype)
+        #centroids = np.empty((self.K,self.D),dtype=data.dtype)
         #random_init = np.random.randint(0,self.N,self.K)
         
         random_init = sample(xrange(self.N),self.K)
-        self.init_seed = random_init
+        #self.init_seed = random_init
 
         centroids = data[random_init]
 
@@ -233,6 +246,7 @@ class K_Means:
         N,D = data.shape
         C,cD = centroids.shape
 
+
         labels = np.zeros(N,dtype=np.int32)
 
         # first iteration of all datapoints outside loop
@@ -254,8 +268,8 @@ class K_Means:
             best_dist = np.minimum(dist,best_dist)
 
 
-        if self._converge:
-           self._dists = best_dist
+        #if self._converge:
+        self._dists = best_dist
 
         return labels
 
@@ -554,7 +568,8 @@ class K_Means:
         elif self._centroid_mode == "index":
             new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
         elif self._centroid_mode == "iter":
-            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+            #new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+            new_centroids = self._np_recompute_centroids_index_2(data,centroids,labels)         
         else:
             raise Exception("centroid mode invalid:",self._centroid_mode)
 
@@ -608,6 +623,34 @@ class K_Means:
 
         return new_centroids
 
+    def _np_recompute_centroids_index_2(self,data,centroids,labels):
+        """
+        this version doesn't discard clusters; instead it uses the same scheme as
+        sci-kit learn
+        """
+        # change to get dimension from class or search a non-empty cluster
+        #dim = grouped_data[0][0].shape[1]
+        N,D = data.shape
+        K,D = centroids.shape       
+        
+        #new_centroids = centroids.copy()
+        new_centroids = np.zeros_like(centroids)
+
+        nonEmptyClusters = np.unique(labels)
+
+        n_emptyclusters = K - nonEmptyClusters.size
+        furtherDistsArgs = self._dists.argsort()[::-1][:n_emptyclusters]
+
+        j=0 #empty cluster indexer
+        for i in xrange(K):
+            if i in nonEmptyClusters:
+                new_centroids[i] = data[labels==i].mean(axis=0)
+            else:
+                new_centroids[i] = data[furtherDistsArgs[j]]
+                j+=1
+
+        return new_centroids
+
     def _np_recompute_centroids_index(self,data,centroids,labels):
         """
         This only works when every cluster has some point.
@@ -647,6 +690,9 @@ class K_Means:
         # the labels plus 1
         nonEmptyClusters = labelChangedIndex.shape[0] + 1
 
+        if nonEmptyClusters == 1:
+            return data.mean(axis=0).reshape(1,data.shape[1])
+
         ## first iteration
         # start and end index of first cluster in labels
         try:
@@ -654,6 +700,7 @@ class K_Means:
         except IndexError:
             print "labels: ",labels
             print "centroids: ",centroids
+            print "centroids equal:",(centroids[0]==centroids[1])
             print "labelChangedIndex: ",labelChangedIndex
             print labelChangedIndex[0] #generate original error
 
