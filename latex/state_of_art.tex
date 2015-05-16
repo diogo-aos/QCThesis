@@ -5,7 +5,7 @@
 %TODO
 % see if this is an apropriate structure; a quantum clustering section makes sense at the very least, but it should be introduced before
 
-\subsection{Big data clustering}
+
 
 \subsection{Quantum clustering}
 The field of quantum computing has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
@@ -192,6 +192,36 @@ There is another method to evolve the system other then by gradient descent whic
 %[8] W. Liu, H. Chen, Q. Yan, Z. Liu, J. Xu, and Y. Zheng, “A novel quantum-inspired evolutionary algorithm based on variable angle-distance rotation,” 2010 IEEE World Congr. Comput. Intell. WCCI 2010 - 2010 IEEE Congr. Evol. Comput. CEC 2010, 2010.
 %~\cite{Liu2010}
 
+
+
+
+
+\subsection{Big data clustering}
+%this was taken from the Data Clustering: Algorithms and Applications 
+When big data is in discussion, two perspectives should be taken into account. The first deals with the applications where data is too large to be stored efficiently. This is the problem that streaming algorithms such as X,Y try to solve by analysing data as it is produced, close to real-time processing. %TODO give examples of streaming algorithms
+The other perspective (the more common) is big data that is actually stored and processed. The latter is the perspective the present work deals with.
+
+Scalability of EAC within the big data paradigm is the concern of this work. Although this line of research hasn't been pursued before, cluster analysis of big data has.%TODO confirm this
+Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable this components are. Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
+
+Several techniques should be mentioned: parallelization can be attained by adapting programs to multi core CPU, GPU, distributed over several machines or a combination of the former, e.g. parallel processing using GPU in a network of workstations.
+
+
+\subsection{General Purporse computing on Graphical Processing Units}
+%TODO add refs everywhere
+Using Graphic Processing Units (GPU) for other applications other than graphic processing, commonly known as General Purpose computation in GPU (GPGPU), has become a trend in recent years.
+Current GPUs pack hundreds of cores and have a better energy/area ratio than traditional setups.
+GPUs work under the Single Instruction Multiple Data (SIMD) framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time.
+At the time of writing, the major programming models used for computation in GPU are OpenCL (Open Computing Language) and CUDA (Compute Unified Device Architecture). While the first is widely available in most devices the later is only available for NVIDIA devices. 
+
+\subsubsection{The choice between models: OpenCL or CUDA}
+It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and har d to program. Programming under CUDA , performs well since it was designed alongside with the hardware itself but only works on NVIDIA devices.
+
+\subsubsection{MapReduce on GPU}
+As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU. This translates in using the same programming model over a wide array of computing platforms.
+
+
+
 \subsection{Parallel computing}
 The second direction of the work was given to parallel computing, more spefically to General-Purpose Computation on Graphics Processing Units (GPGPU). 
 
@@ -199,7 +229,10 @@ The second direction of the work was given to parallel computing, more speficall
 
 
 \subsubsection{Comparison and choice}
-It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and har d to program. Programming under CUDA, performs well since it was designed alongside with the hardware itself but only works on NVIDIA devices.
+
 
 \subsubsection{Overview of CUDA}
 
+
+%TODO the emphasis here must be GPGPU clustering and not MapReduce
+%I have to find more literature regarding this

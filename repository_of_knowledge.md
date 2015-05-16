@@ -172,6 +172,12 @@ user@host:$ source virt_envs/virt1/bin/activate
 ```
 
 # Android
+## copy files with ADB
+tag: android,wifi
+
+Activate wireless adb on Android device.
+On host execute `adb connect IP` where IP is the device's IP address. Then, to transfer files use `adb pull /path/to/remote/file /path/to/local` or `adb push /path/to/local /path/to/remote`.
+
 ## How I returned a Samsung W I8150 to stock
 
 Odin

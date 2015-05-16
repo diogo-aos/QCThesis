@@ -6,8 +6,7 @@
 The aim of this thesis is the optimization and scalability of EAC, with a focus for big data. EAC is divided in three steps and each has to be considered for optimization.
 
 The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup.
-
-
+	
 The second step is mostly bound by memory. The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$. Such complexity becomes prohibitive for big data, e.g. a dataset of $2\times10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
 
 The last step has to take into account both memory and speed requirements. The final clustering must be able to produce good results, fast while not exploding the already big space complexity from the co-association matrix.
@@ -20,7 +19,6 @@ Research under this paradigm aimed to find a solution for the first and last ste
 For both, the experiments that were setup had the goal of evaluating the speed and accuracy performances of the algorithms.
 
 Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is unfeasible due to the cost in computational speed. The results highlight that fact.
-
 
 
 
