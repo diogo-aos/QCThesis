@@ -2,59 +2,63 @@ This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: introduction.aux
-A level-1 auxiliary file: context.aux
 A level-1 auxiliary file: state_of_art.aux
 A level-1 auxiliary file: methodology.aux
 I couldn't open auxiliary file results.aux
----line 11 of file thesis.aux
+---line 16 of file thesis.aux
  : \@input{results.aux
  :                    }
 I'm skipping whatever remains of this command
 The style file: plain.bst
 Database file #1: library.bib
+Warning--empty publisher in Aggarwal2014
+Warning--empty year in Aggarwal2014
 Warning--empty journal in Casper2013
+Warning--empty journal in gao20xx
+Warning--empty year in gao20xx
 Warning--there's a number but no volume in Horn2001a
+Warning--empty journal in Sirotkovi2012
 Warning--empty journal in Wang2013
 Warning--empty journal in Wiebe2014
-You've used 11 entries,
+You've used 23 entries,
             2118 wiz_defined-function locations,
-            573 strings with 5938 characters,
-and the built_in function-call counts, 3521 in all, are:
-= -- 338
-> -- 192
-< -- 1
-+ -- 75
-- -- 64
-* -- 263
-:= -- 614
-add.period$ -- 32
-call.type$ -- 11
-change.case$ -- 65
+            640 strings with 8428 characters,
+and the built_in function-call counts, 8288 in all, are:
+= -- 834
+> -- 393
+< -- 10
++ -- 153
+- -- 130
+* -- 559
+:= -- 1344
+add.period$ -- 67
+call.type$ -- 23
+change.case$ -- 133
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 119
-empty$ -- 251
-format.name$ -- 64
-if$ -- 702
+cite$ -- 32
+duplicate$ -- 324
+empty$ -- 593
+format.name$ -- 130
+if$ -- 1744
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 10
-newline$ -- 57
-num.names$ -- 22
-pop$ -- 61
+int.to.str$ -- 23
+missing$ -- 23
+newline$ -- 116
+num.names$ -- 46
+pop$ -- 141
 preamble$ -- 1
-purify$ -- 54
+purify$ -- 111
 quote$ -- 0
-skip$ -- 89
+skip$ -- 272
 stack$ -- 0
-substring$ -- 185
-swap$ -- 13
-text.length$ -- 1
+substring$ -- 529
+swap$ -- 96
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 44
-warning$ -- 4
-while$ -- 35
-width$ -- 13
-write$ -- 115
+type$ -- 90
+warning$ -- 9
+while$ -- 88
+width$ -- 25
+write$ -- 239
 (There was 1 error message)

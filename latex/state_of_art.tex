@@ -1,11 +1,11 @@
+%!TEX root = thesis.tex
+
 \section{State of the art}
 
 %TODO double check all refs because this was merged pre latex citations and the reference might have gotten mixed
 
 %TODO
 % see if this is an apropriate structure; a quantum clustering section makes sense at the very least, but it should be introduced before
-
-
 
 \subsection{Quantum clustering}
 The field of quantum computing has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
@@ -194,39 +194,146 @@ There is another method to evolve the system other then by gradient descent whic
 
 
 
+\subsection{Evidence Accumulation Clustering}
+
+\subsubsection{Clustering}
+\label{sec:clustering}
+
+%this is mostly taken from Jain's 50 years beyond K-Means
+Advances in technology allow for the collection and storage unprecedented amount and variety of data. Since data is mostly stored electronically, it presents a potential for automatic analysis and thus creation of information and knowledge. A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks. Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
+% (explain what learning is) The task of learning is...
+Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
+
+Cluster analysis is the backbone of the present work.
+The goal of data clustering, as defined by ~\cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data, structured or not.
+And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, Pearson correlation) and separate those that are dissimilar. %TODO reference for a method for both euclidean distance and Pearson correlation
+%TODO example (plot) of unclestered data and ideal clustering, as in Jain(2010)
+
+Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
+%TODO provide references to all of this
+% see https://sites.google.com/site/dataclusteringalgorithms/clustering-algorithm-applications
+% has applications with articles
+\begin{itemize}
+\item image segmentation in the field of image processing;
+\item generation of hierarchical structure for easy access and retrieval of information systems;
+\item recommender systems by grouping a users by their behavious and/or preferences;
+\item clustering customers for targeted marketing in 
+\item clustering gene expression data in biology;
+\item grouping of 
+\end{itemize}
 
 
-\subsection{Big data clustering}
-%this was taken from the Data Clustering: Algorithms and Applications 
+
+\subsubsection{Ensemble Clustering}
+\label{sec:eac}
+
+\paragraph{Ensemble clustering}
+Data from real world problems appear in different configurations regarding shape, size, sparsity, etc. %taken from Fred(2005)
+Different clustering algorithms are appropriate for different data configurations, e.g. K-Means using euclidean distance as metric tends to group patterns in hyperspheres so it is more appropriate for data whose structure is formed by hypershere like clusters.%TODO see http://cstheory.stackexchange.com/questions/17693/hyperspherical-nature-of-k-means-and-similar-clustering-methods for paper reference and justification
+If the true structure of the data at hand is heterogeneous in configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part. The underlying idea behind ensemble clustering is to use multiple clusterings from one or more clustering algorithms and combine them in such a way that the final clustering is better than any of the individual ones.
+
+\paragraph{Formulation}
+Some notation and nomenclature, adopted from ~\cite{Fred2005}, should be defined since it will be used throughout the remainder of the present work. The term \emph{data} refers to a set $X$ of $n$ objects or patterns $X=\left \{ \textsc{x}_1,...,\textsc{x}_n \right \}$, and may be represented by $\chi = \left \{ x_1,...,x_n \right \}$, such that $x_i \in  \mathbb{R}^d$. A clustering algorithm takes $\chi$ as input and returns $k$ groups or \emph{clusters} $C$ of some part of the data, which form a \emph{partition} $P$. A clustering \emph{ensemble} $\mathbb{P}$ is group of such partitions. This means that:
+
+$$
+\mathbb{P} = \left \{   P^1, P^2, ... P^N   \right \} \\
+P^j = \left \{   \textsc{x}^j_1, \textsc{x}^j_2, ... \textsc{x}^{j}_{k_j}   \right \} \\
+C^j_k = \left \{   x_a, x_b, ..., x_z   \right \}
+$$
+
+\paragraph{overview of EAC} 
+The Evidence Accumulation Clustering (EAC) makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
+
+\begin{enumerate}
+\item Produce a clustering ensemble $\mathbb{P}$ (the evidence)
+\item Combine the evidence
+\item Recover natural clusters 
+\end{enumerate}
+
+A clustering ensemble, according to ~\cite{Fred2005}., can be produced from (1) different data representations, e.g. choice of preprocessing, feature extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters.
+
+The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $C$ where each of its elements $n_{ij}$ is the association value between the object pair $(i,j)$. The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble. The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns ~\cite{Fred2005}, revealing the underlying structure of the data.
+The construction of this matrix is at the very core of this method.
+
+The co-association matrix itself doesn't output a clustering partition. Instead, it is used as input to other methods to obtain the final partition. Since this matrix is a similarity matrix it's appropriate to use in algorithms take this type of matrices as input, e.g. hierarchical algorithms such as Single-Link, K-Medoids. Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects. However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ C \} - n_{ij}$.
+
+
+\paragraph{examples of applications}
+
+\paragraph{advantages}
+
+\paragraph{disadvantages}
+quadratic space and time complexities because of the nxn co-association matrix 
+
+
+\subsection{Clustering with Big Data}
+
+\subsubsection{The concept of Big Data}
+% there is a difference between this and the big data section in the state of the art chapter
+% here we're dealing with the big data paradigm, an overview of what is, what has been happening
+% I'm trying t justigy why big data is an interesting 
+% most focus should into the problems themselves and why they are interesting
+
+examples of success application
+
+characteristics and challenges
+
+
+\subsubsection{Computation in Big Data}
+%this was taken from the Data Clustering: Algorithms and Applications book
 When big data is in discussion, two perspectives should be taken into account. The first deals with the applications where data is too large to be stored efficiently. This is the problem that streaming algorithms such as X,Y try to solve by analysing data as it is produced, close to real-time processing. %TODO give examples of streaming algorithms
 The other perspective (the more common) is big data that is actually stored and processed. The latter is the perspective the present work deals with.
 
-Scalability of EAC within the big data paradigm is the concern of this work. Although this line of research hasn't been pursued before, cluster analysis of big data has.%TODO confirm this
-Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable this components are. Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
-
-Several techniques should be mentioned: parallelization can be attained by adapting programs to multi core CPU, GPU, distributed over several machines or a combination of the former, e.g. parallel processing using GPU in a network of workstations.
+Scalability of \gls{eac} within the big data paradigm is the concern of this work. Although this line of research hasn't been pursued before, cluster analysis of big data has. %TODO confirm this
+Since \gls{eac} uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of \gls{eac}. Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 
 
-\subsection{General Purporse computing on Graphical Processing Units}
+%TODO check references in book Data Clustering, pg 260
+Clustering algorithms' flow typically involves some initialization step (e.g. choosing $k$ centroids in K-Means) followed by an iterative process until some stopping criteria is met, where each iteration updates the clustering of the data \cite{Aggarwal2014}. In light of this, to speed up and/or scale up an algorithm, three approaches are available: reduce the number of iterations, reduce the number of patterns the process or parallelizing and distributing the computation. The solutions for each of this approaches are, respectively, one-pass algorithms, randomized techniques that reduce the input space complexity and parallel algorithms.
+
+Parallelization can be attained by adapting programs to multi core \gls{cpu}, \gls{gpu}, distributed over several machines (a \emph{cluster}) or a combination of the former, e.g. parallel and distributed processing using \gls{gpu} in a cluster of hybrid workstations.
+Each approach has its advantages and disadvantages.
+The \gls{cpu} approach has access to a larger memory but the number of computation units is reduced when compared with the \gls{gpu} or cluster approach. Furthermore \gls{cpu}s have advanced techniques such as branch prediction, multiple level caching and out of order execution - techniques for optimized sequential computation.
+\gls{gpu} have hundreds or thousands of computing units but typically the in device available memory is reduced which entails an increased overhead of memory transfer between host (workstation) and device for computation of large datasets.
+Furthermore, the scalability cost of these approaches is higher than that of a cluster.
+Finally, a cluster offers the best solution for truly distributed computation while at the same time allowing for extremely large datasets. The main disadvantage is that there is a high communication and memory I/O cost to pay. Communication is usually done over the network with TCP/IP, which is several order of magnitude slower that the direct access of the \gls{cpu} or \gls{gpu} to memory (host or device).
+
+
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{mpi}{MPI}{Message Passing Interface}
+
+\subsection{General Purpose computing on Graphical Processing Units}
+Using \gls{gpu} for other applications other than graphic processing, commonly known as \gls{gpgpu}, has become a trend in recent years. \gls{gpu} present a solution for "extreme-scale, cost-effective, and power-efficient high performance computing" \cite{Chen2012}. Furthermore, \gls{gpu} are typically found in consumer desktops and laptops, effectively bringing this computation power to the masses.
+
+\gls{gpu}s were typically useful for users that required high performance graphics computation. Other applications were soon explored as users from different fields realized the high parallel computation power of these devices. However, the architecture of the \gls{gpu}s themselves has been strictly oriented toward the graphics computing until recently as specialized \gls{gpu} models (e.g. NVIDIA Tesla) have been designed for data computation.
+
+\gls{gpgpu} application on several fields and algorithms has been reported with significant performance increase, e.g. application on the K-Means algorithm \cite{Bai2009,Wu2011,Zechner2009,Wu2009a}, hierarchical clustering \cite{Shalom2009,ArulShalom2011}, document clustering \cite{gao20xx}, image segmentation \cite{Sirotkovi2012}, integration in Hadoop clusters \cite{Malakar2013,Grossman2013}, among other applications.
+
 %TODO add refs everywhere
-Using Graphic Processing Units (GPU) for other applications other than graphic processing, commonly known as General Purpose computation in GPU (GPGPU), has become a trend in recent years.
-Current GPUs pack hundreds of cores and have a better energy/area ratio than traditional setups.
-GPUs work under the Single Instruction Multiple Data (SIMD) framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time.
-At the time of writing, the major programming models used for computation in GPU are OpenCL (Open Computing Language) and CUDA (Compute Unified Device Architecture). While the first is widely available in most devices the later is only available for NVIDIA devices. 
+Current GPUs pack hundreds of cores and have a better energy/area ratio than traditional infrastructure.
+\gls{gpu} work under the \gls{simd} framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time. Programming for \gls{gpu}s is done under some programming model (e.g. OpenCL, CUDA).
 
-\subsubsection{The choice between models: OpenCL or CUDA}
+
+\newacronym{simd}{SIMD}{Single Instruction Multiple Data}
+
+\subsubsection{GPU programming models}
+
+At the time of writing, the major programming models used for computation in \gls{gpu} are \gls{opencl} and \gls{cuda}. While the first is widely available in most devices the later is only available for NVIDIA devices.
+It should also be noted that the MapReduce framework has been implemented on \gls{gpu}.
+
+\newacronym{cuda}{CUDA}{Compute Unified Device Architecture}
+\newacronym{opencl}{OpenCL}{Open Computing Language}
+
 It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and har d to program. Programming under CUDA , performs well since it was designed alongside with the hardware itself but only works on NVIDIA devices.
 
-\subsubsection{MapReduce on GPU}
-As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU. This translates in using the same programming model over a wide array of computing platforms.
+
+\subsubsection{MapReduce on \gls{gpu}}
+As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the \gls{gpu}. This translates in using the same programming model over a wide array of computing platforms.
 
 
 
 \subsection{Parallel computing}
 The second direction of the work was given to parallel computing, more spefically to General-Purpose Computation on Graphics Processing Units (GPGPU). 
-
-\subsubsection{Short Survey of available GPGPU frameworks}
-
 
 \subsubsection{Comparison and choice}
 

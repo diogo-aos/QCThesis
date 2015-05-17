@@ -1,0 +1,390 @@
+\ifglsentryexists{qk-means}{}%
+{%
+\gls@defglossaryentry{qk-means}%
+{%
+name={QK-Means},%
+sort={QK-Means},%
+type={acronym},%
+first={Quantum K-Means (QK-Means)},%
+firstplural={Quantum K-Meanss(QK-Meanss)},%
+text={QK-Means},%
+plural={QK-Meanss},%
+description={Quantum K-Means},%
+descriptionplural={Quantum K-Means\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Quantum K-Means},%
+longplural={Quantum K-Meanss},%
+short={QK-Means},%
+shortplural={QK-Meanss},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{qubit}{}%
+{%
+\gls@defglossaryentry{qubit}%
+{%
+name={qubit},%
+sort={qubit},%
+type={acronym},%
+first={quantum bit (qubit)},%
+firstplural={quantum bits(qubits)},%
+text={qubit},%
+plural={qubits},%
+description={quantum bit},%
+descriptionplural={quantum bit\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={quantum bit},%
+longplural={quantum bits},%
+short={qubit},%
+shortplural={qubits},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{pca}{}%
+{%
+\gls@defglossaryentry{pca}%
+{%
+name={PCA},%
+sort={PCA},%
+type={acronym},%
+first={Principal Component Analysis (PCA)},%
+firstplural={Principal Component Analysiss(PCAs)},%
+text={PCA},%
+plural={PCAs},%
+description={Principal Component Analysis},%
+descriptionplural={Principal Component Analysis\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Principal Component Analysis},%
+longplural={Principal Component Analysiss},%
+short={PCA},%
+shortplural={PCAs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{pc}{}%
+{%
+\gls@defglossaryentry{pc}%
+{%
+name={PC},%
+sort={PC},%
+type={acronym},%
+first={Principal Component (PC)},%
+firstplural={Principal Components(PCs)},%
+text={PC},%
+plural={PCs},%
+description={Principal Component},%
+descriptionplural={Principal Component\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Principal Component},%
+longplural={Principal Components},%
+short={PC},%
+shortplural={PCs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{svd}{}%
+{%
+\gls@defglossaryentry{svd}%
+{%
+name={SVD},%
+sort={SVD},%
+type={acronym},%
+first={Singular Value Decomposition (SVD)},%
+firstplural={Singular Value Decompositions(SVDs)},%
+text={SVD},%
+plural={SVDs},%
+description={Singular Value Decomposition},%
+descriptionplural={Singular Value Decomposition\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Singular Value Decomposition},%
+longplural={Singular Value Decompositions},%
+short={SVD},%
+shortplural={SVDs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gpgpu}{}%
+{%
+\gls@defglossaryentry{gpgpu}%
+{%
+name={GPGPU},%
+sort={GPGPU},%
+type={acronym},%
+first={General Purpose computing on Graphic Processing Units (GPGPU)},%
+firstplural={General Purpose computing on Graphic Processing Unitss(GPGPUs)},%
+text={GPGPU},%
+plural={GPGPUs},%
+description={General Purpose computing on Graphic Processing Units},%
+descriptionplural={General Purpose computing on Graphic Processing Units\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={General Purpose computing on Graphic Processing Units},%
+longplural={General Purpose computing on Graphic Processing Unitss},%
+short={GPGPU},%
+shortplural={GPGPUs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gpu}{}%
+{%
+\gls@defglossaryentry{gpu}%
+{%
+name={GPU},%
+sort={GPU},%
+type={acronym},%
+first={Graphic Processing Unit (GPU)},%
+firstplural={Graphic Processing Units(GPUs)},%
+text={GPU},%
+plural={GPUs},%
+description={Graphic Processing Unit},%
+descriptionplural={Graphic Processing Unit\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Graphic Processing Unit},%
+longplural={Graphic Processing Units},%
+short={GPU},%
+shortplural={GPUs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{eac}{}%
+{%
+\gls@defglossaryentry{eac}%
+{%
+name={EAC},%
+sort={EAC},%
+type={acronym},%
+first={Evidence Accumulation Clustering (EAC)},%
+firstplural={Evidence Accumulation Clusterings(EACs)},%
+text={EAC},%
+plural={EACs},%
+description={Evidence Accumulation Clustering},%
+descriptionplural={Evidence Accumulation Clustering\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Evidence Accumulation Clustering},%
+longplural={Evidence Accumulation Clusterings},%
+short={EAC},%
+shortplural={EACs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{cpu}{}%
+{%
+\gls@defglossaryentry{cpu}%
+{%
+name={CPU},%
+sort={CPU},%
+type={acronym},%
+first={Central Processing Unit (CPU)},%
+firstplural={Central Processing Units(CPUs)},%
+text={CPU},%
+plural={CPUs},%
+description={Central Processing Unit},%
+descriptionplural={Central Processing Unit\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Central Processing Unit},%
+longplural={Central Processing Units},%
+short={CPU},%
+shortplural={CPUs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{mpi}{}%
+{%
+\gls@defglossaryentry{mpi}%
+{%
+name={MPI},%
+sort={MPI},%
+type={acronym},%
+first={Message Passing Interface (MPI)},%
+firstplural={Message Passing Interfaces(MPIs)},%
+text={MPI},%
+plural={MPIs},%
+description={Message Passing Interface},%
+descriptionplural={Message Passing Interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Message Passing Interface},%
+longplural={Message Passing Interfaces},%
+short={MPI},%
+shortplural={MPIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{simd}{}%
+{%
+\gls@defglossaryentry{simd}%
+{%
+name={SIMD},%
+sort={SIMD},%
+type={acronym},%
+first={Single Instruction Multiple Data (SIMD)},%
+firstplural={Single Instruction Multiple Datas(SIMDs)},%
+text={SIMD},%
+plural={SIMDs},%
+description={Single Instruction Multiple Data},%
+descriptionplural={Single Instruction Multiple Data\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Single Instruction Multiple Data},%
+longplural={Single Instruction Multiple Datas},%
+short={SIMD},%
+shortplural={SIMDs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{cuda}{}%
+{%
+\gls@defglossaryentry{cuda}%
+{%
+name={CUDA},%
+sort={CUDA},%
+type={acronym},%
+first={Compute Unified Device Architecture (CUDA)},%
+firstplural={Compute Unified Device Architectures(CUDAs)},%
+text={CUDA},%
+plural={CUDAs},%
+description={Compute Unified Device Architecture},%
+descriptionplural={Compute Unified Device Architecture\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Compute Unified Device Architecture},%
+longplural={Compute Unified Device Architectures},%
+short={CUDA},%
+shortplural={CUDAs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{opencl}{}%
+{%
+\gls@defglossaryentry{opencl}%
+{%
+name={OpenCL},%
+sort={OpenCL},%
+type={acronym},%
+first={Open Computing Language (OpenCL)},%
+firstplural={Open Computing Languages(OpenCLs)},%
+text={OpenCL},%
+plural={OpenCLs},%
+description={Open Computing Language},%
+descriptionplural={Open Computing Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Open Computing Language},%
+longplural={Open Computing Languages},%
+short={OpenCL},%
+shortplural={OpenCLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

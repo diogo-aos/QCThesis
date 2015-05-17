@@ -1,42 +1,40 @@
 \select@language {english}
-\contentsline {section}{\numberline {1}Abbreviations}{1}
-\contentsline {section}{\numberline {2}Introduction}{2}
-\contentsline {subsection}{\numberline {2.1}Motivation}{2}
-\contentsline {subsection}{\numberline {2.2}Objectives}{2}
-\contentsline {subsection}{\numberline {2.3}Outline}{2}
-\contentsline {section}{\numberline {3}Context}{3}
-\contentsline {subsection}{\numberline {3.1}Clustering with EAC}{3}
-\contentsline {subsubsection}{\numberline {3.1.1}Clustering}{3}
-\contentsline {subsubsection}{\numberline {3.1.2}Ensemble Clustering}{3}
-\contentsline {paragraph}{Ensemble clustering}{3}
-\contentsline {paragraph}{Formulation}{3}
-\contentsline {paragraph}{overview of EAC}{4}
-\contentsline {paragraph}{examples of applications}{4}
-\contentsline {paragraph}{advantages}{4}
-\contentsline {paragraph}{disadvantages}{4}
-\contentsline {subsection}{\numberline {3.2}The Big Data paradigm}{4}
-\contentsline {section}{\numberline {4}State of the art}{5}
-\contentsline {subsection}{\numberline {4.1}Quantum clustering}{5}
-\contentsline {subsubsection}{\numberline {4.1.1}Quantum bit}{5}
-\contentsline {subsubsection}{\numberline {4.1.2}Quantum K-Means}{6}
-\contentsline {subsubsection}{\numberline {4.1.3}Description of the algorithm}{6}
-\contentsline {paragraph}{Initialize population of oracles}{7}
-\contentsline {paragraph}{Collapse oracles}{7}
-\contentsline {paragraph}{K-Means}{7}
-\contentsline {paragraph}{Compute cluster fitness}{7}
-\contentsline {paragraph}{Store}{7}
-\contentsline {paragraph}{Quantum Rotation Gate}{7}
-\contentsline {subsubsection}{\numberline {4.1.4}Horn and Gottlieb's algorithm}{7}
-\contentsline {subsection}{\numberline {4.2}Big data clustering}{8}
-\contentsline {subsection}{\numberline {4.3}GPGPU}{9}
-\contentsline {subsubsection}{\numberline {4.3.1}The choice between models: OpenCL or CUDA}{9}
-\contentsline {subsubsection}{\numberline {4.3.2}MapReduce on GPU}{9}
-\contentsline {subsection}{\numberline {4.4}Parallel computing}{9}
-\contentsline {subsubsection}{\numberline {4.4.1}Short Survey of available GPGPU frameworks}{9}
-\contentsline {subsubsection}{\numberline {4.4.2}Comparison and choice}{9}
-\contentsline {subsubsection}{\numberline {4.4.3}Overview of CUDA}{9}
-\contentsline {section}{\numberline {5}Methodology}{10}
-\contentsline {subsection}{\numberline {5.1}Quantum Clustering}{10}
-\contentsline {subsection}{\numberline {5.2}GPGPU K-Means}{10}
-\contentsline {subsection}{\numberline {5.3}Dealing with space complexity of coassocs}{10}
-\contentsline {section}{\numberline {6}Discussion?}{11}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {subsection}{\numberline {1.1}Motivation}{2}
+\contentsline {subsection}{\numberline {1.2}Objectives}{2}
+\contentsline {subsection}{\numberline {1.3}Outline}{2}
+\contentsline {section}{\numberline {2}State of the art}{3}
+\contentsline {subsection}{\numberline {2.1}Quantum clustering}{3}
+\contentsline {subsubsection}{\numberline {2.1.1}Quantum bit}{3}
+\contentsline {subsubsection}{\numberline {2.1.2}Quantum K-Means}{4}
+\contentsline {subsubsection}{\numberline {2.1.3}Description of the algorithm}{4}
+\contentsline {paragraph}{Initialize population of oracles}{5}
+\contentsline {paragraph}{Collapse oracles}{5}
+\contentsline {paragraph}{K-Means}{5}
+\contentsline {paragraph}{Compute cluster fitness}{5}
+\contentsline {paragraph}{Store}{5}
+\contentsline {paragraph}{Quantum Rotation Gate}{5}
+\contentsline {subsubsection}{\numberline {2.1.4}Horn and Gottlieb's algorithm}{5}
+\contentsline {subsection}{\numberline {2.2}Evidence Accumulation Clustering}{6}
+\contentsline {subsubsection}{\numberline {2.2.1}Clustering}{6}
+\contentsline {subsubsection}{\numberline {2.2.2}Ensemble Clustering}{7}
+\contentsline {paragraph}{Ensemble clustering}{7}
+\contentsline {paragraph}{Formulation}{7}
+\contentsline {paragraph}{overview of EAC}{7}
+\contentsline {paragraph}{examples of applications}{8}
+\contentsline {paragraph}{advantages}{8}
+\contentsline {paragraph}{disadvantages}{8}
+\contentsline {subsection}{\numberline {2.3}Clustering with Big Data}{8}
+\contentsline {subsubsection}{\numberline {2.3.1}The concept of Big Data}{8}
+\contentsline {subsubsection}{\numberline {2.3.2}Computation in Big Data}{8}
+\contentsline {subsection}{\numberline {2.4}General Purpose computing on Graphical Processing Units}{9}
+\contentsline {subsubsection}{\numberline {2.4.1}GPU programming models}{9}
+\contentsline {subsubsection}{\numberline {2.4.2}MapReduce on \gls {gpu}}{9}
+\contentsline {subsection}{\numberline {2.5}Parallel computing}{9}
+\contentsline {subsubsection}{\numberline {2.5.1}Comparison and choice}{9}
+\contentsline {subsubsection}{\numberline {2.5.2}Overview of CUDA}{9}
+\contentsline {section}{\numberline {3}Methodology}{10}
+\contentsline {subsection}{\numberline {3.1}Quantum Clustering}{10}
+\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{10}
+\contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{10}
+\contentsline {section}{\numberline {4}Discussion?}{11}

@@ -1,76 +1,10 @@
+%!TEX root = thesis.tex
+
 \section{Context}
 \label{sec:context}
 
 \subsection{Clustering with EAC}
 
-\subsubsection{Clustering}
-\label{sec:clustering}
-
-%this is mostly taken from Jain's 50 years beyond K-Means
-Advances in technology allow for the collection and storage unprecedented amount and variety of data. Since data is mostly stored electronically, it presents a potential for automatic analysis and thus creation of information and knowledge. A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks. Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
-% (explain what learning is) The task of learning is...
-Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
-
-Cluster analysis is the backbone of the present work.
-The goal of data clustering, as defined by ~\cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data, structured or not.
-And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, Pearson correlation) and separate those that are dissimilar. %TODO reference for a method for both euclidean distance and Pearson correlation
-%TODO example (plot) of unclestered data and ideal clustering, as in Jain(2010)
-
-Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
-%TODO provide references to all of this
-% see https://sites.google.com/site/dataclusteringalgorithms/clustering-algorithm-applications
-% has applications with articles
-\begin{itemize}
-\item image segmentation in the field of image processing;
-\item generation of hierarchical structure for easy access and retrieval of information systems;
-\item recommender systems by grouping a users by their behavious and/or preferences;
-\item clustering customers for targeted marketing in 
-\item clustering gene expression data in biology;
-\item grouping of 
-\end{itemize}
-
-
-
-\subsubsection{Ensemble Clustering}
-\label{sec:eac}
-
-\paragraph{Ensemble clustering}
-Data from real world problems appear in different configurations regarding shape, size, sparsity, etc. %taken from Fred(2005)
-Different clustering algorithms are appropriate for different data configurations, e.g. K-Means using euclidean distance as metric tends to group patterns in hyperspheres so it is more appropriate for data whose structure is formed by hypershere like clusters.%TODO see http://cstheory.stackexchange.com/questions/17693/hyperspherical-nature-of-k-means-and-similar-clustering-methods for paper reference and justification
-If the true structure of the data at hand is heterogeneous in configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part. The underlying idea behind ensemble clustering is to use multiple clusterings from one or more clustering algorithms and combine them in such a way that the final clustering is better than any of the individual ones.
-
-\paragraph{Formulation}
-Some notation and nomenclature, adopted from ~\cite{Fred2005}, should be defined since it will be used throughout the remainder of the present work. The term \emph{data} refers to a set $X$ of $n$ objects or patterns $X=\left \{ \textsc{x}_1,...,\textsc{x}_n \right \}$, and may be represented by $\chi = \left \{ x_1,...,x_n \right \}$, such that $x_i \in  \mathbb{R}^d$. A clustering algorithm takes $\chi$ as input and returns $k$ groups or \emph{clusters} $C$ of some part of the data, which form a \emph{partition} $P$. A clustering \emph{ensemble} $\mathbb{P}$ is group of such partitions. This means that:
-
-$$
-\mathbb{P} = \left \{   P^1, P^2, ... P^N   \right \} \\
-P^j = \left \{   \textsc{x}^j_1, \textsc{x}^j_2, ... \textsc{x}^{j}_{k_j}   \right \} \\
-C^j_k = \left \{   x_a, x_b, ..., x_z   \right \}
-$$
-
-\paragraph{overview of EAC} 
-The Evidence Accumulation Clustering (EAC) makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
-
-\begin{enumerate}
-\item Produce a clustering ensemble $\mathbb{P}$ (the evidence)
-\item Combine the evidence
-\item Recover natural clusters 
-\end{enumerate}
-
-A clustering ensemble, according to ~\cite{Fred2005}., can be produced from (1) different data representations, e.g. choice of preprocessing, feature extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters.
-
-The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $C$ where each of its elements $n_{ij}$ is the association value between the object pair $(i,j)$. The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble. The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns ~\cite{Fred2005}, revealing the underlying structure of the data.
-The construction of this matrix is at the very core of this method.
-
-The co-association matrix itself doesn't output a clustering partition. Instead, it is used as input to other methods to obtain the final partition. Since this matrix is a similarity matrix it's appropriate to use in algorithms take this type of matrices as input, e.g. hierarchical algorithms such as Single-Link, K-Medoids. Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects. However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ C \} - n_{ij}$.
-
-
-\paragraph{examples of applications}
-
-\paragraph{advantages}
-
-\paragraph{disadvantages}
-quadratic space and time complexities because of the nxn co-association matrix 
 
 
 \subsection{The Big Data paradigm}
