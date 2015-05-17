@@ -9,38 +9,56 @@
 \usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{setspace} %for line spacing
 
+% package for abreviatures and acronyms
+\usepackage[acronym]{glossaries}
+
+% abbreviations:
+
+
+% nomenclature:
+% \newglossaryentry{angelsperarea}{
+%   name = $a$ ,
+%   description = The number of angels per unit area,
+% }
+% \newglossaryentry{numofangels}{
+%   name = $N$ ,
+%   description = The number of angels per needle point
+% }
+% \newglossaryentry{areaofneedle}{
+%   name = $A$ ,
+%   description = The area of the needle point
+% }
+
+\makeglossaries
+
+
+
+\graphicspath{{/home/chiroptera/workspace/thesis_writing/rsc/}}
+
+\includeonly{introduction,state_of_art,methodology}
+
 
 \author{Diogo Silva}
 \title{EAC and Big Data}
 
-\graphicspath{{/home/chiroptera/workspace/thesis_writing/rsc/}}
-
-\includeonly{introduction,context,state_of_art,methodology}
-
-
 \begin{document}
 \onehalfspacing %line spacing; DIFFERENT FROM MS WORD 1.5 SPACING - use /spacing{1.5} for that
 
-\section{Abbreviations}
-
-|ABRE|Description|
-|----|-----------|
-|QK-Means|Quantum K-Means
-|qubit|Quantum bit
-|PCA|Principal Component Analysis
-|PC|Principal Component
-|SVD|Singular Value Decomposition
-|GPGPU|General-Purpose Computing on Graphics Processing Units
-
+\newacronym{qk-means}{QK-Means}{Quantum K-Means}
+\newacronym{qubit}{qubit}{quantum bit}
+\newacronym{pca}{PCA}{Principal Component Analysis}
+\newacronym{pc}{PC}{Principal Component}
+\newacronym{svd}{SVD}{Singular Value Decomposition}
+\newacronym{gpgpu}{GPGPU}{General Purpose computing on Graphic Processing Units}
+\newacronym{gpu}{GPU}{Graphic Processing Unit}
+\newacronym{eac}{EAC}{Evidence Accumulation Clustering}
 
 
 \tableofcontents
 
-
+\printglossary[type=\acronymtype,title=Abbreviations]
 
 \include{introduction}
-
-\include{context}
 
 \include{state_of_art}
 
