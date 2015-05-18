@@ -76,6 +76,12 @@ Wenjie Liu, Hanwu Chen, Qiaoqiao Yan, Zhihao Liu, Juan Xu, and Yu~Zheng.
 \newblock {\em 2010 IEEE World Congress on Computational Intelligence, WCCI
   2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
 
+\bibitem{Lourenco2010}
+Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
+\newblock {On the scalability of evidence accumulation clustering}.
+\newblock {\em Proceedings - International Conference on Pattern Recognition},
+  0:782--785, 2010.
+
 \bibitem{Malakar2013}
 Ranajoy Malakar and Naga Vydyanathan.
 \newblock {A CUDA-enabled hadoop cluster for fast distributed image

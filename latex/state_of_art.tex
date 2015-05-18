@@ -241,7 +241,7 @@ P^j = \left \{   \textsc{x}^j_1, \textsc{x}^j_2, ... \textsc{x}^{j}_{k_j}   \rig
 C^j_k = \left \{   x_a, x_b, ..., x_z   \right \}
 $$
 
-\paragraph{overview of EAC} 
+\subsubsection{overview of EAC} 
 The Evidence Accumulation Clustering (EAC) makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
 
 \begin{enumerate}
@@ -255,7 +255,7 @@ A clustering ensemble, according to ~\cite{Fred2005}., can be produced from (1) 
 The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $C$ where each of its elements $n_{ij}$ is the association value between the object pair $(i,j)$. The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble. The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns ~\cite{Fred2005}, revealing the underlying structure of the data.
 The construction of this matrix is at the very core of this method.
 
-The co-association matrix itself doesn't output a clustering partition. Instead, it is used as input to other methods to obtain the final partition. Since this matrix is a similarity matrix it's appropriate to use in algorithms take this type of matrices as input, e.g. hierarchical algorithms such as Single-Link, K-Medoids. Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects. However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ C \} - n_{ij}$.
+The co-association matrix itself doesn't output a clustering partition. Instead, it is used as input to other methods to obtain the final partition. Since this matrix is a similarity matrix it's appropriate to use in algorithms take this type of matrices as input, e.g. K-Medoids or hierarchical algorithms such as Single-Link. to name two. Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects. However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ C \} - n_{ij}$.
 
 
 \paragraph{examples of applications}
@@ -265,6 +265,11 @@ The co-association matrix itself doesn't output a clustering partition. Instead,
 \paragraph{disadvantages}
 quadratic space and time complexities because of the nxn co-association matrix 
 
+
+\subsubsection{Scalability of EAC} 
+The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC. Two approaches have been proposed to address this obstacle. \cite{Fred2005} proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbours of each sample are considered in the voting mechanism. This comes at the cost of having to keep track of the neighbours of each pattern in a separate data structure. Still, considering that the quadratic space complexity is transformed to $O(2np)$ and that usually $p < \frac{n}{2}$, the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the original memory).
+
+The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix. The co-association matrix is symmetric and with a variable degree of sparsity. The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results. The later property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the input ensemble. The core of this approach is to only store the non-zero values of the upper triangular of the co-association matrix. The authors study 3 models for the choice of these parameters: choice of $K_{min}$ based on the minimum number of gaussians in a gaussian mixture decomposition of the data, based on the square root of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{\sqrt{n}}{2},\sqrt{n}\}$) or based on a linear transformation of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{n}{A},\frac{n}{B}\},A>B$). The paper compared how each method impacted the sparsity of the co-association matrix (and, thus, the space complexity) and the relative accuracy of the final clusterings.
 
 \subsection{Clustering with Big Data}
 

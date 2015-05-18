@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  17 MAY 2015 16:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  18 MAY 2015 22:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -737,25 +737,25 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (./state_of_art.tex [3
 
 
-] [4] [5] [6] [7] [8]) [9]
+] [4] [5] [6] [7] [8] [9]) [10]
 \openout2 = `methodology.aux'.
 
- (./methodology.tex) [10
+ (./methodology.tex)
+[11
 
 
-]
-(./thesis.bbl [11
+] (./thesis.bbl [12
 
 
-]) [12] (./thesis.aux (./introduction.aux) (./state_of_art.aux) (./methodology.
-aux)
+]) [13] (./thesis.aux (./introduction.aux)
+(./state_of_art.aux) (./methodology.aux)
 No file results.aux.
 ) ) 
 Here is how much of TeX's memory you used:
- 7729 strings out of 495004
- 108731 string characters out of 6180663
- 230271 words of memory out of 5000000
- 10715 multiletter control sequences out of 15000+600000
+ 7731 strings out of 495004
+ 108753 string characters out of 6180663
+ 230276 words of memory out of 5000000
+ 10717 multiletter control sequences out of 15000+600000
  9220 words of font info for 36 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  46i,13n,35p,1701b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -774,10 +774,10 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (12 pages, 207425 bytes).
+Output written on thesis.pdf (13 pages, 213084 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 111 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
