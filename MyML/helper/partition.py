@@ -75,12 +75,41 @@ def convertClusterStringToBin(clusts,n_clusts=None,N=None):
 
 
 def convertClusterStringToIndex(partition):
-    nclusters=np.unique(partition).shape[0]
-    finalPartition=[list() for x in xrange(nclusters)]
-    for n,c in partition:
-        finalPartition[c].append(n)
-    
-    for c in xrange(len(finalPartition)):
-    	finalPartition[c] = np.array(finalPartition[c])
+	"""
+	Converts a partition in the string format (array where the i-th value
+	is the cluster label of the i-th pattern) to index format (list of arrays,
+	there the k-th array contains the pattern indices that belong to the k-th cluster)
+	"""
+	clusters=np.unique(partition)
+	nclusters=clusters.size
 
-    return finalPartition
+	finalPartition = [None] * nclusters
+	for c,l in enumerate(clusters):
+		finalPartition[c] = np.where(partition==l)
+
+	return finalPartition
+
+def generateEnsemble(data,generator,n_clusters=20,npartitions=30,iters=3):
+	"""
+	TODO: check if generator has fit method and n_clusters,labels_ attributes
+	"""
+	ensemble = [None]*npartitions
+	if type(n_clusters) is list:
+		clusterRange = True
+		min_ncluster=n_clusters[0]
+		max_ncluster=n_clusters[1]
+	else:
+		clusterRange = False
+		generator.n_clusters=n_clusters
+
+	generator.max_iter = iters
+
+	for x in xrange(npartitions):
+		if clusterRange:
+			k = np.random.randint(min_ncluster,max_ncluster)
+			generator.n_clusters=k
+
+		generator.fit(data)
+		ensemble[x] = convertClusterStringToIndex(generator.labels_)
+
+	return ensemble

@@ -25,35 +25,29 @@ from random import sample
 class K_Means:       
        
     
-    def __init__(self,nclusters=None,iters=3,mode="cuda",cuda_mem='manual',tol=1e-4,max_iters=300,centroids='random'):
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+
+
+        self.n_clusters = n_clusters
 
         self._mode = mode #label mode
-        self._centroid_mode = "index"
-
-        self.K = nclusters
+        self._centroid_mode = "good"
 
         # TODO check parameters, check iters iterss numberf or "converge"
 
-        if centroids == 'random':
-            self._centroid_type = centroids
-        elif type(centroids) is np.ndarray:
-            if centroids.shape[0] != nclusters:
+        if init == 'random':
+            self._centroid_type = init
+        elif type(init) is np.ndarray:
+            if init.shape[0] != n_clusters:
                 raise Exception("Number of clusters indicated different from number of centroids supplied.")
             self._centroid_type = "supplied"
-            self.centroids = centroids
-
+            self.centroids = init
         else:
             raise ValueError('Centroid may be \'random\' or an ndarray containing the centroids to use.')
 
-        if iters == 0:
-            return
         
-        if iters == "converge":
-            self._converge = True
-            self._maxiters = max_iters
-        else:
-            self._converge = False
-            self._maxiters = iters
+        self._converge = True
+        self._maxiters = max_iter
 
         # execution flow
         self._last_iter = False
@@ -63,14 +57,13 @@ class K_Means:
         self.inertia_ = np.inf
         self.iters_ = 0
 
-
         # cuda stuff
         self._cudaDataHandle = None
         self._cudaLabelsHandle = None
         self._cudaCentroidHandle = None
         
         self._cuda = True
-        self._cuda_mem = "auto"
+        self._cuda_mem = cuda_mem
 
         self._dist_kernel = 0 # 0 = normal index, 1 = special grid index
         
@@ -83,7 +76,11 @@ class K_Means:
 
 
 
-    def fit(self, data, ):
+    def fit(self, data):
+
+        if data.dtype != np.float32:
+            print "WARNING DATA DUPLICATION: data converted to float32. TODO: accept other formats"
+            data = data.astype(np.float32)
         
         N,D = data.shape
             
@@ -130,14 +127,15 @@ class K_Means:
             self.centroids =  self._recompute_centroids(data,self.centroids,labels)
         
         self.labels_ = labels
+        self.cluster_centers_ = self.centroids
 
 
     def _init_centroids(self,data):
         
-        #centroids = np.empty((self.K,self.D),dtype=data.dtype)
-        #random_init = np.random.randint(0,self.N,self.K)
+        #centroids = np.empty((self.n_clusters,self.D),dtype=data.dtype)
+        #random_init = np.random.randint(0,self.N,self.n_clusters)
         
-        random_init = sample(xrange(self.N),self.K)
+        random_init = sample(xrange(self.N),self.n_clusters)
         #self.init_seed = random_init
 
         centroids = data[random_init]
@@ -168,16 +166,20 @@ class K_Means:
 
         # we need array for distances to check convergence
         if self._converge:
-            self._dists = np.array(self.N,dtype=np.float32)
+            self._dists = np.zeros(self.N,dtype=np.float32)
 
         if self._mode == "cuda":
-            labels = self._cu_label(data,centroids,gridDim=None,
-                                           blockDim=None)#,memManage='manual')
+            labels = self._cu_label(data,centroids)
+        elif self._mode == "special": #for tests only
+            labels=np.empty(self.N,dtype=np.int32)
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
         elif self._mode == "numpy":
             labels = self._np_label_fast(data,centroids)
 
         elif self._mode == "python":
             labels = self._py_label(data,centroids)
+
+
         
         return labels
 
@@ -303,72 +305,65 @@ class K_Means:
             
         return labels
 
+
+    def _compute_cuda_dims(self,data):
+
+        N,D = data.shape
+
+        blockHeight = self._MAX_THREADS_BLOCK
+        blockWidth = 1
+        blockDim = blockWidth, blockHeight
+
+        # threads per block
+        tpb = np.prod(blockDim)
+
+        # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
+        bpg = np.int(np.ceil(np.float(N) / tpb)) 
+
+
+        # if grid dimension is bigger than MAX_GRID_XYZ_DIM,
+        # the grid columns must be broken down in several along
+        # the other grid dimensions
+        if bpg > self._MAX_GRID_XYZ_DIM:
+            # number of grid columns
+            gridWidth = np.ceil(bpg / self._MAX_GRID_XYZ_DIM)
+            # number of grid rows
+            gridHeight = np.ceil(bpg / gridWidth)    
+
+            gridDim = np.int(gridWidth), np.int(gridHeight)
+        else:
+            gridDim = 1,bpg
+            
+            
+        self._blockDim = blockDim
+        self._gridDim = gridDim
     
-    def _cu_label(self,data,centroids,gridDim=None,blockDim=None,
-                       keepDataRef=True):
+    def _cu_label(self,data,centroids):
 
         N,D = data.shape
         K,cD = centroids.shape
         
         if self._cuda_mem not in ('manual','auto'):
             raise Exception("cuda_mem = \'manual\' or \'auto\'")
-        
-        
-        
-        if gridDim is not None and blockDim is not None:
-            self._gridDim = gridDim
-            self._blockDim = blockDim
             
         if self._gridDim is None or self._blockDim is None:
-            #dists shape
-            
-            blockHeight = self._MAX_THREADS_BLOCK
-            blockWidth = 1
-            blockDim = blockWidth, blockHeight
-            
-            # threads per block
-            tpb = np.prod(blockDim)
-
-            # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
-            bpg = np.int(np.ceil(np.float(N) / tpb)) 
-            
-
-            # if grid dimension is bigger than MAX_GRID_XYZ_DIM,
-            # the grid columns must be broken down in several along
-            # the other grid dimensions
-            if bpg > self._MAX_GRID_XYZ_DIM:
-                # number of grid columns
-                gridWidth = np.ceil(bpg / self._MAX_GRID_XYZ_DIM)
-                # number of grid rows
-                gridHeight = np.ceil(bpg / gridWidth)    
-            
-                gridDim = np.int(gridWidth), np.int(gridHeight)
-            else:
-                gridDim = 1,bpg
-                
-                
-            self._blockDim = blockDim
-            self._gridDim = gridDim        
+            self._compute_cuda_dims(data)       
         
 
         labels = np.empty(N,dtype=np.int32)
         
-        
         if self._cuda_mem == 'manual':
             # copy dataset and centroids, allocate memory
 
-            # check if handle for data should be kept
-            # this avoids redundant data transfer
-            if keepDataRef:
-                # if dataset has not been sent to device, send it and save handle
-                if self._cudaDataHandle is None:
-                    dData = cuda.to_device(data)
-                    self._cudaDataHandle = dData
-                # otherwise just use handle
-                else:
-                    dData = self._cudaDataHandle
-            else:
+            # avoids redundant data transfer
+            # if dataset has not been sent to device, send it and save handle
+            if self._cudaDataHandle is None:
                 dData = cuda.to_device(data)
+                self._cudaDataHandle = dData
+            # otherwise just use handle
+            else:
+                dData = self._cudaDataHandle
+
             
             dCentroids = cuda.to_device(centroids)
             dLabels = numbapro.cuda.device_array_like(labels)
@@ -413,16 +408,17 @@ class K_Means:
         else:
             self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
 
+        pass
 
-        """try:
+        # """try:
             
-        except Exception:
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            #print "*** print_tb:"
-            #traceback.print_tb(exc_traceback, file=sys.stdout)
-            print "*** print_exception:"
-            traceback.print_exception(exc_type, exc_value, exc_traceback,
-                                      file=sys.stdout)"""
+        # except Exception:
+        #     exc_type, exc_value, exc_traceback = sys.exc_info()
+        #     #print "*** print_tb:"
+        #     #traceback.print_tb(exc_traceback, file=sys.stdout)
+        #     print "*** print_exception:"
+        #     traceback.print_exception(exc_type, exc_value, exc_traceback,
+        #                               file=sys.stdout)"""
 
 
     # data, centroids, labels
@@ -545,6 +541,8 @@ class K_Means:
         c[n] = best_label
         dists[n] = best_dist
 
+        cuda.syncthreads()
+
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -568,8 +566,9 @@ class K_Means:
         elif self._centroid_mode == "index":
             new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
         elif self._centroid_mode == "iter":
-            #new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
-            new_centroids = self._np_recompute_centroids_index_2(data,centroids,labels)         
+            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+        elif self._centroid_mode == "good":
+            new_centroids = self._np_recompute_centroids_good(data,centroids,labels) 
         else:
             raise Exception("centroid mode invalid:",self._centroid_mode)
 
@@ -623,7 +622,7 @@ class K_Means:
 
         return new_centroids
 
-    def _np_recompute_centroids_index_2(self,data,centroids,labels):
+    def _np_recompute_centroids_good(self,data,centroids,labels):
         """
         this version doesn't discard clusters; instead it uses the same scheme as
         sci-kit learn
