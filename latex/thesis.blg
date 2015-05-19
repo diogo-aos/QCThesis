@@ -11,6 +11,7 @@ I couldn't open auxiliary file results.aux
 I'm skipping whatever remains of this command
 The style file: plain.bst
 Database file #1: library.bib
+Warning--I didn't find a database entry for "Lourenco2009"
 Warning--empty publisher in Aggarwal2014
 Warning--empty year in Aggarwal2014
 Warning--empty journal in Casper2013
@@ -20,45 +21,45 @@ Warning--there's a number but no volume in Horn2001a
 Warning--empty journal in Sirotkovi2012
 Warning--empty journal in Wang2013
 Warning--empty journal in Wiebe2014
-You've used 24 entries,
+You've used 26 entries,
             2118 wiz_defined-function locations,
-            646 strings with 8636 characters,
-and the built_in function-call counts, 8647 in all, are:
-= -- 871
-> -- 411
-< -- 10
-+ -- 160
-- -- 136
-* -- 587
-:= -- 1405
-add.period$ -- 70
-call.type$ -- 24
-change.case$ -- 139
+            661 strings with 9159 characters,
+and the built_in function-call counts, 9557 in all, are:
+= -- 969
+> -- 447
+< -- 12
++ -- 174
+- -- 148
+* -- 642
+:= -- 1539
+add.period$ -- 76
+call.type$ -- 26
+change.case$ -- 151
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 335
-empty$ -- 619
-format.name$ -- 136
-if$ -- 1816
+cite$ -- 35
+duplicate$ -- 375
+empty$ -- 683
+format.name$ -- 148
+if$ -- 2020
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 24
-newline$ -- 121
-num.names$ -- 48
-pop$ -- 145
+int.to.str$ -- 26
+missing$ -- 26
+newline$ -- 131
+num.names$ -- 52
+pop$ -- 157
 preamble$ -- 1
-purify$ -- 116
+purify$ -- 126
 quote$ -- 0
-skip$ -- 279
+skip$ -- 318
 stack$ -- 0
-substring$ -- 559
-swap$ -- 97
-text.length$ -- 10
+substring$ -- 633
+swap$ -- 117
+text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 94
+type$ -- 102
 warning$ -- 9
-while$ -- 92
-width$ -- 26
-write$ -- 250
+while$ -- 102
+width$ -- 28
+write$ -- 272
 (There was 1 error message)

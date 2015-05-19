@@ -25,17 +25,19 @@
 \contentsline {paragraph}{advantages}{8}
 \contentsline {paragraph}{disadvantages}{8}
 \contentsline {subsubsection}{\numberline {2.2.4}Scalability of EAC}{8}
-\contentsline {subsection}{\numberline {2.3}Clustering with Big Data}{8}
-\contentsline {subsubsection}{\numberline {2.3.1}The concept of Big Data}{8}
-\contentsline {subsubsection}{\numberline {2.3.2}Computation in Big Data}{8}
-\contentsline {subsection}{\numberline {2.4}General Purpose computing on Graphical Processing Units}{9}
+\contentsline {paragraph}{$p$ neighbours approach}{8}
+\contentsline {paragraph}{Increased sparsity approach}{8}
+\contentsline {subsection}{\numberline {2.3}Clustering with Big Data}{9}
+\contentsline {subsubsection}{\numberline {2.3.1}The concept of Big Data}{9}
+\contentsline {subsubsection}{\numberline {2.3.2}Computation in Big Data}{9}
+\contentsline {subsection}{\numberline {2.4}General Purpose computing on Graphical Processing Units}{10}
 \contentsline {subsubsection}{\numberline {2.4.1}GPU programming models}{10}
 \contentsline {subsubsection}{\numberline {2.4.2}MapReduce on \gls {gpu}}{10}
-\contentsline {subsection}{\numberline {2.5}Parallel computing}{10}
-\contentsline {subsubsection}{\numberline {2.5.1}Comparison and choice}{10}
-\contentsline {subsubsection}{\numberline {2.5.2}Overview of CUDA}{10}
-\contentsline {section}{\numberline {3}Methodology}{11}
-\contentsline {subsection}{\numberline {3.1}Quantum Clustering}{11}
-\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{11}
-\contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{11}
-\contentsline {section}{\numberline {4}Discussion?}{12}
+\contentsline {subsection}{\numberline {2.5}Parallel computing}{11}
+\contentsline {subsubsection}{\numberline {2.5.1}Comparison and choice}{11}
+\contentsline {subsubsection}{\numberline {2.5.2}Overview of CUDA}{11}
+\contentsline {section}{\numberline {3}Methodology}{12}
+\contentsline {subsection}{\numberline {3.1}Quantum Clustering}{12}
+\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{12}
+\contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{12}
+\contentsline {section}{\numberline {4}Discussion?}{13}

@@ -76,6 +76,12 @@ Wenjie Liu, Hanwu Chen, Qiaoqiao Yan, Zhihao Liu, Juan Xu, and Yu~Zheng.
 \newblock {\em 2010 IEEE World Congress on Computational Intelligence, WCCI
   2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
 
+\bibitem{Lourenco2007}
+Andr\'{e} Louren\c{c}o and Ana Fred.
+\newblock {Ensemble methods in the clustering of string patterns}.
+\newblock {\em Proceedings - Seventh IEEE Workshop on Applications of Computer
+  Vision, WACV 2005}, pages 143--148, 2007.
+
 \bibitem{Lourenco2010}
 Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
 \newblock {On the scalability of evidence accumulation clustering}.
@@ -88,6 +94,13 @@ Ranajoy Malakar and Naga Vydyanathan.
   processing}.
 \newblock {\em 2013 National Conference on Parallel Computing Technologies,
   PARCOMPTECH 2013}, 2013.
+
+\bibitem{Qian2010}
+You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
+\newblock {Combined multiple clusterings on flow cytometry data to
+  automatically identify chronic lymphocytic leukemia}.
+\newblock {\em ICBBT 2010 - 2010 International Conference on Bioinformatics and
+  Biomedical Technology}, pages 305--309, 2010.
 
 \bibitem{Shalom2009}
 S.~a~Arul Shalom, Manoranjan Dash, Minh Tue, and Nithin Wilson.

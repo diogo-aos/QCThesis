@@ -260,6 +260,15 @@ The co-association matrix itself doesn't output a clustering partition. Instead,
 
 \paragraph{examples of applications}
 
+\gls{eac} has been used with success in several applications:
+\begin{itemize}
+	\item in the field of bioinformatics it was used for the automatic identification of chronic lymphocyt leukemia \cite{Qian2010};
+	\item also in bioinformatics it was used for the unsupervised analysis of ECG-based biometric database to highlight natural groups and gain further insight \cite{Lourenco2009};
+	\item in computer vision it was used as a solution to the problem of clustering of contour images (from hardware tools) \cite{Lourenco2007}.
+\end{itemize}
+
+
+
 \paragraph{advantages}
 
 \paragraph{disadvantages}
@@ -267,9 +276,25 @@ quadratic space and time complexities because of the nxn co-association matrix
 
 
 \subsubsection{Scalability of EAC} 
-The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC. Two approaches have been proposed to address this obstacle. \cite{Fred2005} proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbours of each sample are considered in the voting mechanism. This comes at the cost of having to keep track of the neighbours of each pattern in a separate data structure. Still, considering that the quadratic space complexity is transformed to $O(2np)$ and that usually $p < \frac{n}{2}$, the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the original memory).
+The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of \gls{eac}. Two approaches have been proposed to address this obstacle: one dealing reducing the co-association matrix by considering only the distances of patterns to theirs $p$ neighbours and the other by maximizing the sparsity of the co-association matrix.
 
-The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix. The co-association matrix is symmetric and with a variable degree of sparsity. The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results. The later property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the input ensemble. The core of this approach is to only store the non-zero values of the upper triangular of the co-association matrix. The authors study 3 models for the choice of these parameters: choice of $K_{min}$ based on the minimum number of gaussians in a gaussian mixture decomposition of the data, based on the square root of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{\sqrt{n}}{2},\sqrt{n}\}$) or based on a linear transformation of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{n}{A},\frac{n}{B}\},A>B$). The paper compared how each method impacted the sparsity of the co-association matrix (and, thus, the space complexity) and the relative accuracy of the final clusterings.
+\paragraph{$p$ neighbours approach}
+The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbours of each sample are considered in the voting mechanism. This comes at the cost of having to keep track of the neighbours of each pattern in a separate data structure and also of pre-computing the $p$ neighbours. Still, considering that the quadratic space complexity is transformed to $O(2np)$ and that usually $p < \frac{n}{2}$, the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
+
+\paragraph{Increased sparsity approach}
+The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix. The co-association matrix is symmetric and with a varying degree of sparsity. The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results. The later property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the partitions of the input ensemble. The core of this approach is to only store the non-zero values of the upper triangular of the co-association matrix. The authors study 3 models for the choice of these parameters:
+
+\begin{itemize}
+	\item choice of $K_{min}$ based on the minimum number of gaussians in a gaussian mixture decomposition of the data;
+	\item based on the square root of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{\sqrt{n}}{2},\sqrt{n}\}$);
+	\item or based on a linear transformation of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{n}{A},\frac{n}{B}\},A>B$).
+\end{itemize}
+
+The paper compared how each model impacted the sparsity of the co-association matrix (and, thus, the space complexity) and the relative accuracy of the final clusterings. Both theoretical predictions and results revealed that the linear model produces the highest sparsity in the co-association matrix, under an ideal synthetic dataset consisting of a mixture of Gaussians. Furthermore, it is true for both linear and square root models that the sparsity increases as the number of samples increases. In fact, the number non-zero elements is approximately 1000 for each sample in the square root model, whereas it is only 100 in the linear model.
+
+For real datasets, the performance of the three models differed little as the number of samples of the datasets increased. It was found that the chosen granularity of the input partitions ($K_{min}$) is the variable with most impact, affecting both accuracy and sparsity. The authors reported this technique to have linear space and time complexity on benchmark data.
+
+The number of samples of the datasets analysed in \cite{Lourenco2010} was under $10^(4)$. Although the results appear promising, the present work aims to deal with datasets much larger than this and, as a consequence, this technique should be further evaluated and tested to attest to its usefulness to very large datasets.
 
 \subsection{Clustering with Big Data}
 
