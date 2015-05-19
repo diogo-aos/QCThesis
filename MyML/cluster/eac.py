@@ -79,11 +79,11 @@ class EAC():
 	def _create_coassoc(self,mode,nsamples,nprot=None):
 
 		if mode == "full":
-			coassoc = np.zeros((nsamples,nsamples))
+			coassoc = np.zeros((nsamples,nsamples),dtype=np.float32)
 		elif mode =="prot":
 			if nprot == None:
 				nprot = np.sqrt(nsamples)
-			coassoc = np.zeros((nsamples,nprot))
+			coassoc = np.zeros((nsamples,nprot),dtype=np.float32)
 		else:
 			validValues=("full","prot")
 			raise ValueError("mode value should be from the list:\t" + str(validValues))

@@ -85,7 +85,7 @@ def convertClusterStringToIndex(partition):
 
 	finalPartition = [None] * nclusters
 	for c,l in enumerate(clusters):
-		finalPartition[c] = np.where(partition==l)
+		finalPartition[c] = np.where(partition==l)[0]
 
 	return finalPartition
 
@@ -94,6 +94,8 @@ def generateEnsemble(data,generator,n_clusters=20,npartitions=30,iters=3):
 	TODO: check if generator has fit method and n_clusters,labels_ attributes
 	"""
 	ensemble = [None]*npartitions
+
+
 	if type(n_clusters) is list:
 		clusterRange = True
 		min_ncluster=n_clusters[0]
