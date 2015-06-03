@@ -8,19 +8,20 @@
 % see if this is an apropriate structure; a quantum clustering section makes sense at the very least, but it should be introduced before
 
 \subsection{Quantum clustering}
-The field of quantum computing has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
-There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. ~\cite{Wiebe2014}. Most literature on this path is also mostly theoretical since quantum circuits are not easily available and a working feasible quantum computer has yet to be invented. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
+The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
+There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. ~\cite{Wiebe2014}. Most literature on this path is also mostly theoretical since quantum circuits are not easily available and a working quantum computer has yet to be invented. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
 
 % #TODO get refs for simulation of quantum systems not being feasable; Feynmann; I think washington course had something -->
 
-An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems is a very hard task by itself and literature suggest is not feasible. Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would allow speedups.
+An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems in classical computers is a very hard task by itself and literature suggest is not feasible. Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would not allow speedups.
 
-The second path is the computational intelligence approach, i.e.  to use quantum inspired algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two other branches. One comprehends the algorithms based on the concept of the quantum bit, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other branch models data as a quantum system and uses the Schrödinger equation to evolve it.
+The second approach is the computational intelligence approach, i.e.  to use algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two approaches. One comprehends the algorithms based on the concept of the \gls{qubit}, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other approach models data as a quantum system and uses the Schrödinger equation to evolve it.
 
 In the following two sections these approaches for quantum inspired computational intelligence are explored.
 
 \subsubsection{Quantum bit}
 
+To understand the workings of the algorithms based on the concept of the \gls{qubit}, it is useful to cast some insight about its properties and functioning.
 The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and ...
 
 % taken from notebook -->
@@ -31,7 +32,7 @@ $$
 [\psi] = \alpha[0] + \beta[1]
 $$
 
-where $\psi$ is an arbitrary state vector and $\alpha$, $\beta$ are the the probability amplitude coefficients of basis states $[0]$ and $[1]$, respectevely. The basis states correspond to the spin of the modeled particle (in this case, a ferminion, e.g. electron). The coefficients are subjected to the following normalization:
+where $\psi$ is an arbitrary state vector and $\alpha$, $\beta$ are the the probability amplitude coefficients of basis states $[0]$ and $[1]$, respectively. The basis states correspond to the spin of the modelled particle (in this case, a ferminion, e.g. electron). The coefficients are subjected to the following normalization:
 
 $$|\alpha|^2 + |\beta|^2 = 1$$
 
@@ -59,22 +60,14 @@ $$
 $$
 
 The probability of observing the state $[000]$ will be $|\alpha_1|^2 \times |\alpha_2|^2 \times |\alpha_3|^2$
-
-To use this model for computing purposes, black-box objects called *oracles* are used.
+To use this model for computing purposes, black-box objects called \emph{oracles} are used.
 
 % end of notebook -->
 
 % #TODO get ref -->
 Def from wiki: In complexity theory and computability theory, an oracle machine is an abstract machine used to study decision problems. It can be visualized as a Turing machine with a black box, called an oracle, which is able to decide certain decision problems in a single operation. The problem can be of any complexity class. Even undecidable problems, like the halting problem, can be used. %from http://en.wikipedia.org/wiki/Oracle_machine
 
-In this context, oracles contain strings of qubits and generate their own input by observing the state of the qubits. After collapsing, the qubit value becomes analogue to a classical bit.
 
-%#TODO get ref : see washington quantum computing classes -->
-
-
-As it stands, oracles aren't quantum systems or even simulate them. The most appropriate description would be a probabilistic Turing machine.
-
-Each string of qubits represents a number, so the number of qubits in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
 
 
 \subsubsection{Quantum K-Means}
@@ -84,6 +77,13 @@ Several clustering algorithms ~\cite{Casper2013,Casper,Xiao2010}, as well as opt
 \subsubsection{Description of the algorithm}
 
 The Quantum K-Means (QK-Means) algorithm, as is described in ~\cite{Casper}, is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
+
+Within the context of this algorithm, oracles contain strings of \gls{qubit}s and generate their own input by observing the state of the \gls{qubit}s. After collapsing, the \gls{qubit} value becomes analogue to a classical bit.
+
+%#TODO get ref : see washington quantum computing classes -->
+
+Ideally, oracles would contain actual quantum systems or simulate them - this would correctly account for the desirable quantum properties. As it stands, oracles aren't quantum systems or even simulate them. The most appropriate description would be a probabilistic Turing machine.
+Each string of \gls{qubit}s represents a number, so the number of \gls{qubit}s in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
 
 % (describe algorithm... - from notebook) -->
 The algorithm has the following steps:
@@ -100,9 +100,6 @@ The algorithm has the following steps:
 \end{enumerate}
 
 
-
-The algorithm implemented and tested is a variant of the one described in ~\cite{Casper}. The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox, but were not implemented due to the suggestion from ~\cite{Wiebe2014}. This decision was based on the findings of ~\cite{Liu2010}, stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle.
-
 \paragraph{Initialize population of oracles}
 
 The oracles are created in this step and all qubit coefficients are initialized with $\frac{1}{\sqrt{2}}$, so that the system will observe either state with equal probability. This value is chosen taken into account the necessary normalization of the coefficients.
@@ -112,7 +109,7 @@ The oracles are created in this step and all qubit coefficients are initialized 
 Collapsing the oracles implies making an observation of each qubit of each qubit string in each oracle. This is done by first choosing a coefficient to use (either can be used), e.g. $\alpha$. Then, a random value $r$ between 0 and 1 is generated. If $\alpha \ge r$ then the system collapses to $[0]$, otherwise to $[1]$.
 
 \paragraph{K-Means}
-In this step we convert the binary representation of the qubit strings to base 10 and use them those values as initial centroids for K-Means. For each oracle, classical K-Means is then executed until it stabilizes or reaches the iteration limit. The solution centroids are returned to the oracles in binary representation.
+In this step we convert the binary representation of the qubit strings to base 10 and use those values as initial centroids for K-Means. For each oracle, classical K-Means is then executed until it stabilizes or reaches the iteration limit. The solution centroids are returned to the oracles in binary representation.
 
 \paragraph{Compute cluster fitness}
 Cluster fitness is computed using the Davies-Bouldin index for each oracle. The score of each oracle is stored in the oracle itself.
@@ -125,25 +122,24 @@ So far, we've had classical K-Means with a complex random number generation for 
 
 % (end of notebook entry) -->
 
-The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb and was later extended by Weisenberg? and Horn.
+The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox. \cite{Wiebe2014} suggests that that this operations may not be required to produce variability in the population of \gls{qubit} strings. This is because, according to \cite{Liu2010}, use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle. However, if they were used, their goal is to produce further variability into the population of \gls{qubit} strings.
+
 
 %TODO
 % add ref
 
 \subsubsection{Horn and Gottlieb's algorithm}
 
-The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in ~\cite{Horn2001a,Weinstein2009}. This function will be the wave function in the Schrödinger equation. Having this information we'll compute the potential function that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) ~\cite{Horn2001a}.
+The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb and was later extended by Weinstein and Horn.
 
-This potential function is akin to the inverse of a probability density function. Minima of the potential correspond to intervals in space where points are together. So minima will naturally correspond to cluster centres ~\cite{Horn2001a}. The potential of every point in space is a costly computation. One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function. This is done with the gradient descent method in ~\cite{Horn2001a}. Another method ~\cite{Weinstein2009} is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependant Schrödinger equation. Given enough time steps, the particles will converge to and oscillate around potential minima.
-
-Both methods take as input parameter the variance $\sigma$ of the parzen-window estimator.
-
-% (from notebook Horn accuracy) -->
-This method starts off by creating a Parzen-window density estimation of the input data by associating a Gaussian with each point, such that
+The first step in this methodology is to compute a probability density function of the input data. This is done with a Parzen-window estimator in ~\cite{Horn2001a,Weinstein2009}.
+The Parzen-window density estimation of the input data is done by associating a Gaussian with each point, such that
 
 $$ \psi (\mathbf{x}) = \sum ^N _{i=1} e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}} $$
 
-where $N$ is the total number of points in the dataset, $\sigma$ is the variance and $\psi$ is the probability density estimation. $\psi$ is chosen to be the wave function in Schrödinger's equation. The details of why this is are better described in ~\cite{Weinstein2009,Horn2001a,Horn2001b}. Schrödinger's equation is solved in order of the potential function $V(x)$, whose minima will be the centres of the clusters of our data:      
+where $N$ is the total number of points in the dataset, $\sigma$ is the variance and $\psi$ is the probability density estimation. $\psi$ is chosen to be the wave function in Schrödinger's equation. The details of why this is are better described in ~\cite{Weinstein2009,Horn2001a,Horn2001b}.
+
+Having this information we'll compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) ~\cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
 
 $$
 V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
@@ -156,10 +152,15 @@ $$
 E = - min \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
 $$
 
-With all of this, $V(x)$ can be computed. However, it's very computationally intensive to compute V(x) to the whole space, so we only compute the value of this function close to the data points. This should not be problematic since clusters' centres are generally close to the data points themselves. Even so, the minima may not lie on the data points themselves, so what we do is compute the potential at all data points and then apply the gradient descent method to move them to regions in space with lower potential.
+With all of this, $V(x)$ can be computed.
+This potential function is akin to the inverse of a probability density function. Minima of the potential correspond to intervals in space where points are together. So minima will naturally correspond to cluster centres ~\cite{Horn2001a}.
+However, it's very computationally intensive to compute $V(x)$ to the whole space, so we only compute the value of this function at the data points.
+This should not be problematic since clusters' centres are generally close to the data points themselves. 
+Even so, the minima may not lie on the data points themselves.
+One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function. This is done with the gradient descent method in ~\cite{Horn2001a}. 
 
-There is another method to evolve the system other then by gradient descent which is explained in ~\cite{Weinstein2009}. Together, this methods make the Dynamic Quantum Clustering algorithm % #TODO add ref -->.
-% (continue) -->
+Another method ~\cite{Weinstein2009} is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependant Schrödinger equation. Given enough time steps, the particles will converge to and oscillate around potential minima. This method makes the Dynamic Quantum Clustering algorithm.
+The nature of the computations involved in this algorithm make it a good candidate for parallelization techniques. \cite{Wittek2013} parallelized this algorithm to the GPU obtaining speedups of up to two magnitudes relative to an optimized multicore CPU implementation.
 
 % #TODO describe the fine cluster algorithm; critique how this is done; what was developed; what  -->
 
@@ -341,35 +342,91 @@ Using \gls{gpu} for other applications other than graphic processing, commonly k
 
 %TODO add refs everywhere
 Current GPUs pack hundreds of cores and have a better energy/area ratio than traditional infrastructure.
-\gls{gpu} work under the \gls{simd} framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time. Programming for \gls{gpu}s is done under some programming model (e.g. OpenCL, CUDA).
+\gls{gpu} work under the \gls{simd} framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time.
+
+
 
 
 \newacronym{simd}{SIMD}{Single Instruction Multiple Data}
 
-\subsubsection{GPU programming models}
+\subsubsection{Programming GPUs}
+
+\newacronym{api}{API}{Application ??? Interface}
+\newacronym{cg}{Cg}{C for graphics}
+\newacronym{hlsl}{HLSL}{DirectX High Level Shader Language}
+\newacronym{glsl}{GLSL}{OpenGL Shading Language}
+\newacronym{cuda}{CUDA}{Compute Unified Device Architecture}
+\newacronym{opencl}{OpenCL}{Open Computing Language}
+
+% old part, i.e. shading models, DirectX, OpenGL, grahics pipeline
+In the very beginning of \gls{gpgpu}, programming was done directly through graphics \gls{api}s. 
+
+Programming for \gls{gpu}s was traditionally done within the paradigm of graphics processing, such as DirectX and OpenGL. If researchers and programmers wanted to tap into the computing power of a \gls{gpu} they had to learn and use these \gls{api}s and frameworks, which is a challenging task since their general problems had to be modelled to the graphics-oriented primitives \cite{Misi2012}. With the appearance of DirectX 9, shader programming languages of higher level became available (e.g. \gls{cg}, \gls{hlsl}, \gls{glsl}), but they were still inherently graphics programming languages, where computation must be expressed in graphics terms. 
+
+% new part, i.e. interest in GPGPU sparkled unified devices and frameworks
+% overview of recent programming models, CUDA is computing framework, OpenCL is a standard
+More recent programming models, such as CUDA and OpenCL, removed a lot of that burden by exposing the power of \gls{gpu}s in a way closer to traditional programming.
 
 At the time of writing, the major programming models used for computation in \gls{gpu} are \gls{opencl} and \gls{cuda}. While the first is widely available in most devices the later is only available for NVIDIA devices.
 It should also be noted that the MapReduce framework has been implemented on \gls{gpu}.
 
-\newacronym{cuda}{CUDA}{Compute Unified Device Architecture}
-\newacronym{opencl}{OpenCL}{Open Computing Language}
+
 
 It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portability with the issues of performance portability and har d to program. Programming under CUDA , performs well since it was designed alongside with the hardware itself but only works on NVIDIA devices.
 
+% CUDA and OpenCL comparison; they're very similar in lots of ways; languanges they support (Python, Java, C, Pascal,...)
+
+
+% performance portability problem, how the performance problem can be mitigated and even eliminated by careful choice of compiler parameters, device aware application and so on (Fang2011)
+
+
+% ultimate choice of CUDA
+
+In the end, the choice of \gls{gpu} computing framework was \gls{cuda}. All the infrastructure available for developing and testing supports \gls{cuda}. Another reason for the choice is that all the work is being developed in Python and Python has a \gls{cuda} \gls{api} of very high level - part of the Numba module developed by Continuum Analytics. 
+
+
+
+
+
 
 \subsubsection{MapReduce on \gls{gpu}}
+% give references for this
 As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the \gls{gpu}. This translates in using the same programming model over a wide array of computing platforms.
-
-
-
-\subsection{Parallel computing}
-The second direction of the work was given to parallel computing, more spefically to General-Purpose Computation on Graphics Processing Units (GPGPU). 
-
-\subsubsection{Comparison and choice}
 
 
 \subsubsection{Overview of CUDA}
 
+A \gls{gpu} is constituted by one or several streaming processors (or multiprocessor). Each of this processors contains several simpler processors, each of which execute a the same instruction at the same time at any given time.
+In the \gls{cuda} programming model, the basic unit of computation is a \emph{thread}. Threads are grouped into \emph{blocks} which are part of the block \emph{grid}. The number of threads in a block is typically higher than the number of processors in a multiprocessor. For that reason, the hardware automatically partitions threads in a block into smaller batches, called \emph{warps}.
+
+Block configuration can be multidimensional, up to and including 3 dimensions. Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of \gls{cuda} being used, e.g. for \gls{gpu}s with \gls{cuda} compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads. For the previous example, it's wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
+
+Depending on the architecture, \gls{gpu}s have several types of memories. Accessible to all processors are the global memory, constant memory and texture memory. Blocks share a smaller but significantly faster memory called shared memory. And each thread has it's own, even smaller and faster, local memory.
+
+
+
+%Algorithm 1 assumes that there are as many processors as data elements. For large arrays on a GPU running CUDA, this is not usually the case. Instead, the programmer must divide the computation among a number of thread blocks that each scans a portion of the array on a single multiprocessor of the GPU. Even still, the number of processors in a multiprocessor is typically much smaller than the number of threads per block, so the hardware automatically partitions the "for all" statement into small parallel batches (called warps) that are executed sequentially on the multiprocessor. An NVIDIA 8 Series GPU executes warps of 32 threads in parallel. Because not all threads run simultaneously for arrays larger than the warp size, Algorithm 1 will not work, because it performs the scan in place on the array. The results of one warp will be overwritten by threads in another warp.
+
+%To solve this problem, we need to double-buffer the array we are scanning using two temporary arrays. Pseudocode for this is given in Algorithm 2, and CUDA C code for the naive scan is given in Listing 39-1. Note that this code will run on only a single thread block of the GPU, and so the size of the arrays it can process is limited (to 512 elements on NVIDIA 8 Series GPUs). Extension of scan to large arrays is discussed in Section 39.2.4.
+
+
+
+
+\subsubsection{Parallel K-Means}
+
+K-Means is one of the building block of the \gls{eac} chain. Other algorithms can be used, but due to its simplicity and speed it is often used to produce ensembles varying the number of centroids to be used.
+Furthermore, it is a very good candidate for parallelization. K-Means is composed by two main steps:
+
+\begin{enumerate}
+	\item computation of the labels of each pattern in the dataset, e.g. the label of the $n-th$ pattern is $0$ if the closest centroid is $0$.
+	\item recomputation of the centroids based on the labels assignment, e.g. the new centroids will be the mean of all the patterns assigned to it.
+\end{enumerate}
+
+The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids. Two possible approaches to parallelize this step on the \gls{gpu} are possible, a data-centric and a centroid-centric. In the former, a parallel computation unit will compute the distance from one pattern to all centroids and assign the pattern to the closest centroid. In the later, each computation unit will 
+
+\subsubsection{Parallel Hierarchical Agglomerative Clustering}
+
+Hierarchical Agglomerative Clustering is an algorithm that is not easily parallelized since it has several dependencies 
 
 %TODO the emphasis here must be GPGPU clustering and not MapReduce
 %I have to find more literature regarding this

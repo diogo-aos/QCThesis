@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  19 MAY 2015 22:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  3 JUN 2015 00:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -721,37 +721,38 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout2 = `introduction.aux'.
 
  (./introduction.tex
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 20.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
-) [2
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+ [2
 
-]
+]) [3]
 \openout2 = `state_of_art.aux'.
 
 
-(./state_of_art.tex [3
+(./state_of_art.tex [4
 
 
-] [4] [5] [6] [7]
+] [5] [6] [7] [8]
 
-LaTeX Warning: Citation `Lourenco2009' on page 8 undefined on input line 266.
+LaTeX Warning: Citation `Lourenco2009' on page 9 undefined on input line 267.
 
-[8] [9] [10]) [11]
+[9] [10] [11]) [12]
 \openout2 = `methodology.aux'.
 
- (./methodology.tex) [12
+ (./methodology.tex) [13
 
 
-] (./thesis.bbl [13
+] [14] (./thesis.bbl [15
 
 
-]) [14]
-(./thesis.aux (./introduction.aux) (./state_of_art.aux) (./methodology.aux)
+] [16])
+[17] (./thesis.aux (./introduction.aux) (./state_of_art.aux) (./methodology.aux
+)
 No file results.aux.
 )
 
@@ -759,10 +760,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7734 strings out of 495004
- 108791 string characters out of 6180663
- 230286 words of memory out of 5000000
- 10720 multiletter control sequences out of 15000+600000
+ 7857 strings out of 495004
+ 110563 string characters out of 6180663
+ 231564 words of memory out of 5000000
+ 10843 multiletter control sequences out of 15000+600000
  9220 words of font info for 36 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  46i,13n,35p,1701b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -781,10 +782,10 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (14 pages, 216121 bytes).
+Output written on thesis.pdf (17 pages, 224235 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 123 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

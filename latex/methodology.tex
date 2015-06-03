@@ -1,3 +1,6 @@
+%!TEX root = thesis.tex
+
+
 \section{Methodology}
 %TODO explain methodology to obtain results of quantum clustering of just present results on why it wasn't viable?
 
@@ -5,31 +8,34 @@
 
 The aim of this thesis is the optimization and scalability of EAC, with a focus for big data. EAC is divided in three steps and each has to be considered for optimization.
 
-The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup.
+The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup. Furthermore, it is not necessary for algorithms to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice. The reason for this is the want for variability within the partition population.
 	
-The second step is mostly bound by memory. The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$. Such complexity becomes prohibitive for big data, e.g. a dataset of $2\times10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
+The second step is mostly bound by memory. The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$. Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
 
 The last step has to take into account both memory and speed requirements. The final clustering must be able to produce good results, fast while not exploding the already big space complexity from the co-association matrix.
 
-Initial research was under the field of quantum clustering. After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically GPGPU.
+Initial research was under the field of quantum clustering. After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically \gls{gpgpu}. 
 
 \subsection{Quantum Clustering}
 
 Research under this paradigm aimed to find a solution for the first and last steps. Two venues were explored: Quantum K-Means and Horn and Gottlieb's quantum clustering algorithm.
 For both, the experiments that were setup had the goal of evaluating the speed and accuracy performances of the algorithms.
 
-Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is unfeasible due to the cost in computational speed. The results highlight that fact.
+Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is infeasible due to the cost in computational speed. The results highlight that fact.
 
 
 
 \subsection{GPGPU K-Means}
-K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - partitions generated with K-Means need only a few iterations. For that reason, optimizing this algorithm would ensure that the accumulation of evidence would be performed in a efficient manner.
+K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations. For that reason, optimizing this algorithm would ensure that the accumulation of evidence would be performed in an efficient manner.
 
 %TODO pseudocode & diagrams
 %TODO explain the solution for GPGPU K-Means
 
 
 \subsection{Dealing with space complexity of coassocs}
+In the literature review, two approaches to deal with the space complexity of the co-association matrix were reported. It would be ideal to combine both approaches to further reduce space complexity, but they're not compatible as it might seem. When the neighbour approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbours. This means that the $n \times p$ co-association matrix will likely not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
 
+%comment on which method is more effective, maybe some experiment is needed to see which
+%demonstrate why both methods are not compatible - a simple filling of knn matrix should suffice
 
-
+Which method is more effective in very large datasets, however, would depend on the dataset. The sparsity maximization approach got very low densities for some datasets, close to $0.01$ in some cases. This is already a very improvement

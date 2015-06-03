@@ -1,0 +1,214 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Thesis.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+%  ---------- Master of Science Dissertation template ----------       %
+%                                                                      %
+%  Template for the Master Thesis according to the regulations         %
+%  published by the Academic Board (Direcção Académica) at IST.        %
+%                                                                      %
+%  For up-to-date guide, please refer to the offical website           %
+%  http://da.tecnico.ulisboa.pt/dissertacao-de-mestrado/               %
+%                                                                      %
+%       Andre C. Marta                                                 %
+%       Area Cientifica de Mecanica Aplicada e Aeroespacial            %
+%       Departamento de Engenharia Mecanica                            %
+%       Instituto Superior Tecnico                                     %
+%       Av. Rovisco Pais                                               %
+%       1049-001 Lisboa                                                %
+%       Portugal                                                       %
+%       Tel: +351 21 841 9469                                          %
+%                        3469 (extension)                              %
+%       Email: andre.marta@tecnico.ulisboa.pt                          %
+%                                                                      %
+%  Created:       Jan 20, 2011                                         %
+%  Last Modified: May  7, 2014                                         %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Revision history                                                    %
+%  v1 - 2011/01/24 - original template                                 %
+%  v2 - 2012/10/30 - new IST image and glossary support                %
+%  v3 - 2013/12/10 - update according to 2012/13 official guide        %
+%  v4 - 2014/02/28 - new default for bibliography style                %
+%  v5 - 2014/05/07 - update according to 2013/14 official guide        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+% To generate the PDF file, type "make" at the terminal prompt.        %
+%                                                                      %
+% The IST template LaTeX package was created by the author             %
+% and it can be downloaded from:                                       %
+% https://fenix.ist.utl.pt/homepage/ist31052/                          %
+%                                                                      %
+% The external packages can be downloaded from                         %
+% the Comprehensive TeX Archive Network at http://www.ctan.org/        %
+%                                                                      %
+% List of LaTex symbols:                                               %
+% http://www.ctan.org/tex-archive/info/symbols/comprehensive/          %
+%                                                                      %
+% Help with LaTex can be found at                                      %
+% http://www.giss.nasa.gov/tools/latex/ltx-2.html                      %
+% http://en.wikibooks.org/wiki/LaTeX                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Preamble                                                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ----------------------------------------------------------------------
+%  Set the document class
+% ----------------------------------------------------------------------
+\documentclass[10pt,a4paper,twoside]{report}
+
+% ----------------------------------------------------------------------
+% Define external packages, language, margins, fonts and new commands
+% ----------------------------------------------------------------------
+\input{Thesis_Preamble} % file "Thesis_Preamble.tex"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Begin Document                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Set plain page style (no headers, footer with centered page number)
+\pagestyle{plain}
+
+% Set roman numbering (i,ii,...) before the start of chapters
+\pagenumbering{roman}
+
+% ----------------------------------------------------------------------
+%  Cover page
+% ----------------------------------------------------------------------
+\input{Thesis_FrontCover} % file "Thesis_FrontCover.tex"
+
+% ----------------------------------------------------------------------
+% Dedication page (optional)
+% ----------------------------------------------------------------------
+\input{Thesis_Dedication} % file "Thesis_Dedication.tex"
+
+% ----------------------------------------------------------------------
+%  Acknowledgments (optional)
+% ----------------------------------------------------------------------
+\input{Thesis_Acknowledgements} % file "Thesis_Acknowledgements.tex"
+
+% ----------------------------------------------------------------------
+%  Abstract (both in English and Portuguese)
+% ----------------------------------------------------------------------
+\input{Thesis_Resumo} % file "Thesis_Resumo.tex"
+\input{Thesis_Abstract} % file "Thesis_Abstract.tex"
+
+% ----------------------------------------------------------------------
+%  Table of contents, list of tables, list of figures and nomenclature
+% ----------------------------------------------------------------------
+
+% Table of contents
+%
+\tableofcontents
+\cleardoublepage 
+
+% List of tables
+%
+% Generate list
+\listoftables
+% Add entry in the table of contents as section
+\addcontentsline{toc}{section}{\listtablename}
+\cleardoublepage 
+
+% List of figures
+%
+% Generate list
+\listoffigures
+% Add entry in the table of contents as section
+\addcontentsline{toc}{section}{\listfigurename}
+\cleardoublepage 
+
+% Nomenclature
+%
+% entries of nomenclature list
+\input{Thesis_Nomenclature} % file "Thesis_Nomenclature.tex"
+%
+% Insert glossary/nomenclature section produced by MakeIndex
+\printnomenclature
+% Add entry in the table of contents as section
+\addcontentsline{toc}{section}{\nomname}
+\cleardoublepage
+
+% entries of glossary list
+\input{Thesis_Glossary} % file "Thesis_Glossary.tex"
+
+% Insert glossary section produced by MakeIndex
+\printglossary
+% Add entry in the table of contents as section
+\addcontentsline{toc}{section}{\glossaryname}
+\cleardoublepage
+
+% Set arabic numbering (1,2,...) after preface
+%
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+% ----------------------------------------------------------------------
+%  Chapters
+% ----------------------------------------------------------------------
+
+\input{Thesis_Introduction} % file "Thesis_Introduction.tex"
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+
+%\input{Thesis_new_file} % add new .tex files for new chapters
+
+\input{Thesis_Results} % file "Thesis_Results.tex"
+
+\input{Thesis_Conclusions} % file "Thesis_Conclusions.tex"
+
+% ----------------------------------------------------------------------
+%  Bibliography
+% ----------------------------------------------------------------------
+
+% Include all references in .bib file, even non-cited ones...
+%\nocite{*} % this should be used carefully because it is not correct!
+
+% Produces the bibliography section when processed by BibTeX
+%
+% Bibliography style
+% > entries ordered alphabetically
+%\bibliographystyle{plain}
+% > unsorted with entries appearing in the order in which the citations appear.
+%\bibliographystyle{unsrt}
+% > entries ordered alphabetically, with first names and names of journals and months abbreviated
+%\bibliographystyle{abbrv}
+% > entries ordered alphabetically, with reference markers based on authors' initials and publication year
+%\bibliographystyle{alpha}
+%
+% Replacement bibliography styles provided by 'natbib' package
+% (plainnat.bst, abbrvnat.bst, unsrtnat.bst )
+% > entries ordered alphabetically
+%\bibliographystyle{plainnat}
+% > unsorted with entries appearing in the order in which the citations appear.
+%\bibliographystyle{unsrtnat}
+% > entries ordered alphabetically, with first names and names of journals and months abbreviated
+\bibliographystyle{abbrvnat}
+% > entries ordered alphabetically, with reference markers based on authors' initials and publication year
+%\bibliographystyle{alpha}
+
+
+% External bibliography database file in the BibTeX format
+\cleardoublepage
+\bibliography{Thesis_bib_DB} % file "Thesis_bib_DB.bib"
+% Add entry in the table of contents as chapter
+\addcontentsline{toc}{chapter}{\bibname}
+\cleardoublepage
+
+% ----------------------------------------------------------------------
+%  Appendix (optional)
+% ----------------------------------------------------------------------
+\appendix
+\input{Thesis_Appendix} % file "Thesis_Appendix.tex"
+
+% ----------------------------------------------------------------------
+\end{document}
+% ----------------------------------------------------------------------
+

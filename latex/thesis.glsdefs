@@ -328,6 +328,126 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{api}{}%
+{%
+\gls@defglossaryentry{api}%
+{%
+name={API},%
+sort={API},%
+type={acronym},%
+first={Application ??? Interface (API)},%
+firstplural={Application ??? Interfaces(APIs)},%
+text={API},%
+plural={APIs},%
+description={Application ??? Interface},%
+descriptionplural={Application ??? Interface\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Application ??? Interface},%
+longplural={Application ??? Interfaces},%
+short={API},%
+shortplural={APIs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{cg}{}%
+{%
+\gls@defglossaryentry{cg}%
+{%
+name={Cg},%
+sort={Cg},%
+type={acronym},%
+first={C for graphics (Cg)},%
+firstplural={C for graphicss(Cgs)},%
+text={Cg},%
+plural={Cgs},%
+description={C for graphics},%
+descriptionplural={C for graphics\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={C for graphics},%
+longplural={C for graphicss},%
+short={Cg},%
+shortplural={Cgs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{hlsl}{}%
+{%
+\gls@defglossaryentry{hlsl}%
+{%
+name={HLSL},%
+sort={HLSL},%
+type={acronym},%
+first={DirectX High Level Shader Language (HLSL)},%
+firstplural={DirectX High Level Shader Languages(HLSLs)},%
+text={HLSL},%
+plural={HLSLs},%
+description={DirectX High Level Shader Language},%
+descriptionplural={DirectX High Level Shader Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={DirectX High Level Shader Language},%
+longplural={DirectX High Level Shader Languages},%
+short={HLSL},%
+shortplural={HLSLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{glsl}{}%
+{%
+\gls@defglossaryentry{glsl}%
+{%
+name={GLSL},%
+sort={GLSL},%
+type={acronym},%
+first={OpenGL Shading Language (GLSL)},%
+firstplural={OpenGL Shading Languages(GLSLs)},%
+text={GLSL},%
+plural={GLSLs},%
+description={OpenGL Shading Language},%
+descriptionplural={OpenGL Shading Language\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={OpenGL Shading Language},%
+longplural={OpenGL Shading Languages},%
+short={GLSL},%
+shortplural={GLSLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
 \ifglsentryexists{cuda}{}%
 {%
 \gls@defglossaryentry{cuda}%

@@ -39,7 +39,7 @@
 
 
 \author{Diogo Silva}
-\title{EAC and Big Data}
+\title{Efficient Evidence Accumulation Clustering for Large Datasets/Big Data}
 
 \begin{document}
 \onehalfspacing %line spacing; DIFFERENT FROM MS WORD 1.5 SPACING - use /spacing{1.5} for that
@@ -71,6 +71,16 @@
 %TODO
 % in the Discussion or Conclusions chapter, include a reflection along the folloing lines
 When a problem of clustering of big data is at hand, the user should reflect upon what the problem at hand really requires: speed or accuracy. The user should take into consideration the nature of the data and the requirements of the problem (concerning speed and accuracy) before proceeding to the execution of the analysis. The present body of work reflects a method of clustering over big data using a high accuracy, but also high cost, method. Other methods offer the opposite, low cost, low to average accuracy. 
+
+\section{Future work}
+
+Adaptation of the present implementation to OpenCL. This brings major benefits in respect to portability since OpenCL supports most devices. Moreover, OpenCL's performance is catching in on that of CUDA's and since it's programming model was based on CUDA, it should be straightforward for developers to make the switch.
+
+Application of EAC to the MapReduce framework will further expand the possibilities of application of EAC.
+
+Study the integration of other clustering algorithms within the the EAC toolchain.
+
+
 
 \bibliographystyle{plain}
 \bibliography{library}

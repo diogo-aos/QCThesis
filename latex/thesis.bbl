@@ -95,6 +95,12 @@ Ranajoy Malakar and Naga Vydyanathan.
 \newblock {\em 2013 National Conference on Parallel Computing Technologies,
   PARCOMPTECH 2013}, 2013.
 
+\bibitem{Misi2012}
+Marko~J Mi\v{s}i, M~\^{C}, and Milo~V Toma\v{s}evi.
+\newblock {Evolution and Trends in GPU Computing}.
+\newblock {\em MIPRO, 2012 Proceedings of the 35th International Convention},
+  pages 289--294, 2012.
+
 \bibitem{Qian2010}
 You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
 \newblock {Combined multiple clusterings on flow cytometry data to
@@ -132,6 +138,11 @@ Nathan Wiebe, Ashish Kapoor, and Krysta Svore.
 \newblock {Quantum Algorithms for Nearest-Neighbor Methods for Supervised and
   Unsupervised Learning}.
 \newblock page~31, 2014.
+
+\bibitem{Wittek2013}
+Peter Wittek.
+\newblock {High-performance dynamic quantum clustering on graphics processors}.
+\newblock {\em Journal of Computational Physics}, 233:262--271, 2013.
 
 \bibitem{Wu2011}
 Jiadong Wu and Bo~Hong.

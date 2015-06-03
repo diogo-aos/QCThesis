@@ -1,0 +1,165 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                      %
+%     File: Thesis_Introduction.tex                                    %
+%     Tex Master: Thesis.tex                                           %
+%                                                                      %
+%     Author: Andre C. Marta                                           %
+%     Last modified : 28 Feb 2014                                      %
+%                                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Introduction}
+\label{chapter:introduction}
+
+Insert your chapter material here...
+
+% ----------------------------------------------------------------------
+\section{Motivation}
+\label{section:motivation}
+
+Relevance of the subject...
+
+
+% ----------------------------------------------------------------------
+\section{State-of-the-art}
+\label{section:state}
+
+Insert your section material with the appropriate citations.
+These can be cited in the following way: \\
+
+Citation mode \#1 - \quad \cite{jameson:adjointns}
+
+Citation mode \#2 - \quad \citet{jameson:adjointns}
+
+Citation mode \#3 - \quad \citep{jameson:adjointns}
+
+
+Citation mode \#4 - \quad \citet*{jameson:adjointns}
+
+Citation mode \#5 - \quad \citep*{jameson:adjointns}
+
+
+Citation mode \#6 - \quad \citealt{jameson:adjointns}
+
+Citation mode \#7 - \quad \citealp{jameson:adjointns}
+
+
+Citation mode \#8 - \quad \citeauthor{jameson:adjointns}
+
+Citation mode \#9 - \quad \citeyear{jameson:adjointns}
+
+Citation mode \#10 - \quad \citeyearpar{jameson:adjointns} \\
+
+
+Several citations can be made simultaneously as\quad \cite{nocedal:opt,marta:ijcfd}. \\
+
+The style can be changed from numerical citation order to authors' last name with option {\tt \textbackslash usepackage[numbers]\{natbib\}} in file {\tt Thesis\_Preamble.tex}.
+
+
+\subsection{Tables}
+\label{subsection:tables}
+
+Insert your subsection material and for instance a few tables...
+
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      item 1 & item 2 \\
+      \hline
+      item 3 & item 4 \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption[Table caption shown in TOC]{Table caption}
+  \label{table:simple}
+\end{table}
+
+Make reference to Table \ref{table:simple}.
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}{lccc}
+      Model           & $C_L$ & $C_D$ & $C_{M y}$ \\
+      \hline
+      Euler           & 0.083 & 0.021 & -0.110    \\
+      Navier--Stokes  & 0.078 & 0.023 & -0.101    \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Aerodynamic coefficients.}
+  \label{tab:aeroCoeff}
+\end{table}
+
+Here is an example of a table with merging columns:
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}[]{lrr}
+      \hline
+                     & \multicolumn{2}{c}{\underline{Virtual memory [MB]}} \\
+                     & Euler       & Navier--Stokes \\
+      \hline
+      Wing only      &  1,000      &    2,000       \\
+      Aircraft       &  5,000      &   10,000       \\
+      (ratio)        & $5.0\times$ & $5.0\times$    \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Memory usage comparison (in MB).}
+  \label{tab:memory}
+\end{table}
+
+
+\subsection{Drawings}
+\label{subsection:drawings}
+
+Insert your subsection material and for instance a few drawings...
+
+The schematic illustrated in Fig.~\ref{fig:algorithm} can represent some sort of algorithm.
+
+\begin{figure}[!htb]
+  \centering
+  \scriptsize
+%  \footnotesize 
+%  \small
+  \setlength{\unitlength}{0.9cm}
+  \begin{picture}(8.5,6)
+    \linethickness{0.3mm}
+
+    \put(3,6){\vector(0,-1){1}}
+    \put(3.5,5.4){$\bf \alpha$}
+    \put(3,4.5){\oval(6,1){}}
+    %\put(0,4){\framebox(6,1){}}
+    \put(0.3,4.4){Grid Generation: \quad ${\bf x} = {\bf x}\left({\bf \alpha}\right)$}
+
+    \put(3,4){\vector(0,-1){1}}
+    \put(3.5,3.4){$\bf x$}
+    \put(3,2.5){\oval(6,1){}}
+    %\put(0,2){\framebox(6,1){}}
+    \put(0.3,2.4){Flow Solver: \quad ${\cal R}\left({\bf x},{\bf q}\left({\bf x}\right)\right) = 0$}
+
+    \put(6.0,2.5){\vector(1,0){1}}
+    \put(6.4,3){$Y_1$}
+
+    \put(3,2){\vector(0,-1){1}}
+    \put(3.5,1.4){$\bf q$}
+    \put(3,0.5){\oval(6,1){}}
+    %\put(0,0){\framebox(6,1){}}
+    \put(0.3,0.4){Structural Solver: \quad ${\cal M}\left({\bf x},{\bf q}\left({\bf x}\right)\right) = 0$}
+
+    \put(6.0,0.5){\vector(1,0){1}}
+    \put(6.4,1){$Y_2$}
+
+    %\put(7.8,2.5){\oval(1.6,5){}}
+    \put(7.0,0){\framebox(1.6,5){}}
+    \put(7.1,2.5){Optimizer}
+    \put(7.8,5){\line(0,1){1}}
+    \put(7.8,6){\line(-1,0){4.8}}
+  \end{picture}
+  \caption{Schematic of some algorithm.}
+  \label{fig:algorithm}
+\end{figure}
+
+\cleardoublepage
+

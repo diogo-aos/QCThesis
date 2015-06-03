@@ -1,5 +1,11 @@
+%!TEX root = thesis.tex
+
 \section{Introduction}
 \label{intro}
+
+\subsection{The problem of clustering}
+
+
 %TODO
 % problems under Big Data paradihm
 % typical challenges with Big Data
@@ -14,14 +20,37 @@ Interesting problems from big data.
 
 Combining the two.
 
+\subsection{Challenges and Motivation}
+
+\subsection{Goals and Contribution}
+
+This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the method of Evidence Accumulation Clustering and its application in large datasets, while also accessing alternative algorithmic solutions and parallelization techniques. The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails (speed and memory). In particular, efficient parallel version for the \gls{gpu} of different parts of the method.
+
+Throughout this dissertation, various clustering techniques are reviewed, implemented and tested. 
+
 \subsection{Objectives}
 The main objectives for this work are:
 \begin{itemize}
-\item Aplication of Evidence Accumulation Clustering in Big Data (main goal)
-\item Exploration of methods that may be included in the EAC paradigm under Big Data constraints (literature review and testing)
-\item Study of quantum inspired clustering algorithms and evaluation  of integration in EAC 
-\item Study of parallel computation techniques and evaluation of integration in EAC
-\item Validation of Big Data EAC on real data (ECG for emotional state discovery and/or heart disease diagnostic)
+
+\item Review quantum inspired clustering methods
+
+\item Study possibility of integration of quantum inspired methods in EAC
+
+\item Review of scalability of EAC
+
+\item Review methods and techniques designed for processing large datasets
+
+\item Review of acceleration techniques for large datasets
+
+\item Review of the General Purpose computing in Graphics Processing Units paradigm
+
+\item Study possibility of integration of GPGPU in EAC
+
+\item Devise strategies to reduce complexity of EAC
+
+\item \textbf{Application of Evidence Accumulation Clustering in Big Data}
+
+\item Validation of Big Data EAC on real data (ECG for emotional state discovery and/or discovery of natural groups)
 \end{itemize}
 
 \subsection{Outline}
@@ -30,4 +59,5 @@ Explain briefly the work done
 
 The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
 
-The initial research was under the algorithmic path. More specifically, exploring quantum clustering algorithms. The findings of this exploration were revealed this algorithms to be a poor match for EAC and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among several machines). While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
+The initial research was under the algorithmic path. More specifically, exploring quantum inspired clustering algorithms. The findings of this exploration revealed this algorithms to be a poor match for integration in EAC and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among a cluster of workstations). While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
+
