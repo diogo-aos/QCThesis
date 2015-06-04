@@ -89,7 +89,7 @@ def convertClusterStringToIndex(partition):
 
 	return finalPartition
 
-def generateEnsemble(data,generator,n_clusters=20,npartitions=30,iters=3):
+def generateEnsemble(data, generator, n_clusters = 20, npartitions = 30, iters = 3):
 	"""
 	TODO: check if generator has fit method and n_clusters,labels_ attributes
 	"""
@@ -98,18 +98,18 @@ def generateEnsemble(data,generator,n_clusters=20,npartitions=30,iters=3):
 
 	if type(n_clusters) is list:
 		clusterRange = True
-		min_ncluster=n_clusters[0]
-		max_ncluster=n_clusters[1]
+		min_ncluster = n_clusters[0]
+		max_ncluster = n_clusters[1]
 	else:
 		clusterRange = False
-		generator.n_clusters=n_clusters
+		generator.n_clusters = n_clusters
 
 	generator.max_iter = iters
 
 	for x in xrange(npartitions):
 		if clusterRange:
 			k = np.random.randint(min_ncluster,max_ncluster)
-			generator.n_clusters=k
+			generator.n_clusters = k
 
 		generator.fit(data)
 		ensemble[x] = convertClusterStringToIndex(generator.labels_)

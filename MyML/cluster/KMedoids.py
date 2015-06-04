@@ -20,8 +20,8 @@ def cluster(distances, k=3):
     # Pick k random medoids.
     curr_medoids = np.array(sample(xrange(m),k))
 
-    old_medoids = np.array([-1]*k) # Doesn't matter what we initialize these to.
-    new_medoids = np.array([-1]*k)
+    old_medoids = -np.ones(k) # Doesn't matter what we initialize these to.
+    new_medoids = -np.ones(k)
    
     # Until the medoids stop updating, do the following:
     while not ((old_medoids == curr_medoids).all()):
@@ -30,7 +30,7 @@ def cluster(distances, k=3):
 
         # Update cluster medoids to be lowest cost point. 
         for curr_medoid in curr_medoids:
-            cluster = np.where(clusters == curr_medoid)[0]
+            cluster = np.where(clusters == curr_medoid)[0] 
             new_medoids[curr_medoids == curr_medoid] = compute_new_medoid(cluster, distances)
 
         old_medoids[:] = curr_medoids[:]
@@ -39,9 +39,9 @@ def cluster(distances, k=3):
     return clusters, curr_medoids
 
 def assign_points_to_clusters(medoids, distances):
-    distances_to_medoids = distances[:,medoids]
-    clusters = medoids[np.argmin(distances_to_medoids, axis=1)]
-    clusters[medoids] = medoids
+    distances_to_medoids = distances[:,medoids] # distance to medoids
+    clusters = medoids[np.argmin(distances_to_medoids, axis=1)] # assignment of samples to medoids
+    clusters[medoids] = medoids # assign medoids to themselves
     return clusters
 
 def compute_new_medoid(cluster, distances):

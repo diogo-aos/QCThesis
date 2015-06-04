@@ -24,15 +24,27 @@ from sklearn.neighbors import NearestNeighbors
 from .K_Means3 import K_Means
 from random import sample
 
+from scipy.sparse import lil_matrix,csr_matrix
+
 class EAC():
 
-	def __init__(self,nsamples,data=None):
-		self._N = nsamples
+	def __init__(self,nsamples,data=None,mat_sparse=False,mat_half=False):
+		"""
+		mat_sparse 		: stores co-associations in a sparse matrix
+		mat_half 		: stores co-associations in pdist format, in an (n*(n-1))/2 length array
+		"""
+		
+		self.n_samples = nsamples
 		self._assoc_mode = None
 		self._prot_mode = None
 
 		self.data = data
 		self.npartitions = 0
+
+		# properties of co-association matrix
+		self.mat_sparse = mat_sparse
+		self.mat_half = mat_half
+
 
 
 	def fit(self,ensemble,files=False,assoc_mode="full",prot_mode="random",
@@ -54,7 +66,7 @@ class EAC():
 			self._prot_mode = prot_mode
 
 		# create co-association matrix
-		self._coassoc = self._create_coassoc(assoc_mode,self._N,nprot=nprot)
+		self._coassoc = self._create_coassoc(assoc_mode,self.n_samples,nprot=nprot)
 
 		if assoc_mode is not "full":
 			# changing assoc_mode for the matrix updates
@@ -76,10 +88,22 @@ class EAC():
 			for partition in ensemble:
 				self._update_coassoc_matrix(partition) # update co-association matrix
 
+		# delete diagonal
+		#self._coassoc[xrange(self.n_samples),xrange(self.n_samples)] = np.zeros(self.n_samples)
+
+		# convert sparse matrix to convenient format, if it is sparse
+		if type(self._coassoc) is lil_matrix:
+			self._coassoc = self._coassoc.tocsr()
+
+
+
 	def _create_coassoc(self,mode,nsamples,nprot=None):
 
 		if mode == "full":
-			coassoc = np.zeros((nsamples,nsamples),dtype=np.float32)
+			if self.mat_sparse:
+				coassoc = lil_matrix((nsamples,nsamples),dtype=np.int32)
+			else:
+				coassoc = np.zeros((nsamples,nsamples),dtype=np.float32)
 		elif mode =="prot":
 			if nprot == None:
 				nprot = np.sqrt(nsamples)
@@ -122,10 +146,10 @@ class EAC():
 
 	def _build_prototypes(self,nprot=None,mode="random",data=None):
 		if nprot == None:
-			nprot = np.sqrt(self._N)
+			nprot = np.sqrt(self.n_samples)
 
 		if mode == "random":
-			self.k_labels = self._build_random_prototypes(nprot,self._N)
+			self.k_labels = self._build_random_prototypes(nprot,self.n_samples)
 
 		elif mode == "knn":
 			if data is None:
@@ -207,7 +231,10 @@ class EAC():
 
 		# full matrix
 		if self._assoc_mode is "full":
-			self._update_coassoc_n(self._coassoc,clusters)
+			if self.mat_sparse:
+				self._update_coassoc_n_sparse(self._coassoc,clusters)
+			else:
+				self._update_coassoc_n(self._coassoc,clusters)
 		# reduced matrix
 		elif self._assoc_mode is "other":
 			self._update_coassoc_k(self._coassoc,clusters,self.k_labels)
@@ -232,7 +259,25 @@ class EAC():
 				n_in_cluster = clusters[i] # n_in_cluster = indices of samples in cluster
 
 				# this indexing selects the rows and columns specified in sic
+				#assoc_mat[n_in_cluster[:,np.newaxis],n_in_cluster] += 1
 				assoc_mat[n_in_cluster[:,np.newaxis],n_in_cluster] += 1
+
+	def _update_coassoc_n_sparse(self,assoc_mat,clusters):
+		"""
+		Updates a square NxN co-association matrix.
+		"""
+		nclusters = len(clusters)
+		for i in xrange(nclusters):
+			if clusters[i].shape > 1:
+
+				n_in_cluster = clusters[i] # n_in_cluster = indices of samples in cluster
+
+				# this indexing selects the rows and columns specified in sic
+				#assoc_mat[n_in_cluster[:,np.newaxis],n_in_cluster] += 1
+				for row in n_in_cluster:
+					assoc_mat[row,n_in_cluster] += np.ones(n_in_cluster.size)
+
+		
 
 	def _update_coassoc_k(self,assoc_mat,clusters,k_labels):
 		"""
@@ -242,9 +287,9 @@ class EAC():
 		"""
 
 		nclusters = len(clusters)
-		for i in xrange(nclusters):
+		for i in xrange(nclusters): # for each cluster in ensemble
 
-			if clusters[i].shape > 1:
+			if clusters[i].shape > 1: # if cluster has more than 1 sample (i.e. not outlier)
 
 				# all data points in cluster - rows to select
 				n_in_cluster = clusters[i]
@@ -259,8 +304,9 @@ class EAC():
 				
 
 				# this indexing selects the rows and columns specified by n_in_cluster and k_in_cluster
-				assoc_mat[n_in_cluster[:,np.newaxis],k_in_cluster] += 1 # np.newaxis is alias for None
-
+				# np.newaxis is alias for None
+				assoc_mat[n_in_cluster[:,np.newaxis],k_in_cluster] += 1
+				
 
 	def _update_coassoc_knn(self,assoc_mat,clusters,k_neighbours):
 		"""
@@ -286,35 +332,10 @@ class EAC():
 						continue
 
 					# this indexing selects the rows and columns specified by n_in_cluster and k_in_cluster
-					assoc_mat[j,k_in_cluster] += 1 # np.newaxis is alias for None
+					assoc_mat[j,k_in_cluster] += np.ones_like(k_in_cluster.size) # np.newaxis is alias for None
 		pass
 
-	def _update_coassoc_knn_sparse(assoc_mat,clusters,k_neighbours):
-	    """
-	    Updates an NxK co-association matrix.
-	    k_neighbours is an NxK array where the k-th element of the i-th row is the index of a data point 
-	    that corresponds to the k-th nearest neighbour of the i-th data point. That neighbour is the k-th
-	    prototype of the i-th data point.
-	    """
-	    nclusters = len(clusters)
-	    for i in xrange(nclusters):
 
-	        if clusters[i].shape > 1:
-
-	            # all data points in cluster - rows to select
-	            n_in_cluster = clusters[i]
-
-	            # update row j of matrix
-	            for j in n_in_cluster:
-	                # all prototypes in cluster - columns to select
-	                # column indices corresponding to the K-prototypes	                
-	                k_in_cluster = n_in_cluster[np.in1d(n_in_cluster,k_neighbours[j])]
-	                
-	                # this indexing selects the rows and columns specified by n_in_cluster and k_in_cluster
-	                #assoc_mat[j,k_in_cluster] += np.ones_like(k_in_cluster)
-	                assoc_mat[k_in_cluster[:,np.newaxis],k_in_cluster] += np.ones_like((k_in_cluster.size,k_in_cluster.size))
-	        pass
-			
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -420,20 +441,20 @@ class EAC():
 		return labels
 
 	def _buildLabels(self,Z,parents):
-	    labels=np.empty(self._N) # allocate array for labels
+	    labels=np.empty(self.n_samples) # allocate array for labels
 	    for i,p in enumerate(parents):
 	        fifo=[p]
 	        while(len(fifo)>0):
 	            x=fifo[0] # get new node to check
-	            c1,c2=Z[x-self._N,:2] # nodes that current node contains
+	            c1,c2=Z[x-self.n_samples,:2] # nodes that current node contains
 	            fifo.remove(x) # remove checked node
 
-	            if c1 < self._N: # check if node is leaf (pattern)
+	            if c1 < self.n_samples: # check if node is leaf (pattern)
 	                labels[c1]=i # assign cluster to pattern
 	            else:
 	                fifo.append(c1) # add node to list of nodes to check
 
-	            if c2 < self._N:
+	            if c2 < self.n_samples:
 	                labels[c2]=i
 	            else:
 	                fifo.append(c2)

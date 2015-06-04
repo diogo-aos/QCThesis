@@ -1,0 +1,1087 @@
+************* Module MyML.cluster.K_Means3
+W:  7, 0: TODO: (fixme)
+W: 36, 0: TODO check parameters, check iters iterss numberf or "converge" (fixme)
+W: 84, 0: TODO: accept other formats" (fixme)
+W:287, 0: TODO: (fixme)
+W:670, 0: TODO check which option is faster (fixme)
+C: 12, 0: Line too long (103/80) (line-too-long)
+C: 17, 0: Trailing whitespace (trailing-whitespace)
+C: 25, 0: Trailing whitespace (trailing-whitespace)
+C: 26, 0: Trailing whitespace (trailing-whitespace)
+C: 27, 0: Trailing whitespace (trailing-whitespace)
+C: 28, 0: Line too long (100/80) (line-too-long)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                     ^ (bad-whitespace)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                                  ^ (bad-whitespace)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                                              ^ (bad-whitespace)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                                                              ^ (bad-whitespace)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                                                                       ^ (bad-whitespace)
+C: 28, 0: Exactly one space required after comma
+    def __init__(self,n_clusters=8,mode="cuda",cuda_mem='auto',tol=1e-4,max_iter=300,init='random'):
+                                                                                    ^ (bad-whitespace)
+C: 44, 0: Line too long (108/80) (line-too-long)
+C: 48, 0: Line too long (105/80) (line-too-long)
+C: 56, 0: Trailing whitespace (trailing-whitespace)
+C: 66, 0: Trailing whitespace (trailing-whitespace)
+C: 71, 0: Trailing whitespace (trailing-whitespace)
+C: 84, 0: Line too long (99/80) (line-too-long)
+C: 86, 0: Trailing whitespace (trailing-whitespace)
+C: 87, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C: 88, 0: Trailing whitespace (trailing-whitespace)
+C: 90, 0: Trailing whitespace (trailing-whitespace)
+C: 91, 0: Trailing whitespace (trailing-whitespace)
+C:101, 0: Line too long (81/80) (line-too-long)
+C:105, 0: Exactly one space required after comma
+            labels = self._label(data,self.centroids)
+                                     ^ (bad-whitespace)
+C:132, 0: Line too long (83/80) (line-too-long)
+C:132, 0: Exactly one space required after assignment
+            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
+                           ^ (bad-whitespace)
+C:132, 0: Exactly one space required after comma
+            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
+                                                            ^ (bad-whitespace)
+C:132, 0: Exactly one space required after comma
+            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
+                                                                           ^ (bad-whitespace)
+C:133, 0: Trailing whitespace (trailing-whitespace)
+C:138, 0: Exactly one space required after comma
+    def _init_centroids(self,data):
+                            ^ (bad-whitespace)
+C:139, 0: Trailing whitespace (trailing-whitespace)
+C:142, 0: Trailing whitespace (trailing-whitespace)
+C:143, 0: Exactly one space required after comma
+        random_init = sample(xrange(self.N),self.n_clusters)
+                                           ^ (bad-whitespace)
+C:150, 0: Trailing whitespace (trailing-whitespace)
+C:150, 0: Line too long (101/80) (line-too-long)
+C:151, 0: Trailing whitespace (trailing-whitespace)
+C:151, 0: Line too long (101/80) (line-too-long)
+C:152, 0: Trailing whitespace (trailing-whitespace)
+C:152, 0: Line too long (101/80) (line-too-long)
+C:153, 0: Trailing whitespace (trailing-whitespace)
+C:153, 0: Line too long (101/80) (line-too-long)
+C:154, 0: Line too long (101/80) (line-too-long)
+C:155, 0: Line too long (101/80) (line-too-long)
+C:156, 0: Line too long (101/80) (line-too-long)
+C:157, 0: Line too long (101/80) (line-too-long)
+C:158, 0: Line too long (101/80) (line-too-long)
+C:159, 0: Line too long (101/80) (line-too-long)
+C:160, 0: Line too long (101/80) (line-too-long)
+C:161, 0: Trailing whitespace (trailing-whitespace)
+C:161, 0: Line too long (101/80) (line-too-long)
+C:162, 0: Trailing whitespace (trailing-whitespace)
+C:162, 0: Line too long (101/80) (line-too-long)
+C:163, 0: Trailing whitespace (trailing-whitespace)
+C:163, 0: Line too long (101/80) (line-too-long)
+C:164, 0: Trailing whitespace (trailing-whitespace)
+C:164, 0: Line too long (101/80) (line-too-long)
+C:166, 0: Exactly one space required after comma
+    def _label(self,data,centroids):
+                   ^ (bad-whitespace)
+C:166, 0: Exactly one space required after comma
+    def _label(self,data,centroids):
+                        ^ (bad-whitespace)
+C:174, 0: Exactly one space required after comma
+            self._dists = np.zeros(self.N,dtype=np.float32)
+                                         ^ (bad-whitespace)
+C:177, 0: Exactly one space required after comma
+            labels = self._cu_label(data,centroids)
+                                        ^ (bad-whitespace)
+C:179, 0: Exactly one space required around assignment
+            labels=np.empty(self.N,dtype=np.int32)
+                  ^ (bad-whitespace)
+C:179, 0: Exactly one space required after comma
+            labels=np.empty(self.N,dtype=np.int32)
+                                  ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                      ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                                ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                                       ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                                          ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                                               ^ (bad-whitespace)
+C:180, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
+                                                                  ^ (bad-whitespace)
+C:182, 0: Exactly one space required after comma
+            labels = self._np_label_fast(data,centroids)
+                                             ^ (bad-whitespace)
+C:185, 0: Exactly one space required after comma
+            labels = self._py_label(data,centroids)
+                                        ^ (bad-whitespace)
+C:188, 0: Trailing whitespace (trailing-whitespace)
+C:191, 0: Exactly one space required after comma
+    def _py_sqrd_euclidean(self,a,b):
+                               ^ (bad-whitespace)
+C:191, 0: Exactly one space required after comma
+    def _py_sqrd_euclidean(self,a,b):
+                                 ^ (bad-whitespace)
+C:195, 0: Exactly one space required around assignment
+        dist=0
+            ^ (bad-whitespace)
+C:199, 0: Trailing whitespace (trailing-whitespace)
+C:200, 0: Exactly one space required after comma
+    def _py_label(self,data,centroids):
+                      ^ (bad-whitespace)
+C:200, 0: Exactly one space required after comma
+    def _py_label(self,data,centroids):
+                           ^ (bad-whitespace)
+C:202, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:203, 0: Exactly one space required after comma
+        K,cD = centroids.shape
+         ^ (bad-whitespace)
+C:205, 0: Exactly one space required after comma
+        labels = np.zeros(N,dtype=np.int32)
+                           ^ (bad-whitespace)
+C:210, 0: Exactly one space required after comma
+            best_dist = self._py_sqrd_euclidean(data[n],centroids[0])
+                                                       ^ (bad-whitespace)
+C:213, 0: Exactly one space required after comma
+            for k in xrange(1,K):
+                             ^ (bad-whitespace)
+C:214, 0: Exactly one space required after comma
+                dist = self._py_sqrd_euclidean(data[n],centroids[k])
+                                                      ^ (bad-whitespace)
+C:225, 0: Trailing whitespace (trailing-whitespace)
+C:226, 0: Exactly one space required after comma
+    def _np_label(self,data,centroids):
+                      ^ (bad-whitespace)
+C:226, 0: Exactly one space required after comma
+    def _np_label(self,data,centroids):
+                           ^ (bad-whitespace)
+C:228, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:229, 0: Exactly one space required after comma
+        C,cD = centroids.shape
+         ^ (bad-whitespace)
+C:231, 0: Exactly one space required after comma
+        labels = np.zeros(N,dtype=np.int32)
+                           ^ (bad-whitespace)
+C:232, 0: Trailing whitespace (trailing-whitespace)
+C:237, 0: Trailing whitespace (trailing-whitespace)
+C:238, 0: Trailing whitespace (trailing-whitespace)
+C:240, 0: Exactly one space required after comma
+        for c in xrange(1,C):
+                         ^ (bad-whitespace)
+C:244, 0: Trailing whitespace (trailing-whitespace)
+C:250, 0: Trailing whitespace (trailing-whitespace)
+C:251, 0: Exactly one space required after comma
+    def _np_label_fast(self,data,centroids):
+                           ^ (bad-whitespace)
+C:251, 0: Exactly one space required after comma
+    def _np_label_fast(self,data,centroids):
+                                ^ (bad-whitespace)
+C:253, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:254, 0: Exactly one space required after comma
+        C,cD = centroids.shape
+         ^ (bad-whitespace)
+C:257, 0: Exactly one space required after comma
+        labels = np.zeros(N,dtype=np.int32)
+                           ^ (bad-whitespace)
+C:263, 0: Trailing whitespace (trailing-whitespace)
+C:266, 0: Exactly one space required after comma
+        for c in xrange(1,C):
+                         ^ (bad-whitespace)
+C:271, 0: Trailing whitespace (trailing-whitespace)
+C:274, 0: Exactly one space required around comparison
+            labels[dist<best_dist] = c
+                       ^ (bad-whitespace)
+C:275, 0: Exactly one space required after comma
+            best_dist = np.minimum(dist,best_dist)
+                                       ^ (bad-whitespace)
+C:283, 0: Exactly one space required after comma
+    def _np_label_fast_2(self,data,centroids):
+                             ^ (bad-whitespace)
+C:283, 0: Exactly one space required after comma
+    def _np_label_fast_2(self,data,centroids):
+                                  ^ (bad-whitespace)
+C:291, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:292, 0: Exactly one space required after comma
+        C,cD = centroids.shape
+         ^ (bad-whitespace)
+C:294, 0: Exactly one space required after comma
+        labels = np.zeros(N,dtype=np.int32)
+                           ^ (bad-whitespace)
+C:295, 0: Trailing whitespace (trailing-whitespace)
+C:302, 0: Exactly one space required after comma
+        for c in xrange(1,C):
+                         ^ (bad-whitespace)
+C:306, 0: Trailing whitespace (trailing-whitespace)
+C:307, 0: Exactly one space required after comma
+            thisCluster = np.full(N,c,dtype=np.int32)
+                                   ^ (bad-whitespace)
+C:307, 0: Exactly one space required after comma
+            thisCluster = np.full(N,c,dtype=np.int32)
+                                     ^ (bad-whitespace)
+C:308, 0: Exactly one space required after comma
+            labels = np.where(dist < best_dist,thisCluster,labels)
+                                              ^ (bad-whitespace)
+C:308, 0: Exactly one space required after comma
+            labels = np.where(dist < best_dist,thisCluster,labels)
+                                                          ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+            best_dist = np.where(dist < best_dist,dist,best_dist)
+                                                 ^ (bad-whitespace)
+C:309, 0: Exactly one space required after comma
+            best_dist = np.where(dist < best_dist,dist,best_dist)
+                                                      ^ (bad-whitespace)
+C:310, 0: Trailing whitespace (trailing-whitespace)
+C:312, 0: Trailing whitespace (trailing-whitespace)
+C:314, 0: Exactly one space required after comma
+    def _compute_cuda_dims(self,data):
+                               ^ (bad-whitespace)
+C:316, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:325, 0: Line too long (109/80) (line-too-long)
+C:326, 0: Trailing whitespace (trailing-whitespace)
+C:336, 0: Trailing whitespace (trailing-whitespace)
+C:340, 0: Exactly one space required after comma
+            gridDim = 1,bpg
+                       ^ (bad-whitespace)
+C:341, 0: Trailing whitespace (trailing-whitespace)
+C:342, 0: Trailing whitespace (trailing-whitespace)
+C:345, 0: Trailing whitespace (trailing-whitespace)
+C:346, 0: Exactly one space required after comma
+    def _cu_label(self,data,centroids):
+                      ^ (bad-whitespace)
+C:346, 0: Exactly one space required after comma
+    def _cu_label(self,data,centroids):
+                           ^ (bad-whitespace)
+C:348, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:349, 0: Exactly one space required after comma
+        K,cD = centroids.shape
+         ^ (bad-whitespace)
+C:350, 0: Trailing whitespace (trailing-whitespace)
+C:351, 0: Exactly one space required after comma
+        if self._cuda_mem not in ('manual','auto'):
+                                          ^ (bad-whitespace)
+C:353, 0: Trailing whitespace (trailing-whitespace)
+C:355, 0: Trailing whitespace (trailing-whitespace)
+C:356, 0: Trailing whitespace (trailing-whitespace)
+C:358, 0: Exactly one space required after comma
+        labels = np.empty(N,dtype=np.int32)
+                           ^ (bad-whitespace)
+C:359, 0: Trailing whitespace (trailing-whitespace)
+C:372, 0: Trailing whitespace (trailing-whitespace)
+C:379, 0: Trailing whitespace (trailing-whitespace)
+C:382, 0: Trailing whitespace (trailing-whitespace)
+C:383, 0: Trailing whitespace (trailing-whitespace)
+C:383, 0: Line too long (88/80) (line-too-long)
+C:383, 0: Exactly one space required after comma
+            self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
+                                       ^ (bad-whitespace)
+C:383, 0: Exactly one space required after comma
+            self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
+                                                  ^ (bad-whitespace)
+C:383, 0: Exactly one space required after comma
+            self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
+                                                          ^ (bad-whitespace)
+C:383, 0: Exactly one space required after comma
+            self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
+                                                                        ^ (bad-whitespace)
+C:384, 0: Trailing whitespace (trailing-whitespace)
+C:396, 0: Line too long (85/80) (line-too-long)
+C:396, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+                                      ^ (bad-whitespace)
+C:396, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+                                                ^ (bad-whitespace)
+C:396, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+                                                       ^ (bad-whitespace)
+C:396, 0: Exactly one space required after comma
+            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+                                                                     ^ (bad-whitespace)
+C:399, 0: Line too long (97/80) (line-too-long)
+C:400, 0: Trailing whitespace (trailing-whitespace)
+C:402, 0: Trailing whitespace (trailing-whitespace)
+C:403, 0: Exactly one space required after comma
+    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+                             ^ (bad-whitespace)
+C:403, 0: Exactly one space required after comma
+    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+                               ^ (bad-whitespace)
+C:403, 0: Exactly one space required after comma
+    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+                                 ^ (bad-whitespace)
+C:403, 0: Exactly one space required after comma
+    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+                                   ^ (bad-whitespace)
+C:403, 0: Exactly one space required after comma
+    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+                                           ^ (bad-whitespace)
+C:409, 0: Line too long (82/80) (line-too-long)
+C:409, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+                                               ^ (bad-whitespace)
+C:409, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+                                                           ^ (bad-whitespace)
+C:409, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+                                                             ^ (bad-whitespace)
+C:409, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+                                                               ^ (bad-whitespace)
+C:412, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
+                                               ^ (bad-whitespace)
+C:412, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
+                                                           ^ (bad-whitespace)
+C:412, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
+                                                             ^ (bad-whitespace)
+C:412, 0: Exactly one space required after comma
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
+                                                               ^ (bad-whitespace)
+C:414, 0: Exactly one space required after comma
+            self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
+                                                ^ (bad-whitespace)
+C:414, 0: Exactly one space required after comma
+            self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
+                                                            ^ (bad-whitespace)
+C:414, 0: Exactly one space required after comma
+            self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
+                                                              ^ (bad-whitespace)
+C:419, 0: Trailing whitespace (trailing-whitespace)
+C:431, 0: Exactly one space required after comma
+    def _cu_label_kernel_normal(a,b,c):
+                                 ^ (bad-whitespace)
+C:431, 0: Exactly one space required after comma
+    def _cu_label_kernel_normal(a,b,c):
+                                   ^ (bad-whitespace)
+C:432, 0: Trailing whitespace (trailing-whitespace)
+C:459, 0: Exactly one space required after comma
+        K,D = b.shape # centroid shape
+         ^ (bad-whitespace)
+C:467, 0: Exactly one space required after comma
+            diff = a[n,d]-b[0,d]
+                      ^ (bad-whitespace)
+C:467, 0: Exactly one space required after comma
+            diff = a[n,d]-b[0,d]
+                             ^ (bad-whitespace)
+C:474, 0: Exactly one space required after comma
+        for k in range(1,K):
+                        ^ (bad-whitespace)
+C:478, 0: Exactly one space required after comma
+                diff = a[n,d]-b[k,d]
+                          ^ (bad-whitespace)
+C:478, 0: Exactly one space required after comma
+                diff = a[n,d]-b[k,d]
+                                 ^ (bad-whitespace)
+C:490, 0: Exactly one space required after comma
+    def _cu_label_kernel_dists(a,b,c,dists):
+                                ^ (bad-whitespace)
+C:490, 0: Exactly one space required after comma
+    def _cu_label_kernel_dists(a,b,c,dists):
+                                  ^ (bad-whitespace)
+C:490, 0: Exactly one space required after comma
+    def _cu_label_kernel_dists(a,b,c,dists):
+                                    ^ (bad-whitespace)
+C:519, 0: Exactly one space required after comma
+        K,D = b.shape # centroid shape
+         ^ (bad-whitespace)
+C:527, 0: Exactly one space required after comma
+            diff = a[n,d]-b[0,d]
+                      ^ (bad-whitespace)
+C:527, 0: Exactly one space required after comma
+            diff = a[n,d]-b[0,d]
+                             ^ (bad-whitespace)
+C:534, 0: Exactly one space required after comma
+        for k in range(1,K):
+                        ^ (bad-whitespace)
+C:538, 0: Exactly one space required after comma
+                diff = a[n,d]-b[k,d]
+                          ^ (bad-whitespace)
+C:538, 0: Exactly one space required after comma
+                diff = a[n,d]-b[k,d]
+                                 ^ (bad-whitespace)
+C:551, 0: Trailing whitespace (trailing-whitespace)
+C:551, 0: Line too long (101/80) (line-too-long)
+C:552, 0: Trailing whitespace (trailing-whitespace)
+C:552, 0: Line too long (101/80) (line-too-long)
+C:553, 0: Trailing whitespace (trailing-whitespace)
+C:553, 0: Line too long (101/80) (line-too-long)
+C:554, 0: Trailing whitespace (trailing-whitespace)
+C:554, 0: Line too long (101/80) (line-too-long)
+C:555, 0: Line too long (101/80) (line-too-long)
+C:556, 0: Line too long (101/80) (line-too-long)
+C:557, 0: Line too long (101/80) (line-too-long)
+C:558, 0: Line too long (101/80) (line-too-long)
+C:559, 0: Line too long (101/80) (line-too-long)
+C:560, 0: Line too long (101/80) (line-too-long)
+C:561, 0: Line too long (101/80) (line-too-long)
+C:562, 0: Trailing whitespace (trailing-whitespace)
+C:562, 0: Line too long (101/80) (line-too-long)
+C:563, 0: Trailing whitespace (trailing-whitespace)
+C:563, 0: Line too long (101/80) (line-too-long)
+C:564, 0: Trailing whitespace (trailing-whitespace)
+C:564, 0: Line too long (101/80) (line-too-long)
+C:565, 0: Trailing whitespace (trailing-whitespace)
+C:565, 0: Line too long (101/80) (line-too-long)
+C:568, 0: Exactly one space required after comma
+    def _recompute_centroids(self,data,centroids,labels):
+                                 ^ (bad-whitespace)
+C:568, 0: Exactly one space required after comma
+    def _recompute_centroids(self,data,centroids,labels):
+                                      ^ (bad-whitespace)
+C:568, 0: Exactly one space required after comma
+    def _recompute_centroids(self,data,centroids,labels):
+                                                ^ (bad-whitespace)
+C:570, 0: Line too long (85/80) (line-too-long)
+C:570, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_group(data,centroids,labels)
+                                                                   ^ (bad-whitespace)
+C:570, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_group(data,centroids,labels)
+                                                                             ^ (bad-whitespace)
+C:572, 0: Line too long (85/80) (line-too-long)
+C:572, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
+                                                                   ^ (bad-whitespace)
+C:572, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_index(data,centroids,labels)
+                                                                             ^ (bad-whitespace)
+C:574, 0: Line too long (84/80) (line-too-long)
+C:574, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+                                                                  ^ (bad-whitespace)
+C:574, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
+                                                                            ^ (bad-whitespace)
+C:576, 0: Trailing whitespace (trailing-whitespace)
+C:576, 0: Line too long (84/80) (line-too-long)
+C:576, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_good(data,centroids,labels) 
+                                                                  ^ (bad-whitespace)
+C:576, 0: Exactly one space required after comma
+            new_centroids = self._np_recompute_centroids_good(data,centroids,labels) 
+                                                                            ^ (bad-whitespace)
+C:578, 0: Exactly one space required after comma
+            raise Exception("centroid mode invalid:",self._centroid_mode)
+                                                    ^ (bad-whitespace)
+C:583, 0: Exactly one space required after comma
+    def _cu_centroids(data,centroids,labels):
+                          ^ (bad-whitespace)
+C:583, 0: Exactly one space required after comma
+    def _cu_centroids(data,centroids,labels):
+                                    ^ (bad-whitespace)
+C:586, 0: Trailing whitespace (trailing-whitespace)
+C:588, 0: Line too long (90/80) (line-too-long)
+C:589, 0: Exactly one space required after comma
+    def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
+                                        ^ (bad-whitespace)
+C:589, 0: Exactly one space required after comma
+    def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
+                                                  ^ (bad-whitespace)
+C:589, 0: Exactly one space required after comma
+    def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
+                                                         ^ (bad-whitespace)
+C:589, 0: Exactly one space required after comma
+    def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
+                                                                  ^ (bad-whitespace)
+C:607, 0: Exactly one space required after comma
+    def _np_recompute_centroids_group(self,data,centroids,labels):
+                                          ^ (bad-whitespace)
+C:607, 0: Exactly one space required after comma
+    def _np_recompute_centroids_group(self,data,centroids,labels):
+                                               ^ (bad-whitespace)
+C:607, 0: Exactly one space required after comma
+    def _np_recompute_centroids_group(self,data,centroids,labels):
+                                                         ^ (bad-whitespace)
+C:610, 0: Trailing whitespace (trailing-whitespace)
+C:613, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:614, 0: Exactly one space required after comma
+        K,D = centroids.shape
+         ^ (bad-whitespace)
+C:615, 0: Trailing whitespace (trailing-whitespace)
+C:616, 0: Trailing whitespace (trailing-whitespace)
+C:616, 0: Exactly one space required around assignment
+        grouped_data=[[] for i in xrange(K)] 
+                    ^ (bad-whitespace)
+C:619, 0: Trailing whitespace (trailing-whitespace)
+C:623, 0: Trailing whitespace (trailing-whitespace)
+C:626, 0: Exactly one space required after comma
+            new_centroids[k] = np.mean(grouped_data[k],axis=0)
+                                                      ^ (bad-whitespace)
+C:630, 0: Exactly one space required after comma
+    def _np_recompute_centroids_good(self,data,centroids,labels):
+                                         ^ (bad-whitespace)
+C:630, 0: Exactly one space required after comma
+    def _np_recompute_centroids_good(self,data,centroids,labels):
+                                              ^ (bad-whitespace)
+C:630, 0: Exactly one space required after comma
+    def _np_recompute_centroids_good(self,data,centroids,labels):
+                                                        ^ (bad-whitespace)
+C:632, 0: Line too long (81/80) (line-too-long)
+C:637, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:638, 0: Trailing whitespace (trailing-whitespace)
+C:638, 0: Exactly one space required after comma
+        K,D = centroids.shape       
+         ^ (bad-whitespace)
+C:639, 0: Trailing whitespace (trailing-whitespace)
+C:648, 0: Exactly one space required around assignment
+        j=0 #empty cluster indexer
+         ^ (bad-whitespace)
+C:651, 0: Exactly one space required around assignment
+                new_centroids[i] = data[labels==i].mean(axis=0)
+                                              ^^ (bad-whitespace)
+C:654, 0: Exactly one space required around assignment
+                j+=1
+                 ^^ (bad-whitespace)
+C:658, 0: Exactly one space required after comma
+    def _np_recompute_centroids_index(self,data,centroids,labels):
+                                          ^ (bad-whitespace)
+C:658, 0: Exactly one space required after comma
+    def _np_recompute_centroids_index(self,data,centroids,labels):
+                                               ^ (bad-whitespace)
+C:658, 0: Exactly one space required after comma
+    def _np_recompute_centroids_index(self,data,centroids,labels):
+                                                         ^ (bad-whitespace)
+C:661, 0: Trailing whitespace (trailing-whitespace)
+C:674, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:675, 0: Trailing whitespace (trailing-whitespace)
+C:675, 0: Exactly one space required after comma
+        K,D = centroids.shape       
+         ^ (bad-whitespace)
+C:676, 0: Trailing whitespace (trailing-whitespace)
+C:685, 0: Line too long (104/80) (line-too-long)
+C:686, 0: Line too long (96/80) (line-too-long)
+C:693, 0: Line too long (83/80) (line-too-long)
+C:698, 0: Exactly one space required after comma
+            return data.mean(axis=0).reshape(1,data.shape[1])
+                                              ^ (bad-whitespace)
+C:703, 0: Exactly one space required after comma
+            startIndex,endIndex = 0,labelChangedIndex[0]
+                      ^ (bad-whitespace)
+C:703, 0: Exactly one space required after comma
+            startIndex,endIndex = 0,labelChangedIndex[0]
+                                   ^ (bad-whitespace)
+C:705, 0: Exactly one space required after comma
+            print "labels: ",labels
+                            ^ (bad-whitespace)
+C:706, 0: Exactly one space required after comma
+            print "centroids: ",centroids
+                               ^ (bad-whitespace)
+C:707, 0: Exactly one space required after comma
+            print "centroids equal:",(centroids[0]==centroids[1])
+                                    ^ (bad-whitespace)
+C:707, 0: Exactly one space required around keyword argument assignment
+            print "centroids equal:",(centroids[0]==centroids[1])
+                                                  ^^ (bad-whitespace)
+C:708, 0: Exactly one space required after comma
+            print "labelChangedIndex: ",labelChangedIndex
+                                       ^ (bad-whitespace)
+C:720, 0: Exactly one space required around assignment
+            self.partition=list()
+                          ^ (bad-whitespace)
+C:724, 0: Exactly one space required after comma
+        for k in xrange(1,nonEmptyClusters-1):
+                         ^ (bad-whitespace)
+C:725, 0: Exactly one space required after comma
+            startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
+                      ^ (bad-whitespace)
+C:725, 0: Exactly one space required after comma
+            startIndex,endIndex = labelChangedIndex[k-1],labelChangedIndex[k]
+                                                        ^ (bad-whitespace)
+C:727, 0: Line too long (83/80) (line-too-long)
+C:743, 0: Exactly one space required after comma
+        emptyClusters = [i for i,c in enumerate(centroids) if not c.any()]
+                                ^ (bad-whitespace)
+C:744, 0: Exactly one space required after comma
+        new_centroids = np.delete(new_centroids,emptyClusters,axis=0)
+                                               ^ (bad-whitespace)
+C:744, 0: Exactly one space required after comma
+        new_centroids = np.delete(new_centroids,emptyClusters,axis=0)
+                                                             ^ (bad-whitespace)
+C:747, 0: Exactly one space required after comma
+            print "centroids: ",new_centroids
+                               ^ (bad-whitespace)
+C:751, 0: Trailing whitespace (trailing-whitespace)
+C:752, 0: Exactly one space required after comma
+    def _np_recompute_centroids_iter(self,data,centroids,labels):
+                                         ^ (bad-whitespace)
+C:752, 0: Exactly one space required after comma
+    def _np_recompute_centroids_iter(self,data,centroids,labels):
+                                              ^ (bad-whitespace)
+C:752, 0: Exactly one space required after comma
+    def _np_recompute_centroids_iter(self,data,centroids,labels):
+                                                        ^ (bad-whitespace)
+C:758, 0: Exactly one space required after comma
+        N,D = data.shape
+         ^ (bad-whitespace)
+C:759, 0: Trailing whitespace (trailing-whitespace)
+C:759, 0: Exactly one space required after comma
+        K,D = centroids.shape       
+         ^ (bad-whitespace)
+C:760, 0: Trailing whitespace (trailing-whitespace)
+C:762, 0: Exactly one space required after comma
+        centroid_count = np.zeros(K,dtype=np.int32)
+                                   ^ (bad-whitespace)
+C:763, 0: Trailing whitespace (trailing-whitespace)
+C:781, 0: Trailing whitespace (trailing-whitespace)
+C:783, 0: Trailing whitespace (trailing-whitespace)
+C:785, 0: Exactly one space required after comma
+        new_centroids = new_centroids / centroid_count.reshape((K,1))
+                                                                 ^ (bad-whitespace)
+C:786, 0: Trailing whitespace (trailing-whitespace)
+C:  1, 0: Invalid module name "K_Means3" (invalid-name)
+F: 16, 0: Unable to import 'numbapro' (import-error)
+F: 17, 0: Unable to import 'numbapro' (import-error)
+C: 25, 0: Invalid class name "K_Means" (invalid-name)
+C: 64, 8: Invalid attribute name "_cudaLabelsHandle" (invalid-name)
+C:381,12: Invalid attribute name "_cudaCentroidsHandle" (invalid-name)
+C: 75, 8: Invalid attribute name "_MAX_GRID_XYZ_DIM" (invalid-name)
+C: 90, 8: Invalid attribute name "D" (invalid-name)
+C: 73, 8: Invalid attribute name "_blockDim" (invalid-name)
+C: 65, 8: Invalid attribute name "_cudaCentroidHandle" (invalid-name)
+C: 89, 8: Invalid attribute name "N" (invalid-name)
+C: 63, 8: Invalid attribute name "_cudaDataHandle" (invalid-name)
+C: 74, 8: Invalid attribute name "_MAX_THREADS_BLOCK" (invalid-name)
+C:378,16: Invalid attribute name "_distsHandle" (invalid-name)
+C: 72, 8: Invalid attribute name "_gridDim" (invalid-name)
+C: 25, 0: Missing class docstring (missing-docstring)
+R: 25, 0: Too many instance attributes (30/7) (too-many-instance-attributes)
+C: 25, 0: Old-style class defined. (old-style-class)
+R: 28, 4: Too many arguments (7/5) (too-many-arguments)
+E: 42,27: Module 'numpy' has no 'ndarray' member (no-member)
+E: 43,15: Instance of 'str' has no 'shape' member (but some types could not be inferred) (maybe-no-member)
+E: 59,24: Module 'numpy' has no 'inf' member (no-member)
+C: 81, 4: Missing method docstring (missing-docstring)
+E: 83,25: Module 'numpy' has no 'float32' member (no-member)
+E: 85,31: Module 'numpy' has no 'float32' member (no-member)
+C: 87, 8: Invalid variable name "N" (invalid-name)
+C: 87,10: Invalid variable name "D" (invalid-name)
+E:100,24: Module 'numpy' has no 'inf' member (no-member)
+C:138, 4: Missing method docstring (missing-docstring)
+E:174,26: Module 'numpy' has no 'zeros' member (no-member)
+E:174,48: Module 'numpy' has no 'float32' member (no-member)
+E:179,19: Module 'numpy' has no 'empty' member (no-member)
+E:179,41: Module 'numpy' has no 'int32' member (no-member)
+C:191, 4: Invalid argument name "a" (invalid-name)
+C:191, 4: Invalid argument name "b" (invalid-name)
+C:196,12: Invalid variable name "d" (invalid-name)
+R:191, 4: Method could be a function (no-self-use)
+C:200, 4: Missing method docstring (missing-docstring)
+C:202, 8: Invalid variable name "N" (invalid-name)
+C:202,10: Invalid variable name "D" (invalid-name)
+C:203, 8: Invalid variable name "K" (invalid-name)
+C:203,10: Invalid variable name "cD" (invalid-name)
+E:205,17: Module 'numpy' has no 'zeros' member (no-member)
+E:205,34: Module 'numpy' has no 'int32' member (no-member)
+C:207,12: Invalid variable name "n" (invalid-name)
+W:202,10: Unused variable 'D' (unused-variable)
+W:203,10: Unused variable 'cD' (unused-variable)
+C:226, 4: Missing method docstring (missing-docstring)
+C:228, 8: Invalid variable name "N" (invalid-name)
+C:228,10: Invalid variable name "D" (invalid-name)
+C:229, 8: Invalid variable name "C" (invalid-name)
+C:229,10: Invalid variable name "cD" (invalid-name)
+E:231,17: Module 'numpy' has no 'zeros' member (no-member)
+E:231,34: Module 'numpy' has no 'int32' member (no-member)
+C:240,12: Invalid variable name "c" (invalid-name)
+C:245,16: Invalid variable name "n" (invalid-name)
+W:228,10: Unused variable 'D' (unused-variable)
+W:229,10: Unused variable 'cD' (unused-variable)
+R:226, 4: Method could be a function (no-self-use)
+C:251, 4: Missing method docstring (missing-docstring)
+C:253, 8: Invalid variable name "N" (invalid-name)
+C:253,10: Invalid variable name "D" (invalid-name)
+C:254, 8: Invalid variable name "C" (invalid-name)
+C:254,10: Invalid variable name "cD" (invalid-name)
+E:257,17: Module 'numpy' has no 'zeros' member (no-member)
+E:257,34: Module 'numpy' has no 'int32' member (no-member)
+C:266,12: Invalid variable name "c" (invalid-name)
+E:275,24: Module 'numpy' has no 'minimum' member (no-member)
+W:253,10: Unused variable 'D' (unused-variable)
+W:254,10: Unused variable 'cD' (unused-variable)
+C:291, 8: Invalid variable name "N" (invalid-name)
+C:291,10: Invalid variable name "D" (invalid-name)
+C:292, 8: Invalid variable name "C" (invalid-name)
+C:292,10: Invalid variable name "cD" (invalid-name)
+E:294,17: Module 'numpy' has no 'zeros' member (no-member)
+E:294,34: Module 'numpy' has no 'int32' member (no-member)
+C:302,12: Invalid variable name "c" (invalid-name)
+C:307,12: Invalid variable name "thisCluster" (invalid-name)
+E:307,26: Module 'numpy' has no 'full' member (no-member)
+E:307,44: Module 'numpy' has no 'int32' member (no-member)
+E:308,21: Module 'numpy' has no 'where' member (no-member)
+E:309,24: Module 'numpy' has no 'where' member (no-member)
+W:291,10: Unused variable 'D' (unused-variable)
+W:292,10: Unused variable 'cD' (unused-variable)
+R:283, 4: Method could be a function (no-self-use)
+C:314, 4: Missing method docstring (missing-docstring)
+C:316, 8: Invalid variable name "N" (invalid-name)
+C:316,10: Invalid variable name "D" (invalid-name)
+C:318, 8: Invalid variable name "blockHeight" (invalid-name)
+C:319, 8: Invalid variable name "blockWidth" (invalid-name)
+C:320, 8: Invalid variable name "blockDim" (invalid-name)
+E:323,14: Module 'numpy' has no 'prod' member (no-member)
+E:326,21: Module 'numpy' has no 'ceil' member (no-member)
+C:334,12: Invalid variable name "gridWidth" (invalid-name)
+E:334,24: Module 'numpy' has no 'ceil' member (no-member)
+C:336,12: Invalid variable name "gridHeight" (invalid-name)
+E:336,25: Module 'numpy' has no 'ceil' member (no-member)
+C:338,12: Invalid variable name "gridDim" (invalid-name)
+C:340,12: Invalid variable name "gridDim" (invalid-name)
+W:316,10: Unused variable 'D' (unused-variable)
+C:346, 4: Missing method docstring (missing-docstring)
+C:348, 8: Invalid variable name "N" (invalid-name)
+C:348,10: Invalid variable name "D" (invalid-name)
+C:349, 8: Invalid variable name "K" (invalid-name)
+C:349,10: Invalid variable name "cD" (invalid-name)
+E:358,17: Module 'numpy' has no 'empty' member (no-member)
+E:358,34: Module 'numpy' has no 'int32' member (no-member)
+C:366,16: Invalid variable name "dData" (invalid-name)
+E:366,24: Undefined variable 'cuda' (undefined-variable)
+C:370,16: Invalid variable name "dData" (invalid-name)
+C:373,12: Invalid variable name "dCentroids" (invalid-name)
+E:373,25: Undefined variable 'cuda' (undefined-variable)
+C:374,12: Invalid variable name "dLabels" (invalid-name)
+C:377,16: Invalid variable name "dDists" (invalid-name)
+W:348,10: Unused variable 'D' (unused-variable)
+W:349, 8: Unused variable 'K' (unused-variable)
+W:349,10: Unused variable 'cD' (unused-variable)
+C:403, 4: Invalid argument name "a" (invalid-name)
+C:403, 4: Invalid argument name "b" (invalid-name)
+C:403, 4: Invalid argument name "c" (invalid-name)
+C:403, 4: Invalid argument name "gridDim" (invalid-name)
+C:403, 4: Invalid argument name "blockDim" (invalid-name)
+R:403, 4: Too many arguments (6/5) (too-many-arguments)
+W:416, 8: Unnecessary pass statement (unnecessary-pass)
+C:431, 4: Invalid argument name "a" (invalid-name)
+C:431, 4: Invalid argument name "b" (invalid-name)
+C:431, 4: Invalid argument name "c" (invalid-name)
+E:431, 4: Method should have "self" as first argument (no-self-argument)
+R:431, 4: Too many local variables (21/15) (too-many-locals)
+C:437, 8: Invalid variable name "tx" (invalid-name)
+E:437,13: Undefined variable 'cuda' (undefined-variable)
+C:438, 8: Invalid variable name "ty" (invalid-name)
+E:438,13: Undefined variable 'cuda' (undefined-variable)
+C:441, 8: Invalid variable name "bx" (invalid-name)
+E:441,13: Undefined variable 'cuda' (undefined-variable)
+C:442, 8: Invalid variable name "by" (invalid-name)
+E:442,13: Undefined variable 'cuda' (undefined-variable)
+C:445, 8: Invalid variable name "bw" (invalid-name)
+E:445,13: Undefined variable 'cuda' (undefined-variable)
+C:446, 8: Invalid variable name "bh" (invalid-name)
+E:446,13: Undefined variable 'cuda' (undefined-variable)
+C:449, 8: Invalid variable name "gw" (invalid-name)
+E:449,13: Undefined variable 'cuda' (undefined-variable)
+C:450, 8: Invalid variable name "gh" (invalid-name)
+E:450,13: Undefined variable 'cuda' (undefined-variable)
+C:456, 8: Invalid variable name "n" (invalid-name)
+C:458, 8: Invalid variable name "N" (invalid-name)
+C:459, 8: Invalid variable name "K" (invalid-name)
+C:459,10: Invalid variable name "D" (invalid-name)
+C:466,12: Invalid variable name "d" (invalid-name)
+C:477,16: Invalid variable name "d" (invalid-name)
+W:449, 8: Unused variable 'gw' (unused-variable)
+W:445, 8: Unused variable 'bw' (unused-variable)
+W:437, 8: Unused variable 'tx' (unused-variable)
+C:490, 4: Invalid argument name "a" (invalid-name)
+C:490, 4: Invalid argument name "b" (invalid-name)
+C:490, 4: Invalid argument name "c" (invalid-name)
+E:490, 4: Method should have "self" as first argument (no-self-argument)
+R:490, 4: Too many local variables (22/15) (too-many-locals)
+C:497, 8: Invalid variable name "tx" (invalid-name)
+E:497,13: Undefined variable 'cuda' (undefined-variable)
+C:498, 8: Invalid variable name "ty" (invalid-name)
+E:498,13: Undefined variable 'cuda' (undefined-variable)
+C:501, 8: Invalid variable name "bx" (invalid-name)
+E:501,13: Undefined variable 'cuda' (undefined-variable)
+C:502, 8: Invalid variable name "by" (invalid-name)
+E:502,13: Undefined variable 'cuda' (undefined-variable)
+C:505, 8: Invalid variable name "bw" (invalid-name)
+E:505,13: Undefined variable 'cuda' (undefined-variable)
+C:506, 8: Invalid variable name "bh" (invalid-name)
+E:506,13: Undefined variable 'cuda' (undefined-variable)
+C:509, 8: Invalid variable name "gw" (invalid-name)
+E:509,13: Undefined variable 'cuda' (undefined-variable)
+C:510, 8: Invalid variable name "gh" (invalid-name)
+E:510,13: Undefined variable 'cuda' (undefined-variable)
+C:516, 8: Invalid variable name "n" (invalid-name)
+C:518, 8: Invalid variable name "N" (invalid-name)
+C:519, 8: Invalid variable name "K" (invalid-name)
+C:519,10: Invalid variable name "D" (invalid-name)
+C:526,12: Invalid variable name "d" (invalid-name)
+C:537,16: Invalid variable name "d" (invalid-name)
+W:509, 8: Unused variable 'gw' (unused-variable)
+W:505, 8: Unused variable 'bw' (unused-variable)
+W:497, 8: Unused variable 'tx' (unused-variable)
+C:568, 4: Missing method docstring (missing-docstring)
+C:583, 4: Missing method docstring (missing-docstring)
+E:583, 4: Method should have "self" as first argument (no-self-argument)
+C:589, 4: Invalid argument name "cCounter" (invalid-name)
+C:589, 4: Invalid argument name "cSum" (invalid-name)
+C:589, 4: Missing method docstring (missing-docstring)
+E:589, 4: Method should have "self" as first argument (no-self-argument)
+C:591, 8: Invalid variable name "tx" (invalid-name)
+E:591,13: Undefined variable 'cuda' (undefined-variable)
+C:592, 8: Invalid variable name "ty" (invalid-name)
+E:592,13: Undefined variable 'cuda' (undefined-variable)
+C:595, 8: Invalid variable name "bx" (invalid-name)
+E:595,13: Undefined variable 'cuda' (undefined-variable)
+C:596, 8: Invalid variable name "by" (invalid-name)
+E:596,13: Undefined variable 'cuda' (undefined-variable)
+C:599, 8: Invalid variable name "bw" (invalid-name)
+E:599,13: Undefined variable 'cuda' (undefined-variable)
+C:600, 8: Invalid variable name "bh" (invalid-name)
+E:600,13: Undefined variable 'cuda' (undefined-variable)
+C:603, 8: Invalid variable name "gw" (invalid-name)
+E:603,13: Undefined variable 'cuda' (undefined-variable)
+C:604, 8: Invalid variable name "gh" (invalid-name)
+E:604,13: Undefined variable 'cuda' (undefined-variable)
+W:606, 8: Unnecessary pass statement (unnecessary-pass)
+W:603, 8: Unused variable 'gw' (unused-variable)
+W:591, 8: Unused variable 'tx' (unused-variable)
+W:592, 8: Unused variable 'ty' (unused-variable)
+W:589,51: Unused argument 'labels' (unused-argument)
+W:600, 8: Unused variable 'bh' (unused-variable)
+W:589,41: Unused argument 'centroids' (unused-argument)
+W:599, 8: Unused variable 'bw' (unused-variable)
+W:589,58: Unused argument 'cCounter' (unused-argument)
+W:589,67: Unused argument 'cSum' (unused-argument)
+W:595, 8: Unused variable 'bx' (unused-variable)
+W:596, 8: Unused variable 'by' (unused-variable)
+W:604, 8: Unused variable 'gh' (unused-variable)
+R:589, 4: Method could be a function (no-self-use)
+C:613, 8: Invalid variable name "N" (invalid-name)
+C:613,10: Invalid variable name "D" (invalid-name)
+C:614, 8: Invalid variable name "K" (invalid-name)
+C:614,10: Invalid variable name "D" (invalid-name)
+E:618,24: Module 'numpy' has no 'zeros_like' member (no-member)
+C:620,12: Invalid variable name "n" (invalid-name)
+E:626,31: Module 'numpy' has no 'mean' member (no-member)
+W:613,10: Unused variable 'D' (unused-variable)
+W:616,29: Unused variable 'i' (unused-variable)
+R:607, 4: Method could be a function (no-self-use)
+C:637, 8: Invalid variable name "N" (invalid-name)
+C:637,10: Invalid variable name "D" (invalid-name)
+C:638, 8: Invalid variable name "K" (invalid-name)
+C:638,10: Invalid variable name "D" (invalid-name)
+E:641,24: Module 'numpy' has no 'zeros_like' member (no-member)
+C:643, 8: Invalid variable name "nonEmptyClusters" (invalid-name)
+E:643,27: Module 'numpy' has no 'unique' member (no-member)
+C:646, 8: Invalid variable name "furtherDistsArgs" (invalid-name)
+W:637,10: Unused variable 'D' (unused-variable)
+W:637, 8: Unused variable 'N' (unused-variable)
+R:658, 4: Too many local variables (19/15) (too-many-locals)
+C:674, 8: Invalid variable name "N" (invalid-name)
+C:674,10: Invalid variable name "D" (invalid-name)
+C:675, 8: Invalid variable name "K" (invalid-name)
+C:675,10: Invalid variable name "D" (invalid-name)
+E:678,24: Module 'numpy' has no 'zeros_like' member (no-member)
+C:683, 8: Invalid variable name "sortedData" (invalid-name)
+C:687, 8: Invalid variable name "labelChangedIndex" (invalid-name)
+E:687,28: Module 'numpy' has no 'where' member (no-member)
+C:695, 8: Invalid variable name "nonEmptyClusters" (invalid-name)
+C:703,12: Invalid variable name "startIndex" (invalid-name)
+C:703,23: Invalid variable name "endIndex" (invalid-name)
+C:712, 8: Invalid variable name "clusterID" (invalid-name)
+C:725,12: Invalid variable name "startIndex" (invalid-name)
+C:725,23: Invalid variable name "endIndex" (invalid-name)
+C:726,12: Invalid variable name "clusterID" (invalid-name)
+C:734, 8: Invalid variable name "startIndex" (invalid-name)
+C:735, 8: Invalid variable name "clusterID" (invalid-name)
+C:743, 8: Invalid variable name "emptyClusters" (invalid-name)
+E:744,24: Module 'numpy' has no 'delete' member (no-member)
+E:746,11: Module 'numpy' has no 'unique' member (no-member)
+W:674,10: Unused variable 'D' (unused-variable)
+W:674, 8: Unused variable 'N' (unused-variable)
+W:675, 8: Unused variable 'K' (unused-variable)
+C:758, 8: Invalid variable name "N" (invalid-name)
+C:758,10: Invalid variable name "D" (invalid-name)
+C:759, 8: Invalid variable name "K" (invalid-name)
+C:759,10: Invalid variable name "D" (invalid-name)
+E:761,24: Module 'numpy' has no 'zeros_like' member (no-member)
+E:762,25: Module 'numpy' has no 'zeros' member (no-member)
+E:762,42: Module 'numpy' has no 'int32' member (no-member)
+W:769,-1: String statement has no effect (pointless-string-statement)
+W:776,-1: String statement has no effect (pointless-string-statement)
+C:779,12: Invalid variable name "n" (invalid-name)
+W:758,10: Unused variable 'D' (unused-variable)
+R:752, 4: Method could be a function (no-self-use)
+W:381,12: Attribute '_cudaCentroidsHandle' defined outside __init__ (attribute-defined-outside-init)
+W:134, 8: Attribute 'labels_' defined outside __init__ (attribute-defined-outside-init)
+W:135, 8: Attribute 'cluster_centers_' defined outside __init__ (attribute-defined-outside-init)
+W: 90, 8: Attribute 'D' defined outside __init__ (attribute-defined-outside-init)
+W: 89, 8: Attribute 'N' defined outside __init__ (attribute-defined-outside-init)
+W:117,16: Attribute '_error' defined outside __init__ (attribute-defined-outside-init)
+W:720,12: Attribute 'partition' defined outside __init__ (attribute-defined-outside-init)
+W:279, 8: Attribute '_dists' defined outside __init__ (attribute-defined-outside-init)
+W:378,16: Attribute '_distsHandle' defined outside __init__ (attribute-defined-outside-init)
+R: 25, 0: Too few public methods (1/2) (too-few-public-methods)
+
+
+Report
+======
+356 statements analysed.
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |361    |56.14 |361      |=          |
++----------+-------+------+---------+-----------+
+|docstring |75     |11.66 |75       |=          |
++----------+-------+------+---------+-----------+
+|comment   |135    |21.00 |135      |=          |
++----------+-------+------+---------+-----------+
+|empty     |72     |11.20 |72       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |1      |1          |=          |100.00      |100.00   |
++---------+-------+-----------+-----------+------------+---------+
+|class    |1      |1          |=          |0.00        |100.00   |
++---------+-------+-----------+-----------+------------+---------+
+|method   |21     |21         |=          |52.38       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|function |0      |0          |=          |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |460    |459      |+1.00      |
++-----------+-------+---------+-----------+
+|refactor   |13     |13       |=          |
++-----------+-------+---------+-----------+
+|warning    |56     |56       |=          |
++-----------+-------+---------+-----------+
+|error      |70     |70       |=          |
++-----------+-------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|bad-whitespace                 |175         |
++-------------------------------+------------+
+|invalid-name                   |139         |
++-------------------------------+------------+
+|trailing-whitespace            |82          |
++-------------------------------+------------+
+|line-too-long                  |52          |
++-------------------------------+------------+
+|no-member                      |39          |
++-------------------------------+------------+
+|unused-variable                |34          |
++-------------------------------+------------+
+|undefined-variable             |26          |
++-------------------------------+------------+
+|missing-docstring              |11          |
++-------------------------------+------------+
+|attribute-defined-outside-init |9           |
++-------------------------------+------------+
+|no-self-use                    |6           |
++-------------------------------+------------+
+|fixme                          |5           |
++-------------------------------+------------+
+|unused-argument                |4           |
++-------------------------------+------------+
+|no-self-argument               |4           |
++-------------------------------+------------+
+|too-many-locals                |3           |
++-------------------------------+------------+
+|unnecessary-pass               |2           |
++-------------------------------+------------+
+|too-many-arguments             |2           |
++-------------------------------+------------+
+|pointless-string-statement     |2           |
++-------------------------------+------------+
+|import-error                   |2           |
++-------------------------------+------------+
+|too-many-instance-attributes   |1           |
++-------------------------------+------------+
+|too-few-public-methods         |1           |
++-------------------------------+------------+
+|old-style-class                |1           |
++-------------------------------+------------+
+|maybe-no-member                |1           |
++-------------------------------+------------+
+
+
+
+Global evaluation
+-----------------
+Your code has been rated at -14.69/10 (previous run: -14.66/10, -0.03)
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |=          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+External dependencies
+---------------------
+::
+
+    numpy (MyML.cluster.K_Means3)
+
+
+
