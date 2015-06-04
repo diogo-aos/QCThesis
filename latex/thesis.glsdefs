@@ -508,3 +508,123 @@ parent={},%
 %
 }%
 }%
+\ifglsentryexists{hac}{}%
+{%
+\gls@defglossaryentry{hac}%
+{%
+name={HAC},%
+sort={HAC},%
+type={acronym},%
+first={Hierarchical Agglomerative Clustering (HAC)},%
+firstplural={Hierarchical Agglomerative Clusterings(HACs)},%
+text={HAC},%
+plural={HACs},%
+description={Hierarchical Agglomerative Clustering},%
+descriptionplural={Hierarchical Agglomerative Clustering\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Hierarchical Agglomerative Clustering},%
+longplural={Hierarchical Agglomerative Clusterings},%
+short={HAC},%
+shortplural={HACs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{mst}{}%
+{%
+\gls@defglossaryentry{mst}%
+{%
+name={MST},%
+sort={MST},%
+type={acronym},%
+first={Minimum Spanning Tree (MST)},%
+firstplural={Minimum Spanning Trees(MSTs)},%
+text={MST},%
+plural={MSTs},%
+description={Minimum Spanning Tree},%
+descriptionplural={Minimum Spanning Tree\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Minimum Spanning Tree},%
+longplural={Minimum Spanning Trees},%
+short={MST},%
+shortplural={MSTs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{sl-hac}{}%
+{%
+\gls@defglossaryentry{sl-hac}%
+{%
+name={SL-HAC},%
+sort={SL-HAC},%
+type={acronym},%
+first={Single-Linkage HAC (SL-HAC)},%
+firstplural={Single-Linkage HACs(SL-HACs)},%
+text={SL-HAC},%
+plural={SL-HACs},%
+description={Single-Linkage HAC},%
+descriptionplural={Single-Linkage HAC\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Single-Linkage HAC},%
+longplural={Single-Linkage HACs},%
+short={SL-HAC},%
+shortplural={SL-HACs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{csr}{}%
+{%
+\gls@defglossaryentry{csr}%
+{%
+name={CSR},%
+sort={CSR},%
+type={acronym},%
+first={Compressed Sparse Row (CSR)},%
+firstplural={Compressed Sparse Rows(CSRs)},%
+text={CSR},%
+plural={CSRs},%
+description={Compressed Sparse Row},%
+descriptionplural={Compressed Sparse Row\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Compressed Sparse Row},%
+longplural={Compressed Sparse Rows},%
+short={CSR},%
+shortplural={CSRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

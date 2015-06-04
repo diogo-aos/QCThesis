@@ -38,10 +38,11 @@
 \contentsline {subsubsection}{\numberline {2.4.2}MapReduce on \gls {gpu}}{12}
 \contentsline {subsubsection}{\numberline {2.4.3}Overview of CUDA}{12}
 \contentsline {subsubsection}{\numberline {2.4.4}Parallel K-Means}{12}
-\contentsline {subsubsection}{\numberline {2.4.5}Parallel Hierarchical Agglomerative Clustering}{12}
-\contentsline {section}{\numberline {3}Methodology}{13}
-\contentsline {subsection}{\numberline {3.1}Quantum Clustering}{13}
-\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{13}
-\contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{13}
-\contentsline {section}{\numberline {4}Discussion?}{15}
-\contentsline {section}{\numberline {5}Future work}{15}
+\contentsline {subsubsection}{\numberline {2.4.5}Parallel Hierarchical Agglomerative Clustering}{13}
+\contentsline {paragraph}{Algorithm for finding Minimum Spanning Trees}{13}
+\contentsline {section}{\numberline {3}Methodology}{15}
+\contentsline {subsection}{\numberline {3.1}Quantum Clustering}{15}
+\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{15}
+\contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{15}
+\contentsline {section}{\numberline {4}Discussion?}{17}
+\contentsline {section}{\numberline {5}Future work}{17}

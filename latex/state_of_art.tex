@@ -422,11 +422,56 @@ Furthermore, it is a very good candidate for parallelization. K-Means is compose
 	\item recomputation of the centroids based on the labels assignment, e.g. the new centroids will be the mean of all the patterns assigned to it.
 \end{enumerate}
 
-The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids. Two possible approaches to parallelize this step on the \gls{gpu} are possible, a data-centric and a centroid-centric. In the former, a parallel computation unit will compute the distance from one pattern to all centroids and assign the pattern to the closest centroid. In the later, each computation unit will 
+The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids. Two possible approaches to parallelize this step on the \gls{gpu} are possible, a centroid-centric and a data-centric. In the former each computation unit is responsible for a centroid and will compute the distance from its centroid to every pattern. In the end, the patterns are assigned the closest centroid. This approach is suitable for devices with a low number of computing units so as to stream the data to each one.
+The later approach is suited to devices with more computing units. Each unit computes the distance from one single pattern to every centroid. In the end, that same unit assigns the pattern to the closest centroid. This strategy has the advantage of using less memory since it doens't need to store all the pair-wise distances to perform the labelling - it only needs to store the best distance for each pattern.
+
 
 \subsubsection{Parallel Hierarchical Agglomerative Clustering}
+\newacronym{hac}{HAC}{Hierarchical Agglomerative Clustering}
+\newacronym{mst}{MST}{Minimum Spanning Tree}
+\newacronym{sl-hac}{SL-HAC}{Single-Linkage HAC}
+\newacronym{csr}{CSR}{Compressed Sparse Row}
 
-Hierarchical Agglomerative Clustering is an algorithm that is not easily parallelized since it has several dependencies 
+
+\gls{hac} is an algorithm that is not easily parallelized since it has several dependencies 
+
+\gls{hac} is an important step in the \gls{eac} chain. Given the new similarity metric (how many times a pair of patterns are clustered together in the ensemble), \gls{hac} provides an intuitive way of obtaining the final partition: patterns that are clustered together often in the ensemble should be clustered together. Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e., the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ to $n$.
+
+However, \gls{hac} is not easily parallelized. The most parallelizable part is the computation of the pair-wise similarity matrix, but in \gls{eac} is part of the input (it's the co-association matrix) which means that within this context that part is not parallelizable.
+An important relationship between \gls{hac} and \gls{mst}s is the key to speeding up \gls{hac}, more specifically \gls{sl-hac}.
+When performing \gls{sl-hac}, the result is nothing more than a structured \gls{mst}. To get the $n$ clusters, one cuts the $n-1$ links with highest cost. In this context the nodes of the graph are the patterns of the dataset and the edges are the pair-wise similarities.
+
+\paragraph{Algorithm for finding Minimum Spanning Trees}
+There are several algorithms for computing an \gls{mst}. The most famous are Kruskal, Prim and Boruvka. The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
+Boruvka's algorithm is also known as Sollin's algorithm.
+
+Several parallel implementations of this algorithm exist:
+
+%TODO see paper and thesis of Cristiano Sousa in the literature review
+
+\cite{Sousa2015} reports their version to be the fastest, as to the moment of writing. The input graph is encoded in the \gls{csr} format. This representation is equivalent to having a square matrix $G$ in with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$. This format is represented in Fig. X. %TODO add figure
+
+Within the algorithm's context, the three arrays are \emph{first\_edge}, \emph{destination} and \emph{weight}. This three arrays can completely describe a graph. However, the algorithm uses an extra array \emph{outdegree} that can be deduced from the \emph{first\_edge} array. The length and purpose of each of this arrays is:
+\begin{itemize}
+	\item \emph{first\_edge} is an array of size $\|V\|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} edge.
+	\item \emph{outdegree} is an array of size $\|V\|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} edge.
+	\item \emph{destination} is an array of size $\|E\|$, where the \emph{j-th} element points to the destination vertex of the \emph{j-th} edge.
+	\item \emph{weight} is an array of size $\|E\|$, where the \emph{j-th} element contains the weight of the \emph{j-th} edge.
+\end{itemize}
+
+$V$ is the number of vertices and $E$ is the number of edges. The number of edges is duplicated to cover both directions. The edges in the \emph{destination} array are grouped together by the vertex they originate from, e.g. if edge $j$ is the first edge of vertex $i$ and this vertex has 3 edges, then edges $\{j,j+1,j+2\}$ are the outgoing edges of vertex $i$.
+
+
+
+The algorithm consists on the following steps:
+
+\begin{enumerate}
+	\item 
+\end{enumerate}
+
+
+It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of \gls{mst}s.
+Upon contact, the author reported that a solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
 
 %TODO the emphasis here must be GPGPU clustering and not MapReduce
 %I have to find more literature regarding this

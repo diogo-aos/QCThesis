@@ -120,6 +120,11 @@ J~Sirotkovi, H~Dujmi, and V~Papi.
 \newblock {K-Means Image Segmentation on Massively Parallel GPU Architecture}.
 \newblock pages 489--494, 2012.
 
+\bibitem{Sousa2015}
+Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
+\newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
+  Algorithm}.
+
 \bibitem{Wang2013}
 Huaixiao Wang, Jianyong Liu, Jun Zhi, and Chengqun Fu.
 \newblock {The Improvement of Quantum Genetic Algorithm and Its Application on
