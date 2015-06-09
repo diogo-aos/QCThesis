@@ -101,6 +101,9 @@ class K_Means:
         self.inertia_ = np.inf
         self._last_iter = False # this is only for _labels centroid recomputation
 
+
+        self._dists = np.empty(self.N, dtype = np.float32)
+
         while not stopcond:
             # compute labels
             labels = self._label(data,self.centroids)
@@ -129,19 +132,21 @@ class K_Means:
                 stopcond = True
                 self._last_iter = True
 
+            if stopcond:
+                break
             # compute new centroids
-            self.centroids =  self._recompute_centroids(data,self.centroids,labels)
+            self.centroids = self._recompute_centroids(data,self.centroids,labels)
         
         self.labels_ = labels
         self.cluster_centers_ = self.centroids
 
 
-    def _init_centroids(self,data):
+    def _init_centroids(self, data):
         
         #centroids = np.empty((self.n_clusters,self.D),dtype=data.dtype)
         #random_init = np.random.randint(0,self.N,self.n_clusters)
         
-        random_init = sample(xrange(self.N),self.n_clusters)
+        random_init = sample(xrange(self.N), self.n_clusters)
         #self.init_seed = random_init
 
         centroids = data[random_init]
@@ -171,13 +176,10 @@ class K_Means:
         """
 
         # we need array for distances to check convergence
-        if self._converge:
-            self._dists = np.zeros(self.N,dtype=np.float32)
-
         if self._mode == "cuda":
-            labels = self._cu_label(data,centroids)
+            labels = self._cu_label(data, centroids)
         elif self._mode == "special": #for tests only
-            labels=np.empty(self.N,dtype=np.int32)
+            labels=np.empty(self.N, dtype=np.int32)
             self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
         elif self._mode == "numpy":
             labels = self._np_label_fast(data,centroids)
@@ -197,7 +199,9 @@ class K_Means:
         for d in xrange(a.shape[0]):
             dist += (a[d] - b[d])**2
         return dist
-            
+
+
+
     def _py_label(self,data,centroids):
 
         N,D = data.shape
@@ -223,6 +227,36 @@ class K_Means:
             labels[n] = best_label
 
         return labels
+
+    @numbapro.jit(numbapro.float32(numbapro.float32[:],numbapro.float32[:]))
+    def _numba_euclid(a,b):
+        dist = 0
+        for d in range(a.shape[0]):
+            dist += (a[d] - b[d]) ** 2
+        return dist
+
+    @numbapro.jit(numbapro.void(numbapro.float32[:,:],numbapro.float32[:,:],numbapro.int32[:],numbapro.float32[:]))
+    def _numba_label(data, centroids, labels, dists):
+
+        N,D = data.shape
+        K,cD = centroids.shape
+
+        for n in range(N):
+
+            # first iteration
+            best_dist = _numba_euclid(data[n],centroids[0])
+            best_label = 0
+
+            for k in xrange(1,K):
+                dist = _numba_euclid(data[n],centroids[k])
+
+                if dist < best_dist:
+                    best_dist = dist
+                    best_label = k
+
+            dists[n] = best_dist
+            labels[n] = best_label
+            
             
     def _np_label(self,data,centroids):
 
@@ -312,33 +346,38 @@ class K_Means:
         return labels
 
 
-    def _compute_cuda_dims(self,data):
+    def _compute_cuda_dims(self, data, use2d = False):
 
         N,D = data.shape
 
-        blockHeight = self._MAX_THREADS_BLOCK
-        blockWidth = 1
-        blockDim = blockWidth, blockHeight
+        if use2d:
+            blockHeight = self._MAX_THREADS_BLOCK
+            blockWidth = 1
+            blockDim = blockWidth, blockHeight
 
-        # threads per block
-        tpb = np.prod(blockDim)
+            # threads per block
+            tpb = np.prod(blockDim)
 
-        # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
-        bpg = np.int(np.ceil(np.float(N) / tpb)) 
+            # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
+            bpg = np.int(np.ceil(np.float(N) / tpb)) 
 
 
-        # if grid dimension is bigger than MAX_GRID_XYZ_DIM,
-        # the grid columns must be broken down in several along
-        # the other grid dimensions
-        if bpg > self._MAX_GRID_XYZ_DIM:
-            # number of grid columns
-            gridWidth = np.ceil(bpg / self._MAX_GRID_XYZ_DIM)
-            # number of grid rows
-            gridHeight = np.ceil(bpg / gridWidth)    
+            # if grid dimension is bigger than MAX_GRID_XYZ_DIM,
+            # the grid columns must be broken down in several along
+            # the other grid dimensions
+            if bpg > self._MAX_GRID_XYZ_DIM:
+                # number of grid columns
+                gridWidth = np.ceil(bpg / self._MAX_GRID_XYZ_DIM)
+                # number of grid rows
+                gridHeight = np.ceil(bpg / gridWidth)    
 
-            gridDim = np.int(gridWidth), np.int(gridHeight)
+                gridDim = np.int(gridWidth), np.int(gridHeight)
+            else:
+                gridDim = 1,bpg
         else:
-            gridDim = 1,bpg
+            blockDim = self._MAX_THREADS_BLOCK
+            bpg = np.float(N) / self._MAX_THREADS_BLOCK
+            gridDim = np.int(np.ceil(bpg))
             
             
         self._blockDim = blockDim
@@ -370,50 +409,45 @@ class K_Means:
             else:
                 dData = self._cudaDataHandle
 
-            
+            # copy centroids to device
             dCentroids = cuda.to_device(centroids)
-            dLabels = numbapro.cuda.device_array_like(labels)
 
-            if self._converge:
-                dDists = numbapro.cuda.device_array_like(self._dists)
-                self._distsHandle = dDists
+            # allocate array for labels and dists
+            dLabels = numbapro.cuda.device_array_like(labels)
+            dDists = numbapro.cuda.device_array_like(self._dists)
             
-            self._cudaLabelsHandle = dLabels
-            self._cudaCentroidsHandle = dCentroids
+            #self._cudaLabelsHandle = dLabels
+            #self._cudaCentroidsHandle = dCentroids
             
-            self._cu_label_kernel(dData,dCentroids,dLabels,self._gridDim,self._blockDim)        
+            _cu_label_kernel_dists[self._gridDim,self._blockDim](dData, dCentroids, dLabels, dDists)
             
             # synchronize threads before copying data
             #numbapro.cuda.synchronize()
 
             # copy labels from device to host
-            dLabels.copy_to_host(ary=labels)
-
+            dLabels.copy_to_host(ary = labels)
             # copy distance to centroids from device to host
-            if self._converge:
-                dDists.copy_to_host(ary=self._dists)
+            dists = dDists.copy_to_host()
+            self._dists = dists
 
         elif self._cuda_mem == 'auto':
-            self._cu_label_kernel(data,centroids,labels,self._gridDim,self._blockDim)
+            _cu_label_kernel_dists[self._gridDim,self._blockDim](data, centroids, labels, self._dists)
 
         else:
             raise ValueError("CUDA memory management type may either be \'manual\' or \'auto\'.")
         
         return labels
         
-    def _cu_label_kernel(self,a,b,c,gridDim,blockDim):
+    def _cu_label_kernel(self,a,b,c,d,gridDim,blockDim):
         """
         Wraper to choose between kernels.
         """
         # if converging and manual memory management, use distance handle
-        if self._converge and self._cuda_mem == 'manual':
-            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._distsHandle)
+        if self._cuda_mem == 'manual':
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,d)
         # if converging and auto memory management, use distance array
-        elif self._converge and self._cuda_mem == 'auto':
-            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,self._dists)
         else:
-            self._cu_label_kernel_normal[gridDim,blockDim](a,b,c)
-
+            self._cu_label_kernel_dists[gridDim,blockDim](a,b,c,d)
         pass
 
         # """try:
@@ -427,282 +461,9 @@ class K_Means:
         #                               file=sys.stdout)"""
 
 
-    # data, centroids, labels
-    @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
-    def _cu_label_kernel_normal(a,b,c):
-    
-        """
-        Computes the labels of each data point without storing the distances.
-        """
-        # thread ID inside block
-        tx = cuda.threadIdx.x
-        ty = cuda.threadIdx.y
 
-        # block ID
-        bx = cuda.blockIdx.x
-        by = cuda.blockIdx.y
 
-        # block dimensions
-        bw = cuda.blockDim.x
-        bh = cuda.blockDim.y
 
-        # grid dimensions
-        gw = cuda.gridDim.x
-        gh = cuda.gridDim.y
-
-        # compute thread's x and y index (i.e. datapoint and cluster)
-        # tx doesn't matter
-        # the second column of blocks means we want to add
-        # 2**16 to the index
-        n = ty + by * bh + bx*gh*bh
-
-        N = c.shape[0] # number of datapoints
-        K,D = b.shape # centroid shape
-
-        if n >= N:
-            return
-
-        # first iteration outside loop
-        dist = 0.0
-        for d in range(D):
-            diff = a[n,d]-b[0,d]
-            dist += diff ** 2
-
-        best_dist = dist
-        best_label = 0
-
-        # remaining iterations
-        for k in range(1,K):
-
-            dist = 0.0
-            for d in range(D):
-                diff = a[n,d]-b[k,d]
-                dist += diff ** 2
-
-            if dist < best_dist:
-                best_dist = dist
-                best_label = k
-
-        c[n] = best_label
-
-
-    # data, centroids, labels
-    @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
-    def _cu_label_kernel_dists(a,b,c,dists):
-
-        """
-        Computes the labels of each data point storing the distances.
-        """
-
-        # thread ID inside block
-        tx = cuda.threadIdx.x
-        ty = cuda.threadIdx.y
-
-        # block ID
-        bx = cuda.blockIdx.x
-        by = cuda.blockIdx.y
-
-        # block dimensions
-        bw = cuda.blockDim.x
-        bh = cuda.blockDim.y
-
-        # grid dimensions
-        gw = cuda.gridDim.x
-        gh = cuda.gridDim.y
-
-        # compute thread's x and y index (i.e. datapoint and cluster)
-        # tx doesn't matter
-        # the second column of blocks means we want to add
-        # 2**16 to the index
-        n = ty + by * bh + bx*gh*bh
-
-        N = c.shape[0] # number of datapoints
-        K,D = b.shape # centroid shape
-
-        if n >= N:
-            return
-
-        # first iteration outside loop
-        dist = 0.0
-        for d in range(D):
-            diff = a[n,d]-b[0,d]
-            dist += diff ** 2
-
-        best_dist = dist
-        best_label = 0
-
-        # remaining iterations
-        for k in range(1,K):
-
-            dist = 0.0
-            for d in range(D):
-                diff = a[n,d]-b[k,d]
-                dist += diff ** 2
-
-
-            if dist < best_dist:
-                best_dist = dist
-                best_label = k
-
-        c[n] = best_label
-        dists[n] = best_dist
-
-        #cuda.syncthreads()
-
-
-    # data, centroids, labels
-    @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:], int32[:])")
-    def _cu_label_kernel_dists_multiple(data, centroids, labels, dists, indices):
-
-        """
-        Computes the labels of each data point storing the distances.
-        indices point to the start of the centroids block
-
-        The point of this kernel is to allow for the processing of multiple centroids and
-        thus solving multiple problems at the same time. The idea is to receive a 2-dimensional 
-        array for the centroids and an indices array. The i-th position of the indices array contains
-        the index of a new centroid block, i.e. if indices[1]=5 it means that the first centroid block
-        has 5 centroids and the new block starts at centroids[5].
-
-        Not finished. Not implemented.
-        """
-
-        # thread ID inside block
-        tx = cuda.threadIdx.x
-        ty = cuda.threadIdx.y
-
-        # block ID
-        bx = cuda.blockIdx.x
-        by = cuda.blockIdx.y
-
-        # block dimensions
-        bw = cuda.blockDim.x
-        bh = cuda.blockDim.y
-
-        # grid dimensions
-        gw = cuda.gridDim.x
-        gh = cuda.gridDim.y
-
-        # compute thread's x and y index (i.e. datapoint and cluster)
-        # tx doesn't matter
-        # the second column of blocks means we want to add
-        # 2**16 to the index
-        n = ty + by * bh + bx*gh*bh
-
-        N = c.shape[0] # number of datapoints
-        K, D = b.shape # centroid shape
-
-        if n >= N:
-            return
-
-        for i in range(indices.size):
-            p = 0
-
-            # first iteration outside loop
-            dist = 0.0
-            for d in range(D):
-                diff = data[n,d] - centroids[0,d]
-                dist += diff ** 2
-
-            best_dist = dist
-            best_label = -3
-
-            while(p < indices[i+1]):
-
-
-
-                # remaining iterations
-                for k in range(1,K):
-
-                    dist = 0.0
-                    for d in range(D):
-                        diff = data[n,d]-centroids[k,d]
-                        dist += diff ** 2
-
-
-                    if dist < best_dist:
-                        best_dist = dist
-                        best_label = k
-
-                labels[n] = best_label
-                dists[n] = best_dist
- 
-
-    # data, centroids, labels, dists
-    # with shared memory
-    @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
-    def _cu_label_kernel_dists_sm(a,b,c,dists):
-
-        s_centroids = cuda.shared.array(shape = b.shape, dtype = b.dtype)
-
-        """
-        Computes the labels of each data point storing the distances.
-        """
-
-        # thread ID inside block
-        tx = cuda.threadIdx.x
-        ty = cuda.threadIdx.y
-
-        # block ID
-        bx = cuda.blockIdx.x
-        by = cuda.blockIdx.y
-
-        # block dimensions
-        bw = cuda.blockDim.x
-        bh = cuda.blockDim.y
-
-        # grid dimensions
-        gw = cuda.gridDim.x
-        gh = cuda.gridDim.y
-
-        # compute thread's x and y index (i.e. datapoint and cluster)
-        # tx doesn't matter
-        # the second column of blocks means we want to add
-        # 2**16 to the index
-        n = ty + by * bh + bx*gh*bh
-
-        N = c.shape[0] # number of datapoints
-        K,D = b.shape # centroid shape
-
-        if n >= N:
-            return
-
-        # copy centroids to shared memory, thread #0 of each block
-        # can be more efficient to distribute copying by multiple threads
-        # have to be careful because of warp size
-        if tx == 0:
-            for k in range(K):
-                for d in range(D):
-                    s_centroids[k,d] = b[k,d]
-
-        cuda.syncthreads()
-
-        # first iteration outside loop
-        dist = 0.0
-        for d in range(D):
-            diff = a[n,d] - s_centroids[0,d]
-            dist += diff ** 2
-
-            cudaself.
-
-        best_dist = dist
-        best_label = 0
-
-        # remaining iterations
-        for k in range(1,K):
-
-            dist = 0.0
-            for d in range(D):
-                diff = a[n,d] - s_centroids[k,d]
-                dist += diff ** 2
-
-
-            if dist < best_dist:
-                best_dist = dist
-                best_label = k
-
-        c[n] = best_label
-        dists[n] = best_dist
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -810,6 +571,26 @@ class K_Means:
                 j+=1
 
         return new_centroids
+
+    @numbapro.jit(numbapro.void(numbapro.float32[:],numbapro.float32[:],numbapro.int32[:]))
+    def _numba_recompute_centroids(data, centroids, labels):
+        N,D = data.shape
+        K,D = centroids.shape
+
+        count = np.zeros(K, dtype = np.int32)
+
+        for k in range(K):
+            for d in range(D):
+                centroids[k,d] = 0
+
+        for n in range(N):
+            k = labels[n] # centroid to use
+            count[k] += 1
+            for d in range(D):
+
+                pass
+
+
 
     def _np_recompute_centroids_index(self,data,centroids,labels):
         """
@@ -941,3 +722,128 @@ class K_Means:
         new_centroids = new_centroids / centroid_count.reshape((K,1))
             
         return new_centroids
+
+
+
+
+# data, centroids, labels
+@numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
+def _cu_label_kernel_normal(a,b,c):
+
+    """
+    Computes the labels of each data point without storing the distances.
+    """
+    # thread ID inside block
+    tx = cuda.threadIdx.x
+    ty = cuda.threadIdx.y
+
+    # block ID
+    bx = cuda.blockIdx.x
+    by = cuda.blockIdx.y
+
+    # block dimensions
+    bw = cuda.blockDim.x
+    bh = cuda.blockDim.y
+
+    # grid dimensions
+    gw = cuda.gridDim.x
+    gh = cuda.gridDim.y
+
+    # compute thread's x and y index (i.e. datapoint and cluster)
+    # tx doesn't matter
+    # the second column of blocks means we want to add
+    # 2**16 to the index
+    n = ty + by * bh + bx*gh*bh
+
+    N = c.shape[0] # number of datapoints
+    K,D = b.shape # centroid shape
+
+    if n >= N:
+        return
+
+    # first iteration outside loop
+    dist = 0.0
+    for d in range(D):
+        diff = a[n,d]-b[0,d]
+        dist += diff ** 2
+
+    best_dist = dist
+    best_label = 0
+
+    # remaining iterations
+    for k in range(1,K):
+
+        dist = 0.0
+        for d in range(D):
+            diff = a[n,d]-b[k,d]
+            dist += diff ** 2
+
+        if dist < best_dist:
+            best_dist = dist
+            best_label = k
+
+    c[n] = best_label
+
+
+# data, centroids, labels
+@numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
+def _cu_label_kernel_dists(a,b,c,dists):
+
+    """
+    Computes the labels of each data point storing the distances.
+    """
+
+    # # thread ID inside block
+    # tx = cuda.threadIdx.x
+    # ty = cuda.threadIdx.y
+
+    # # block ID
+    # bx = cuda.blockIdx.x
+    # by = cuda.blockIdx.y
+
+    # # block dimensions
+    # bw = cuda.blockDim.x
+    # bh = cuda.blockDim.y
+
+    # # grid dimensions
+    # gw = cuda.gridDim.x
+    # gh = cuda.gridDim.y
+
+    # compute thread's x and y index (i.e. datapoint and cluster)
+    # tx doesn't matter
+    # the second column of blocks means we want to add
+    # 2**16 to the index
+    #n = ty + by * bh + bx*gh*bh
+
+    n = cuda.grid(1)
+
+    N = c.shape[0] # number of datapoints
+    K,D = b.shape # centroid shape
+
+    if n >= N:
+        return
+
+    # first iteration outside loop
+    dist = 0.0
+    for d in range(D):
+        diff = a[n,d] - b[0,d]
+        dist += diff ** 2
+
+    best_dist = dist
+    best_label = 0
+
+    # remaining iterations
+    for k in range(1,K):
+
+        dist = 0.0
+        for d in range(D):
+            diff = a[n,d]-b[k,d]
+            dist += diff ** 2
+
+
+        if dist < best_dist:
+            best_dist = dist
+            best_label = k
+
+    c[n] = best_label
+    dists[n] = best_dist

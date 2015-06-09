@@ -21,7 +21,6 @@ import numpy as np
 from scipy.cluster.hierarchy import linkage,dendrogram
 from scipy.spatial.distance import squareform
 from sklearn.neighbors import NearestNeighbors
-from .K_Means3 import K_Means
 from random import sample
 
 from scipy.sparse import lil_matrix,csr_matrix
