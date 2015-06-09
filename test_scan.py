@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 This is a test for the last block scan.
 """
@@ -52,7 +54,8 @@ def recursive_big_scan_test():
     print "running recursive scan test"
 
     MAX_TPB = 512
-    n = 50000
+    n = 2e6
+    n = int(n)
 
     a = np.arange(n).astype(np.int32) 
     reference = np.empty_like(a)

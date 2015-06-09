@@ -395,7 +395,7 @@ class K_Means:
             self._compute_cuda_dims(data)       
         
 
-        labels = np.empty(N,dtype=np.int32)
+        labels = np.empty(N, dtype = np.int32)
         
         if self._cuda_mem == 'manual':
             # copy dataset and centroids, allocate memory

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import numba
 from numba import cuda, int32, float32, void
@@ -115,8 +117,8 @@ def scan_gpu(in_ary, MAX_TPB = 512):
     bpg = n // epb # number of whole blocks, if 0 only 1 incomplete block to process
     elb = n % epb # number of elements to process in last block, if 0 no last block to process
 
-     if not isinstance(in_ary, cuda.cudadrv.devicearray.DeviceNDArray):
-         raise Exception("INPUT ARRAY MUST BE IN DEVICE.")
+    if not isinstance(in_ary, cuda.cudadrv.devicearray.DeviceNDArray):
+        raise Exception("INPUT ARRAY MUST BE IN DEVICE.")
 
     # if there is only one block 
     if bpg == 0 or (bpg == 1 and elb == 0):
