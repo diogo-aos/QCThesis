@@ -52,7 +52,7 @@ def recursive_big_scan_test():
     print "running recursive scan test"
 
     MAX_TPB = 512
-    n = 50000000
+    n = 50000
 
     a = np.arange(n).astype(np.int32) 
     reference = np.empty_like(a)
