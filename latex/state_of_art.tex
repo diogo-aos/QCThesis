@@ -473,5 +473,24 @@ The algorithm consists on the following steps:
 It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of \gls{mst}s.
 Upon contact, the author reported that a solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
 
+
+
+\paragraph{Exclusive scan} The \emph{scan} operation is one of the fundamental building block of parallel computing. 
+Furthermore, two of the steps of the Borůvka variant of \cite{Sousa2015} are performed with an exclusive scan where the operation is a sum. 
+To illustrate the functioning of the exclusive scan, let's consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$. Let's further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$. Then the output will be $[0,0,1,3,5,8,13,19]$. The first element of the output will be the identity (if it were an inclusive scan, it would be the first element itself). The second element is the sum between the first element of the input array and the first element of the output array, the third element is the sum between the second element of the input array with second element of the output array, and so on.
+This algorithm seems highly sequential in nature each element of the output array depends on the previous one. 
+Still, two approaches exist to parallelize it:
+
+% add refs and explain briefly
+\begin{itemize} 
+	\item Hillis and Steele
+	\item Bleloch
+\end{itemize}
+
+%TODO fix refs
+The two approaches focus on distinct efforts: the former focus on optimizing the number of steps while the later focus on optimizing the amount of work done.
+
+
+
 %TODO the emphasis here must be GPGPU clustering and not MapReduce
 %I have to find more literature regarding this

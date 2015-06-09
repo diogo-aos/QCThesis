@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  4 JUN 2015 22:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 JUN 2015 23:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -744,10 +744,10 @@ LaTeX Warning: Citation `Lourenco2009' on page 9 undefined on input line 267.
 [9] [10] [11] [12] [13]) [14]
 \openout2 = `methodology.aux'.
 
- (./methodology.tex) [15
+ (./methodology.tex [15
 
 
-] [16] (./thesis.bbl
+]) [16] (./thesis.bbl
 [17
 
 
@@ -760,10 +760,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 7979 strings out of 495004
- 112394 string characters out of 6180663
+ 7980 strings out of 495004
+ 112402 string characters out of 6180663
  232329 words of memory out of 5000000
- 10965 multiletter control sequences out of 15000+600000
+ 10966 multiletter control sequences out of 15000+600000
  9220 words of font info for 36 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  46i,13n,35p,1701b,246s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -782,7 +782,7 @@ b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (19 pages, 229471 bytes).
+Output written on thesis.pdf (19 pages, 232798 bytes).
 PDF statistics:
  130 PDF objects out of 1000 (max. 8388607)
  92 compressed objects within 1 object stream

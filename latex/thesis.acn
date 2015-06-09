@@ -77,3 +77,7 @@
 \glossaryentry{CSR?\glossentry{csr}|setentrycounter[]{page}\glsnumberformat}{13}
 \glossaryentry{MST?\glossentry{mst}|setentrycounter[]{page}\glsnumberformat}{14}
 \glossaryentry{GPGPU?\glossentry{gpgpu}|setentrycounter[]{page}\glsnumberformat}{15}
+\glossaryentry{CSR?\glossentry{csr}|setentrycounter[]{page}\glsnumberformat}{16}
+\glossaryentry{MST?\glossentry{mst}|setentrycounter[]{page}\glsnumberformat}{16}
+\glossaryentry{HAC?\glossentry{hac}|setentrycounter[]{page}\glsnumberformat}{16}
+\glossaryentry{SL-HAC?\glossentry{sl-hac}|setentrycounter[]{page}\glsnumberformat}{16}

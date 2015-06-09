@@ -40,9 +40,11 @@
 \contentsline {subsubsection}{\numberline {2.4.4}Parallel K-Means}{12}
 \contentsline {subsubsection}{\numberline {2.4.5}Parallel Hierarchical Agglomerative Clustering}{13}
 \contentsline {paragraph}{Algorithm for finding Minimum Spanning Trees}{13}
+\contentsline {paragraph}{Exclusive scan}{14}
 \contentsline {section}{\numberline {3}Methodology}{15}
 \contentsline {subsection}{\numberline {3.1}Quantum Clustering}{15}
-\contentsline {subsection}{\numberline {3.2}GPGPU K-Means}{15}
+\contentsline {subsection}{\numberline {3.2}Speeding up Ensemble Generations with Parallel K-Means}{15}
 \contentsline {subsection}{\numberline {3.3}Dealing with space complexity of coassocs}{15}
+\contentsline {subsection}{\numberline {3.4}Accelerating HAC}{16}
 \contentsline {section}{\numberline {4}Discussion?}{17}
 \contentsline {section}{\numberline {5}Future work}{17}
