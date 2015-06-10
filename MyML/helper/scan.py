@@ -2,6 +2,7 @@
 """
 
 TODO:
+ - fix bug for input array of size 1 - it should just zero out the array (of len 1)
  - optimize scan for bank conflicts - how to do this in Python Numba CUDA?
  - make scan generic, i.e. accept both device and host arrays
 """

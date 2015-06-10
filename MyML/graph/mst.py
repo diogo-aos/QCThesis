@@ -1024,6 +1024,10 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         # new_n_vertices is the number of vertices of the new contracted graph
         new_n_vertices = ex_prefix_sum_gpu(new_vertex, MAX_TPB = MAX_TPB).getitem(0)
         new_n_vertices = int(new_n_vertices)
+
+        if new_n_vertices == 1:
+            final_converged = True
+            break
         
         # count number of edges for new supervertices and write in new outDegree
         newOutDegree = cuda.device_array(shape = new_n_vertices, dtype = np.int32)
@@ -1043,7 +1047,7 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         # create arrays for new edges
         new_dest = cuda.device_array(new_n_edges, dtype = np.int32)
         new_edge_id = cuda.device_array(new_n_edges, dtype = np.int32)
-        new_weight = cuda.device_array(new_n_edges, dtype = np.int32)
+        new_weight = cuda.device_array(new_n_edges, dtype = weight.dtype)
 
         top_edge = cuda.device_array_like(newFirstEdge)
         top_edge.copy_to_device(newFirstEdge)
