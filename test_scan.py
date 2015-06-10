@@ -142,7 +142,6 @@ def recursive_step_by_step():
 
     scan.last_scan[1, tlb, 0, sm_size](in_ary, dAux, auxIdx, el_last_block, startIdx)
 
-
     in_ary2 = dAux
     n2 = in_ary2.size
 
@@ -161,22 +160,13 @@ def recursive_step_by_step():
 
         scan.last_scan[1, tlb2, 0, sm_size2](in_ary2, total_sum, auxIdx2, el_last_block2, startIdx2)    
 
-
     scan.scan_sum[n_scans, tlb](in_ary, dAux)
-
 
     tIn = in_ary.copy_to_host()
     tAux = dAux.copy_to_host()
     tSum = total_sum.copy_to_host()
 
-
     print "finish"
-
-
-
-
-
-
 
 def prescan_test():
 
@@ -194,8 +184,6 @@ def prescan_test():
     ref_sum1 = scan.exprefixsumNumba(a1, ref1)
     ref_sum2 = scan.exprefixsumNumba(a2, ref2)
 
-
-
     dAux = cuda.device_array(2, dtype = np.int32)
     dA = cuda.to_device(a)
 
@@ -207,10 +195,6 @@ def prescan_test():
     a_gpu = dA.copy_to_host()
 
     print "finish"
-
-
-
-
 
 def main(argv):
     valid_args = [0,1,2,3]
@@ -229,8 +213,6 @@ def main(argv):
         recursive_step_by_step()
     elif argv[1] == "3":
         prescan_test()
-        
-
 
 if __name__ == "__main__":
     main(sys.argv)

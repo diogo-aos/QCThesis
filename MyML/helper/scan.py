@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+
+TODO:
+ - optimize scan for bank conflicts - how to do this in Python Numba CUDA?
+ - make scan generic, i.e. accept both device and host arrays
+"""
+
 
 import numpy as np
 import numba
@@ -19,7 +26,7 @@ def exprefixsum(masks, indices, init = 0, nelem = None):
     #indices[nelem] = carry
     return carry
 
-@numba.jit(int32(int32[:],int32[:],int32),nopython=False)
+@numba.jit(int32(int32[:],int32[:],int32), nopython=False)
 def exprefixsumNumba(in_ary, out_ary, init = 0):
     """
     exclusive prefix sum
