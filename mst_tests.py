@@ -75,7 +75,7 @@ del four_elt_mat
 four_elt = dict()
 four_elt["dest"] = four_elt_mat_s.indices
 four_elt["weight"] = four_elt_mat_s.data
-four_elt["firstEdge"] = four_elt_mat_s.indptr
+four_elt["firstEdge"] = four_elt_mat_s.indptr[:-1]
 four_elt["outDegree"] = np.empty_like(four_elt["firstEdge"])
 
 del four_elt_mat_s
@@ -108,12 +108,17 @@ def host_boruvka():
 
     print "HOST CPU BORUVKA"
 
-    dest, weight, firstEdge, outDegree = load_graph("simple_graph_connect")
+    dest, weight, firstEdge, outDegree = load_graph("4elt")
 
     t1 = Timer()
     t1.tic()
     mst, n_edges = boruvka_minho_seq(dest, weight, firstEdge, outDegree)
     t1.tac()
+
+    print "mst size", mst.size
+
+    if n_edges < mst.size:
+        mst = mst[:n_edges]
 
     print "time elapsed: ", t1.elapsed
     mst.sort() # mst has to be sorted for comparison with device mst because different threads might be able to write first
@@ -124,12 +129,15 @@ def device_boruvka():
 
     print "CUDA BORUVKA"
 
-    dest, weight, firstEdge, outDegree = load_graph("simple_graph_connect")
+    dest, weight, firstEdge, outDegree = load_graph("4elt")
 
     t1 = Timer()
     t1.tic()
     mst, n_edges = boruvka_minho_gpu(dest, weight, firstEdge, outDegree)
     t1.tac()
+
+    if n_edges < mst.size:
+        mst = mst[:n_edges]    
 
     print "time elapsed: ", t1.elapsed
     mst.sort()
@@ -139,7 +147,7 @@ def device_boruvka():
 def host_vs_device():
     print "HOST VS DEVICE"
 
-    dest, weight, firstEdge, outDegree = load_graph("simple_graph_connect")
+    dest, weight, firstEdge, outDegree = load_graph("4elt")
 
     t1, t2 = Timer(), Timer()
 
@@ -147,15 +155,25 @@ def host_vs_device():
     mst1, n_edges1 = boruvka_minho_seq(dest, weight, firstEdge, outDegree)
     t1.tac()
 
+    if n_edges1 < mst1.size:
+    	mst1 = mst1[:n_edges1]
+
 
     t2.tic()
     mst2, n_edges2 = boruvka_minho_gpu(dest, weight, firstEdge, outDegree)
     t2.tac()
 
-    print "time elapsed: ", t1.elapsed
-    print mst1
-    print n_edges
+    if n_edges2 < mst2.size:
+    	mst2 = mst2[:n_edges2]
 
+
+    mst1.sort()
+    mst2.sort()
+
+    print "Same solution: ", (mst1 == mst2).all()
+
+    print "Host time elapsed:   ", t1.elapsed
+    print "Device time elapsed: ", t2	.elapsed
 
 
 def main(argv):
