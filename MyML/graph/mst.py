@@ -6,7 +6,7 @@ notes: Boruvka implementation based on Sousa's "A Generic and Highly Efficient P
 
 
 import numpy as np
-from MyML.helper.scan import scan_gpu as ex_prefix_sum_gpu, exprefixsumNumba
+from MyML.helper.scan import scan_gpu as ex_prefix_sum_gpu, exprefixsumNumbaSingle as ex_prefix_sum_cpu, exprefixsumNumba as ex_prefix_sum_cpu2
 from numba import jit, cuda, void, boolean, int8, int32, float32
 
 def minimum_spanning_tree(X, copy_X=True):
@@ -459,22 +459,18 @@ class boruvkaMinhoSeqForest():
                 converged = propagateColorsNumba(colors)
 
             # flag marks the vertices that are the representatives of the new supervertices
-            flag = np.where(vertex_minedge == -1, 1, 0).astype(np.int32) # get super-vertives representatives
+            new_vertex = np.where(vertex_minedge == -1, 1, 0).astype(np.int32) # get super-vertives representatives
             del vertex_minedge # vertex_minedge no longer necessary for next steps
 
-            # new supervertices indices
-            new_vertex = np.empty(self.n_components, dtype = np.int32) # new indices       
-            exprefixsumNumba(flag, new_vertex, init = 0)
-
-            del flag # no longer need flag
+            new_n_vertices = ex_prefix_sum_cpu(new_vertex, init = 0)
 
             # count number of edges for new supervertices and write in new outDegree
-            newOutDegree = np.zeros(new_vertex[-1], dtype = np.int32)
+            newOutDegree = np.zeros(new_n_vertices, dtype = np.int32)
             countNewEdgesNumba(colors, self.firstEdge, self.outDegree, self.dest, new_vertex, newOutDegree)
 
             # new first edge array for contracted graph
             newFirstEdge = np.empty(newOutDegree.size, dtype = np.int32)
-            new_n_edges = exprefixsumNumba(newOutDegree, newFirstEdge, init = 0)
+            new_n_edges = ex_prefix_sum_cpu(newOutDegree, newFirstEdge, init = 0)
 
             # if no edges remain, then MST has converged
             if new_n_edges == 0:
@@ -702,7 +698,7 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
     n_vertices = firstEdge.size
     n_edges = dest.size
 
-    edge_id = np.arange(n_edges, dtype = np.int32)
+    edge_id = np.arange(n_edges, dtype = dest.dtype)
     
     # total edges is (|V| - 1) * 2 because edges are duplicated to cover each direction
     
@@ -712,25 +708,23 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
 
     final_converged = False
     # maximum size of MST is when it is connected
-    mst = np.empty(n_vertices - 1, dtype = np.int32)
+    mst = np.empty(n_vertices - 1, dtype = dest.dtype)
     # if there are elements == -1 in the end it means 
     # there
     mst.fill(-1)
     mst_pointer = 0
 
     while(not final_converged):
-        vertex_minedge = np.empty(n_components, dtype = np.int32)
-        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree)
+        vertex_minedge = np.empty(n_components, dtype = dest.dtype)
+        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id)
         removeMirroredNumba(vertex_minedge, dest)
 
         # add new edges to final MST and update MST pointer
         mst_pointer = addEdgesToMSTNumba(mst, mst_pointer, vertex_minedge, edge_id)
 
         # intialize colors of current graph
-        colors = np.empty(n_components, dtype = np.int32)
+        colors = np.empty(n_components, dtype = dest.dtype)
         initColorsNumba(vertex_minedge, dest, colors)
-
-        del vertex_minedge
 
         # propagate colors until convergence
         converged = False
@@ -741,26 +735,22 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
         #flag = np.where(vertex_minedge == -1, 1, 0).astype(np.int32) # get super-vertives representatives
         #del vertex_minedge # vertex_minedge no longer necessary for next steps
 
-        flag = np.zeros(shape = colors.shape, dtype = np.int32)
-        buildFlag(colors, flag)
+        new_vertex = vertex_minedge
+        buildFlag(colors, new_vertex)
 
-        # new supervertices indices
-        new_vertex = np.empty(n_components, dtype = np.int32) # new indices       
-        new_n_vertices = exprefixsumNumba(flag, new_vertex, init = 0)
-
-        del flag # no longer need flag
+        new_n_vertices = ex_prefix_sum_cpu(new_vertex, init = 0)
 
         if new_n_vertices == 1:
             final_converged = True
             break        
 
         # count number of edges for new supervertices and write in new outDegree
-        newOutDegree = np.zeros(new_n_vertices, dtype = np.int32)
+        newOutDegree = np.zeros(new_n_vertices, dtype = dest.dtype)
         countNewEdgesNumba(colors, firstEdge, outDegree, dest, new_vertex, newOutDegree)
 
         # new first edge array for contracted graph
-        newFirstEdge = np.empty(newOutDegree.size, dtype = np.int32)
-        new_n_edges = exprefixsumNumba(newOutDegree, newFirstEdge, init = 0)
+        newFirstEdge = np.empty(newOutDegree.size, dtype = dest.dtype)
+        new_n_edges = ex_prefix_sum_cpu2(newOutDegree, newFirstEdge, init = 0)
 
         # if no edges remain, then MST has converged
         if new_n_edges == 0:
@@ -768,9 +758,9 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
             break
 
         # create arrays for new edges
-        new_dest = np.empty(new_n_edges, dtype = np.int32)
-        new_edge_id = np.empty(new_n_edges, dtype = np.int32)
-        new_weight = np.empty(new_n_edges, dtype = np.float32)
+        new_dest = np.empty(new_n_edges, dtype = dest.dtype)
+        new_edge_id = np.empty(new_n_edges, dtype = dest.dtype)
+        new_weight = np.empty(new_n_edges, dtype = weight.dtype)
         top_edge = newFirstEdge.copy()
 
         # assign and insert new edges
@@ -791,21 +781,23 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
 
     return mst, mst_pointer
 
-@jit(void(int32[:],int32[:]),nopython=True)
+@jit(["void(int32[:],int32[:])"],nopython=True)
 def buildFlag(colors, flag):
     n_components = colors.size
 
     for v in range(n_components):
         if v == colors[v]:
             flag[v] = 1
+        else:
+        	flag[v] = 0
 
-@jit(void(int32[:],float32[:],int32[:],int32[:]),nopython=True)
-def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree):
+@jit(["void(int32[:],float32[:],int32[:],int32[:],int32[:])", "void(int32[:],int32[:],int32[:],int32[:],int32[:])"],nopython=True)
+def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id):
 
     n_components = vertex_minedge.size
 
     for v in range(n_components):
-    	v_n_edges = outDegree[v]
+        v_n_edges = outDegree[v]
         if v_n_edges == 0:
             vertex_minedge[v] = -1
             continue
@@ -815,26 +807,24 @@ def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree):
 
         min_edge = startW
         min_weight = weight[startW]
-        
+        min_id = edge_id[startW]    
 
+        # loop through all the edges of vertex to get the minimum
         for edge in range(startW + 1, endW):
-            temp = weight[edge]
-            if temp < min_weight:
-            	min_edge = edge
-            	min_weight = temp
+            edge_weight = weight[edge]
+            edge_id_curr = edge_id[edge]
+            if edge_weight < min_weight:
+                min_edge = edge
+                min_weight = edge_weight
+                min_id = edge_id_curr
+            elif edge_weight == min_weight: # solve ties with absolute edge ID
+                if edge_id_curr < min_id:
+                    min_edge = edge
+                    min_weight = edge_weight
+                    min_id = edge_id_curr
+        vertex_minedge[v] = min_edge                
 
-
-        # startW += 1
-        # while startW < endW:
-        #     curr_weight = weight[startW]
-        #     if curr_weight < min_weight:
-        #         min_edge = startW
-        #         min_weight = curr_weight
-        #     startW += 1
-
-        vertex_minedge[v] = min_edge
-
-@jit(void(int32[:],int32[:]),nopython=True)
+@jit(["void(int32[:],int32[:])"],nopython=True)
 def removeMirroredNumba(vertex_minedge, dest):
     n_components = vertex_minedge.size
     for v in range(n_components): # for each vertex
@@ -859,7 +849,7 @@ def removeMirroredNumba(vertex_minedge, dest):
             if v < my_succ:
                 vertex_minedge[v] = -1
 
-@jit(int32(int32[:],int32,int32[:],int32[:]),nopython=True)
+@jit(["int32(int32[:],int32,int32[:],int32[:])"],nopython=True)
 def addEdgesToMSTNumba(mst, mst_pointer, vertex_minedge, edge_id):
         n_components = vertex_minedge.size
 
@@ -870,7 +860,7 @@ def addEdgesToMSTNumba(mst, mst_pointer, vertex_minedge, edge_id):
                 mst_pointer += 1
         return mst_pointer
 
-@jit(void(int32[:],int32[:],int32[:]), nopython=True)
+@jit(["void(int32[:],int32[:],int32[:])"], nopython=True)
 def initColorsNumba(vertex_minedge, dest, colors):
 
         n_components = vertex_minedge.size
@@ -882,7 +872,7 @@ def initColorsNumba(vertex_minedge, dest, colors):
             else:
                 colors[v] = v
 
-@jit(boolean(int32[:]))
+@jit(["boolean(int32[:])"])
 def propagateColorsNumba(colors):
     """
     For checking convergence, start with a boolean variable converged set to True.
@@ -902,7 +892,7 @@ def propagateColorsNumba(colors):
             colors[v] = new_color # assign new color
     return converged
 
-@jit(void(int32[:],int32[:],int32[:],int32[:],int32[:],int32[:]),nopython=True)
+@jit(["void(int32[:],int32[:],int32[:],int32[:],int32[:],int32[:])"],nopython=True)
 def countNewEdgesNumba(colors, firstEdge, outDegree, dest, new_vertex, newOutDegree):
     # new number of vertices is the number of representatives
     
@@ -922,9 +912,8 @@ def countNewEdgesNumba(colors, firstEdge, outDegree, dest, new_vertex, newOutDeg
             if my_color != my_succ_color:
                 newOutDegree[my_color_id] += 1 # increment number of outgoing edges of super-vertex
 
-@jit(void(int32[:],int32[:],float32[:],int32[:],
-          int32[:],int32[:],int32[:],
-          int32[:],int32[:],float32[:],float32[:]))
+@jit(["void(int32[:], int32[:], float32[:], int32[:], int32[:], int32[:], int32[:], int32[:],int32[:],float32[:],int32[:])",
+      "void(int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:],int32[:],int32[:],int32[:])"])
 def assignInsertNumba(edge_id, dest, weight, firstEdge,
                       outDegree, colors, new_vertex, 
                       new_dest, new_edge_id, new_weight, top_edge):
@@ -963,101 +952,151 @@ def assignInsertNumba(edge_id, dest, weight, firstEdge,
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+def getLabels(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
+
+    n_vertices = firstEdge_in.size
+    n_edges = dest_in.size
+    n_components = n_vertices # initial number of components is the number of vertices
+
+    ## transfer everything to device and allocate arrays
+
+    myStream = cuda.stream()
+
+    dest = cuda.to_device(dest_in, stream = myStream)
+    weight = cuda.to_device(weight_in, stream = myStream)
+    firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
+    outDegree = cuda.to_device(outDegree_in, stream = myStream)
+
+    edge_id = cuda.to_device(np.arange(n_edges, dtype = np.int32), stream = myStream)
+
+    converged = cuda.device_array(1, dtype = np.int8, stream = myStream)
+
+    vertex_minedge = cuda.device_array(n_components, dtype = np.int32, stream = myStream)
+
+    gridDim = compute_cuda_grid_dim(n_components, MAX_TPB)    
+
+    findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
+
+    removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
+    colors = cuda.device_array(shape = n_components, dtype = np.int32, stream = myStream)
+    initializeColors_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge, colors)
+
+    # propagate colors until convergence
+    propagateConverged = False
+    while(not propagateConverged):
+        propagateColors_CUDA[gridDim, MAX_TPB, myStream](colors, converged)
+        converged_num = converged.getitem(0, stream = myStream)
+        propagateConverged = True if converged_num == 1 else False
+
+    final_colors = colors.copy_to_host(stream = myStream)
+
+    del dest, weight, edge_id, firstEdge, outDegree, colors, converged, vertex_minedge
+
+    return final_colors
+
 def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
 
-    dest = cuda.to_device(dest_in)
-    weight = cuda.to_device(weight_in)
-    firstEdge = cuda.to_device(firstEdge_in)
-    outDegree = cuda.to_device(outDegree_in)
-
-    n_vertices = firstEdge.size
-    n_edges = dest.size
-
+    n_vertices = firstEdge_in.size
+    n_edges = dest_in.size
     n_components = n_vertices # initial number of components is the number of vertices
-    n_mst = 1
 
-    gridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
+    ## transfer everything to device and allocate arrays
 
-    edge_id = cuda.to_device(np.arange(n_edges, dtype = np.int32))
-    #initEdgeId[gridDim, MAX_TPB](edge_id)
-    
+    myStream = cuda.stream()
+
+    dest = cuda.to_device(dest_in, stream = myStream)
+    weight = cuda.to_device(weight_in, stream = myStream)
+    firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
+    outDegree = cuda.to_device(outDegree_in, stream = myStream)
+
+    edge_id = cuda.to_device(np.arange(n_edges, dtype = np.int32), stream = myStream)
+
     # maximum size of MST is when it is connected
-    mst = cuda.device_array(shape = n_vertices - 1, dtype = np.int32)
+    mst = cuda.device_array(shape = n_vertices - 1, dtype = np.int32, stream = myStream)
+    mst_pointer = cuda.to_device(np.zeros(1, dtype = np.int32), stream = myStream)
 
-    mst_pointer = cuda.to_device(np.zeros(1, dtype = np.int32))
+    # vertex_minedge reuses the top_edge array in the beginning of every iteration
+    # which means we have to define it before the first iteration
+    top_edge = cuda.device_array(n_components, dtype = np.int32, stream = myStream)    
+
+    converged = cuda.device_array(1, dtype = np.int8, stream = myStream)
 
     gridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
 
     final_converged = False
-    converged = cuda.device_array(1, dtype = np.int8)
 
     while(not final_converged):
 
-        vertex_minedge = cuda.device_array(n_components, dtype = np.int32)
+        # assign vertex_minedge an array of size n_components
+        # it eventually gets deleted in the end of the iteration
+        # after it also served as the new_vertex
+        vertex_minedge = top_edge
 
-        findMinEdge_CUDA[gridDim, MAX_TPB](weight, firstEdge, outDegree, vertex_minedge)
+        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
 
-        removeMirroredEdges_CUDA[gridDim, MAX_TPB](dest, vertex_minedge)
+        removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
 
-        addEdgesToMST_CUDA[gridDim, MAX_TPB](mst, mst_pointer, vertex_minedge, edge_id)
+        addEdgesToMST_CUDA[gridDim, MAX_TPB, myStream](mst, mst_pointer, vertex_minedge, edge_id)
 
-        colors = cuda.device_array(shape = n_components, dtype = np.int32)
-        initializeColors_CUDA[gridDim, MAX_TPB](dest, vertex_minedge, colors)
-
-        del vertex_minedge
+        colors = cuda.device_array(shape = n_components, dtype = np.int32, stream = myStream)
+        initializeColors_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge, colors)
 
         # propagate colors until convergence
         propagateConverged = False
         while(not propagateConverged):
-            propagateColors_CUDA[gridDim, MAX_TPB](colors, converged)
-            converged_num = converged.getitem(0)
+            propagateColors_CUDA[gridDim, MAX_TPB, myStream](colors, converged)
+            converged_num = converged.getitem(0, stream = myStream)
             propagateConverged = True if converged_num == 1 else False
 
         # first we build the flags in the new_vertex array
-        new_vertex = cuda.device_array(shape = n_components, dtype = np.int32)
-        buildFlag_CUDA[gridDim, MAX_TPB](colors, new_vertex)
+        new_vertex = vertex_minedge # reuse the vertex_minedge array as the new new_vertex
+        buildFlag_CUDA[gridDim, MAX_TPB, myStream](colors, new_vertex)
 
         # new_n_vertices is the number of vertices of the new contracted graph
-        new_n_vertices = ex_prefix_sum_gpu(new_vertex, MAX_TPB = MAX_TPB).getitem(0)
+        new_n_vertices = ex_prefix_sum_gpu(new_vertex, MAX_TPB = MAX_TPB, stream = myStream).getitem(0, stream = myStream)
         new_n_vertices = int(new_n_vertices)
 
         if new_n_vertices == 1:
             final_converged = True
+            del new_vertex
             break
 
         newGridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
         
         # count number of edges for new supervertices and write in new outDegree
-        newOutDegree = cuda.device_array(shape = new_n_vertices, dtype = np.int32)
-        memSet[newGridDim, MAX_TPB](newOutDegree, 0) # zero the newOutDegree array
-        countNewEdges_CUDA[gridDim, MAX_TPB](colors, firstEdge, outDegree, dest, new_vertex, newOutDegree)
+        newOutDegree = cuda.device_array(shape = new_n_vertices, dtype = np.int32, stream = myStream)
+        memSet[newGridDim, MAX_TPB, myStream](newOutDegree, 0) # zero the newOutDegree array
+        countNewEdges_CUDA[gridDim, MAX_TPB, myStream](colors, firstEdge, outDegree, dest, new_vertex, newOutDegree)
 
         # new first edge array for contracted graph
-        newFirstEdge = cuda.device_array_like(newOutDegree)
-        newFirstEdge.copy_to_device(newOutDegree) # copy newOutDegree to newFirstEdge
-        new_n_edges = ex_prefix_sum_gpu(newFirstEdge, MAX_TPB = MAX_TPB).getitem(0)
+        newFirstEdge = cuda.device_array_like(newOutDegree, stream = myStream)
+        newFirstEdge.copy_to_device(newOutDegree, stream = myStream) # copy newOutDegree to newFirstEdge
+        new_n_edges = ex_prefix_sum_gpu(newFirstEdge, MAX_TPB = MAX_TPB, stream = myStream)
+
+        new_n_edges = new_n_edges.getitem(0, stream = myStream)
         new_n_edges = int(new_n_edges)
 
         # if no edges remain, then MST has converged
         if new_n_edges == 0:
             final_converged = True
+            del newOutDegree, newFirstEdge, new_vertex
             break
 
         # create arrays for new edges
-        new_dest = cuda.device_array(new_n_edges, dtype = np.int32)
-        new_edge_id = cuda.device_array(new_n_edges, dtype = np.int32)
-        new_weight = cuda.device_array(new_n_edges, dtype = weight.dtype)
+        new_dest = cuda.device_array(new_n_edges, dtype = np.int32, stream = myStream)
+        new_edge_id = cuda.device_array(new_n_edges, dtype = np.int32, stream = myStream)
+        new_weight = cuda.device_array(new_n_edges, dtype = weight.dtype, stream = myStream)
 
-        top_edge = cuda.device_array_like(newFirstEdge)
-        top_edge.copy_to_device(newFirstEdge)
+        top_edge = cuda.device_array_like(newFirstEdge, stream = myStream)
+        top_edge.copy_to_device(newFirstEdge, stream = myStream)
 
         # assign and insert new edges
-        assignInsert_CUDA[gridDim, MAX_TPB](edge_id, dest, weight, firstEdge,
+        assignInsert_CUDA[gridDim, MAX_TPB, myStream](edge_id, dest, weight, firstEdge,
                                             outDegree, colors, new_vertex, 
                                             new_dest, new_edge_id, new_weight, top_edge)
 
         # delete old graph
-        del new_vertex, edge_id, dest, weight, firstEdge, outDegree, colors, top_edge
+        del new_vertex, edge_id, dest, weight, firstEdge, outDegree, colors
 
         # write new graph
         n_components = newFirstEdge.size
@@ -1068,8 +1107,8 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         outDegree = newOutDegree
         gridDim = newGridDim
 
-    host_mst = mst.copy_to_host()
-    mst_size = mst_pointer.getitem(0)
+    host_mst = mst.copy_to_host(stream = myStream)
+    mst_size = mst_pointer.getitem(0, stream = myStream)
 
     del dest, weight, edge_id, firstEdge, outDegree, mst, mst_pointer, converged
 
@@ -1098,8 +1137,10 @@ def memSet(in_ary, val):
         in_ary[idx] = val
 
 
-@cuda.jit("void(float32[:], int32[:], int32[:], int32[:])")
-def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge):
+
+#@cuda.jit(["void(float32[:], int32[:], int32[:], int32[:], int32[:])", "void(int32[:], int32[:], int32[:], int32[:], int32[:])"])
+@cuda.jit
+def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge, edge_id):
     v = cuda.grid(1)
     n_components = vertex_minedge.size
 
@@ -1119,14 +1160,21 @@ def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge):
 
     min_edge = start
     min_weight = weight[start] # get first weight for comparison inside loop
+    min_id = edge_id[start]
 
     # loop through all the edges of vertex to get the minimum
     for edge in range(start + 1, end):
-        temp = weight[edge]
-        if temp < min_weight:
+        edge_weight = weight[edge]
+        edge_id_curr = edge_id[edge]
+        if edge_weight < min_weight:
             min_edge = edge
-            min_weight = temp
-
+            min_weight = edge_weight
+            min_id = edge_id_curr
+        elif edge_weight == min_weight:
+            if edge_id_curr < min_id:
+                min_edge = edge
+                min_weight = edge_weight
+                min_id = edge_id_curr
     vertex_minedge[v] = min_edge
 
 @cuda.jit("void(int32[:], int32[:])")
@@ -1260,9 +1308,13 @@ def countNewEdges_CUDA(colors, firstEdge, outDegree, dest, new_vertex, newOutDeg
         if my_color != my_succ_color:
             cuda.atomic.add(newOutDegree, my_color_id, 1)
 
-@cuda.jit("void(int32[:], int32[:], float32[:], int32[:],\
-                int32[:], int32[:], int32[:], \
-                int32[:], int32[:], float32[:], int32[:])")
+# @cuda.jit(["void(int32[:], int32[:], float32[:], int32[:],\
+#                 int32[:], int32[:], int32[:], \
+#                 int32[:], int32[:], float32[:], int32[:])",
+#            "void(int32[:], int32[:], int32[:], int32[:],\
+#                 int32[:], int32[:], int32[:], \
+#                 int32[:], int32[:], int32[:], int32[:])"])
+@cuda.jit
 def assignInsert_CUDA(edge_id, dest, weight, firstEdge,
                       outDegree, colors, new_vertex, 
                       new_dest, new_edge_id, new_weight, top_edge):

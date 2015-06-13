@@ -1,0 +1,47 @@
+/home/chiroptera/anaconda/lib/python2.7/site-packages/numba/cuda/decorators.py:106: UserWarning: autojit is deprecated and will be removed in a future release. Use jit instead.
+  warn('autojit is deprecated and will be removed in a future release. Use jit instead.')
+==9557== NVPROF is profiling process 9557, command: python experiments/mst_tests.py 1
+==9557== Profiling application: python experiments/mst_tests.py 1
+==9557== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 47.04%  6.8710ms         6  1.1452ms  751.56us  1.6227ms  cudaPy_MyML_2E_graph_2E_mst_2E_assignInsert_5F_CUDA_24_26_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_float32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_float32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+ 18.76%  2.7404ms         7  391.49us  272.47us  672.25us  cudaPy_MyML_2E_graph_2E_mst_2E_findMinEdge_5F_CUDA_24_24_2E_array_28_float32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+ 13.63%  1.9910ms         6  331.83us  227.92us  421.60us  cudaPy_MyML_2E_graph_2E_mst_2E_countNewEdges_5F_CUDA_24_22_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+ 10.99%  1.6050ms         7  229.28us  2.1420us  1.1546ms  cudaPy_MyML_2E_graph_2E_mst_2E_addEdgesToMST_5F_CUDA_24_18_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  1.89%  276.25us         5  55.250us  23.357us  131.34us  cudaPy_MyML_2E_helper_2E_scan_2E_prescan_24_3_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  1.65%  240.46us        22  10.929us  1.4770us  31.670us  cudaPy_MyML_2E_graph_2E_mst_2E_propagateColors_5F_CUDA_24_20_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int8_2C__20_1d_2C__20_A_29_
+  1.35%  197.16us         6  32.860us     704ns  58.618us  [CUDA memcpy HtoD]
+  1.19%  174.53us         7  24.932us  2.7220us  80.359us  cudaPy_MyML_2E_graph_2E_mst_2E_removeMirroredEdges_5F_CUDA_24_17_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  0.96%  140.26us        18  7.7920us  2.8970us  16.983us  cudaPy_MyML_2E_helper_2E_scan_2E_last_5F_scan_24_4_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_int32_2E_int32_2E_int32
+  0.82%  119.04us         7  17.005us  2.0420us  54.538us  cudaPy_MyML_2E_graph_2E_mst_2E_initializeColors_5F_CUDA_24_19_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  0.81%  118.58us        37  3.2040us  2.7190us  12.510us  [CUDA memcpy DtoH]
+  0.36%  52.652us         7  7.5210us  1.5560us  23.003us  cudaPy_MyML_2E_graph_2E_mst_2E_buildFlag_5F_CUDA_24_21_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  0.25%  37.121us         5  7.4240us  2.6010us  19.073us  cudaPy_MyML_2E_helper_2E_scan_2E_scan_5F_sum_24_2_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_array_28_int32_2C__20_1d_2C__20_A_29_
+  0.19%  27.802us         6  4.6330us  1.3310us  16.619us  cudaPy_MyML_2E_graph_2E_mst_2E_memSet_24_25_2E_array_28_int32_2C__20_1d_2C__20_A_29__2E_int64
+  0.10%  14.268us        12  1.1890us     544ns  4.1590us  [CUDA memcpy DtoD]
+
+==9557== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 72.06%  62.946ms         1  62.946ms  62.946ms  62.946ms  cuCtxCreate
+  4.93%  4.3105ms        13  331.58us  179.87us  699.43us  cuLinkComplete
+  4.86%  4.2475ms        13  326.73us  293.61us  463.29us  cuModuleLoadDataEx
+  4.46%  3.8989ms        70  55.698us  8.3540us  1.1339ms  cuMemFree
+  3.73%  3.2580ms        13  250.62us  184.89us  469.25us  cuLinkAddData
+  2.66%  2.3196ms        70  33.136us  13.373us  181.82us  cuMemAlloc
+  2.11%  1.8415ms       103  17.878us  15.197us  26.586us  cuLaunchKernel
+  1.75%  1.5294ms        37  41.334us  23.350us  309.16us  cuMemcpyDtoHAsync
+  1.64%  1.4319ms        13  110.15us  85.945us  206.32us  cuModuleUnload
+  0.57%  493.56us        13  37.965us  35.904us  47.040us  cuLinkCreate
+  0.44%  380.60us         6  63.434us  14.240us  132.10us  cuMemcpyHtoDAsync
+  0.31%  274.23us        12  22.852us  20.650us  32.433us  cuMemcpyDtoDAsync
+  0.24%  213.65us       270     791ns     417ns  2.4930us  cuCtxGetCurrent
+  0.07%  57.941us         1  57.941us  57.941us  57.941us  cuStreamCreate
+  0.06%  51.732us        65     795ns     562ns  1.5600us  cuFuncGetAttribute
+  0.04%  34.688us         1  34.688us  34.688us  34.688us  cuDeviceGetName
+  0.03%  24.425us        13  1.8780us  1.7400us  2.0050us  cuModuleGetFunction
+  0.02%  19.898us        13  1.5300us  1.2550us  3.7300us  cuLinkDestroy
+  0.01%  6.2290us         1  6.2290us  6.2290us  6.2290us  cuStreamDestroy
+  0.00%  2.6300us         2  1.3150us     842ns  1.7880us  cuDeviceGet
+  0.00%  2.2480us         2  1.1240us     935ns  1.3130us  cuDeviceGetCount
+  0.00%  1.1000us         1  1.1000us  1.1000us  1.1000us  cuDeviceComputeCapability
+  0.00%  1.0520us         1  1.0520us  1.0520us  1.0520us  cuDeviceGetAttribute

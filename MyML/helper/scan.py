@@ -41,6 +41,23 @@ def exprefixsumNumba(in_ary, out_ary, init = 0):
 
     return carry
 
+@numba.jit(int32(int32[:],int32), nopython=False)
+def exprefixsumNumbaSingle(in_ary, init = 0):
+    """
+    exclusive prefix sum
+    """
+    nelem = in_ary.size
+
+    carry = init
+    keeper = in_ary[0]
+    for i in range(1, nelem):
+        carry += keeper
+        keeper = in_ary[i]
+        in_ary[i] = carry
+
+    carry += keeper # total sum
+    return carry
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #                                 CUDA
@@ -115,7 +132,7 @@ def advanced_scan(g_odata, g_idata, n, aux):
 
 
 
-def scan_gpu(in_ary, MAX_TPB = 512):
+def scan_gpu(in_ary, MAX_TPB = 512, stream = 0):
 
     n = in_ary.size
 
@@ -138,10 +155,10 @@ def scan_gpu(in_ary, MAX_TPB = 512):
 
         sm_size = telb * in_ary.dtype.itemsize # size of shared memory = telb
 
-        dAux = cuda.device_array(shape = 1, dtype = in_ary.dtype) # we only want to store the final sum
+        dAux = cuda.device_array(shape = 1, dtype = in_ary.dtype, stream = stream) # we only want to store the final sum
         auxidx = 0
         
-        last_scan[1, tlb, 0, sm_size](in_ary, dAux, auxidx, elb, startIdx)
+        last_scan[1, tlb, stream, sm_size](in_ary, dAux, auxidx, elb, startIdx)
 
         return dAux
 
@@ -152,13 +169,13 @@ def scan_gpu(in_ary, MAX_TPB = 512):
             n_scans += 1 
 
         # +1 because we want the total sum as a side result
-        dAux = cuda.device_array(shape = n_scans, dtype = in_ary.dtype)
+        dAux = cuda.device_array(shape = n_scans, dtype = in_ary.dtype, stream = stream)
 
         # shared memory is of the size of the elements of block
         sm_size = epb * in_ary.dtype.itemsize
 
         # prescan all the whole blocks
-        prescan[bpg, tpb, 0, sm_size](in_ary, dAux)
+        prescan[bpg, tpb, stream, sm_size](in_ary, dAux)
 
         # prescan the last block, if any
         if elb != 0:
@@ -174,15 +191,17 @@ def scan_gpu(in_ary, MAX_TPB = 512):
 
             startIdx = n - elb # index of first element of last block
 
-            last_scan[1, tlb, 0, sm_size](in_ary, dAux, auxidx, elb, startIdx)            
+            last_scan[1, tlb, stream, sm_size](in_ary, dAux, auxidx, elb, startIdx)
 
         # if n_scans is less than maximum number of elements per block
         # it's the last scan
-        total_sum = scan_gpu(dAux)
+        total_sum = scan_gpu(dAux, stream = stream)
 
 
         # sum kernel
-        scan_sum[n_scans, tpb](in_ary, dAux)
+        scan_sum[n_scans, tpb, stream](in_ary, dAux)
+
+        #stream.synchronize()
 
         return total_sum
 

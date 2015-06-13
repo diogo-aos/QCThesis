@@ -1,0 +1,105 @@
+dest[mst2[np.where(True-np.in1d(mst2,mst1))[0]]]
+
+b MyML/graph/mst.py:733
+b MyML/graph/mst.py:777
+b MyML/graph/mst.py:781
+
+b MyML/graph/mst.py:1005
+b MyML/graph/mst.py:1053
+b MyML/graph/mst.py:1058
+
+
+np.savetxt("me_gpu.csv", np.array([vertex_minedge.getitem(i) for i in range(vertex_minedge.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("mst_gpu.csv", np.array([mst.getitem(i) for i in range(mst.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("eid_gpu.csv", np.array([edge_id.getitem(i) for i in range(edge_id.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("dest_gpu.csv", np.array([dest.getitem(i) for i in range(dest.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("weight_gpu.csv", np.array([weight.getitem(i) for i in range(weight.size)], dtype=np.float32), delimiter = ",")
+np.savetxt("fe_gpu.csv", np.array([firstEdge.getitem(i) for i in range(firstEdge.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("od_gpu.csv", np.array([outDegree.getitem(i) for i in range(outDegree.size)], dtype=np.int32), delimiter = ",")
+
+
+
+np.savetxt("colors_gpu.csv", np.array([colors.getitem(i) for i in range(colors.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("nv_gpu.csv", np.array([new_vertex.getitem(i) for i in range(new_vertex.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("te_gpu.csv", np.array([top_edge.getitem(i) for i in range(top_edge.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("nod_gpu.csv", np.array([newOutDegree.getitem(i) for i in range(newOutDegree.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("nef_gpu.csv", np.array([newFirstEdge.getitem(i) for i in range(newFirstEdge.size)], dtype=np.int32), delimiter = ",")
+
+np.savetxt("ndest_gpu.csv", np.array([new_dest.getitem(i) for i in range(new_dest.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("nweight_gpu.csv", np.array([new_weight.getitem(i) for i in range(new_weight.size)], dtype=np.int32), delimiter = ",")
+np.savetxt("neid_gpu.csv", np.array([new_edge_id.getitem(i) for i in range(new_edge_id.size)], dtype=np.int32), delimiter = ",")
+
+
+
+
+np.savetxt("me_seq.csv", vertex_minedge, delimiter = ",")
+np.savetxt("mst_seq.csv", mst, delimiter = ",")
+np.savetxt("dest_seq.csv", dest, delimiter = ",")
+np.savetxt("weight_seq.csv", weight, delimiter = ",")
+np.savetxt("fe_seq.csv", firstEdge, delimiter = ",")
+np.savetxt("od_seq.csv", outDegree, delimiter = ",")
+np.savetxt("eid_seq.csv", edge_id, delimiter = ",")
+
+np.savetxt("colors_seq.csv", colors, delimiter = ",")
+np.savetxt("nv_seq.csv", new_vertex, delimiter = ",")
+np.savetxt("te_seq.csv", top_edge, delimiter = ",")
+np.savetxt("nod_seq.csv", newOutDegree, delimiter = ",")
+np.savetxt("nef_seq.csv", newFirstEdge, delimiter = ",")
+
+np.savetxt("ndest_seq.csv", new_dest, delimiter = ",")
+np.savetxt("nweight_seq.csv", new_weight, delimiter = ",")
+np.savetxt("neid_seq.csv", new_edge_id, delimiter = ",")
+
+
+
+
+import numpy as np
+from numba import cuda,jit
+
+def compare(name):
+    ar_gpu = np.genfromtxt(name + "_gpu.csv", delimiter=",").astype(np.int32)
+    ar_seq = np.genfromtxt(name + "_seq.csv", delimiter=",").astype(np.int32)
+    print (ar_gpu == ar_seq).all()
+    return ar_gpu, ar_seq
+
+def get_arr(name):
+    ar_gpu = np.genfromtxt(name + "_gpu.csv", delimiter=",").astype(np.int32)
+    ar_seq = np.genfromtxt(name + "_seq.csv", delimiter=",").astype(np.int32)
+    return ar_gpu, ar_seq
+
+def test0(mst_pointer):
+    me0,me1 = get_arr("me")
+    me0 = me0[me0!=-1]
+    me1 = me1[me1!=-1]
+    eid0,eid1 = get_arr("eid")
+    mst0,mst1 = get_arr("mst")
+    mst0 = mst0[:mst_pointer]
+    mst1 = mst1[:mst_pointer]
+    mec0 = eid0[me0]
+    mec1 = eid1[me1]
+    print "same me:  ", np.in1d(mec0,mec1).all()
+    print "same mst: ", np.in1d(mst0,mst1).all()
+    print "same eid: ", np.in1d(eid0,eid1).all()
+
+
+def test1():
+    col0, col1 = get_arr("colors")
+    print "same col: ", (col0==col1).all()
+    nod0, nod1 = get_arr("nod")
+    print "same nod: ", (nod0==nod1).all()
+    nv0, nv1 = get_arr("nv")
+    print "same nv:  ", (nv0==nv1).all()
+
+def check_me(mst_pointer):
+    me0,me1 = get_arr("me")
+    me0 = me0[me0!=-1]
+    me1 = me1[me1!=-1]
+    eid0,eid1 = get_arr("eid")
+    mst0,mst1 = get_arr("mst")
+    mst0 = mst0[:mst_pointer]
+    mst1 = mst1[:mst_pointer]
+    mec0 = eid0[me0]
+    mec1 = eid1[me1]
+    print "same me:  ", np.in1d(mec0,mec1).all()
+    print "same mst: ", np.in1d(mst0,mst1).all()
+    
