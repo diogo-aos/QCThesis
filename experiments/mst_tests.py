@@ -9,7 +9,7 @@ from numba import cuda, jit, int32, float32
 from timeit import default_timer as timer
 from scipy.sparse.csr import csr_matrix
 from MyML.graph.mst import boruvka_minho_seq, boruvka_minho_gpu
-from MyML.graph.connected_components import connected_comps_seq as getLabels
+from MyML.graph.connected_components import connected_comps_seq as getLabels_seq, connected_comps_gpu as getLabels_gpu
 from MyML.helper.scan import exprefixsumNumba
 
 import sys
@@ -39,10 +39,8 @@ class Timer():
 @jit
 def outdegree_from_firstedge(firstedge, outdegree, n_edges):
     n_vertices = firstedge.size
-
     for v in range(n_vertices - 1):
         outdegree[v] = firstedge[v + 1] - firstedge[v]
-
     outdegree[n_vertices - 1] = n_edges - firstedge[n_vertices - 1]
 
 
@@ -93,7 +91,8 @@ def binaryEdgeIdSearch(key, dest, fe, od):
             return imid
     return -1
 
-@jit(["int32(int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:])"], nopython=True)
+@jit(["int32(int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:])",
+      "int32(int32[:], float32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], float32[:])"], nopython=True)
 def get_new_graph(dest, weight, fe, od, mst, nod, nfe, ndest, nweight):
 
     # first build the outDegree to get the first_edge
@@ -109,10 +108,11 @@ def get_new_graph(dest, weight, fe, od, mst, nod, nfe, ndest, nweight):
     # get first edge from outDegree
     exprefixsumNumba(nod, nfe, init = 0)
 
-    # get copy of newFirstEdge to serve as pointers for the newDest
-    top_edge = np.empty(nfe.size, dtype = int32)
+    #get copy of newFirstEdge to serve as pointers for the newDest
+    top_edge = np.empty(nfe.size, dtype = np.int32)
     for i in range(nfe.size):
         top_edge[i] = nfe[i]
+    #top_edge = nfe.copy()
 
     # go through all the mst edges again and write the new edges in the new arrays
     for e in range(mst.size):
@@ -146,7 +146,6 @@ def load_csr_graph(filename):
     raw = np.genfromtxt(filename, delimiter = ",", dtype = np.int32)
     sp_raw = csr_matrix((raw[:,2],(raw[:,0],raw[:,1])))
     del raw
-
     return sp_raw
 
 def get_boruvka_format(csr_mat):
@@ -159,9 +158,7 @@ def get_boruvka_format(csr_mat):
     weight = csr_mat.data
     firstEdge = csr_mat.indptr[:-1]
     outDegree = np.empty_like(firstEdge)
-
     outdegree_from_firstedge(firstEdge, outDegree, dest.size)
-
     return dest, weight, firstEdge, outDegree
 
 
@@ -284,6 +281,7 @@ def host_vs_device():
 
         if n_edges1 < mst1.size:
             mst1 = mst1[:n_edges1]
+        mst1.sort()
 
         t2.tic()
         mst2, n_edges2 = boruvka_minho_gpu(dest, weight, firstEdge, outDegree, MAX_TPB=256)
@@ -291,8 +289,10 @@ def host_vs_device():
 
         if n_edges2 < mst2.size:
             mst2 = mst2[:n_edges2]
+        mst2.sort()
 
-        same_sol.append(np.in1d(mst1,mst2).all())
+        #same_sol.append(np.in1d(mst1,mst2).all())
+        same_sol.append((mst1==mst2))
 
     print "Same solution: ", same_sol
 
@@ -305,28 +305,58 @@ def host_vs_device():
 
 def check_colors():
 
-    print "CUDA BORUVKA"
+    print "CHECK COLORS SEQ & CUDA"
 
-    dest, weight, firstEdge, outDegree = load_graph("4elt")
+    #dest, weight, firstEdge, outDegree = load_graph("4elt")
+
+    sp_cal = load_csr_graph("/home/chiroptera/QCThesis/datasets/graphs/USA-road-d.CAL.csr")
+    dest, weight, firstEdge, outDegree = get_boruvka_format(sp_cal)
+    del sp_cal
+
+    print "# edges:            ", dest.size
+    print "# vertices:         ", firstEdge.size
+    print "size of graph (MB): ", (dest.size + weight.size + firstEdge.size + outDegree.size) * 4.0 / 1024 / 1024    
 
     print "# vertices: ", firstEdge.size
     print "# edges:    ", dest.size
 
-    print "Computing MST"
+    print "seq: Computing MST"
 
     t1 = Timer()
     t1.tic()
-    mst, n_edges = boruvka_minho_gpu(dest, weight, firstEdge, outDegree, MAX_TPB=256)
+    mst, n_edges = boruvka_minho_seq(dest, weight, firstEdge, outDegree)
     t1.tac()
+
+    print "seq: time elapsed: ", t1.elapsed
+    print "seq: mst size :", mst.size
+    print "seq: n_edges: ", n_edges
+
 
     if n_edges < mst.size:
         mst = mst[:n_edges]
-    mst = mst[:-2]
     mst.sort()
-    print "time elapsed: ", t1.elapsed
-    print "mst size :", mst.size
 
-    print "Generating MST graph"
+    print "gpu: Computing MST"
+
+    t1.tic()
+    mst2, n_edges2 = boruvka_minho_gpu(dest, weight, firstEdge, outDegree, MAX_TPB=256)
+    t1.tac()
+
+    print "gpu: time elapsed: ", t1.elapsed
+    print "gpu: mst size :", mst2.size  
+    print "seq: n_edges: ", n_edges2
+
+    if n_edges2 < mst2.size:
+        mst2 = mst2[:n_edges2]
+    mst2.sort()
+
+
+    print "mst gpu == seq: ", (mst == mst2).all()
+
+    # make two cuts
+    mst = mst[:-2]
+
+    print "seq: Generating MST graph"
     nod = np.zeros(outDegree.size, dtype = outDegree.dtype)
     nfe = np.empty(firstEdge.size, dtype = firstEdge.dtype)
     ndest = np.empty(mst.size * 2, dtype = dest.dtype)
@@ -336,15 +366,25 @@ def check_colors():
     get_new_graph(dest, weight, firstEdge, outDegree, mst, nod, nfe, ndest, nweight)
     t1.tac()
      
-    print "time elapsed: ", t1.elapsed
+    print "seq: time elapsed: ", t1.elapsed
 
-    print "Computing labels"
+    print "seq: Computing labels"
     t1.tic()
-    colors = getLabels(ndest, nweight, nfe, nod)
+    colors = getLabels_seq(ndest, nweight, nfe, nod)
     t1.tac()
 
-    print "time elapsed: ", t1.elapsed
-    print "# colors:     ", np.unique(colors).size
+    print "seq: time elapsed: ", t1.elapsed
+    print "seq: # colors:     ", np.unique(colors).size
+
+    print "gpu: Computing labels"
+    t1.tic()
+    colors2 = getLabels_gpu(ndest, nweight, nfe, nod, MAX_TPB=256)
+    t1.tac()
+
+    print "gpu: time elapsed: ", t1.elapsed
+    print "gpu: # colors:     ", np.unique(colors2).size
+
+    print "colors gpu == seq: ", (colors == colors2).all()
 
 def mst_cal():
     sp_cal = load_csr_graph("/home/diogoaos/QCThesis/datasets/graphs/USA-road-d.CAL.csr")
@@ -361,7 +401,7 @@ def mst_cal():
     t1, t2 = Timer(), Timer()
 
     for r in range(10):
-    	print "cpu round ", r
+        print "cpu round ", r
         t1.tic()
         mst1, n_edges1 = boruvka_minho_seq(dest, weight, firstEdge, outDegree)
         t1.tac()

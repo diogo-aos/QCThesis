@@ -50,6 +50,7 @@ def exprefixsumNumbaSingle(in_ary, init = 0):
 
     carry = init
     keeper = in_ary[0]
+    in_ary[0] = init
     for i in range(1, nelem):
         carry += keeper
         keeper = in_ary[i]

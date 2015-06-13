@@ -7,9 +7,14 @@ notes: Boruvka implementation based on Sousa's "A Generic and Highly Efficient P
 
 
 import numpy as np
-from MyML.helper.scan import scan_gpu as ex_prefix_sum_gpu, exprefixsumNumbaSingle as ex_prefix_sum_cpu, exprefixsumNumba as ex_prefix_sum_cpu2
-from MyML.graph.mst import findMinEdgeNumba, removeMirroredNumba, initColorsNumba, propagateColorsNumba, buildFlag, countNewEdgesNumba, assignInsertNumba
+from MyML.helper.scan import exprefixsumNumbaSingle as ex_prefix_sum_cpu, exprefixsumNumba as ex_prefix_sum_cpu2,\
+                             scan_gpu as ex_prefix_sum_gpu
+from MyML.graph.mst import findMinEdgeNumba, removeMirroredNumba, initColorsNumba, propagateColorsNumba,\
+                           buildFlag, countNewEdgesNumba, assignInsertNumba,\
+                           compute_cuda_grid_dim, findMinEdge_CUDA, removeMirroredEdges_CUDA, memSet,\
+                           initializeColors_CUDA, propagateColors_CUDA, buildFlag_CUDA, countNewEdges_CUDA, assignInsert_CUDA
 from numba import jit, cuda, void, boolean, int8, int32, float32
+
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -65,11 +70,10 @@ def connected_comps_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
         if first_iter:
             # first iteration defines labels as the initial colors and updates
             labels = colors.copy()
-            update_labels_single_pass(labels, colors, new_vertex)
             first_iter = False
-        else:
-            # other iterations update the labels with the new colors
-            update_labels_single_pass(labels, colors, new_vertex)        
+
+        # update the labels with the new colors
+        update_labels_single_pass(labels, colors, new_vertex)        
 
 
         if new_n_vertices == 1:
@@ -110,7 +114,6 @@ def connected_comps_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
         firstEdge = newFirstEdge
         outDegree = newOutDegree
 
-
     return labels
 
 
@@ -149,6 +152,125 @@ def update_labels_single_pass(labels, colors, new_vertex):
         new_color_id = new_vertex[new_color]
         labels[v] = new_color_id
 
+
+def connected_comps_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
+    myStream = cuda.stream()
+    dest = cuda.to_device(dest_in, stream = myStream)
+    weight = cuda.to_device(weight_in, stream = myStream)
+    firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
+    outDegree = cuda.to_device(outDegree_in, stream = myStream)
+
+    n_vertices = firstEdge.size
+    n_edges = dest.size
+
+    n_components = n_vertices
+
+    # still need edge_id for conflict resolution in find_minedge
+    edge_id = cuda.to_device(np.arange(n_edges, dtype = dest.dtype), stream = myStream)
+    
+    #labels = np.empty(n_vertices, dtype = dest.dtype)
+    first_iter = True
+
+    # initialize with name top_edge so we can recycle an array between iterations
+    top_edge = cuda.device_array(n_components, dtype = dest.dtype, stream = myStream)
+    labels = cuda.device_array(n_components, dtype = dest.dtype, stream = myStream)
+
+    converged = cuda.device_array(1, dtype = np.int8, stream = myStream)
+    
+    gridDimLabels = compute_cuda_grid_dim(n_components, MAX_TPB)
+    gridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
+
+    final_converged = False
+    while(not final_converged):
+        vertex_minedge = top_edge
+
+        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
+
+        removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
+
+        colors = cuda.device_array(shape = n_components, dtype = np.int32, stream = myStream)
+        initializeColors_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge, colors)
+
+        # propagate colors until convergence
+        propagateConverged = False
+        while(not propagateConverged):
+            propagateColors_CUDA[gridDim, MAX_TPB, myStream](colors, converged)
+            converged_num = converged.getitem(0, stream = myStream)
+            propagateConverged = True if converged_num == 1 else False
+
+        # first we build the flags in the new_vertex array
+        new_vertex = vertex_minedge # reuse the vertex_minedge array as the new new_vertex
+        buildFlag_CUDA[gridDim, MAX_TPB, myStream](colors, new_vertex)
+
+        # new_n_vertices is the number of vertices of the new contracted graph
+        new_n_vertices = ex_prefix_sum_gpu(new_vertex, MAX_TPB = MAX_TPB, stream = myStream).getitem(0, stream = myStream)
+        new_n_vertices = int(new_n_vertices)
+
+        if first_iter:
+            # first iteration defines labels as the initial colors and updates
+            labels.copy_to_device(colors, stream = myStream)
+            first_iter = False
+        
+        # other iterations update the labels with the new colors
+        update_labels_single_pass_cuda[gridDimLabels, MAX_TPB, myStream](labels, colors, new_vertex)
+
+        if new_n_vertices == 1:
+            final_converged = True
+            del new_vertex
+            break
+
+        newGridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
+        
+        # count number of edges for new supervertices and write in new outDegree
+        newOutDegree = cuda.device_array(shape = new_n_vertices, dtype = np.int32, stream = myStream)
+        memSet[newGridDim, MAX_TPB, myStream](newOutDegree, 0) # zero the newOutDegree array
+        countNewEdges_CUDA[gridDim, MAX_TPB, myStream](colors, firstEdge, outDegree, dest, new_vertex, newOutDegree)
+
+        # new first edge array for contracted graph
+        newFirstEdge = cuda.device_array_like(newOutDegree, stream = myStream)
+        newFirstEdge.copy_to_device(newOutDegree, stream = myStream) # copy newOutDegree to newFirstEdge
+        new_n_edges = ex_prefix_sum_gpu(newFirstEdge, MAX_TPB = MAX_TPB, stream = myStream)
+
+        new_n_edges = new_n_edges.getitem(0, stream = myStream)
+        new_n_edges = int(new_n_edges)
+
+        # if no edges remain, then MST has converged
+        if new_n_edges == 0:
+            final_converged = True
+            del newOutDegree, newFirstEdge, new_vertex
+            break
+
+        # create arrays for new edges
+        new_dest = cuda.device_array(new_n_edges, dtype = np.int32, stream = myStream)
+        new_edge_id = cuda.device_array(new_n_edges, dtype = np.int32, stream = myStream)
+        new_weight = cuda.device_array(new_n_edges, dtype = weight.dtype, stream = myStream)
+
+        top_edge = cuda.device_array_like(newFirstEdge, stream = myStream)
+        top_edge.copy_to_device(newFirstEdge, stream = myStream)
+
+        # assign and insert new edges
+        assignInsert_CUDA[gridDim, MAX_TPB, myStream](edge_id, dest, weight, firstEdge,
+                                            outDegree, colors, new_vertex, 
+                                            new_dest, new_edge_id, new_weight, top_edge)
+
+        # delete old graph
+        del new_vertex, edge_id, dest, weight, firstEdge, outDegree, colors
+
+        # write new graph
+        n_components = newFirstEdge.size
+        edge_id = new_edge_id
+        dest = new_dest
+        weight = new_weight
+        firstEdge = newFirstEdge
+        outDegree = newOutDegree
+        gridDim = newGridDim
+
+    returnLabels = labels.copy_to_host()
+
+    del dest, weight, edge_id, firstEdge, outDegree, converged, labels
+
+    return returnLabels
+
 @cuda.jit
 def update_labels_cuda(labels, update_array):
     """
@@ -164,7 +286,7 @@ def update_labels_cuda(labels, update_array):
     curr_color = labels[v]
     labels[v] = update_array[curr_color]
 
-@jit
+@cuda.jit
 def update_labels_single_pass_cuda(labels, colors, new_vertex):
     """
     Does all the updates on a single pass

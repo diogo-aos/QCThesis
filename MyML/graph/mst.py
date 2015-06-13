@@ -694,29 +694,25 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
     firstEdge = firstEdge_in
     outDegree = outDegree_in
 
-    
     n_vertices = firstEdge.size
     n_edges = dest.size
 
     edge_id = np.arange(n_edges, dtype = dest.dtype)
-    
-    # total edges is (|V| - 1) * 2 because edges are duplicated to cover each direction
-    
-    
+
     n_components = n_vertices
     n_mst = 1
-
-    final_converged = False
+    
     # maximum size of MST is when it is connected
     mst = np.empty(n_vertices - 1, dtype = dest.dtype)
-    # if there are elements == -1 in the end it means 
-    # there
-    mst.fill(-1)
     mst_pointer = 0
 
+    final_converged = False
     while(not final_converged):
+
         vertex_minedge = np.empty(n_components, dtype = dest.dtype)
+
         findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id)
+        
         removeMirroredNumba(vertex_minedge, dest)
 
         # add new edges to final MST and update MST pointer
@@ -952,48 +948,6 @@ def assignInsertNumba(edge_id, dest, weight, firstEdge,
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-def getLabels(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
-
-    n_vertices = firstEdge_in.size
-    n_edges = dest_in.size
-    n_components = n_vertices # initial number of components is the number of vertices
-
-    ## transfer everything to device and allocate arrays
-
-    myStream = cuda.stream()
-
-    dest = cuda.to_device(dest_in, stream = myStream)
-    weight = cuda.to_device(weight_in, stream = myStream)
-    firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
-    outDegree = cuda.to_device(outDegree_in, stream = myStream)
-
-    edge_id = cuda.to_device(np.arange(n_edges, dtype = np.int32), stream = myStream)
-
-    converged = cuda.device_array(1, dtype = np.int8, stream = myStream)
-
-    vertex_minedge = cuda.device_array(n_components, dtype = np.int32, stream = myStream)
-
-    gridDim = compute_cuda_grid_dim(n_components, MAX_TPB)    
-
-    findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
-
-    removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
-    colors = cuda.device_array(shape = n_components, dtype = np.int32, stream = myStream)
-    initializeColors_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge, colors)
-
-    # propagate colors until convergence
-    propagateConverged = False
-    while(not propagateConverged):
-        propagateColors_CUDA[gridDim, MAX_TPB, myStream](colors, converged)
-        converged_num = converged.getitem(0, stream = myStream)
-        propagateConverged = True if converged_num == 1 else False
-
-    final_colors = colors.copy_to_host(stream = myStream)
-
-    del dest, weight, edge_id, firstEdge, outDegree, colors, converged, vertex_minedge
-
-    return final_colors
-
 def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
 
     n_vertices = firstEdge_in.size
@@ -1108,7 +1062,9 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         gridDim = newGridDim
 
     host_mst = mst.copy_to_host(stream = myStream)
-    mst_size = mst_pointer.getitem(0, stream = myStream)
+    
+    # no custom stream here to ensure synchronization
+    mst_size = mst_pointer.getitem(0)
 
     del dest, weight, edge_id, firstEdge, outDegree, mst, mst_pointer, converged
 
@@ -1245,6 +1201,16 @@ def initializeColors_CUDA(destination, vertex_minedge, colors):
 
 @cuda.jit("void(int32[:], int8[:])")
 def propagateColors_CUDA(colors, converged):
+	#
+	# Something bad (although very unlikely) can happen here. Consider the situation where only
+	# one block (that is not the first one) doesn't converge. Consider also that that block
+	# is finishes before the first threat of the first block reached the sentence converged[0] = 1.
+	# Then, the kernel will report that there was convergence while, in fact, one block didn't converge.
+	# This is very unlikely because it requires that the first threat of the first block takes more time reaching 
+	# the 6th line of code that the time it takes a whole block to finish.
+	# It is also very easy to fix my making the initialization of colors to be the kernel that sets
+	# converged[0] = 1.
+	#
     sm_converged = cuda.shared.array(shape = 1, dtype = int8)
 
     v = cuda.grid(1)
