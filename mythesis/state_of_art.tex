@@ -1,13 +1,14 @@
 %!TEX root = thesis.tex
 
-\section{State of the art}
+\chapter{State of the art}
+\label{chapter:stateofart}
 
 %TODO double check all refs because this was merged pre latex citations and the reference might have gotten mixed
 
 %TODO
 % see if this is an apropriate structure; a quantum clustering section makes sense at the very least, but it should be introduced before
 
-\subsection{Quantum clustering}
+\section{Quantum clustering}
 The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
 There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. \citet{Wiebe2014}. Most literature on this path is also mostly theoretical since quantum circuits are not easily available and a working quantum computer has yet to be invented. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
 
@@ -15,13 +16,13 @@ There are two major paths for the problem of quantum clustering. The first is th
 
 An alternative to using real quantum systems would be to simulate them. However, simulating quantum systems in classical computers is a very hard task by itself and literature suggest is not feasible. Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would not allow speedups.
 
-The second approach is the computational intelligence approach, i.e.  to use algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two approaches. One comprehends the algorithms based on the concept of the \gls{qubit}, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other approach models data as a quantum system and uses the Schrödinger equation to evolve it.
+The second approach is the computational intelligence approach, i.e.  to use algorithms that muster inspiration from quantum analogies. A study of the literature will reveal that this path typically further divides itself into two approaches. One comprehends the algorithms based on the concept of the qubit, the quantum analogue of a classical bit with interesting properties found in quantum objects. The other approach models data as a quantum system and uses the Schrödinger equation to evolve it.
 
 In the following two sections these approaches for quantum inspired computational intelligence are explored.
 
-\subsubsection{Quantum bit}
+\subsection{Quantum bit}
 
-To understand the workings of the algorithms based on the concept of the \gls{qubit}, it is useful to cast some insight about its properties and functioning.
+To understand the workings of the algorithms based on the concept of the qubit, it is useful to cast some insight about its properties and functioning.
 The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and ...
 
 % taken from notebook -->
@@ -70,20 +71,20 @@ Def from wiki: In complexity theory and computability theory, an oracle machine 
 
 
 
-\subsubsection{Quantum K-Means}
+\subsection{Quantum K-Means}
 
 Several clustering algorithms ~\cite{Casper2013,Casper,Xiao2010}, as well as optimization problems ~\cite{Wang2013}, are modelled after this concept. To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm based on~\cite{Casper} was chosen as a case study.
 
-\subsubsection{Description of the algorithm}
+\subsection{Description of the algorithm}
 
 The Quantum K-Means (QK-Means) algorithm, as is described in ~\cite{Casper}, is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
 
-Within the context of this algorithm, oracles contain strings of \gls{qubit}s and generate their own input by observing the state of the \gls{qubit}s. After collapsing, the \gls{qubit} value becomes analogue to a classical bit.
+Within the context of this algorithm, oracles contain strings of qubits and generate their own input by observing the state of the qubits. After collapsing, the qubit value becomes analogue to a classical bit.
 
 %#TODO get ref : see washington quantum computing classes -->
 
 Ideally, oracles would contain actual quantum systems or simulate them - this would correctly account for the desirable quantum properties. As it stands, oracles aren't quantum systems or even simulate them. The most appropriate description would be a probabilistic Turing machine.
-Each string of \gls{qubit}s represents a number, so the number of \gls{qubit}s in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
+Each string of qubits represents a number, so the number of qubits in each string will define its precision. The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 clusters of 2 dimensions, 6 strings will be used since 6 numbers are required). Each oracle will represent a possible solution.
 
 % (describe algorithm... - from notebook) -->
 The algorithm has the following steps:
@@ -122,13 +123,13 @@ So far, we've had classical K-Means with a complex random number generation for 
 
 % (end of notebook entry) -->
 
-The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox. \cite{Wiebe2014} suggests that that this operations may not be required to produce variability in the population of \gls{qubit} strings. This is because, according to \cite{Liu2010}, use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle. However, if they were used, their goal is to produce further variability into the population of \gls{qubit} strings.
+The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox. \cite{Wiebe2014} suggests that that this operations may not be required to produce variability in the population of qubit strings. This is because, according to \cite{Liu2010}, use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle. However, if they were used, their goal is to produce further variability into the population of qubit strings.
 
 
 %TODO
 % add ref
 
-\subsubsection{Horn and Gottlieb's algorithm}
+\subsection{Horn and Gottlieb's algorithm}
 
 The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb and was later extended by Weinstein and Horn.
 
@@ -195,13 +196,13 @@ The nature of the computations involved in this algorithm make it a good candida
 
 
 
-\subsection{Evidence Accumulation Clustering}
+\section{Evidence Accumulation Clustering}
 
 
 
 
 
-\subsubsection{Ensemble Clustering}
+\subsection{Ensemble Clustering}
 \label{sec:eac}
 
 \paragraph{Ensemble clustering}
@@ -218,7 +219,7 @@ P^j = \left \{   \textsc{x}^j_1, \textsc{x}^j_2, ... \textsc{x}^{j}_{k_j}   \rig
 C^j_k = \left \{   x_a, x_b, ..., x_z   \right \}
 $$
 
-\subsubsection{overview of EAC} 
+\subsection{overview of EAC} 
 The Evidence Accumulation Clustering (EAC) makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
 
 \begin{enumerate}
@@ -237,7 +238,7 @@ The co-association matrix itself doesn't output a clustering partition. Instead,
 
 \paragraph{examples of applications}
 
-\gls{eac} has been used with success in several applications:
+EAC has been used with success in several applications:
 \begin{itemize}
 	\item in the field of bioinformatics it was used for the automatic identification of chronic lymphocyt leukemia \cite{Qian2010};
 	\item also in bioinformatics it was used for the unsupervised analysis of ECG-based biometric database to highlight natural groups and gain further insight \cite{Lourenco2009};
@@ -252,8 +253,8 @@ The co-association matrix itself doesn't output a clustering partition. Instead,
 quadratic space and time complexities because of the nxn co-association matrix 
 
 
-\subsubsection{Scalability of EAC} 
-The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of \gls{eac}. Two approaches have been proposed to address this obstacle: one dealing reducing the co-association matrix by considering only the distances of patterns to theirs $p$ neighbours and the other by maximizing the sparsity of the co-association matrix.
+\subsection{Scalability of EAC} 
+The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC. Two approaches have been proposed to address this obstacle: one dealing reducing the co-association matrix by considering only the distances of patterns to theirs $p$ neighbours and the other by maximizing the sparsity of the co-association matrix.
 
 \paragraph{$p$ neighbours approach}
 The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbours of each sample are considered in the voting mechanism. This comes at the cost of having to keep track of the neighbours of each pattern in a separate data structure and also of pre-computing the $p$ neighbours. Still, considering that the quadratic space complexity is transformed to $O(2np)$ and that usually $p < \frac{n}{2}$, the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
@@ -273,9 +274,9 @@ For real datasets, the performance of the three models differed little as the nu
 
 The number of samples of the datasets analysed in \cite{Lourenco2010} was under $10^(4)$. Although the results appear promising, the present work aims to deal with datasets much larger than this and, as a consequence, this technique should be further evaluated and tested to attest to its usefulness to very large datasets.
 
-\subsection{Clustering with Big Data}
+\section{Clustering with Big Data}
 
-\subsubsection{The concept of Big Data}
+\subsection{The concept of Big Data}
 % there is a difference between this and the big data section in the state of the art chapter
 % here we're dealing with the big data paradigm, an overview of what is, what has been happening
 % I'm trying t justigy why big data is an interesting 
@@ -286,65 +287,52 @@ examples of success application
 characteristics and challenges
 
 
-\subsubsection{Computation in Big Data}
+\subsection{Computation in Big Data}
 %this was taken from the Data Clustering: Algorithms and Applications book
 When big data is in discussion, two perspectives should be taken into account. The first deals with the applications where data is too large to be stored efficiently. This is the problem that streaming algorithms such as X,Y try to solve by analysing data as it is produced, close to real-time processing. %TODO give examples of streaming algorithms
 The other perspective (the more common) is big data that is actually stored and processed. The latter is the perspective the present work deals with.
 
-Scalability of \gls{eac} within the big data paradigm is the concern of this work. Although this line of research hasn't been pursued before, cluster analysis of big data has. %TODO confirm this
-Since \gls{eac} uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of \gls{eac}. Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
+Scalability of EAC within the big data paradigm is the concern of this work. Although this line of research hasn't been pursued before, cluster analysis of big data has. %TODO confirm this
+Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of EAC. Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 
 
 %TODO check references in book Data Clustering, pg 260
 Clustering algorithms' flow typically involves some initialization step (e.g. choosing $k$ centroids in K-Means) followed by an iterative process until some stopping criteria is met, where each iteration updates the clustering of the data \cite{Aggarwal2014}. In light of this, to speed up and/or scale up an algorithm, three approaches are available: reduce the number of iterations, reduce the number of patterns the process or parallelizing and distributing the computation. The solutions for each of this approaches are, respectively, one-pass algorithms, randomized techniques that reduce the input space complexity and parallel algorithms.
 
-Parallelization can be attained by adapting programs to multi core \gls{cpu}, \gls{gpu}, distributed over several machines (a \emph{cluster}) or a combination of the former, e.g. parallel and distributed processing using \gls{gpu} in a cluster of hybrid workstations.
+Parallelization can be attained by adapting programs to multi core CPU, GPU, distributed over several machines (a \emph{cluster}) or a combination of the former, e.g. parallel and distributed processing using GPU in a cluster of hybrid workstations.
 Each approach has its advantages and disadvantages.
-The \gls{cpu} approach has access to a larger memory but the number of computation units is reduced when compared with the \gls{gpu} or cluster approach. Furthermore \gls{cpu}s have advanced techniques such as branch prediction, multiple level caching and out of order execution - techniques for optimized sequential computation.
-\gls{gpu} have hundreds or thousands of computing units but typically the in device available memory is reduced which entails an increased overhead of memory transfer between host (workstation) and device for computation of large datasets.
+The CPU approach has access to a larger memory but the number of computation units is reduced when compared with the GPU or cluster approach. Furthermore CPUs have advanced techniques such as branch prediction, multiple level caching and out of order execution - techniques for optimized sequential computation.
+GPU have hundreds or thousands of computing units but typically the in device available memory is reduced which entails an increased overhead of memory transfer between host (workstation) and device for computation of large datasets.
 Furthermore, the scalability cost of these approaches is higher than that of a cluster.
-Finally, a cluster offers the best solution for truly distributed computation while at the same time allowing for extremely large datasets. The main disadvantage is that there is a high communication and memory I/O cost to pay. Communication is usually done over the network with TCP/IP, which is several order of magnitude slower that the direct access of the \gls{cpu} or \gls{gpu} to memory (host or device).
+Finally, a cluster offers the best solution for truly distributed computation while at the same time allowing for extremely large datasets. The main disadvantage is that there is a high communication and memory I/O cost to pay. Communication is usually done over the network with TCP/IP, which is several order of magnitude slower that the direct access of the CPU or GPU to memory (host or device).
 
 
-\newacronym{cpu}{CPU}{Central Processing Unit}
-\newacronym{mpi}{MPI}{Message Passing Interface}
+	
 
-\subsection{General Purpose computing on Graphical Processing Units}
-Using \gls{gpu} for other applications other than graphic processing, commonly known as \gls{gpgpu}, has become a trend in recent years. \gls{gpu} present a solution for "extreme-scale, cost-effective, and power-efficient high performance computing" \cite{Chen2012}. Furthermore, \gls{gpu} are typically found in consumer desktops and laptops, effectively bringing this computation power to the masses.
+\section{General Purpose computing on Graphical Processing Units}
+Using GPU for other applications other than graphic processing, commonly known as GPGPU, has become a trend in recent years. GPU present a solution for "extreme-scale, cost-effective, and power-efficient high performance computing" \cite{Chen2012}. Furthermore, GPU are typically found in consumer desktops and laptops, effectively bringing this computation power to the masses.
 
-\gls{gpu}s were typically useful for users that required high performance graphics computation. Other applications were soon explored as users from different fields realized the high parallel computation power of these devices. However, the architecture of the \gls{gpu}s themselves has been strictly oriented toward the graphics computing until recently as specialized \gls{gpu} models (e.g. NVIDIA Tesla) have been designed for data computation.
+GPUs were typically useful for users that required high performance graphics computation. Other applications were soon explored as users from different fields realized the high parallel computation power of these devices. However, the architecture of the GPUs themselves has been strictly oriented toward the graphics computing until recently as specialized GPU models (e.g. NVIDIA Tesla) have been designed for data computation.
 
-\gls{gpgpu} application on several fields and algorithms has been reported with significant performance increase, e.g. application on the K-Means algorithm \cite{Bai2009,Wu2011,Zechner2009,Wu2009a}, hierarchical clustering \cite{Shalom2009,ArulShalom2011}, document clustering \cite{gao20xx}, image segmentation \cite{Sirotkovi2012}, integration in Hadoop clusters \cite{Malakar2013,Grossman2013}, among other applications.
+GPGPU application on several fields and algorithms has been reported with significant performance increase, e.g. application on the K-Means algorithm \cite{Bai2009,Wu2011,Zechner2009,Wu2009a}, hierarchical clustering \cite{Shalom2009,ArulShalom2011}, document clustering \cite{gao20xx}, image segmentation \cite{Sirotkovi2012}, integration in Hadoop clusters \cite{Malakar2013,Grossman2013}, among other applications.
 
 %TODO add refs everywhere
 Current GPUs pack hundreds of cores and have a better energy/area ratio than traditional infrastructure.
-\gls{gpu} work under the \gls{simd} framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time.
+GPU work under the SIMD framework, i.e. all the cores in the device execute the same code at the same time and only the data changes over time.
 
-
-
-
-\newacronym{simd}{SIMD}{Single Instruction Multiple Data}
-
-\subsubsection{Programming GPUs}
-
-\newacronym{api}{API}{Application ??? Interface}
-\newacronym{cg}{Cg}{C for graphics}
-\newacronym{hlsl}{HLSL}{DirectX High Level Shader Language}
-\newacronym{glsl}{GLSL}{OpenGL Shading Language}
-\newacronym{cuda}{CUDA}{Compute Unified Device Architecture}
-\newacronym{opencl}{OpenCL}{Open Computing Language}
+\subsection{Programming GPUs}
 
 % old part, i.e. shading models, DirectX, OpenGL, grahics pipeline
-In the very beginning of \gls{gpgpu}, programming was done directly through graphics \gls{api}s. 
+In the very beginning of GPGPU, programming was done directly through graphics APIs. 
 
-Programming for \gls{gpu}s was traditionally done within the paradigm of graphics processing, such as DirectX and OpenGL. If researchers and programmers wanted to tap into the computing power of a \gls{gpu} they had to learn and use these \gls{api}s and frameworks, which is a challenging task since their general problems had to be modelled to the graphics-oriented primitives \cite{Misi2012}. With the appearance of DirectX 9, shader programming languages of higher level became available (e.g. \gls{cg}, \gls{hlsl}, \gls{glsl}), but they were still inherently graphics programming languages, where computation must be expressed in graphics terms. 
+Programming for GPUs was traditionally done within the paradigm of graphics processing, such as DirectX and OpenGL. If researchers and programmers wanted to tap into the computing power of a GPU they had to learn and use these APIs and frameworks, which is a challenging task since their general problems had to be modelled to the graphics-oriented primitives \cite{Misi2012}. With the appearance of DirectX 9, shader programming languages of higher level became available (e.g. C for graphics, DirectX High Level Shader Language, OpenGL Shading Language), but they were still inherently graphics programming languages, where computation must be expressed in graphics terms. 
 
 % new part, i.e. interest in GPGPU sparkled unified devices and frameworks
 % overview of recent programming models, CUDA is computing framework, OpenCL is a standard
-More recent programming models, such as CUDA and OpenCL, removed a lot of that burden by exposing the power of \gls{gpu}s in a way closer to traditional programming.
+More recent programming models, such as CUDA and OpenCL, removed a lot of that burden by exposing the power of GPUs in a way closer to traditional programming.
 
-At the time of writing, the major programming models used for computation in \gls{gpu} are \gls{opencl} and \gls{cuda}. While the first is widely available in most devices the later is only available for NVIDIA devices.
-It should also be noted that the MapReduce framework has been implemented on \gls{gpu}.
+At the time of writing, the major programming models used for computation in GPU are OpenCL and CUDA. While the first is widely available in most devices the later is only available for NVIDIA devices.
+It should also be noted that the MapReduce framework has been implemented on GPU.
 
 
 
@@ -358,26 +346,26 @@ It basically boils down to OpenCL vs CUDA. OpenCL has the advantage of portabili
 
 % ultimate choice of CUDA
 
-In the end, the choice of \gls{gpu} computing framework was \gls{cuda}. All the infrastructure available for developing and testing supports \gls{cuda}. Another reason for the choice is that all the work is being developed in Python and Python has a \gls{cuda} \gls{api} of very high level - part of the Numba module developed by Continuum Analytics. 
+In the end, the choice of GPU computing framework was CUDA. All the infrastructure available for developing and testing supports CUDA. Another reason for the choice is that all the work is being developed in Python and Python has a CUDA API of very high level - part of the Numba module developed by Continuum Analytics. 
 
 
 
 
 
 
-\subsubsection{MapReduce on \gls{gpu}}
+\subsection{MapReduce on GPU}
 % give references for this
-As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the \gls{gpu}. This translates in using the same programming model over a wide array of computing platforms.
+As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU. This translates in using the same programming model over a wide array of computing platforms.
 
 
-\subsubsection{Overview of CUDA}
+\subsection{Overview of CUDA}
 
-A \gls{gpu} is constituted by one or several streaming processors (or multiprocessor). Each of this processors contains several simpler processors, each of which execute a the same instruction at the same time at any given time.
-In the \gls{cuda} programming model, the basic unit of computation is a \emph{thread}. Threads are grouped into \emph{blocks} which are part of the block \emph{grid}. The number of threads in a block is typically higher than the number of processors in a multiprocessor. For that reason, the hardware automatically partitions threads in a block into smaller batches, called \emph{warps}.
+A GPU is constituted by one or several streaming processors (or multiprocessor). Each of this processors contains several simpler processors, each of which execute a the same instruction at the same time at any given time.
+In the CUDA programming model, the basic unit of computation is a \emph{thread}. Threads are grouped into \emph{blocks} which are part of the block \emph{grid}. The number of threads in a block is typically higher than the number of processors in a multiprocessor. For that reason, the hardware automatically partitions threads in a block into smaller batches, called \emph{warps}.
 
-Block configuration can be multidimensional, up to and including 3 dimensions. Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of \gls{cuda} being used, e.g. for \gls{gpu}s with \gls{cuda} compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads. For the previous example, it's wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
+Block configuration can be multidimensional, up to and including 3 dimensions. Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of CUDA being used, e.g. for GPUs with CUDA compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads. For the previous example, it's wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
 
-Depending on the architecture, \gls{gpu}s have several types of memories. Accessible to all processors are the global memory, constant memory and texture memory. Blocks share a smaller but significantly faster memory called shared memory. And each thread has it's own, even smaller and faster, local memory.
+Depending on the architecture, GPUs have several types of memories. Accessible to all processors are the global memory, constant memory and texture memory. Blocks share a smaller but significantly faster memory called shared memory. And each thread has it's own, even smaller and faster, local memory.
 
 
 
@@ -388,9 +376,9 @@ Depending on the architecture, \gls{gpu}s have several types of memories. Access
 
 
 
-\subsubsection{Parallel K-Means}
+\subsection{Parallel K-Means}
 
-K-Means is one of the building block of the \gls{eac} chain. Other algorithms can be used, but due to its simplicity and speed it is often used to produce ensembles varying the number of centroids to be used.
+K-Means is one of the building block of the EAC chain. Other algorithms can be used, but due to its simplicity and speed it is often used to produce ensembles varying the number of centroids to be used.
 Furthermore, it is a very good candidate for parallelization. K-Means is composed by two main steps:
 
 \begin{enumerate}
@@ -398,34 +386,31 @@ Furthermore, it is a very good candidate for parallelization. K-Means is compose
 	\item recomputation of the centroids based on the labels assignment, e.g. the new centroids will be the mean of all the patterns assigned to it.
 \end{enumerate}
 
-The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids. Two possible approaches to parallelize this step on the \gls{gpu} are possible, a centroid-centric and a data-centric. In the former each computation unit is responsible for a centroid and will compute the distance from its centroid to every pattern. In the end, the patterns are assigned the closest centroid. This approach is suitable for devices with a low number of computing units so as to stream the data to each one.
+The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids. Two possible approaches to parallelize this step on the GPU are possible, a centroid-centric and a data-centric. In the former each computation unit is responsible for a centroid and will compute the distance from its centroid to every pattern. In the end, the patterns are assigned the closest centroid. This approach is suitable for devices with a low number of computing units so as to stream the data to each one.
 The later approach is suited to devices with more computing units. Each unit computes the distance from one single pattern to every centroid. In the end, that same unit assigns the pattern to the closest centroid. This strategy has the advantage of using less memory since it doens't need to store all the pair-wise distances to perform the labelling - it only needs to store the best distance for each pattern.
 
 
-\subsubsection{Parallel Hierarchical Agglomerative Clustering}
-\newacronym{hac}{HAC}{Hierarchical Agglomerative Clustering}
-\newacronym{mst}{MST}{Minimum Spanning Tree}
-\newacronym{sl-hac}{SL-HAC}{Single-Linkage HAC}
-\newacronym{csr}{CSR}{Compressed Sparse Row}
+\subsection{Parallel Hierarchical Agglomerative Clustering}
 
 
-\gls{hac} is an algorithm that is not easily parallelized since it has several dependencies 
 
-\gls{hac} is an important step in the \gls{eac} chain. Given the new similarity metric (how many times a pair of patterns are clustered together in the ensemble), \gls{hac} provides an intuitive way of obtaining the final partition: patterns that are clustered together often in the ensemble should be clustered together. Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e., the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ to $n$.
+HAC is an algorithm that is not easily parallelized since it has several dependencies 
 
-However, \gls{hac} is not easily parallelized. The most parallelizable part is the computation of the pair-wise similarity matrix, but in \gls{eac} is part of the input (it's the co-association matrix) which means that within this context that part is not parallelizable.
-An important relationship between \gls{hac} and \gls{mst}s is the key to speeding up \gls{hac}, more specifically \gls{sl-hac}.
-When performing \gls{sl-hac}, the result is nothing more than a structured \gls{mst}. To get the $n$ clusters, one cuts the $n-1$ links with highest cost. In this context the nodes of the graph are the patterns of the dataset and the edges are the pair-wise similarities.
+HAC is an important step in the EAC chain. Given the new similarity metric (how many times a pair of patterns are clustered together in the ensemble), HAC provides an intuitive way of obtaining the final partition: patterns that are clustered together often in the ensemble should be clustered together. Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e., the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ to $n$.
+
+However, HAC is not easily parallelized. The most parallelizable part is the computation of the pair-wise similarity matrix, but in EAC is part of the input (it's the co-association matrix) which means that within this context that part is not parallelizable.
+An important relationship between HAC and MSTs is the key to speeding up HAC, more specifically SL-HAC.
+When performing SL-HAC, the result is nothing more than a structured MST. To get the $n$ clusters, one cuts the $n-1$ links with highest cost. In this context the nodes of the graph are the patterns of the dataset and the edges are the pair-wise similarities.
 
 \paragraph{Algorithm for finding Minimum Spanning Trees}
-There are several algorithms for computing an \gls{mst}. The most famous are Kruskal, Prim and Boruvka. The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
+There are several algorithms for computing an MST. The most famous are Kruskal, Prim and Boruvka. The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
 Boruvka's algorithm is also known as Sollin's algorithm.
 
 Several parallel implementations of this algorithm exist:
 
 %TODO see paper and thesis of Cristiano Sousa in the literature review
 
-\cite{Sousa2015} reports their version to be the fastest, as to the moment of writing. The input graph is encoded in the \gls{csr} format. This representation is equivalent to having a square matrix $G$ in with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$. This format is represented in Fig. X. %TODO add figure
+\cite{Sousa2015} reports their version to be the fastest, as to the moment of writing. The input graph is encoded in the CSR format. This representation is equivalent to having a square matrix $G$ in with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$. This format is represented in Fig. X. %TODO add figure
 
 Within the algorithm's context, the three arrays are \emph{first\_edge}, \emph{destination} and \emph{weight}. This three arrays can completely describe a graph. However, the algorithm uses an extra array \emph{outdegree} that can be deduced from the \emph{first\_edge} array. The length and purpose of each of this arrays is:
 \begin{itemize}
@@ -446,7 +431,7 @@ The algorithm consists on the following steps:
 \end{enumerate}
 
 
-It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of \gls{mst}s.
+It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of MSTs.
 Upon contact, the author reported that a solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
 
 

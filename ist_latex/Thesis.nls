@@ -1,0 +1,46 @@
+\begin{thenomenclature} 
+
+ \nomgroup{G}
+
+  \item [{$\alpha$}]\begingroup Angle of attack.\nomeqref {0}
+		\nompageref{1}
+  \item [{$\beta$}]\begingroup Angle of side-slip.\nomeqref {0}
+		\nompageref{1}
+  \item [{$\kappa$}]\begingroup Thermal conductivity coefficient.\nomeqref {0}
+		\nompageref{1}
+  \item [{$\mu$}]\begingroup Molecular viscosity coefficient.\nomeqref {0}
+		\nompageref{1}
+  \item [{$\rho$}]\begingroup Density.\nomeqref {0}\nompageref{1}
+
+ \nomgroup{R}
+
+  \item [{$C_D$}]\begingroup Coefficient of drag.\nomeqref {0}
+		\nompageref{1}
+  \item [{$C_L$}]\begingroup Coefficient of lift.\nomeqref {0}
+		\nompageref{1}
+  \item [{$C_M$}]\begingroup Coefficient of moment.\nomeqref {0}
+		\nompageref{1}
+  \item [{$p$}]\begingroup Pressure.\nomeqref {0}\nompageref{1}
+  \item [{$\bf u$}]\begingroup Velocity vector.\nomeqref {0}
+		\nompageref{1}
+  \item [{$u,v,w$}]\begingroup Velocity Cartesian components.\nomeqref {0}
+		\nompageref{1}
+
+ \nomgroup{S}
+
+  \item [{$\infty$}]\begingroup Free-stream condition.\nomeqref {0}
+		\nompageref{1}
+  \item [{$i,j,k$}]\begingroup Computational indexes.\nomeqref {0}
+		\nompageref{1}
+  \item [{$n$}]\begingroup Normal component.\nomeqref {0}\nompageref{1}
+  \item [{$x,y,z$}]\begingroup Cartesian components.\nomeqref {0}
+		\nompageref{1}
+  \item [{ref}]\begingroup Reference condition.\nomeqref {0}
+		\nompageref{1}
+
+ \nomgroup{T}
+
+  \item [{*}]\begingroup Adjoint.\nomeqref {0}\nompageref{1}
+  \item [{T}]\begingroup Transpose.\nomeqref {0}\nompageref{1}
+
+\end{thenomenclature}
