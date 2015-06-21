@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Thesis.aux
+The style file: abbrvnat.bst
+Database file #1: library.bib
+Warning--I didn't find a database entry for "Lourenco2009"
+Warning--empty publisher in Aggarwal2014
+Warning--empty year in Aggarwal2014
+Warning--empty year in Aggarwal2014
+Warning--empty journal in Casper2013
+Warning--empty year in Casper
+Warning--empty journal in gao20xx
+Warning--empty year in gao20xx
+Warning--empty year in gao20xx
+Warning--there's a number but no volume in Horn2001a
+Warning--empty journal in Sirotkovi2012
+Warning--empty journal in Sousa2015
+Warning--empty year in Sousa2015
+Warning--empty year in Sousa2015
+Warning--empty journal in Wang2013
+Warning--empty journal in Wiebe2014
+You've used 29 entries,
+            2773 wiz_defined-function locations,
+            825 strings with 11831 characters,
+and the built_in function-call counts, 15080 in all, are:
+= -- 1448
+> -- 812
+< -- 27
++ -- 273
+- -- 243
+* -- 1206
+:= -- 2262
+add.period$ -- 122
+call.type$ -- 29
+change.case$ -- 167
+chr.to.int$ -- 28
+cite$ -- 73
+duplicate$ -- 690
+empty$ -- 1144
+format.name$ -- 296
+if$ -- 3220
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 29
+newline$ -- 188
+num.names$ -- 116
+pop$ -- 316
+preamble$ -- 1
+purify$ -- 139
+quote$ -- 0
+skip$ -- 575
+stack$ -- 0
+substring$ -- 618
+swap$ -- 131
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 314
+warning$ -- 15
+while$ -- 142
+width$ -- 0
+write$ -- 440
+(There were 16 warnings)

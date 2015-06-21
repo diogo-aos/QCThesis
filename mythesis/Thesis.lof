@@ -1,0 +1,10 @@
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}}{2}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}}{2}{figure.1.2}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Sama data, as Figure \ref {fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}}{2}{figure.1.3}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

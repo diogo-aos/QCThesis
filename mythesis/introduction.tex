@@ -11,22 +11,105 @@ Advances in technology allow for the collection and storage unprecedented amount
 Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
 
 Cluster analysis is the backbone of the present work.
-The goal of data clustering, as defined by ~\cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data, structured or not.
+The goal of data clustering, as defined by \citep{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data, structured or not.
 And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, Pearson correlation) and separate those that are dissimilar. %TODO reference for a method for both euclidean distance and Pearson correlation
-%TODO example (plot) of unclestered data and ideal clustering, as in Jain(2010)
 
-Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
-%TODO provide references to all of this
-% see https://sites.google.com/site/dataclusteringalgorithms/clustering-algorithm-applications
-% has applications with articles
+As an example, Figure \ref{fig:intro raw} shows the plot of a simple synthetic dataset - a Gaussian mixture of 5 distributions.
+No extra information other than the position of the points is given, since clustering algorithms are unsupervised methods.
+Figure \ref{fig:intro natural} presents the desired (or "natural") clustering for this given dataset.
+Figure \ref{fig:intro kmeans} presents the clusters given by the K-Means algorithm with an initialization of 4 clusters.
+The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in suck a simple example. In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
+
+The number of clusters is a common initialization parameter for clustering methods.
+When no prior information about the dataset is given, the number of clusters can be hard to discover.
+
+%TODO change this 3 plots to a three plot subfigure, with the plots side by side
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{introduction/img/cluster_example_raw.png}
+\caption{Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}
+\label{fig:intro raw}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{introduction/img/cluster_example_natural.png}
+\caption{Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}
+\label{fig:intro natural}
+\end{figure}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{introduction/img/cluster_example_kmeans.png}
+\caption{Sama data, as Figure \ref{fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}
+\label{fig:intro kmeans}
+\end{figure}
+
+% \begin{figure}
+% \begin{subfigure}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=.8\linewidth]{introduction/img/cluster_example_raw.png}
+%   \caption{1a}
+%   \label{fig:sfig1}
+% \end{subfigure}%
+% \begin{subfigure}{.5\textwidth}
+%   \centering
+%   \includegraphics[width=.8\linewidth]{introduction/img/cluster_example_natural.png}
+%   \caption{1b}
+%   \label{fig:sfig2}
+% \end{subfigure}
+% \caption{plots of....}
+% \label{fig:intro2}
+% \end{figure}
+% \end{document}
+
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_raw.png}
+%         \caption{$y=x$}
+%         \label{fig:y equals x}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_naturaç.png}
+%         \caption{$y=3sinx$}
+%         \label{fig:three sin x}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_kmeans.png}
+%         \caption{$y=5/x$}
+%         \label{fig:five over x}
+%     \end{subfigure}
+%     \caption{Three simple graphs}
+%     \label{fig:three graphs}
+% \end{figure}
+
+Cluster analysis is a relevant technique across several domains (\citep{Aggarwal2014}):
+
 \begin{itemize}
-\item image segmentation in the field of image processing;
-\item generation of hierarchical structure for easy access and retrieval of information systems;
-\item recommender systems by grouping a users by their behavious and/or preferences;
-\item clustering customers for targeted marketing in 
-\item clustering gene expression data in biology;
-\item grouping of 
+	\item grouping users with similar behaviour or preferences in \textbf{customer segmentation};
+	\item image segmentation in the field of \textbf{image processing};
+	\item clustering gene expression data, among other application, in the domain of \textbf{biological data analysis};
+	\item generation of hierarchical structure for easy access and retrieval of \textbf{information systems}; % not referenced in book
 \end{itemize}
+
+% Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
+% %TODO provide references to all of this
+% % see https://sites.google.com/site/dataclusteringalgorithms/clustering-algorithm-applications
+% % has applications with articles
+% \begin{itemize}
+% \item image segmentation in the field of image processing;
+% \item generation of hierarchical structure for easy access and retrieval of information systems;
+% \item recommender systems by grouping users by their behaviour and/or preferences;
+% \item clustering customers for targeted marketing in 
+% \item clustering gene expression data in biology;
+% \item grouping of 
+% \end{itemize}
 
 
 %TODO
@@ -49,7 +132,7 @@ Combining the two.
 
 This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the method of Evidence Accumulation Clustering and its application in large datasets, while also accessing alternative algorithmic solutions and parallelization techniques. The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails, in terms of speed and memory. In particular, an efficient parallel version for GPU of different parts of the method.
 
-Throughout this dissertation, various clustering techniques are reviewed, implemented and tested. 
+Throughout this dissertation, various clustering techniques are reviewed, implemented and tested.
 
 \section{Objectives}
 The main objectives for this work are:

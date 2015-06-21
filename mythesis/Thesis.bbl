@@ -1,0 +1,229 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aggarwal and Reddy()]{Aggarwal2014}
+C.~C. Aggarwal and C.~K. Reddy.
+\newblock \emph{{Data clustering algorithms and applications}}.
+\newblock ISBN 9781466558229.
+
+\bibitem[{Arul Shalom} and Dash(2011)]{ArulShalom2011}
+S.~a. {Arul Shalom} and M.~Dash.
+\newblock {Efficient hierarchical agglomerative clustering algorithms on GPU
+  using data partitioning}.
+\newblock \emph{Parallel and Distributed Computing, Applications and
+  Technologies, PDCAT Proceedings}, pages 134--139, 2011.
+\newblock \doi{10.1109/PDCAT.2011.38}.
+
+\bibitem[Bai et~al.(2009)Bai, He, Ouyang, Li, and Li]{Bai2009}
+H.~T. Bai, L.~L. He, D.~T. Ouyang, Z.~S. Li, and H.~Li.
+\newblock {K-means on commodity GPUs with CUDA}.
+\newblock \emph{2009 WRI World Congress on Computer Science and Information
+  Engineering, CSIE 2009}, 3:\penalty0 651--655, 2009.
+\newblock \doi{10.1109/CSIE.2009.491}.
+
+\bibitem[Casper and Hung(2013)]{Casper2013}
+E.~Casper and C.-c. Hung.
+\newblock {Quantum Modeled Clustering Algorithms for Image Segmentation 1}.
+\newblock 2\penalty0 (March):\penalty0 1--21, 2013.
+\newblock \doi{10.4156/pica.vol2.issue1.1}.
+
+\bibitem[Casper et~al.()Casper, Hung, Jung, and Yang]{Casper}
+E.~Casper, C.-C. Hung, E.~Jung, and M.~Yang.
+\newblock {A Quantum-Modeled K-Means Clustering Algorithm for Multi-band Image
+  Segmentation}.
+\newblock URL
+  \url{http://delivery.acm.org/10.1145/2410000/2401639/p158-casper.pdf?ip=193.136.132.10\&id=2401639\&acc=ACTIVE
+  SERVICE\&key=2E5699D25B4FE09E.F7A57B2C5B227641.4D4702B0C3E38B35.4D4702B0C3E38B35\&CFID=476955365\&CFTOKEN=55494231\&\_\_acm\_\_=1423057410\_0d77d9b5028cb3}.
+
+\bibitem[Chen and Agrawal(2012)]{Chen2012}
+L.~Chen and G.~Agrawal.
+\newblock {Optimizing MapReduce for GPUs with Effective Shared Memory Usage}.
+\newblock \emph{Proceedings of the 21st international symposium on
+  High-Performance Parallel and Distributed Computing (HPDC'12)}, pages
+  199--210, 2012.
+\newblock \doi{10.1145/2287076.2287109}.
+\newblock URL
+  \url{http://dl.acm.org/citation.cfm?doid=2287076.2287109$\backslash$nhttp://dl.acm.org/citation.cfm?id=2287109}.
+
+\bibitem[Fred and Jain(2005)]{Fred2005}
+A.~N.~L. Fred and A.~K. Jain.
+\newblock {Combining multiple clusterings using evidence accumulation}.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 27\penalty0 (6):\penalty0 835--850, 2005.
+
+\bibitem[Gao et~al.()Gao, Li, and Jiang]{gao20xx}
+Z.~Gao, E.~Li, and Y.~Jiang.
+\newblock {A gpu-based harmony k-means algorithm for document clustering}.
+\newblock pages 2--5.
+
+\bibitem[Grossman et~al.(2013)Grossman, Breternitz, and Sarkar]{Grossman2013}
+M.~Grossman, M.~Breternitz, and V.~Sarkar.
+\newblock {HadoopCL: MapReduce on distributed heterogeneous platforms through
+  seamless integration of hadoop and OpenCL}.
+\newblock \emph{Proceedings - IEEE 27th International Parallel and Distributed
+  Processing Symposium Workshops and PhD Forum, IPDPSW 2013}, pages 1918--1927,
+  2013.
+\newblock \doi{10.1109/IPDPSW.2013.246}.
+
+\bibitem[Horn and Gottlieb(2001{\natexlab{a}})]{Horn2001a}
+D.~Horn and A.~Gottlieb.
+\newblock {The Method of Quantum Clustering.}
+\newblock \emph{NIPS}, \penalty0 (1), 2001{\natexlab{a}}.
+\newblock URL
+  \url{http://www-2.cs.cmu.edu/Groups/NIPS/NIPS2001/papers/psgz/AA08.ps.gz}.
+
+\bibitem[Horn and Gottlieb(2001{\natexlab{b}})]{Horn2001b}
+D.~Horn and A.~Gottlieb.
+\newblock {Algorithm for Data Clustering in Pattern Recognition Problems Based
+  on Quantum Mechanics}.
+\newblock \emph{Physical Review Letters}, 88\penalty0 (1):\penalty0 1--4,
+  2001{\natexlab{b}}.
+\newblock ISSN 0031-9007.
+\newblock \doi{10.1103/PhysRevLett.88.018702}.
+\newblock URL
+  \url{http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.018702}.
+
+\bibitem[Jain(2010)]{Jain2010}
+A.~K. Jain.
+\newblock {Data clustering: 50 years beyond K-means}.
+\newblock \emph{Pattern Recognition Letters}, 31\penalty0 (8):\penalty0
+  651--666, 2010.
+\newblock ISSN 01678655.
+\newblock \doi{10.1016/j.patrec.2009.09.011}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.patrec.2009.09.011}.
+
+\bibitem[Liu et~al.(2010)Liu, Chen, Yan, Liu, Xu, and Zheng]{Liu2010}
+W.~Liu, H.~Chen, Q.~Yan, Z.~Liu, J.~Xu, and Y.~Zheng.
+\newblock {A novel quantum-inspired evolutionary algorithm based on variable
+  angle-distance rotation}.
+\newblock \emph{2010 IEEE World Congress on Computational Intelligence, WCCI
+  2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
+\newblock \doi{10.1109/CEC.2010.5586281}.
+
+\bibitem[Louren\c{c}o and Fred(2007)]{Lourenco2007}
+A.~Louren\c{c}o and A.~Fred.
+\newblock {Ensemble methods in the clustering of string patterns}.
+\newblock \emph{Proceedings - Seventh IEEE Workshop on Applications of Computer
+  Vision, WACV 2005}, pages 143--148, 2007.
+\newblock \doi{10.1109/ACVMOT.2005.46}.
+
+\bibitem[Louren\c{c}o et~al.(2010)Louren\c{c}o, Fred, and Jain]{Lourenco2010}
+A.~Louren\c{c}o, A.~L.~N. Fred, and A.~K. Jain.
+\newblock {On the scalability of evidence accumulation clustering}.
+\newblock \emph{Proceedings - International Conference on Pattern Recognition},
+  0:\penalty0 782--785, 2010.
+\newblock ISSN 10514651.
+\newblock \doi{10.1109/ICPR.2010.197}.
+
+\bibitem[Malakar and Vydyanathan(2013)]{Malakar2013}
+R.~Malakar and N.~Vydyanathan.
+\newblock {A CUDA-enabled hadoop cluster for fast distributed image
+  processing}.
+\newblock \emph{2013 National Conference on Parallel Computing Technologies,
+  PARCOMPTECH 2013}, 2013.
+\newblock \doi{10.1109/ParCompTech.2013.6621392}.
+
+\bibitem[Mi\v{s}i et~al.(2012)Mi\v{s}i, \^{C}, and Toma\v{s}evi]{Misi2012}
+M.~J. Mi\v{s}i, M.~\^{C}, and M.~V. Toma\v{s}evi.
+\newblock {Evolution and Trends in GPU Computing}.
+\newblock \emph{MIPRO, 2012 Proceedings of the 35th International Convention},
+  pages 289--294, 2012.
+
+\bibitem[Qian et~al.(2010)Qian, Cukierski, Osman, and Goodell]{Qian2010}
+Y.~W. Qian, W.~Cukierski, M.~Osman, and L.~Goodell.
+\newblock {Combined multiple clusterings on flow cytometry data to
+  automatically identify chronic lymphocytic leukemia}.
+\newblock \emph{ICBBT 2010 - 2010 International Conference on Bioinformatics
+  and Biomedical Technology}, pages 305--309, 2010.
+\newblock \doi{10.1109/ICBBT.2010.5478955}.
+
+\bibitem[Shalom et~al.(2009)Shalom, Dash, Tue, and Wilson]{Shalom2009}
+S.~a.~A. Shalom, M.~Dash, M.~Tue, and N.~Wilson.
+\newblock {Hierarchical agglomerative clustering using graphics processor with
+  compute unified device architecture}.
+\newblock \emph{2009 International Conference on Signal Processing Systems,
+  ICSPS 2009}, pages 556--561, 2009.
+\newblock \doi{10.1109/ICSPS.2009.167}.
+
+\bibitem[Sirotkovi et~al.(2012)Sirotkovi, Dujmi, and Papi]{Sirotkovi2012}
+J.~Sirotkovi, H.~Dujmi, and V.~Papi.
+\newblock {K-Means Image Segmentation on Massively Parallel GPU Architecture}.
+\newblock pages 489--494, 2012.
+
+\bibitem[Sousa et~al.()Sousa, Mariano, and Proen\c{c}a]{Sousa2015}
+C.~d.~S. Sousa, A.~Mariano, and A.~Proen\c{c}a.
+\newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
+  Algorithm}.
+\newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
+
+\bibitem[Wang et~al.(2013)Wang, Liu, Zhi, and Fu]{Wang2013}
+H.~Wang, J.~Liu, J.~Zhi, and C.~Fu.
+\newblock {The Improvement of Quantum Genetic Algorithm and Its Application on
+  Function Optimization}.
+\newblock 2013\penalty0 (1), 2013.
+
+\bibitem[Weinstein and Horn(2009)]{Weinstein2009}
+M.~Weinstein and D.~Horn.
+\newblock {Dynamic quantum clustering: a method for visual exploration of
+  structures in data}.
+\newblock \emph{Physical Review E - Statistical, Nonlinear, and Soft Matter
+  Physics}, 80\penalty0 (6):\penalty0 1--15, Dec. 2009.
+\newblock ISSN 1539-3755.
+\newblock \doi{10.1103/PhysRevE.80.066117}.
+\newblock URL \url{http://link.aps.org/doi/10.1103/PhysRevE.80.066117}.
+
+\bibitem[Wiebe et~al.(2014)Wiebe, Kapoor, and Svore]{Wiebe2014}
+N.~Wiebe, A.~Kapoor, and K.~Svore.
+\newblock {Quantum Algorithms for Nearest-Neighbor Methods for Supervised and
+  Unsupervised Learning}.
+\newblock page~31, 2014.
+\newblock URL \url{http://arxiv.org/abs/1401.2142}.
+
+\bibitem[Wittek(2013)]{Wittek2013}
+P.~Wittek.
+\newblock {High-performance dynamic quantum clustering on graphics processors}.
+\newblock \emph{Journal of Computational Physics}, 233:\penalty0 262--271,
+  2013.
+\newblock ISSN 00219991.
+\newblock \doi{10.1016/j.jcp.2012.08.048}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.jcp.2012.08.048}.
+
+\bibitem[Wu and Hong(2011)]{Wu2011}
+J.~Wu and B.~Hong.
+\newblock {An efficient k-means algorithm on CUDA}.
+\newblock \emph{IEEE International Symposium on Parallel and Distributed
+  Processing Workshops and Phd Forum}, pages 1740--1749, 2011.
+\newblock ISSN 1530-2075.
+\newblock \doi{10.1109/IPDPS.2011.331}.
+
+\bibitem[Wu et~al.(2009)Wu, Zhang, and Hsu]{Wu2009a}
+R.~Wu, B.~Zhang, and M.~Hsu.
+\newblock {Clustering billions of data points using GPUs}.
+\newblock \emph{Proceedings of the combined workshops on UnConventional high
+  performance computing workshop plus memory access workshop}, pages 1--5,
+  2009.
+\newblock \doi{10.1145/1531666.1531668}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?id=1531666.1531668}.
+
+\bibitem[Xiao et~al.(2010)Xiao, Yan, Zhang, and Tang]{Xiao2010}
+J.~Xiao, Y.~Yan, J.~Zhang, and Y.~Tang.
+\newblock {A quantum-inspired genetic algorithm for k-means clustering}.
+\newblock \emph{Expert Systems with Applications}, 37:\penalty0 4966--4973,
+  2010.
+\newblock ISSN 09574174.
+\newblock \doi{10.1016/j.eswa.2009.12.017}.
+\newblock URL
+  \url{http://ac.els-cdn.com/S095741740901063X/1-s2.0-S095741740901063X-main.pdf?\_tid=f303a76c-ac71-11e4-be73-00000aacb35e\&acdnat=1423056793\_66291f279193fa69b86c93aecea405b0}.
+
+\bibitem[Zechner and Granitzer(2009)]{Zechner2009}
+M.~Zechner and M.~Granitzer.
+\newblock {Accelerating k-means on the graphics processor via CUDA}.
+\newblock \emph{Proceedings of the 1st International Conference on Intensive
+  Applications and Services, INTENSIVE 2009}, pages 7--15, 2009.
+\newblock \doi{10.1109/INTENSIVE.2009.19}.
+
+\end{thebibliography}
