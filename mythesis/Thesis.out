@@ -34,12 +34,20 @@
 \BOOKMARK [1][-]{section.3.1}{3.1 Quantum Clustering}{chapter.3}% 34
 \BOOKMARK [1][-]{section.3.2}{3.2 Speeding up Ensemble Generations with Parallel K-Means}{chapter.3}% 35
 \BOOKMARK [1][-]{section.3.3}{3.3 Dealing with space complexity of coassocs}{chapter.3}% 36
-\BOOKMARK [1][-]{section.3.4}{3.4 Accelerating HAC}{chapter.3}% 37
-\BOOKMARK [0][-]{chapter.4}{4 Discussion?}{}% 38
-\BOOKMARK [1][-]{section.4.1}{4.1 Discussion}{chapter.4}% 39
-\BOOKMARK [0][-]{chapter.5}{5 Conclusions}{}% 40
-\BOOKMARK [1][-]{section.5.1}{5.1 Achievements}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.2}{5.2 Future Work}{chapter.5}% 42
-\BOOKMARK [0][-]{chapter*.23}{Bibliography}{}% 43
-\BOOKMARK [0][-]{appendix.A}{A Vector calculus}{}% 44
-\BOOKMARK [1][-]{section.A.1}{A.1 Vector identities}{appendix.A}% 45
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Exploiting the sparsity of the co-association matrix}{section.3.3}% 37
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Using prototypes}{section.3.3}% 38
+\BOOKMARK [1][-]{section.3.4}{3.4 Hierarchical Aglomerative Clustering step}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.4.1}{3.4.1 HAC and GPGPU}{section.3.4}% 40
+\BOOKMARK [0][-]{chapter.4}{4 Results}{}% 41
+\BOOKMARK [1][-]{subsection.4.0.2}{4.0.2 Quantum K-Means}{chapter.4}% 42
+\BOOKMARK [2][-]{subsection.4.0.3}{4.0.3 Horn and Gottlieb's algorithm}{subsection.4.0.2}% 43
+\BOOKMARK [2][-]{subsection.4.0.4}{4.0.4 GPGPU K-Means}{subsection.4.0.2}% 44
+\BOOKMARK [2][-]{subsection.4.0.5}{4.0.5 K-prototypes influence on coassocs}{subsection.4.0.2}% 45
+\BOOKMARK [0][-]{chapter.5}{5 Discussion?}{}% 46
+\BOOKMARK [1][-]{section.5.1}{5.1 Discussion}{chapter.5}% 47
+\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 48
+\BOOKMARK [1][-]{section.6.1}{6.1 Achievements}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.2}{6.2 Future Work}{chapter.6}% 50
+\BOOKMARK [0][-]{chapter*.36}{Bibliography}{}% 51
+\BOOKMARK [0][-]{appendix.A}{A Vector calculus}{}% 52
+\BOOKMARK [1][-]{section.A.1}{A.1 Vector identities}{appendix.A}% 53

@@ -128,6 +128,17 @@ Combining the two.
 
 \section{Challenges and Motivation}
 
+A vast body of work on clustering algorithms exist. Yet, no single algorithm is able to respond to the specificities of all datasets. Different methods are suited to datasets of different characteristics and many times the challenge of the researcher is to find the right algorithm for the task. This is where ensemble methods enter. Ensemble methods use the clustering of several algorithms or several runs of the same algorithm to produce an end result better than any of the individual ones.
+
+This, however, comes at a price. Instead of a single run of an algorithm, several are required, which increases computational complexity. Memory complexity is another aspect to have into account is another aspect to take into account when using such algorithms.
+
+With the rapid increase of storage capacity and the an equal increase on the capability to capture information, the concept of Big Data was borne. There is an interest in clustering much of this data. However, processing such huge amounts of data has been out of the range of capability of the traditional desktop workstation. This sprouted the rise of new computing architectures (e.g. Graphic Processing Units) and programming models (e.g. Hadoop, shared and distributed memory). Each of these has its own specificities and the programmer must have an in-depth knowledge of the architectures and models used to obtain results.
+
+The algorithms themselves are no longer the only focus of research. Much effort is being put into the scalability and performance of algorithms, which usually translates in addressing their memory and computational complexities with parallized computation and distributed memory. This effort comes with challenges. How can one keep the original accuracy while significantly increase efficiency? Is there an explorable trade-off between accuracy and performance that researchers can tap into?
+
+
+%Currently, much of this processing happens in distributed networks of workstations with its own architecture. Another trend is using the 
+
 \section{Goals and Contribution}
 
 This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the method of Evidence Accumulation Clustering and its application in large datasets, while also accessing alternative algorithmic solutions and parallelization techniques. The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails, in terms of speed and memory. In particular, an efficient parallel version for GPU of different parts of the method.
@@ -159,11 +170,39 @@ The main objectives for this work are:
 \item Validation of Big Data EAC on real data (ECG for emotional state discovery and/or discovery of natural groups)
 \end{itemize}
 
+
+% Explain briefly the work done
+
+% The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
+
+% The initial research was under the algorithmic path. More specifically, exploring quantum inspired clustering algorithms. The findings of this exploration revealed this algorithms to be a poor match for integration in EAC and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among a cluster of workstations). While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
+
 \section{Outline}
 
-Explain briefly the work done
+The present document has the following strucutre:
 
-The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
+\section*{Chapter \ref{chapter:stateofart}}
 
-The initial research was under the algorithmic path. More specifically, exploring quantum inspired clustering algorithms. The findings of this exploration revealed this algorithms to be a poor match for integration in EAC and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among a cluster of workstations). While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
+This chapter starts by reviewing the Evidence Accumulation Clustering algorithm in detail.
+It goes on to review possible approaches to the problem of scaling EAC.
+Based on an algorithmic approach, a review of the young field of quantum clustering is presented, with a more in-depth emphasis on two algorithms.
+With a parallelization approach in mind, a programming model for the GPU (CUDA) is reviewed.
+Naturally following are some parallelized versions of relevant algorithms to the problem of this dissertation.
 
+\section*{Chapter \ref{chapter:methodology}}
+
+This chapter presents the approach that was actually taken to scale EAC.
+It presents the steps taken on each part of the algorithm, the underlying difficulties and what was done to address them.
+It also includes the reference of approaches that are not suited to solve the problem.
+
+\section*{Chapter \ref{chapter:results}}
+
+In this section the, the results of the different approaches are presented.
+
+\section*{Chapter \ref{chapter:discussion}}
+
+In this section the, the results are interpreted and discussed. A critical evaluation of the results is offered.
+
+\section*{Chapter \ref{chapter:conclusions}}
+
+This chapter concludes the dissertation. It also offers recommendations for future work.

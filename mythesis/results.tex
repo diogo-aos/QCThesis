@@ -2,12 +2,12 @@
 
 \chapter{Results}
 \label{chapter:results}
-\subsection{Quantum K-Means}
+\section{Quantum K-Means}
 
 
 The algorithm implemented and tested is a variant of the one described in ~\cite{Casper}. The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox, but were not implemented due to the suggestion from ~\cite{Wiebe2014}. This decision was based on the findings of ~\cite{Liu2010}, stating that the use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle.
 
-\subsubsection{Testing and Results}
+\subsection{Testing and Results}
 The testing was aimed at benchmarking both accuracy and speed. The input used was synthetic data, namely, Gaussian mixtures with variable cardinality and dimensionality. The algorithm was implemented in Python 2.7 and the tests were executed in a machine with an Intel i5 processor, 2GB RAM and running Ubuntu 14.04.
 
 (copy of report)
@@ -16,7 +16,7 @@ Regarding the Quantum K-Means (QK-Means), the tests were performed using 10 orac
 
 All tests were done with 6 clusters (natural number of clusters). Two tests were done with the two dimensional dataset: one with a $factor=1.10$ (increase initializations by $10\%$) and another with $factor=1$. These tests will be called T1 and T2, respectively. The test done with the six dimensional dataset (T3) used $factor=1.10$.
 
-Timing results
+\subsubsection{Timing results}
 
 % table in csv format available in resource directory -->
 
@@ -42,7 +42,7 @@ Timing results
 
 The mean computation time of classical K-Means is an order of magnitude lower than that of QK-Means. However, in classical K-Means the solution typically chosen is the one with lowest sum of squared euclidean distances of points to their attributed centroid. To make a fair comparison between the two algorithms, the Davies-Bouldin index of all classical K-Means solutions was computed and used as the criteria to choose the best solution. When this is done, we can see that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations. In T2, possibly the fairest comparison, the computation times become very similar with only a 2\% difference between the two algorithms.
 
-Accuracy
+\subsubsection{Accuracy}
 
 Comparing K-Means and QK-Means
 
@@ -64,7 +64,7 @@ The most relevant result in the table above is the mean of the best index. The v
 
 I speculate that if classical K-Means was using only the sum of euclidean distances and not the DB index, the average performance would be worse. As it stands, choosing to use DB index with classical K-Means possibly represents a tradeoff between speed and accuracy.
 
-QK-Means details
+\subsubsection{QK-Means details}
 
 Here we’ll analyse a bit what’s happening within each QK-Means execution. One would expect for the population’s fitness variance to decrease over the generations, as the probabilities for previous known solutions increase and are therefore more likely to reappear. The convergence of the population mean would also be expected to decrease for the same reason. However, experimental (Fig. \ref{fig:db_index_mean_t2} and \ref{fig:db_index_var_t2}) results don’t suggest any of these expectations (the results of T1 and T3 suggest the same). This may be due to low number of generations or simply because the random generation of initial centroids isn’t influenced enough by the qubit probabilities.
 
@@ -114,16 +114,16 @@ Analysing the evolution of the DB index of the best solution over the generation
 \label{tab:db_index_t1_t3}
 \end{table}
 
-\subsubsection{Discussion}
+\subsection{Discussion}
 
 Results show that most computational cost (90\% on T1) lies on the evaluation of the solutions obtained from each oracle. This is a costly but necessary step in this algorithm. Moreover, and even though EAC doesn't require its input partitions to be accurate, the quality of the solutions, measured with the Davies-Bouldin index, from QK-Means doesn't differ from that of K-Means. This two facts make the use of this algorithm in EAC prohibitive, as no benefits in compuational time are gained.
 
 It should be noted that the target application of the tests presented differs from that of the original authors and although no accuracy gains were observed in these results, the results might differ on different applications.
 
-\subsection{Horn and Gottlieb's algorithm}
+\section{Horn and Gottlieb's algorithm}
 
 
-\subsubsection{Testing and Results}
+\subsection{Testing and Results}
 
 
 %TODO
@@ -135,7 +135,7 @@ The accuracy of this algorithm was tested with real world datasets, namely, the 
 
 %TODO add ref for repository -->
 
-\subsubsection{Iris data}
+\subsection{Iris data}
 \label{sec:horn_iris}
 The iris dataset ([available at the UCI ML repository](http://archive.ics.uci.edu/ml/datasets/Iris)) has 3 classes each with 50 data points. There are 4 features. The data is preprocessed using Principal Component Analysis (PCA). The natural clustering can be observed in Fig. \ref{fig:iris_natural}. 
 
@@ -171,7 +171,7 @@ For the sake of completeness, Fig. \ref{fig:iris_allpc_cluster} shows the cluste
 \end{figure}
 
 
-\subsubsection{Crab data}
+\subsection{Crab data}
 
 
 The crabs dataset has 200 samples and describes 5 morphological measurements on 50 crabs each of two colour forms and both sexes (total of 200 crabs), of the species Leptograpsus variegatus collected at Fremantle, Western Australia. After a preprocessing using PCA with covariance matrix and uncentred data, the dataset is represented in Fig. \ref{fig:crab_2pc_covar}.% #TODO add reference to dataset -->
@@ -217,9 +217,6 @@ all pc covariance uncentred consistency index = 0.63
 all dimensions original data consistency index = 0.34
 
 
-\subsection{GPGPU K-Means}
+\section{GPGPU K-Means}
 
-
-
-
-\subsection{K-prototypes influence on coassocs}
+\section{K-prototypes influence on coassocs}

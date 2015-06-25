@@ -8,9 +8,11 @@
 
 %TODO This is where I explain my approach to the problem of EAC in Big Data
 
-The aim of this thesis is the optimization and scalability of EAC, with a focus for big data. EAC is divided in three steps and each has to be considered for optimization.
+The aim of this thesis is the optimization and scalability of EAC, with a focus for large datasets. EAC is divided in three steps and each has to be considered for optimization.
 
-The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup. Furthermore, it is not necessary for algorithms to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice. The reason for this is the want for variability within the partition population.
+The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup.
+
+
 	
 The second step is mostly bound by memory. The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$. Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
 
@@ -28,27 +30,46 @@ Under the qubit concept, no other algorithms were experimented with since the re
 
 
 \section{Speeding up Ensemble Generations with Parallel K-Means}
-K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations. For that reason, optimizing this algorithm would ensure that the accumulation of evidence would be performed in an efficient manner.
-
+K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations. For that reason, optimizing this algorithm ensures that the accumulation of evidence is performed in an efficient manner.
+Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice. The reason for this is the desire for variability within the partition population.
 
 
 %TODO pseudocode & diagrams
 %TODO explain the solution for GPGPU K-Means
 
 \section{Dealing with space complexity of coassocs}
-In the literature review, two approaches to deal with the space complexity of the co-association matrix were reported. It would be ideal to combine both approaches to further reduce space complexity, but they're not compatible as it might seem. When the neighbour approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbours. This means that the $n \times p$ co-association matrix will likely not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
+
+\subsection{Exploiting the sparsity of the co-association matrix}
+
+
+
+Which method is more effective in very large datasets, however, would depend on the dataset. The sparsity maximization approach got very low densities for some datasets, close to $0.01$ in some cases. This is already a big improvement
+
+Either way, the CSR data structure is used to store the co-association matrix. 
+Due to the sparse nature of the co-association matrix, storing it n this format can decrease used space to as much as $10\%$, depending on the sparsity of the matrix as shown in \cite{Lourenco2010}. 
+This is also an important step since the co-association matrix is already in the correct format for the computation of the final clustering within the GPGPU paradigm.
+
+\subsection{Using prototypes}
+
+\subsubsection{k-Nearest Neighbors as prototypes}
+In the literature review, another approach to reduce the complexity of the co-association matrix is to use the $p$ closest neighbors of each sample. Previous to building the co-association matrix, the $p$ closest samples to each sample are computed and stored in the $n \times p$ neighbor matrix. The co-association matrix is reduced to size $n \times p$ and only considers the neighbors of each sample during the voting mechanism. This means two $n \times p$ matrices have to be stored, which, as long as $p$ is significantly lowers than the number of samples, is close to a sparse representation of the full matrix.
+
+ It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible. When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors. However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions. If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it. If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included. This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
 
 %comment on which method is more effective, maybe some experiment is needed to see which
 %demonstrate why both methods are not compatible - a simple filling of knn matrix should suffice
 
-Which method is more effective in very large datasets, however, would depend on the dataset. The sparsity maximization approach got very low densities for some datasets, close to $0.01$ in some cases. This is already a very improvement
+\subsubsection{Random prototypes}
+A second prototype approach is to choose $p$ random non-repetitive samples as prototypes. This will be the same for every sample.
+Here the voting mechanism is altered so that if a sample is clustered with any of the prototypes, the correspondent element in the co-association matrix is incremented. This has the advantage that only a $n \times p$ matrix needs to be stored along with a $p$ array for the prototypes.
+Furthermore, if $p$ if high enough to provide a representative sample of the dataset the results can be as good as the full matrix
 
-Either way, the CSR data structure is used to store the co-association matrix. 
-Due to the sparse nature of the co-association matrix this can decrease used space to as much as $10\%$, depending on the sparsity of the matrix as shown in \cite{Lourenco2010}. 
-This is important since in this way the co-association matrix is already in the correct format for the next step - the computation of the MST for the HAC.
+\subsubsection{Medoid prototypes}
+This approach is similar to the random prototypes but, instead of choosing $p$ random samples from the dataset, the prototypes will be the representatives of the dataset from another algorithm, e.g. K-Medoids, K-Means.
 
-\section{Accelerating HAC}
+\section{Hierarchical Aglomerative Clustering step}
 
+\subsection{HAC and GPGPU}
 The final clustering, done with SL-HAC, is optimized by executing the efficient parallel variant of Borůvka's algorithm \cite{Sousa2015} with a slight modification for accepting unconnected graphs, i.e. a co-association matrix where there may be a pattern or a group of patterns that are not connected to any other pattern.
 In the present implementation, the issue of unconnected graphs was solved in the first step of the efficient variant (finding the minimum vertex connected to each vertex or supervertex). If a vertex has no edges connected to it then it is marked as if its destination points to itself (as a mirrored edge in the second step). This results in unconnected vertices (or supervertices) being dragged throughout all the iterations.
 As a consequence, the stopping criteria becomes the lack of edges connected to the remaining vertices, which is the same as saying that all elements of the \emph{outdegree} array are zero. This condition can be checked as a secondary result of the computation of the new \emph{first\_edge} array. This step is performed by applying an exclusive prefix sum over the \emph{outdegree}. If the prefix sum is implemented in such a way that it returns the sum of all elements, then it becomes inexpensive to check this condition.

@@ -3,5 +3,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.}}{23}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).}}{23}{table.4.2}
+\contentsline {table}{\numberline {4.3}{\ignorespaces The values represent generations.}}{26}{table.4.3}
+\addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

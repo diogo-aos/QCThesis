@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  21 JUN 2015 18:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  23 JUN 2015 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -762,14 +762,14 @@ LaTeX Info: Redefining \nameref on input line 70.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 15.
 
-<IST_A_CMYK_POS.pdf, id=184, 845.0471pt x 597.51233pt>
+<IST_A_CMYK_POS.pdf, id=217, 845.0471pt x 597.51233pt>
 File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
 
 <use IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 15.
 (pdftex.def)             Requested size: -78.38533pt x -90.76195pt.
 
-<Figures/Airbus_A350.jpg, id=185, 1027.84pt x 770.88pt>
+<Figures/Airbus_A350.jpg, id=218, 1027.84pt x 770.88pt>
 File: Figures/Airbus_A350.jpg Graphic file (type jpg)
 
 <use Figures/Airbus_A350.jpg>
@@ -859,7 +859,7 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
 (Font)              Font shape `OT1/phv/m/sl' tried instead on input line 9.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_raw.png, id=343, 392.46625pt x 284.06125pt>
+_raw.png, id=415, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_raw.png Graphic file (type png)
 
@@ -870,7 +870,7 @@ tion/img/cluster_example_raw.png used on input line 29.
 (pdftex.def)             Requested size: 196.23264pt x 142.03026pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_natural.png, id=344, 392.46625pt x 284.06125pt>
+_natural.png, id=416, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_natural.png Graphic file (type png)
 
@@ -881,7 +881,7 @@ tion/img/cluster_example_natural.png used on input line 36.
 (pdftex.def)             Requested size: 196.23264pt x 142.03026pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_kmeans.png, id=346, 392.46625pt x 284.06125pt>
+_kmeans.png, id=418, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_kmeans.png Graphic file (type png)
 
@@ -902,41 +902,198 @@ LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
 ] [2 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_raw.png> </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/
 cluster_example_natural.png> </home/chiroptera/workspace/thesis_writing/rsc/int
-roduction/img/cluster_example_kmeans.png>] [3]) (./state_of_art.tex [4]
+roduction/img/cluster_example_kmeans.png>]
+Underfull \vbox (badness 1540) has occurred while \output is active []
+
+ [3]
+[4]) (./state_of_art.tex [5]
 Chapter 2.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 23.
-[5
+[6
 
-] [6] [7] [8]
+] [7] [8] [9]
 Underfull \vbox (badness 2932) has occurred while \output is active []
 
- [9]
+ [10]
 
-Package natbib Warning: Citation `Lourenco2009' on page 10 undefined on input l
+Package natbib Warning: Citation `Lourenco2009' on page 11 undefined on input l
 ine 244.
 
-[10] [11] [12]
+[11] [12] [13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-[14] [15] [16]) (./methodology.tex [17]
+ [14]
+[15] [16] [17]) (./methodology.tex [18]
 Chapter 3.
-[18
+[19
 
-]
-Overfull \hbox (1.40298pt too wide) in paragraph at lines 52--55
+] [20]
+Overfull \hbox (1.40298pt too wide) in paragraph at lines 73--76
 \OT1/phv/m/n/10 The fi-nal clus-ter-ing, done with SL-HAC, is op-ti-mized by ex
 -e-cut-ing the ef-fi-cient par-al-lel vari-ant of Bor[]uvka's
  []
 
-[19]) [20]
+) (./results.tex [21]
 Chapter 4.
-(./conclusions.tex [21
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 5.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22
 
 ]
+Overfull \hbox (7.7614pt too wide) in paragraph at lines 53--61
+[][] 
+ []
+
+[23]
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mean.pn
+g, id=702, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_me
+an.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mea
+n.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_mean.png used on input line 74.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var.png
+, id=703, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_va
+r.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_var.png used on input line 81.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo.png
+, id=707, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_ev
+o.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_evo.png used on input line 91.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png, id=708
+, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png Gr
+aphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/sex_evo.png used on input line 99.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [24 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_me
+an.png> </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor
+_var.png>]
+[25 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo
+.png> </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png>]
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png, id=72
+3, 578.16pt x 397.485pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png G
+raphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_natural.png used on input line 146.
+(pdftex.def)             Requested size: 289.07928pt x 198.742pt.
+
+[26 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.png, i
+d=733, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_2pc_cluster.png used on input line 157.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.png,
+ id=735, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster
+.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.
+png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_allpc_cluster.png used on input line 168.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png, id=
+737, 488.68974pt x 381.87468pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png
+ Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar.png used on input line 181.
+(pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cluster.
+png, id=738, 1156.32pt x 867.24pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clu
+ster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clus
+ter.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_cluster.png used on input line 188.
+(pdftex.def)             Requested size: 455.24411pt x 341.42464pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+.png, id=739, 488.68974pt x 381.87468pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered.png used on input line 195.
+(pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+_cluster.png, id=740, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered_cluster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered_cluster.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered_cluster.png used on input line 202.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+ [27 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.p
+ng> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.
+png>] [28 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_cova
+r.png> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_c
+luster.png>] [29 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2
+pc_covar_centered.png> </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/
+crab_2pc_covar_centered_cluster.png>]) [30]
 Chapter 5.
-[22
+(./conclusions.tex [31
+
+]
+Chapter 6.
+[32
 
 ]) (./Thesis.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 35--41
@@ -968,11 +1125,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--51
 . cfm ? doid = 2287076 . 2287109$ \ delimiter"026E30F$nhttp :
  []
 
-[23
+[33
 
 
 
-] [24]
+] [34]
 Underfull \hbox (badness 1178) in paragraph at lines 213--221
 []\OT1/phv/m/n/10 J. Xiao, Y. Yan, J. Zhang, and Y. Tang.  A quantum-inspired g
 e-netic al-go-rithm for k-means
@@ -996,13 +1153,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 213--221
 11e4-[]be73-[]00000aacb35e & acdnat =
  []
 
-) [25] [26
+) [35] [36
 
 ] (./Thesis_Appendix.tex
 Appendix A.
-[27
+[37
 
-] [28
+] [38
 
 ])
 
@@ -1014,17 +1171,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9FBC3CC0C5A1C1D4512DF9E79C2CA149;3090.
+(rerunfilecheck)             Checksum: 85C969C47655FA6348CBD761092251A1;3765.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
  ) 
 Here is how much of TeX's memory you used:
- 8634 strings out of 495004
- 122526 string characters out of 6180663
- 227490 words of memory out of 5000000
- 11451 multiletter control sequences out of 15000+600000
+ 8763 strings out of 495004
+ 127492 string characters out of 6180663
+ 231542 words of memory out of 5000000
+ 11517 multiletter control sequences out of 15000+600000
  41379 words of font info for 76 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 44i,12n,28p,1000b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,28p,1011b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/
@@ -1042,10 +1199,10 @@ ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
 tic/uhvro8a.pfb>
-Output written on Thesis.pdf (46 pages, 564225 bytes).
+Output written on Thesis.pdf (56 pages, 2900975 bytes).
 PDF statistics:
- 748 PDF objects out of 1000 (max. 8388607)
- 654 compressed objects within 7 object streams
- 158 named destinations out of 1000 (max. 500000)
- 386 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 925 PDF objects out of 1000 (max. 8388607)
+ 798 compressed objects within 8 object streams
+ 203 named destinations out of 1000 (max. 500000)
+ 505 words of extra memory for PDF output out of 10000 (max. 10000000)
 
