@@ -7,6 +7,8 @@ from sklearn.datasets.samples_generator import make_blobs
 from sklearn.cluster import KMeans
 from numbapro import cuda
 
+import sys
+
 n_samples = 1e4
 n_features = 2
 centers = 6
@@ -64,10 +66,12 @@ del generator, dData, dCentroids, dLabels, dDists
 generator = K_Means(mode="numpy")
 generator.n_clusters = 176
 generator.max_iter = 1
-get_ipython().magic(u'time generator.fit(data)')
-
+generator.fit(data)
 
 generator = K_Means(mode="cuda", cuda_mem="manual")
 generator.n_clusters = 176
 generator.max_iter = 1
-get_ipython().magic(u'time generator.fit(data)')
+generator.fit(data)
+
+if __name__ = "__main__":
+	main()

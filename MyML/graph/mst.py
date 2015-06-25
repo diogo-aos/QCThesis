@@ -706,12 +706,15 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
     mst = np.empty(n_vertices - 1, dtype = dest.dtype)
     mst_pointer = 0
 
+    # top_edge is recycled between iterations
+    top_edge = np.empty(n_components, dtype = dest.dtype)
+
     final_converged = False
     while(not final_converged):
 
-        vertex_minedge = np.empty(n_components, dtype = dest.dtype)
+        vertex_minedge = top_edge
 
-        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id)
+        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, dest)
         
         removeMirroredNumba(vertex_minedge, dest)
 
@@ -764,7 +767,7 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
                           new_vertex, new_dest, new_edge_id, new_weight, top_edge)
 
         # delete old graph
-        del new_vertex, edge_id, dest, weight, firstEdge, outDegree, colors, top_edge
+        del new_vertex, edge_id, dest, weight, firstEdge, outDegree, colors
 
         # write new graph
         n_components = newFirstEdge.size
@@ -777,7 +780,7 @@ def boruvka_minho_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
 
     return mst, mst_pointer
 
-@jit(["void(int32[:],int32[:])"],nopython=True)
+@jit(["void(int32[:],int32[:])"], nopython=True)
 def buildFlag(colors, flag):
     n_components = colors.size
 
@@ -785,10 +788,11 @@ def buildFlag(colors, flag):
         if v == colors[v]:
             flag[v] = 1
         else:
-        	flag[v] = 0
+            flag[v] = 0
 
-@jit(["void(int32[:],float32[:],int32[:],int32[:],int32[:])", "void(int32[:],int32[:],int32[:],int32[:],int32[:])"],nopython=True)
-def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id):
+@jit(["void(int32[:],float32[:],int32[:],int32[:],int32[:])",
+      "void(int32[:],int32[:],int32[:],int32[:],int32[:])"], nopython=True)
+def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, dest):
 
     n_components = vertex_minedge.size
 
@@ -798,26 +802,25 @@ def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id):
             vertex_minedge[v] = -1
             continue
 
-        startW = firstEdge[v]
-        endW = startW + v_n_edges
+        start = firstEdge[v] # initial edge
+        end = start + v_n_edges # initial edge of next vertex
 
-        min_edge = startW
-        min_weight = weight[startW]
-        min_id = edge_id[startW]    
+        min_edge = start
+        min_weight = weight[start]
+        min_dest = dest[start]    
 
         # loop through all the edges of vertex to get the minimum
-        for edge in range(startW + 1, endW):
+        for edge in range(start + 1, end):
             edge_weight = weight[edge]
-            edge_id_curr = edge_id[edge]
+            edge_dest_curr = dest[edge]
             if edge_weight < min_weight:
                 min_edge = edge
                 min_weight = edge_weight
-                min_id = edge_id_curr
-            elif edge_weight == min_weight: # solve ties with absolute edge ID
-                if edge_id_curr < min_id:
-                    min_edge = edge
-                    min_weight = edge_weight
-                    min_id = edge_id_curr
+                min_dest = edge_dest_curr
+            elif edge_weight == min_weight and edge_dest_curr < min_dest:
+                min_edge = edge
+                min_weight = edge_weight
+                min_dest = edge_dest_curr
         vertex_minedge[v] = min_edge                
 
 @jit(["void(int32[:],int32[:])"],nopython=True)
@@ -948,24 +951,45 @@ def assignInsertNumba(edge_id, dest, weight, firstEdge,
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
+def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in,
+                      MAX_TPB = 512, stream = None, returnDevAry = False):
 
     n_vertices = firstEdge_in.size
     n_edges = dest_in.size
     n_components = n_vertices # initial number of components is the number of vertices
+    
+    # get stream to use or create new one
+    if stream is None:
+        myStream = cuda.stream()
+    else:
+        myStream = stream
 
-    ## transfer everything to device and allocate arrays
+    ## check if input arrys are device arrays, if not transfer everything
+    # to device
+    if not isinstance(dest_in, cuda.cudadrv.devicearray.DeviceNDArray):
+        dest = cuda.to_device(dest_in, stream = myStream)
+    else:
+        dest = dest_in
 
-    myStream = cuda.stream()
+    if not isinstance(weight_in, cuda.cudadrv.devicearray.DeviceNDArray):
+        weight = cuda.to_device(weight_in, stream = myStream)
+    else:
+        weight = weight_in
 
-    dest = cuda.to_device(dest_in, stream = myStream)
-    weight = cuda.to_device(weight_in, stream = myStream)
-    firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
-    outDegree = cuda.to_device(outDegree_in, stream = myStream)
+    if not isinstance(firstEdge_in, cuda.cudadrv.devicearray.DeviceNDArray):
+        firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
+    else:
+        firstEdge = firstEdge_in
 
+    if not isinstance(outDegree_in, cuda.cudadrv.devicearray.DeviceNDArray):
+        outDegree = cuda.to_device(outDegree_in, stream = myStream)
+    else:
+        outDegree = firstEdge_in
+    
+    # allocate array for edge IDs   
     edge_id = cuda.to_device(np.arange(n_edges, dtype = np.int32), stream = myStream)
 
-    # maximum size of MST is when it is connected
+    # maximum size of MST is when it is connected = #vertices - 1
     mst = cuda.device_array(shape = n_vertices - 1, dtype = np.int32, stream = myStream)
     mst_pointer = cuda.to_device(np.zeros(1, dtype = np.int32), stream = myStream)
 
@@ -986,7 +1010,7 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         # after it also served as the new_vertex
         vertex_minedge = top_edge
 
-        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
+        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, dest)
 
         removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
 
@@ -999,6 +1023,8 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         propagateConverged = False
         while(not propagateConverged):
             propagateColors_CUDA[gridDim, MAX_TPB, myStream](colors, converged)
+            # if myStream is not 0:
+            #     myStream.synchronize()
             converged_num = converged.getitem(0, stream = myStream)
             propagateConverged = True if converged_num == 1 else False
 
@@ -1015,7 +1041,7 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
             del new_vertex
             break
 
-        newGridDim = compute_cuda_grid_dim(n_components, MAX_TPB)
+        newGridDim = compute_cuda_grid_dim(new_n_vertices, MAX_TPB)
         
         # count number of edges for new supervertices and write in new outDegree
         newOutDegree = cuda.device_array(shape = new_n_vertices, dtype = np.int32, stream = myStream)
@@ -1061,17 +1087,22 @@ def boruvka_minho_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 
         outDegree = newOutDegree
         gridDim = newGridDim
 
-    host_mst = mst.copy_to_host(stream = myStream)
-    
-    # no custom stream here to ensure synchronization
-    mst_size = mst_pointer.getitem(0)
+    del dest, weight, edge_id, firstEdge, outDegree, converged
 
-    del dest, weight, edge_id, firstEdge, outDegree, mst, mst_pointer, converged
+    if returnDevAry:
+        return mst, mst_pointer
+    else:
+        host_mst = mst.copy_to_host(stream = myStream)
+        # no custom stream here to ensure synchronization
+        mst_size = mst_pointer.getitem(0)
 
-    return host_mst, mst_size
+        del mst, mst_pointer    
+
+        return host_mst, mst_size
 
 
-@jit("int32(int32, int32)", nopython=True)
+#@jit("int32(int32, int32)", nopython=True)
+@jit(nopython=True)
 def compute_cuda_grid_dim(n, tpb):
     bpg = np.ceil(n / np.float32(tpb))
     return np.int32(bpg)
@@ -1096,7 +1127,7 @@ def memSet(in_ary, val):
 
 #@cuda.jit(["void(float32[:], int32[:], int32[:], int32[:], int32[:])", "void(int32[:], int32[:], int32[:], int32[:], int32[:])"])
 @cuda.jit
-def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge, edge_id):
+def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge, dest):
     v = cuda.grid(1)
     n_components = vertex_minedge.size
 
@@ -1116,21 +1147,20 @@ def findMinEdge_CUDA(weight, firstedge, outdegree, vertex_minedge, edge_id):
 
     min_edge = start
     min_weight = weight[start] # get first weight for comparison inside loop
-    min_id = edge_id[start]
+    min_dest = dest[start]
 
     # loop through all the edges of vertex to get the minimum
     for edge in range(start + 1, end):
         edge_weight = weight[edge]
-        edge_id_curr = edge_id[edge]
+        edge_dest_curr = dest[edge]
         if edge_weight < min_weight:
             min_edge = edge
             min_weight = edge_weight
-            min_id = edge_id_curr
-        elif edge_weight == min_weight:
-            if edge_id_curr < min_id:
-                min_edge = edge
-                min_weight = edge_weight
-                min_id = edge_id_curr
+            min_dest = edge_dest_curr
+        elif edge_weight == min_weight and edge_dest_curr < min_dest:
+            min_edge = edge
+            min_weight = edge_weight
+            min_dest = edge_dest_curr
     vertex_minedge[v] = min_edge
 
 @cuda.jit("void(int32[:], int32[:])")
@@ -1201,16 +1231,16 @@ def initializeColors_CUDA(destination, vertex_minedge, colors):
 
 @cuda.jit("void(int32[:], int8[:])")
 def propagateColors_CUDA(colors, converged):
-	#
-	# Something bad (although very unlikely) can happen here. Consider the situation where only
-	# one block (that is not the first one) doesn't converge. Consider also that that block
-	# is finishes before the first threat of the first block reached the sentence converged[0] = 1.
-	# Then, the kernel will report that there was convergence while, in fact, one block didn't converge.
-	# This is very unlikely because it requires that the first threat of the first block takes more time reaching 
-	# the 6th line of code that the time it takes a whole block to finish.
-	# It is also very easy to fix my making the initialization of colors to be the kernel that sets
-	# converged[0] = 1.
-	#
+    #
+    # Something bad (although very unlikely) can happen here. Consider the situation where only
+    # one block (that is not the first one) doesn't converge. Consider also that that block
+    # finished before the first threat of the first block reached the sentence converged[0] = 1.
+    # Then, the kernel will report that there was convergence while, in fact, one block didn't converge.
+    # This is very unlikely because it requires that the first threat of the first block takes more time reaching 
+    # the 6th line of code that the time it takes a whole block to finish.
+    # It is also very easy to fix my making the initialization of colors to be the kernel that sets
+    # converged[0] = 1 -> not really because I have to set it to 1 every iteration of propagation
+    #
     sm_converged = cuda.shared.array(shape = 1, dtype = int8)
 
     v = cuda.grid(1)

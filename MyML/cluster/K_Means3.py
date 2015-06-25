@@ -14,7 +14,7 @@ TODO:
 
 import numpy as np
 import numbapro
-from numbapro import *  
+from numbapro import jit, cuda, int32, float32, void
 
 from random import sample
 
@@ -228,14 +228,14 @@ class K_Means:
 
         return labels
 
-    @numbapro.jit(numbapro.float32(numbapro.float32[:],numbapro.float32[:]))
+    @jit(float32(float32[:],float32[:]))
     def _numba_euclid(a,b):
         dist = 0
         for d in range(a.shape[0]):
             dist += (a[d] - b[d]) ** 2
         return dist
 
-    @numbapro.jit(numbapro.void(numbapro.float32[:,:],numbapro.float32[:,:],numbapro.int32[:],numbapro.float32[:]))
+    @jit(void(float32[:,:],float32[:,:],int32[:],float32[:]))
     def _numba_label(data, centroids, labels, dists):
 
         N,D = data.shape
@@ -413,8 +413,8 @@ class K_Means:
             dCentroids = cuda.to_device(centroids)
 
             # allocate array for labels and dists
-            dLabels = numbapro.cuda.device_array_like(labels)
-            dDists = numbapro.cuda.device_array_like(self._dists)
+            dLabels = cuda.device_array_like(labels)
+            dDists = cuda.device_array_like(self._dists)
             
             #self._cudaLabelsHandle = dLabels
             #self._cudaCentroidsHandle = dCentroids
@@ -422,7 +422,7 @@ class K_Means:
             _cu_label_kernel_dists[self._gridDim,self._blockDim](dData, dCentroids, dLabels, dDists)
             
             # synchronize threads before copying data
-            #numbapro.cuda.synchronize()
+            #cuda.synchronize()
 
             # copy labels from device to host
             dLabels.copy_to_host(ary = labels)
@@ -502,7 +502,7 @@ class K_Means:
 
     
     # data, centroids, labels, centroid counter, centroid sum
-    @numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:])")
+    @cuda.jit("void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:])")
     def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
         # thread ID inside block
         tx = cuda.threadIdx.x
@@ -571,8 +571,15 @@ class K_Means:
                 j+=1
 
         return new_centroids
+        
+    @jit(nopython = True)
+    def _numba_recompute_centroids_good(data, centroids, labels):
+        new_centroids = np.zeros_like(centroids)
 
-    @numbapro.jit(numbapro.void(numbapro.float32[:],numbapro.float32[:],numbapro.int32[:]))
+        non
+
+
+    @jit(void(float32[:],float32[:],int32[:]))
     def _numba_recompute_centroids(data, centroids, labels):
         N,D = data.shape
         K,D = centroids.shape
@@ -727,7 +734,7 @@ class K_Means:
 
 
 # data, centroids, labels
-@numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
+@cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
 def _cu_label_kernel_normal(a,b,c):
 
     """
@@ -786,7 +793,7 @@ def _cu_label_kernel_normal(a,b,c):
 
 
 # data, centroids, labels
-@numbapro.cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
+@cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
 def _cu_label_kernel_dists(a,b,c,dists):
 
     """

@@ -1,40 +1,38 @@
 # -*- coding: utf-8 -*-
 
 """
+author: Diogo Silva
 Tests for MST algorithms.
 """
 
+from MyML.utils.profiling import Timer
+
+tm = Timer()
+
+tm.tic()
+
 import numpy as np
 from numba import cuda, jit, int32, float32
-from timeit import default_timer as timer
 from scipy.sparse.csr import csr_matrix
 from MyML.graph.mst import boruvka_minho_seq, boruvka_minho_gpu
-from MyML.graph.connected_components import connected_comps_seq as getLabels_seq, connected_comps_gpu as getLabels_gpu
+from MyML.graph.connected_components import connected_comps_seq as getLabels_seq,\
+                                         connected_comps_gpu as getLabels_gpu
 from MyML.helper.scan import exprefixsumNumba
 
 import sys
 
+tm.tac()
+print "Time to load modules (compile some numba stuff): ", tm.elapsed
 
-
+mighty4 = "/home/diogoaos/"
+mariana = "/home/courses/aac2015/diogoaos/"
+dove = "/home/chiroptera/QCThesis/"
+home = mighty4
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 #                     UTILS
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-
-class Timer():
-    def __init__(self):
-        self.start = 0
-        self.end = 0
-
-    def tic(self):
-        self.start = timer()
-
-    def tac(self):
-        self.end = timer()
-        self.elapsed = self.end - self.start
-        return self.elapsed
 
 @jit
 def outdegree_from_firstedge(firstedge, outdegree, n_edges):
@@ -185,7 +183,7 @@ simple_graph_connect["outDegree"] = np.array([3, 1, 2, 3, 1, 3, 2, 3], dtype = n
 
 # # # # # # # # # # # # # # # # # # 
 
-four_elt_mat = np.genfromtxt("datasets/graphs/4elt.edges", delimiter=" ",
+four_elt_mat = np.genfromtxt(home + "QCThesis/datasets/graphs/4elt.edges", delimiter=" ",
                               dtype=[("firstedge","i4"),("dest","i4"),("weight","f4")],
                               skip_header=1)
 four_elt_mat_s = csr_matrix((four_elt_mat["weight"], (four_elt_mat["firstedge"], four_elt_mat["dest"])))
@@ -309,7 +307,7 @@ def check_colors():
 
     #dest, weight, firstEdge, outDegree = load_graph("4elt")
 
-    sp_cal = load_csr_graph("/home/chiroptera/QCThesis/datasets/graphs/USA-road-d.CAL.csr")
+    sp_cal = load_csr_graph(home + "QCThesis/datasets/graphs/USA-road-d.CAL.csr")
     dest, weight, firstEdge, outDegree = get_boruvka_format(sp_cal)
     del sp_cal
 
@@ -387,7 +385,7 @@ def check_colors():
     print "colors gpu == seq: ", (colors == colors2).all()
 
 def mst_cal():
-    sp_cal = load_csr_graph("/home/diogoaos/QCThesis/datasets/graphs/USA-road-d.CAL.csr")
+    sp_cal = load_csr_graph(home + "QCThesis/datasets/graphs/USA-road-d.CAL.csr")
     dest, weight, firstEdge, outDegree = get_boruvka_format(sp_cal)
     del sp_cal
 
@@ -433,8 +431,85 @@ def mst_cal():
     print "average time cpu: ", np.mean(times_cpu)
     print "average time gpu: ", np.mean(times_gpu)
 
-def mst_and_labeling():
-    print "NOTHING HERE"
+def mst_cluster_coassoc():
+    t1,t2 = Timer(), Timer()
+
+    #foldername = "/home/courses/aac2015/diogoaos/QCThesis/datasets/gaussmix1e4/"
+    foldername = home + "QCThesis/datasets/gaussmix1e4/"
+
+    print "Loading datasets"
+
+    t1.tic()
+    # dest = np.genfromtxt(foldername + "prot_dest.csr", dtype = np.int32, delimiter=",")
+    # weight = np.genfromtxt(foldername + "prot_weight.csr", dtype = np.float32, delimiter=",")
+    # fe = np.genfromtxt(foldername + "prot_fe.csr", dtype = np.int32, delimiter=",")
+
+    dest = np.genfromtxt(foldername + "full_dest.csr", dtype = np.int32, delimiter=",")
+    weight = np.genfromtxt(foldername + "full_weight.csr", dtype = np.float32, delimiter=",")
+    fe = np.genfromtxt(foldername + "full_fe.csr", dtype = np.int32, delimiter=",")
+    t1.tac()
+
+    print "loading elapsed time : ", t1.elapsed
+
+    fe = fe[:-1]
+    od = np.empty_like(fe)
+    outdegree_from_firstedge(fe, od, dest.size)
+
+    # fix weights to dissimilarity
+    weight = 100 - weight
+
+    print "# edges : ", dest.size
+    print "# vertices : ", fe.size
+    print "edges/vertices ratio : ", dest.size * 1.0 / fe.size
+
+    t1.tic()
+    mst, n_edges = boruvka_minho_seq(dest, weight, fe, od)
+    t1.tac()
+
+    print "seq: time elapsed : ", t1.elapsed
+    print "seq: mst size :", mst.size
+    print "seq: n_edges : ", n_edges
+
+    if n_edges < mst.size:
+        mst = mst[:n_edges]
+    mst.sort()
+
+    ev1,ev2 = cuda.event(), cuda.event()
+
+    ev1.record()
+    d_dest = cuda.to_device(dest)
+    d_weight = cuda.to_device(weight)
+    d_fe = cuda.to_device(fe)
+    d_od = cuda.to_device(od)
+    ev2.record()
+
+    send_graph_time = cuda.event_elapsed_time(ev1,ev2)
+
+    t2.tic()
+    mst2, n_edges2 = boruvka_minho_gpu(d_dest, d_weight, d_fe, d_od, MAX_TPB=512, returnDevAry = True)
+    t2.tac()
+
+    ev1.record()
+    mst2 = mst2.copy_to_host()
+    n_edges2 = n_edges2.getitem(0)
+    ev2.record()
+
+    recv_mst_time = cuda.event_elapsed_time(ev1,ev2)
+    print "gpu: send graph time : ", send_graph_time
+    print "gpu: time elapsed : ", t2.elapsed    
+    print "gpu: rcv mst time : ", recv_mst_time
+    print "gpu: mst size :", mst2.size  
+    print "seq: n_edges : ", n_edges2
+
+    if n_edges2 < mst2.size:
+        mst2 = mst2[:n_edges2]
+    mst2.sort()
+
+    if n_edges == n_edges2:
+        mst_is_equal = (mst == mst2).all()
+    else:
+        mst_is_equal = False
+    print "mst gpu == seq : ", mst_is_equal
 
 
 
@@ -458,7 +533,7 @@ def main(argv):
     elif argv[1] == "4":
         mst_cal()         
     elif argv[1] == "5":
-        mst_and_labeling()          
+        mst_cluster_coassoc()          
         
 
 

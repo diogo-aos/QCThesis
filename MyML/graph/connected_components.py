@@ -15,6 +15,8 @@ from MyML.graph.mst import findMinEdgeNumba, removeMirroredNumba, initColorsNumb
                            initializeColors_CUDA, propagateColors_CUDA, buildFlag_CUDA, countNewEdges_CUDA, assignInsert_CUDA
 from numba import jit, cuda, void, boolean, int8, int32, float32
 
+def connected_comps_mst_seq(mst, dest, fe):
+    pass
 
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -48,7 +50,7 @@ def connected_comps_seq(dest_in, weight_in, firstEdge_in, outDegree_in):
     final_converged = False
     while(not final_converged):
         vertex_minedge = top_edge
-        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, edge_id)
+        findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, dest)
         removeMirroredNumba(vertex_minedge, dest)
 
         # intialize colors of current graph
@@ -153,8 +155,13 @@ def update_labels_single_pass(labels, colors, new_vertex):
         labels[v] = new_color_id
 
 
-def connected_comps_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB = 512):
-    myStream = cuda.stream()
+def connected_comps_gpu(dest_in, weight_in, firstEdge_in, outDegree_in,
+                        MAX_TPB = 512, stream = None):
+    if stream is None:
+        myStream = cuda.stream()
+    else:
+        myStream = stream
+
     dest = cuda.to_device(dest_in, stream = myStream)
     weight = cuda.to_device(weight_in, stream = myStream)
     firstEdge = cuda.to_device(firstEdge_in, stream = myStream)
@@ -184,7 +191,7 @@ def connected_comps_gpu(dest_in, weight_in, firstEdge_in, outDegree_in, MAX_TPB 
     while(not final_converged):
         vertex_minedge = top_edge
 
-        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, edge_id)
+        findMinEdge_CUDA[gridDim, MAX_TPB, myStream](weight, firstEdge, outDegree, vertex_minedge, dest)
 
         removeMirroredEdges_CUDA[gridDim, MAX_TPB, myStream](dest, vertex_minedge)
 

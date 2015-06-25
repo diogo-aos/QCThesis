@@ -1,12 +1,10 @@
 dest[mst2[np.where(True-np.in1d(mst2,mst1))[0]]]
 
-b MyML/graph/mst.py:733
-b MyML/graph/mst.py:777
-b MyML/graph/mst.py:781
+b MyML/graph/mst.py:734
+b MyML/graph/mst.py:767
 
-b MyML/graph/mst.py:1005
+b MyML/graph/mst.py:1006
 b MyML/graph/mst.py:1053
-b MyML/graph/mst.py:1058
 
 
 np.savetxt("me_gpu.csv", np.array([vertex_minedge.getitem(i) for i in range(vertex_minedge.size)], dtype=np.int32), delimiter = ",")
@@ -16,10 +14,8 @@ np.savetxt("dest_gpu.csv", np.array([dest.getitem(i) for i in range(dest.size)],
 np.savetxt("weight_gpu.csv", np.array([weight.getitem(i) for i in range(weight.size)], dtype=np.float32), delimiter = ",")
 np.savetxt("fe_gpu.csv", np.array([firstEdge.getitem(i) for i in range(firstEdge.size)], dtype=np.int32), delimiter = ",")
 np.savetxt("od_gpu.csv", np.array([outDegree.getitem(i) for i in range(outDegree.size)], dtype=np.int32), delimiter = ",")
-
-
-
 np.savetxt("colors_gpu.csv", np.array([colors.getitem(i) for i in range(colors.size)], dtype=np.int32), delimiter = ",")
+
 np.savetxt("nv_gpu.csv", np.array([new_vertex.getitem(i) for i in range(new_vertex.size)], dtype=np.int32), delimiter = ",")
 np.savetxt("te_gpu.csv", np.array([top_edge.getitem(i) for i in range(top_edge.size)], dtype=np.int32), delimiter = ",")
 np.savetxt("nod_gpu.csv", np.array([newOutDegree.getitem(i) for i in range(newOutDegree.size)], dtype=np.int32), delimiter = ",")
@@ -39,8 +35,8 @@ np.savetxt("weight_seq.csv", weight, delimiter = ",")
 np.savetxt("fe_seq.csv", firstEdge, delimiter = ",")
 np.savetxt("od_seq.csv", outDegree, delimiter = ",")
 np.savetxt("eid_seq.csv", edge_id, delimiter = ",")
-
 np.savetxt("colors_seq.csv", colors, delimiter = ",")
+
 np.savetxt("nv_seq.csv", new_vertex, delimiter = ",")
 np.savetxt("te_seq.csv", top_edge, delimiter = ",")
 np.savetxt("nod_seq.csv", newOutDegree, delimiter = ",")
@@ -75,11 +71,15 @@ def test0(mst_pointer):
     mst0,mst1 = get_arr("mst")
     mst0 = mst0[:mst_pointer]
     mst1 = mst1[:mst_pointer]
+    mst0.sort()
+    mst1.sort()
     mec0 = eid0[me0]
     mec1 = eid1[me1]
     print "same me:  ", np.in1d(mec0,mec1).all()
     print "same mst: ", np.in1d(mst0,mst1).all()
+    print "same mst ==",(mst0==mst1).all()
     print "same eid: ", np.in1d(eid0,eid1).all()
+
 
 
 def test1():
