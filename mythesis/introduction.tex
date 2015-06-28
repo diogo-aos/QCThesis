@@ -26,21 +26,21 @@ When no prior information about the dataset is given, the number of clusters can
 %TODO change this 3 plots to a three plot subfigure, with the plots side by side
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_raw.png}
+\includegraphics[scale=0.5]{introduction/img/cluster_example_raw.eps}
 \caption{Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}
 \label{fig:intro raw}
 \end{figure}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_natural.png}
+\includegraphics[scale=0.5]{introduction/img/cluster_example_natural.eps}
 \caption{Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}
 \label{fig:intro natural}
 \end{figure}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_kmeans.png}
+\includegraphics[scale=0.5]{introduction/img/cluster_example_kmeans.eps}
 \caption{Sama data, as Figure \ref{fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}
 \label{fig:intro kmeans}
 \end{figure}
@@ -130,9 +130,9 @@ Combining the two.
 
 A vast body of work on clustering algorithms exist. Yet, no single algorithm is able to respond to the specificities of all datasets. Different methods are suited to datasets of different characteristics and many times the challenge of the researcher is to find the right algorithm for the task. This is where ensemble methods enter. Ensemble methods use the clustering of several algorithms or several runs of the same algorithm to produce an end result better than any of the individual ones.
 
-This, however, comes at a price. Instead of a single run of an algorithm, several are required, which increases computational complexity. Memory complexity is another aspect to have into account is another aspect to take into account when using such algorithms.
+This, however, comes at a price. Instead of a single run of an algorithm, several are required, which increases computational complexity. Memory complexity is another aspect to have into account is another aspect to take into account when using such algorithms, specially when using large datasets.
 
-With the rapid increase of storage capacity and the an equal increase on the capability to capture information, the concept of Big Data was borne. There is an interest in clustering much of this data. However, processing such huge amounts of data has been out of the range of capability of the traditional desktop workstation. This sprouted the rise of new computing architectures (e.g. Graphic Processing Units) and programming models (e.g. Hadoop, shared and distributed memory). Each of these has its own specificities and the programmer must have an in-depth knowledge of the architectures and models used to obtain results.
+With the rapid increase of storage capacity and the an equal increase on the capability to capture information, the concept of Big Data was borne. There is an interest in clustering much of this data. However, processing such huge amounts of data has been out of the range of capability of the traditional desktop workstation. This sprouted the rise of new uses of certain computing architectures (e.g. Graphic Processing Units) and development of new programming models (e.g. Hadoop, shared and distributed memory). Each of these has its own specificities and the programmer must have an in-depth knowledge of the architectures and models used to model the problems and obtain results.
 
 The algorithms themselves are no longer the only focus of research. Much effort is being put into the scalability and performance of algorithms, which usually translates in addressing their memory and computational complexities with parallized computation and distributed memory. This effort comes with challenges. How can one keep the original accuracy while significantly increase efficiency? Is there an explorable trade-off between accuracy and performance that researchers can tap into?
 

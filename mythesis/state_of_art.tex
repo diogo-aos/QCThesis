@@ -119,7 +119,7 @@ Cluster fitness is computed using the Davies-Bouldin index for each oracle. The 
 The best scoring oracle is stored.
 
 \paragraph{Quantum Rotation Gate}
-So far, we've had classical K-Means with a complex random number generation for the centroids and complicated data structures. This is the step that fundamentally differs from the classical version. In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one. The basic idea is to shift the qubit coefficients of the least scoring oracles so they'll have a higher probability of collapsing into initial centroid values closer to the best solution so far. This way, in future generations, we'll not initiate with the best centroids so far (which will not converge further into a better solution) but we'll be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm). In conclusion, we want to look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
+So far, the algorithm consisted of the classical K-Means with a complex random number generation for the centroids and complicated data structures. This is the step that fundamentally differs from the classical version. In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one. The basic idea is to shift the qubit coefficients of the least scoring oracles so they'll have a higher probability of collapsing into initial centroid values closer to the best solution so far. This way, in future generations, we'll not initiate with the best centroids so far (which will not converge further into a better solution) but we'll be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm). In other words, we look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
 
 % (end of notebook entry) -->
 
@@ -199,9 +199,6 @@ The nature of the computations involved in this algorithm make it a good candida
 \section{Evidence Accumulation Clustering}
 
 
-
-
-
 \subsection{Ensemble Clustering}
 \label{sec:eac}
 
@@ -219,8 +216,8 @@ P^j = \left \{   \textsc{x}^j_1, \textsc{x}^j_2, ... \textsc{x}^{j}_{k_j}   \rig
 C^j_k = \left \{   x_a, x_b, ..., x_z   \right \}
 $$
 
-\subsection{overview of EAC} 
-The Evidence Accumulation Clustering (EAC) makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
+\subsection{Overview of Evidence Accumulation Clustering} 
+The Evidence Accumulation Clustering makes no assumption on the number of clusters in each data partition. Its approach is divided in 3 steps:
 
 \begin{enumerate}
 \item Produce a clustering ensemble $\mathbb{P}$ (the evidence)
@@ -228,7 +225,7 @@ The Evidence Accumulation Clustering (EAC) makes no assumption on the number of 
 \item Recover natural clusters 
 \end{enumerate}
 
-A clustering ensemble, according to ~\cite{Fred2005}., can be produced from (1) different data representations, e.g. choice of preprocessing, feature extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters.
+A clustering ensemble, according to ~\cite{Fred2005}., can be produced from (1) different data representations, e.g. choice of preprocessing, feature extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters on the same algorithm.
 
 The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $C$ where each of its elements $n_{ij}$ is the association value between the object pair $(i,j)$. The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble. The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns ~\cite{Fred2005}, revealing the underlying structure of the data.
 The construction of this matrix is at the very core of this method.
@@ -236,7 +233,7 @@ The construction of this matrix is at the very core of this method.
 The co-association matrix itself doesn't output a clustering partition. Instead, it is used as input to other methods to obtain the final partition. Since this matrix is a similarity matrix it's appropriate to use in algorithms take this type of matrices as input, e.g. K-Medoids or hierarchical algorithms such as Single-Link. to name two. Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects. However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ C \} - n_{ij}$.
 
 
-\paragraph{examples of applications}
+\paragraph{Examples of applications}
 
 EAC has been used with success in several applications:
 \begin{itemize}
@@ -256,10 +253,10 @@ quadratic space and time complexities because of the nxn co-association matrix
 \subsection{Scalability of EAC} 
 The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC. Two approaches have been proposed to address this obstacle: one dealing reducing the co-association matrix by considering only the distances of patterns to theirs $p$ neighbours and the other by maximizing the sparsity of the co-association matrix.
 
-\paragraph{$p$ neighbours approach}
+\subsubsection{$p$ neighbours approach}
 The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbours of each sample are considered in the voting mechanism. This comes at the cost of having to keep track of the neighbours of each pattern in a separate data structure and also of pre-computing the $p$ neighbours. Still, considering that the quadratic space complexity is transformed to $O(2np)$ and that usually $p < \frac{n}{2}$, the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
 
-\paragraph{Increased sparsity approach}
+\subsubsection{Increased sparsity approach}
 The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix. The co-association matrix is symmetric and with a varying degree of sparsity. The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results. The later property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the partitions of the input ensemble. The core of this approach is to only store the non-zero values of the upper triangular of the co-association matrix. The authors study 3 models for the choice of these parameters:
 
 \begin{itemize}

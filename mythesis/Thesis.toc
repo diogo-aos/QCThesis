@@ -28,13 +28,13 @@
 \contentsline {subsection}{\numberline {2.2.1}Ensemble Clustering}{10}{subsection.2.2.1}
 \contentsline {paragraph}{Ensemble clustering}{10}{section*.19}
 \contentsline {paragraph}{Formulation}{11}{section*.20}
-\contentsline {subsection}{\numberline {2.2.2}overview of EAC}{11}{subsection.2.2.2}
-\contentsline {paragraph}{examples of applications}{11}{section*.21}
+\contentsline {subsection}{\numberline {2.2.2}Overview of Evidence Accumulation Clustering}{11}{subsection.2.2.2}
+\contentsline {paragraph}{Examples of applications}{11}{section*.21}
 \contentsline {paragraph}{advantages}{12}{section*.22}
 \contentsline {paragraph}{disadvantages}{12}{section*.23}
 \contentsline {subsection}{\numberline {2.2.3}Scalability of EAC}{12}{subsection.2.2.3}
-\contentsline {paragraph}{$p$ neighbours approach}{12}{section*.24}
-\contentsline {paragraph}{Increased sparsity approach}{12}{section*.25}
+\contentsline {subsubsection}{$p$ neighbours approach}{12}{section*.24}
+\contentsline {subsubsection}{Increased sparsity approach}{12}{section*.25}
 \contentsline {section}{\numberline {2.3}Clustering with Big Data}{13}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}The concept of Big Data}{13}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Computation in Big Data}{13}{subsection.2.3.2}
@@ -55,23 +55,18 @@
 \contentsline {subsubsection}{k-Nearest Neighbors as prototypes}{20}{section*.28}
 \contentsline {subsubsection}{Random prototypes}{21}{section*.29}
 \contentsline {subsubsection}{Medoid prototypes}{21}{section*.30}
-\contentsline {section}{\numberline {3.4}Hierarchical Aglomerative Clustering step}{21}{section.3.4}
+\contentsline {section}{\numberline {3.4}Hierarchical Agglomerative Clustering step}{21}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}HAC and GPGPU}{21}{subsection.3.4.1}
-\contentsline {chapter}{\numberline {4}Results}{22}{chapter.4}
-\contentsline {subsection}{\numberline {4.0.2}Quantum K-Means}{22}{subsection.4.0.2}
-\contentsline {subsubsection}{Testing and Results}{22}{section*.31}
-\contentsline {subsubsection}{Discussion}{26}{section*.32}
-\contentsline {subsection}{\numberline {4.0.3}Horn and Gottlieb's algorithm}{26}{subsection.4.0.3}
-\contentsline {subsubsection}{Testing and Results}{26}{section*.33}
-\contentsline {subsubsection}{Iris data}{26}{section*.34}
-\contentsline {subsubsection}{Crab data}{27}{section*.35}
-\contentsline {subsection}{\numberline {4.0.4}GPGPU K-Means}{30}{subsection.4.0.4}
-\contentsline {subsection}{\numberline {4.0.5}K-prototypes influence on coassocs}{30}{subsection.4.0.5}
-\contentsline {chapter}{\numberline {5}Discussion?}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Discussion}{31}{section.5.1}
-\contentsline {chapter}{\numberline {6}Conclusions}{32}{chapter.6}
-\contentsline {section}{\numberline {6.1}Achievements}{32}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{32}{section.6.2}
-\contentsline {chapter}{Bibliography}{35}{chapter*.36}
-\contentsline {chapter}{\numberline {A}Vector calculus}{37}{appendix.A}
-\contentsline {section}{\numberline {A.1}Vector identities}{37}{section.A.1}
+\contentsline {subsubsection}{Generating the MST}{21}{section*.31}
+\contentsline {subsubsection}{Number of clusters and cutting edges}{22}{section*.32}
+\contentsline {subsubsection}{Building the new graph}{22}{section*.33}
+\contentsline {subsubsection}{Final clustering}{23}{section*.34}
+\contentsline {subsubsection}{Memory transfer with the GPU}{23}{section*.35}
+\contentsline {chapter}{\numberline {4}Discussion?}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Discussion}{25}{section.4.1}
+\contentsline {chapter}{\numberline {5}Conclusions}{26}{chapter.5}
+\contentsline {section}{\numberline {5.1}Achievements}{26}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{26}{section.5.2}
+\contentsline {chapter}{Bibliography}{29}{chapter*.36}
+\contentsline {chapter}{\numberline {A}Vector calculus}{31}{appendix.A}
+\contentsline {section}{\numberline {A.1}Vector identities}{31}{section.A.1}

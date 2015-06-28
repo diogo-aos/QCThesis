@@ -25,6 +25,12 @@ The major achievements of the present work...
 \section{Future Work}
 \label{section:future}
 
+The programming model used for the GPU was CUDA, used through a Python library called Numba.
+This library offers an interface to access most of CUDA's capabilities, but not all.
+One of those capabilities is Dynamic Parallelism.
+This offers the ability of having a host kernel call on other host kernel without intervention from the host.
+This translates in the possibility of moving the control logic in the Borůvka variant (and also its the Connected Components Labeling variant) to the device, effectevely removing the memory transfer of values related with the control logic.
+
 Adaptation of the present implementation to OpenCL. This brings major benefits in respect to portability since OpenCL supports most devices. Moreover, OpenCL's performance is catching in on that of CUDA's and since it's programming model was based on CUDA, it should be straightforward for developers to make the switch.
 
 Application of EAC to the MapReduce framework will further expand the possibilities of application of EAC.

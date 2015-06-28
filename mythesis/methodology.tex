@@ -54,7 +54,7 @@ This is also an important step since the co-association matrix is already in the
 \subsubsection{k-Nearest Neighbors as prototypes}
 In the literature review, another approach to reduce the complexity of the co-association matrix is to use the $p$ closest neighbors of each sample. Previous to building the co-association matrix, the $p$ closest samples to each sample are computed and stored in the $n \times p$ neighbor matrix. The co-association matrix is reduced to size $n \times p$ and only considers the neighbors of each sample during the voting mechanism. This means two $n \times p$ matrices have to be stored, which, as long as $p$ is significantly lowers than the number of samples, is close to a sparse representation of the full matrix.
 
- It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible. When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors. However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions. If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it. If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included. This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
+It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible. When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors. However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions. If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it. If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included. This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
 
 %comment on which method is more effective, maybe some experiment is needed to see which
 %demonstrate why both methods are not compatible - a simple filling of knn matrix should suffice
@@ -67,14 +67,112 @@ Furthermore, if $p$ if high enough to provide a representative sample of the dat
 \subsubsection{Medoid prototypes}
 This approach is similar to the random prototypes but, instead of choosing $p$ random samples from the dataset, the prototypes will be the representatives of the dataset from another algorithm, e.g. K-Medoids, K-Means.
 
-\section{Hierarchical Aglomerative Clustering step}
+\section{Hierarchical Agglomerative Clustering step}
 
 \subsection{HAC and GPGPU}
-The final clustering, done with SL-HAC, is optimized by executing the efficient parallel variant of Borůvka's algorithm \cite{Sousa2015} with a slight modification for accepting unconnected graphs, i.e. a co-association matrix where there may be a pattern or a group of patterns that are not connected to any other pattern.
-In the present implementation, the issue of unconnected graphs was solved in the first step of the efficient variant (finding the minimum vertex connected to each vertex or supervertex). If a vertex has no edges connected to it then it is marked as if its destination points to itself (as a mirrored edge in the second step). This results in unconnected vertices (or supervertices) being dragged throughout all the iterations.
-As a consequence, the stopping criteria becomes the lack of edges connected to the remaining vertices, which is the same as saying that all elements of the \emph{outdegree} array are zero. This condition can be checked as a secondary result of the computation of the new \emph{first\_edge} array. This step is performed by applying an exclusive prefix sum over the \emph{outdegree}. If the prefix sum is implemented in such a way that it returns the sum of all elements, then it becomes inexpensive to check this condition.
+% introduction to the procedure of SL with MST
+Since SL-HAC is an inherently sequential algorithm, an efficient GPU version is hard to implement.
+However, SL-HAC can be performed by computing the MST and cutting edges until we have the desired number of clusters.
+Considerable speedups are reported in the literature for MST solvers in the GPGPU paradigm.
+The considered solution uses the efficient parallel variant of Borůvka's algorithm \cite{Sousa2015}. 
+If the number of clusters is given the necessary cuttings are done on the MST. 
+If not, the number of clusters is computed with the lifetime technique. 
+A new graph in the CSR format is computed from the altered MST and is then fed to the labelling algorithm, which will provide the final clustering.
 
-The result of this variant is an array of length $|V|-1$, i.e. $N-1$ since the vertices are the patterns of the dataset. 
+\subsubsection{Generating the MST}
+% explain modification to the MST algorithm to accept unconnected graphs
+The output of the Borůvka's algorithm is a list of the indices of the edges constituting the MST. 
+These indices point to the \emph{destination} of the original graph. 
+The original algorithm in \cite{Sousa2015} assumes fully connected graphs, but this is not guaranteed in the EAC paradigm.
+In graph theory, given a connected graph $G = (V,E)$, there is a path between any $s,t \in V$.
+In an unconnected graph, this is not the case and unconnected subsets are called components, i.e. a connected component $C \subset V$ ensures that for each $u,v \in C$ there is a path between $u$ and $v$.
+In the present implementation, the issue of unconnected graphs was solved in the first step (finding the minimum edge connected to each vertex or supervertex). 
+If a vertex has no edges connected to it (an outdegree of 0 since all edges are duplicated to cover both directions) then it is marked as a mirrored edge. 
+This means that the independent components will be marked as supervertices in all subsequent iterations of the algorithm. 
+The overhead of having this unnecessary vertices is low since the number of independent components is typically low compared to the number of vertices in the the graph and since the processing of such vertices is very fast.
+As a consequence, the stopping criteria becomes the lack of edges connected to the remaining vertices, which is the same as saying that all elements of the \emph{outdegree} array are zero. 
+This condition can be checked as a secondary result of the computation of the new \emph{first\_edge} array. 
+This step is performed by applying an exclusive prefix sum over the \emph{outdegree}. 
+The prefix sum was implemented in such a way that it returns the sum of all elements, which translates in very low overhead to check this condition.
+The final output is the MST array and the number of edges in the array. 
+The later is necessary because the number of edges will be less than $|V|-1$ when independent components exist, and also because the MST array is pre-allocated in the beginning of the algorithm when the number of edges is not yet known.
 
+\subsubsection{Number of clusters and cutting edges}
+% cutting edges
+The number of clusters can be automatically computed with the lifetime technique or be supplied. 
+Either way, a list (\emph{mst\_weights}) with the weights of each edge of the MST is compiled and ordered.
+The list of edges is also ordered according to the order of the \emph{mst\_weights}. 
+If the number of clusters $k$ was given, the algorithm removes the $k - 1$ heaviest edges. 
+If there are independent components inside the MST those are taken into consideration before removing any edges.
+If the number of clusters $k$ is higher than the number of independent components the final number of clusters will be the number of independent components.
+
+To compute the number of clusters (which results in a truly unsupervised method) the lifetimes are computed.
+In the traditional EAC, lifetimes are computed on the weights of the clusters by the order they're formed.
+With the MST, the lifetimes are computed over the ordered \emph{mst\_weights} array, which is equivalent.
+If there are independent components, an extra lifetime that will serve as the threshold between choosing the number of independent components as the number of clusters or looking into the lifetimes within the MST.
+This is because links between independent vertices are not included in the MST.
+For this reason, the lifetime for going from independent edges to the heaviest link in the MST (where the first cut would be performed) is computed separately.
+If the maximum lifetime within the MST is bigger than the threshold, than the number of clusters is computed as in traditional EAC plus the number of independent components.
+Otherwise, the independent components will be the final clusters.
+Most of this process can be done by the GPU.
+Library kernels were used to sort the array and compute the $arg max$, and a simple kernel was used to compute the lifetimes.
+
+\subsubsection{Building the new graph}
+The final MST (after performing the edge cuts, if any) is then converted into a new, reduced graph.
+The function responsible for this takes the original graph and the final selection of edges contituting the MST and, afterwards, produces a graph in CSR format.
+The function has to count the number of edges for each vertex, compute the origin vertex of each edge (the original \emph{destination} array only contains the destination vertices) and, with that information, build the final graph.
+This process can be done by the GPU with simple mapping kernels.
+
+\subsubsection{Final clustering}
+The last step is computing the final clusters.
+Any cut in the MST translates in independent components in the constructed graph.
+This means that the problem of computing the clusters translates into a problem of finding independent connected components in a graph, a problem that usually goes by the name of Connected Component Labeling.
+To implement this part in the GPU, the aforementioned Borůvka algorithm was modified to output the an array \emph{labels} of length $|V|$ such that the $i-th$ position contained the label of the $i-th$ vertex.
+To this effect, the flow of the algorithm was slightly altered as shown in Figure \ref{fig:connected comps flow}. 
+The kernel dealing with the MST was removed and a kernel to update the labels at each iteration, shown in Algorithm \ref{alg:comp_labels}, was implemented.
+In the first iteration of the algorithm the converged colors are copied to the labels array.
+In every iteration the kernel to update the labels takes in the propagated colors and the array with the new vertex IDs.
+For each vertex in the array, the kernel first takes in the the color of the current vertex and maps it to the new color (remember that the color is actually a vertex ID and that that vertex has had its color updated).
+Afterwards, the kernel maps the new color with the new vertex ID that color will take, to keep consistency with future iterations.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{methodology/connected_components_boruvka_flow.eps}
+\caption{Diagram of the connected components labeling algorithm used.}
+\label{fig:connected comps flow}
+\end{figure}
+
+
+%
+% describe connected components algorithm
+% how it copies colors in the first time
+% and then just updates the labels with the new vertex IDs
+%
+% put flowchart and pseudocode
+
+
+\begin{algorithm}
+\caption{Update component labels kernel}\label{alg:comp_labels}
+\begin{algorithmic}[1]
+\Procedure{update\_labels}{$vertex\_id, labels, colors, new\_vertex$}
+\State $curr\_color \gets labels[vertex\_id]$
+\State $new\_color \gets colors[curr\_color]$
+\State $new\_color\_id \gets new_vertex[new\_color]$
+\State $labels[vertex\_id] \gets new\_color\_id$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
+\subsubsection{Memory transfer with the GPU}
+The whole algorithm of computing the SL clustering has been implemented in the GPU with minimizing the memory utilization in mind.
+Transferring the initial graph is the most relevant memory transfer.
+It has to be transfered twice: first for computing the MST and then to build the processed MST graph.
+This happens because the initial device arrays used for the graph are deallocated to give space for the arrays of subsequent iterations of the MST algorithm.
+This implementation design had in mind memory consumption in mind and could easily be avoided with the cost of having to store the bigger initial graph for the entire duration of the MST computation, which might be worthwhile if the GPU memory is abundant.
+The final labels array is transfered back to the host in the end of computation, but its size is small relative the to the size of the original graph.
+Furthermore, because the control logic is processed by the host and it is dependent on some values computed by the device, extra memory transfers of single values (e.g. number of vertices and number of edges on each iteration) are necessary.
+These, however, may be safely dismissed since they're of little consequence in the overall computation time.
 
 
