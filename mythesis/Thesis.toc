@@ -62,11 +62,11 @@
 \contentsline {subsubsection}{Building the new graph}{22}{section*.33}
 \contentsline {subsubsection}{Final clustering}{23}{section*.34}
 \contentsline {subsubsection}{Memory transfer with the GPU}{23}{section*.35}
-\contentsline {chapter}{\numberline {4}Discussion?}{25}{chapter.4}
-\contentsline {section}{\numberline {4.1}Discussion}{25}{section.4.1}
-\contentsline {chapter}{\numberline {5}Conclusions}{26}{chapter.5}
-\contentsline {section}{\numberline {5.1}Achievements}{26}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{26}{section.5.2}
-\contentsline {chapter}{Bibliography}{29}{chapter*.36}
-\contentsline {chapter}{\numberline {A}Vector calculus}{31}{appendix.A}
-\contentsline {section}{\numberline {A.1}Vector identities}{31}{section.A.1}
+\contentsline {chapter}{\numberline {4}Discussion?}{26}{chapter.4}
+\contentsline {section}{\numberline {4.1}Discussion}{26}{section.4.1}
+\contentsline {chapter}{\numberline {5}Conclusions}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Achievements}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{27}{section.5.2}
+\contentsline {chapter}{Bibliography}{31}{chapter*.36}
+\contentsline {chapter}{\numberline {A}Vector calculus}{33}{appendix.A}
+\contentsline {section}{\numberline {A.1}Vector identities}{33}{section.A.1}

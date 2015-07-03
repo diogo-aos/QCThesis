@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  27 JUN 2015 20:49
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  29 JUN 2015 15:34
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -684,12 +684,32 @@ Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 384
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 )
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen134
+\lightrulewidth=\dimen135
+\cmidrulewidth=\dimen136
+\belowrulesep=\dimen137
+\belowbottomsep=\dimen138
+\aboverulesep=\dimen139
+\abovetopsep=\dimen140
+\cmidrulesep=\dimen141
+\cmidrulekern=\dimen142
+\defaultaddspace=\dimen143
+\@cmidla=\count136
+\@cmidlb=\count137
+\@aboverulesep=\dimen144
+\@belowrulesep=\dimen145
+\@thisruleclass=\count138
+\@lastruleclass=\count139
+\@thisrulewidth=\dimen146
+)
 (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip71
 \bibsep=\skip72
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count136
+\c@NAT@ctr=\count140
 )) (./Thesis.aux)
 \openout1 = `Thesis.aux'.
 
@@ -752,16 +772,16 @@ Package geometry Warning: The marginal notes overrun the paper.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count137
-\scratchdimen=\dimen134
+\scratchcounter=\count141
+\scratchdimen=\dimen147
 \scratchbox=\box35
-\nofMPsegments=\count138
-\nofMParguments=\count139
+\nofMPsegments=\count142
+\nofMParguments=\count143
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count140
-\MPscratchDim=\dimen135
-\MPnumerator=\count141
-\makeMPintoPDFobject=\count142
+\MPscratchCnt=\count144
+\MPscratchDim=\dimen148
+\MPnumerator=\count145
+\makeMPintoPDFobject=\count146
 \everyMPtoPDFconversion=\toks36
 )
 \AtBeginShipoutBox=\box36
@@ -781,7 +801,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count143
+\c@section@level=\count147
 )
 LaTeX Info: Redefining \ref on input line 70.
 LaTeX Info: Redefining \pageref on input line 70.
@@ -1042,13 +1062,15 @@ ogy/connected_components_boruvka_flow-eps-converted-to.pdf used on input line 1
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 155.
 ) [23] [24 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected
-_components_boruvka_flow-eps-converted-to.pdf>]
+_components_boruvka_flow-eps-converted-to.pdf>] [25]
 Chapter 4.
-(./conclusions.tex [25
+(./conclusions.tex [26
 
 ]
 Chapter 5.
-[26
+[27
+
+] [28
 
 ]) (./Thesis.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 35--41
@@ -1080,11 +1102,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--51
 . cfm ? doid = 2287076 . 2287109$ \ delimiter"026E30F$nhttp :
  []
 
-[27
+[29
 
 
-
-] [28]
+] [30]
 Underfull \hbox (badness 1178) in paragraph at lines 213--221
 []\OT1/phv/m/n/10 J. Xiao, Y. Yan, J. Zhang, and Y. Tang.  A quantum-inspired g
 e-netic al-go-rithm for k-means
@@ -1108,13 +1129,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 213--221
 11e4-[]be73-[]00000aacb35e & acdnat =
  []
 
-) [29] [30
+) [31] [32
 
 ] (./Thesis_Appendix.tex
 Appendix A.
-[31
+[33
 
-] [32
+] [34
 
 ])
 
@@ -1134,10 +1155,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
  ) 
 Here is how much of TeX's memory you used:
- 9234 strings out of 495004
- 131881 string characters out of 6180663
- 236696 words of memory out of 5000000
- 12010 multiletter control sequences out of 15000+600000
+ 9290 strings out of 495004
+ 132629 string characters out of 6180663
+ 239435 words of memory out of 5000000
+ 12060 multiletter control sequences out of 15000+600000
  41985 words of font info for 77 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  44i,12n,28p,1014b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1158,10 +1179,10 @@ ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
 tic/uhvro8a.pfb>
-Output written on Thesis.pdf (50 pages, 673700 bytes).
+Output written on Thesis.pdf (52 pages, 674382 bytes).
 PDF statistics:
- 890 PDF objects out of 1000 (max. 8388607)
- 723 compressed objects within 8 object streams
- 180 named destinations out of 1000 (max. 500000)
+ 900 PDF objects out of 1000 (max. 8388607)
+ 731 compressed objects within 8 object streams
+ 182 named destinations out of 1000 (max. 500000)
  415 words of extra memory for PDF output out of 10000 (max. 10000000)
 
