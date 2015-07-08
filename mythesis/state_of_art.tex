@@ -3,12 +3,31 @@
 \chapter{State of the art}
 \label{chapter:stateofart}
 
+
+This dissertation is concerned with the scalability and optimization of EAC to large datasets.
+The goal of this optimization is to elevate the EAC method to large datasets, which translates in optimizing both speed and space.
+To this end, several aspects were researched.
+Work related to clustering and the concept of big data was briefly reviewed in section \ref{sec:big data}.
+
+
+Evidence Accumulation Clustering is a method of three parts.
+This dissertation is concerned with the scalability of the whole algorithm which means that different steps have to be optimized separately.
+This algorithm and existing work on its scalability is reviewed in section \ref{sec:eac}.
+The first step is the generation of an ensemble of clustering partitions.
+Increasing speed can be attained with either faster algorithms and/or faster computation of existing algorithms.
+Both these approaches to faster generation of the ensemble were pursued and researched.
+The former in the form of the still young field of quantum clustering, which is briefly reviewed in section \ref{sec:quantum clustering}, and the later in the field of parallel computation, more specifically on computation in GPUs, reviewed in section \ref{sec:gpgpu}.
+While quantum clustering was only reviewed for the first step, the parallel computation paradigm was investigated with all steps in mind.
+For that reason, K-Means GPU versions were researched as well as Hierarchical Agglomerative Clustering.
+
+
 %TODO double check all refs because this was merged pre latex citations and the reference might have gotten mixed
 
 %TODO
 % see if this is an apropriate structure; a quantum clustering section makes sense at the very least, but it should be introduced before
 
 \section{Quantum clustering}
+\label{sec:quantum clustering}
 The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
 There are two major paths for the problem of quantum clustering. The first is the quantization of clustering methods to work in quantum computers. This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers. Literature suggests that quadratic (and even exponential in some cases) speedup may be achieved. Most of the approaches for such conversions make use of Groover's search algorithm, or a variant of it, e.g. \citet{Wiebe2014}. Most literature on this path is also mostly theoretical since quantum circuits are not easily available and a working quantum computer has yet to be invented. This path can be seen as part of the bigger problem of quantum computing and quantum information processing.
 
@@ -20,7 +39,10 @@ The second approach is the computational intelligence approach, i.e.  to use alg
 
 In the following two sections these approaches for quantum inspired computational intelligence are explored.
 
-\subsection{Quantum bit}
+\subsection{The quantum bit approach}
+\label{sec:qubit}
+
+\subsubsection{What is a quantum bit?}
 
 To understand the workings of the algorithms based on the concept of the qubit, it is useful to cast some insight about its properties and functioning.
 The quantum bit is a quantum object that has the properties of quantum superposition, entanglement and ...
@@ -71,11 +93,11 @@ Def from wiki: In complexity theory and computability theory, an oracle machine 
 
 
 
-\subsection{Quantum K-Means}
+\subsubsection{Quantum K-Means}
 
 Several clustering algorithms ~\cite{Casper2013,Casper,Xiao2010}, as well as optimization problems ~\cite{Wang2013}, are modelled after this concept. To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm based on~\cite{Casper} was chosen as a case study.
 
-\subsection{Description of the algorithm}
+\subsubsection{Description of the algorithm}
 
 The Quantum K-Means (QK-Means) algorithm, as is described in ~\cite{Casper}, is based on the classical K-Means algorithm. It extends the basic K-Means with concepts from quantum mechanics (the qubit) and genetic algorithms.
 
@@ -130,6 +152,7 @@ The genetic operations of cross-over and mutation are both part of the genetic a
 % add ref
 
 \subsection{Horn and Gottlieb's algorithm}
+\label{sec:horn}
 
 The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation. The algorithm under study was created by Horn and Gottlieb and was later extended by Weinstein and Horn.
 
@@ -197,10 +220,10 @@ The nature of the computations involved in this algorithm make it a good candida
 
 
 \section{Evidence Accumulation Clustering}
-
+\label{sec:eac}
 
 \subsection{Ensemble Clustering}
-\label{sec:eac}
+
 
 \paragraph{Ensemble clustering}
 Data from real world problems appear in different configurations regarding shape, size, sparsity, etc. %taken from Fred(2005)
@@ -272,6 +295,7 @@ For real datasets, the performance of the three models differed little as the nu
 The number of samples of the datasets analysed in \cite{Lourenco2010} was under $10^(4)$. Although the results appear promising, the present work aims to deal with datasets much larger than this and, as a consequence, this technique should be further evaluated and tested to attest to its usefulness to very large datasets.
 
 \section{Clustering with Big Data}
+\label{sec:big data}
 
 \subsection{The concept of Big Data}
 % there is a difference between this and the big data section in the state of the art chapter
@@ -307,6 +331,7 @@ Finally, a cluster offers the best solution for truly distributed computation wh
 	
 
 \section{General Purpose computing on Graphical Processing Units}
+\label{sec:gpgpu}
 Using GPU for other applications other than graphic processing, commonly known as GPGPU, has become a trend in recent years. GPU present a solution for "extreme-scale, cost-effective, and power-efficient high performance computing" \cite{Chen2012}. Furthermore, GPU are typically found in consumer desktops and laptops, effectively bringing this computation power to the masses.
 
 GPUs were typically useful for users that required high performance graphics computation. Other applications were soon explored as users from different fields realized the high parallel computation power of these devices. However, the architecture of the GPUs themselves has been strictly oriented toward the graphics computing until recently as specialized GPU models (e.g. NVIDIA Tesla) have been designed for data computation.
@@ -375,6 +400,7 @@ Depending on the architecture, GPUs have several types of memories. Accessible t
 
 \subsection{Parallel K-Means}
 
+
 K-Means is one of the building block of the EAC chain. Other algorithms can be used, but due to its simplicity and speed it is often used to produce ensembles varying the number of centroids to be used.
 Furthermore, it is a very good candidate for parallelization. K-Means is composed by two main steps:
 
@@ -389,27 +415,37 @@ The later approach is suited to devices with more computing units. Each unit com
 
 \subsection{Parallel Hierarchical Agglomerative Clustering}
 
-
-
-HAC is an algorithm that is not easily parallelized since it has several dependencies 
-
 HAC is an important step in the EAC chain. Given the new similarity metric (how many times a pair of patterns are clustered together in the ensemble), HAC provides an intuitive way of obtaining the final partition: patterns that are clustered together often in the ensemble should be clustered together. Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e., the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ to $n$.
 
-However, HAC is not easily parallelized. The most parallelizable part is the computation of the pair-wise similarity matrix, but in EAC is part of the input (it's the co-association matrix) which means that within this context that part is not parallelizable.
-An important relationship between HAC and MSTs is the key to speeding up HAC, more specifically SL-HAC.
-When performing SL-HAC, the result is nothing more than a structured MST. To get the $n$ clusters, one cuts the $n-1$ links with highest cost. In this context the nodes of the graph are the patterns of the dataset and the edges are the pair-wise similarities.
+However, HAC is not easily parallelized since, typically, a new cluster generated at each step may include the one generated in the previous iteration.
+The most parallelizable part is the computation of the pair-wise similarity matrix, which in EAC is part of the input (the co-association matrix) and, thus, not considered.
+An important relationship between HAC and the Minimum Spanning Tree problem of graphs is the key to parallelize HAC, more specifically SL-HAC.
+If one takes the co-association matrix to be a graph (each pattern is a node and each association an edge), then, when performing SL-HAC over this graph, the result can be interpreted as a structured MST. To get $n$ clusters, one cuts the $n-1$ links with highest cost. The same approach for the final clustering was used in \cite{Fred2002}.
 
-\paragraph{Algorithm for finding Minimum Spanning Trees}
-There are several algorithms for computing an MST. The most famous are Kruskal, Prim and Boruvka. The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
-Boruvka's algorithm is also known as Sollin's algorithm.
+\subsubsection{Algorithm for finding Minimum Spanning Trees}
+There are several algorithms for computing an MST. The most famous are Kruskal \citep{kruskal1956shortest}, Prim \citep{prim1957shortest} and Borůvka \citep{boruuvka1926jistem}. Borůvka's algorithm is also known as Sollin's algorithm.
+The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
+As such, even though GPU parallel variants of Kruskal's \citep{rostrup2013fast} and Prim's \citep{wang2011design} algorithms exist, the focus will be on Borůvka's (which was also the first to be parallelized for the GPU).
 
-Several parallel implementations of this algorithm exist:
+Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a good overview over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest, as to the moment of writing. This section will review the algorithm proposed in \citep{Sousa2015}, refered to as \emph{Sousa2015} from henceforth.
 
-%TODO see paper and thesis of Cristiano Sousa in the literature review
+\paragraph{CSR format}
+\emph{Sousa2015} takes in a graph as input, represented in the CSR format (a format used for sparse matrices). This representation is equivalent to having a square matrix $G$ with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$. This format is represented in Fig. \ref{fig:csr}. It requires three arrays to fully describe the matrix:
 
-\cite{Sousa2015} reports their version to be the fastest, as to the moment of writing. The input graph is encoded in the CSR format. This representation is equivalent to having a square matrix $G$ in with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$. This format is represented in Fig. X. %TODO add figure
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{stateofart/csr_format.eps}
+\caption{Correspondence between a sparse matrix and its CSR counterpart.}
+\label{fig:csr}
+\end{figure}
 
-Within the algorithm's context, the three arrays are \emph{first\_edge}, \emph{destination} and \emph{weight}. This three arrays can completely describe a graph. However, the algorithm uses an extra array \emph{outdegree} that can be deduced from the \emph{first\_edge} array. The length and purpose of each of this arrays is:
+\begin{itemize}
+	\item a \emph{data} array containing all the non-zero values, where values from the same row appear sequentially, i.e. if the first row has 20 non-zero values, then the first 20 elements from this array belong to the first row;
+	\item a \emph{indices} array contaning the column index of each non-zero value;
+	\item a \emph{indptr} array containg a pointer to the first element in the \emph{data} and \emph{indices} arrays that belongs to each row, i.e. if the $i-th$ element (row) of \emph{indptr} is $k$ and it has 10 values, then all the elements from $k$ to $k + 5$ in \emph{data} belong to the $i-th$ row.
+\end{itemize}
+
+Within the algorithm's context, the three arrays are \emph{first\_edge} (previously \emph{indptr}, \emph{destination} (\emph{indices}) and \emph{weight} (\emph{data}). These three arrays can completely describe a graph. However, the algorithm uses an extra array \emph{outdegree} that can be deduced from the \emph{first\_edge} array. The length and purpose of each of this arrays is:
 \begin{itemize}
 	\item \emph{first\_edge} is an array of size $\|V\|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} edge.
 	\item \emph{outdegree} is an array of size $\|V\|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} edge.
@@ -433,7 +469,7 @@ Upon contact, the author reported that a solution to that problem is, on the ste
 
 
 
-\paragraph{Exclusive scan} The \emph{scan} operation is one of the fundamental building block of parallel computing. 
+\subsubsection{Exclusive scan} The \emph{scan} operation is one of the fundamental building block of parallel computing. 
 Furthermore, two of the steps of the Borůvka variant of \cite{Sousa2015} are performed with an exclusive scan where the operation is a sum. 
 To illustrate the functioning of the exclusive scan, let's consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$. Let's further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$. Then the output will be $[0,0,1,3,5,8,13,19]$. The first element of the output will be the identity (if it were an inclusive scan, it would be the first element itself). The second element is the sum between the first element of the input array and the first element of the output array, the third element is the sum between the second element of the input array with second element of the output array, and so on.
 This algorithm seems highly sequential in nature each element of the output array depends on the previous one. 

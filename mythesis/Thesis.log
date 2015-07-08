@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  29 JUN 2015 15:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  7 JUL 2015 17:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -667,19 +667,19 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip70
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 384.
+Package hyperref Info: Option `colorlinks' set `true' on input line 385.
 
 
 Package hyperref Warning: Option `pagecolor' is not available anymore.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 384.
+(hyperref)                setting the option has no effect on input line 385.
 
-Package hyperref Info: Option `bookmarksopen' set `false' on input line 384.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 384.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 385.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 385.
 
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 384
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 385
 .
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
@@ -816,14 +816,14 @@ LaTeX Info: Redefining \nameref on input line 70.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 15.
 
-<IST_A_CMYK_POS.pdf, id=196, 845.0471pt x 597.51233pt>
+<IST_A_CMYK_POS.pdf, id=192, 845.0471pt x 597.51233pt>
 File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
 
 <use IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 15.
 (pdftex.def)             Requested size: -78.38533pt x -90.76195pt.
 
-<Figures/Airbus_A350.jpg, id=197, 1027.84pt x 770.88pt>
+<Figures/Airbus_A350.jpg, id=193, 1027.84pt x 770.88pt>
 File: Figures/Airbus_A350.jpg Graphic file (type jpg)
 
 <use Figures/Airbus_A350.jpg>
@@ -927,7 +927,7 @@ w.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_raw-eps-converted-to.pdf, id=360, 392.46625pt x 284.06125pt>
+_raw-eps-converted-to.pdf, id=357, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_raw-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -952,7 +952,7 @@ e_natural.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_natural-eps-converted-to.pdf, id=361, 392.46625pt x 284.06125pt>
+_natural-eps-converted-to.pdf, id=358, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_natural-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -977,7 +977,7 @@ _kmeans.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_kmeans-eps-converted-to.pdf, id=362, 392.46625pt x 284.06125pt>
+_kmeans-eps-converted-to.pdf, id=359, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_kmeans-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1010,29 +1010,61 @@ LaTeX Warning: Reference `chapter:results' on page 5 undefined on input line 19
 
 ) (./state_of_art.tex [5]
 Chapter 2.
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 23.
 [6
 
-] [7] [8] [9]
-Underfull \vbox (badness 2932) has occurred while \output is active []
+]
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 42.
+ [7] [8] [9] [10] [11]
 
- [10]
+Package natbib Warning: Citation `Lourenco2009' on page 12 undefined on input l
+ine 264.
 
-Package natbib Warning: Citation `Lourenco2009' on page 11 undefined on input l
-ine 241.
-
-[11]
-Overfull \hbox (6.18446pt too wide) in paragraph at lines 260--261
+[12]
+Overfull \hbox (6.18446pt too wide) in paragraph at lines 283--284
 \OT1/phv/m/n/10 The sec-ond ap-proach, pre-sented in [][]Louren[]o et al.[][] [
 [][]2010[][]], ex-ploits the sparse na-ture of the co-association
  []
 
-[12] [13] [14] [15] [16] [17]) (./methodology.tex [18]
-Chapter 3.
-[19
+[13] [14]
+Underfull \vbox (badness 3439) has occurred while \output is active []
 
-] [20] [21] [22]
+ [15]
+[16]
+
+Package natbib Warning: Citation `wang2011design' on page 17 undefined on input
+ line 428.
+
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/stateofart/csr_format.eps>
+(epstopdf)                    date: 2015-07-07 17:22:01
+(epstopdf)                    size: 19228 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/stateofart/csr_format-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-07-07 17:25:12
+(epstopdf)                    size: 5970 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/stateofart/csr_format-eps-converted-to.pdf /home/chiroptera/
+workspace/thesis_writing/rsc/stateofart/csr_format.eps>
+(epstopdf)             \includegraphics on input line 437.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/csr_format-eps-conver
+ted-to.pdf, id=695, 709.65125pt x 321.2pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/csr_format-eps-c
+onverted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/csr_format-eps-co
+nverted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/csr_format-eps-converted-to.pdf used on input line 437.
+(pdftex.def)             Requested size: 354.82475pt x 160.59961pt.
+ [17] [18 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/csr_format-
+eps-converted-to.pdf>]) (./methodology.tex [19]
+Chapter 3.
+[20
+
+] [21] [22] [23]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/methodology/connected_components_boruvka_flow.eps>
 (epstopdf)                    date: 2015-06-26 17:52:58
@@ -1049,7 +1081,7 @@ onents_boruvka_flow.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
-_boruvka_flow-eps-converted-to.pdf, id=716, 748.7975pt x 1337.99875pt>
+_boruvka_flow-eps-converted-to.pdf, id=755, 748.7975pt x 1337.99875pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
 nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1061,43 +1093,41 @@ ogy/connected_components_boruvka_flow-eps-converted-to.pdf used on input line 1
 (pdftex.def)             Requested size: 374.39783pt x 668.99774pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 155.
-) [23] [24 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected
-_components_boruvka_flow-eps-converted-to.pdf>] [25]
+) [24] [25 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected
+_components_boruvka_flow-eps-converted-to.pdf>] [26]
 Chapter 4.
-(./conclusions.tex [26
+(./conclusions.tex [27
 
 ]
 Chapter 5.
-[27
-
-] [28
+[28
 
 ]) (./Thesis.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 35--41
+Underfull \hbox (badness 10000) in paragraph at lines 40--46
 \OT1/cmtt/m/n/10 p158-[]casper . pdf ? ip = 193 . 136 . 132 . 10 & id = 2401639
  & acc = ACTIVESERVICE & key = 2E5699D25B4FE09E .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--41
+Underfull \hbox (badness 10000) in paragraph at lines 40--46
 \OT1/cmtt/m/n/10 F7A57B2C5B227641 . 4D4702B0C3E38B35 . 4D4702B0C3E38B35 & CFID 
 = 476955365 & CFTOKEN = 55494231 &
  []
 
 
-Underfull \hbox (badness 1975) in paragraph at lines 43--51
+Underfull \hbox (badness 1975) in paragraph at lines 48--56
 \OT1/phv/m/n/10 age.  \OT1/phv/m/sl/10 Pro-ceed-ings of the 21st in-ter-na-tion
 al sym-po-sium on High-Performance Par-al-lel and
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 43--51
+Underfull \hbox (badness 1655) in paragraph at lines 48--56
 \OT1/phv/m/sl/10 Dis-tributed Com-put-ing (HPDC'12)\OT1/phv/m/n/10 , pages 199-
 -210, 2012.  doi: $10 . 1145 / 2287076 . 2287109$.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--51
+Underfull \hbox (badness 10000) in paragraph at lines 48--56
 \OT1/phv/m/n/10 URL [][]$\OT1/cmtt/m/n/10 http : / / dl . acm . org / citation 
 . cfm ? doid = 2287076 . 2287109$ \ delimiter"026E30F$nhttp :
  []
@@ -1105,35 +1135,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--51
 [29
 
 
+
 ] [30]
-Underfull \hbox (badness 1178) in paragraph at lines 213--221
+Underfull \hbox (badness 1178) in paragraph at lines 257--265
 []\OT1/phv/m/n/10 J. Xiao, Y. Yan, J. Zhang, and Y. Tang.  A quantum-inspired g
 e-netic al-go-rithm for k-means
  []
 
 
-Underfull \hbox (badness 3965) in paragraph at lines 213--221
+Underfull \hbox (badness 3965) in paragraph at lines 257--265
 \OT1/phv/m/n/10 clus-ter-ing.  \OT1/phv/m/sl/10 Ex-pert Sys-tems with Ap-pli-ca
 -tions\OT1/phv/m/n/10 , 37:4966--4973, 2010.  ISSN 09574174.
  []
 
 
-Underfull \hbox (badness 3930) in paragraph at lines 213--221
+Underfull \hbox (badness 3930) in paragraph at lines 257--265
 \OT1/phv/m/n/10 doi: $10 . 1016 / j . eswa . 2009 . 12 . 017$.  URL [][]$\OT1/c
 mtt/m/n/10 http : / / ac . els-[]cdn . com / S095741740901063X / 1-[]s2 .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--221
+Underfull \hbox (badness 10000) in paragraph at lines 257--265
 \OT1/cmtt/m/n/10 0-[]S095741740901063X-[]main . pdf ? _tid = f303a76c-[]ac71-[]
 11e4-[]be73-[]00000aacb35e & acdnat =
  []
 
-) [31] [32
-
-] (./Thesis_Appendix.tex
+[31]) [32] (./Thesis_Appendix.tex
 Appendix A.
 [33
+
 
 ] [34
 
@@ -1141,27 +1171,27 @@ Appendix A.
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
 (./Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 235.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 65B8468DD77BD4979D25B3AFE85B215D;3406.
+(rerunfilecheck)             Checksum: 7309453FE7E0CB12DCA521216B3097D1;3335.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
  ) 
 Here is how much of TeX's memory you used:
- 9290 strings out of 495004
- 132629 string characters out of 6180663
- 239435 words of memory out of 5000000
- 12060 multiletter control sequences out of 15000+600000
+ 9337 strings out of 495004
+ 133811 string characters out of 6180663
+ 240102 words of memory out of 5000000
+ 12093 multiletter control sequences out of 15000+600000
  41985 words of font info for 77 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 44i,12n,28p,1014b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,28p,1014b,505s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/
@@ -1179,10 +1209,10 @@ ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
 tic/uhvro8a.pfb>
-Output written on Thesis.pdf (52 pages, 674382 bytes).
+Output written on Thesis.pdf (52 pages, 684215 bytes).
 PDF statistics:
- 900 PDF objects out of 1000 (max. 8388607)
- 731 compressed objects within 8 object streams
- 182 named destinations out of 1000 (max. 500000)
- 415 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 938 PDF objects out of 1000 (max. 8388607)
+ 767 compressed objects within 8 object streams
+ 193 named destinations out of 1000 (max. 500000)
+ 412 words of extra memory for PDF output out of 10000 (max. 10000000)
 

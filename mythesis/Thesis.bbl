@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{36}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -25,6 +25,11 @@ H.~T. Bai, L.~L. He, D.~T. Ouyang, Z.~S. Li, and H.~Li.
   Engineering, CSIE 2009}, 3:\penalty0 651--655, 2009.
 \newblock \doi{10.1109/CSIE.2009.491}.
 
+\bibitem[Borůvka(1926)]{boruuvka1926jistem}
+O.~Borůvka.
+\newblock {O jist\'{e}m probl\'{e}mu minim\'{a}ln\'{\i}m}.
+\newblock 1926.
+
 \bibitem[Casper and Hung(2013)]{Casper2013}
 E.~Casper and C.-c. Hung.
 \newblock {Quantum Modeled Clustering Algorithms for Image Segmentation 1}.
@@ -49,6 +54,14 @@ L.~Chen and G.~Agrawal.
 \newblock URL
   \url{http://dl.acm.org/citation.cfm?doid=2287076.2287109$\backslash$nhttp://dl.acm.org/citation.cfm?id=2287109}.
 
+\bibitem[Fred and Jain(2002)]{Fred2002}
+A.~N.~L. Fred and A.~K. Jain.
+\newblock {Data clustering using evidence accumulation}.
+\newblock \emph{Object recognition supported by user interaction for service
+  robots}, 4, 2002.
+\newblock ISSN 1051-4651.
+\newblock \doi{10.1109/ICPR.2002.1047450}.
+
 \bibitem[Fred and Jain(2005)]{Fred2005}
 A.~N.~L. Fred and A.~K. Jain.
 \newblock {Combining multiple clusterings using evidence accumulation}.
@@ -68,6 +81,12 @@ M.~Grossman, M.~Breternitz, and V.~Sarkar.
   Processing Symposium Workshops and PhD Forum, IPDPSW 2013}, pages 1918--1927,
   2013.
 \newblock \doi{10.1109/IPDPSW.2013.246}.
+
+\bibitem[Harish et~al.(2009)Harish, Vineet, and Narayanan]{harish2009large}
+P.~Harish, V.~Vineet, and P.~J. Narayanan.
+\newblock {Large graph algorithms for massively multithreaded architectures}.
+\newblock \emph{International Institute of Information Technology Hyderabad,
+  Tech. Rep. IIIT/TR/2009/74}, 2009.
 
 \bibitem[Horn and Gottlieb(2001{\natexlab{a}})]{Horn2001a}
 D.~Horn and A.~Gottlieb.
@@ -95,6 +114,13 @@ A.~K. Jain.
 \newblock ISSN 01678655.
 \newblock \doi{10.1016/j.patrec.2009.09.011}.
 \newblock URL \url{http://dx.doi.org/10.1016/j.patrec.2009.09.011}.
+
+\bibitem[Kruskal(1956)]{kruskal1956shortest}
+J.~B. Kruskal.
+\newblock {On the shortest spanning subtree of a graph and the traveling
+  salesman problem}.
+\newblock \emph{Proceedings of the American Mathematical society}, 7\penalty0
+  (1):\penalty0 48--50, 1956.
 
 \bibitem[Liu et~al.(2010)Liu, Chen, Yan, Liu, Xu, and Zheng]{Liu2010}
 W.~Liu, H.~Chen, Q.~Yan, Z.~Liu, J.~Xu, and Y.~Zheng.
@@ -133,6 +159,12 @@ M.~J. Mi\v{s}i, M.~\^{C}, and M.~V. Toma\v{s}evi.
 \newblock \emph{MIPRO, 2012 Proceedings of the 35th International Convention},
   pages 289--294, 2012.
 
+\bibitem[Prim(1957)]{prim1957shortest}
+R.~C. Prim.
+\newblock {Shortest connection networks and some generalizations}.
+\newblock \emph{Bell system technical journal}, 36\penalty0 (6):\penalty0
+  1389--1401, 1957.
+
 \bibitem[Qian et~al.(2010)Qian, Cukierski, Osman, and Goodell]{Qian2010}
 Y.~W. Qian, W.~Cukierski, M.~Osman, and L.~Goodell.
 \newblock {Combined multiple clusterings on flow cytometry data to
@@ -140,6 +172,12 @@ Y.~W. Qian, W.~Cukierski, M.~Osman, and L.~Goodell.
 \newblock \emph{ICBBT 2010 - 2010 International Conference on Bioinformatics
   and Biomedical Technology}, pages 305--309, 2010.
 \newblock \doi{10.1109/ICBBT.2010.5478955}.
+
+\bibitem[Rostrup et~al.(2013)Rostrup, Srivastava, and Singhal]{rostrup2013fast}
+S.~Rostrup, S.~Srivastava, and K.~Singhal.
+\newblock {Fast and memory-efficient minimum spanning tree on the GPU}.
+\newblock \emph{International Journal of Computational Science and
+  Engineering}, 8\penalty0 (1):\penalty0 21--33, 2013.
 
 \bibitem[Shalom et~al.(2009)Shalom, Dash, Tue, and Wilson]{Shalom2009}
 S.~a.~A. Shalom, M.~Dash, M.~Tue, and N.~Wilson.
@@ -159,6 +197,12 @@ C.~d.~S. Sousa, A.~Mariano, and A.~Proen\c{c}a.
 \newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
   Algorithm}.
 \newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
+
+\bibitem[Vineet(2009)]{Vineet2009}
+V.~Vineet.
+\newblock {Fast Minimum Spanning Tree for Large Graphs on the GPU by Fast
+  Minimum Spanning Tree for Large Graphs on the GPU}.
+\newblock 2009\penalty0 (August), 2009.
 
 \bibitem[Wang et~al.(2013)Wang, Liu, Zhi, and Fu]{Wang2013}
 H.~Wang, J.~Liu, J.~Zhi, and C.~Fu.
