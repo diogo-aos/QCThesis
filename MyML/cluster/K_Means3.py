@@ -9,12 +9,13 @@ TODO:
 - implement cuda distance reduce job
 - converge mode in all label functions (low priority since those are not in use)
 - improve cuda labels with local block memory
-- make sure that cuda labels returns the distance array every iteration (centroid computation needs it)
+- make sure that cuda labels returns the distance array every iteration 
+  (centroid computation needs it)
 """
 
 import numpy as np
-import numbapro
-from numbapro import jit, cuda, int32, float32, void
+import numba
+from numba import jit, cuda, int32, float32, void
 
 from random import sample
 
@@ -24,10 +25,8 @@ from random import sample
 
 class K_Means:       
        
-    
-    def __init__(self, n_clusters=8, mode="cuda", cuda_mem='auto', tol=1e-4, max_iter=300, init='random'):
-
-
+    def __init__(self, n_clusters=8, mode="cuda", cuda_mem='auto', tol=1e-4,
+                 max_iter=300, init='random'):
         self.n_clusters = n_clusters
 
         self._mode = mode #label mode
@@ -41,11 +40,13 @@ class K_Means:
             self._centroid_type = init
         elif type(init) is np.ndarray:
             if init.shape[0] != n_clusters:
-                raise Exception("Number of clusters indicated different from number of centroids supplied.")
+                raise Exception("Number of clusters indicated different \
+                                 from number of centroids supplied.")
             self._centroid_type = "supplied"
             self.centroids = init
         else:
-            raise ValueError('Centroid may be \'random\' or an ndarray containing the centroids to use.')
+            raise ValueError('Centroid may be \'random\' or an ndarray \
+                              containing the centroids to use.')
 
         # execution flow
         self.tol = tol
@@ -75,14 +76,13 @@ class K_Means:
         self._MAX_GRID_XYZ_DIM = 65535
         self._CUDA_WARP = 32
 
-
-
-
+        self._PPT = 1 # points to process per thread
 
     def fit(self, data):
 
         if data.dtype != np.float32:
-            print "WARNING DATA DUPLICATION: data converted to float32. TODO: accept other formats"
+            print "WARNING DATA DUPLICATION: data converted to float32. \
+                   TODO: accept other formats"
             data = data.astype(np.float32)
         
         N,D = data.shape
@@ -99,7 +99,7 @@ class K_Means:
         stopcond = False
         self.iters_ = 0
         self.inertia_ = np.inf
-        self._last_iter = False # this is only for _labels centroid recomputation
+        self._last_iter = False # this is only for labels centroid recomputation
 
 
         self._dists = np.empty(self.N, dtype = np.float32)
@@ -140,7 +140,6 @@ class K_Means:
         self.labels_ = labels
         self.cluster_centers_ = self.centroids
 
-
     def _init_centroids(self, data):
         
         #centroids = np.empty((self.n_clusters,self.D),dtype=data.dtype)
@@ -153,21 +152,21 @@ class K_Means:
 
         return centroids
 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                COMPUTE LABELS                                     # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #               COMPUTE LABELS                                # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def _label(self,data,centroids):
         """
@@ -183,12 +182,12 @@ class K_Means:
             self._cu_label_kernel(data,centroids,labels,[1,512],[1,59])
         elif self._mode == "numpy":
             labels = self._np_label_fast(data,centroids)
-
+        elif self._mode == "numba":
+            labels, dists = numba_label(data,centroids)
+            self._dists = dists
         elif self._mode == "python":
             labels = self._py_label(data,centroids)
 
-
-        
         return labels
 
     def _py_sqrd_euclidean(self,a,b):
@@ -199,8 +198,6 @@ class K_Means:
         for d in xrange(a.shape[0]):
             dist += (a[d] - b[d])**2
         return dist
-
-
 
     def _py_label(self,data,centroids):
 
@@ -234,29 +231,6 @@ class K_Means:
         for d in range(a.shape[0]):
             dist += (a[d] - b[d]) ** 2
         return dist
-
-    @jit(void(float32[:,:],float32[:,:],int32[:],float32[:]))
-    def _numba_label(data, centroids, labels, dists):
-
-        N,D = data.shape
-        K,cD = centroids.shape
-
-        for n in range(N):
-
-            # first iteration
-            best_dist = _numba_euclid(data[n],centroids[0])
-            best_label = 0
-
-            for k in xrange(1,K):
-                dist = _numba_euclid(data[n],centroids[k])
-
-                if dist < best_dist:
-                    best_dist = dist
-                    best_label = k
-
-            dists[n] = best_dist
-            labels[n] = best_label
-            
             
     def _np_label(self,data,centroids):
 
@@ -284,7 +258,9 @@ class K_Means:
         return labels
         
     def _np_label_fast(self,data,centroids):
-
+        """
+        uses more memory
+        """
         N,D = data.shape
         C,cD = centroids.shape
 
@@ -333,7 +309,6 @@ class K_Means:
         best_dist = best_dist ** 2
         best_dist = best_dist.sum(axis=1)
 
-
         for c in xrange(1,C):
             dist = data - centroids[c]
             dist = dist ** 2
@@ -345,10 +320,9 @@ class K_Means:
             
         return labels
 
-
     def _compute_cuda_dims(self, data, use2d = False):
 
-        N,D = data.shape
+        N, D = data.shape
 
         if use2d:
             blockHeight = self._MAX_THREADS_BLOCK
@@ -358,7 +332,8 @@ class K_Means:
             # threads per block
             tpb = np.prod(blockDim)
 
-            # blocks per grid = data cardinality divided by number of threads per block (1 thread - 1 data point)
+            # blocks per grid = data cardinality divided by number
+            # of threads per block (1 thread - 1 data point)
             bpg = np.int(np.ceil(np.float(N) / tpb)) 
 
 
@@ -376,7 +351,8 @@ class K_Means:
                 gridDim = 1,bpg
         else:
             blockDim = self._MAX_THREADS_BLOCK
-            bpg = np.float(N) / self._MAX_THREADS_BLOCK
+            points_in_block = self._MAX_THREADS_BLOCK * self._PPT
+            bpg = np.float(N) / points_in_block
             gridDim = np.int(np.ceil(bpg))
             
             
@@ -394,7 +370,6 @@ class K_Means:
         if self._gridDim is None or self._blockDim is None:
             self._compute_cuda_dims(data)       
         
-
         labels = np.empty(N, dtype = np.int32)
         
         if self._cuda_mem == 'manual':
@@ -419,7 +394,10 @@ class K_Means:
             #self._cudaLabelsHandle = dLabels
             #self._cudaCentroidsHandle = dCentroids
             
-            _cu_label_kernel_dists[self._gridDim,self._blockDim](dData, dCentroids, dLabels, dDists)
+            _cu_label_kernel_dists[self._gridDim,self._blockDim](dData, 
+                                                                 dCentroids, 
+                                                                 dLabels, 
+                                                                 dDists)
             
             # synchronize threads before copying data
             #cuda.synchronize()
@@ -431,10 +409,14 @@ class K_Means:
             self._dists = dists
 
         elif self._cuda_mem == 'auto':
-            _cu_label_kernel_dists[self._gridDim,self._blockDim](data, centroids, labels, self._dists)
+            _cu_label_kernel_dists[self._gridDim,self._blockDim](data, 
+                                                                centroids, 
+                                                                labels, 
+                                                                self._dists)
 
         else:
-            raise ValueError("CUDA memory management type may either be \'manual\' or \'auto\'.")
+            raise ValueError("CUDA memory management type may either \
+                              be \'manual\' or \'auto\'.")
         
         return labels
         
@@ -461,26 +443,21 @@ class K_Means:
         #                               file=sys.stdout)"""
 
 
-
-
-
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                             RECOMPUTE CENTROIDS                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # #                                                                                   # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                      RECOMPUTE CENTROIDS                    # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
     def _recompute_centroids(self,data,centroids,labels):
         if self._centroid_mode == "group":
@@ -491,16 +468,16 @@ class K_Means:
             new_centroids = self._np_recompute_centroids_iter(data,centroids,labels)
         elif self._centroid_mode == "good":
             new_centroids = self._np_recompute_centroids_good(data,centroids,labels) 
+        elif self._centroid_mode == "good_numba":
+            new_centroids = numba_recompute_centroids_good(data, centroids, labels, self._dists)
         else:
             raise Exception("centroid mode invalid:",self._centroid_mode)
 
         return new_centroids
 
-
     def _cu_centroids(data,centroids,labels):
         pass
 
-    
     # data, centroids, labels, centroid counter, centroid sum
     @cuda.jit("void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:])")
     def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
@@ -546,8 +523,8 @@ class K_Means:
 
     def _np_recompute_centroids_good(self,data,centroids,labels):
         """
-        this version doesn't discard clusters; instead it uses the same scheme as
-        sci-kit learn
+        this version doesn't discard clusters; instead it uses the same scheme
+        as sci-kit learn
         """
         # change to get dimension from class or search a non-empty cluster
         #dim = grouped_data[0][0].shape[1]
@@ -571,13 +548,6 @@ class K_Means:
                 j+=1
 
         return new_centroids
-        
-    @jit(nopython = True)
-    def _numba_recompute_centroids_good(data, centroids, labels):
-        new_centroids = np.zeros_like(centroids)
-
-        non
-
 
     @jit(void(float32[:],float32[:],int32[:]))
     def _numba_recompute_centroids(data, centroids, labels):
@@ -596,8 +566,6 @@ class K_Means:
             for d in range(D):
 
                 pass
-
-
 
     def _np_recompute_centroids_index(self,data,centroids,labels):
         """
@@ -626,16 +594,17 @@ class K_Means:
         labels = labels[labels_sorted]
         sortedData = data[labels_sorted]
 
-        # array storing the dataset indices where the clustering changes (after the it has been ordered)
-        # this stores every i-th index where the i-th label is different from the (i+1)-th label
+        # array storing the dataset indices where the clustering changes 
+        # (after the it has been ordered) this stores every i-th index where 
+        # the i-th label is different from the (i+1)-th label
         labelChangedIndex = np.where(labels[1:] != labels[:-1])[0] + 1
 
         #
         #  DEALS WITH EMPTY CLUSTERS
         #
 
-        # number of empty clusters is equal to the number of indices that partition
-        # the labels plus 1
+        # number of empty clusters is equal to the number of indices that 
+        # partition the labels plus 1
         nonEmptyClusters = labelChangedIndex.shape[0] + 1
 
         if nonEmptyClusters == 1:
@@ -731,8 +700,6 @@ class K_Means:
         return new_centroids
 
 
-
-
 # data, centroids, labels
 @cuda.jit("void(float32[:,:], float32[:,:], int32[:])")
 def _cu_label_kernel_normal(a,b,c):
@@ -792,6 +759,7 @@ def _cu_label_kernel_normal(a,b,c):
     c[n] = best_label
 
 
+CUDA_PPT = 1
 # data, centroids, labels
 @cuda.jit("void(float32[:,:], float32[:,:], int32[:], float32[:])")
 def _cu_label_kernel_dists(a,b,c,dists):
@@ -822,35 +790,164 @@ def _cu_label_kernel_dists(a,b,c,dists):
     # 2**16 to the index
     #n = ty + by * bh + bx*gh*bh
 
-    n = cuda.grid(1)
+    tgid = cuda.grid(1) * CUDA_PPT
 
     N = c.shape[0] # number of datapoints
     K,D = b.shape # centroid shape
 
-    if n >= N:
+    if tgid >= N:
         return
 
-    # first iteration outside loop
-    dist = 0.0
-    for d in range(D):
-        diff = a[n,d] - b[0,d]
-        dist += diff ** 2
+    for n in range(tgid, tgid + CUDA_PPT):
 
-    best_dist = dist
-    best_label = 0
+        if n >= N:
+            return
 
-    # remaining iterations
-    for k in range(1,K):
-
+        # first iteration outside loop
         dist = 0.0
         for d in range(D):
-            diff = a[n,d]-b[k,d]
+            diff = a[n,d] - b[0,d]
             dist += diff ** 2
 
+        best_dist = dist
+        best_label = 0
 
-        if dist < best_dist:
-            best_dist = dist
-            best_label = k
+        # remaining iterations
+        for k in range(1,K):
 
-    c[n] = best_label
-    dists[n] = best_dist
+            dist = 0.0
+            for d in range(D):
+                diff = a[n,d]-b[k,d]
+                dist += diff ** 2
+
+
+            if dist < best_dist:
+                best_dist = dist
+                best_label = k
+
+        c[n] = best_label
+        dists[n] = best_dist
+
+@jit(nopython=True)
+def numba_label(data, centroids):
+
+    N = data.shape[0]
+    K,D = centroids.shape
+
+    labels = np.empty(N, dtype=np.int32)
+    dists = np.empty(N, dtype=np.float32)
+
+    for n in range(0, N):
+
+        # first iteration outside loop
+        dist = 0.0
+        for d in range(D):
+            diff = data[n,d] - centroids[0,d]
+            dist += diff ** 2
+
+        best_dist = dist
+        best_label = 0
+
+        # remaining iterations
+        for k in range(1,K):
+
+            dist = 0.0
+            for d in range(D):
+                diff = data[n,d]-centroids[k,d]
+                dist += diff ** 2
+
+            if dist < best_dist:
+                best_dist = dist
+                best_label = k
+
+        labels[n] = best_label
+        dists[n] = best_dist
+
+    return labels, dists
+
+@jit(nopython = True)
+def numba_recompute_centroids_good(data, centroids, labels, dists):
+    N = labels.size
+    K, D = centroids.shape
+
+    new_centroids = np.zeros((K,D), dtype=np.float32)       
+
+    # count samples in clusters
+    labels_bincount = np.zeros(K, dtype=np.int32)
+    for n in range(N):
+        l = labels[n]
+        labels_bincount[l] += 1
+
+    # check for empty clusters
+    n_emptyClusters = 0
+    for l in range(K):
+        if labels_bincount[l] == 0:
+            n_emptyClusters += 1
+
+    # get farthest points from clusters (K-select)
+    furtherDistsArgs = np.empty(n_emptyClusters, dtype=np.int32) 
+    arg_k_select(dists, n_emptyClusters, furtherDistsArgs)
+    # furtherDistsArgs = arg_k_select(dists, n_emptyClusters)
+    
+    # increment datapoints to respective centroids
+    for n in range(N):
+        n_label = labels[n]
+        for d in range(D):
+            new_centroids[n_label,d] += data[n,d]
+
+    i = 0
+    for k in range(K):
+        if labels_bincount[k] != 0: # compute final centroid
+            for d in range(D):
+                new_centroids[k, d] /= labels_bincount[k]
+        else: # centroid will be one of furthest points
+            i_arg = furtherDistsArgs[i]
+            for d in range(D):
+                new_centroids[k, d] = data[i_arg, d]
+
+    return new_centroids
+
+#
+# jitted version was 110 times faster than unjitted for 1e6 array
+# ported and adapted to arg-k-select from:
+# http://blog.teamleadnet.com/2012/07/quick-select-algorithm-find-kth-element.html
+@jit(nopython=True)
+def arg_k_select(ary, k, out):
+# def arg_k_select(ary, k):
+    args = np.empty(ary.size, dtype=np.int32)
+    for i in range(args.size):
+        args[i] = i
+
+    fro = 0
+    to = ary.size - 1
+
+    while fro < to:
+        r = fro
+        w = to
+        mid_arg = args[(r+w) / 2]
+        mid = ary[mid_arg]
+
+        while r < w:
+            r_arg = args[r]
+            w_arg = args[w]
+            if ary[r_arg] >= mid:
+                tmp = args[w]
+                args[w] = args[r]
+                args[r] = tmp
+                w -= 1
+            else:
+                r += 1
+
+        r_arg = args[r]
+        if ary[r_arg] > mid:
+            r -= 1
+
+        if k <= r:
+            to = r
+        else:
+            fro = r + 1
+
+    for i in range(k):
+        out[i] = args[i]
+
+    # return args[:k]

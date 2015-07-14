@@ -9,11 +9,7 @@ Testbench for K_Means
 
 
 # TODO:
-- create main loops
-- design and create datastructures
-- create datasets
-- run algorithms
-- print feedback (what is running, ETA, etc.)
+
 """
 
 import numpy as np

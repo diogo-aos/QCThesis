@@ -9,6 +9,7 @@ TODO:
 """
 
 import numpy as np
+import matplotlib.pyplot as plt
 import os
 
 def convertIndexToBin(clusts=None,n_clusts=None,N=None):
@@ -19,10 +20,10 @@ def convertIndexToBin(clusts=None,n_clusts=None,N=None):
     # clusts is a list of numpy.arrays where each element in
     # in the array is the index of a sample that belongs to that cluster
     
-    if clusts == None:
+    if clusts is None:
         raise Exception("A clustering partition must be provided.")
     
-    if N == None:
+    if N is None:
         N = 0
         for c in clusts:
             N += c.size
@@ -54,13 +55,13 @@ def convertClusterStringToBin(clusts,n_clusts=None,N=None):
     n_clusts     : number of clusters; optional
     N             : number of samples; optional
     """
-    if clusts == None:
+    if clusts is None:
         raise Exception("A clustering partition must be provided.")
 
-    if N == None:
+    if N is None:
         N=clusts.shape[0]
 
-    if n_clusts == None:
+    if n_clusts is None:
         n_clusts=np.max(clusts)
 
     if np.min(clusts) == 0:
@@ -174,3 +175,54 @@ def loadPartitionFromFile(filename):
 				partition.append(np.fromstring(pline, dtype=np.int32, sep=','))
 
 	return partition
+
+
+class PlotEnsemble:
+    def __init__(self, ensemble, data):
+        self.ensemble = ensemble
+        self.data = data
+        self.curr_partition = 0
+        self.n_partitions = len(ensemble)
+
+    def plot(self, num = None, draw_perimeter=False):
+        if num is None:
+            self._plotPartition(self.curr_partition, draw_perimeter)
+            if self.curr_partition < self.n_partitions - 1:
+                self.curr_partition += 1
+            else:
+                self.curr_partition = 0
+        elif num >= self.n_partitions or num < 0:
+            raise Exception("Invalid partition index.")
+        else:
+            self.curr_partition = num
+            self._plotPartition(self.curr_partition, draw_perimeter)
+
+    def _plotPartition(self, clust_idx, draw_perimeter=False):
+        
+        if not draw_perimeter:
+            for clust in self.ensemble[clust_idx]:
+                plt.plot(self.data[clust, 0], self.data[clust, 1], '.')
+
+        else:
+            from scipy.spatial import ConvexHull
+            for clust in self.ensemble[clust_idx]:
+                points = self.data[clust]
+                hull = ConvexHull(points)
+                
+                plt.plot(points[:,0], points[:,1], 'o')
+                for simplex in hull.simplices:
+                    plt.plot(points[simplex, 0], points[simplex, 1], 'k-')
+
+        plt.title("Partition #{}, Num. clusters = {}".format(clust_idx,
+            len(self.ensemble[clust_idx])))
+
+    def maxClusterSize(self):
+        max_size = 0
+        for part in self.ensemble:
+            for clust in part:
+                clust_len = len(clust)
+                if clust_len > max_size:
+                    max_size = clust_len
+        return max_size
+
+
