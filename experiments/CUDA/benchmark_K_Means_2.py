@@ -7,14 +7,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sbn
 import pandas as pd
+from sklearn import datasets # generate gaussian mixture
+from numba import cuda
 
 
 # In[2]:
 
-import MyML.helper.partition as part
-import MyML.cluster.eac as eac
 import MyML.cluster.K_Means3 as myKM
-import MyML.metrics.accuracy as accuracy
 import MyML.utils.profiling as myProf
 
 # Setup logging
@@ -42,6 +41,19 @@ logger.addHandler(handler)
 logger.addHandler(consoleHandler)
 
 # # bulk study
+
+def generateData(n,d):
+    n = int(n)
+    d = int(d)
+    k = 6
+
+    # Generate data
+    data,  = datasets.make_blobs(n_samples=n_int, n_features=d,
+                                            centers=k,
+                                            center_box=(-1000.0,1000.0))
+    data = data.astype(np.float32)  
+    
+    return data
 
 # ## rules
 
@@ -92,7 +104,7 @@ folder = "/home/diogoaos/QCThesis/datasets/gauss1e6/"
 
 # In[ ]:
 
-logger.info("Loading dataset...")
+logger.info("Generating dataset...")
 
 data = np.genfromtxt(folder + "data.csv", delimiter=',', dtype=np.float32)
 gt = np.genfromtxt(folder + "gt.csv", delimiter=',', dtype=np.int32)
@@ -102,8 +114,31 @@ gt = np.genfromtxt(folder + "gt.csv", delimiter=',', dtype=np.int32)
 
 mem_full_max = 20 * 2**30 # max mem full mat can take
 
-cardinality = [500,1e3,5e3,1e4,2.5e4,5e4,1e5,2.5e5,5e5,1e6,2.5e6]
+# function to compute memory required in gpu, in MB
+calc_gpu_mem = lambda n, k, d: 4.0 * (n * (d + 2) + k * d) / (1024 ** 2)
+
+# compute device memory
+c = cuda.current_context()
+free_mem, total_mem = c.get_memory_info()
+MAX_ALLOWED_MEM = 0.97 * total_mem
+
+
+cardinality = [100, 250, 500, 750,
+               1e3, 2.5e3, 5e3, 7.5e3,
+               1e4, 2.5e4, 5e4, 7.5e4,
+               1e5, 2.5e5, 5e5, 7.5e5,
+               1e6, 2.5e6, 5e6, 7.5e6,
+               1e7]
 cardinality = map(int,cardinality)
+
+dimensionality = [2, 5,
+                  10, 25, 50, 75,
+                  100, 250, 500, 750,
+                  1000, 1500]
+
+
+
+
 
 total_n = data.shape[0]
 div = map(lambda n: total_n/n,cardinality)

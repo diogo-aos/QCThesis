@@ -669,7 +669,7 @@ def labels_from_Z_numba(Z, track, n_clusters):
 
         track[l] = val
 
-@jit
+@jit(nopython=True)
 def binary_search(key, ary):
     """
     Inputs:
@@ -694,4 +694,3 @@ def binary_search(key, ary):
         else:
             return imid
     return -1
-

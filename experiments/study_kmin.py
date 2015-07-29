@@ -16,9 +16,27 @@ import MyML.cluster.eac as eac
 import MyML.cluster.K_Means3 as myKM
 import MyML.metrics.accuracy as accuracy
 import MyML.utils.profiling as myProf
+import MyML.utils.sparse as mySparse
+max_assocs_fn = mySparse._compute_max_assocs_from_ensemble
 
 # Setup logging
 import logging
+
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", "--folder", help="where to read data from",type=str)
+parser.add_argument('-y', "--yes", help="don't ask confirmation of folder",
+					action='store_true')
+args = parser.parse_args()
+
+folder = args.folder
+
+if not args.yes:
+	raw_input("Folder: {}\nIs this correct?".format(folder))
+else:
+	print "Folder being used is: {}".format(folder)
+
 
 # Status logging
 logger = logging.getLogger('status')
@@ -28,7 +46,7 @@ logger.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # create a file handler
-handler = logging.FileHandler('study_kmin.log')
+handler = logging.FileHandler(folder + 'study_kmin.log')
 handler.setLevel(logging.INFO)
 handler.setFormatter(formatter)
 
@@ -62,7 +80,7 @@ def rule2(n):
 
 def rule3(n, sk, th):
     """fixed s/k"""
-    k = [n *1.0 / sk, th * n * 1.0 / sk]
+    k = [n * 1.0 / sk, th * n * 1.0 / sk]
     k = map(np.ceil,k)
     k = map(int, k)
     return k
@@ -87,7 +105,7 @@ rules = [rule1, rule2, rule4, rule5]
 
 # In[212]:
 
-folder = "/home/diogoaos/QCThesis/datasets/gauss1e6/"
+
 
 
 # In[ ]:
@@ -102,16 +120,22 @@ gt = np.genfromtxt(folder + "gt.csv", delimiter=',', dtype=np.int32)
 
 mem_full_max = 20 * 2**30 # max mem full mat can take
 
-cardinality = [500,1e3,5e3,1e4,2.5e4,5e4,1e5,2.5e5,5e5,1e6,2.5e6]
+cardinality = [1e2,2.5e2,5e2,7.5e2,
+               1e3,2.5e3,5e3,7.5e3,
+               1e4,2.5e4,5e4,7.5e4,
+               1e5,2.5e5,5e5,7.5e5,
+               1e6,2.5e6]
 cardinality = map(int,cardinality)
 
 total_n = data.shape[0]
-div = map(lambda n: total_n/n,cardinality)
+div = map(lambda n: total_n / n, cardinality)
 
 rounds = 5
 res_lines = rounds * len(cardinality) * len(rules)
-res_cols = ['n_samples', 'rule', 'kmin', 'kmax', 't_ensemble', 'biggest_cluster', 'type_mat',
-            't_build', 'n_assocs', 'max_assoc', 't_sl', 'accuracy', 'round']
+res_cols = ['n_samples', 'rule', 'kmin', 'kmax', 't_ensemble',
+            'biggest_cluster', 'type_mat', 't_build', 'n_assocs',
+            'min_assoc', 'max_assoc', 'mean_assoc', 'std_assoc',
+            't_sl', 'accuracy', 'round']
 results = pd.DataFrame(index=range(res_lines), columns=res_cols)
 
 t = myProf.Timer() # timer
@@ -123,7 +147,6 @@ n_iters = 3
 # EAC properties
 assoc_mode = "full"
 prot_mode = "none"
-
 
 # ## run
 
@@ -139,22 +162,29 @@ for d in div: # for each size of dataset
     #gt_sampled = gt[::d]
     n = data_sampled.shape[0]
 
-    if n >= 1.5e6:
-    	break
+    # if n >= 150000:
+    #     break
 
-    logger.info("Sampled of {} patterns.".format(n))
-    
     # pick sparse on full matrix
     if n **2 < mem_full_max:
         mat_sparse = False
     else:
         mat_sparse = True
-    
+
     for rule in rules: # for each kmin rule
         n_clusts = rule(n)
 
+        logger.info("Sampled of {} patterns.".format(n))
         logger.info("Rule: {}".format(rule.__doc__))
         logger.info("kmin: {}, kmax: {}".format(n_clusts[0], n_clusts[1]))
+
+        # skip if number of clusters is bigger than number of samples
+        if n_clusts[1] >= n:
+            logger.info("Kmax too large for dataset size. Skipping...")
+            continue
+        if n_clusts[0] <= 1:
+            logger.info("Kmin too little. Skipping...")
+            continue            
 
         for r in range(rounds): # for each round
             logger.info("Round: {}".format(r))
@@ -171,7 +201,8 @@ for d in div: # for each size of dataset
             generator = myKM.K_Means(cuda_mem="manual")
             
             t.tic()
-            ensemble = part.generateEnsemble(data_sampled, generator, n_clusts, n_partitions, n_iters)
+            ensemble = part.generateEnsemble(data_sampled, generator, n_clusts,
+                                             n_partitions, n_iters)
             t.tac()
 
             max_cluster_size = max([max(map(np.size,p)) for p in ensemble])
@@ -182,15 +213,42 @@ for d in div: # for each size of dataset
             logger.info("Sparse matrix: {}".format(mat_sparse))
             logger.info("Building matrix...")
 
-            myEst = eac.EAC(n, mat_sparse=mat_sparse)
             
-            t.tic()
-            myEst.fit(ensemble, files=False, assoc_mode=assoc_mode, prot_mode=prot_mode)
-            t.tac()
             
-            results.t_build[res_idx] = t.elapsed # build time
-            results.n_assocs[res_idx] = myEst.getNNZAssocs() # number of associations
-            results.max_assoc[res_idx] = myEst.getMaxAssocs() # max number of association in a sample
+            if not mat_sparse:
+                myEst = eac.EAC(n, mat_sparse=False)
+                t.tic()
+                myEst.fit(ensemble, files=False, assoc_mode=assoc_mode,
+                          prot_mode=prot_mode)
+                t.tac()
+                myEst._getAssocsDegree()
+                # build time
+                results.t_build[res_idx] = t.elapsed
+                # number of associations
+                results.n_assocs[res_idx] = myEst.getNNZAssocs()
+                # stats number associations
+                results.max_assoc[res_idx] = myEst.degree.max()
+                results.std_assoc[res_idx] = myEst.degree.min()
+                results.mean_assoc[res_idx] = myEst.degree.mean()
+                results.std_assoc[res_idx] = myEst.degree.std()
+            else:
+                
+                mymaxassocs = max_assocs_fn(ensemble) * 3
+                myEst = mySparse.EAC_CSR(n_samples=n,
+                                         max_assocs=mymaxassocs)
+                t.tic()
+                myEst._update_ensemble(ensemble, sort_mode="online")
+                t.tac()
+                # build time
+                results.t_build[res_idx] = t.elapsed
+                # number of associations
+                results.n_assocs[res_idx] = myEst.nnz
+                # stats number associations
+                results.max_assoc[res_idx] = myEst.degree.max()
+                results.std_assoc[res_idx] = myEst.degree.min()
+                results.mean_assoc[res_idx] = myEst.degree.mean()
+                results.std_assoc[res_idx] = myEst.degree.std()
+
             
             if mat_sparse: # don't do SL if sparse matrix -> NOT IMPLEMENTED
                 results.to_csv(folder + "results_kmin.csv")

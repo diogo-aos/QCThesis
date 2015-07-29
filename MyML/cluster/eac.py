@@ -33,6 +33,8 @@ from MyML.cluster.linkage import slhac_fast, labels_from_Z
 
 from numba import jit
 
+sparse_type = lil_matrix
+
 class EAC():
 
     def __init__(self, n_samples, data=None, mat_sparse=False, mat_half=False):
@@ -119,7 +121,7 @@ class EAC():
         if mode == "full":
             
             if self.mat_sparse:
-                coassoc = csr_matrix((nsamples, nsamples), dtype=self.assoc_type)
+                coassoc = sparse_type((nsamples, nsamples), dtype=self.assoc_type)
             else:
                 coassoc = np.zeros((nsamples, nsamples), dtype=self.assoc_type)
         elif mode =="prot":
@@ -424,11 +426,26 @@ class EAC():
         Returns the maximum number of co-associations a sample has and the
         index of that sample.\
         """ 
+        # if not hasattr(self, 'degree'):
+        #     self._getAssocsDegree()
+        # return self.degree.max()
+
+
         if not self.mat_sparse:
             max_assocs, max_idx = get_max_assocs_in_sample(self._coassoc)
         else:
-            max_assocs, max_idx =get_max_assocs_in_sample_csr(self._coassoc)
+            max_assocs, max_idx = get_max_assocs_in_sample_csr(self._coassoc)
         return max_assocs, max_idx
+
+    def _getAssocsDegree(self):
+        self.degree = np.zeros(self.n_samples, dtype=np.int32)
+        if not self.mat_sparse:
+            full_get_assoc_degree(self._coassoc, self.degree)
+        else:
+            self.degree = self._coassoc.indptr[1:] - self._coassoc.indptr[:-1]
+        self.nnz = self.degree.sum()
+
+
 
     def getNNZAssocs(self):
         """Get total number of associations in co-association matrix."""
@@ -740,3 +757,11 @@ def numba_array2d_nnz(ary, width, height):
             if ary[line,col] != 0:
                 nnz = nnz + 1
     return nnz
+
+@jit(nopython=True)
+def full_get_assoc_degree(coassoc, degree):
+    rows, cols = coassoc.shape
+    for row in range(rows):
+        for col in range(cols):
+            if coassoc[row,col] != 0:
+                degree[row] += 1

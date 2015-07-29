@@ -14,10 +14,11 @@ TODO:
 """
 
 import numpy as np
-import numba
 from numba import jit, cuda, int32, float32, void
 
 from random import sample
+
+from MyML.utils.sorting import arg_k_select
 
 #import sys, traceback
 #from timeit import default_timer as timer
@@ -478,26 +479,7 @@ class K_Means:
     def _cu_centroids(data,centroids,labels):
         pass
 
-    # data, centroids, labels, centroid counter, centroid sum
-    @cuda.jit("void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:])")
-    def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
-        # thread ID inside block
-        tx = cuda.threadIdx.x
-        ty = cuda.threadIdx.y
 
-        # block ID
-        bx = cuda.blockIdx.x
-        by = cuda.blockIdx.y
-
-        # block dimensions
-        bw = cuda.blockDim.x
-        bh = cuda.blockDim.y
-
-        # grid dimensions
-        gw = cuda.gridDim.x
-        gh = cuda.gridDim.y
-
-        pass
     def _np_recompute_centroids_group(self,data,centroids,labels):
         """
         Iterates over data. Makes a list of data for each cluster.
@@ -907,47 +889,25 @@ def numba_recompute_centroids_good(data, centroids, labels, dists):
 
     return new_centroids
 
-#
-# jitted version was 110 times faster than unjitted for 1e6 array
-# ported and adapted to arg-k-select from:
-# http://blog.teamleadnet.com/2012/07/quick-select-algorithm-find-kth-element.html
-@jit(nopython=True)
-def arg_k_select(ary, k, out):
-# def arg_k_select(ary, k):
-    args = np.empty(ary.size, dtype=np.int32)
-    for i in range(args.size):
-        args[i] = i
+# data, centroids, labels, centroid counter, centroid sum
+# @cuda.jit("void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:])")
+@cuda.jit(void(float32[:,:], float32[:,:], int32[:], int32[:], float32[:]))
+# @cuda.jit
+def _cu_centroids_kernel_normal(data,centroids,labels,cCounter,cSum):
+    # thread ID inside block
+    tx = cuda.threadIdx.x
+    ty = cuda.threadIdx.y
 
-    fro = 0
-    to = ary.size - 1
+    # block ID
+    bx = cuda.blockIdx.x
+    by = cuda.blockIdx.y
 
-    while fro < to:
-        r = fro
-        w = to
-        mid_arg = args[(r+w) / 2]
-        mid = ary[mid_arg]
+    # block dimensions
+    bw = cuda.blockDim.x
+    bh = cuda.blockDim.y
 
-        while r < w:
-            r_arg = args[r]
-            w_arg = args[w]
-            if ary[r_arg] >= mid:
-                tmp = args[w]
-                args[w] = args[r]
-                args[r] = tmp
-                w -= 1
-            else:
-                r += 1
+    # grid dimensions
+    gw = cuda.gridDim.x
+    gh = cuda.gridDim.y
 
-        r_arg = args[r]
-        if ary[r_arg] > mid:
-            r -= 1
-
-        if k <= r:
-            to = r
-        else:
-            fro = r + 1
-
-    for i in range(k):
-        out[i] = args[i]
-
-    # return args[:k]
+    pass

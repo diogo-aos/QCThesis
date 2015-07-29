@@ -82,26 +82,30 @@ def convertClusterStringToIndex(partition):
     is the cluster label of the i-th pattern) to index format (list of arrays,
     there the k-th array contains the pattern indices that belong to the k-th cluster)
     """
-    clusters=np.unique(partition)
-    nclusters=clusters.size
+    clusters = np.unique(partition)
+    nclusters = clusters.size
+    # nclusters = partition.max() # for cluster id = 0, 1, 2, 3, ....
 
     finalPartition = [None] * nclusters
     for c,l in enumerate(clusters):
-        finalPartition[c] = np.where(partition==l)[0]
+        finalPartition[c] = np.where(partition==l)[0].astype(np.int32)
 
     return finalPartition
 
-def generateEnsemble(data, generator, n_clusters = 20, npartitions = 30, iters = 3):
+def generateEnsemble(data, generator, n_clusters=20, npartitions=30, iters=3):
     """
     TODO: check if generator has fit method and n_clusters,labels_ attributes
     """
-    ensemble = [None]*npartitions
-
+    ensemble = [None] * npartitions
 
     if type(n_clusters) is list:
-        clusterRange = True
-        min_ncluster = n_clusters[0]
-        max_ncluster = n_clusters[1]
+        if n_clusters[0] == n_clusters[1]:
+            clusterRange = False
+            generator.n_clusters = n_clusters[0]
+        else:           
+            clusterRange = True
+            min_ncluster = n_clusters[0]
+            max_ncluster = n_clusters[1]
     else:
         clusterRange = False
         generator.n_clusters = n_clusters
@@ -110,7 +114,7 @@ def generateEnsemble(data, generator, n_clusters = 20, npartitions = 30, iters =
 
     for x in xrange(npartitions):
         if clusterRange:
-            k = np.random.randint(min_ncluster,max_ncluster)
+            k = np.random.randint(min_ncluster, max_ncluster)
             generator.n_clusters = k
 
         generator.fit(data)
@@ -119,15 +123,21 @@ def generateEnsemble(data, generator, n_clusters = 20, npartitions = 30, iters =
     return ensemble
 
 
-def generateEnsembleToFiles(foldername, data, generator, n_clusters = 20, npartitions = 30, iters = 3, fileprefix = "", format_str='%d'):
+def generateEnsembleToFiles(foldername, data, generator, n_clusters=20,
+                            npartitions=30, iters=3, fileprefix="",
+                            format_str='%d'):
     """
     TODO: check if generator has fit method and n_clusters,labels_ attributes
     """
 
     if type(n_clusters) is list:
-        clusterRange = True
-        min_ncluster = n_clusters[0]
-        max_ncluster = n_clusters[1]
+        if n_clusters[0] == n_clusters[1]:
+            clusterRange = False
+            generator.n_clusters = n_clusters[0]
+        else:           
+            clusterRange = True
+            min_ncluster = n_clusters[0]
+            max_ncluster = n_clusters[1]
     else:
         clusterRange = False
         generator.n_clusters = n_clusters
