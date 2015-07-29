@@ -67,6 +67,168 @@ Furthermore, if $p$ if high enough to provide a representative sample of the dat
 \subsubsection{Medoid prototypes}
 This approach is similar to the random prototypes but, instead of choosing $p$ random samples from the dataset, the prototypes will be the representatives of the dataset from another algorithm, e.g. K-Medoids, K-Means.
 
+
+\section{Building the sparse matrix}
+
+Building a full matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct. When using sparse matrices, the former is not true. In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix. This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
+
+% Several sparse matrices exist
+% some are better for building others for computing
+% describe my solution
+
+Experiments showed that building the matrix with the recommended sparse structures for building the matrix saturated the memory and were very slow. Using a CSR matrix didn't saturate memory but was too slow. % TODO add reference to experiments in results
+The core of the solution devised is the CSR sparse structures, which has the desired properties of having a low memory trace and allows for fast computations.
+Before starting the process of building the matrix, a estimate about the maximum number of associations any sample can have is made.
+This estimate is the 
+
+
+% #TODO add all the text in the notebook
+
+For this to work an initial assumption on the maximum number of associations \emph{max\_assocs} must be made.
+The current rule being used is $$max\_assocs = 3 \times bgs , $$ where $bgs$ is the biggest cluster size in the ensemble.
+This scheme for building the matrix uses 4 supporting arrays:
+
+
+\begin{itemize}
+	\item \textbf{indices} - an array of $n \times max\_assocs$ size that stores the columns of each non-zero value of the matrix, i.e. the destination sample to which each sample associates with;
+	\item \textbf{data} - an array of $n \times max\_assocs$ size that stores all the non-zero values;
+	\item \textbf{indptr} - an array of $n$ size where the \emph{i-th} element is the pointer to the first non-zero value in the \emph{i-th} row.
+	\item \textbf{degree} - an array of $n$ size that stores the number of non-zero values of each row.
+\end{itemize}
+
+Each sample (row) has a maximum of \emph{max\_assocs} pre-allocated that it can use to fill with new associations.
+New associations that exceed this pre-allocated maximum are discarded.
+Since each sample has a maximum pre-defined number of associations, \emph{indptr} doesn't really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$). The \emph{degree} array is the one keeping track of the number of associations of each sample.
+
+Before continuing with the explanation of how the matrix is actually filled, it should be noted that this method assumes that the clusters received come sorted in a increasing order.
+The first partition is inserted in a special way.
+Since it is the first and the clusters are sorted, it's a matter of copying the cluster to the \emph{indices} array in the positions of each sample, with the exclusion of the sample itself.
+This process can be observed clearly in Fig. \ref{fig:first part}.
+Because it's the fastest partition to be inserted, it's picked to be the one with the leas amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
+This increases the probability that any new cluster will have more samples that correspond to already established associations.
+Because the clusters are sorted and only a copy of each cluster was made, it's not necessary to sort each row of the matrix by column index.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\textwidth]{methodology/eac_csr_first_part}
+\caption{Inserting a cluster of the first partition in the co-association matrix.}
+\label{fig:first part}
+\end{figure}
+
+For the remaining partitions, the process is different.
+Now, it's necessary to check if an association already exists.
+For each sample in a cluster it's necessary to add or increment the association to every other sample in the cluster.
+This is described in Algorithm \ref{alg:eac csr update cluster}.
+
+
+\begin{algorithm}
+\caption{Update matrix with cluster.}\label{alg:eac csr update cluster}
+\begin{algorithmic}[1]
+\Procedure{update\_cluster}{$indices, data, indptr, degree, cluster, max\_assocs$}
+\For{$sample$ $\mathbf{n}$ $in$ $cluster$}
+	\For{$every$ $other$ $sample$ $\mathbf{na}$ $in$ $cluster$}
+		\State{$ind$ $=$ $binary\_search(na, indices,$$interval$ $of$ $n$ $in$ $indices)$}
+		\If{$ind \ge 0$}
+			\State{$data[ind] += 1$}
+		\Else
+			\State{$add$ $new$ $assoc.$ $with$ $weight$ $1$}
+		\EndIf
+	\EndFor
+\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+Since a binary search is performed $(ns - 1)^2$ times for each cluster, where $ns$ is the number of samples in any given cluster, the indices of each sample must be in a sorted state at the beginning of each partition insertion.
+Two strategies for sorting were devised.
+The \underline{first strategy} is to just insert the new associations at the end of the \emph{indices} array (in the correct interval for each sample) and then, at the end of processing each partition, use a sorting algorithm to sort all the samples' intervals in the \emph{indices} array.
+This was easily implemented with existing code, namely using \emph{NumPy}'s sorting function.
+
+The \underline{second strategy} is more involved.
+It comes from the fact that, if one could know in which position each new association should be inserted, it would become possible to move all old associations to their final sorted positions and insert the new ones, all in an efficient manner.
+For this end, the implemented binary search returns the index of the searched value (key) if it is found or $-ind -1$, where $ind$ is the position for a sorted insertion of the key in the array, if it is not found.
+This means that one can have the position where each new association should be inserted.
+Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one for storing the samples of the associations \emph{new\_assoc\_ids} and the other to store the indices that were the result of the binary search for each of the new associations \emph{new\_assoc\_idx}.
+After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the sample's indices subarray in a sorted manner.
+
+% TODO check which or the three fast sorting approaches is best and describe only that one
+
+
+The process uses 3 pointers:
+\begin{itemize}
+\item \textbf{i\_ptr} for keeping track of which old association should be added next; initialized to the index of the current last association;
+\item \textbf{n\_ptr} for keeping track of which new association should be added next; initialized to the index of the last new association;
+\item \textbf{o\_ptr} for keeping track of where to add each association in its final position; initialized to the index of the final last association.
+\end{itemize}
+
+
+\begin{algorithm}
+\caption{Update matrix with cluster.}\label{alg:eac csr update cluster}
+\begin{algorithmic}[1]
+\Procedure{update\_cluster}{$indices, data, indptr, degree, cluster, max\_assocs$}
+\State{$n\_ptr\_id = new\_assocs\_idx[n\_ptr]$}
+\State{$i\_ptr\_id = indices[i\_ptr]$}
+\While{$o\_ptr \ge fa$}
+	\If{$i\_ptr\_id > n\_ptr\_id$}
+		\State{$indices[o\_ptr] = indices[i\_ptr]$}
+		\State{$data[o\_ptr] = data[i\_ptr]$}
+		\State{$o\_ptr -= 1$}
+		\State{$i\_ptr -= 1$}
+		\State{$continue$}
+	\EndIf
+	\State{$idx = new\_assocs\_idx[n\_ptr]$}
+	\If{$i\_ptr \ge idx$}
+		\State{$indices[o\_ptr] = indices[i\_ptr]$}
+		\State{$data[o\_ptr] = data[i\_ptr]$}
+		\State{$o\_ptr -= 1$}
+		\State{$i\_ptr -= 1$}
+		\State{$continue$}
+	\EndIf
+\EndWhile
+
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+% diagram
+
+        while o_ptr >= fa:
+            if n_ptr < 0:
+                indices[o_ptr] = indices[i_ptr]
+                data[o_ptr] = data[i_ptr]
+                o_ptr -= 1
+                i_ptr -= 1
+                continue
+
+            idx = new_assocs_idx[n_ptr]
+
+            # insert new assocs at end
+            if idx > last_index:
+                indices[o_ptr] = new_assocs_ids[n_ptr]
+                data[o_ptr] = 1
+                o_ptr -= 1
+                n_ptr -= 1
+            # add original assocs
+            elif i_ptr >= idx:
+                
+                # try:
+                #     indices[o_ptr] = indices[i_ptr]
+                # except:
+                #     print "i:", i
+                #     print "optr:", o_ptr
+                #     print "iptr:", i_ptr
+                #     raise Exception
+                indices[o_ptr] = indices[i_ptr]
+                data[o_ptr] = data[i_ptr]
+                o_ptr -= 1
+                i_ptr -= 1
+            # add new assoc
+            else:
+                indices[o_ptr] = new_assocs_ids[n_ptr]
+                data[o_ptr] = 1
+                o_ptr -= 1
+                n_ptr -= 1
+
 \section{Hierarchical Agglomerative Clustering step}
 
 \subsection{HAC and GPGPU}
