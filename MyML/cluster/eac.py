@@ -473,13 +473,20 @@ class EAC():
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-    def _lifetime_clustering(self, assoc_mat=None, method='single',n_clusters = 0):
+    def _lifetime_clustering(self, assoc_mat=None, method='single',
+        n_clusters = 0, save_Z = False):
         if assoc_mat is None:
             assoc_mat = self._coassoc
-        Z = self._apply_linkage(assoc_mat=assoc_mat, method=method)
-        labels = self._clusterFromLinkage(Z = Z, n_clusters = n_clusters)
-        return labels
 
+        condensed_diassoc = coassoc_to_condensed_diassoc(assoc_mat)
+        Z = linkage(condensed_diassoc, method=method)
+
+        if save_Z:
+            self.Z = Z
+
+        labels = self._clusterFromLinkage(Z = Z, n_clusters = n_clusters)
+
+        return labels
 
     def _apply_linkage(self, assoc_mat=None, method='single'):
         """
@@ -491,23 +498,7 @@ class EAC():
                       'average', 'weighted', 'centroid', 'median', 'ward'
         """
 
-        if assoc_mat is None:
-            assoc_mat = self._coassoc
-
-        # this should go after the squareform since there is only the upper
-        # triangle to compute
-        # diassoc = (self.n_partitions - assoc_mat)#/self.n_partitions
-
-        # diassoc[np.diag_indices_from(diassoc)] = 0
-        # condensed_diassoc = squareform(diassoc)
-        # Z = linkage(condensed_diassoc, method=method)
         
-        make_diassoc(assoc_mat, self.n_partitions) # make matrix diassoc
-        fill_diag(assoc_mat, 0) # clear diagonal
-
-        condensed_diassoc = squareform(assoc_mat)
-
-        Z = linkage(condensed_diassoc, method=method)
 
 
         # Z = np.empty((n_samples-1,3), dtype=np.float32) # allocate Z
@@ -583,6 +574,27 @@ class EAC():
 
 #--------------- / ----------------------------------------------------
 
+def coassoc_to_condensed_diassoc(assoc_mat, max_val, copy=False):
+    """
+    Simple routine to tranform a full square co-association matrix in a 
+    condensed form diassociation matrix. Max val is the value to use for
+    normalization - usually the number of partitions. The diassociation
+    matrix will have no zeros - minimum value possible is 1.
+    """
+
+    if copy:
+        assoc_mat_use = assoc_mat.copy()
+    else:
+        assoc_mat_use = assoc_mat
+    
+    make_diassoc(assoc_mat_use, max_val) # make matrix diassoc
+    fill_diag(assoc_mat_use, 0) # clear diagonal
+
+    condensed_diassoc = squareform(assoc_mat_use)
+
+    return condensed_diassoc
+
+
 @jit(nopython=True)
 def fill_diag(ary, val):
     for i in range(ary.shape[0]):
@@ -593,7 +605,7 @@ def make_diassoc(ary, val):
     for row in range(ary.shape[0]):
         for col in range(ary.shape[1]):
             tmp = ary[row,col]
-            ary[row,col] = val - tmp
+            ary[row,col] = val + 1 - tmp
 
 def apply_threshold_to_coassoc(threshold, max_val, assoc_mat):
     """
@@ -633,7 +645,8 @@ def get_max_assocs_in_sample_csr(assoc_mat):
     max_row_idx = n_cols.argmax()
     return max_row_size, max_row_idx
 
-# # FULL MATRIX FUNCTIONS
+# - - - - - - - - - -  FULL MATRIX FUNCTIONS  - - - - - - - - - - 
+
 def update_coassoc_with_ensemble(coassoc, ensemble, k_labels = None):
     for p in xrange(len(ensemble)):
         update_coassoc_with_partition(coassoc, ensemble[p], k_labels = k_labels)
@@ -658,6 +671,68 @@ def numba_update_coassoc_with_cluster(coassoc, cluster):
                 continue
             coassoc[curr_i, curr_j] += 1
             coassoc[curr_j, curr_i] += 1
+
+@jit(nopython=True)
+def numba_update_condensed_coassoc_with_cluster(coassoc, cluster, n):
+    """
+    Receives the condensed coassoc 1-d array and the cluster 1-d array. 
+    """
+    for i in range(cluster.size):
+        curr_i = cluster[i]
+        for j in range(i+1, cluster.size):
+            curr_j = cluster[j]
+            idx = condensed_index(curr_i, curr_j, n)
+            coassoc[idx] += 1
+
+
+@jit(nopython=True)
+def condensed_index(n, i, j):
+    """
+    Calculate the condensed index of element (i, j) in an n x n condensed
+    matrix.
+
+    Source: SciPy project
+    """
+    if i < j:
+        return n * i - (i * (i + 1) / 2) + (j - i - 1)
+    elif i > j:
+        return n * j - (j * (j + 1) / 2) + (i - j - 1)
+
+@jit(nopython=True)
+def full_get_assoc_degree(ary, degree):
+    """
+    Function will fill the degree array with the number of nonzero values in
+    each row, such that degree[i] contains the number of nonzero values of
+    the i-th row of the ary matrix.
+    Inputs:
+        ary     : input matrix of shape r,c
+        degree  : array of shape r
+    """
+    rows, cols = coassoc.shape
+    for row in range(rows):
+        for col in range(cols):
+            if coassoc[row,col] != 0:
+                degree[row] += 1
+
+@jit(nopython=True)
+def numba_array2d_nnz(ary, width, height):
+    """
+    Function will return the number of nonzero values of the full matrix.
+    Inputs:
+        ary     : input matrix
+        width   : number of columns of the matrix
+        height  : number of rows of the matrix
+    Outputs:
+        nnz     : number of nonzero values
+    """
+    nnz = 0
+    for line in range(height):
+        for col in range(width):
+            if ary[line,col] != 0:
+                nnz = nnz + 1
+    return nnz
+
+# - - - - - - - - - -  PROTOTYPES MATRIX FUNCTIONS  - - - - - - - - - - 
 
 @jit
 def numba_update_full_k_prots(assoc_mat, cluster, k_labels):
@@ -729,39 +804,7 @@ def update_knn_coassoc_with_cluster(coassoc, cluster, neighbours):
             if binary_search(neighbours[n], cluster) != -1:
                 pass # FINISH
 
-@jit(nopython=True)
-def numba_update_coassoc_with_cluster_pdist(coassoc, cluster):
-    """
-    Receives the coassoc 2-d array and the cluster 1-d array. 
-    """
-    raise Exception("PDIST FORMAT NOT IMPLEMENTED.")
-    for i in range(cluster.size):
-        curr_i = cluster[i]
-        for j in range(i+1, cluster.size):
-            curr_j = cluster[j]
-            if i == j:
-                continue
-            # swap i with j
-            if curr_i < curr_j:
-                temp = curr_i
-                curr_i = curr_j
-                curr_j = temp
-            
-            coassoc[curr_i, curr_j] += 1
 
-@jit(nopython=True)
-def numba_array2d_nnz(ary, width, height):
-    nnz = 0
-    for line in range(height):
-        for col in range(width):
-            if ary[line,col] != 0:
-                nnz = nnz + 1
-    return nnz
 
-@jit(nopython=True)
-def full_get_assoc_degree(coassoc, degree):
-    rows, cols = coassoc.shape
-    for row in range(rows):
-        for col in range(cols):
-            if coassoc[row,col] != 0:
-                degree[row] += 1
+
+

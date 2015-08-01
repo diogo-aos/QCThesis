@@ -8,7 +8,7 @@ from scipy.sparse import csr_matrix
 class EAC_CSR():
 
     def __init__(self, n_samples=None, max_assocs=None, sort_mode="numpy",
-    			 dtype=np.uint8):
+                 dtype=np.uint8):
         self.n_samples = n_samples
         
         if max_assocs is not None:
@@ -46,17 +46,19 @@ class EAC_CSR():
             #self.min_assocs = self.degree.min()
 
     def update_partition(self, partition):
-    	update_fn = self.update_cluster_function
-    	for cluster in partition:
-    		new_nnz = update_fn(self.indices, self.data, self.indptr,
+        update_fn = self.update_cluster_function
+        for cluster in partition:
+            new_nnz = update_fn(self.indices, self.data, self.indptr,
                                 self.degree, cluster, self.max_assocs)
-    		self.nnz += new_nnz
-    	
+            self.nnz += new_nnz
+        
         if self.sort_mode == "numpy":
-        	self._sort_indices()
+            self._sort_indices()
 
     def todense(self):
         n = self.n_samples
+        print n #debug
+        print self.nnz, self.indices.size, self.indices[:10] #debug
         return csr_matrix((self.data, self.indices, self.indptr),
                            shape=(n, n)).todense()
 
@@ -352,17 +354,21 @@ def update_cluster_sorted_simple(indices, data, indptr, degree, cluster, max_ass
 
         n_ptr_id = new_assocs_ids[n_ptr]
         i_ptr_id = indices[i_ptr]
+        i_ptr_data = data[i_ptr]
 
         while o_ptr >= fa:
 
-        	# second condition for when all new assocs have been added
-        	# and only old ones remain
+            # second condition for when all new assocs have been added
+            # and only old ones remain
             if i_ptr_id > n_ptr_id or n_ptr < 0:
                 indices[o_ptr] = i_ptr_id
+                data[o_ptr] = i_ptr_data
                 i_ptr -= 1
                 i_ptr_id = indices[i_ptr]
+                i_ptr_data = data[i_ptr]
             else:
                 indices[o_ptr] = n_ptr_id
+                data[o_ptr] = 1
                 n_ptr -= 1
                 if n_ptr >= 0:
                     n_ptr_id = new_assocs_ids[n_ptr]
@@ -429,23 +435,28 @@ def update_cluster_sorted_surgical(indices, data, indptr, degree, cluster,
         if new_assocs_ptr == 0:
             continue
 
+        
+
         ## make sorted
 
         # shift original indices
-        n_shifts = new_assocs_ptr - 1
+        new_assocs_idx[new_assocs_ptr] = n_degree
+        n_shifts = new_assocs_ptr
         while n_shifts >= 1:
-            end_idx = new_assocs_idx[n_shifts]
             start_idx = new_assocs_idx[n_shifts - 1]
-            for idx in range(start_idx, end_idx):
-                indices[idx + n_shifts] = indices[idx]
-            n_shifts -= 1
+            end_idx = new_assocs_idx[n_shifts] - 1
 
-        # copy new assocs
-        new_ptr = 0
-        while new_ptr < new_assocs_ptr:
-            insert_idx = new_assocs_idx[new_ptr]
-            indices[insert_idx] = new_assocs_ids[new_ptr]
-            new_ptr += 1
+            # shift original
+            while end_idx >= start_idx:
+                indices[end_idx + n_shifts] = indices[end_idx]
+                data[end_idx + n_shifts] = data[end_idx]
+                end_idx -= 1
+
+            #add new
+            indices[end_idx + n_shifts] = new_assocs_ids[n_shifts - 1]
+            data[end_idx + n_shifts] = 1
+
+            n_shifts -= 1
 
         # update number of new non zero elements
         nnz += new_assocs_ptr

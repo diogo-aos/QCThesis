@@ -26,7 +26,7 @@ print "Time to load modules (compile some numba stuff): ", tm.elapsed
 
 mighty4 = "/home/diogoaos/"
 mariana = "/home/courses/aac2015/diogoaos/"
-dove = "/home/chiroptera/QCThesis/"
+dove = "/home/chiroptera/"
 home = mighty4
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -271,6 +271,9 @@ def host_vs_device():
     for r in range(20):
         dest, weight, firstEdge, outDegree = load_graph("4elt")
 
+        print "no. edges: ", weight.size
+        print "no. nodes: ", firstEdge.size
+
         t1, t2 = Timer(), Timer()
 
         t1.tic()
@@ -289,8 +292,8 @@ def host_vs_device():
             mst2 = mst2[:n_edges2]
         mst2.sort()
 
-        #same_sol.append(np.in1d(mst1,mst2).all())
-        same_sol.append((mst1==mst2))
+        same_sol.append(np.in1d(mst1,mst2).sum())
+        #same_sol.append((mst1==mst2).all())
 
     print "Same solution: ", same_sol
 

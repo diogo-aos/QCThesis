@@ -7,7 +7,7 @@ notes: Boruvka implementation based on Sousa's "A Generic and Highly Efficient P
 
 import numpy as np
 from MyML.helper.scan import scan_gpu as ex_prefix_sum_gpu, exprefixsumNumbaSingle as ex_prefix_sum_cpu, exprefixsumNumba as ex_prefix_sum_cpu2
-from numba import jit, cuda, void, boolean, int8, int32, float32
+from numba import jit, cuda, void, boolean, int8, uint8, int32, float32
 
 def minimum_spanning_tree(X, copy_X=True):
     """X are edge weights of fully connected graph"""
@@ -790,8 +790,10 @@ def buildFlag(colors, flag):
         else:
             flag[v] = 0
 
-@jit(["void(int32[:],float32[:],int32[:],int32[:],int32[:])",
-      "void(int32[:],int32[:],int32[:],int32[:],int32[:])"], nopython=True)
+# @jit(["void(int32[:],float32[:],int32[:],int32[:],int32[:])",
+#       "void(int32[:],uint8[:],int32[:],int32[:],int32[:])",
+#       "void(int32[:],int32[:],int32[:],int32[:],int32[:])"], nopython=True)
+@jit(nopython=True)
 def findMinEdgeNumba(vertex_minedge, weight, firstEdge, outDegree, dest):
 
     n_components = vertex_minedge.size
@@ -912,6 +914,7 @@ def countNewEdgesNumba(colors, firstEdge, outDegree, dest, new_vertex, newOutDeg
                 newOutDegree[my_color_id] += 1 # increment number of outgoing edges of super-vertex
 
 @jit(["void(int32[:], int32[:], float32[:], int32[:], int32[:], int32[:], int32[:], int32[:],int32[:],float32[:],int32[:])",
+      "void(int32[:], int32[:], uint8[:], int32[:], int32[:], int32[:], int32[:], int32[:],int32[:],uint8[:],int32[:])",
       "void(int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:], int32[:],int32[:],int32[:],int32[:])"])
 def assignInsertNumba(edge_id, dest, weight, firstEdge,
                       outDegree, colors, new_vertex, 
