@@ -41,7 +41,8 @@ def exprefixsumNumba(in_ary, out_ary, init = 0):
 
     return carry
 
-@numba.jit(int32(int32[:],int32), nopython=False)
+#@numba.jit(int32(int32[:],int32), nopython=False)
+@numba.njit
 def exprefixsumNumbaSingle(in_ary, init = 0):
     """
     exclusive prefix sum

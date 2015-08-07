@@ -247,14 +247,11 @@ def argmax_lvl0(ary, reduce_max, reduce_arg):
 def argmax_lvl1(reduce_max, reduce_arg):
     pass
 
-
 @cuda.jit
 def search_argmin_val(ary, val):
     tgid = cuda.grid(1)
     if tgid >= ary.size:
         return
-
-
 
 @cuda.reduce
 def max_gpu(a,b):
@@ -271,7 +268,6 @@ def compute_lifetimes_CUDA(nweight, lifetimes):
         return
     
     lifetimes[edge] = nweight[edge + 1] - nweight[edge]
-
 
 @cuda.jit#("void(int32[:],int32[:],int32[:],int32[:])")
            # "void(int32[:],int32[:],float32[:],float32[:])"])
@@ -362,8 +358,6 @@ def knn_slhac(weights, neighbors, Z):
         # remove distance in coassoc
         weights[pattern, neigh_idx] = np.inf
 
-
-
 @jit(nopython=True)
 def knn_slhac_fast(weights, neighbors, Z):
     n_samples, n_neighbors = weights.shape
@@ -429,13 +423,11 @@ def knn_slhac_fast(weights, neighbors, Z):
         # remove distance in coassoc
         weights[pattern, neigh_idx] = np.inf
 
-
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #    Generic SL-Linkage
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
 
 def slhac(weights, Z):
     """
@@ -558,35 +550,6 @@ def slhac_fast(weights, Z, max_val):
 
         # remove distance in coassoc
         weights[pattern, neigh_idx] = max_val
-
-
-def slink(dists, Z):
-    n = dists.shape[0] # number of samples
-    n_c = n # number of clusters
-
-    # pointer representation arrays
-    Av = dists.argmin(axis=1).astype(np.int32) # nearest neighbour
-    Ad = dists.min(axis=1).astype(np.float32) # nearest dist
-
-    for i in range(1,n):
-        clust_i = Ad.argmin()
-        clust_j = Av[clust_i]
-
-        
-
-
-
-@jit(nopython=True)
-def slink(dists, Z):
-    n = dists.shape[0] # number of samples
-    n_c = n # number of clusters
-
-    # pointer representation arrays
-    Av = dists.argmin(axis=1).astype(np.int32)
-    Ad = dists.min(axis=1).astype(np.float32)
-
-    # fill pointers
-
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #

@@ -14,12 +14,12 @@
     "confirm_sync": true,
     "confirm_overwrite_newer": true,
     
-    "host": "mariana.inesc-id.pt",
-    "user": "aac2015",
-    "password": "dFoG5roK",
+    "host": "193.136.222.175",
+    "user": "diogoaos",
+    "password": "poSilva1991",
     //"port": "22",
     
-    "remote_path": "/home/courses/aac2015/diogoaos/QCThesis/MyML",
+    "remote_path": "/home/diogoaos/QCThesis/MyML",
     "ignore_regexes": [
         "\\.sublime-(project|workspace)", "sftp-config(-alt\\d?)?\\.json",
         "sftp-settings\\.json", "/venv/", "\\.svn/", "\\.hg/", "\\.git/",

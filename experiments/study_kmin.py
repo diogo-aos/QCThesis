@@ -273,4 +273,8 @@ for d in div: # for each size of dataset
             res_idx += 1
 
             del generator, ensemble, myEst#, accEst
+            # end of inner most loop
+
+
     del data_sampled#, gt_sampled
+    # end of dataset cycle

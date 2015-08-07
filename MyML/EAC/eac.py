@@ -30,14 +30,17 @@ from scipy.sparse import lil_matrix, csr_matrix, dok_matrix
 
 from MyML.cluster.linkage import slhac_fast, labels_from_Z
 
+from MyML.EAC.sparse import EAC_CSR
+from MyML.EAC.full import EAC_FULL
 
-from numba import jit
+from numba import jit, njit
 
 sparse_type = lil_matrix
 
 class EAC():
 
-    def __init__(self, n_samples, data=None, mat_sparse=False, mat_half=False):
+    def __init__(self, n_samples, data=None, mat_sparse=False, mat_half=False,
+                 condensed=False):
         """
         mat_sparse         : stores co-associations in a sparse matrix
         mat_half         : stores co-associations in pdist format, in an (n*(n-1))/2 length array
@@ -53,6 +56,8 @@ class EAC():
         # properties of co-association matrix
         self.mat_sparse = mat_sparse
         self.mat_half = mat_half
+
+        self.condensed = condensed
 
         self.assoc_type = np.uint8
 
@@ -117,9 +122,10 @@ class EAC():
         # 	self._coassoc[np.diag_indices_from(self._coassoc)] = 0
 
     def _create_coassoc(self, mode, nsamples, nprot=None):
-
-        if mode == "full":
-            
+        if self.condensed:
+            n = sum(xrange(1, nsamples))
+            coassoc = np.zeros(n, dtype=self.assoc_type)
+        elif mode == "full":
             if self.mat_sparse:
                 coassoc = sparse_type((nsamples, nsamples), dtype=self.assoc_type)
             else:
@@ -127,7 +133,7 @@ class EAC():
         elif mode =="prot":
             if nprot == None:
                 nprot = np.sqrt(nsamples)
-            coassoc = np.zeros((nsamples,nprot), dtype=np.float32)
+            coassoc = np.zeros((nsamples,nprot), dtype=self.assoc_type)
         else:
             validValues=("full", "prot")
             raise ValueError("mode value should be from the list:\t" + str(validValues))
@@ -260,8 +266,12 @@ class EAC():
 
         #print "updating partition {}".format(self.n_partitions)
 
+        # condensed matrix
+        if self.condensed:
+            update_coassoc_condensed_with_partition(self._coassoc, clusters,
+                                                    self.n_samples)
         # full matrix
-        if self._assoc_mode is "full":
+        elif self._assoc_mode is "full": 
             if self.mat_sparse:
                 self._update_coassoc_n_sparse(self._coassoc, clusters)
             else:
@@ -409,7 +419,21 @@ class EAC():
                     # n_in_cluster and k_in_cluster
                     assoc_mat[j, k_in_cluster] += 1 # newaxis is alias for None
         pass
-
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                      OPERATIONS                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # #                                                             # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def apply_threshold(self, threshold):
         """
         threshold   : all co-associations whose value is below 
@@ -439,7 +463,11 @@ class EAC():
 
     def _getAssocsDegree(self):
         self.degree = np.zeros(self.n_samples, dtype=np.int32)
-        if not self.mat_sparse:
+        if self.condensed:
+            error_str = "Getting degree from condensed matrix. Alternative: " +\
+                         "convert to 2d, get degree, multiply by 2."
+            raise NotImplementedError(error_str)
+        elif not self.mat_sparse:
             full_get_assoc_degree(self._coassoc, self.degree)
         else:
             self.degree = self._coassoc.indptr[1:] - self._coassoc.indptr[:-1]
@@ -474,16 +502,25 @@ class EAC():
 
 
     def _lifetime_clustering(self, assoc_mat=None, method='single',
-        n_clusters = 0, save_Z = False):
+        n_clusters = 0, save_Z = False, copy=False):
         if assoc_mat is None:
             assoc_mat = self._coassoc
 
-        condensed_diassoc = coassoc_to_condensed_diassoc(assoc_mat)
+        # transform in dissociation matrix and convert to condensed if needed
+        if self.condensed:
+            make_diassoc_1d(assoc_mat, self.n_partitions)
+        else:
+            condensed_diassoc = coassoc_to_condensed_diassoc(assoc_mat,
+                                                             self.n_partitions,
+                                                             copy)
+
+        # apply linkage
         Z = linkage(condensed_diassoc, method=method)
 
         if save_Z:
             self.Z = Z
 
+        # get final labels from linkage
         labels = self._clusterFromLinkage(Z = Z, n_clusters = n_clusters)
 
         return labels
@@ -572,6 +609,9 @@ class EAC():
         return labels
 
 
+
+
+
 #--------------- / ----------------------------------------------------
 
 def coassoc_to_condensed_diassoc(assoc_mat, max_val, copy=False):
@@ -587,7 +627,7 @@ def coassoc_to_condensed_diassoc(assoc_mat, max_val, copy=False):
     else:
         assoc_mat_use = assoc_mat
     
-    make_diassoc(assoc_mat_use, max_val) # make matrix diassoc
+    make_diassoc_2d(assoc_mat_use, max_val) # make matrix diassoc
     fill_diag(assoc_mat_use, 0) # clear diagonal
 
     condensed_diassoc = squareform(assoc_mat_use)
@@ -595,17 +635,26 @@ def coassoc_to_condensed_diassoc(assoc_mat, max_val, copy=False):
     return condensed_diassoc
 
 
-@jit(nopython=True)
+@njit
 def fill_diag(ary, val):
     for i in range(ary.shape[0]):
         ary[i,i] = val
 
-@jit(nopython=True)
-def make_diassoc(ary, val):
+# 2d
+@njit
+def make_diassoc_2d(ary, val):
     for row in range(ary.shape[0]):
         for col in range(ary.shape[1]):
             tmp = ary[row,col]
             ary[row,col] = val + 1 - tmp
+
+#1d
+@njit
+def make_diassoc_1d(ary, val):
+    for i in range(ary.size):
+        tmp = ary[i]
+        ary[i] = val + 1 - tmp            
+
 
 def apply_threshold_to_coassoc(threshold, max_val, assoc_mat):
     """
@@ -658,12 +707,17 @@ def update_coassoc_with_partition(coassoc, partition, k_labels = None):
         else:
             numba_update_full_k(coassoc, partition[c], k_labels)
 
-@jit(nopython=True)
+def update_coassoc_condensed_with_partition(coassoc, partition, n):
+    for c in xrange(len(partition)):
+            r = numba_update_condensed_coassoc_with_cluster(coassoc, partition[c], n)
+
+
+@njit
 def numba_update_coassoc_with_cluster(coassoc, cluster):
     """
     Receives the coassoc 2-d array and the cluster 1-d array. 
     """
-    for i in range(cluster.size):
+    for i in range(cluster.size-1):
         curr_i = cluster[i]
         for j in range(i+1, cluster.size):
             curr_j = cluster[j]
@@ -672,20 +726,19 @@ def numba_update_coassoc_with_cluster(coassoc, cluster):
             coassoc[curr_i, curr_j] += 1
             coassoc[curr_j, curr_i] += 1
 
-@jit(nopython=True)
+@njit
 def numba_update_condensed_coassoc_with_cluster(coassoc, cluster, n):
     """
     Receives the condensed coassoc 1-d array and the cluster 1-d array. 
     """
-    for i in range(cluster.size):
+    for i in range(cluster.size-1):
         curr_i = cluster[i]
         for j in range(i+1, cluster.size):
             curr_j = cluster[j]
-            idx = condensed_index(curr_i, curr_j, n)
+            idx = condensed_index(n, curr_i, curr_j)
             coassoc[idx] += 1
 
-
-@jit(nopython=True)
+@njit
 def condensed_index(n, i, j):
     """
     Calculate the condensed index of element (i, j) in an n x n condensed
@@ -697,8 +750,10 @@ def condensed_index(n, i, j):
         return n * i - (i * (i + 1) / 2) + (j - i - 1)
     elif i > j:
         return n * j - (j * (j + 1) / 2) + (i - j - 1)
+    else:
+        return -1
 
-@jit(nopython=True)
+@njit
 def full_get_assoc_degree(ary, degree):
     """
     Function will fill the degree array with the number of nonzero values in
@@ -708,13 +763,13 @@ def full_get_assoc_degree(ary, degree):
         ary     : input matrix of shape r,c
         degree  : array of shape r
     """
-    rows, cols = coassoc.shape
+    rows, cols = ary.shape
     for row in range(rows):
         for col in range(cols):
-            if coassoc[row,col] != 0:
+            if ary[row,col] != 0:
                 degree[row] += 1
 
-@jit(nopython=True)
+@njit
 def numba_array2d_nnz(ary, width, height):
     """
     Function will return the number of nonzero values of the full matrix.
