@@ -40,7 +40,7 @@ def convertIndexToBin(clusts=None,n_clusts=None,N=None):
 
     return clust_out
 
-def convertClusterStringToBin(clusts,n_clusts=None,N=None):
+def convertClusterStringToBin(clusts, n_clusts=None, N=None):
     """
     Converts partition in array format to binary matrix.
 
@@ -59,19 +59,19 @@ def convertClusterStringToBin(clusts,n_clusts=None,N=None):
         raise Exception("A clustering partition must be provided.")
 
     if N is None:
-        N=clusts.shape[0]
+        N = clusts.shape[0]
 
     if n_clusts is None:
-        n_clusts=np.max(clusts)
+        n_clusts = np.max(clusts)
 
     if np.min(clusts) == 0:
         n_clusts += 1
 
-    clust_out=np.zeros((n_clusts,N))
+    clust_out = np.zeros((n_clusts,N))
 
-    for sample_ind,clust_ind in enumerate(clusts):
+    for sample_ind, clust_ind in enumerate(clusts):
         # cluster_ind is never 0 so we need to subtract 1 to index the array
-        clust_out[clust_ind-1,sample_ind] = 1
+        clust_out[clust_ind-1, sample_ind] = 1
 
     return clust_out
 

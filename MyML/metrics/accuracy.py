@@ -21,7 +21,7 @@ class ConsistencyIndex:
 	def __init__(self,N=None):
 		self.N = N
 
-	def score(self,clusts1,clusts2,format='array',format1=None,format2=None,array_has_zero=False,N=None):
+	def score(self, clusts1, clusts2,format='array',format1=None,format2=None,array_has_zero=False,N=None):
 		"""
 		clusts1,clusts2 	: the two partitions to match
 		format 				: format of partitions: 'array' or 'list';
@@ -82,7 +82,7 @@ class ConsistencyIndex:
 		# total shared samples between clusters of both partitions
 		n_shared = 0
 
-		for it in range(np.min([n_clusts1,n_clusts2])):
+		for it in xrange(np.min([n_clusts1,n_clusts2])):
 
 			#compute best match between all clusters of both partitions
 			max_coef=0
@@ -133,7 +133,7 @@ class HungarianIndex():
 
 		self.N = nsamples
 
-	def score(self,clusts1,clusts2,format='array',format1=None,format2=None):
+	def score(self, clusts1, clusts2, format='array', format1=None, format2=None):
 
 		if format1 == None:
 			format1 = format
@@ -145,16 +145,20 @@ class HungarianIndex():
 			clusts1_=convertIndexToPos(clusts=clusts1,N=self.N)
 		elif format1=='array':
 			clusts1_=convertClusterStringToPos(clusts=clusts1,N=self.N)
+		elif format1 == 'bin':
+			clusts1_ = clusts1
 		else:
-			raise Exception("Format not accepted: {}".format(format1))
+			raise ValueError("Format not accepted: {}".format(format1))
 
 
 		if format2=='list':
-			clusts2_=convertIndexToPos(clusts=clusts2,N=self.N)
+			clusts2_=convertIndexToPos(clusts=clusts2, N=self.N)
 		elif format2=='array':
-			clusts2_=convertClusterStringToPos(clusts=clusts2,N=self.N)
+			clusts2_=convertClusterStringToPos(clusts=clusts2, N=self.N)
+		elif format2 == 'bin':
+			clusts2_ = clusts2			
 		else:
-			raise Exception("Format not accepted: {}".format(format2))
+			raise ValueError("Format not accepted: {}".format(format2))
 
 		nclusts1_ = clusts1_.shape[0]
 		nclusts2_ = clusts2_.shape[0]

@@ -640,20 +640,7 @@ def fill_diag(ary, val):
     for i in range(ary.shape[0]):
         ary[i,i] = val
 
-# 2d
-@njit
-def make_diassoc_2d(ary, val):
-    for row in range(ary.shape[0]):
-        for col in range(ary.shape[1]):
-            tmp = ary[row,col]
-            ary[row,col] = val + 1 - tmp
-
-#1d
-@njit
-def make_diassoc_1d(ary, val):
-    for i in range(ary.size):
-        tmp = ary[i]
-        ary[i] = val + 1 - tmp            
+      
 
 
 def apply_threshold_to_coassoc(threshold, max_val, assoc_mat):

@@ -16,6 +16,8 @@ from MyML.graph.build import getGraphFromEdges_gpu, getGraphFromEdges_seq
 from numbapro.cudalib.sorting import RadixSort
 from numbapro.cudalib.cublas import Blas
 
+
+
 def sl_mst_lifetime_seq(dest, weight, fe, od, disconnect_weight = None):
 
     if disconnect_weight is None:
@@ -573,10 +575,12 @@ def labels_from_Z(Z, n_clusters):
 
         Z_pointer += 1
 
-    i = 0
-    for label in np.unique(track):
-        track[track == label] == i
+    # rename labels
+    i=0
+    for l in np.unique(track):
+        track[track == l] = i
         i += 1
+        
     return track
 
 @jit(nopython=True)

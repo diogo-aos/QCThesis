@@ -26,19 +26,17 @@ from scipy.sparse.csgraph import minimum_spanning_tree
 from sklearn.neighbors import NearestNeighbors
 from random import sample
 
-from scipy.sparse import lil_matrix, csr_matrix, dok_matrix
+from scipy.sparse import csr_matrix
+import scipy.sparse.csgraph as csgraph
 
-from MyML.cluster.linkage import slhac_fast, labels_from_Z
+from MyML.cluster.linkage import labels_from_Z
 
 from MyML.cluster.K_Means3 import K_Means
 
-from MyML.EAC.sparse import EAC_CSR
+from MyML.EAC.sparse import EAC_CSR, _compute_max_assocs_from_ensemble as biggest_cluster_size
 from MyML.EAC.full import EAC_FULL
 
 from numba import jit, njit
-
-sparse_type = lil_matrix
-
 
 def sqrt_rule(n):
     n_clusters = [np.sqrt(n)/2, np.sqrt(n)]
@@ -54,37 +52,100 @@ def sqrt2_rule(n):
 
 class EAC():
 
-    def __init__(self, n_samples):
+    def __init__(self, n_samples, **kwargs):
         """
         mat_sparse         : stores co-associations in a sparse matrix
         mat_half         : stores co-associations in pdist format, in an (n*(n-1))/2 length array
         """
 
-        self.data = data
+        self.n_samples = n_samples
 
-        # generate ensemble parameters
+        ## generate ensemble parameters
         self.n_partitions = kwargs.get("n_partitions", 100)
         self.iters = kwargs.get("iters", 3)
         self.n_clusters = kwargs.get("n_clusters", "sqrt")
 
-        # build matrix parameters
-        self.sparse = kwargs.get("sparse", False)
+        ## build matrix parameters
         self.condensed = kwargs.get("condensed", True)
         self.kNN = kwargs.get("kNN", False)
         self.assoc_dtype = kwargs.get("assoc_dtype", np.uint8)
 
-        # final clustering parameters
+        # sparse matrix parameters
+        self.sparse = kwargs.get("sparse", False)
+        self.sp_sort = kwargs.get("sparse_sort_mode", "surgical")
+        self.sp_max_assocs = kwargs.get("sparse_max_assocs", None)
+        self.sp_max_assocs_factor = kwargs.get("sparse_max_assocs_factor", 3)
+        self.sp_max_assocs_mode = kwargs.get("sparse_max_assocs_mode", "linear")
+        self.sp_keep_degree = kwargs.get("sparse_keep_degree", False)
+
+        # if not sparse and not kNN then it is full matrix
+        if not self.sparse  and not self.kNN:
+            self.full = True
+        else:
+            self.full = False
+
+        ## final clustering parameters
         self.linkage = kwargs.get("linkage", "SL")
 
+    def _validate_params(self):
+        pass
 
     def generateEnsemble(self):
         pass
 
-    def buildMatrix(self):
-        pass
+    def buildMatrix(self, ensemble):
 
-    def finalClustering(self):
-        pass
+        if self.sparse:
+            if self.sp_max_assocs is None:
+                self.sp_max_assocs = biggest_cluster_size(ensemble)
+                self.sp_max_assocs *= self.sp_max_assocs_factor
+            
+            coassoc = EAC_CSR(self.n_samples, max_assocs=self.sp_max_assocs,
+                              condensed=self.condensed,
+                              max_assocs_type=self.sp_max_assocs_mode,
+                              sort_mode=self.sp_sort,
+                              dtype=self.assoc_dtype)
+
+            coassoc.update_ensemble(ensemble)
+            coassoc._condense(keep_degree = self.sp_keep_degree)
+        elif self.full:
+            coassoc = EAC_FULL(self.n_samples, condensed=self.condensed,
+                               dtype=self.assoc_dtype)
+            coassoc.update_ensemble(ensemble)
+        elif self.kNN:
+            raise NotImplementedError("kNN matrix building has not been included in this version.")
+        else:
+            raise ValueError("Build matrix: No sparse, no full, no kNN. No combination possible.")
+
+        self.coassoc = coassoc
+
+        # received names of partition files
+        # if files:
+        #     for partition_file in ensemble:
+        #         partition = self._readPartition(partition_file) # read partition from file
+        #         self._update_coassoc_matrix(partition) # update co-association matrix
+        # # received partitions
+        # else:
+        #     for partition in ensemble:
+        #         self._update_coassoc_matrix(partition) # update co-association matrix
+
+    def finalClustering(self, n_clusters=0):
+        if self.sparse:
+            n_fclusts, labels = sp_sl_lifetime(self.coassoc.csr,
+                                               max_val=self.n_partitions,
+                                               n_clusters=n_clusters)
+        elif self.full:
+            n_fclusts, labels = full_sl_lifetime(self.coassoc.coassoc,
+                                                 max_val=self.n_partitions,
+                                                 n_clusters=n_clusters)
+        elif self.kNN:
+            raise NotImplementedError("kNN not included in this version yet.")
+        else:
+            raise ValueError("Final clustering: No sparse, no full, no kNN. No combination possible.")
+
+        self.n_fclusts = n_fclusts
+        self.labels = labels
+        return labels
 
     def fit(self, ensemble,files=False, assoc_mode="full", prot_mode="none",
             nprot=None, link='single', build_only=False):
@@ -127,15 +188,7 @@ class EAC():
 
         self.n_partitions = 0
 
-        # received names of partition files
-        if files:
-            for partition_file in ensemble:
-                partition = self._readPartition(partition_file) # read partition from file
-                self._update_coassoc_matrix(partition) # update co-association matrix
-        # received partitions
-        else:
-            for partition in ensemble:
-                self._update_coassoc_matrix(partition) # update co-association matrix
+
 
         # delete diagonal
         #self._coassoc[xrange(self.n_samples),xrange(self.n_samples)] = np.zeros(self.n_samples)
@@ -442,126 +495,171 @@ class EAC():
         else:
             return self._coassoc.getnnz()
 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    # # # #                                                             # # # #
-    # # # #                                                             # # # #
-    # # # #                                                             # # # #
-    # # # #                      FINAL CLUSTERING                       # # # #
-    # # # #                                                             # # # #
-    # # # #                                                             # # # #
-    # # # #                                                             # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # #                                                             # # # #
+# # # #                                                             # # # #
+# # # #                                                             # # # #
+# # # #                      FINAL CLUSTERING                       # # # #
+# # # #                                                             # # # #
+# # # #                                                             # # # #
+# # # #                                                             # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
-    def _lifetime_clustering(self, assoc_mat=None, method='single',
-        n_clusters = 0, save_Z = False, copy=False):
-        if assoc_mat is None:
-            assoc_mat = self._coassoc
-
-        # transform in dissociation matrix and convert to condensed if needed
-        if self.condensed:
-            make_diassoc_1d(assoc_mat, self.n_partitions)
-        else:
-            condensed_diassoc = coassoc_to_condensed_diassoc(assoc_mat,
-                                                             self.n_partitions,
-                                                             copy)
-
-        # apply linkage
-        Z = linkage(condensed_diassoc, method=method)
-
-        if save_Z:
-            self.Z = Z
-
-        # get final labels from linkage
-        labels = self._clusterFromLinkage(Z = Z, n_clusters = n_clusters)
-
-        return labels
-
-    def _apply_linkage(self, assoc_mat=None, method='single'):
-        """
-        SciPy linkage wants a distance array of format pdist. SciPy squareform 
-        converts between the two formats.
-
-        assoc_mat  : pair-wise similarity association matrix
-        method     : linkage method to use; can be 'single'(default), 'complete',
-                      'average', 'weighted', 'centroid', 'median', 'ward'
-        """
-
-        
 
 
-        # Z = np.empty((n_samples-1,3), dtype=np.float32) # allocate Z
-        # slhac_fast(assoc_mat, Z) # apply linkage
+def sp_sl_lifetime(mat, max_val=False, n_clusters=0):
+    """
+    Converts graph weights to dissimilarities if input graph is in 
+    similarities. Computes MST (Kruskal) of dissimilarity graph.
+    Compute number of disconnected clusters (components).
+    Sort MST in increasing order to get equivalent of SL clustering.
+    Compute lifetimes if number of clusters is not provided.
+    Make necessary cuts to have the desired number of clusters.
+    Compute connected components (clusters) after the cuts.
 
-        self._Z = Z
-        return Z
+    Inputs:
+        graph           : dis/similarity matrix in CS form.
+        max_val         : maximum value from which dissimilarity will be
+                          computed. If False (default) assumes input graph
+                          already encodes dissimilarities.
+        n_clusters      : number of clusters to compute. If 0 (default), 
+                          use lifetime criteria.
+    Outputs:
+        n_fclusts       : final number of clusters        
+        labels          : final clustering labels
+    """
 
-    def _clusterFromLinkage(self, Z=None, n_clusters=0):
-        """
-        Finds the cluster of highest lifetime. Computes the number of clusters
-        according to highest lifetime. Determines the clusters form dendrogram.
-        """
+    dtype = mat.dtype
 
-        if Z is None:
-            Z = self._Z
+    # converting to diassociations
+    if max_val != False:
+        mat.data = max_val + 1 - mat.data
 
-        if n_clusters == 0:
-            # lifetime is here computed as the distance difference between 
-            # any two consecutive nodes, i.e. the distance between passing
-            # from n to n-1 clusters
+    # get minimum spanning tree
+    mst = csgraph.minimum_spanning_tree(mat).astype(dtype)
 
-            lifetimes = Z[1:,2] - Z[:-1,2]
+    # compute number of disconnected components
+    n_disconnect_clusters = mst.shape[0] - mst.nnz
 
-            m_index = np.argmax(lifetimes)
+    # sort associations by weights
+    asort = mst.data.argsort()
+    sorted_weights = mst.data[asort]
 
-            # Z is ordered in increasing order by weight of connection
-            # the connection whose weight is higher than the one specified
-            # by m_index MUST be the one from which the jump originated the
-            # maximum lifetime; all connections above that (and including)
-            # will be removed for the final clustering
-            indices = np.where(Z[:,2] > Z[m_index, 2])[0]
-            #indices = np.arange(m_index+1, Z.shape[0])
-            if indices.size == 0:
-                cont = 1
+    if n_clusters == 0:
+        cont, max_lifetime = lifetime_n_clusters(sorted_weights)
+
+        if n_disconnect_clusters > 1:
+            # add 1 to max_val as the maximum weight because I also added
+            # 1 when converting to diassoc to avoid having zero weights
+            disconnect_lifetime = max_val + 1 - sorted_weights[-1]
+
+            # add disconnected clusters to number of clusters if disconnected
+            # lifetime is smaller
+            if max_lifetime > disconnect_lifetime:
+                cont += n_disconnect_clusters - 1
             else:
-                cont = indices.size + 1
+                cont = n_disconnect_clusters
 
-            # store maximum lifetime
-            th = lifetimes[m_index]
+        nc_stable = cont
+    else:
+        nc_stable = n_clusters
 
-            #testing the situation when only 1 cluster is present
-            # if maximum lifetime is smaller than 2 times the minimum
-            # don't make any cuts (= 1 cluster)
-            #max>2*min_interval -> nc=1
-            close_to_zero_indices = np.where(np.isclose(lifetimes, 0))
-            minimum = np.min(lifetimes[close_to_zero_indices])
+    # cut associations if necessary
+    if nc_stable > n_disconnect_clusters:
+        n_cuts = nc_stable - n_disconnect_clusters
+        
+        mst.data[asort[-n_cuts:]] = 0
+        mst.eliminate_zeros()   
 
-            if th < 2 * minimum:
-                cont = 1
+    if nc_stable > 1:
+        n_comps, labels = csgraph.connected_components(mst)
+    else:
+        labels = np.empty(0, dtype=np.int32)
+        n_comps = 1  
 
-            nc_stable = cont
+    return n_comps, labels
 
-        else:
-            nc_stable = n_clusters
 
-        if nc_stable > 1:
-            # only the labels are of interest
 
-            labels = labels_from_Z(Z, n_clusters=nc_stable)
+def full_sl_lifetime(mat, max_val=False, n_clusters=0):
 
-            # rename labels
-            i=0
-            for l in np.unique(labels):
-                labels[labels == l] = i
-                i += 1
-        else:
-            labels = np.zeros(self.n_samples, dtype = np.int32)
+    dtype = mat.dtype
 
-        self.labels_ = labels
-        return labels
+    # convert to diassoc
+    if mat.ndim == 2:
+        mat = squareform(mat)
+
+    # converting to diassociations
+    if max_val != False:
+        make_diassoc_1d(mat, max_val + 1)
+
+    Z = linkage(mat, method="single")
+
+    if n_clusters == 0:
+
+        cont, max_lifetime = lifetime_n_clusters(Z[:,2])
+
+        nc_stable = cont
+    else:
+        nc_stable = n_clusters
+
+    if nc_stable > 1:
+        labels = labels_from_Z(Z, n_clusters=nc_stable)
+        # rename labels
+        i=0
+        for l in np.unique(labels):
+            labels[labels == l] = i
+            i += 1        
+    else:
+        labels = np.empty(0, dtype=np.int32)
+
+    return nc_stable, labels
+
+def lifetime_n_clusters(weights):
+    # compute lifetimes
+    lifetimes = weights[1:] - weights[:-1]
+
+    # maximum lifetime
+    m_index = np.argmax(lifetimes)
+    th = lifetimes[m_index]
+
+    # get number of clusters from lifetimes
+    indices = np.where(weights >weights[m_index])[0]
+    if indices.size == 0:
+        cont = 1
+    else:
+        cont = indices.size + 1
+
+    #testing the situation when only 1 cluster is present
+    # if maximum lifetime is smaller than 2 times the minimum
+    # don't make any cuts (= 1 cluster)
+    # max>2*min_interval -> nc=1
+    close_to_zero_indices = np.where(np.isclose(lifetimes, 0))
+    minimum = np.min(lifetimes[close_to_zero_indices])
+
+    if th < 2 * minimum:
+        cont = 1
+
+    return cont, th
+
+# 2d
+@njit
+def make_diassoc_2d(ary, val):
+    for row in range(ary.shape[0]):
+        for col in range(ary.shape[1]):
+            tmp = ary[row,col]
+            ary[row,col] = val - tmp
+
+#1d
+@njit
+def make_diassoc_1d(ary, val):
+    for i in range(ary.size):
+        tmp = ary[i]
+        ary[i] = val - tmp
