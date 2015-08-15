@@ -149,7 +149,6 @@ class EAC_CSR():
             new_nnz = self.fp_fn(self.indices, self.data, self.indptr,
                                  self.degree, cluster)
             self.nnz += new_nnz
-            #self.min_assocs = self.degree.min()
 
         if self.numpy_sort:
             self.update_partition = self._update_partition_numpy
@@ -275,7 +274,7 @@ def indptr_linear(n_samples, max_assocs, n_s, n_e, val_s, val_e):
 
     y[:n_s] = val_s
     y[n_s:n_e] = m * x[n_s:n_e] + b
-    y[n_e:] = n_e
+    y[n_e:] = val_e
 
     ex_prefix_sum(y)
 
@@ -469,7 +468,7 @@ def update_cluster_sorted(indices, data, indptr, degree, cluster,
                 # ignore new associations if required to have more associations
                 # than those pre-allocated each sample
                 if new_n_degree >= max_assocs:
-                    break
+                    continue
 
                 new_assocs_ids[new_assocs_ptr] = na
                 new_assocs_idx[new_assocs_ptr] = -(ind + 1)
@@ -617,14 +616,6 @@ def update_cluster_sorted_condensed(indices, data, indptr, degree,
                 n_ptr -= 1
             # add original assocs
             elif i_ptr >= idx:
-                
-                # try:
-                #     indices[o_ptr] = indices[i_ptr]
-                # except:
-                #     print "i:", i
-                #     print "optr:", o_ptr
-                #     print "iptr:", i_ptr
-                #     raise Exception
                 indices[o_ptr] = indices[i_ptr]
                 data[o_ptr] = data[i_ptr]
                 o_ptr -= 1
@@ -769,7 +760,7 @@ def update_cluster_sorted_surgical(indices, data, indptr, degree, cluster,
                 # ignore new associations if required to have more associations
                 # than those pre-allocated each sample
                 if new_n_degree >= max_assocs:
-                    break
+                    continue
 
                 new_assocs_ids[new_assocs_ptr] = na
                 new_assocs_idx[new_assocs_ptr] = -(ind + 1)
@@ -856,7 +847,7 @@ def update_cluster_sorted_surgical_condensed(indices, data, indptr, degree,
                 # ignore new associations if required to have more associations
                 # than those pre-allocated each sample
                 if new_n_degree >= max_assocs:
-                    break
+                    continue
 
                 new_assocs_ids[new_assocs_ptr] = na
                 new_assocs_idx[new_assocs_ptr] = -(ind + 1)

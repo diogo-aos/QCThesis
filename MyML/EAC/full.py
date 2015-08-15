@@ -1,7 +1,8 @@
 import numpy as np
 from numba import jit, njit
 
-from scipy.spatial.distance import squareform
+from scipy_numba.spatial.distance import squareform
+
 from MyML.utils.sparse import EAC_CSR
 
 class EAC_FULL():
@@ -63,6 +64,18 @@ class EAC_FULL():
             return csr_matrix(squareform(self.coassoc))
         else:
             return csr_matrix(self.coassoc)
+
+    def getDegree(self):
+        n = self.n_samples
+
+        degree = np.zeros(self.n_samples, dtype=np.int32)
+        if not self.condensed:
+            nnz = full_get_assoc_degree(self.coassoc, degree)
+        else:
+            nnz = full_condensed_assoc_degree(self.coassoc, degree, n)
+        self.degree = degree
+        self.nnz = nnz
+
 
     def __eq__(self, other):
 
@@ -151,12 +164,45 @@ def full_get_assoc_degree(ary, degree):
     Inputs:
         ary     : input matrix of shape r,c
         degree  : array of shape r
+    Outputs:
+        nnz     : total number of nonzero values
     """
     rows, cols = ary.shape
+    nnz = 0
     for row in range(rows):
+        row_deg = 0
         for col in range(cols):
             if ary[row,col] != 0:
-                degree[row] += 1
+                row_deg += 1
+        degree[row] = row_deg
+        nnz += row_deg
+    return nnz
+
+@njit
+def full_condensed_assoc_degree(ary, degree, n):
+    idx = 0
+    row = 0
+    nnz = 0
+    for i in range(n-1,0,-1): # i is the length of each row
+        row_deg = 0
+        for j in range(i): # j is iterating over the cols
+            if ary[idx] != 0:
+                row_deg += 1
+            idx += 1
+        degree[row] = row_deg
+        nnz += row_deg
+        row += 1
+    return nnz
+
+def full_condensed_assoc_degree_np(ary, degree, n):
+    idx=0
+    row = 0
+    for i in xrange(n-1, 0, -1):
+        degree[row] = ary[idx:idx+i].nonzero()[0].size
+        idx+=i
+        row += 1
+
+
 
 @njit
 def numba_array2d_nnz(ary, width, height):
@@ -223,3 +269,6 @@ def coassoc_to_condensed_diassoc(assoc_mat, max_val, copy=False):
     condensed_diassoc = squareform(assoc_mat_use)
 
     return condensed_diassoc
+
+if __name__ == '__main__':
+    print('add tests')

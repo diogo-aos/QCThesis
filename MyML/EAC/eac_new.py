@@ -18,25 +18,23 @@ TODO:
 """
 
 import numpy as np
-
-from scipy.cluster.hierarchy import linkage,dendrogram
-from scipy.spatial.distance import squareform
-from scipy.sparse.csgraph import minimum_spanning_tree
-
-from sklearn.neighbors import NearestNeighbors
 from random import sample
+from numba import jit, njit
+# from sklearn.neighbors import NearestNeighbors
 
 from scipy.sparse import csr_matrix
-import scipy.sparse.csgraph as csgraph
+from scipy.cluster.hierarchy import linkage,dendrogram
+from scipy.sparse.csgraph import connected_components
 
+from scipy_numba.sparse.csgraph import minimum_spanning_tree
+from scipy_numba.spatial.distance import squareform
+
+from MyML.cluster.linkage import scipy_numba_slink_wraper as slink
 from MyML.cluster.linkage import labels_from_Z
-
 from MyML.cluster.K_Means3 import K_Means
 
 from MyML.EAC.sparse import EAC_CSR, _compute_max_assocs_from_ensemble as biggest_cluster_size
 from MyML.EAC.full import EAC_FULL
-
-from numba import jit, njit
 
 def sqrt_rule(n):
     n_clusters = [np.sqrt(n)/2, np.sqrt(n)]
@@ -60,10 +58,17 @@ class EAC():
 
         self.n_samples = n_samples
 
+        # check if all arguments were passed as a dictionary
+        args = kwargs.get("args")
+        if args is not None and type(args) == dict:
+            kwargs == args
+
         ## generate ensemble parameters
         self.n_partitions = kwargs.get("n_partitions", 100)
         self.iters = kwargs.get("iters", 3)
         self.n_clusters = kwargs.get("n_clusters", "sqrt")
+        self.toFiles = False
+        self.toFiles_folder = None
 
         ## build matrix parameters
         self.condensed = kwargs.get("condensed", True)
@@ -136,6 +141,7 @@ class EAC():
                                                n_clusters=n_clusters)
         elif self.full:
             n_fclusts, labels = full_sl_lifetime(self.coassoc.coassoc,
+                                                 self.n_samples,
                                                  max_val=self.n_partitions,
                                                  n_clusters=n_clusters)
         elif self.kNN:
@@ -485,7 +491,6 @@ class EAC():
         self.nnz = self.degree.sum()
 
 
-
     def getNNZAssocs(self):
         """Get total number of associations in co-association matrix."""
         if not self.mat_sparse:
@@ -543,7 +548,7 @@ def sp_sl_lifetime(mat, max_val=False, n_clusters=0):
         mat.data = max_val + 1 - mat.data
 
     # get minimum spanning tree
-    mst = csgraph.minimum_spanning_tree(mat).astype(dtype)
+    mst = minimum_spanning_tree(mat)
 
     # compute number of disconnected components
     n_disconnect_clusters = mst.shape[0] - mst.nnz
@@ -579,7 +584,7 @@ def sp_sl_lifetime(mat, max_val=False, n_clusters=0):
         mst.eliminate_zeros()   
 
     if nc_stable > 1:
-        n_comps, labels = csgraph.connected_components(mst)
+        n_comps, labels = connected_components(mst)
     else:
         labels = np.empty(0, dtype=np.int32)
         n_comps = 1  
@@ -588,7 +593,7 @@ def sp_sl_lifetime(mat, max_val=False, n_clusters=0):
 
 
 
-def full_sl_lifetime(mat, max_val=False, n_clusters=0):
+def full_sl_lifetime(mat, n_samples, max_val=False, n_clusters=0):
 
     dtype = mat.dtype
 
@@ -600,7 +605,8 @@ def full_sl_lifetime(mat, max_val=False, n_clusters=0):
     if max_val != False:
         make_diassoc_1d(mat, max_val + 1)
 
-    Z = linkage(mat, method="single")
+    #Z = linkage(mat, method="single")
+    Z = slink(mat, n_samples)
 
     if n_clusters == 0:
 
@@ -663,3 +669,4 @@ def make_diassoc_1d(ary, val):
     for i in range(ary.size):
         tmp = ary[i]
         ary[i] = val - tmp
+

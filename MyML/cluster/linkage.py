@@ -16,6 +16,7 @@ from MyML.graph.build import getGraphFromEdges_gpu, getGraphFromEdges_seq
 from numbapro.cudalib.sorting import RadixSort
 from numbapro.cudalib.cublas import Blas
 
+import scipy_numba.cluster._hierarchy_eac as hie_eac
 
 
 def sl_mst_lifetime_seq(dest, weight, fe, od, disconnect_weight = None):
@@ -430,6 +431,14 @@ def knn_slhac_fast(weights, neighbors, Z):
 #    Generic SL-Linkage
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+def scipy_numba_slink_wraper(weights, n):
+    hie_eac.dists_dtype = weights.dtype
+    Z = np.empty((n-1,4), dtype=np.float32)
+    hie_eac.slink(weights, Z, n)
+    return Z
+
 
 def slhac(weights, Z):
     """
