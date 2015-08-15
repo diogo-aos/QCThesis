@@ -1,0 +1,15 @@
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}}{2}{figure.1.1}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}}{2}{figure.1.2}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Sama data, as Figure \ref {fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}}{2}{figure.1.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.}}{18}{figure.2.1}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.}}{24}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.}}{25}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.}}{27}{figure.3.3}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Diagram of the connected components labeling algorithm used.}}{30}{figure.3.4}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

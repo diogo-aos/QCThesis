@@ -70,24 +70,22 @@ This approach is similar to the random prototypes but, instead of choosing $p$ r
 
 \section{Building the sparse matrix}
 
-Building a full matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct. When using sparse matrices, the former is not true. In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix. This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
+Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct. When using sparse matrices, the former is not true. In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix. This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
 
 % Several sparse matrices exist
 % some are better for building others for computing
 % describe my solution
 
 Experiments showed that building the matrix with the recommended sparse structures for building the matrix saturated the memory and were very slow. Using a CSR matrix didn't saturate memory but was too slow. % TODO add reference to experiments in results
-The core of the solution devised is the CSR sparse structures, which has the desired properties of having a low memory trace and allows for fast computations.
-Before starting the process of building the matrix, a estimate about the maximum number of associations any sample can have is made.
-This estimate is the 
+The core of the solution devised is the CSR sparse structure, which has the desired properties of having a low memory trace and allows for fast computations.
 
+\subsection{EAC CSR}
 
-% #TODO add all the text in the notebook
-
-For this to work an initial assumption on the maximum number of associations \emph{max\_assocs} must be made.
-The current rule being used is $$max\_assocs = 3 \times bgs , $$ where $bgs$ is the biggest cluster size in the ensemble.
+The first step is making an initial assumption on the maximum number of associations \emph{max\_assocs} that each sample can have.
+A possible rule is $$max\_assocs = 3 \times bgs , $$ where $bgs$ is the biggest cluster size in the ensemble.
+The cluster size is a good metric for trying to predict the number of associations a sample will have since it is the limit of how many associations each sample will have in each partition.
+Furthermore, one would expect that the cluster neighbors of each sample will not vary significantly, i.e. the same neighbors will be clustered together with a sample repeatedly in many partitions.
 This scheme for building the matrix uses 4 supporting arrays:
-
 
 \begin{itemize}
 	\item \textbf{indices} - an array of $n \times max\_assocs$ size that stores the columns of each non-zero value of the matrix, i.e. the destination sample to which each sample associates with;
@@ -98,13 +96,15 @@ This scheme for building the matrix uses 4 supporting arrays:
 
 Each sample (row) has a maximum of \emph{max\_assocs} pre-allocated that it can use to fill with new associations.
 New associations that exceed this pre-allocated maximum are discarded.
-Since each sample has a maximum pre-defined number of associations, \emph{indptr} doesn't really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$). The \emph{degree} array is the one keeping track of the number of associations of each sample.
+%Since each sample has a maximum pre-defined number of associations, \emph{indptr} doesn't really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$).
+The \emph{degree} array is the one keeping track of the number of associations of each sample.
 
 Before continuing with the explanation of how the matrix is actually filled, it should be noted that this method assumes that the clusters received come sorted in a increasing order.
 The first partition is inserted in a special way.
 Since it is the first and the clusters are sorted, it's a matter of copying the cluster to the \emph{indices} array in the positions of each sample, with the exclusion of the sample itself.
 This process can be observed clearly in Fig. \ref{fig:first part}.
-Because it's the fastest partition to be inserted, it's picked to be the one with the leas amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
+Because it's the fastest partition to be inserted, it's picked to be the one with the least amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
+This is only appliable if the whole ensemble is provided, otherwise there is no way to know what is the biggest cluster of the whole ensemble.
 This increases the probability that any new cluster will have more samples that correspond to already established associations.
 Because the clusters are sorted and only a copy of each cluster was made, it's not necessary to sort each row of the matrix by column index.
 
@@ -129,9 +129,11 @@ This is described in Algorithm \ref{alg:eac csr update cluster}.
 	\For{$every$ $other$ $sample$ $\mathbf{na}$ $in$ $cluster$}
 		\State{$ind$ $=$ $binary\_search(na, indices,$$interval$ $of$ $n$ $in$ $indices)$}
 		\If{$ind \ge 0$}
-			\State{$data[ind] += 1$}
+			\State{$increment$ $data[ind]$}
 		\Else
-			\State{$add$ $new$ $assoc.$ $with$ $weight$ $1$}
+            \If{$maximum$ $assocs$ $not$ $reached$}
+			    \State{$add$ $new$ $assoc.$ $with$ $weight$ $1$}
+            \EndIf
 		\EndIf
 	\EndFor
 \EndFor
@@ -142,92 +144,110 @@ This is described in Algorithm \ref{alg:eac csr update cluster}.
 Since a binary search is performed $(ns - 1)^2$ times for each cluster, where $ns$ is the number of samples in any given cluster, the indices of each sample must be in a sorted state at the beginning of each partition insertion.
 Two strategies for sorting were devised.
 The \underline{first strategy} is to just insert the new associations at the end of the \emph{indices} array (in the correct interval for each sample) and then, at the end of processing each partition, use a sorting algorithm to sort all the samples' intervals in the \emph{indices} array.
-This was easily implemented with existing code, namely using \emph{NumPy}'s sorting function.
+This was easily implemented with existing code, namely using \emph{NumPy}'s \emph{quicksort} implementation, which has an average time complexity of $O(n \log n)$
 
 The \underline{second strategy} is more involved.
 It comes from the fact that, if one could know in which position each new association should be inserted, it would become possible to move all old associations to their final sorted positions and insert the new ones, all in an efficient manner.
 For this end, the implemented binary search returns the index of the searched value (key) if it is found or $-ind -1$, where $ind$ is the position for a sorted insertion of the key in the array, if it is not found.
 This means that one can have the position where each new association should be inserted.
-Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one for storing the samples of the associations \emph{new\_assoc\_ids} and the other to store the indices that were the result of the binary search for each of the new associations \emph{new\_assoc\_idx}.
-After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the sample's indices subarray in a sorted manner.
+Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one for storing the samples of the associations \emph{new\_assoc\_ids} and the other to store the indices that were the result of the binary search for each of the new associations \emph{new\_assoc\_idx}, i.e. the indices where the new associations should be inserted.
+The process is illustrated with an example in Fig. \ref{fig:normal part}, detailed in Algorithm \ref{alg:eac csr sort cluster} and explained in the following paragraph.
+
+After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the sample's indices interval in a sorted manner.
+The new interval of the \emph{indices} array belonging to the $i$-th sample now has \emph{degree[i]} plus the number of new associations.
+An element is added to the end of the \emph{new\_assoc\_idx} array with the value of \emph{degree[i]} so that the last new association can be included in the general cycle.
+During the sorting process a pointer to the current index to add associations $o\_ptr$ is kept (it's initialized to the new total number of associations of a sample).
+The sorting mechanism looks at two consecutive elements in the \emph{new\_assoc\_idx} array, starting from the end.
+If the $i$-th element is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between and including the first element are copied to the end of the \emph{indices} interval, i.e. they're shifted to the right by $i$ positions.
+Then, or in case the comparison fails, the $(i-1)$-th element of the \emph{new\_assoc\_ids} is copied to the \emph{indices} array in the position specified by \emph{o\_ptr}.
 
 % TODO check which or the three fast sorting approaches is best and describe only that one
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\textwidth]{methodology/sorted_insert}
+\caption{Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.}
+\label{fig:normal part}
+\end{figure}
 
-The process uses 3 pointers:
-\begin{itemize}
-\item \textbf{i\_ptr} for keeping track of which old association should be added next; initialized to the index of the current last association;
-\item \textbf{n\_ptr} for keeping track of which new association should be added next; initialized to the index of the last new association;
-\item \textbf{o\_ptr} for keeping track of where to add each association in its final position; initialized to the index of the final last association.
-\end{itemize}
 
 
 \begin{algorithm}
-\caption{Update matrix with cluster.}\label{alg:eac csr update cluster}
+\caption{Sort the \emph{indices} array in the interval of a sample $n$.}\label{alg:eac csr sort cluster}
 \begin{algorithmic}[1]
-\Procedure{update\_cluster}{$indices, data, indptr, degree, cluster, max\_assocs$}
-\State{$n\_ptr\_id = new\_assocs\_idx[n\_ptr]$}
-\State{$i\_ptr\_id = indices[i\_ptr]$}
-\While{$o\_ptr \ge fa$}
-	\If{$i\_ptr\_id > n\_ptr\_id$}
-		\State{$indices[o\_ptr] = indices[i\_ptr]$}
-		\State{$data[o\_ptr] = data[i\_ptr]$}
-		\State{$o\_ptr -= 1$}
-		\State{$i\_ptr -= 1$}
-		\State{$continue$}
-	\EndIf
-	\State{$idx = new\_assocs\_idx[n\_ptr]$}
-	\If{$i\_ptr \ge idx$}
-		\State{$indices[o\_ptr] = indices[i\_ptr]$}
-		\State{$data[o\_ptr] = data[i\_ptr]$}
-		\State{$o\_ptr -= 1$}
-		\State{$i\_ptr -= 1$}
-		\State{$continue$}
-	\EndIf
+\Procedure{sort\_indices}{$indices, data, indptr, degree, n, new\_assocs\_ptr, new\_assocs\_ids, new\_assocs\_idx$}
+\State{$new\_assocs\_idx[new\_assocs\_ptr] = indptr[n] + degree[n]$}
+\State{$i = new\_assocs\_ptr$}
+\State{$o\_ptr = indptr[n] + new\_assocs\_ptr + degree[n] - 1$}
+\While{$i \ge 1$}
+	\State{$start\_idx = new\_assocs\_idx[i - 1]$}
+	\State{$end\_idx = new\_assocs\_idx[i] - 1$}
+
+    \While{$end\_idx >= start\_idx$}
+        \State{$indices[o\_ptr] = indices[end\_idx]$}
+        \State{$data[o\_ptr] = data[end\_idx]$}
+        \State{$end\_idx -= 1$}
+        \State{$o\_ptr -= 1$}
+    \EndWhile
+    \State{$indices[o\_ptr] = new\_assocs\_ids[i - 1]$}
+    \State{$data[o\_ptr] = 1$}    
+    \State{$o\_ptr -= 1$}
+    \State{$i -= 1$}
 \EndWhile
 
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
-% diagram
+\subsection{EAC CSR Condensed}
 
-        while o_ptr >= fa:
-            if n_ptr < 0:
-                indices[o_ptr] = indices[i_ptr]
-                data[o_ptr] = data[i_ptr]
-                o_ptr -= 1
-                i_ptr -= 1
-                continue
+The co-association matrix is symmetric, which means that only half is necessary to describe the whole matrix.
+That fact has consequences on both memory usage and computational effort on building the matrix.
+In the case of the fully allocated matrix, this translates in a reduction of approximately 50\% of the memory required.
+Furthermore, only half the operations are made since only half the matrix is accessed, which also accelerates the building of the matrix.
+There is, however, a small overhead for translating the two dimensional index to the 1 dimensional index of the upper triangle matrix.
+When using a sparse matrix according to the EAC CSR scheme described above, there is no direct memory usage reduction.
+However, the number of binary searches performed by inserting new associations is half which has a significant impact on the computation time relative to the complete matrix.
 
-            idx = new_assocs_idx[n_ptr]
+Even though there is no direct memory reduction for switching to the condensed matrix form, this scheme does open possibilities for it.
+Previously, the number of associations for each sample (number of non zero values in each row) remained constant throughout the whole set of samples.
+However, using a condensed scheme means that the number of associations decreases the further down a sample is in the matrix, i.e. the closer to the bottom its respective row is.
+An example of this can be seen in the plot of the number of associations per sample in a complete and condensed matrix of Fig. \ref{fig:coassoc degree}.
+It's clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, then the pre-allocated memory for each sample can decrease accordingly.
+One possible strategy, illustrated in Fig. \ref{fig:coassoc degree}, is to decrease the maximum number of associations linearly.
+In the example, the first 5\% of samples have the 100\% of the maximum number of associations and it decreases linearly until 5\% of the maximum number of associations for the last sample.
 
-            # insert new assocs at end
-            if idx > last_index:
-                indices[o_ptr] = new_assocs_ids[n_ptr]
-                data[o_ptr] = 1
-                o_ptr -= 1
-                n_ptr -= 1
-            # add original assocs
-            elif i_ptr >= idx:
-                
-                # try:
-                #     indices[o_ptr] = indices[i_ptr]
-                # except:
-                #     print "i:", i
-                #     print "optr:", o_ptr
-                #     print "iptr:", i_ptr
-                #     raise Exception
-                indices[o_ptr] = indices[i_ptr]
-                data[o_ptr] = data[i_ptr]
-                o_ptr -= 1
-                i_ptr -= 1
-            # add new assoc
-            else:
-                indices[o_ptr] = new_assocs_ids[n_ptr]
-                data[o_ptr] = 1
-                o_ptr -= 1
-                n_ptr -= 1
+Table \ref{tab:mat type memory} shows the memory usage of the different co-association matrix strategies in the general case and for an example of 100000 samples.
+
+\begin{table}[hbtp]
+\centering
+\caption{Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction refers to the memory reduction relative to the type of matrix above, the absolute reduction refers to the reduction relative to the full complete matrix.}
+\label{tab:mat type memory}
+\begin{tabular}{l|r|r|r|r}
+\toprule
+% \hline
+Type of matrix          & Generic                & Memory {[}MBytes{]}    & Relative reduction & Absolute red. \\
+\midrule
+% \hline
+Full complete           & $N^2$                  & $9536.7431$              & -                  & -             \\
+Full condensed          & $\frac{N(N-1)}{2}$     & $4768.3238$              & $0.4999$     & $0.4999$      \\
+Sparse constant         & $N \times max\_assocs$ & $678.8253$               & $0.1423$           & $0.0711$      \\
+Sparse condensed linear & $N \times max\_assocs$ & $372.8497$               & $0.5492$           & $0.0390$      \\
+\bottomrule
+% \hline
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.45]{methodology/eac_csr_cond_full_degree_100k}
+\caption{The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.}
+\label{fig:coassoc degree}
+\end{figure}
+
+
+
 
 \section{Hierarchical Agglomerative Clustering step}
 
@@ -319,7 +339,7 @@ Afterwards, the kernel maps the new color with the new vertex ID that color will
 \Procedure{update\_labels}{$vertex\_id, labels, colors, new\_vertex$}
 \State $curr\_color \gets labels[vertex\_id]$
 \State $new\_color \gets colors[curr\_color]$
-\State $new\_color\_id \gets new_vertex[new\_color]$
+\State $new\_color\_id \gets new\_vertex[new\_color]$
 \State $labels[vertex\_id] \gets new\_color\_id$
 \EndProcedure
 \end{algorithmic}

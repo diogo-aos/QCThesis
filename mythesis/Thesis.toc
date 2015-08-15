@@ -1,0 +1,78 @@
+\select@language {english}
+\contentsline {section}{Acknowledgments}{v}{section*.1}
+\contentsline {section}{Resumo}{vii}{section*.2}
+\contentsline {section}{Abstract}{ix}{section*.3}
+\contentsline {section}{List of Tables}{xiii}{chapter*.5}
+\contentsline {section}{List of Figures}{xv}{chapter*.6}
+\contentsline {section}{Glossary}{xvii}{table.0.1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}The problem of clustering}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Motivation}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Challenges and Motivation}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Goals and Contribution}{4}{section.1.4}
+\contentsline {section}{\numberline {1.5}Objectives}{4}{section.1.5}
+\contentsline {section}{\numberline {1.6}Outline}{4}{section.1.6}
+\contentsline {chapter}{\numberline {2}State of the art}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Quantum clustering}{6}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}The quantum bit approach}{7}{subsection.2.1.1}
+\contentsline {subsubsection}{What is a quantum bit?}{7}{section*.13}
+\contentsline {subsubsection}{Quantum K-Means}{8}{section*.14}
+\contentsline {subsubsection}{Description of the algorithm}{8}{section*.15}
+\contentsline {paragraph}{Initialize population of oracles}{9}{section*.16}
+\contentsline {paragraph}{Collapse oracles}{9}{section*.17}
+\contentsline {paragraph}{K-Means}{9}{section*.18}
+\contentsline {paragraph}{Compute cluster fitness}{9}{section*.19}
+\contentsline {paragraph}{Store}{9}{section*.20}
+\contentsline {paragraph}{Quantum Rotation Gate}{9}{section*.21}
+\contentsline {subsection}{\numberline {2.1.2}Horn and Gottlieb's algorithm}{10}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Evidence Accumulation Clustering}{11}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Ensemble Clustering}{11}{subsection.2.2.1}
+\contentsline {paragraph}{Ensemble clustering}{11}{section*.22}
+\contentsline {paragraph}{Formulation}{11}{section*.23}
+\contentsline {subsection}{\numberline {2.2.2}Overview of Evidence Accumulation Clustering}{11}{subsection.2.2.2}
+\contentsline {paragraph}{Examples of applications}{12}{section*.24}
+\contentsline {paragraph}{advantages}{12}{section*.25}
+\contentsline {paragraph}{disadvantages}{12}{section*.26}
+\contentsline {subsection}{\numberline {2.2.3}Scalability of EAC}{12}{subsection.2.2.3}
+\contentsline {subsubsection}{$p$ neighbours approach}{12}{section*.27}
+\contentsline {subsubsection}{Increased sparsity approach}{13}{section*.28}
+\contentsline {section}{\numberline {2.3}Clustering with Big Data}{13}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}The concept of Big Data}{13}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Computation in Big Data}{14}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}General Purpose computing on Graphical Processing Units}{14}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Programming GPUs}{15}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}MapReduce on GPU}{16}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Overview of CUDA}{16}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Parallel K-Means}{16}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}Parallel Hierarchical Agglomerative Clustering}{17}{subsection.2.4.5}
+\contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{17}{section*.29}
+\contentsline {paragraph}{CSR format}{17}{section*.30}
+\contentsline {subsubsection}{Exclusive scan}{19}{section*.31}
+\contentsline {chapter}{\numberline {3}Methodology}{20}{chapter.3}
+\contentsline {section}{\numberline {3.1}Quantum Clustering}{20}{section.3.1}
+\contentsline {section}{\numberline {3.2}Speeding up Ensemble Generations with Parallel K-Means}{21}{section.3.2}
+\contentsline {section}{\numberline {3.3}Dealing with space complexity of coassocs}{21}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Exploiting the sparsity of the co-association matrix}{21}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Using prototypes}{21}{subsection.3.3.2}
+\contentsline {subsubsection}{k-Nearest Neighbors as prototypes}{21}{section*.32}
+\contentsline {subsubsection}{Random prototypes}{22}{section*.33}
+\contentsline {subsubsection}{Medoid prototypes}{22}{section*.34}
+\contentsline {section}{\numberline {3.4}Building the sparse matrix}{22}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}EAC CSR}{22}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}EAC CSR Condensed}{25}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Hierarchical Agglomerative Clustering step}{26}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}HAC and GPGPU}{26}{subsection.3.5.1}
+\contentsline {subsubsection}{Generating the MST}{27}{section*.35}
+\contentsline {subsubsection}{Number of clusters and cutting edges}{27}{section*.36}
+\contentsline {subsubsection}{Building the new graph}{28}{section*.37}
+\contentsline {subsubsection}{Final clustering}{28}{section*.38}
+\contentsline {subsubsection}{Memory transfer with the GPU}{29}{section*.39}
+\contentsline {chapter}{\numberline {4}Discussion?}{32}{chapter.4}
+\contentsline {section}{\numberline {4.1}Trade-off speed accuracy memory}{32}{section.4.1}
+\contentsline {section}{\numberline {4.2}GPU MST}{32}{section.4.2}
+\contentsline {chapter}{\numberline {5}Conclusions}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Achievements}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{33}{section.5.2}
+\contentsline {chapter}{Bibliography}{38}{chapter*.40}
+\contentsline {chapter}{\numberline {A}Vector calculus}{39}{appendix.A}
+\contentsline {section}{\numberline {A.1}Vector identities}{39}{section.A.1}
