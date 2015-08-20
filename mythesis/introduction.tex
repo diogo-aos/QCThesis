@@ -6,23 +6,26 @@
 \label{sec:clustering}
 
 %this is mostly taken from Jain's 50 years beyond K-Means
-Advances in technology allow for the collection and storage unprecedented amount and variety of data. Since data is mostly stored electronically, it presents a potential for automatic analysis and thus creation of information and knowledge. A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks. Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
+Advances in technology allow for the collection and storage unprecedented amount and variety of data.
+Since data is mostly stored electronically, it presents a potential for automatic analysis and thus creation of information and knowledge.
+A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks.
+Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
 % (explain what learning is) The task of learning is...
 Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
 
 Cluster analysis is the backbone of the present work.
-The goal of data clustering, as defined by \citep{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data, structured or not.
+The goal of data clustering, as defined by \cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data.
 And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, Pearson correlation) and separate those that are dissimilar. %TODO reference for a method for both euclidean distance and Pearson correlation
 
 As an example, Figure \ref{fig:intro raw} shows the plot of a simple synthetic dataset - a Gaussian mixture of 5 distributions.
 No extra information other than the position of the points is given, since clustering algorithms are unsupervised methods.
 Figure \ref{fig:intro natural} presents the desired (or "natural") clustering for this given dataset.
 Figure \ref{fig:intro kmeans} presents the clusters given by the K-Means algorithm with an initialization of 4 clusters.
-The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in suck a simple example. In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
+The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in such a simple example. In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
 
 The number of clusters is a common initialization parameter for clustering methods.
 When no prior information about the dataset is given, the number of clusters can be hard to discover.
-
+f
 %TODO change this 3 plots to a three plot subfigure, with the plots side by side
 \begin{figure}[hbtp]
 \centering
@@ -89,7 +92,7 @@ When no prior information about the dataset is given, the number of clusters can
 %     \label{fig:three graphs}
 % \end{figure}
 
-Cluster analysis is a relevant technique across several domains (\citep{Aggarwal2014}):
+Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2014}):
 
 \begin{itemize}
 	\item grouping users with similar behaviour or preferences in \textbf{customer segmentation};
@@ -117,14 +120,6 @@ Cluster analysis is a relevant technique across several domains (\citep{Aggarwal
 % typical challenges with Big Data
 % why EAC?
 % combination of both
-\section{Motivation}
-The scope of the thesis is Big Data and Cluster Ensembles.
-
-Success of EAC clustering on hard data sets.
-
-Interesting problems from big data.
-
-Combining the two.
 
 \section{Challenges and Motivation}
 
