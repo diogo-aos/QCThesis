@@ -1,4 +1,4 @@
-%!TEX root = thesis.tex
+%!TEX root = Thesis.tex
 
 \chapter{Methodology}
 \label{chapter:methodology}
@@ -8,30 +8,53 @@
 
 %TODO This is where I explain my approach to the problem of EAC in Big Data
 
-The aim of this thesis is the optimization and scalability of EAC, with a focus for large datasets. EAC is divided in three steps and each has to be considered for optimization.
+The aim of this thesis is the optimization and scalability of EAC, with a focus for large datasets.
+EAC is divided in three steps and each has to be considered for optimization.
 
-The first step is the accumulation of evidence, i.e. generating an ensemble of partitions. The main objective for the optimization of this step is speed. Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective. Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation. Using either or any combination of these strategies will guarantee a speedup.
+The first step is the accumulation of evidence, i.e. generating an ensemble of partitions.
+The main objective for the optimization of this step is speed.
+Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective.
+Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation.
+Using either or any combination of these strategies will guarantee a speedup.
 
-
+Initial research was under the field of quantum clustering.
+After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically GPGPU. 
 	
-The second step is mostly bound by memory. The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$. Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
+The second step is mostly bound by memory.
+The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$.
+Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ samples will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
+This work was focused on sparse matrices and cutting associations.
 
-The last step has to take into account both memory and speed requirements. The final clustering must be able to produce good results, fast while not exploding the already big space complexity from the co-association matrix.
+The last step has to take into account both memory and speed requirements.
+The final clustering must be able to produce good results and be fast while not exploding the already big space complexity from the co-association matrix.
+The work in this last step was initially directed towards parallelization and sparse matrices.
 
-Initial research was under the field of quantum clustering. After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically GPGPU. 
+All the algorithms were implemented in Python with high reliance on numerical and scientific modules, namely NumPy \cite{VanDerWalt2011} and SciPy \cite{JonesSciPy,Oliphant2007,Millman2011}.
+Important modules for visualizing and processing statistical results were MatplotLib \cite{hunter2007matplotlib} and Pandas \cite{McKinney2010}, respectively.
+The SciKit-Learn \cite{Pedregosa2012} machine learning library has a plethora of implemented algorithms which were used for benchmarking as well as integration in the devised solutions.
+The iPython \cite{Perez2007} module was used for interactive computing which allowed for accelerated prototyping and testing of algorithms.
+Python is a interpreted language which translates in its performance being worse than a compiled language such as C or Java.
+To address this problem, the open-source Numba module from Continuum Analytics was used to allow for writing code in native Python and have it converted to fast compiled code.
+Furthermore, this module provides a pure Python interface for the CUDA API.
+The proprietary NumbaPro module was for two high level CUDA functions, namely \emph{argsort} and \emph{max}. %TODO write this one a bit better
+
 
 \section{Quantum Clustering}
 
-Research under this paradigm aimed to find a solution for the first and last steps. Two venues were explored: Quantum K-Means and Horn and Gottlieb's quantum clustering algorithm.
+Research under this paradigm aimed to find a solution for the first and last steps.
+Two venues were explored: Quantum K-Means and Horn and Gottlieb's quantum clustering algorithm.
 For both, the experiments that were setup had the goal of evaluating the speed and accuracy performances of the algorithms.
 
-Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is infeasible due to the cost in computational speed. The results highlight that fact.
+Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is infeasible due to the cost in computational speed.
+The results highlight that fact.
 
 
 
 \section{Speeding up Ensemble Generations with Parallel K-Means}
-K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations. For that reason, optimizing this algorithm ensures that the accumulation of evidence is performed in an efficient manner.
-Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice. The reason for this is the desire for variability within the partition population.
+K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations.
+For that reason, optimizing this algorithm ensures that the accumulation of evidence is performed in an efficient manner.
+Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice.
+The reason for this is the desire for variability within the partition population.
 
 
 %TODO pseudocode & diagrams
@@ -43,7 +66,9 @@ Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.
 
 
 
-Which method is more effective in very large datasets, however, would depend on the dataset. The sparsity maximization approach got very low densities for some datasets, close to $0.01$ in some cases. This is already a big improvement
+Which method is more effective in very large datasets, however, would depend on the dataset.
+The sparsity maximization approach got very low densities for some datasets, close to $0.01$ in some cases.
+This is already a big improvement
 
 Either way, the CSR data structure is used to store the co-association matrix. 
 Due to the sparse nature of the co-association matrix, storing it n this format can decrease used space to as much as $10\%$, depending on the sparsity of the matrix as shown in \cite{Lourenco2010}. 
@@ -52,16 +77,27 @@ This is also an important step since the co-association matrix is already in the
 \subsection{Using prototypes}
 
 \subsubsection{k-Nearest Neighbors as prototypes}
-In the literature review, another approach to reduce the complexity of the co-association matrix is to use the $p$ closest neighbors of each sample. Previous to building the co-association matrix, the $p$ closest samples to each sample are computed and stored in the $n \times p$ neighbor matrix. The co-association matrix is reduced to size $n \times p$ and only considers the neighbors of each sample during the voting mechanism. This means two $n \times p$ matrices have to be stored, which, as long as $p$ is significantly lowers than the number of samples, is close to a sparse representation of the full matrix.
+In the literature review, another approach to reduce the complexity of the co-association matrix is to use the $p$ closest neighbors of each sample.
+Previous to building the co-association matrix, the $p$ closest samples to each sample are computed and stored in the $n \times p$ neighbor matrix.
+The co-association matrix is reduced to size $n \times p$ and only considers the neighbors of each sample during the voting mechanism.
+This means two $n \times p$ matrices have to be stored, which, as long as $p$ is significantly lowers than the number of samples, is close to a sparse representation of the full matrix.
 
-It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible. When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors. However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions. If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it. If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included. This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach. To illustrate this point, let's consider a dataset of $10^6$ patterns. 
+It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible.
+When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors.
+However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions.
+If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it.
+If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included.
+This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach.
+To illustrate this point, let's consider a dataset of $10^6$ patterns. 
 
 %comment on which method is more effective, maybe some experiment is needed to see which
 %demonstrate why both methods are not compatible - a simple filling of knn matrix should suffice
 
 \subsubsection{Random prototypes}
-A second prototype approach is to choose $p$ random non-repetitive samples as prototypes. This will be the same for every sample.
-Here the voting mechanism is altered so that if a sample is clustered with any of the prototypes, the correspondent element in the co-association matrix is incremented. This has the advantage that only a $n \times p$ matrix needs to be stored along with a $p$ array for the prototypes.
+A second prototype approach is to choose $p$ random non-repetitive samples as prototypes.
+This will be the same for every sample.
+Here the voting mechanism is altered so that if a sample is clustered with any of the prototypes, the correspondent element in the co-association matrix is incremented.
+This has the advantage that only a $n \times p$ matrix needs to be stored along with a $p$ array for the prototypes.
 Furthermore, if $p$ if high enough to provide a representative sample of the dataset the results can be as good as the full matrix
 
 \subsubsection{Medoid prototypes}
@@ -70,13 +106,17 @@ This approach is similar to the random prototypes but, instead of choosing $p$ r
 
 \section{Building the sparse matrix}
 
-Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct. When using sparse matrices, the former is not true. In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix. This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
+Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct.
+When using sparse matrices, the former is not true.
+In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix.
+This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
 
 % Several sparse matrices exist
 % some are better for building others for computing
 % describe my solution
 
-Experiments showed that building the matrix with the recommended sparse structures for building the matrix saturated the memory and were very slow. Using a CSR matrix didn't saturate memory but was too slow. % TODO add reference to experiments in results
+Experiments showed that building the matrix with the recommended sparse structures for building the matrix saturated the memory and were very slow.
+Using a CSR matrix didn't saturate memory but was too slow. % TODO add reference to experiments in results
 The core of the solution devised is the CSR sparse structure, which has the desired properties of having a low memory trace and allows for fast computations.
 
 \subsection{EAC CSR}

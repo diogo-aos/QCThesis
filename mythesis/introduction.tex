@@ -10,87 +10,72 @@ Advances in technology allow for the collection and storage unprecedented amount
 Since data is mostly stored electronically, it presents a potential for automatic analysis and thus creation of information and knowledge.
 A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks.
 Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
-% (explain what learning is) The task of learning is...
-Supervised learning deals with labelled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. Unsupervised learning deals with unlabelled data and tries to solve the problem of clustering.
+% TODO: add some reference for the 2 major groups; optional: explain what learning is
+Supervised learning deals with labeled data, i.e. data for which ground truth is known, and tries to solve the problem of classification. %TODO: add ref for solving classification
+Unsupervised learning deals with unlabeled data and tries to solve the problem of clustering. % TODO: add ref for solving clustering
 
 Cluster analysis is the backbone of the present work.
-The goal of data clustering, as defined by \cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects. In other words, the goal of data clustering is to discover structure on data.
+The goal of data clustering, as defined by \cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects.
+In other words, the goal of data clustering is to discover structure on data.
 And the methodology used is to group patterns that are similar by some metric (e.g. euclidean distance, Pearson correlation) and separate those that are dissimilar. %TODO reference for a method for both euclidean distance and Pearson correlation
 
 As an example, Figure \ref{fig:intro raw} shows the plot of a simple synthetic dataset - a Gaussian mixture of 5 distributions.
 No extra information other than the position of the points is given, since clustering algorithms are unsupervised methods.
 Figure \ref{fig:intro natural} presents the desired (or "natural") clustering for this given dataset.
 Figure \ref{fig:intro kmeans} presents the clusters given by the K-Means algorithm with an initialization of 4 clusters.
-The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in such a simple example. In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
-
+The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in such a simple example.
+In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
 The number of clusters is a common initialization parameter for clustering methods.
 When no prior information about the dataset is given, the number of clusters can be hard to discover.
-f
+
 %TODO change this 3 plots to a three plot subfigure, with the plots side by side
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_raw.eps}
-\caption{Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}
-\label{fig:intro raw}
-\end{figure}
-
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_natural.eps}
-\caption{Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}
-\label{fig:intro natural}
-\end{figure}
-
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.5]{introduction/img/cluster_example_kmeans.eps}
-\caption{Sama data, as Figure \ref{fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}
-\label{fig:intro kmeans}
-\end{figure}
-
-% \begin{figure}
-% \begin{subfigure}{.5\textwidth}
-%   \centering
-%   \includegraphics[width=.8\linewidth]{introduction/img/cluster_example_raw.png}
-%   \caption{1a}
-%   \label{fig:sfig1}
-% \end{subfigure}%
-% \begin{subfigure}{.5\textwidth}
-%   \centering
-%   \includegraphics[width=.8\linewidth]{introduction/img/cluster_example_natural.png}
-%   \caption{1b}
-%   \label{fig:sfig2}
-% \end{subfigure}
-% \caption{plots of....}
-% \label{fig:intro2}
+% \begin{figure}[hbtp]
+% \centering
+% \includegraphics[scale=0.5]{introduction/img/cluster_example_raw.eps}
+% \caption{Gaussian mixture of 5 distributions. The middle "ball" of points is 2 Gaussians that intersect.}
+% \label{fig:intro raw}
 % \end{figure}
-% \end{document}
 
-% \begin{figure}
-%     \centering
-%     \begin{subfigure}[b]{0.3\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_raw.png}
-%         \caption{$y=x$}
-%         \label{fig:y equals x}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.3\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_naturaç.png}
-%         \caption{$y=3sinx$}
-%         \label{fig:three sin x}
-%     \end{subfigure}
-%     \hfill
-%     \begin{subfigure}[b]{0.3\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{introduction/img/cluster_example_kmeans.png}
-%         \caption{$y=5/x$}
-%         \label{fig:five over x}
-%     \end{subfigure}
-%     \caption{Three simple graphs}
-%     \label{fig:three graphs}
+% \begin{figure}[hbtp]
+% \centering
+% \includegraphics[scale=0.5]{introduction/img/cluster_example_natural.eps}
+% \caption{Gaussian mixture of 5 distributions. The colors of each point represents the group (the Gaussian distribution) to which it belongs.}
+% \label{fig:intro natural}
 % \end{figure}
+
+% \begin{figure}[hbtp]
+% \centering
+% \includegraphics[scale=0.5]{introduction/img/cluster_example_kmeans.eps}
+% \caption{Sama data, as Figure \ref{fig:intro raw}, but the group to which each point belongs to was computed by the K-Means algorithm with the number of clusters set to 4.}
+% \label{fig:intro kmeans}
+% \end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/img/cluster_example_raw}
+        \caption{Input data, unlabeled.}
+        \label{fig:intro raw}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/img/cluster_example_natural}
+        \caption{Desired labels.}
+        \label{fig:intro natural}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{introduction/img/cluster_example_kmeans}
+        \caption{K-Means's labels.}
+        \label{fig:intro kmeans}
+    \end{subfigure}
+    \caption{Gaussian mixture of 5 distributions. Fig. \ref{fig:intro raw} shows the raw input data, i.e. how the algorithms "sees" the data. Fig. \ref{fig:intro natural} shows the desired labels for each point, which here means their corresponding Gaussian. Fig. \ref{fig:intro kmeans} shows the output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.}
+    \label{fig:clustering plots}
+\end{figure}
+
 
 Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2014}):
 
@@ -115,7 +100,7 @@ Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2
 % \end{itemize}
 
 
-%TODO
+%TODO (extra introduction)
 % problems under Big Data paradihm
 % typical challenges with Big Data
 % why EAC?
@@ -123,22 +108,44 @@ Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2
 
 \section{Challenges and Motivation}
 
-A vast body of work on clustering algorithms exist. Yet, no single algorithm is able to respond to the specificities of all datasets. Different methods are suited to datasets of different characteristics and many times the challenge of the researcher is to find the right algorithm for the task. This is where ensemble methods enter. Ensemble methods use the clustering of several algorithms or several runs of the same algorithm to produce an end result better than any of the individual ones.
+A vast body of work on clustering algorithms exist.
+Yet, no single algorithm is able to respond to the specificities of all datasets.
+Different methods are suited to datasets of different characteristics and many times the challenge of the researcher is to find the right algorithm for the task. %TODO get ref for this
+Ensemble methods try to address this problem by using the clustering of several algorithms or several runs of the same algorithm to produce an end result better than any of the individual ones.
+% TODO: talk about EAC
 
-This, however, comes at a price. Instead of a single run of an algorithm, several are required, which increases computational complexity. Memory complexity is another aspect to have into account is another aspect to take into account when using such algorithms, specially when using large datasets.
+This, however, comes at a price.
+Instead of a single run of an algorithm, several are required, which increases computational complexity.
+Memory complexity is another aspect to have into account when using such algorithms, specially with large datasets.
 
-With the rapid increase of storage capacity and the an equal increase on the capability to capture information, the concept of Big Data was borne. There is an interest in clustering much of this data. However, processing such huge amounts of data has been out of the range of capability of the traditional desktop workstation. This sprouted the rise of new uses of certain computing architectures (e.g. Graphic Processing Units) and development of new programming models (e.g. Hadoop, shared and distributed memory). Each of these has its own specificities and the programmer must have an in-depth knowledge of the architectures and models used to model the problems and obtain results.
+With the rapid increase of storage capacity and an analogue increase on the capability to capture information, the concept of Big Data was born. %TODO: expand on this
+Valuable insight might be gained by processing much of this data, e.g. using clustering techniques.
+However, processing such huge amounts of data has been out of the range of capability of the traditional desktop workstation.
+This sprouted the rise of new uses of certain computing architectures (e.g. Graphic Processing Units) and development of new programming models (e.g. Hadoop, shared and distributed memory).
+Each of these has its own specificities and the programmer must have an in-depth knowledge of the architectures and models used to model the problems and obtain results.
 
-The algorithms themselves are no longer the only focus of research. Much effort is being put into the scalability and performance of algorithms, which usually translates in addressing their memory and computational complexities with parallized computation and distributed memory. This effort comes with challenges. How can one keep the original accuracy while significantly increase efficiency? Is there an explorable trade-off between accuracy and performance that researchers can tap into?
+The algorithms themselves are no longer the only focus of research.
+Much effort is being put into the scalability and performance of algorithms, which usually translates in addressing their memory and computational complexities with parallelized computation and distributed memory.
+This effort comes with challenges.
+How can one keep the original accuracy while significantly increase efficiency? Is there an explorable trade-off between accuracy and performance that researchers can tap into?
 
 
 %Currently, much of this processing happens in distributed networks of workstations with its own architecture. Another trend is using the 
 
 \section{Goals and Contribution}
 
-This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the method of Evidence Accumulation Clustering and its application in large datasets, while also accessing alternative algorithmic solutions and parallelization techniques. The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails, in terms of speed and memory. In particular, an efficient parallel version for GPU of different parts of the method.
+This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the method of Evidence Accumulation Clustering and its application in large datasets, while also accessing alternative algorithmic solutions and parallelization techniques.
+The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails, in terms of speed and memory.
 
-Throughout this dissertation, various clustering techniques are reviewed, implemented and tested.
+The main contributions are to adapt the different stages of the EAC toolchain to larger datasets and make each stage work with the others.
+In particular, an efficient parallel version for GPU of the K-Means clustering algorithm is implemented for the first stage of EAC.
+Still within this stage, two clustering algorithms in the young field of Quantum Clustering were reviewed, tested and evaluated having EAC in mind. % QK-Means and Horn
+Different methods for the second stage were tested, namely using complete matrices, sparse matrices and k Nearest Neighbors matrices.
+Worthy of mention is a novel and specialized method for building a sparse matrix was implemented in the second stage. % EAC CSR
+A post-processing operation on the second stage product was briefly studied. % the threshold cut
+A GPU parallel version of a MST solver algorithm was reviewed and tested for the last stage.
+A co-product of this was an algorithm to find the connected components of a MST.
+
 
 \section{Objectives}
 The main objectives for this work are:
@@ -168,9 +175,16 @@ The main objectives for this work are:
 
 % Explain briefly the work done
 
-% The scope of the thesis is Big Data and Cluster Ensembles. A main requirement in this context is to have fast clustering techniques. This may be accomplished in two ways: algorithmically or with parallelization techniques. The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
+% The scope of the thesis is Big Data and Cluster Ensembles.
+% A main requirement in this context is to have fast clustering techniques.
+% This may be accomplished in two ways: algorithmically or with parallelization techniques.
+% The former deals with finding faster solutions while the later takes existing solutions and optimizes them with execution speed in mind.
 
-% The initial research was under the algorithmic path. More specifically, exploring quantum inspired clustering algorithms. The findings of this exploration revealed this algorithms to be a poor match for integration in EAC and turned the focus of the research to parallelization techniques. Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among a cluster of workstations). While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
+% The initial research was under the algorithmic path.
+% More specifically, exploring quantum inspired clustering algorithms.
+% The findings of this exploration revealed this algorithms to be a poor match for integration in EAC and turned the focus of the research to parallelization techniques.
+% Two main paradigms of parallelization were found appropriate: GPGPU and distributed (among a cluster of workstations).
+% While the first is a readily available resource in common machines, the second is able to address problems dealing with larger datasets.
 
 \section{Outline}
 
@@ -181,14 +195,13 @@ The present document has the following strucutre:
 This chapter starts by reviewing the Evidence Accumulation Clustering algorithm in detail.
 It goes on to review possible approaches to the problem of scaling EAC.
 Based on an algorithmic approach, a review of the young field of quantum clustering is presented, with a more in-depth emphasis on two algorithms.
-With a parallelization approach in mind, a programming model for the GPU (CUDA) is reviewed.
-Naturally following are some parallelized versions of relevant algorithms to the problem of this dissertation.
+With a parallelization approach in mind, a programming model for the GPU (CUDA) is reviewed, followed by some parallelized versions of relevant algorithms to the problem of this dissertation.
 
 \section*{Chapter \ref{chapter:methodology}}
 
 This chapter presents the approach that was actually taken to scale EAC.
 It presents the steps taken on each part of the algorithm, the underlying difficulties and what was done to address them.
-It also includes the reference of approaches that are not suited to solve the problem.
+It also includes the reference of approaches that were developed but were not deemed suited to integrate the EAC toolchain.
 
 \section*{Chapter \ref{chapter:results}}
 
@@ -196,8 +209,10 @@ In this section the, the results of the different approaches are presented.
 
 \section*{Chapter \ref{chapter:discussion}}
 
-In this section the, the results are interpreted and discussed. A critical evaluation of the results is offered.
+In this section the, the results are interpreted and discussed.
+A critical evaluation of the results is offered.
 
 \section*{Chapter \ref{chapter:conclusions}}
 
-This chapter concludes the dissertation. It also offers recommendations for future work.
+This chapter concludes the dissertation.
+It also offers recommendations for future work.

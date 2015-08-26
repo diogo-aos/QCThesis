@@ -1,4 +1,4 @@
-\begin{thebibliography}{36}
+\begin{thebibliography}{50}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -54,6 +54,14 @@ L.~Chen and G.~Agrawal.
 \newblock URL
   \url{http://dl.acm.org/citation.cfm?doid=2287076.2287109$\backslash$nhttp://dl.acm.org/citation.cfm?id=2287109}.
 
+\bibitem[Feynman(1982)]{Feynman1982}
+R.~P. Feynman.
+\newblock {Simulating physics with computers}.
+\newblock \emph{International Journal of Theoretical Physics}, 21\penalty0
+  (6-7):\penalty0 467--488, 1982.
+\newblock ISSN 00207748.
+\newblock \doi{10.1007/BF02650179}.
+
 \bibitem[Fred and Jain(2002)]{Fred2002}
 A.~N.~L. Fred and A.~K. Jain.
 \newblock {Data clustering using evidence accumulation}.
@@ -106,6 +114,12 @@ D.~Horn and A.~Gottlieb.
 \newblock URL
   \url{http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.018702}.
 
+\bibitem[Hunter(2007)]{hunter2007matplotlib}
+J.~D. Hunter.
+\newblock {Matplotlib: A 2D graphics environment}.
+\newblock \emph{Computing in science and engineering}, 9\penalty0 (3):\penalty0
+  90--95, 2007.
+
 \bibitem[Jain(2010)]{Jain2010}
 A.~K. Jain.
 \newblock {Data clustering: 50 years beyond K-means}.
@@ -114,6 +128,26 @@ A.~K. Jain.
 \newblock ISSN 01678655.
 \newblock \doi{10.1016/j.patrec.2009.09.011}.
 \newblock URL \url{http://dx.doi.org/10.1016/j.patrec.2009.09.011}.
+
+\bibitem[Jain et~al.(1999)Jain, Murty, and Flynn]{Jain1999}
+a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
+\newblock {Data clustering: a review}.
+\newblock \emph{ACM Computing Surveys}, 31\penalty0 (3):\penalty0 264--323,
+  1999.
+\newblock ISSN 03600300.
+\newblock \doi{10.1145/331499.331504}.
+
+\bibitem[Jones et~al.()Jones, Oliphant, Peterson, and Others]{JonesSciPy}
+E.~Jones, T.~Oliphant, P.~Peterson, and Others.
+\newblock {\{SciPy\}: Open source scientific tools for \{Python\}}.
+\newblock URL \url{http://www.scipy.org/}.
+
+\bibitem[Karimi et~al.(2010)Karimi, Dickson, and Hamze]{Karimi2010}
+K.~Karimi, N.~G. Dickson, and F.~Hamze.
+\newblock {A Performance Comparison of CUDA and OpenCL}.
+\newblock \penalty0 (1):\penalty0 12, 2010.
+\newblock \doi{10.1109/ICPP.2011.45}.
+\newblock URL \url{http://arxiv.org/abs/1005.2581}.
 
 \bibitem[Kruskal(1956)]{kruskal1956shortest}
 J.~B. Kruskal.
@@ -137,6 +171,13 @@ A.~Louren\c{c}o and A.~Fred.
   Vision, WACV 2005}, pages 143--148, 2007.
 \newblock \doi{10.1109/ACVMOT.2005.46}.
 
+\bibitem[Louren\c{c}o et~al.(2009)Louren\c{c}o, Carreiras, Bul\`{o}, and
+  Fred]{LourencoECG2009}
+A.~Louren\c{c}o, C.~Carreiras, S.~R. Bul\`{o}, and A.~Fred.
+\newblock {ECG ANALYSIS USING CONSENSUS CLUSTERING}.
+\newblock pages 511--515, 2009.
+\newblock URL \url{Lourenco2009}.
+
 \bibitem[Louren\c{c}o et~al.(2010)Louren\c{c}o, Fred, and Jain]{Lourenco2010}
 A.~Louren\c{c}o, A.~L.~N. Fred, and A.~K. Jain.
 \newblock {On the scalability of evidence accumulation clustering}.
@@ -153,11 +194,56 @@ R.~Malakar and N.~Vydyanathan.
   PARCOMPTECH 2013}, 2013.
 \newblock \doi{10.1109/ParCompTech.2013.6621392}.
 
+\bibitem[McKinney(2010)]{McKinney2010}
+W.~McKinney.
+\newblock {Data Structures for Statistical Computing in Python}.
+\newblock \emph{Proceedings of the 9th Python in Science Conference},
+  1697900\penalty0 (Scipy):\penalty0 51--56, 2010.
+\newblock URL
+  \url{http://conference.scipy.org/proceedings/scipy2010/mckinney.html}.
+
+\bibitem[Millman and Aivazis(2011)]{Millman2011}
+K.~J. Millman and M.~Aivazis.
+\newblock {Python for scientists and engineers}.
+\newblock \emph{Computing in Science and Engineering}, 13\penalty0
+  (2):\penalty0 9--12, 2011.
+\newblock ISSN 15219615.
+\newblock \doi{10.1109/MCSE.2011.36}.
+
 \bibitem[Mi\v{s}i et~al.(2012)Mi\v{s}i, \^{C}, and Toma\v{s}evi]{Misi2012}
 M.~J. Mi\v{s}i, M.~\^{C}, and M.~V. Toma\v{s}evi.
 \newblock {Evolution and Trends in GPU Computing}.
 \newblock \emph{MIPRO, 2012 Proceedings of the 35th International Convention},
   pages 289--294, 2012.
+
+\bibitem[Nvidia(2015)]{Nvidia2014}
+Nvidia.
+\newblock {CUDA C Programming Guide}.
+\newblock \emph{Programming Guides}, \penalty0 (August), 2015.
+
+\bibitem[O'Callaghan et~al.(2002)O'Callaghan, Mishra, Meyerson, Guha, and
+  Motwani]{bigdatastream}
+L.~O'Callaghan, N.~Mishra, A.~Meyerson, S.~Guha, and R.~Motwani.
+\newblock {Streaming-data algorithms for high-quality clustering}.
+\newblock In \emph{Data Engineering, 2002. Proceedings. 18th International
+  Conference on}, pages 685--694, 2002.
+\newblock \doi{10.1109/ICDE.2002.994785}.
+
+\bibitem[Oliphant(2007)]{Oliphant2007}
+T.~E. Oliphant.
+\newblock {Python for scientific computing}.
+\newblock \emph{Computing in Science and Engineering}, 9\penalty0 (3):\penalty0
+  10--20, 2007.
+\newblock ISSN 15219615.
+\newblock \doi{10.1109/MCSE.2007.58}.
+
+\bibitem[P\'{e}rez and Granger(2007)]{Perez2007}
+F.~P\'{e}rez and B.~E. Granger.
+\newblock {IPython: A system for interactive scientific computing}.
+\newblock \emph{Computing in Science and Engineering}, 9\penalty0 (3):\penalty0
+  21--29, 2007.
+\newblock ISSN 15219615.
+\newblock \doi{10.1109/MCSE.2007.53}.
 
 \bibitem[Prim(1957)]{prim1957shortest}
 R.~C. Prim.
@@ -197,6 +283,22 @@ C.~d.~S. Sousa, A.~Mariano, and A.~Proen\c{c}a.
 \newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
   Algorithm}.
 \newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
+
+\bibitem[Su et~al.(2012)Su, Chen, Lan, Huang, and Wu]{Su2012}
+C.~L. Su, P.~Y. Chen, C.~C. Lan, L.~S. Huang, and K.~H. Wu.
+\newblock {Overview and comparison of OpenCL and CUDA technology for GPGPU}.
+\newblock \emph{IEEE Asia-Pacific Conference on Circuits and Systems,
+  Proceedings, APCCAS}, pages 448--451, 2012.
+\newblock \doi{10.1109/APCCAS.2012.6419068}.
+
+\bibitem[{Van Der Walt} et~al.(2011){Van Der Walt}, Colbert, and
+  Varoquaux]{VanDerWalt2011}
+S.~{Van Der Walt}, S.~C. Colbert, and G.~Varoquaux.
+\newblock {The NumPy array: A structure for efficient numerical computation}.
+\newblock \emph{Computing in Science and Engineering}, 13\penalty0
+  (2):\penalty0 22--30, 2011.
+\newblock ISSN 15219615.
+\newblock \doi{10.1109/MCSE.2011.37}.
 
 \bibitem[Vineet(2009)]{Vineet2009}
 V.~Vineet.
