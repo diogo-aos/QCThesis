@@ -87,8 +87,12 @@ to name two.
 Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects.
 However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ \mathcal{C} \} - n_{ij}$.
 
+The final clustering is done using the SL or AL algorithms.
+Each of this algorithms will take as input the co-associations matrix as the similarity matrix.
+Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e. the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ clusters to $n$.
 
-\paragraph{Examples of applications}
+
+\subsection{Examples of applications}
 
 EAC has been used with success in several applications:
 \begin{itemize}
@@ -97,7 +101,7 @@ EAC has been used with success in several applications:
 	\item in computer vision it was used as a solution to the problem of clustering of contour images (from hardware tools) \cite{Lourenco2007}.
 \end{itemize}
 
-\paragraph{Advantages and Disadvantages}
+\subsection{Advantages and Disadvantages}
 %#REVIEW advantages and disadvantages of EAC
 
 An advantage of EAC is that it takes no input parameters such as the number of output clusters.
@@ -109,9 +113,9 @@ This translates in an almost prohibitive use of this method for bigger datasets.
 
 \subsection{Scalability of EAC} 
 The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC.
-Two approaches have been proposed to address this obstacle: one dealing with reducing the co-association matrix by considering only the distances of patterns to their $p$ neighbors and the other by using a sparse co-association matrix and maximizing the its sparsity.
+Two approaches have been proposed to address this obstacle: one dealing with reducing the co-association matrix by considering only the distances of patterns to their $p$ neighbors and the other by using a sparse co-association matrix and maximizing its sparsity.
 
-\subsubsection{$p$ neighbours approach}
+\subsubsection{$p$ neighbors approach}
 The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbors of each sample are considered in the voting mechanism.
 This comes at the cost of having to keep track of the neighbors of each pattern in a separate data structure and also of pre-computing the $p$ neighbors.
 The quadratic space complexity is then transformed to $O(2np)$ and usually $p < \frac{n}{2}$ (value for which both approaches would take the same space), the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than that used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
@@ -198,8 +202,6 @@ Most of the approaches for such conversions make use of Groover's search algorit
 Most literature on this approach is also mostly theoretical since the physical requirements still don't exist for this methods to be tested.
 This approach can be seen as part of the bigger problem of quantum computing and quantum information processing.
 
-
-
 An alternative to using real quantum systems would be to simulate them.
 However, simulating quantum systems in classical computers is a very hard task by itself and literature suggest is not feasible \cite{Feynman1982}% get refs for simulation of quantum systems not being feasable; Feynmann; I think washington course had something -->
 Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would not allow speedups. 
@@ -217,6 +219,8 @@ In the following two sections these approaches for quantum inspired computationa
 \subsubsection{What is a quantum bit?}
 
 To understand the workings of the algorithms based on the concept of the qubit, it is useful to cast some insight about its properties and functioning.
+This section has the purpose to provide a brief introduction to this topic.
+An extended and in-depth review of this and related topics can be found in \cite{Lanzagorta2008}.
 The qubit is a quantum object with certain quantum properties such as entanglement and superposition.
 Within the context of the studied algorithm, the only property used is superposition.
 A qubit can have any value between 0 and 1 (superposition property) until it is observed, which is when the system collapses to either state.
@@ -258,8 +262,11 @@ $$
 
 The probability of observing the state $[000]$ will be $|\alpha_1|^2 \times |\alpha_2|^2 \times |\alpha_3|^2$
 To use this model for computing purposes, black-box objects called \emph{oracles} are used.
-In this context an oracle is an abstraction for the programmer.
+Oracles are important to understand quantum speedups.
+They can be understood as subroutines that cannot be usefully examined or unknown physical systems with properties one would like to estimate that perform a quantum operation on a qubit string \cite{Rosenbaum2011}.
+Within the context of the present work an oracle is an abstraction for the programmer.
 It is an object which can be called and changes state (which can be observed) as a consequence.
+To the purposes of the following sections, the concept of the oracle is more related to \emph{oracles with internal randomness} \cite{Rosenbaum2011}.
 
 % # get ref -->
 % Def from wiki: In complexity theory and computability theory, an oracle machine is an abstract machine used to study decision problems.
@@ -446,15 +453,13 @@ At the time of writing, the major programming models used for computation in GPU
 While the first is widely available in most devices the later is only available for NVIDIA devices.
 
 % give references for GPU MapReduce
-It should be noted that ports of the MapReduce framework for the GPU were found in the literature.
-As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU.
+As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU \cite{Ji2011,Xin2012,He2008}.
 This translates in using the same programming model over a wide array of computing platforms.
 
+
 \subsection{OpenCL vs CUDA}
-
-Karimi2010,Su2012
-
 % TODO rewrite this on terms of a better comparisson NEEDS REFS
+
 At the moment of writing the most mature programming models are CUDA and OpenCL.
 CUDA was appeared first is the most mature of the two and is supported only by NVidia devices.
 OpenCL has the advantage of portability, but that comes with issues of performance portability.
@@ -477,8 +482,10 @@ Literature also reports that performance from CUDA is better than OpenCL even fo
 
 \subsection{Overview of CUDA}
 
-%TODO expand on the CUDA framwork, add figures from NVidia to clarify what's explained
+%TODO needs refs, it's mostly the C CUDA programming guide
 
+This section presents an overview of the CUDA programming model and its main concepts and peculiarities.
+For a more thorough and extensive explanation of these topic, the CUDA C Programming Guides \cite{Nvidia2014}, the source of the present review, should be consulted.
 A GPU is constituted by one or several streaming processors (or multiprocessor).
 Each of this processors contains several simpler processors, each of which execute the same instruction at the same time at any given time.
 In the CUDA programming model, the basic unit of computation is a \emph{thread}.
@@ -494,112 +501,160 @@ The computation of one block is independent from other blocks and each block is 
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{stateofart/gpgpu/threadgrid}
-        \caption{Thread hierarchy.}
+        \caption{Thread hierarchy \cite{Nvidia2014}.}
         \label{fig:gridthread}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{stateofart/gpgpu/blockprocessor}
-        \caption{Automatic scalability.}
+        \caption{Automatic scalability \cite{Nvidia2014}.}
         \label{fig:blockprocessor}
     \end{subfigure}
-    \caption{\ref{fig:gridthread} represents the thread hierarchy and \ref{fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors. Both figures were taken from \cite{Nvidia2014}.}
-    \label{fig:clustering plots}
+    \caption{\ref{fig:gridthread} represents the thread hierarchy and \ref{fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.}
+    \label{fig:cuda fig1}
 \end{figure}
-
 
 Block configuration can be multidimensional, up to and including 3 dimensions.
 Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of CUDA being used, e.g. for GPUs with CUDA compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads.
 For the previous example, it's wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
 
-
 Depending on the architecture, GPUs have several types of memories.
-Accessible to all processors are the global memory, constant memory and texture memory.
-Blocks share a smaller but significantly faster memory called shared memory.
-And each thread has it's own, even smaller and faster, local memory.
+Accessible to all processors (and threads) are the global memory, constant memory and texture memory, of which the last two are read-only.
+Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, which enables inter-thread communication inside a block.
+Lastly, each thread as access to local memory.
+Local memory resides in global memory space and has the latency for read and write operations.
+However, if the thread is using only single variables or constant sized arrays since it stores them in the register space, which is very fast.
+If the memory used exceeds the available register space the local memory used.
 This memory hierarchy is represented in Figure \ref{fig:memorymodel}.
 
-\begin{figure}[hbtp]
-\centering
-\includegraphics[width=0.5\textwidth]{stateofart/gpgpu/memorymodel}
-\caption{Memory model used by CUDA.}
-\label{fig:memorymodel}
+
+\begin{figure}[!ht]
+    \centering
+    % this was taken from the internet but is available at NVIDIA slides, couldn't find a decent reference
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{stateofart/gpgpu/memorymodel}
+        \caption{Memory model used by CUDA \cite{Nvidia2014}.}
+        \label{fig:memorymodel}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{stateofart/gpgpu/flow}
+        \caption{Sample execution flow of a CUDA application \cite{Nvidia2014}.}
+        \label{fig:cudaflow}
+    \end{subfigure}
+    \caption{}
+    \label{fig:cuda fig2}
 \end{figure}
 
+The typical flow of a CUDA application (and, typically, any modern GPU application) is explained in this paragraph and can be observed in Figure \ref{fig:cudaflow}.
+First, the host CPU transfers any necessary data to the device memory (global, texture or constant) and is responsible for setting up the device code execution, which entails selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+The next phase is simply the device executing the kernel.
+Finally, the host CPU will transfer back the results from the device.
+It should be noted that the latest architectures support \emph{Dynamic Programming}.
+This functionality allows the device to start other kernels without the intervention of the host CPU, which would alter the typical execution flow explained above if used.
+It can be particularly useful if several kernels have to be executed in an application from the same input data but with dependencies.
+In such a scenario, a block of the second kernel could be executed as soon as all dependencies from the first kernel were met, effectively cutting overheads for kernel calling from the host CPU.
+
+It should be noted that the literature reports that the performance of K-Means using Dynamic Parallelism is slightly worse than that of its standard GPU counterpart \cite{DiMarco2013}.
+The results of aforementioned study showed datasets sufficiently large to make them relevant for the present work, considering the focus of the dissertation. 
+
 \subsection{Parallel K-Means}
-%TODO add flowchart of the parallel K-Means
-
-%Algorithm 1 assumes that there are as many processors as data elements. For large arrays on a GPU running CUDA, this is not usually the case. Instead, the programmer must divide the computation among a number of thread blocks that each scans a portion of the array on a single multiprocessor of the GPU. Even still, the number of processors in a multiprocessor is typically much smaller than the number of threads per block, so the hardware automatically partitions the "for all" statement into small parallel batches (called warps) that are executed sequentially on the multiprocessor. An NVIDIA 8 Series GPU executes warps of 32 threads in parallel. Because not all threads run simultaneously for arrays larger than the warp size, Algorithm 1 will not work, because it performs the scan in place on the array. The results of one warp will be overwritten by threads in another warp.
-
-%To solve this problem, we need to double-buffer the array we are scanning using two temporary arrays. Pseudocode for this is given in Algorithm 2, and CUDA C code for the naive scan is given in Listing 39-1. Note that this code will run on only a single thread block of the GPU, and so the size of the arrays it can process is limited (to 512 elements on NVIDIA 8 Series GPUs). Extension of scan to large arrays is discussed in Section 39.2.4.
-
 
 K-Means is one of the building block of the EAC chain.
 Other algorithms can be used, but due to its simplicity and speed it is often used to produce ensembles varying the number of centroids to be used.
 Furthermore, it is a very good candidate for parallelization.
-K-Means is composed by two main steps:
+Partitional clustering is an NP-hard problem and one of the most famous non-optimal solutions is the K-Means algorithm \cite{kmeansoriginal}.
+The sequential K-Means algorithm is composed by two main stages \cite{Jain2010}:
 
 \begin{enumerate}
-	\item computation of the labels of each pattern in the dataset, e.g. the label of the $n-th$ pattern is $0$ if the closest centroid is $0$.
-	\item recomputation of the centroids based on the labels assignment, e.g. the new centroids will be the mean of all the patterns assigned to it.
+	\item \textbf{labeling stage} for the computation of the labels of each pattern in the dataset, e.g. the label of the $n-th$ pattern is $0$ if the closest centroid is $0$.
+	\item \textbf{update stage} for the recomputation of the centroids based on the labels assignment, i.e. the new centroids will be the mean of all the patterns assigned to it.
 \end{enumerate}
 
-The first step is inherently parallel as the computation of the label of the $n-th$ pattern is not dependent on any other pattern, but only on the centroids.
-Two possible approaches to parallelize this step on the GPU are possible, a centroid-centric and a data-centric.
-In the former each computation unit is responsible for a centroid and will compute the distance from its centroid to every pattern.
-In the end, the patterns are assigned the closest centroid.
-This approach is suitable for devices with a low number of computing units so as to stream the data to each one.
-The later approach is suited to devices with more computing units.
-Each unit computes the distance from one single pattern to every centroid.
-In the end, that same unit assigns the pattern to the closest centroid.
-This strategy has the advantage of using less memory since it doens't need to store all the pair-wise distances to perform the labelling - it only needs to store the best distance for each pattern.
+The K-Means algorithm is executed until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
+The initial centroids are usually randomly chosen, but other schemes exist to improve the overall accuracy of the algorithm, e.g. K-Means++ \cite{Arthur2007}.
+After the first iteration, the first step is executed with the new centroids.
+The end result of the algorithm is the labels produced in the first step.
 
+Several parallel implementations of this algorithm for the GPU exist \cite{Zechner2009,Bai2009,Wu2011,Sirotkovi2012,Farivar2008}.
+The first step is inherently parallel as the computation of the label of the $n$-th pattern is not dependent on any other pattern, but only on the centroids.
+Two possible approaches to parallelize this step on the GPU are possible, a centroid-centric or a data-centric \cite{Bai2009}.
+In the former each thread is responsible for a centroid and will compute the distance from its centroid to every pattern.
+These distances must be stored and, in the end, the patterns are assigned the closest centroid.
+This approach is suitable for devices with a low number of processors so as to stream the data to each one.
+The later approach is suited to devices with more processors.
+Each thread will compute the distance from one or more data points to every centroid and determines to which centroid they belong to (their labels).
+This strategy has the advantage of using less memory since it doesn't need to store all the pair-wise distances to perform the labeling - it only needs to store the best distance for each pattern.
+
+The approach taken in \cite{Zechner2009b}, only parallelizes the labeling stage and takes a data-centric approach to the problem.
+Each thread computes the distance from a set of data points to every centroid and determines the labels.
+The remaining steps are performed by the host CPU.
+This study reported speed ups up to 14, for input datasets of 500000 points.
+Furthermore, it should be noted that the speed up was measured against a sequential version with all C++ compiler optimizations turned on, including vector operations (which, by themselves, are a way of parallelizing the computation).
+The parallelized algorithm's flow can be observed in Figure \ref{fig:kmeans}.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.7\textwidth]{stateofart/gpgpu/kmeans}
+\caption{Flow execution of the GPU parallel K-Means algorithm.}
+\label{fig:kmeans}
+\end{figure}
 
 \subsection{Parallel Single-Link Clustering}
 
 SL is an important step in the EAC chain.
 Given the new similarity metric (how many times a pair of patterns are clustered together in the ensemble), SL provides an intuitive way of obtaining the final partition: patterns that are clustered together often in the ensemble should be clustered together.
-Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e., the number of clusters $n$ should be such that it maximizes the cost of cutting the dendrogram from $n-1$ to $n$.
 
-However, SL is not easily parallelized since, typically, a new cluster generated at each step may include the one generated in the previous iteration.
-The most parallelizable part is the computation of the pair-wise similarity matrix, which in EAC is part of the input (the co-association matrix) and, thus, not considered.
+% explain how SL works
+The sequential SL algorithm works over a pair-wise similarity matrix and starts by considering that every data point is a separate cluster.
+Then, in each iteration, it selects the smallest weight that connects two clusters and merges the two clusters.
+The algorithm stops when $n-1$ merges have been performed, which is when all the data points have been connected in the same cluster.
+The output is a dendrogram connecting all the data points at different levels.
+
+% SL link to MST
+SL is not easily parallelized since, typically, a new cluster generated at each step may include the one generated in the previous iteration.
+The most parallelizable part is the computation of the pair-wise similarity matrix, which in EAC is computed with the part of the input (the co-association matrix) and, thus, not considered.
 An important relationship between SL and the Minimum Spanning Tree problem of graphs is the key to parallelize SL.
-If one takes the co-association matrix to be a graph (each pattern is a node and each association an edge), then, when performing SL-HAC over this graph, the result can be interpreted as a structured MST.
+If one takes the pair-wise similarity matrix to be a graph (each pattern is a node and each association an edge), then, when performing SL over this graph, the result can be interpreted as a structured MST.
 To get $n$ clusters, one cuts the $n-1$ links with highest cost.
-The same approach for the final clustering was used in \cite{Fred2002}.
+If one takes this approach for solving the SL problem, it becomes easier to parallelize it since parallel MST algorithms are abundant in literature \cite{Vineet2009,rostrup2013fast,Sousa2015}.
+Furthermore, the MST approach to solve SL has been reported to be the fastest, since (1) it needs only $O(n)$ working space instead of the $O(n^2$ space of a pair-wise similarity matrix working copy and (2) it reads each similarity only once \cite{Mullner2011}.
+The same approach for extracting the final clustering in EAC was used in \cite{Fred2002}.
+It should be noted that another algorithm with the characteristics mentioned for the MST approach for SL exist in another algorithm, the SLINK \cite{Sibson1973}, which even has some advantages under certain conditions \cite{Mullner2011}.
 
-\subsubsection{Algorithm for finding Minimum Spanning Trees}
+\subsection{Algorithm for finding Minimum Spanning Trees}
 There are several algorithms for computing an MST.
 The most famous are Kruskal \citep{kruskal1956shortest}, Prim \citep{prim1957shortest} and Borůvka \citep{boruuvka1926jistem}.
 Borůvka's algorithm is also known as Sollin's algorithm.
 The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
-As such, even though GPU parallel variants of Kruskal's \citep{rostrup2013fast} and Prim's \citep{wang2011design} algorithms exist, the focus will be on Borůvka's (which was also the first to be parallelized for the GPU).
+As such, even though GPU parallel variants of Kruskal's \citep{rostrup2013fast} and Prim's \citep{wang2011design} algorithms exist, the focus will be on Borůvka's.% (which was also the first to be parallelized for the GPU).
 
-Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a good overview over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest, as to the moment of writing.
-This section will review the algorithm proposed in \citep{Sousa2015}, refered to as \emph{Sousa2015} from henceforth.
+Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a more in-depth review over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest, as to the moment of writing.
+This section will review the algorithm proposed in \citep{Sousa2015}, referred to as \emph{Sousa2015} from henceforth.
 
-\paragraph{CSR format}
+\subsubsection{CSR format}
 \emph{Sousa2015} takes in a graph as input, represented in the CSR format (a format used for sparse matrices).
 This representation is equivalent to having a square matrix $G$ with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$.
 This format is represented in Fig. \ref{fig:csr}.
-It requires three arrays to fully describe the matrix:
+It requires three arrays to fully describe the graph:
 
 \begin{itemize}
-	\item a \emph{data} array containing all the non-zero values, where values from the same row appear sequentially, i.e. if the first row has 20 non-zero values, then the first 20 elements from this array belong to the first row;
-	\item a \emph{indices} array contaning the column index of each non-zero value;
-	\item a \emph{indptr} array containg a pointer to the first element in the \emph{data} and \emph{indices} arrays that belongs to each row, e.g. if the $i-th$ element (row) of \emph{indptr} is $k$ and it has 10 values, then all the elements from $k$ to $k + 10$ in \emph{data} belong to the $i-th$ row.
+	\item a \emph{data} array containing all the non-zero values, where values from the same row appear sequentially from left to right and top to bottom, i.e. in \emph{row-major} order, e.g. if the first row has 20 non-zero values, then the first 20 elements from this array belong to the first row;
+	\item a \emph{indices} array of the same size as \emph{data} containing the column index of each non-zero value;
+	\item a \emph{indptr} array of the size of the number of rows containing a pointer to the first element in the \emph{data} and \emph{indices} arrays that belongs to each row, e.g. if the $i-th$ element (row) of \emph{indptr} is $k$ and it has 10 values, then all the elements from $k$ to $k + 10$ in \emph{data} belong to the $i-th$ row.
 \end{itemize}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{stateofart/csr_format.eps}
+\includegraphics[width=0.5\textwidth]{stateofart/gpgpu/csr_format}
 \caption{Correspondence between a sparse matrix and its CSR counterpart.}
 \label{fig:csr}
 \end{figure}
 
-Within the algorithm's context, the three arrays are \emph{first\_edge} (previously \emph{indptr}, \emph{destination} (\emph{indices}) and \emph{weight} (\emph{data}). These three arrays can completely describe a graph.
-However, the algorithm uses an extra array \emph{outdegree} that can be deduced from the \emph{first\_edge} array.
+Within the algorithm's context, the three arrays are denominated as \emph{first\_edge} (previously \emph{indptr}, \emph{destination} (\emph{indices}) and \emph{weight} (\emph{data}). Although these three arrays can completely describe a graph, the algorithm uses an extra array \emph{outdegree} that stores the number of non-zero values of each row and can be deduced from the \emph{first\_edge} array.
 The length and purpose of each of this arrays:
 \begin{itemize}
 	\item \emph{first\_edge} is an array of size $\|V\|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} edge.
@@ -610,43 +665,97 @@ The length and purpose of each of this arrays:
 
 $V$ is the number of vertices and $E$ is the number of edges.
 The number of edges is duplicated to cover both directions, since the algorithm works with undirected graphs.
+This basically means that instead of using the the upper (of lower) triangular matrix (which can also completely describe the graph), it uses the complete one resulting in double redundancy of each edge.
 The edges in the \emph{destination} array are grouped together by the vertex they originate from, e.g. if edge $j$ is the first edge of vertex $i$ and this vertex has 3 edges, then edges $\{j,j+1,j+2\}$ are the outgoing edges of vertex $i$.
 
-\paragraph{Steps of the algorithm}
-%TODO describe Sousa2015 algorithm
-%TODO add figure with fluxogram
-The algorithm consists on the following steps:
+\subsubsection{Steps of the algorithm}
+
+Within the context of the algorithm the \emph{id} of a vertex is its index in the \emph{first\_edge} array, the \emph{color} is related to the \emph{ids} and the \emph{successor} of a vertex is the destination vertex of one of its edges. The algorithm's flow is represented in Figure \ref{fig:mst sousa} and its main steps are explained below:
 
 \begin{enumerate}
-	\item 
+	\item \emph{Find minimum edge per vertex}: select and store the minimum weighted edge for each vertex and resolve same weight conflict by picking the edge with lower destination vertex id.
+	\item \emph{Remove mirrored edges}: a mirrored edge the successor of its destination vertex is its origin vertex.
+	All mirrored edges are removed from the selected edges in the first step. All edges that are not removed are added to the resulting MST.
+
+	\item \emph{Initialize and propagate colors}: this step is responsible for identifying connected components so the graph may be contracted.
+	Each connected component will be a super-vertex in the contracted graph, which means it will be a single vertex that is representing a subgraph.
+	Each vertex is initialized with the same color of its successor's id.
+	If a vertex has no successor because that edge was removed in the previous step than its color is initialized with its own id.
+	The colors are then propagated by setting each vertex's color to the color of its successor, until convergence.
+
+	\item \emph{Create new vertex ids}: only the super-vertices will be propagated to the next iteration but they'll have new ids for building the new contracted graph.
+	The new ids will range from $0$ to $s$, where $s$ is the number of super-vertices.
+	The vertex that will represent a super-vertex is the vertex whose color is its own id.
+	The representative vertices will take the new ids in increasing order according to their own ids in increasing order, e.g. vertex $2$ is the representative with lowest id so it will have the id $0$ in the contracted graph.
+	This step relied on the \emph{exclusive scan} operation, which is explained in section \ref{sub:scan}.
+
+	\item \emph{Count, assign, and insert new edges}: the final step is where the final operations for building the contracted graph are performed.
+	The algorithm will count the number of edges that each super-vertex has connecting to other super-vertices, i.e. the connections between subgraphs.
+	This is simply accomplished by selecting every edge whose origin and destination colors are distinct.
+	For each such edge the corresponding positions of the origin and destination super-vertices in a new \emph{outdegree} array are incremented with an atomic operation.
+	The new \emph{first\_edge} array is obtained from performing an exclusive scan over \emph{outdegree}.
+	The next step is to assign and insert edges in the contracted graph.
+	Once again, the algorithm will determine which edges will be in the contracted graph by checking the origin and destination colors.
+	A copy \emph{top\_edge} of the new \emph{first\_edge} array is done to keep track of where to insert the new edges.
+	When an edge is assigned to a super-vertex it is inserted (in the new \emph{weight} and \emph{destination} arrays) in the position specified in \emph{top\_edge} and the algorithm increments \emph{top\_edge} so the next edge will not overwrite the previous one.
+	The increment is done with an atomic operation since multiple edges can be assigned to the same super-vertex and the insertion of all edges is being done in parallel.
+	It should be noted that duplicated edges are note removed, i.e. several distinct connections between two super-vertices can be kept, since the author considers that the benefit of doing so does not outweigh the computational overhead.
 \end{enumerate}
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.5\textwidth]{stateofart/gpgpu/mst_boruvka_flow}
+\caption{Flow execution of Sousa2015.}
+\label{fig:mst sousa}
+\end{figure}
 
 It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of MSTs.
 Upon contact, the author reported that a solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
 
+\subsubsection{Exclusive scan}
+\label{sub:scan}
+%Algorithm 1 assumes that there are as many processors as data elements. For large arrays on a GPU running CUDA, this is not usually the case. Instead, the programmer must divide the computation among a number of thread blocks that each scans a portion of the array on a single multiprocessor of the GPU. Even still, the number of processors in a multiprocessor is typically much smaller than the number of threads per block, so the hardware automatically partitions the "for all" statement into small parallel batches (called warps) that are executed sequentially on the multiprocessor. An NVIDIA 8 Series GPU executes warps of 32 threads in parallel. Because not all threads run simultaneously for arrays larger than the warp size, Algorithm 1 will not work, because it performs the scan in place on the array. The results of one warp will be overwritten by threads in another warp.
 
+%To solve this problem, we need to double-buffer the array we are scanning using two temporary arrays. Pseudocode for this is given in Algorithm 2, and CUDA C code for the naive scan is given in Listing 39-1. Note that this code will run on only a single thread block of the GPU, and so the size of the arrays it can process is limited (to 512 elements on NVIDIA 8 Series GPUs). Extension of scan to large arrays is discussed in Section 39.2.4.
 
-\subsubsection{Exclusive scan} The \emph{scan} operation is one of the fundamental building block of parallel computing. 
+The \emph{scan} operation is one of the fundamental building block of parallel computing. 
 Furthermore, two of the steps of the Borůvka variant of \cite{Sousa2015} are performed with an exclusive scan where the operation is a sum. 
 To illustrate the functioning of the exclusive scan, let's consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$.
 Let's further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$.
 Then the output will be $[0,0,1,3,5,8,13,19]$.
 The first element of the output will be the identity (if it were an inclusive scan, it would be the first element itself).
 The second element is the sum between the first element of the input array and the first element of the output array, the third element is the sum between the second element of the input array with second element of the output array, and so on.
-This algorithm seems highly sequential in nature each element of the output array depends on the previous one. 
-Still, two approaches exist to parallelize it:
+This algorithm seems highly sequential in nature each element of the output array depends on the previous one, but two main parallel versions can be found in literature: Hillis and Steele's \cite{Hillis1986} and Blelloch's \cite{Blelloch1990}. 
+The two approaches focus on distinct efforts: the former focus on optimizing the number of steps \cite{Hillis1986} while the later focus on optimizing the amount of work done \cite{Blelloch1990}.
+The focus will be on the Blelloch's algorithm.
 
-% add refs and explain briefly
-\begin{itemize} 
-	\item Hillis and Steele
-	\item Bleloch
-\end{itemize}
+Blelloch's algorithm is comprised by two main phases: the \emph{reduce phase} (or \emph{up-sweep}) and the \emph{down-sweep phase}.
+The algorithm is based on the concept of \emph{balanced binary trees} \cite{Harris2007}, but it should be noted that no such data structure is actually used.
+An in-depth explanation of this concept and how it relates to the algorithm being reviewed falls outside the scope of the present work and it is recommended that the reader consult \cite{Harris2007} or \cite{Blelloch1990} for such details.
 
-%TODO fix refs
-The two approaches focus on distinct efforts: the former focus on optimizing the number of steps while the later focus on optimizing the amount of work done.
+During the reduce phase (see Figure \ref{fig:scan reduce}), the algorithm traverses the tree and computes partial sums at the internal nodes of the tree.
+This operation is also known as a parallel reduction due to the fact that the total sum is stored in the root node (last node) of the tree \cite{Harris2007}.
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.8\textwidth]{stateofart/gpgpu/blelloch_reduce}
+\caption{Representation of the reduce phase of Blelloch's algorithm \cite{Harris2007}. \emph{d} is the level of the tree and the input array can be observed at $d=0$.}
+\label{fig:scan reduce}
+\end{figure}
 
+In the down-sweep phase (see Figure \ref{fig:scan down-sweep}) the algorithm traverses back the tree.
+During the traversal, and using the partial sums calculated in the reduce phase, it builds the scan in place (overwriting the result of the reduce phase).
 
-%TODO the emphasis here must be GPGPU clustering and not MapReduce
-%I have to find more literature regarding this
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.8\textwidth]{stateofart/gpgpu/blelloch_downsweep}
+\caption{Representation of the down-sweep phase of Blelloch's algorithm \cite{Harris2007}. \emph{d} is the level of the tree.}
+\label{fig:scan down-sweep}
+\end{figure}
+
+This the computational complexity of this algorithm is higher than that of its sequential counterpart.
+The sequential version has a $O(n)$ computational complexity since it only goes through the input array once and performs exactly $n$ additions.
+Blelloch's algorithm, in the other hand, performs $2(n-1)$ additions in the reduce phase and $n-1$ swaps in the down-sweep phase.
+However, since it is a parallel algorithm and the computation will be distributed across several processing units, it still performs better.
+It should also be noted that, as described, the algorithm supports input arrays of a size that is a power of $2$.
+However, \cite{Harris2007} explains how to overcome this limitation and also offers an implementation for CUDA and hardware specific optimizations.
