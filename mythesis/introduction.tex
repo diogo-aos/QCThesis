@@ -66,7 +66,7 @@ Is there an exploitable trade-off between the three main characteristics: speed,
 These are guiding questions that this dissertation addresses.
 
 
-\section{Goals and Contribution}
+\section{Goals}
 
 This dissertation aims to research and extend the state of the art of ensemble clustering, in what concerns the EAC method and its application in large datasets, while also accessing algorithmic solutions and parallelization techniques.
 The goal is to understand EAC's suitability for large datasets and find ways to respond to the challenges that that entails, in terms of speed and memory.
@@ -84,14 +84,14 @@ The main objectives for this work are:
 \item Validation of Big Data EAC on real data% (ECG for emotional state discovery and/or discovery of natural groups, or other datasets)
 \end{itemize}
 
-The main contributions are the adaptation of the three distinct stages of the EAC toolchain to larger datasets.% and make each stage work with the others.
+\section{Contribution}
+The main contributions are the adaptation of the three distinct stages of the EAC toolchain to larger datasets.
 In particular, an efficient parallel version for GPU of the K-Means clustering algorithm is implemented for the first stage of EAC.
 Still in this stage, two clustering algorithms in the young field of Quantum Clustering were reviewed, tested and evaluated having EAC in mind. % QK-Means and Horn
-Different methods for the second stage were tested, using complete matrices, sparse matrices and a k Nearest Neighbors scheme.
+Different methods for the second stage were tested, using complete matrices, sparse matrices and a k-Nearest Neighbors scheme.
 Worthy of mention is a novel and specialized method for building a sparse matrix in the second stage. % EAC CSR
 %A post-processing operation on the second stage product was briefly studied. % the threshold cut
-A GPU parallel version of a MST solver algorithm was reviewed and tested for the last stage.
-A co-product of this was an algorithm to find the connected components of a MST.
+A GPU parallel version of a MST (Minimum Spanning Tree) solver algorithm was reviewed and tested for the last stage, a co-product of which was an algorithm to find the connected components of a MST.
 A disk solution was implemented for dealing with large datasets in the final stage.
 
 

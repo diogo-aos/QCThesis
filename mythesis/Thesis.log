@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  19 SEP 2015 17:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  19 SEP 2015 17:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -867,7 +867,7 @@ LaTeX Info: Redefining \nameref on input line 70.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 15.
 
-<Figures/afa.png, id=217, 571.13374pt x 770.88pt>
+<Figures/afa.png, id=221, 571.13374pt x 770.88pt>
 File: Figures/afa.png Graphic file (type png)
  <use Figures/afa.png>
 Package pdftex.def Info: Figures/afa.png used on input line 15.
@@ -877,14 +877,14 @@ Package pdftex.def Info: Figures/afa.png used on input line 15.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 16.
 
-<IST_A_CMYK_POS.pdf, id=219, 845.0471pt x 597.51233pt>
+<IST_A_CMYK_POS.pdf, id=223, 845.0471pt x 597.51233pt>
 File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
 
 <use IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 16.
 (pdftex.def)             Requested size: 288.78807pt x -90.76195pt.
 
-<Figures/clustering.jpg, id=220, 274.02374pt x 159.59625pt>
+<Figures/clustering.jpg, id=224, 274.02374pt x 159.59625pt>
 File: Figures/clustering.jpg Graphic file (type jpg)
 
 <use Figures/clustering.jpg>
@@ -991,7 +991,7 @@ LaTeX Warning: Reference `chapter:results' on page 2 undefined on input line 12
 Chapter 2.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_raw.png, id=443, 392.46625pt x 284.06125pt>
+_raw.png, id=448, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_raw.png Graphic file (type png)
 
@@ -1002,7 +1002,7 @@ tion/img/cluster_example_raw.png used on input line 58.
 (pdftex.def)             Requested size: 136.57462pt x 98.85077pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_natural.png, id=444, 392.46625pt x 284.06125pt>
+_natural.png, id=449, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_natural.png Graphic file (type png)
 
@@ -1013,7 +1013,7 @@ tion/img/cluster_example_natural.png used on input line 65.
 (pdftex.def)             Requested size: 136.57462pt x 98.85077pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_kmeans.png, id=445, 392.46625pt x 284.06125pt>
+_kmeans.png, id=450, 392.46625pt x 284.06125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
 ample_kmeans.png Graphic file (type png)
 
@@ -1039,7 +1039,7 @@ Underfull \vbox (badness 7468) has occurred while \output is active []
  [12]
 [13] [14] [15] [16]
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid.png,
- id=656, 481.8pt x 609.27625pt>
+ id=661, 481.8pt x 609.27625pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid
 .png Graphic file (type png)
 
@@ -1050,7 +1050,7 @@ rt/gpgpu/threadgrid.png used on input line 504.
 (pdftex.def)             Requested size: 204.85846pt x 259.05518pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockprocessor.
-png, id=659, 432.61626pt x 403.5075pt>
+png, id=664, 432.61626pt x 403.5075pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockproce
 ssor.png Graphic file (type png)
 
@@ -1061,7 +1061,7 @@ rt/gpgpu/blockprocessor.png used on input line 511.
 (pdftex.def)             Requested size: 204.85846pt x 191.07698pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel.png
-, id=667, 581.17125pt x 643.40375pt>
+, id=672, 581.17125pt x 643.40375pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymode
 l.png Graphic file (type png)
 
@@ -1072,7 +1072,7 @@ rt/gpgpu/memorymodel.png used on input line 538.
 (pdftex.def)             Requested size: 204.85846pt x 226.79494pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png, id=67
-0, 586.19pt x 554.07pt>
+5, 586.19pt x 554.07pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png G
 raphic file (type png)
 
@@ -1087,7 +1087,7 @@ png (PNG copy)> </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu
 /rsc/stateofart/gpgpu/memorymodel.png> </home/chiroptera/workspace/thesis_writi
 ng/rsc/stateofart/gpgpu/flow.png (PNG copy)>]
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png, id=
-696, 853.06941pt x 966.43411pt>
+701, 853.06941pt x 966.43411pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png
  Graphic file (type png)
 
@@ -1117,7 +1117,7 @@ ptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-
-converted-to.pdf, id=744, 709.65125pt x 321.2pt>
+converted-to.pdf, id=750, 709.65125pt x 321.2pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format
 -eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1129,7 +1129,7 @@ rt/gpgpu/csr_format-eps-converted-to.pdf used on input line 653.
  [22 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format
 -eps-converted-to.pdf>]
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvka_flo
-w.png, id=759, 660.34941pt x 1347.62294pt>
+w.png, id=764, 660.34941pt x 1347.62294pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvk
 a_flow.png Graphic file (type png)
 
@@ -1141,7 +1141,7 @@ rt/gpgpu/mst_boruvka_flow.png used on input line 708.
  [23] [24 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_b
 oruvka_flow.png>]
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_reduce
-.png, id=783, 678.535pt x 344.28625pt>
+.png, id=788, 678.535pt x 344.28625pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_r
 educe.png Graphic file (type png)
 
@@ -1152,7 +1152,7 @@ rt/gpgpu/blelloch_reduce.png used on input line 742.
 (pdftex.def)             Requested size: 364.19667pt x 184.78757pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_downsw
-eep.png, id=787, 492.84125pt x 320.19624pt>
+eep.png, id=792, 492.84125pt x 320.19624pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_d
 ownsweep.png Graphic file (type png)
 
@@ -1173,7 +1173,7 @@ Underfull \vbox (badness 1960) has occurred while \output is active []
  [28]
 [29]
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_part.p
-ng, id=835, 895.345pt x 445.665pt>
+ng, id=840, 895.345pt x 445.665pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
 art.png Graphic file (type png)
 
@@ -1188,7 +1188,7 @@ put line 165.
  [31 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
 art.png>]
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
-d=849, 930.47626pt x 557.08125pt>
+d=854, 930.47626pt x 557.08125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
 ng Graphic file (type png)
 
@@ -1229,7 +1229,7 @@ degree_100k.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_de
-gree_100k-eps-converted-to.pdf, id=858, 967.615pt x 396.48125pt>
+gree_100k-eps-converted-to.pdf, id=863, 967.615pt x 396.48125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_fu
 ll_degree_100k-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1263,7 +1263,7 @@ onents_boruvka_flow.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
-_boruvka_flow-eps-converted-to.pdf, id=911, 748.7975pt x 1337.99875pt>
+_boruvka_flow-eps-converted-to.pdf, id=916, 748.7975pt x 1337.99875pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
 nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1345,7 +1345,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 218.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 218.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 218.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: EC8FBDDD8C9C60A54CB35CFD23856378;3849.
+(rerunfilecheck)             Checksum: 56ED290582C9386C3F29D4018A1CF5BD;3895.
 
 
 LaTeX Warning: There were undefined references.
@@ -1353,10 +1353,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 218.
  ) 
 Here is how much of TeX's memory you used:
- 11270 strings out of 495004
- 170298 string characters out of 6180663
- 277836 words of memory out of 5000000
- 13905 multiletter control sequences out of 15000+600000
+ 11272 strings out of 495004
+ 170322 string characters out of 6180663
+ 276836 words of memory out of 5000000
+ 13906 multiletter control sequences out of 15000+600000
  43745 words of font info for 79 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  55i,13n,92p,952b,608s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1377,10 +1377,10 @@ ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve
 tic/uhvro8a.pfb>
-Output written on Thesis.pdf (68 pages, 3337040 bytes).
+Output written on Thesis.pdf (68 pages, 3337104 bytes).
 PDF statistics:
- 1145 PDF objects out of 1200 (max. 8388607)
- 969 compressed objects within 10 object streams
- 254 named destinations out of 1000 (max. 500000)
- 520 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1150 PDF objects out of 1200 (max. 8388607)
+ 974 compressed objects within 10 object streams
+ 255 named destinations out of 1000 (max. 500000)
+ 528 words of extra memory for PDF output out of 10000 (max. 10000000)
 
