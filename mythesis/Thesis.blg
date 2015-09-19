@@ -10,9 +10,9 @@ Warning--empty year in Aggarwal2014
 Warning--empty year in Aggarwal2014
 Warning--empty journal in LourencoECG2009
 Warning--empty journal in Wiebe2014
-Warning--empty publisher in Lanzagorta2008
 Warning--empty journal in Casper2013
 Warning--empty year in Casper
+Warning--empty publisher in Lanzagorta2008
 Warning--empty journal in Wang2013
 Warning--there's a number but no volume in Horn2001a
 Warning--empty journal in gao20xx
@@ -32,7 +32,7 @@ Warning--empty journal in boruuvka1926jistem
 Warning--empty year in JonesSciPy
 You've used 66 entries,
             2481 wiz_defined-function locations,
-            1065 strings with 19198 characters,
+            1065 strings with 19196 characters,
 and the built_in function-call counts, 27863 in all, are:
 = -- 2593
 > -- 1236

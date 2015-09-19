@@ -187,18 +187,19 @@ The \underline{first strategy} is to just insert the new associations at the end
 This was easily implemented with existing code, namely using \emph{NumPy}'s \emph{quicksort} implementation, which has an average time complexity of $O(n \log n)$
 
 The \underline{second strategy} is more involved.
-It comes from the fact that, if one could know in which position each new association should be inserted, it would become possible to move all old associations to their final sorted positions and insert the new ones, all in an efficient manner.
+It results from the observation that, if one could know in which position each new association should be inserted, it would be possible to move all old associations to their final sorted positions and insert the new ones, all in an efficient manner with minimum comparisons (and thus branches in the execution of the code).
 For this end, the implemented binary search returns the index of the searched value (key) if it is found or $-ind -1$, where $ind$ is the position for a sorted insertion of the key in the array, if it is not found.
-This means that one can have the position where each new association should be inserted.
+This means that the position where each new association should be inserted is now available.
 Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one for storing the samples of the associations \emph{new\_assoc\_ids} and the other to store the indices that were the result of the binary search for each of the new associations \emph{new\_assoc\_idx}, i.e. the indices where the new associations should be inserted.
 The process is illustrated with an example in Fig. \ref{fig:normal part}, detailed in Algorithm \ref{alg:eac csr sort cluster} and explained in the following paragraph.
 
 After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the sample's indices interval in a sorted manner.
-The new interval of the \emph{indices} array belonging to the $i$-th sample now has \emph{degree[i]} plus the number of new associations.
+The number of associations associatied with the $i$-th sample (\emph{degree[i]}) is incremented by the amount of new associations to be added.
+%The new interval of the \emph{indices} array belonging to the $i$-th sample now has \emph{degree[i]} plus the number of new associations.
 An element is added to the end of the \emph{new\_assoc\_idx} array with the value of \emph{degree[i]} so that the last new association can be included in the general cycle.
 During the sorting process a pointer to the current index to add associations $o\_ptr$ is kept (it's initialized to the new total number of associations of a sample).
 The sorting mechanism looks at two consecutive elements in the \emph{new\_assoc\_idx} array, starting from the end.
-If the $i$-th element is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between and including the first element are copied to the end of the \emph{indices} interval, i.e. they're shifted to the right by $i$ positions.
+If the $i$-th element of the \emph{new\_assoc\_idx} array is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between them (including the first element) are copied to the end of the \emph{indices} interval, i.e. they're shifted to the right by $i$ positions.
 Then, or in case the comparison fails, the $(i-1)$-th element of the \emph{new\_assoc\_ids} is copied to the \emph{indices} array in the position specified by \emph{o\_ptr}.
 
 % TODO check which or the three fast sorting approaches is best and describe only that one

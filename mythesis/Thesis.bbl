@@ -92,22 +92,9 @@ Richard~P. Feynman.
 \newblock ISSN 00207748.
 \newblock \doi{10.1007/BF02650179}.
 
-\bibitem[Lanzagorta and Uhlmann(2008)]{Lanzagorta2008}
-Marco Lanzagorta and Jeffrey Uhlmann.
-\newblock \emph{{Quantum Computer Science}}, volume~1.
-\newblock 2008.
-\newblock ISBN 9780511813870.
-\newblock \doi{10.2200/S00159ED1V01Y200810QMC002}.
-
-\bibitem[Rosenbaum and Harrow(2011)]{Rosenbaum2011}
-David Rosenbaum and Aram~W. Harrow.
-\newblock {Uselessness for an Oracle Model with Internal Randomness}.
-\newblock \emph{arXiv:1111.1462}, pages 1--23, 2011.
-\newblock ISSN 15337146.
-
 \bibitem[Casper and Hung(2013)]{Casper2013}
 Ellis Casper and Chih-cheng Hung.
-\newblock {Quantum Modeled Clustering Algorithms for Image Segmentation 1}.
+\newblock {Quantum Modeled Clustering Algorithms for Image Segmentation}.
 \newblock 2\penalty0 (March):\penalty0 1--21, 2013.
 \newblock \doi{10.4156/pica.vol2.issue1.1}.
 
@@ -128,6 +115,19 @@ Jing Xiao, YuPing Yan, Jun Zhang, and Yong Tang.
 \newblock \doi{10.1016/j.eswa.2009.12.017}.
 \newblock URL
   \url{http://ac.els-cdn.com/S095741740901063X/1-s2.0-S095741740901063X-main.pdf?\_tid=f303a76c-ac71-11e4-be73-00000aacb35e\&acdnat=1423056793\_66291f279193fa69b86c93aecea405b0}.
+
+\bibitem[Lanzagorta and Uhlmann(2008)]{Lanzagorta2008}
+Marco Lanzagorta and Jeffrey Uhlmann.
+\newblock \emph{{Quantum Computer Science}}, volume~1.
+\newblock 2008.
+\newblock ISBN 9780511813870.
+\newblock \doi{10.2200/S00159ED1V01Y200810QMC002}.
+
+\bibitem[Rosenbaum and Harrow(2011)]{Rosenbaum2011}
+David Rosenbaum and Aram~W. Harrow.
+\newblock {Uselessness for an Oracle Model with Internal Randomness}.
+\newblock \emph{arXiv:1111.1462}, pages 1--23, 2011.
+\newblock ISSN 15337146.
 
 \bibitem[Wang et~al.(2013)Wang, Liu, Zhi, and Fu]{Wang2013}
 Huaixiao Wang, Jianyong Liu, Jun Zhi, and Chengqun Fu.
