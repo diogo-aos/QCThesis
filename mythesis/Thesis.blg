@@ -6,45 +6,45 @@ Database file #1: library.bib
 Warning--empty publisher in Aggarwal2014
 Warning--empty year in Aggarwal2014
 Warning--empty year in Aggarwal2014
-You've used 4 entries,
+You've used 11 entries,
             2481 wiz_defined-function locations,
-            588 strings with 5084 characters,
-and the built_in function-call counts, 1569 in all, are:
-= -- 145
-> -- 58
-< -- 3
-+ -- 24
-- -- 16
-* -- 127
-:= -- 251
-add.period$ -- 17
-call.type$ -- 4
-change.case$ -- 7
-chr.to.int$ -- 4
-cite$ -- 7
-duplicate$ -- 76
-empty$ -- 145
-format.name$ -- 24
-if$ -- 326
+            647 strings with 6595 characters,
+and the built_in function-call counts, 4488 in all, are:
+= -- 425
+> -- 167
+< -- 8
++ -- 70
+- -- 48
+* -- 361
+:= -- 709
+add.period$ -- 49
+call.type$ -- 11
+change.case$ -- 21
+chr.to.int$ -- 11
+cite$ -- 14
+duplicate$ -- 220
+empty$ -- 416
+format.name$ -- 61
+if$ -- 951
 int.to.chr$ -- 1
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 33
-num.names$ -- 12
-pop$ -- 31
+int.to.str$ -- 12
+missing$ -- 12
+newline$ -- 79
+num.names$ -- 33
+pop$ -- 73
 preamble$ -- 1
-purify$ -- 4
+purify$ -- 11
 quote$ -- 0
-skip$ -- 43
+skip$ -- 130
 stack$ -- 0
-substring$ -- 83
-swap$ -- 8
-text.length$ -- 0
+substring$ -- 260
+swap$ -- 33
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 25
+type$ -- 74
 warning$ -- 3
-while$ -- 14
+while$ -- 41
 width$ -- 0
-write$ -- 67
+write$ -- 181
 (There were 3 warnings)

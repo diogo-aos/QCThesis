@@ -4,6 +4,7 @@
 
 # Main filename
 FILE=Thesis
+FULL_FILE=Thesis_AllChapters
 
 # ---------------------------------------------------------
 

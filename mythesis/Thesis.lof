@@ -1,5 +1,5 @@
 \select@language {english}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Gaussian mixture of 5 distributions. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, which here means their corresponding Gaussian.\relax }}{2}{figure.caption.8}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.\relax }}{4}{figure.caption.10}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.\relax }}{5}{figure.caption.9}
 \addvspace {10\p@ }

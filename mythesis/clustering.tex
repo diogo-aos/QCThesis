@@ -102,37 +102,59 @@ The relationship between the above concepts is condensed in the following expres
 
 
 %similarity
-Finally, a \emph{similarity measure} is a way of quantifying how similar two patterns are in the feature space, usually using a metric such as Euclidean distance.
-
+Finally, a \emph{similarity measure} is a way of quantifying how similar two patterns are in the feature space, e.g. a metric (such as the euclidean distance), Pearson correlation.%TODO reference for a method for both euclidean distance and Pearson correlation
 
 \section{Characteristics of clustering techniques}
 
 Clustering algorithms may be described according to different properties.
 For the sake of completeness, a small discussion of some properties will be layed out in this section.
 
-% hierarchical: agglomerative vs divisive
-A clustering algorithm is considered hierarchical if it produces a clustering structure presenting 
+% hierarchical and partitional
+\emph{Partitional} and \emph{hierarchical} algorithms are the two most studied kinds of algorithms \cite{Aggarwal2014}.
+A partitional algorithm is an hard clustering algorithm that will output a partiton where each pattern belongs exclusively to one cluster, e.g. K-Means.
+A hierarchical algorithm produces a tree-based data structure called \emph{dendrogram}.
+A dendrogram contains different partitions at different levels which means that the user can easily change the desired number of clusters by simply traversing the different levels.
+This is an advantage over a partitional algorithm since a user can analyze different partitions with different numbers of clusters without having to rerun the algorithm.
+% agglomerative vs divisive
+Hierarchical algorithms can be further split into two approaches: bottom-up (or \emph{agglomerative}) and top-down (or \emph{divisive}).
+% agglomerative
+The former starts with all patterns as distinct clusters and will group them together according to some similarity measure, building the dendrogram from the ground up, e.g. Single-Link, Average-Link.
+%divisive
+The later will start will all patterns in the same cluster and continuosly split it until all patterns are separated, building the dendrogram from the top level to the bottom, e.g. Principal Directon Divisive Partitioning\cite{Boley1998} and Bisecting K-Means \cite{Steinbach2000}.
 
-%clustering techniques
+
+% monothetic vs polithetic
+Another characteristic relates to how algorithms use the features for computing similarities.
+If all features are used simultaniously the algorithm is called \emph{polithetic}, e.g. K-Means.
+Otherwise, if the features are used sequentially, it's called \emph{monothetic}, e.g. \cite{Chavent1998}.
+
+% fuzzy clustering
+Constrasting \emph{hard} clustering algorithm are the \emph{fuzzy} algorithms.
+A fuzzy algorithm will attribute to each pattern a degree of membership to each cluster.
+A partition can still be extracted from this output by choosing, for each pattern, the cluster with higher degree of membership.
+An example of a fuzzy algorithm is the Fuzzy C-Means \cite{Bezdek1984}.
+
+% stochastic vs deterministic
+Another characteristic is an algorithm's stochasticity.
+A \emph{stochastic} algorithm uses a random search over the feature space at some point in its execution, possibly yielding different results in each run, e.g. K-Means can use a random initialization.
+A \emph{deterministic} algorithm, on the other hand, will always produce the same result for a given input, e.g. Single-Link.
+
+Finally, the last characteristic discussed is how an algorithm processes the input data.
+An algorithm is said to be \emph{incremental} if it processes the input incrementally, i.e. taking part of the data, processing it and then doing the save for the remaining parts, e.g. PEGASUS \cite{Kang2011}.
+A \emph{non-incremental} algorithm, on the other hand, will process the whole input in each run, e.g. K-Means.
+This discussion is specially relevant when considering large datasets that may not fit in memory or whose processing would take a too long for a single run and is therefore done in parallel.
 
 
-There are two big main types of clustering: hierarchical and partitional.
 
-usually some metric (e.g. euclidean distance, Pearson correlation). %TODO reference for a method for both euclidean distance and Pearson correlation
+% % examples of cluster analysis
+% Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2014}):
 
-
-
-
-
-
-Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2014}):
-
-\begin{itemize}
-	\item grouping users with similar behaviour or preferences in \textbf{customer segmentation};
-	\item image segmentation in the field of \textbf{image processing};
-	\item clustering gene expression data, among other application, in the domain of \textbf{biological data analysis};
-	\item generation of hierarchical structure for easy access and retrieval of \textbf{information systems}; % not referenced in book
-\end{itemize}
+% \begin{itemize}
+% 	\item grouping users with similar behaviour or preferences in \textbf{customer segmentation};
+% 	\item image segmentation in the field of \textbf{image processing};
+% 	\item clustering gene expression data, among other application, in the domain of \textbf{biological data analysis};
+% 	\item generation of hierarchical structure for easy access and retrieval of \textbf{information systems}; % not referenced in book
+% \end{itemize}
 
 % Clustering is used in a wide variety of fields to solve numerous problems, e.g.:
 % %TODO provide references to all of this
@@ -151,14 +173,50 @@ Cluster analysis is a relevant technique across several domains (\cite{Aggarwal2
 
 \section{K-Means}
 
-K-Means is one of the earliest clustering algorithms to offer a partitional solution to the clustering problem
+One of the most famous non-optimal solutions for the problem partitional clustering is the K-Means algorithm \cite{kmeansoriginal}.
+The K-Means algorithm uses $K$ \emph{centroid} representatives $c_k$ for $K$ clusters.
+Patterns are assigned to a cluster such that that the squared error (or, more accurately, squared similarity measure) between the cluster representatives and the patterns is minimized.
+In essence, K-Means is solution (although not necessarily an optimal one) to a optimization problem having the Sum of Squared Errors as its objective function, which is known to be a NP hard problem \cite{Jain2010}.
+It can be mathematically demonstrated that the optimal representatives for the clusters are the means of the patterns of each cluster \cite{Aggarwal2014}.
+K-Means, then, minimizes the following expression, where the similarity measure used is the Euclidean distance:
 
-It's also widely used due to it's simplicity and efficiency.
-Because of this, it's also often used as a foundational step of more complex and robust algorithms, such as EAC.
- the algorithm works as follows
+\begin{align}
+    \sum^K_{k=1} \sum_{\mathbf{x}_i \in C_k} \| \mathbf{x}_i - c_k  \| ^2  \label{eq:sse}
+\end{align}
 
-explain K-means algorithm
+K-Means needs two initialization parameters: the number of clusters and the centroid initializations.
+It starts by assigning each pattern to its closer cluster based on the cluster's centroid.
+This is called the \textbf{labeling} step since one usually uses cluster labels for this assignment.
+The centroids are then recomputed based on this assignment, in the \textbf{update} step.
+The new centroids are the mean of all the patterns belonging to the clusters, hence the name of the algorithm.
 
+% similarity measures
+The similarity measure used is typically the Euclidean distance.
+This tends to produce hyperspherical clusters \cite{Jain1999}.
+Still, according to \cite{Jain2010}, other measures have been used such as the L1 norm, Mahalanobis distance, as well as cosine similarity \cite{Aggarwal2014}.
+The choice of similarity measure must be made carefully as it may not guarantee that the algorithm will converge.
+
+% convergence
+The two steps outlined above (labeling and update) are executed iteratively until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
+The initial centroids are usually randomly chosen, but other schemes exist to improve the overall accuracy of the algorithm, e.g. K-Means++ \cite{Arthur2007}.
+
+% empty clusters
+A detail of implementation is what to do with clusters that have no patterns assigned to them.
+One approach to this situation is to drop the empty clusters in further iterations.
+However, allowing the existence of empty clusters or dropping empty clusters is undesirable since the number of clusters is an input parameter and it's expected that the output contains the specified number of clusters.
+Other approaches exist dealing with this problem, such as equaling the centroid of an empty cluster to the pattern furthest away from its assigned centroid or reusing the old centroids as in \cite{Pakhira2009}.
+
+% After the first iteration, the first step is executed with the new centroids.
+% The end result of the algorithm is the labels produced in the first step of the last iteration.
+
+% The sequential K-Means algorithm is composed by two main stages \cite{Jain2010}:
+
+% \begin{enumerate}
+%     \item \textbf{labeling stage} for the assigning labels to each pattern of the data set, e.g. the label of the $i-th$ pattern is $0$ if the minimum distance is to the $0-th$ centroid;
+%     \item \textbf{update stage} for the computation of the new centroids based on the labels assignment, i.e. the new centroids will be the mean of all the patterns assigned to it.
+% \end{enumerate}
+
+%example
 As an example, the output of the K-means algorithm to the data presented in Fig. \ref{fig:clustering plots} is represented in Fig. \ref{fig:intro kmeans}.
 The algorithm executed with 4 random centroids.
 
@@ -172,6 +230,12 @@ The number of clusters was purposefully set to an "incorrect" number to demonstr
 In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
 When no prior information about the dataset is given, the number of clusters can be hard to discover.
 This is why, when available, a domain expert may provide valuable insight on tuning the initialization parameters.
+
+K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $k$ is the number of clusters and $t$ is the number of iterations that it executes.
+Because of this, K-Means is often used as a basis for 
+It's also widely used due to it's simplicity and efficiency.
+Because of this, it's also often used as a foundational step of more complex and robust algorithms, such as EAC.
+ the algorithm works as follows
 
 \section{Single-Link}
 

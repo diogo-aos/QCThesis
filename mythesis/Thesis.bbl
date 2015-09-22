@@ -1,4 +1,4 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -22,15 +22,74 @@ a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
 \newblock ISSN 03600300.
 \newblock \doi{10.1145/331499.331504}.
 
-\bibitem[Fred and Jain(2005)]{Fred2005}
-Ana N~L Fred and Anil~K Jain.
-\newblock {Combining multiple clusterings using evidence accumulation}.
-\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
-  Intelligence}, 27\penalty0 (6):\penalty0 835--850, 2005.
-
 \bibitem[Aggarwal and Reddy()]{Aggarwal2014}
 Charu~C Aggarwal and Chandan~K Reddy.
 \newblock \emph{{Data clustering algorithms and applications}}.
 \newblock ISBN 9781466558229.
+
+\bibitem[Boley(1998)]{Boley1998}
+Daniel Boley.
+\newblock {Principal Direction Divisive Partitioning}.
+\newblock \emph{Data Mining and Knowledge Discovery}, 2\penalty0 (4):\penalty0
+  325--344, 1998.
+\newblock ISSN 1384-5810.
+\newblock \doi{10.1023/A:1009740529316}.
+\newblock URL
+  \url{http://dx.doi.org/10.1023/A:1009740529316$\backslash$nhttp://www.springerlink.com/content/w15313n737603612/}.
+
+\bibitem[Steinbach et~al.(2000)Steinbach, Karypis, Kumar, and
+  Others]{Steinbach2000}
+Michael Steinbach, George Karypis, Vipin Kumar, and Others.
+\newblock {A comparison of document clustering techniques}.
+\newblock \emph{KDD workshop on text mining}, 400\penalty0 (1):\penalty0
+  525--526, 2000.
+\newblock \doi{10.1.1.125.9225}.
+
+\bibitem[Chavent(1998)]{Chavent1998}
+Marie Chavent.
+\newblock {A monothetic clustering method}.
+\newblock \emph{Pattern Recognition Letters}, 19\penalty0 (11):\penalty0
+  989--996, 1998.
+\newblock ISSN 01678655.
+\newblock \doi{10.1016/S0167-8655(98)00087-7}.
+
+\bibitem[Bezdek et~al.(1984)Bezdek, Ehrlich, and Full]{Bezdek1984}
+James~C. Bezdek, Robert Ehrlich, and William Full.
+\newblock {FCM: The fuzzy <i>c</i>-means clustering algorithm}.
+\newblock \emph{Computers \& Geosciences}, 10\penalty0 (2–3):\penalty0
+  191--203, 1984.
+\newblock ISSN 0098-3004.
+\newblock \doi{10.1016/0098-3004(84)90020-7}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/0098300484900207}.
+
+\bibitem[Kang et~al.(2011)Kang, Tsourakakis, and Faloutsos]{Kang2011}
+U~Kang, Charalampos~E Tsourakakis, and Christos Faloutsos.
+\newblock {PEGASUS : Mining Peta-Scale Graphs}.
+\newblock \emph{Knowledge and Information Systems}, 27\penalty0 (2):\penalty0
+  303--325, 2011.
+
+\bibitem[MacQueen(1967)]{kmeansoriginal}
+J~B MacQueen.
+\newblock {Some Methods for classification and Analysis of Multivariate
+  Observations}.
+\newblock In \emph{Proceedings of 5-th Berkeley Symposium on Mathematical
+  Statistics and Probability, Berkeley, University of California Press},
+  volume~1, pages 281--297, 1967.
+
+\bibitem[Arthur et~al.(2007)Arthur, Arthur, Vassilvitskii, and
+  Vassilvitskii]{Arthur2007}
+D.~Arthur, D.~Arthur, S.~Vassilvitskii, and S.~Vassilvitskii.
+\newblock {k-means++: The advantages of careful seeding}.
+\newblock \emph{Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, 8:\penalty0 1027--1035, 2007.
+\newblock \doi{10.1145/1283383.1283494}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?id=1283494}.
+
+\bibitem[Pakhira(2009)]{Pakhira2009}
+Malay~K Pakhira.
+\newblock {A Modified k -means Algorithm to Avoid Empty Clusters}.
+\newblock \emph{International Journal of Recent Trends in Enineering},
+  1\penalty0 (1), 2009.
 
 \end{thebibliography}
