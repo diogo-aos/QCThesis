@@ -33,25 +33,7 @@ Different clustering algorithms are appropriate for different data configuration
 If the true structure of the data at hand is heterogeneous in its configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part.
 The underlying idea behind ensemble clustering is to use multiple clusterings from one or more clustering algorithms and combine them in such a way that the final clustering is better than any of the individual ones.
 
-\subsubsection{Formulation}
-%review notation and formulation, check conflicts with other notations used in other parts of the algorithm
-Some notation and nomenclature, adopted from \cite{Fred2005}, should be defined since it will be used throughout the remainder of the present work.
-The term \emph{data} refers to a set $X$ of $n$ objects or patterns $X=\left \{ \textsc{x}_1,...,\textsc{x}_n \right \}$, and may be represented by $\chi = \left \{ x_1,...,x_n \right \}$, such that $x_i \in  \mathbb{R}^d$.
-A clustering algorithm takes $\chi$ as input and returns $k$ groups or \emph{clusters} $C$ of some part of the data, which form a \emph{partition} $P$.
-A clustering \emph{ensemble} $\mathbb{P}$ is group of $N$ partitions.
-This means that:
 
-\begin{align}
-	\mathbb{P} &= \left \{   P^1, P^2, ... P^N   \right \}  \label{eq:ensemble} \\
-	P^i &= \left \{   C^i_1, C^i_2, ... C^{i}_{k_i}   \right \}  \label{eq:partition} \\
-	C^i_k &= \left \{   x_a, x_b, ..., x_z   \right \} \label{eq:cluster}
-\end{align}
-
-where $C^i_j$ is the $j-th$ cluster of the $i-th$ partition, which contains $k_i$ clusters and $n^i_j$ is the number of samples that constitutes that cluster, with
-
-\begin{equation}
-\sum_{j=1}^{k} n_j^i = n, \qquad i = 1, ..., N
-\end{equation}
 
 \subsection{Overview of Evidence Accumulation Clustering}
 
@@ -192,6 +174,8 @@ Communication is usually done over the network with TCP/IP, which is several ord
 \section{Quantum clustering}
 \label{sec:quantum clustering}
 % double check all refs because this was merged pre latex citations and the reference might have gotten mixed
+
+% TODO add more refs for quantum inspired computational intelligence; Applications of quantum inspired computational intelligence: A survey is good article to take stuff from
 
 The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
 At the moment of writing, two major approaches for the concept of quantum clustering were found in the literature.

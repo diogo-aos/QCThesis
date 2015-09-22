@@ -1,20 +1,5 @@
 \select@language {english}
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Gaussian mixture of 5 distributions. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "sees" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, which here means their corresponding Gaussian. Fig. \ref {fig:intro kmeans} shows the output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.\relax }}{5}{figure.caption.8}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \ref {fig:gridthread} represents the thread hierarchy and \ref {fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.\relax }}{17}{figure.caption.21}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces \relax }}{18}{figure.caption.22}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{20}{figure.caption.23}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{22}{figure.caption.25}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of Sousa2015.\relax }}{24}{figure.caption.27}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{25}{figure.caption.29}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{26}{figure.caption.30}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{31}{figure.caption.34}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{32}{figure.caption.35}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{34}{figure.caption.37}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{37}{figure.caption.42}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Gaussian mixture of 5 distributions. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, which here means their corresponding Gaussian.\relax }}{2}{figure.caption.8}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.\relax }}{4}{figure.caption.10}
 \addvspace {10\p@ }
