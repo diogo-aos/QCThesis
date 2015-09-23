@@ -1,0 +1,68 @@
+\BOOKMARK [1][-]{section*.1}{Acknowledgments}{}% 1
+\BOOKMARK [1][-]{section*.2}{Resumo}{}% 2
+\BOOKMARK [1][-]{section*.3}{Abstract}{}% 3
+\BOOKMARK [1][-]{chapter*.5}{List of Tables}{}% 4
+\BOOKMARK [1][-]{chapter*.6}{List of Figures}{}% 5
+\BOOKMARK [1][-]{table.0.1}{Glossary}{}% 6
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 7
+\BOOKMARK [1][-]{section.1.1}{1.1 Challenges and Motivation}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{1.2 Goals}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{1.3 Contribution}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{1.4 Outline}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{2 Clustering}{}% 12
+\BOOKMARK [1][-]{section.2.1}{2.1 The problem of clustering}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.2}{2.2 Definitions and Notation}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.3}{2.3 Characteristics of clustering techniques}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.4}{2.4 K-Means}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.5}{2.5 Single-Link}{chapter.2}% 17
+\BOOKMARK [0][-]{chapter.3}{3 State of the art}{}% 18
+\BOOKMARK [1][-]{section.3.1}{3.1 Evidence Accumulation Clustering}{chapter.3}% 19
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Ensemble Clustering}{section.3.1}% 20
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Overview of Evidence Accumulation Clustering}{section.3.1}% 21
+\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Examples of applications}{section.3.1}% 22
+\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 Advantages and Disadvantages}{section.3.1}% 23
+\BOOKMARK [2][-]{subsection.3.1.5}{3.1.5 Scalability of EAC}{section.3.1}% 24
+\BOOKMARK [1][-]{section.3.2}{3.2 Clustering with Big Data}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.3}{3.3 Quantum clustering}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 The quantum bit approach}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Quantum K-Means}{section.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.3}{3.3.3 Horn and Gottlieb's algorithm}{section.3.3}% 29
+\BOOKMARK [1][-]{section.3.4}{3.4 General Purpose computing on Graphical Processing Units}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.4.1}{3.4.1 Programming GPUs}{section.3.4}% 31
+\BOOKMARK [2][-]{subsection.3.4.2}{3.4.2 OpenCL vs CUDA}{section.3.4}% 32
+\BOOKMARK [2][-]{subsection.3.4.3}{3.4.3 Overview of CUDA}{section.3.4}% 33
+\BOOKMARK [2][-]{subsection.3.4.4}{3.4.4 Parallel K-Means}{section.3.4}% 34
+\BOOKMARK [2][-]{subsection.3.4.5}{3.4.5 Parallel Single-Link Clustering}{section.3.4}% 35
+\BOOKMARK [2][-]{subsection.3.4.6}{3.4.6 Algorithm for finding Minimum Spanning Trees}{section.3.4}% 36
+\BOOKMARK [0][-]{chapter.4}{4 Methodology}{}% 37
+\BOOKMARK [1][-]{section.4.1}{4.1 Quantum Clustering}{chapter.4}% 38
+\BOOKMARK [1][-]{section.4.2}{4.2 Speeding up Ensemble Generations with Parallel K-Means}{chapter.4}% 39
+\BOOKMARK [1][-]{section.4.3}{4.3 Dealing with space complexity of coassocs}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Exploiting the sparsity of the co-association matrix}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Using prototypes}{section.4.3}% 42
+\BOOKMARK [1][-]{section.4.4}{4.4 Building the sparse matrix}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 EAC CSR}{section.4.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 45
+\BOOKMARK [1][-]{section.4.5}{4.5 Hierarchical Agglomerative Clustering step}{chapter.4}% 46
+\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 HAC and GPGPU}{section.4.5}% 47
+\BOOKMARK [0][-]{chapter.5}{5 Results}{}% 48
+\BOOKMARK [1][-]{section.5.1}{5.1 Quantum K-Means}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Testing and Results}{section.5.1}% 50
+\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Discussion}{section.5.1}% 51
+\BOOKMARK [1][-]{section.5.2}{5.2 Horn and Gottlieb's algorithm}{chapter.5}% 52
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Testing and Results}{section.5.2}% 53
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Iris data}{section.5.2}% 54
+\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Crab data}{section.5.2}% 55
+\BOOKMARK [1][-]{section.5.3}{5.3 GPGPU K-Means}{chapter.5}% 56
+\BOOKMARK [1][-]{section.5.4}{5.4 K-prototypes influence on coassocs}{chapter.5}% 57
+\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 58
+\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 59
+\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 60
+\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 61
+\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 62
+\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 63
+\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 64
+\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 65
+\BOOKMARK [0][-]{chapter*.62}{Bibliography}{}% 66
+\BOOKMARK [0][-]{appendix.A}{A Vector calculus}{}% 67
+\BOOKMARK [1][-]{section.A.1}{A.1 Vector identities}{appendix.A}% 68

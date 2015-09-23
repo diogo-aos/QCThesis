@@ -1,0 +1,1649 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  23 SEP 2015 14:38
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**Thesis_AllChapters
+(./Thesis_AllChapters.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 3 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+\XKV@depth=\count88
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count89
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box26
+)
+\tc@llx=\dimen105
+\tc@lly=\dimen106
+\tc@urx=\dimen107
+\tc@ury=\dimen108
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen109
+\adjbox@Height=\dimen110
+\adjbox@Depth=\dimen111
+\adjbox@Totalheight=\dimen112
+
+(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count90
+)
+(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box27
+\sift@deathcycles=\count91
+\@vwid@loff=\dimen113
+\@vwid@roff=\dimen114
+))
+(./Thesis_Preamble.tex
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2008/04/05 v1.1m UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2013/12/03 3.9h The Babel package
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2012/08/20 v3.3p English support from the babel system
+
+(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2013/12/03 3.9h Babel common definitions
+\babel@savecnt=\count92
+\U@D=\dimen115
+)
+\l@british = a dialect from \language\l@english 
+\l@UKenglish = a dialect from \language\l@english 
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count93
+\Gm@cntv=\count94
+\c@Gm@tempcnt=\count95
+\Gm@bindingoffset=\dimen116
+\Gm@wd@mp=\dimen117
+\Gm@odd@mp=\dimen118
+\Gm@even@mp=\dimen119
+\Gm@layoutwidth=\dimen120
+\Gm@layoutheight=\dimen121
+\Gm@layouthoffset=\dimen122
+\Gm@layoutvoffset=\dimen123
+\Gm@dimlist=\toks18
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf.sty
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks19
+\ex@=\dimen124
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen125
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count96
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count97
+\leftroot@=\count98
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count99
+\DOTSCASE@=\count100
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen126
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count101
+\c@MaxMatrixCols=\count102
+\dotsspace@=\muskip10
+\c@parentequation=\count103
+\dspbrk@lvl=\count104
+\tag@help=\toks20
+\row@=\count105
+\column@=\count106
+\maxfields@=\count107
+\andhelp@=\toks21
+\eqnshift@=\dimen127
+\alignsep@=\dimen128
+\tagshift@=\dimen129
+\tagwidth@=\dimen130
+\totwidth@=\dimen131
+\lineht@=\dimen132
+\@envbody=\toks22
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip46
+\thm@postskip=\skip47
+\thm@headsep=\skip48
+\dth@everypar=\toks29
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen133
+\captionmargin@=\dimen134
+\captionwidth=\dimen135
+\caption@tempdima=\dimen136
+\caption@indent=\dimen137
+\caption@parindent=\dimen138
+\caption@hangindent=\dimen139
+)
+\c@ContinuedFloat=\count108
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
+\c@subfigure=\count109
+\c@subtable=\count110
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/dcolumn.sty
+Package: dcolumn 2001/05/28 v1.06 decimal alignment package (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen140
+\extrarowheight=\dimen141
+\NC@list=\toks30
+\extratabsurround=\skip49
+\backup@length=\skip50
+))
+(/usr/share/texlive/texmf-dist/tex/latex/nomencl/nomencl.sty
+Package: nomencl 2005/09/22 v4.2 Nomenclature package (LN)
+\nomlabelwidth=\dimen142
+\nom@tempdim=\dimen143
+\nomitemsep=\skip51
+)
+\@nomenclaturefile=\write3
+\openout3 = `Thesis_AllChapters.nlo'.
+
+
+Writing nomenclature file Thesis_AllChapters.nlo
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+) (./glossary.sty
+Package: glossary 2006/07/20 2.4 (NLCT)
+\gls@cols=\count111
+
+No configuration file glossary.cfg found
+(/usr/share/texlive/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count112
+\LTcapwidth=\dimen144
+\LT@head=\box30
+\LT@firsthead=\box31
+\LT@foot=\box32
+\LT@lastfoot=\box33
+\LT@cols=\count113
+\LT@rows=\count114
+\c@LT@tables=\count115
+\c@LT@chunks=\count116
+\LT@p@ftn=\toks31
+)
+\descriptionwidth=\skip56
+\istfile=\write4
+)
+\@glossaryfile=\write5
+\openout5 = `Thesis_AllChapters.glo'.
+
+
+Writing glossary file Thesis_AllChapters.glo 
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count117
+\rotFPtop=\skip57
+\rotFPbot=\skip58
+\rot@float@box=\box34
+\rot@mess@toks=\toks32
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count118
+\float@exts=\toks33
+\float@box=\box35
+\@float@everytoks=\toks34
+\@floatcapt=\box36
+)
+\@float@every@algorithm=\toks35
+\c@algorithm=\count119
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count120
+\c@ALG@rem=\count121
+\c@ALG@nested=\count122
+\ALG@tlm=\skip59
+\ALG@thistlm=\skip60
+\c@ALG@Lnr=\count123
+\c@ALG@blocknr=\count124
+\c@ALG@storecount=\count125
+\c@ALG@tmpcounter=\count126
+\ALG@tmplength=\skip61
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package hobsub Info: Skipping package `ifluatex' (already loaded).
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package hobsub Info: Skipping package `etexcmds' (already loaded).
+Package hobsub Info: Skipping package `kvsetkeys' (already loaded).
+Package hobsub Info: Skipping package `kvdefinekeys' (already loaded).
+Package hobsub Info: Skipping package `pdftexcmds' (already loaded).
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+\@linkdim=\dimen145
+\Hy@linkcounter=\count127
+\Hy@pagecounter=\count128
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count129
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count130
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen146
+\Fld@menulength=\count131
+\Field@Width=\dimen147
+\Fld@charsize=\dimen148
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count132
+\c@Item=\count133
+\c@Hfootnote=\count134
+)
+
+Package hyperref Message: Driver: hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count135
+\c@bookmark@seq@number=\count136
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip62
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 385.
+
+
+Package hyperref Warning: Option `pagecolor' is not available anymore.
+
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 385.
+
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 385.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 385.
+
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 385
+.
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
+Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen149
+\lightrulewidth=\dimen150
+\cmidrulewidth=\dimen151
+\belowrulesep=\dimen152
+\belowbottomsep=\dimen153
+\aboverulesep=\dimen154
+\abovetopsep=\dimen155
+\cmidrulesep=\dimen156
+\cmidrulekern=\dimen157
+\defaultaddspace=\dimen158
+\@cmidla=\count137
+\@cmidlb=\count138
+\@aboverulesep=\dimen159
+\@belowrulesep=\dimen160
+\@thisruleclass=\count139
+\@lastruleclass=\count140
+\@thisrulewidth=\dimen161
+)
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip63
+\bibsep=\skip64
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count141
+))
+(./Thesis_AllChapters.aux)
+\openout1 = `Thesis_AllChapters.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 70.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count142
+\scratchdimen=\dimen162
+\scratchbox=\box37
+\nofMPsegments=\count143
+\nofMParguments=\count144
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count145
+\MPscratchDim=\dimen163
+\MPnumerator=\count146
+\makeMPintoPDFobject=\count147
+\everyMPtoPDFconversion=\toks37
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+Package geometry Warning: The marginal notes overrun the paper.
+     Add 50.86812pt and more to the right margin.
+
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-38.1381pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=111.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: hypcap package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+)
+Package caption Info: rotating package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box38
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+Package hyperref Info: Link coloring ON on input line 70.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count148
+)
+LaTeX Info: Redefining \ref on input line 70.
+LaTeX Info: Redefining \pageref on input line 70.
+LaTeX Info: Redefining \nameref on input line 70.
+
+(./Thesis_AllChapters.out) (./Thesis_AllChapters.out)
+\@outlinefile=\write6
+\openout6 = `Thesis_AllChapters.out'.
+
+ (./Thesis_FrontCover.tex
+
+Package pdftex.def Warning: Option `bb' does not make sense,
+(pdftex.def)                using `viewport' instead on input line 15.
+
+<Figures/afa.png, id=277, 571.13374pt x 770.88pt>
+File: Figures/afa.png Graphic file (type png)
+ <use Figures/afa.png>
+Package pdftex.def Info: Figures/afa.png used on input line 15.
+(pdftex.def)             Requested size: -40.54341pt x -64.01593pt.
+
+
+Package pdftex.def Warning: Option `bb' does not make sense,
+(pdftex.def)                using `viewport' instead on input line 16.
+
+<IST_A_CMYK_POS.pdf, id=279, 845.0471pt x 597.51233pt>
+File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
+
+<use IST_A_CMYK_POS.pdf>
+Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 16.
+(pdftex.def)             Requested size: 288.78807pt x -90.76195pt.
+
+<Figures/clustering.jpg, id=280, 274.02374pt x 159.59625pt>
+File: Figures/clustering.jpg Graphic file (type jpg)
+
+<use Figures/clustering.jpg>
+Package pdftex.def Info: Figures/clustering.jpg used on input line 28.
+(pdftex.def)             Requested size: 244.26503pt x 142.26378pt.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 32.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 48.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 48.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1
+
+\openout4 = `Thesis_AllChapters.ist'.
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Figures/afa.png> <./IST_
+A_CMYK_POS.pdf> <./Figures/clustering.jpg>] [2]) (./Thesis_Dedication.tex [3
+
+] [4
+
+])
+(./Thesis_Acknowledgements.tex
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 11.
+ [5] [6
+
+]) (./Thesis_Resumo.tex
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 20.
+ [7] [8
+
+])
+(./Thesis_Abstract.tex [9] [10
+
+])
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 105.
+ (./Thesis_AllChapters.toc
+Overfull \hbox (1.15988pt too wide) detected at line 6
+ []\OT1/phv/m/n/10 xviii
+ []
+
+[11
+
+] [12])
+\tf@toc=\write7
+\openout7 = `Thesis_AllChapters.toc'.
+
+ [13] [14
+
+] (./Thesis_AllChapters.lot)
+\tf@lot=\write8
+\openout8 = `Thesis_AllChapters.lot'.
+
+ [15
+
+] [16
+
+]
+(./Thesis_AllChapters.lof
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 13.
+ [17
+
+])
+\tf@lof=\write9
+\openout9 = `Thesis_AllChapters.lof'.
+
+ [18] (./Thesis_Glossary.tex)
+(./Thesis_AllChapters.gls
+Underfull \hbox (badness 10000) in paragraph at lines 43--46
+[]|\OT1/phv/m/n/10 Single-Linkage Hi-er-ar-chi-cal Ag-glom-er-a-tion
+ []
+
+) [19
+
+
+] [20
+
+] (./introduction.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
+[1
+
+]
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 76.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 76.
+)
+(./clustering.tex [2] [3]
+Chapter 2.
+[4
+
+]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/raw_data.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 27995 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/raw_data-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 30337 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/raw_data-eps-converted-to.pdf /home/chiroptera/wo
+rkspace/thesis_writing/rsc/clustering/raw_data.eps>
+(epstopdf)             \includegraphics on input line 53.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-converte
+d-to.pdf, id=573, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-con
+verted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
+erted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/raw_data-eps-converted-to.pdf used on input line 53.
+(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/desired.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29926 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/desired-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 31019 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/desired-eps-converted-to.pdf /home/chiroptera/wor
+kspace/thesis_writing/rsc/clustering/desired.eps>
+(epstopdf)             \includegraphics on input line 60.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-converted
+-to.pdf, id=574, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conv
+erted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/desired-eps-converted-to.pdf used on input line 60.
+(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
+ [5 </home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
+erted-to.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/desired
+-eps-converted-to.pdf>] [6] [7]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/kmeans.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29884 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/kmeans-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 31026 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/kmeans-eps-converted-to.pdf /home/chiroptera/work
+space/thesis_writing/rsc/clustering/kmeans.eps>
+(epstopdf)             \includegraphics on input line 229.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-converted-
+to.pdf, id=691, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conve
+rted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/kmeans-eps-converted-to.pdf used on input line 229.
+(pdftex.def)             Requested size: 227.62206pt x 177.84259pt.
+ [8 </home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conver
+ted-to.pdf>]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl_dendrogram.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 34949 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl_dendrogram-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:10
+(epstopdf)                    size: 22907 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/sl_dendrogram-eps-converted-to.pdf /home/chiropte
+ra/workspace/thesis_writing/rsc/clustering/sl_dendrogram.eps>
+(epstopdf)             \includegraphics on input line 286.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps-con
+verted-to.pdf, id=744, 498.86375pt x 398.48875pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-ep
+s-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps
+-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/sl_dendrogram-eps-converted-to.pdf used on input line 286.
+(pdftex.def)             Requested size: 204.85846pt x 163.63683pt.
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29893 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:10
+(epstopdf)                    size: 31095 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/sl-eps-converted-to.pdf /home/chiroptera/workspac
+e/thesis_writing/rsc/clustering/sl.eps>
+(epstopdf)             \includegraphics on input line 293.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-to.p
+df, id=745, 504.88625pt x 396.48125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted
+-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-
+to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/sl-eps-converted-to.pdf used on input line 293.
+(pdftex.def)             Requested size: 204.85846pt x 160.87045pt.
+) (./state_of_art.tex [9 </home/chiroptera/workspace/thesis_writing/rsc/cluster
+ing/sl_dendrogram-eps-converted-to.pdf> </home/chiroptera/workspace/thesis_writ
+ing/rsc/clustering/sl-eps-converted-to.pdf>]
+Chapter 3.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 27.
+[10
+
+] [11] [12] [13] [14]
+Underfull \vbox (badness 1762) has occurred while \output is active []
+
+ [15]
+[16] [17] [18] [19]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid.png,
+ id=995, 481.8pt x 609.27625pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid
+.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid.
+png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/threadgrid.png used on input line 488.
+(pdftex.def)             Requested size: 204.85846pt x 259.05518pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockprocessor.
+png, id=998, 432.61626pt x 403.5075pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockproce
+ssor.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockproces
+sor.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blockprocessor.png used on input line 495.
+(pdftex.def)             Requested size: 204.85846pt x 191.07698pt.
+ [20]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel.png
+, id=1016, 581.17125pt x 643.40375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymode
+l.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/memorymodel.png used on input line 522.
+(pdftex.def)             Requested size: 204.85846pt x 226.79494pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png, id=10
+19, 586.19pt x 554.07pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png G
+raphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/flow.png used on input line 529.
+(pdftex.def)             Requested size: 204.85846pt x 193.6315pt.
+
+Underfull \vbox (badness 1917) has occurred while \output is active []
+
+ [21 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid
+.png (PNG copy)> </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgp
+u/blockprocessor.png (PNG copy)> </home/chiroptera/workspace/thesis_writing/rsc
+/stateofart/gpgpu/memorymodel.png> </home/chiroptera/workspace/thesis_writing/r
+sc/stateofart/gpgpu/flow.png (PNG copy)>] [22]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png, id=
+1049, 853.06941pt x 966.43411pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png
+ Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/kmeans.png used on input line 586.
+(pdftex.def)             Requested size: 318.66948pt x 361.01097pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [23 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png
+>]
+
+Package natbib Warning: Citation `wang2011design' on page 24 undefined on input
+ line 618.
+
+[24]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/stateofart/gpgpu/csr_format.eps>
+(epstopdf)                    date: 2015-07-07 17:22:01
+(epstopdf)                    size: 19228 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-07-07 17:25:12
+(epstopdf)                    size: 5970 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf /home/chiro
+ptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format.eps>
+(epstopdf)             \includegraphics on input line 637.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-
+converted-to.pdf, id=1086, 709.65125pt x 321.2pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format
+-eps-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format-
+eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/csr_format-eps-converted-to.pdf used on input line 637.
+(pdftex.def)             Requested size: 227.62206pt x 103.02625pt.
+ [25 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format
+-eps-converted-to.pdf>] [26]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvka_flo
+w.png, id=1109, 660.34941pt x 1347.62294pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvk
+a_flow.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvka
+_flow.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/mst_boruvka_flow.png used on input line 692.
+(pdftex.def)             Requested size: 227.62206pt x 464.51917pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvk
+a_flow.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_reduce
+.png, id=1124, 678.535pt x 344.28625pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_r
+educe.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_re
+duce.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blelloch_reduce.png used on input line 726.
+(pdftex.def)             Requested size: 364.19667pt x 184.78757pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_downsw
+eep.png, id=1128, 492.84125pt x 320.19624pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_d
+ownsweep.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_do
+wnsweep.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blelloch_downsweep.png used on input line 736.
+(pdftex.def)             Requested size: 364.19667pt x 236.62881pt.
+ [28 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_r
+educe.png (PNG copy)>]) (./methodology.tex [29 </home/chiroptera/workspace/thes
+is_writing/rsc/stateofart/gpgpu/blelloch_downsweep.png (PNG copy)>]
+Chapter 4.
+[30
+
+]
+Underfull \vbox (badness 1960) has occurred while \output is active []
+
+ [31]
+[32]
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_part.p
+ng, id=1177, 895.345pt x 445.665pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
+art.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
+rt.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/eac_csr_first_part.png used on input line 153.
+(pdftex.def)             Requested size: 455.24411pt x 226.60611pt.
+ [33]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 165.
+ [34 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
+art.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
+d=1190, 930.47626pt x 557.08125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/sorted_insert.png used on input line 209.
+(pdftex.def)             Requested size: 455.24411pt x 272.55568pt.
+
+Overfull \hbox (29.60349pt too wide) in paragraph at lines 219--220
+[]\OT1/phv/b/n/10 pro-ce-dure \OT1/phv/m/sc/10 sort[]indices\OT1/phv/m/n/10 ($\
+OML/cmm/m/it/10 indices; data; indptr; degree; n; new[]assocs[]ptr; new[]assocs
+[]ids; new[]assocs[]idx$\OT1/phv/m/n/10 ) 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [35 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
+ng>]
+Overfull \hbox (7.00346pt too wide) in paragraph at lines 267--280
+ [][] 
+ []
+
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/eac_csr_cond_full_degree_100k.eps>
+(epstopdf)                    date: 2015-08-15 17:21:01
+(epstopdf)                    size: 8607104 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-15 17:24:20
+(epstopdf)                    size: 2241728 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.p
+df /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_
+degree_100k.eps>
+(epstopdf)             \includegraphics on input line 285.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_de
+gree_100k-eps-converted-to.pdf, id=1200, 967.615pt x 396.48125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_fu
+ll_degree_100k-eps-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
+l_degree_100k-eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/eac_csr_cond_full_degree_100k-eps-converted-to.pdf used on input line 285.
+(pdftex.def)             Requested size: 435.42273pt x 178.4149pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [36]
+[37 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
+l_degree_100k-eps-converted-to.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/connected_components_boruvka_flow.eps>
+(epstopdf)                    date: 2015-06-26 17:52:58
+(epstopdf)                    size: 19969 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/connected_components_boruvka_flow-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-06-27 15:45:00
+(epstopdf)                    size: 7515 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/methodology/connected_components_boruvka_flow-eps-converted-
+to.pdf /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_comp
+onents_boruvka_flow.eps>
+(epstopdf)             \includegraphics on input line 363.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
+_boruvka_flow-eps-converted-to.pdf, id=1252, 748.7975pt x 1337.99875pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
+nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compon
+ents_boruvka_flow-eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/connected_components_boruvka_flow-eps-converted-to.pdf used on input line 3
+63.
+(pdftex.def)             Requested size: 374.39783pt x 668.99774pt.
+ [39] [40 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_
+components_boruvka_flow-eps-converted-to.pdf>]) (./results.tex [41]
+Chapter 5.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 3907) has occurred while \output is active []
+
+ [42
+
+]
+Overfull \hbox (7.7614pt too wide) in paragraph at lines 53--61
+[][] 
+ []
+
+[43]
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mean.pn
+g, id=1290, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_me
+an.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mea
+n.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_mean.png used on input line 74.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var.png
+, id=1291, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_va
+r.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_var
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_var.png used on input line 81.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo.png
+, id=1295, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_ev
+o.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_evo
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/bi_nofactor_evo.png used on input line 91.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png, id=129
+6, 586.8324pt x 442.2924pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png Gr
+aphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/QK_Means
+/img/sex_evo.png used on input line 99.
+(pdftex.def)             Requested size: 293.41548pt x 221.14566pt.
+
+[44 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofactor_mea
+n.png>] [45 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_nofa
+ctor_var.png> </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/bi_no
+factor_evo.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png, id=13
+11, 578.16pt x 397.485pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png G
+raphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_natural.png used on input line 146.
+(pdftex.def)             Requested size: 289.07928pt x 198.742pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.png, i
+d=1313, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_2pc_cluster.png used on input line 157.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.png,
+ id=1315, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster
+.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.
+png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/iris_allpc_cluster.png used on input line 168.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+ [46 </home/chiroptera/workspace/thesis_writing/rsc/QK_Means/img/sex_evo.png>] 
+[47 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_natural.png> <
+/home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_2pc_cluster.png> </
+home/chiroptera/workspace/thesis_writing/rsc/Horn/img/iris_allpc_cluster.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png, id=
+1330, 488.68974pt x 381.87468pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png
+ Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar.png used on input line 181.
+(pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cluster.
+png, id=1331, 1156.32pt x 867.24pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clu
+ster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_clus
+ter.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_cluster.png used on input line 188.
+(pdftex.def)             Requested size: 455.24411pt x 341.42464pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+.png, id=1332, 488.68974pt x 381.87468pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered.png used on input line 195.
+(pdftex.def)             Requested size: 244.34427pt x 190.93686pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_centered
+_cluster.png, id=1333, 1156.32pt x 433.62pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cen
+tered_cluster.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/Horn/img/crab_2pc_covar_cent
+ered_cluster.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar_centered_cluster.png used on input line 202.
+(pdftex.def)             Requested size: 455.24411pt x 170.71231pt.
+) (./discussion.tex [48 </home/chiroptera/workspace/thesis_writing/rsc/Horn/img
+/crab_2pc_covar.png>] [49 </home/chiroptera/workspace/thesis_writing/rsc/Horn/i
+mg/crab_2pc_covar_cluster.png> </home/chiroptera/workspace/thesis_writing/rsc/H
+orn/img/crab_2pc_covar_centered.png>] [50 </home/chiroptera/workspace/thesis_wr
+iting/rsc/Horn/img/crab_2pc_covar_centered_cluster.png>]
+Chapter 6.
+[51
+
+]) (./conclusions.tex [52]
+Chapter 7.
+[53
+
+] [54]) (./Thesis_AllChapters.bbl
+Underfull \hbox (badness 3417) in paragraph at lines 31--39
+[]\OT1/phv/m/n/10 Daniel Bo-ley.  Prin-ci-pal Di-rec-tion Di-vi-sive Par-ti-tio
+n-ing.  \OT1/phv/m/sl/10 Data Min-ing and Knowl-edge
+ []
+
+
+Underfull \hbox (badness 4291) in paragraph at lines 31--39
+\OT1/phv/m/sl/10 Dis-cov-ery\OT1/phv/m/n/10 , 2(4):325--344, 1998.  ISSN 1384-5
+810.  doi: $10 . 1023 / A : 1009740529316$.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--39
+\OT1/phv/m/n/10 URL [][]$\OT1/cmtt/m/n/10 http : / / dx . doi . org / 10 . 1023
+ / A : 1009740529316$ \ delimiter"026E30F$nhttp : / / www .
+ []
+
+[55
+
+
+
+] [56]
+Underfull \hbox (badness 10000) in paragraph at lines 191--197
+\OT1/cmtt/m/n/10 2410000 / 2401639 / p158-[]casper . pdf ? ip = 193 . 136 . 132
+ . 10 & id = 2401639 & acc = ACTIVESERVICE &
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--197
+\OT1/cmtt/m/n/10 key = 2E5699D25B4FE09E . F7A57B2C5B227641 . 4D4702B0C3E38B35 .
+ 4D4702B0C3E38B35 & CFID =
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 199--207
+\OT1/phv/m/n/10 doi: $10 . 1016 / j . eswa . 2009 . 12 . 017$.  URL [][]$\OT1/c
+mtt/m/n/10 http : / / ac . els-[]cdn . com / S095741740901063X / 1-[]s2 .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--207
+\OT1/cmtt/m/n/10 0-[]S095741740901063X-[]main . pdf ? _tid = f303a76c-[]ac71-[]
+11e4-[]be73-[]00000aacb35e & acdnat =
+ []
+
+[57]
+Underfull \hbox (badness 2790) in paragraph at lines 273--281
+[]\OT1/phv/m/n/10 Linchuan Chen and Gagan Agrawal.  Op-ti-miz-ing MapRe-duce fo
+r GPUs with Ef-fec-tive
+ []
+
+
+Underfull \hbox (badness 3895) in paragraph at lines 273--281
+\OT1/phv/m/n/10 Shared Mem-ory Us-age.  \OT1/phv/m/sl/10 Pro-ceed-ings of the 2
+1st in-ter-na-tional sym-po-sium on High-
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 273--281
+\OT1/phv/m/sl/10 Performance Par-al-lel and Dis-tributed Com-put-ing (HPDC'12)\
+OT1/phv/m/n/10 , pages 199--210, 2012.  doi:
+ []
+
+[58] [59] [60]) [61] [62
+
+] (./Thesis_Appendix.tex
+Appendix A.
+[63
+
+] [64
+
+])
+
+Package natbib Warning: There were undefined citations.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
+(./Thesis_AllChapters.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
+Package rerunfilecheck Info: File `Thesis_AllChapters.out' has not changed.
+(rerunfilecheck)             Checksum: 01D18840946B05A215842D1F47801D1B;4887.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
+ ) 
+Here is how much of TeX's memory you used:
+ 11459 strings out of 495004
+ 177095 string characters out of 6180663
+ 279943 words of memory out of 5000000
+ 14015 multiletter control sequences out of 15000+600000
+ 42425 words of font info for 77 fonts, out of 8000000 for 9000
+ 16 hyphenation exceptions out of 8191
+ 55i,13n,92p,964b,608s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhv
+ro8a.pfb>
+Output written on Thesis_AllChapters.pdf (84 pages, 5801504 bytes).
+PDF statistics:
+ 1590 PDF objects out of 1728 (max. 8388607)
+ 1226 compressed objects within 13 object streams
+ 315 named destinations out of 1000 (max. 500000)
+ 705 words of extra memory for PDF output out of 10000 (max. 10000000)
+

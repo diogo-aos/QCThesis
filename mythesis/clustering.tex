@@ -36,9 +36,9 @@ The process of clustering data has three main stages \cite{Jain1999}:
     \item \textbf{Grouping} refers to the algorithm that will perform the actual clustering on the dataset with the defined pattern representation, using the appropriate similarity measure.
 \end{itemize}
 
-As an example, Figure \ref{fig:intro raw} shows the plot of a simple synthetic dataset - a Gaussian mixture of 5 distributions.
-No extra information other than the position of the points is given, since clustering algorithms are unsupervised methods.
-Figure \ref{fig:intro natural} presents the desired clustering for this given dataset.
+As an example, Figure \ref{fig:intro raw} shows the plot of the Iris data set, a small benchmark Machine Learning data set.
+This data set has 4 features, of which only 2 are represented, and 3 classes, of which 2 are overlapping.
+Figure \ref{fig:intro natural} presents the desired clustering for this data set.
 
 % Part of this went to the K-Means section
 % The number of clusters was purposefully set to an "incorrect" number to demonstrate that the number of cluster of a dataset is not trivial to discover, even in such a simple example.
@@ -50,19 +50,19 @@ Figure \ref{fig:intro natural} presents the desired clustering for this given da
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{introduction/img/cluster_example_raw}
+        \includegraphics[width=\textwidth]{clustering/raw_data}
         \caption{Input data, unlabeled.}
         \label{fig:intro raw}
     \end{subfigure}
     %\hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{introduction/img/cluster_example_natural}
+        \includegraphics[width=\textwidth]{clustering/desired}
         \caption{Desired labels.}
         \label{fig:intro natural}
     \end{subfigure}
 
-    \caption{Gaussian mixture of 5 distributions. Fig. \ref{fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref{fig:intro natural} shows the desired labels for each point, which here means their corresponding Gaussian.}
+    \caption{First and second features of the Iris dataset. Fig. \ref{fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref{fig:intro natural} shows the desired labels for each point, where each color is coded to a class.}
     \label{fig:clustering plots}
 \end{figure}
 
@@ -189,6 +189,10 @@ It starts by assigning each pattern to its closer cluster based on the cluster's
 This is called the \textbf{labeling} step since one usually uses cluster labels for this assignment.
 The centroids are then recomputed based on this assignment, in the \textbf{update} step.
 The new centroids are the mean of all the patterns belonging to the clusters, hence the name of the algorithm.
+% convergence
+These two steps are executed iteratively until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
+The initial centroids are usually randomly chosen, but other schemes exist to improve the overall accuracy of the algorithm, e.g. K-Means++ \cite{Arthur2007}.
+There are also methods to automatically choose the number of clusters \cite{Aggarwal2014}.
 
 % similarity measures
 The similarity measure used is typically the Euclidean distance.
@@ -196,15 +200,15 @@ This tends to produce hyperspherical clusters \cite{Jain1999}.
 Still, according to \cite{Jain2010}, other measures have been used such as the L1 norm, Mahalanobis distance, as well as cosine similarity \cite{Aggarwal2014}.
 The choice of similarity measure must be made carefully as it may not guarantee that the algorithm will converge.
 
-% convergence
-The two steps outlined above (labeling and update) are executed iteratively until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
-The initial centroids are usually randomly chosen, but other schemes exist to improve the overall accuracy of the algorithm, e.g. K-Means++ \cite{Arthur2007}.
-
 % empty clusters
 A detail of implementation is what to do with clusters that have no patterns assigned to them.
 One approach to this situation is to drop the empty clusters in further iterations.
 However, allowing the existence of empty clusters or dropping empty clusters is undesirable since the number of clusters is an input parameter and it's expected that the output contains the specified number of clusters.
 Other approaches exist dealing with this problem, such as equaling the centroid of an empty cluster to the pattern furthest away from its assigned centroid or reusing the old centroids as in \cite{Pakhira2009}.
+
+% kmeans as a step for other algorithms
+K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $k$ is the number of clusters and $t$ is the number of iterations that it executes.
+Because of this, K-Means is often used as foundational step of more complex and robust algorithms, such as EAC.
 
 % After the first iteration, the first step is executed with the new centroids.
 % The end result of the algorithm is the labels produced in the first step of the last iteration.
@@ -218,25 +222,79 @@ Other approaches exist dealing with this problem, such as equaling the centroid 
 
 %example
 As an example, the output of the K-means algorithm to the data presented in Fig. \ref{fig:clustering plots} is represented in Fig. \ref{fig:intro kmeans}.
-The algorithm executed with 4 random centroids.
+The algorithm executed with 3 random centroids.
 
 \begin{figure}[hbtp]
-\centering
-\includegraphics[width=0.5\textwidth]{introduction/img/cluster_example_kmeans}
-\caption{The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 4.}
-\label{fig:intro kmeans}\end{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{clustering/kmeans}
+    \caption{The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3.}
+    \label{fig:intro kmeans}
+\end{figure}
 
-The number of clusters was purposefully set to an "incorrect" number to demonstrate that it is not trivial to discover, even in such a simple example.
-In this synthetic dataset, the number of clusters is not clear due to the two superimposed Gaussians.
+Even with the correct number of clusters, the clustering results don't match $100\%$ the natural clusters.
+The accuracy relative to the natural clusters of Fig. \ref{fig:intro natural} is $88\%$ as measured by the Consistency Index (CI) \cite{Fred2001}.
+In this example, the problem is the two overlapping clusters.
+It's hard for an algorithm to discriminate between two clusters when they have similar patterns.
 When no prior information about the dataset is given, the number of clusters can be hard to discover.
 This is why, when available, a domain expert may provide valuable insight on tuning the initialization parameters.
 
-K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $k$ is the number of clusters and $t$ is the number of iterations that it executes.
-Because of this, K-Means is often used as a basis for 
-It's also widely used due to it's simplicity and efficiency.
-Because of this, it's also often used as a foundational step of more complex and robust algorithms, such as EAC.
- the algorithm works as follows
-
 \section{Single-Link}
 
-Do the same thing as K-Means but for SL
+Single-Link \cite{sneath1962numerical} is one of the most popular agglomerative hierarchical clustering algorithms.
+It operates over a pair-wise similarity matrix and outputs a dendrogram.
+It starts by considering that every pattern is a cluster singleton.
+In each iteration, the two most similar clusters are merged.
+The similarity between two clusters is the similarity between their most similar patterns.
+Because the algorithm connects first clusters that are more similar, it naturally gives more importance to regions of higher density \cite{Aggarwal2014}.
+The algorithm stops when $n-1$ merges have been performed, which is when all patterns have been connected in the same cluster.
+Just like in the K-Means algorithm, different similarity measures can be used for the distances.
+
+A naive implementation of Single-Link comprehends the following steps \cite{Jain1999}:
+\begin{enumerate}
+    \item Create a pair-wise similarity matrix of all patterns, where each  pattern is a distinct cluster;
+
+    \item Find the most similar clusters, merge them and uptade the matrix to reflect this change. The rows and columns of the two merged clusters are deleted and a new row and column are created to store the new cluster whose similarities to other clusters will be the minimum of either the merging clusters.
+
+    \item Stop if all patterns belong to a single cluster, otherwise continue to step 2.
+\end{enumerate}
+
+% naive & SLINK
+The total time complexity of this naive implementation is $O(n^3)$ since it performs a $O(n^2)$ search in step two and it does it $n-1$ times.
+Over time, more efficient implementations have been proposed, such as SLINK \cite{Sibson1973}.
+SLINK needs no working copy of $O(n^2)$ the pair-wise similarity matrix (if the original can be modified), has a working memory of $O(n^2)$ and time complexity of $O(n^2)$.
+This increase in performance comes from the observation that the $O(n^2)$ search is unnecessary in every iteration if two arrays of length $n$ with the closest cluster and correspondent distance for each cluster.
+This way, the search complexity is reduced to $O(n)$ with the only overhead that this two arrays must also be updated upon a cluster merge.
+
+% SL from MST
+An interesting property of the Single-Link algorithm is its equivalence with a Minimum Spanning Tree (MST), an observation first made by \cite{Gower1969}.
+A MST contains all the information necessary to build a Single-Link dendrogram.
+In this context, the edges of the MST are the similarities between the patterns and the nodes are the patterns themselves.
+To walk down through the levels of the dendrogram from the MST, one cuts the least similar edges.
+Furthermore, this approach can be used to apply Single-Link clustering to graphs-encoded problems in a straight-forward way.
+Furthermore, the performance properties of this method are the same as SLINK 
+\cite{Mullner2011}.
+
+An example of a Single-Link dendrogram and resulting cluster can be observed in Fig. \ref{fig:sl plots}.
+The dendrogram in Fig. \ref{fig:sl dendrogram} has been truncated to 25 clusters in the bottom level for the sake of readability.
+The clustering presented on Fig. \ref{fig:sl clustering} is the result of cutting the dendrogram such that only 3 clusters exist (the number of classes).
+The accuracy, as measured by the CI, is of $58\%$.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{clustering/sl_dendrogram}
+        \caption{Single-Link dendrogram truncated to 25 clusters in the bottom level.}
+        \label{fig:sl dendrogram}
+    \end{subfigure}
+    %\hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{clustering/sl}
+        \caption{Clustering with 3 clusters.}
+        \label{fig:sl clustering}
+    \end{subfigure}
+
+    \caption{The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref{fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.}
+    \label{fig:sl plots}
+\end{figure}

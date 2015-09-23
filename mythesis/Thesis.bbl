@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{16}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -91,5 +91,35 @@ Malay~K Pakhira.
 \newblock {A Modified k -means Algorithm to Avoid Empty Clusters}.
 \newblock \emph{International Journal of Recent Trends in Enineering},
   1\penalty0 (1), 2009.
+
+\bibitem[Fred(2001)]{Fred2001}
+Ana Fred.
+\newblock {Finding consistent clusters in data partitions}.
+\newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
+\newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
+
+\bibitem[Sneath and Sokal(1962)]{sneath1962numerical}
+Peter H~A Sneath and Robert~R Sokal.
+\newblock {Numerical taxonomy}.
+\newblock \emph{Nature}, 193\penalty0 (4818):\penalty0 855--860, 1962.
+
+\bibitem[Sibson(1973)]{Sibson1973}
+R.~Sibson.
+\newblock {SLINK: an optimally efficient algorithm for the single-link cluster
+  method}, 1973.
+\newblock ISSN 1460-2067.
+\newblock URL \url{http://comjnl.oxfordjournals.org/content/16/1/30.short}.
+
+\bibitem[Gower and Ross(1969)]{Gower1969}
+J.~C. Gower and G.~J.~S. Ross.
+\newblock {Minimum Spanning Trees and Single Linkage Cluster Analysis}.
+\newblock \emph{Journal of the Royal Statistical Society}, 18\penalty0
+  (1):\penalty0 54--64, 1969.
+
+\bibitem[M\"{u}llner(2011)]{Mullner2011}
+Daniel M\"{u}llner.
+\newblock {Modern hierarchical, agglomerative clustering algorithms}.
+\newblock \penalty0 (1973):\penalty0 29, 2011.
+\newblock URL \url{http://arxiv.org/abs/1109.2378}.
 
 \end{thebibliography}

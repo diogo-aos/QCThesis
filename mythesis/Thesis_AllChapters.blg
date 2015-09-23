@@ -1,0 +1,74 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Thesis_AllChapters.aux
+The style file: unsrtnat.bst
+Database file #1: library.bib
+Warning--I didn't find a database entry for "wang2011design"
+Warning--empty publisher in Aggarwal2014
+Warning--empty year in Aggarwal2014
+Warning--empty year in Aggarwal2014
+Warning--empty journal in Mullner2011
+Warning--there's a number but no volume in Mullner2011
+Warning--empty journal in LourencoECG2009
+Warning--empty journal in Wiebe2014
+Warning--empty journal in Casper2013
+Warning--empty year in Casper
+Warning--empty publisher in Lanzagorta2008
+Warning--empty journal in Wang2013
+Warning--there's a number but no volume in Horn2001a
+Warning--empty journal in gao20xx
+Warning--empty year in gao20xx
+Warning--empty year in gao20xx
+Warning--empty journal in Sirotkovi2012
+Warning--empty journal in Karimi2010
+Warning--there's a number but no volume in Karimi2010
+Warning--there's a number but no volume in Nvidia2014
+Warning--empty journal in Vineet2009
+Warning--empty journal in Sousa2015
+Warning--empty year in Sousa2015
+Warning--empty year in Sousa2015
+Warning--empty journal in boruuvka1926jistem
+Warning--there's a number but no volume in Harris2007
+Warning--empty year in JonesSciPy
+You've used 75 entries,
+            2481 wiz_defined-function locations,
+            1139 strings with 20816 characters,
+and the built_in function-call counts, 31439 in all, are:
+= -- 2940
+> -- 1363
+< -- 70
++ -- 544
+- -- 392
+* -- 2369
+:= -- 4870
+add.period$ -- 315
+call.type$ -- 75
+change.case$ -- 148
+chr.to.int$ -- 73
+cite$ -- 101
+duplicate$ -- 1608
+empty$ -- 2763
+format.name$ -- 515
+if$ -- 6814
+int.to.chr$ -- 3
+int.to.str$ -- 76
+missing$ -- 74
+newline$ -- 473
+num.names$ -- 225
+pop$ -- 562
+preamble$ -- 1
+purify$ -- 75
+quote$ -- 0
+skip$ -- 1073
+stack$ -- 0
+substring$ -- 1569
+swap$ -- 351
+text.length$ -- 27
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 519
+warning$ -- 26
+while$ -- 287
+width$ -- 0
+write$ -- 1138
+(There were 27 warnings)

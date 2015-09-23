@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  22 SEP 2015 16:29
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  23 SEP 2015 14:35
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -981,44 +981,134 @@ LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
  [1
 
 ]
-</home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_raw.png, id=204, 392.46625pt x 284.06125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
-ample_raw.png Graphic file (type png)
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/raw_data.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 27995 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/raw_data-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 30337 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/raw_data-eps-converted-to.pdf /home/chiroptera/wo
+rkspace/thesis_writing/rsc/clustering/raw_data.eps>
+(epstopdf)             \includegraphics on input line 53.
+Package epstopdf Info: Output file is already uptodate.
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_exa
-mple_raw.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/introduc
-tion/img/cluster_example_raw.png used on input line 53.
-(pdftex.def)             Requested size: 204.85846pt x 148.27615pt.
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-converte
+d-to.pdf, id=209, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-con
+verted-to.pdf Graphic file (type pdf)
 
-</home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_natural.png, id=205, 392.46625pt x 284.06125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
-ample_natural.png Graphic file (type png)
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
+erted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/raw_data-eps-converted-to.pdf used on input line 53.
+(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/desired.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29926 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/desired-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 31019 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/desired-eps-converted-to.pdf /home/chiroptera/wor
+kspace/thesis_writing/rsc/clustering/desired.eps>
+(epstopdf)             \includegraphics on input line 60.
+Package epstopdf Info: Output file is already uptodate.
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_exa
-mple_natural.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/introduc
-tion/img/cluster_example_natural.png used on input line 60.
-(pdftex.def)             Requested size: 204.85846pt x 148.27615pt.
- [2 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_exa
-mple_raw.png> </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/c
-luster_example_natural.png>] [3] [4]
-</home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_example
-_kmeans.png, id=263, 392.46625pt x 284.06125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
-ample_kmeans.png Graphic file (type png)
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-converted
+-to.pdf, id=210, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conv
+erted-to.pdf Graphic file (type pdf)
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_exa
-mple_kmeans.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/introduc
-tion/img/cluster_example_kmeans.png used on input line 231.
-(pdftex.def)             Requested size: 227.62206pt x 164.75128pt.
-) [5 </home/chiroptera/workspace/thesis_writing/rsc/introduction/img/cluster_ex
-ample_kmeans.png>] [6
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conve
+rted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/desired-eps-converted-to.pdf used on input line 60.
+(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
+ [2 </home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
+erted-to.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/desired
+-eps-converted-to.pdf>] [3] [4]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/kmeans.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29884 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/kmeans-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:09
+(epstopdf)                    size: 31026 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/kmeans-eps-converted-to.pdf /home/chiroptera/work
+space/thesis_writing/rsc/clustering/kmeans.eps>
+(epstopdf)             \includegraphics on input line 229.
+Package epstopdf Info: Output file is already uptodate.
 
-] (./Thesis.bbl
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-converted-
+to.pdf, id=327, 504.88625pt x 394.47375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conve
+rted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conver
+ted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/kmeans-eps-converted-to.pdf used on input line 229.
+(pdftex.def)             Requested size: 227.62206pt x 177.84259pt.
+ [5 </home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans-eps-conver
+ted-to.pdf>]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl_dendrogram.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 34949 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl_dendrogram-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:10
+(epstopdf)                    size: 22907 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/sl_dendrogram-eps-converted-to.pdf /home/chiropte
+ra/workspace/thesis_writing/rsc/clustering/sl_dendrogram.eps>
+(epstopdf)             \includegraphics on input line 286.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps-con
+verted-to.pdf, id=380, 498.86375pt x 398.48875pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-ep
+s-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps
+-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/sl_dendrogram-eps-converted-to.pdf used on input line 286.
+(pdftex.def)             Requested size: 204.85846pt x 163.63683pt.
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl.eps>
+(epstopdf)                    date: 2015-09-23 14:17:10
+(epstopdf)                    size: 29893 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/clustering/sl-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-09-23 14:26:10
+(epstopdf)                    size: 31095 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/clustering/sl-eps-converted-to.pdf /home/chiroptera/workspac
+e/thesis_writing/rsc/clustering/sl.eps>
+(epstopdf)             \includegraphics on input line 293.
+Package epstopdf Info: Output file is already uptodate.
+
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-to.p
+df, id=381, 504.88625pt x 396.48125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted
+-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-
+to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
+ng/sl-eps-converted-to.pdf used on input line 293.
+(pdftex.def)             Requested size: 204.85846pt x 160.87045pt.
+) [6 </home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-ep
+s-converted-to.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/s
+l-eps-converted-to.pdf>] (./Thesis.bbl
 Underfull \hbox (badness 3417) in paragraph at lines 31--39
 []\OT1/phv/m/n/10 Daniel Bo-ley.  Prin-ci-pal Di-rec-tion Di-vi-sive Par-ti-tio
 n-ing.  \OT1/phv/m/sl/10 Data Min-ing and Knowl-edge
@@ -1038,6 +1128,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--39
 
 [7
 
+
 ]) [8] (./Thesis_Appendix.tex
 Appendix A.
 [9
@@ -1052,14 +1143,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 097CEE6E5AACC15C1D14935E61E5885A;861.
+(rerunfilecheck)             Checksum: 9B36C3A2459735F7E082839F604284CE;861.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 10673 strings out of 495004
- 157355 string characters out of 6180663
- 264906 words of memory out of 5000000
- 13543 multiletter control sequences out of 15000+600000
+ 10722 strings out of 495004
+ 158559 string characters out of 6180663
+ 265643 words of memory out of 5000000
+ 13571 multiletter control sequences out of 15000+600000
  36554 words of font info for 69 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  55i,9n,92p,548b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1078,10 +1169,10 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis.pdf (28 pages, 537334 bytes).
+Output written on Thesis.pdf (28 pages, 653754 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
- 294 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 567 PDF objects out of 1000 (max. 8388607)
+ 346 compressed objects within 4 object streams
+ 74 named destinations out of 1000 (max. 500000)
+ 161 words of extra memory for PDF output out of 10000 (max. 10000000)
 

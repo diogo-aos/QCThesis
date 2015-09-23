@@ -11,6 +11,6 @@
 \contentsline {section}{\numberline {1.3}Characteristics of clustering techniques}{3}{section.1.3}
 \contentsline {section}{\numberline {1.4}K-Means}{4}{section.1.4}
 \contentsline {section}{\numberline {1.5}Single-Link}{5}{section.1.5}
-\contentsline {chapter}{Bibliography}{8}{chapter*.10}
+\contentsline {chapter}{Bibliography}{8}{chapter*.11}
 \contentsline {chapter}{\numberline {A}Vector calculus}{9}{appendix.A}
 \contentsline {section}{\numberline {A.1}Vector identities}{9}{section.A.1}
