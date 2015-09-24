@@ -5,6 +5,12 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
+Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
+\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
+\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
+
 \bibitem[Jain(2010)]{Jain2010}
 Anil~K Jain.
 \newblock {Data clustering: 50 years beyond K-means}.
@@ -496,12 +502,6 @@ Guy~E Blelloch.
 \newblock \emph{Computer}, pages 35--60, 1990.
 \newblock \doi{10.1.1.47.6430}.
 \newblock URL \url{http://www.cs.cmu.edu/~blelloch/papers/Ble93.pdf}.
-
-\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
-Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
-\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
-\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
 
 \bibitem[{Van Der Walt} et~al.(2011){Van Der Walt}, Colbert, and
   Varoquaux]{VanDerWalt2011}

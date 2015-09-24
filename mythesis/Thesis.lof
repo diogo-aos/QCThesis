@@ -2,5 +2,6 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }}{2}{figure.caption.8}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3.\relax }}{5}{figure.caption.9}
-\contentsline {figure}{\numberline {1.3}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{6}{figure.caption.10}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right).\relax }}{6}{figure.caption.10}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{7}{figure.caption.11}
 \addvspace {10\p@ }

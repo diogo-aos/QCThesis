@@ -4,6 +4,7 @@ The top-level auxiliary file: Thesis_AllChapters.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
 Warning--I didn't find a database entry for "wang2011design"
+Warning--there's a number but no volume in Harris2007
 Warning--empty publisher in Aggarwal2014
 Warning--empty year in Aggarwal2014
 Warning--empty year in Aggarwal2014
@@ -28,7 +29,6 @@ Warning--empty journal in Sousa2015
 Warning--empty year in Sousa2015
 Warning--empty year in Sousa2015
 Warning--empty journal in boruuvka1926jistem
-Warning--there's a number but no volume in Harris2007
 Warning--empty year in JonesSciPy
 You've used 75 entries,
             2481 wiz_defined-function locations,

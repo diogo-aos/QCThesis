@@ -3,32 +3,33 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }}{5}{figure.caption.8}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3.\relax }}{8}{figure.caption.9}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{9}{figure.caption.10}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }}{9}{figure.caption.10}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{10}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \ref {fig:gridthread} represents the thread hierarchy and \ref {fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.\relax }}{21}{figure.caption.22}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces \relax }}{21}{figure.caption.23}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{23}{figure.caption.24}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{25}{figure.caption.26}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of Sousa2015.\relax }}{27}{figure.caption.28}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{28}{figure.caption.30}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{29}{figure.caption.31}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \ref {fig:gridthread} represents the thread hierarchy and \ref {fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.\relax }}{22}{figure.caption.23}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces \relax }}{22}{figure.caption.24}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{24}{figure.caption.25}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{26}{figure.caption.27}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of Sousa2015.\relax }}{28}{figure.caption.29}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{29}{figure.caption.31}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{30}{figure.caption.32}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{34}{figure.caption.35}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{35}{figure.caption.36}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{37}{figure.caption.38}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{40}{figure.caption.43}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{35}{figure.caption.36}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{36}{figure.caption.37}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{38}{figure.caption.39}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{41}{figure.caption.44}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{44}{figure.caption.50}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{45}{figure.caption.51}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces DB index of best solution in T2.\relax }}{45}{figure.caption.52}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces DB index of best solution in T3.\relax }}{46}{figure.caption.53}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Plot of the two first principal components (PC).\relax }}{47}{figure.caption.55}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{47}{figure.caption.56}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{47}{figure.caption.57}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{48}{figure.caption.58}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{49}{figure.caption.59}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{49}{figure.caption.60}
-\contentsline {figure}{\numberline {5.11}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{50}{figure.caption.61}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{45}{figure.caption.51}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{46}{figure.caption.52}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces DB index of best solution in T2.\relax }}{46}{figure.caption.53}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces DB index of best solution in T3.\relax }}{47}{figure.caption.54}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Plot of the two first principal components (PC).\relax }}{48}{figure.caption.56}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{48}{figure.caption.57}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{48}{figure.caption.58}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{49}{figure.caption.59}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{50}{figure.caption.60}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{50}{figure.caption.61}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Representation of the crab data projected over PC 2 and 3.\relax }}{51}{figure.caption.62}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -15,7 +15,7 @@ Many of these methods fall into the realm of machine learning, which is usually 
 Supervised learning deals with labeled data, i.e. data for which ground truth is known, and tries to solve the problem of classification.
 Examples of supervised learning algorithms are Neural Networks, Decision Trees, Linear Regression and Support Vector Machines. %TODO add refs
  %TODO: add ref for solving classification
-Unsupervised learning deals with unlabeled data for which no extra information is known
+Unsupervised learning deals with unlabeled data for which no extra information is known.
 Clustering algorithms, expectation-maximization and Principal Component Analysis are examples of unsupervised algorithms. % TODO: add refs
 
 Cluster analysis methods are unsupervised and the backbone of the present work.
@@ -30,14 +30,16 @@ The process of clustering data has three main stages \cite{Jain1999}:
 \begin{itemize}
     \item \textbf{Pattern representation} refers to the choice of representation of the input data in terms of size, scale and type of features.
     The input patterns may be fed directly to the algorithms or undergo \emph{feature selection} and/or \emph{feature extraction}. The former is simply the selection of which features of the originally available should be used.
-    The later is deals with the transformation of the original features such that the resulting features will produce more accurate and insightful clusterings, e.g. Principal Component Analysis.
-    It should be noted that 
+    The later deals with the transformation of the original features such that the resulting features will produce more accurate and insightful clusterings, e.g. Principal Component Analysis.
+    % It should be noted that
+
     \item \textbf{Pattern similarity} refers to the definition of a measure for computing the similarity between two patterns.
     \item \textbf{Grouping} refers to the algorithm that will perform the actual clustering on the dataset with the defined pattern representation, using the appropriate similarity measure.
 \end{itemize}
 
 As an example, Figure \ref{fig:intro raw} shows the plot of the Iris data set, a small benchmark Machine Learning data set.
 This data set has 4 features, of which only 2 are represented, and 3 classes, of which 2 are overlapping.
+A class is overlapping another if they share part of the feature space, i.e. there is a zone in the feature space whose patterns might belong to either class.
 Figure \ref{fig:intro natural} presents the desired clustering for this data set.
 
 % Part of this went to the K-Means section
@@ -82,7 +84,7 @@ The number of features is usually the same for all patterns in a given pattern s
 In cluster analysis, the desired clustering, typically, is one that reflects the natural structure of the data, i.e. the original true clustering.
 In other words, one wants to group the patterns that came from the same state of nature when they were generated, the same \emph{class}.
 A class, then, can be viewed as a source of patterns and the effort of the clustering algorithm is to group patterns from the same source.
-Throughout this work, these classes will be also be referred to as the "natural" or "true" clusterings.
+Throughout this work, these classes will also be referred to as the "natural" or "true" clusterings.
 %labels
 \emph{Hard} clustering (or partitional) techniques assign a class label $l_i$ to each pattern $\mathbf{x}_i$.
 The whole set of labels of a pattern set $\mathcal{X}$ is given by $\mathcal{L} = {l_1, \ldots, l_n}$.
@@ -142,7 +144,7 @@ A \emph{deterministic} algorithm, on the other hand, will always produce the sam
 Finally, the last characteristic discussed is how an algorithm processes the input data.
 An algorithm is said to be \emph{incremental} if it processes the input incrementally, i.e. taking part of the data, processing it and then doing the save for the remaining parts, e.g. PEGASUS \cite{Kang2011}.
 A \emph{non-incremental} algorithm, on the other hand, will process the whole input in each run, e.g. K-Means.
-This discussion is specially relevant when considering large datasets that may not fit in memory or whose processing would take a too long for a single run and is therefore done in parallel.
+This discussion is specially relevant when considering large datasets that may not fit in memory or whose processing would take too long for a single run and is therefore done in parallel.
 
 
 
@@ -175,8 +177,8 @@ This discussion is specially relevant when considering large datasets that may n
 
 One of the most famous non-optimal solutions for the problem partitional clustering is the K-Means algorithm \cite{kmeansoriginal}.
 The K-Means algorithm uses $K$ \emph{centroid} representatives $c_k$ for $K$ clusters.
-Patterns are assigned to a cluster such that that the squared error (or, more accurately, squared similarity measure) between the cluster representatives and the patterns is minimized.
-In essence, K-Means is solution (although not necessarily an optimal one) to a optimization problem having the Sum of Squared Errors as its objective function, which is known to be a NP hard problem \cite{Jain2010}.
+Patterns are assigned to a cluster such that the squared error (or, more accurately, squared similarity measure) between the cluster representatives and the patterns is minimized.
+In essence, K-Means is a solution (although not necessarily an optimal one) to a optimization problem having the Sum of Squared Errors as its objective function, which is known to be a computationally NP hard problem \cite{Jain2010}.
 It can be mathematically demonstrated that the optimal representatives for the clusters are the means of the patterns of each cluster \cite{Aggarwal2014}.
 K-Means, then, minimizes the following expression, where the similarity measure used is the Euclidean distance:
 
@@ -241,7 +243,7 @@ This is why, when available, a domain expert may provide valuable insight on tun
 \section{Single-Link}
 
 Single-Link \cite{sneath1962numerical} is one of the most popular agglomerative hierarchical clustering algorithms.
-It operates over a pair-wise similarity matrix and outputs a dendrogram.
+It operates over a pair-wise similarity matrix and outputs a dendrogram (e.g. Fig \ref{fig:sl dendrogram}).
 It starts by considering that every pattern is a cluster singleton.
 In each iteration, the two most similar clusters are merged.
 The similarity between two clusters is the similarity between their most similar patterns.
@@ -262,17 +264,41 @@ A naive implementation of Single-Link comprehends the following steps \cite{Jain
 The total time complexity of this naive implementation is $O(n^3)$ since it performs a $O(n^2)$ search in step two and it does it $n-1$ times.
 Over time, more efficient implementations have been proposed, such as SLINK \cite{Sibson1973}.
 SLINK needs no working copy of $O(n^2)$ the pair-wise similarity matrix (if the original can be modified), has a working memory of $O(n^2)$ and time complexity of $O(n^2)$.
-This increase in performance comes from the observation that the $O(n^2)$ search is unnecessary in every iteration if two arrays of length $n$ with the closest cluster and correspondent distance for each cluster.
-This way, the search complexity is reduced to $O(n)$ with the only overhead that this two arrays must also be updated upon a cluster merge.
+This increase in performance comes from the observation that the $O(n^2)$ search can be transformed in a $O(n)$ search at the expense of keeping two arrays of length $n$ that will store the most similar cluster for each pattern and the corresponding similarity measure.
+This way, to find the two closest clusters, the algorithm will not search the entire similarity matrix, but only the new similarity array since this array keeps the closest cluster of each cluster.
+Naturally these arrays must be updated upon a cluster merge.
 
 % SL from MST
 An interesting property of the Single-Link algorithm is its equivalence with a Minimum Spanning Tree (MST), an observation first made by \cite{Gower1969}.
+In graph theory, a MST is a tree that connects all vertices together while minimizing the sum of all the distance between them.
+An example of a graph and its corresponding MST can be seen in Fig. \ref{fig:mst example}.
+In this context, the edges of the MST are the similarities between the patterns and the vertices are the patterns themselves.
 A MST contains all the information necessary to build a Single-Link dendrogram.
-In this context, the edges of the MST are the similarities between the patterns and the nodes are the patterns themselves.
 To walk down through the levels of the dendrogram from the MST, one cuts the least similar edges.
 Furthermore, this approach can be used to apply Single-Link clustering to graphs-encoded problems in a straight-forward way.
 Furthermore, the performance properties of this method are the same as SLINK 
 \cite{Mullner2011}.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{clustering/mst_graph}
+        \caption{Example of a graph.}
+        \label{fig:graph}
+    \end{subfigure}
+    %\hfill
+    \hspace{30pt}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{clustering/mst_mst}
+        \caption{MST of graph to the left.}
+        \label{fig:graph mst}
+    \end{subfigure}
+
+    \caption{The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.}
+    \label{fig:mst example}
+\end{figure}
 
 An example of a Single-Link dendrogram and resulting cluster can be observed in Fig. \ref{fig:sl plots}.
 The dendrogram in Fig. \ref{fig:sl dendrogram} has been truncated to 25 clusters in the bottom level for the sake of readability.
