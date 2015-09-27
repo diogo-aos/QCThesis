@@ -5,12 +5,34 @@
 \contentsline {section}{List of Tables}{xiii}{chapter*.5}
 \contentsline {section}{List of Figures}{xv}{chapter*.6}
 \contentsline {section}{Glossary}{xvii}{table.0.1}
-\contentsline {chapter}{\numberline {1}Clustering}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}The problem of clustering}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Definitions and Notation}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Characteristics of clustering techniques}{3}{section.1.3}
-\contentsline {section}{\numberline {1.4}K-Means}{4}{section.1.4}
-\contentsline {section}{\numberline {1.5}Single-Link}{5}{section.1.5}
-\contentsline {chapter}{Bibliography}{10}{chapter*.12}
-\contentsline {chapter}{\numberline {A}Vector calculus}{11}{appendix.A}
-\contentsline {section}{\numberline {A.1}Vector identities}{11}{section.A.1}
+\contentsline {chapter}{\numberline {1}State of the art}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Evidence Accumulation Clustering}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Ensemble Clustering}{2}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Overview of Evidence Accumulation Clustering}{2}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Examples of applications}{3}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Scalability of EAC}{4}{subsection.1.1.4}
+\contentsline {subsubsection}{$p$ neighbors approach}{4}{section*.8}
+\contentsline {subsubsection}{Increased sparsity approach}{4}{section*.9}
+\contentsline {section}{\numberline {1.2}Clustering with large datasets}{5}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}General Purpose computing on Graphical Processing Units}{6}{subsection.1.2.1}
+\contentsline {subsubsection}{Programming GPUs}{6}{section*.10}
+\contentsline {subsubsection}{OpenCL vs CUDA}{7}{section*.11}
+\contentsline {subsubsection}{Overview of CUDA}{7}{section*.12}
+\contentsline {subsection}{\numberline {1.2.2}Parallel K-Means}{9}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Parallel Single-Link Clustering}{11}{subsection.1.2.3}
+\contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{11}{section*.16}
+\contentsline {subsubsection}{CSR format}{11}{section*.17}
+\contentsline {subsubsection}{Steps of the algorithm}{12}{section*.19}
+\contentsline {subsubsection}{Exclusive scan}{13}{section*.21}
+\contentsline {section}{\numberline {1.3}Quantum clustering}{16}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}The quantum bit approach}{17}{subsection.1.3.1}
+\contentsline {subsubsection}{The quantum bit}{17}{section*.24}
+\contentsline {subsubsection}{Quantum K-Means}{18}{section*.25}
+\contentsline {paragraph}{Initialize population of oracles}{19}{section*.26}
+\contentsline {paragraph}{Collapse oracles}{19}{section*.27}
+\contentsline {paragraph}{K-Means}{19}{section*.28}
+\contentsline {paragraph}{Compute cluster fitness}{20}{section*.29}
+\contentsline {paragraph}{Store}{20}{section*.30}
+\contentsline {paragraph}{Quantum Rotation Gate}{20}{section*.31}
+\contentsline {subsection}{\numberline {1.3.2}Schr\IeC {\"o}dinger's equation approach}{20}{subsection.1.3.2}
+\contentsline {chapter}{Bibliography}{29}{chapter*.32}

@@ -3,11 +3,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction refers to the memory reduction relative to the type of matrix above, the absolute reduction refers to the reduction relative to the full complete matrix.\relax }}{38}{table.caption.38}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction refers to the memory reduction relative to the type of matrix above, the absolute reduction refers to the reduction relative to the full complete matrix.\relax }}{39}{table.caption.41}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{44}{table.caption.47}
-\contentsline {table}{\numberline {5.2}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{44}{table.caption.49}
-\contentsline {table}{\numberline {5.3}{\ignorespaces The values represent generations.\relax }}{45}{table.caption.55}
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{45}{table.caption.50}
+\contentsline {table}{\numberline {5.2}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{45}{table.caption.52}
+\contentsline {table}{\numberline {5.3}{\ignorespaces The values represent generations.\relax }}{46}{table.caption.58}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
