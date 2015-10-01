@@ -4,17 +4,30 @@
 \BOOKMARK [1][-]{chapter*.5}{List of Tables}{}% 4
 \BOOKMARK [1][-]{chapter*.6}{List of Figures}{}% 5
 \BOOKMARK [1][-]{table.0.1}{Glossary}{}% 6
-\BOOKMARK [0][-]{chapter.1}{1 State of the art}{}% 7
-\BOOKMARK [1][-]{section.1.1}{1.1 Evidence Accumulation Clustering}{chapter.1}% 8
-\BOOKMARK [2][-]{subsection.1.1.1}{1.1.1 Ensemble Clustering}{section.1.1}% 9
-\BOOKMARK [2][-]{subsection.1.1.2}{1.1.2 Overview of Evidence Accumulation Clustering}{section.1.1}% 10
-\BOOKMARK [2][-]{subsection.1.1.3}{1.1.3 Examples of applications}{section.1.1}% 11
-\BOOKMARK [2][-]{subsection.1.1.4}{1.1.4 Scalability of EAC}{section.1.1}% 12
-\BOOKMARK [1][-]{section.1.2}{1.2 Clustering with large datasets}{chapter.1}% 13
-\BOOKMARK [2][-]{subsection.1.2.1}{1.2.1 General Purpose computing on Graphical Processing Units}{section.1.2}% 14
-\BOOKMARK [2][-]{subsection.1.2.2}{1.2.2 Parallel K-Means}{section.1.2}% 15
-\BOOKMARK [2][-]{subsection.1.2.3}{1.2.3 Parallel Single-Link Clustering}{section.1.2}% 16
-\BOOKMARK [1][-]{section.1.3}{1.3 Quantum clustering}{chapter.1}% 17
-\BOOKMARK [2][-]{subsection.1.3.1}{1.3.1 The quantum bit approach}{section.1.3}% 18
-\BOOKMARK [2][-]{subsection.1.3.2}{1.3.2 Schr\366dinger's equation approach}{section.1.3}% 19
-\BOOKMARK [0][-]{chapter*.32}{Bibliography}{}% 20
+\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 7
+\BOOKMARK [1][-]{section.1.1}{1.1 Challenges and Motivation}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{1.2 Goals}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{1.3 Contributions}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{1.4 Outline}{chapter.1}% 11
+\BOOKMARK [0][-]{chapter.2}{2 Clustering: basic concepts, definitions and algorithms}{}% 12
+\BOOKMARK [1][-]{section.2.1}{2.1 The problem of clustering}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.2}{2.2 Definitions and Notation}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.3}{2.3 Characteristics of clustering techniques}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.4}{2.4 K-Means}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.5}{2.5 Single-Link}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.6}{2.6 Ensemble Clustering}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.7}{2.7 Evidence Accumulation Clustering}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.7.1}{2.7.1 Overview}{section.2.7}% 20
+\BOOKMARK [2][-]{subsection.2.7.2}{2.7.2 Examples of applications}{section.2.7}% 21
+\BOOKMARK [0][-]{chapter.3}{3 State of the art}{}% 22
+\BOOKMARK [1][-]{section.3.1}{3.1 Scalability of EAC}{chapter.3}% 23
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 p neighbors approach}{section.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Increased sparsity approach}{section.3.1}% 25
+\BOOKMARK [1][-]{section.3.2}{3.2 Clustering with large datasets}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 General Purpose computing on Graphical Processing Units}{section.3.2}% 27
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Parallel K-Means}{section.3.2}% 28
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Parallel Single-Link Clustering}{section.3.2}% 29
+\BOOKMARK [1][-]{section.3.3}{3.3 Quantum clustering}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 The quantum bit approach}{section.3.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Schr\366dinger's equation approach}{section.3.3}% 32
+\BOOKMARK [0][-]{chapter*.34}{Bibliography}{}% 33

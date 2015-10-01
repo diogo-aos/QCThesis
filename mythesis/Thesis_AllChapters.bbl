@@ -1,4 +1,4 @@
-\begin{thebibliography}{101}
+\begin{thebibliography}{104}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -28,11 +28,15 @@ a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
 \newblock ISSN 03600300.
 \newblock \doi{10.1145/331499.331504}.
 
-\bibitem[Aggarwal and Reddy(2013)]{Aggarwal2014}
-Charu~C Aggarwal and Chandan~K Reddy.
-\newblock \emph{{Data clustering: algorithms and applications}}.
-\newblock CRC Press, 2013.
-\newblock ISBN 9781466558229.
+\bibitem[Anderson(1936)]{anderson1936species}
+Edgar Anderson.
+\newblock {The species problem in Iris}.
+\newblock \emph{Annals of the Missouri Botanical Garden}, pages 457--509, 1936.
+
+\bibitem[Fisher(1936)]{fisher1936use}
+Ronald~A Fisher.
+\newblock {The use of multiple measurements in taxonomic problems}.
+\newblock \emph{Annals of eugenics}, 7\penalty0 (2):\penalty0 179--188, 1936.
 
 \bibitem[Boley(1998)]{Boley1998}
 Daniel Boley.
@@ -84,6 +88,12 @@ J~B MacQueen.
   Statistics and Probability, Berkeley, University of California Press},
   volume~1, pages 281--297, 1967.
 
+\bibitem[Aggarwal and Reddy(2013)]{Aggarwal2014}
+Charu~C Aggarwal and Chandan~K Reddy.
+\newblock \emph{{Data clustering: algorithms and applications}}.
+\newblock CRC Press, 2013.
+\newblock ISBN 9781466558229.
+
 \bibitem[Arthur et~al.(2007)Arthur, Arthur, Vassilvitskii, and
   Vassilvitskii]{Arthur2007}
 D.~Arthur, D.~Arthur, S.~Vassilvitskii, and S.~Vassilvitskii.
@@ -128,6 +138,11 @@ Daniel M\"{u}llner.
 \newblock {Modern hierarchical, agglomerative clustering algorithms}.
 \newblock \penalty0 (1973):\penalty0 29, 2011.
 \newblock URL \url{http://arxiv.org/abs/1109.2378}.
+
+\bibitem[Starck and Murtagh(2007)]{starck2007astronomical}
+J-L Starck and Fionn Murtagh.
+\newblock \emph{{Astronomical image and data analysis}}.
+\newblock Springer Science \& Business Media, 2007.
 
 \bibitem[Topchy et~al.(2004)Topchy, Jain, and Punch]{topchy2004mixture}
 Alexander Topchy, Anil~K Jain, and William Punch.

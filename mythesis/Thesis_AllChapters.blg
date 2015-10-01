@@ -28,45 +28,45 @@ Warning--can't use both volume and number fields in Casper2012KMeans
 Warning--empty publisher in Lanzagorta2008
 Warning--there's a number but no volume in Horn2001a
 Warning--empty year in JonesSciPy
-You've used 101 entries,
+You've used 104 entries,
             2481 wiz_defined-function locations,
-            1316 strings with 26552 characters,
-and the built_in function-call counts, 43987 in all, are:
-= -- 4102
-> -- 1947
-< -- 96
-+ -- 769
-- -- 562
-* -- 3354
-:= -- 6750
-add.period$ -- 424
-call.type$ -- 101
-change.case$ -- 199
-chr.to.int$ -- 96
-cite$ -- 125
-duplicate$ -- 2241
-empty$ -- 3876
-format.name$ -- 723
-if$ -- 9594
+            1331 strings with 26901 characters,
+and the built_in function-call counts, 45079 in all, are:
+= -- 4205
+> -- 1976
+< -- 100
++ -- 783
+- -- 570
+* -- 3418
+:= -- 6910
+add.period$ -- 433
+call.type$ -- 104
+change.case$ -- 204
+chr.to.int$ -- 99
+cite$ -- 128
+duplicate$ -- 2307
+empty$ -- 3987
+format.name$ -- 736
+if$ -- 9838
 int.to.chr$ -- 6
-int.to.str$ -- 102
-missing$ -- 101
-newline$ -- 626
-num.names$ -- 303
-pop$ -- 771
+int.to.str$ -- 105
+missing$ -- 105
+newline$ -- 641
+num.names$ -- 312
+pop$ -- 799
 preamble$ -- 1
-purify$ -- 101
+purify$ -- 104
 quote$ -- 0
-skip$ -- 1482
+skip$ -- 1527
 stack$ -- 0
-substring$ -- 2297
-swap$ -- 540
-text.length$ -- 45
+substring$ -- 2360
+swap$ -- 555
+text.length$ -- 46
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 698
+type$ -- 716
 warning$ -- 24
-while$ -- 394
+while$ -- 405
 width$ -- 0
-write$ -- 1537
+write$ -- 1575
 (There were 25 warnings)

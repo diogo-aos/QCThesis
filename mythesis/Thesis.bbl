@@ -1,4 +1,4 @@
-\begin{thebibliography}{79}
+\begin{thebibliography}{96}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -11,6 +11,15 @@ Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
 \newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
 \newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
 
+\bibitem[Jain(2010)]{Jain2010}
+Anil~K Jain.
+\newblock {Data clustering: 50 years beyond K-means}.
+\newblock \emph{Pattern Recognition Letters}, 31\penalty0 (8):\penalty0
+  651--666, 2010.
+\newblock ISSN 01678655.
+\newblock \doi{10.1016/j.patrec.2009.09.011}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.patrec.2009.09.011}.
+
 \bibitem[Jain et~al.(1999)Jain, Murty, and Flynn]{Jain1999}
 a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
 \newblock {Data clustering: a review}.
@@ -19,18 +28,128 @@ a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
 \newblock ISSN 03600300.
 \newblock \doi{10.1145/331499.331504}.
 
-\bibitem[Topchy et~al.(2004)Topchy, Jain, and Punch]{topchy2004mixture}
-Alexander Topchy, Anil~K Jain, and William Punch.
-\newblock {A mixture model for clustering ensembles}.
-\newblock In \emph{Society for Industrial and Applied Mathematics. Proceedings
-  of the SIAM International Conference on Data Mining}, page 379. Society for
-  Industrial and Applied Mathematics, 2004.
+\bibitem[Anderson(1936)]{anderson1936species}
+Edgar Anderson.
+\newblock {The species problem in Iris}.
+\newblock \emph{Annals of the Missouri Botanical Garden}, pages 457--509, 1936.
+
+\bibitem[Fisher(1936)]{fisher1936use}
+Ronald~A Fisher.
+\newblock {The use of multiple measurements in taxonomic problems}.
+\newblock \emph{Annals of eugenics}, 7\penalty0 (2):\penalty0 179--188, 1936.
+
+\bibitem[Boley(1998)]{Boley1998}
+Daniel Boley.
+\newblock {Principal Direction Divisive Partitioning}.
+\newblock \emph{Data Mining and Knowledge Discovery}, 2\penalty0 (4):\penalty0
+  325--344, 1998.
+\newblock ISSN 1384-5810.
+\newblock \doi{10.1023/A:1009740529316}.
+\newblock URL
+  \url{http://dx.doi.org/10.1023/A:1009740529316$\backslash$nhttp://www.springerlink.com/content/w15313n737603612/}.
+
+\bibitem[Steinbach et~al.(2000)Steinbach, Karypis, Kumar, and
+  Others]{Steinbach2000}
+Michael Steinbach, George Karypis, Vipin Kumar, and Others.
+\newblock {A comparison of document clustering techniques}.
+\newblock \emph{KDD workshop on text mining}, 400\penalty0 (1):\penalty0
+  525--526, 2000.
+\newblock \doi{10.1.1.125.9225}.
+
+\bibitem[Chavent(1998)]{Chavent1998}
+Marie Chavent.
+\newblock {A monothetic clustering method}.
+\newblock \emph{Pattern Recognition Letters}, 19\penalty0 (11):\penalty0
+  989--996, 1998.
+\newblock ISSN 01678655.
+\newblock \doi{10.1016/S0167-8655(98)00087-7}.
+
+\bibitem[Bezdek et~al.(1984)Bezdek, Ehrlich, and Full]{Bezdek1984}
+James~C. Bezdek, Robert Ehrlich, and William Full.
+\newblock {FCM: The fuzzy <i>c</i>-means clustering algorithm}.
+\newblock \emph{Computers \& Geosciences}, 10\penalty0 (2–3):\penalty0
+  191--203, 1984.
+\newblock ISSN 0098-3004.
+\newblock \doi{10.1016/0098-3004(84)90020-7}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/0098300484900207}.
+
+\bibitem[Kang et~al.(2011)Kang, Tsourakakis, and Faloutsos]{Kang2011}
+U~Kang, Charalampos~E Tsourakakis, and Christos Faloutsos.
+\newblock {PEGASUS : Mining Peta-Scale Graphs}.
+\newblock \emph{Knowledge and Information Systems}, 27\penalty0 (2):\penalty0
+  303--325, 2011.
+
+\bibitem[MacQueen(1967)]{kmeansoriginal}
+J~B MacQueen.
+\newblock {Some Methods for classification and Analysis of Multivariate
+  Observations}.
+\newblock In \emph{Proceedings of 5-th Berkeley Symposium on Mathematical
+  Statistics and Probability, Berkeley, University of California Press},
+  volume~1, pages 281--297, 1967.
 
 \bibitem[Aggarwal and Reddy(2013)]{Aggarwal2014}
 Charu~C Aggarwal and Chandan~K Reddy.
 \newblock \emph{{Data clustering: algorithms and applications}}.
 \newblock CRC Press, 2013.
 \newblock ISBN 9781466558229.
+
+\bibitem[Arthur et~al.(2007)Arthur, Arthur, Vassilvitskii, and
+  Vassilvitskii]{Arthur2007}
+D.~Arthur, D.~Arthur, S.~Vassilvitskii, and S.~Vassilvitskii.
+\newblock {k-means++: The advantages of careful seeding}.
+\newblock \emph{Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, 8:\penalty0 1027--1035, 2007.
+\newblock \doi{10.1145/1283383.1283494}.
+\newblock URL \url{http://portal.acm.org/citation.cfm?id=1283494}.
+
+\bibitem[Pakhira(2009)]{Pakhira2009}
+Malay~K Pakhira.
+\newblock {A Modified k -means Algorithm to Avoid Empty Clusters}.
+\newblock \emph{International Journal of Recent Trends in Enineering},
+  1\penalty0 (1), 2009.
+
+\bibitem[Fred(2001)]{Fred2001}
+Ana Fred.
+\newblock {Finding consistent clusters in data partitions}.
+\newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
+\newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
+
+\bibitem[Sneath and Sokal(1962)]{sneath1962numerical}
+Peter H~A Sneath and Robert~R Sokal.
+\newblock {Numerical taxonomy}.
+\newblock \emph{Nature}, 193\penalty0 (4818):\penalty0 855--860, 1962.
+
+\bibitem[Sibson(1973)]{Sibson1973}
+R.~Sibson.
+\newblock {SLINK: an optimally efficient algorithm for the single-link cluster
+  method}, 1973.
+\newblock ISSN 1460-2067.
+\newblock URL \url{http://comjnl.oxfordjournals.org/content/16/1/30.short}.
+
+\bibitem[Gower and Ross(1969)]{Gower1969}
+J.~C. Gower and G.~J.~S. Ross.
+\newblock {Minimum Spanning Trees and Single Linkage Cluster Analysis}.
+\newblock \emph{Journal of the Royal Statistical Society}, 18\penalty0
+  (1):\penalty0 54--64, 1969.
+
+\bibitem[M\"{u}llner(2011)]{Mullner2011}
+Daniel M\"{u}llner.
+\newblock {Modern hierarchical, agglomerative clustering algorithms}.
+\newblock \penalty0 (1973):\penalty0 29, 2011.
+\newblock URL \url{http://arxiv.org/abs/1109.2378}.
+
+\bibitem[Starck and Murtagh(2007)]{starck2007astronomical}
+J-L Starck and Fionn Murtagh.
+\newblock \emph{{Astronomical image and data analysis}}.
+\newblock Springer Science \& Business Media, 2007.
+
+\bibitem[Topchy et~al.(2004)Topchy, Jain, and Punch]{topchy2004mixture}
+Alexander Topchy, Anil~K Jain, and William Punch.
+\newblock {A mixture model for clustering ensembles}.
+\newblock In \emph{Society for Industrial and Applied Mathematics. Proceedings
+  of the SIAM International Conference on Data Mining}, page 379. Society for
+  Industrial and Applied Mathematics, 2004.
 
 \bibitem[Fred and Jain(2005)]{Fred2005}
 Ana N~L Fred and Anil~K Jain.

@@ -9,7 +9,7 @@
 
 
 % motivation
-Scalability of EAC to large data sets is the concern of this work.
+Scalability of EAC to large data sets is the concern of this work and, because of that, this chapter starts by reviewing what has been done in terms of scaling EAC in section \ref{sec:eac scaling}.
 EAC is a method of three parts and this dissertation is concerned with the scalability of the whole algorithm which means that each step must be optimized.
 Scaling an algorithm means one has to take into account both speed of execution and memory requirements.
 Increasing speed can be attained with either faster algorithms and/or faster computation of existing algorithms.
@@ -17,11 +17,11 @@ Increasing speed can be attained with either faster algorithms and/or faster com
 This chapter reflects research done within both approaches.
 
 % EAC section
-Before reviewing methods and techniques relevant for scaling EAC, this chapter starts by presenting the state of the art of EAC and related research in section \ref{sec:eac}.
-This section provides a brief overview of ensemble clustering, explains the EAC algorithm, refers to where it has been applied and reviews what has been done in terms of scaling it.
+% Before reviewing methods and techniques relevant for scaling EAC, this chapter starts by presenting the state of the art of EAC and related research in section \ref{sec:eac}.
+% This section provides a brief overview of ensemble clustering, explains the EAC algorithm, refers to where it has been applied and reviews what has been done in terms of scaling it.
 
 % large datasets section
-Although research on the application of EAC in large data sets hasn't been pursued before, cluster analysis of large data sets has. 
+Although research on the application of EAC to large data sets hasn't been pursued before, cluster analysis of large data sets has. 
 Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of EAC.
 Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 To this end, section \ref{sec:big data} presents a brief review on cluster analysis of large data sets, with a focus on parallelization with GPUs.
@@ -36,118 +36,26 @@ This line of research was taken mostly with the first step of EAC in mind.
 % While quantum clustering was only reviewed for the first step, the parallel computation paradigm was investigated with all steps in mind.
 % For that reason, K-Means GPU versions were researched as well as a MST-based Single Linkage Clustering method.
 
-
-
-
-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %
-%  					EVIDENCE ACCUMULATION CLUSTERING
+%  					EAC SCALABILITY
 %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-\section{Evidence Accumulation Clustering}
-\label{sec:eac}
 
-Evidence Accumulation Clustering is a state of the art ensemble clustering algorithm.
-This section will explain briefly the concept of ensemble clustering followed by an overview of the EAC algorithm.
-Examples of applications are given and a review of what has already been done to address the problem of scaling EAC is presented.
-
-
-\subsection{Ensemble Clustering}
-
-The underlying idea behind ensemble clustering is to take a collection of partitions, a \emph{clustering ensemble}, and combine it into a single partition.
-There are several motivations for ensemble clustering.
-Data from real world problems appear in different configurations regarding shape, cardinality, dimensionality, sparsity, etc. 
-Different clustering algorithms are appropriate for different data configurations, e.g. K-Means tends to group patterns in hyperspheres \cite{Jain1999} so it is more appropriate for data whose structure is formed by hypershere like clusters.
-If the true structure of the data at hand is heterogeneous in its configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part.
-Since different algorithms can be used to produce the partitions in the ensemble, one can use a mix of algorithms to address different properties of the data such that the combination is more \textbf{robust} to noise and outliers \cite{topchy2004mixture} and the final clustering has a \textbf{better quality} \cite{Aggarwal2014}.
-Ensemble clustering can also be particularly useful in situations where one doesn't have direct access to all the features of a given data set but can have access to partitions from different subsets and later combining with an ensemble algorithm.
-Furthermore, the generation of the clustering ensemble can be \textbf{parallelized and distributed} since each partition is independent from every other partition.
-
-A clustering ensemble, according to \cite{Fred2005}, can be produced from (1) different data representations, e.g. choice of preprocessing, feature selection and extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters on the same algorithm.
-
-% different approaches to ensemble clustering
-Ensemble clustering algorithms can take three main distinct approaches \cite{Aggarwal2014}.
-The MMCE \cite{topchy2004mixture} and BCE \cite{wang2011bayesian} are examples of a probabilistic approach.
-EAC \cite{Fred2005} and CSPA \cite{Strehl2002} are examples of pair-wise similarity based approach, where the algorithms use a co-associations matrix.
-This approach will be further clarified when the EAC algorithm is explained.
-HGPA \cite{Strehl2002}, MCLA \cite{Strehl2002} and bagging \cite{Dudoit2003} are examples of a direct approach to combining the ensemble clusterings, where the algorithms work directly with the labels without creating a co-association matrix.
-A detailed and thorough review of the similarity measures that can be used on with clustering ensembles and the state of the art algorithms can be consulted in \cite{Aggarwal2014}.
-
-% Many cluster ensemble algorithms exist, e.g. Bipartite \cite{Hore2009}, Metis Merger \cite{Hore2009}, CSPA \cite{Strehl2002}, HGPA \cite{Strehl2002}, MCLA \cite{Strehl2002} and EAC \cite{Fred2002}.
-
-\subsection{Overview of Evidence Accumulation Clustering}
-\label{sec:eac overview}
-
-The goal of EAC is to find an optimal partition $P^*$ containing $k^*$ clusters, from the clustering ensemble $\mathbb{P}$. The optimal partition should have the following properties \cite{Fred2005}:
-
-\begin{itemize}
-	\item \textbf{Consistency} with the clustering ensemble;
-	\item \textbf{Robustness} to small variations in the ensemble; and,
-	\item \textbf{Goodness} of fit with ground truth information, when available.
-\end{itemize}
-
-\emph{Ground truth} is the true labels of each sample of the dataset, when such exists, and is used for validation purposes.
-Since EAC is an unsupervised method, this typically will not be available.
-EAC makes no assumption on the number of clusters in each data partition.
-Its approach is divided in 3 steps:
-
-\begin{enumerate}
-\item \textbf{Production} of a clustering ensemble $\mathbb{P}$ (the evidence);
-\item \textbf{Combination} of the ensemble is combined into a co-association matrix;
-\item \textbf{Recovery} of the natural clusters of the data.
-\end{enumerate}
-
-The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $\mathcal{C}$ where each of its elements $n_{ij}$ is the association value between the pattern pair $(i,j)$.
-The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble.
-The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns \cite{Fred2005}, revealing the underlying structure of the data.
-In other words, a high association $n_{ij}$ means it's more likely that patterns $i$ and $j$ belong to the same class.
-The construction of the co-association matrix is at the very core of this method.
-
-The co-association matrix itself is not the output of EAC.
-Instead, it is used as input to other methods to obtain the final partition.
-The co-association between any two patterns can be interpreted as a similarity measure.
-Thus, since this matrix is a similarity matrix it's appropriate to use algorithms that take this type of matrices as input, e.g. K-Medoids or hierarchical algorithms such as Single-Link or Average-Link, to name a few.
-Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects.
-However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ \mathcal{C} \} - n_{ij}$.
-
-Although any algorithm can be used, the final clustering is usually done using the SL or AL algorithms.
-Each of this algorithms will take as input the co-association matrix as the similarity matrix.
-Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e. the number of clusters $k$ should be such that it maximizes the cost of cutting the dendrogram from $k-1$ clusters to $k$.
-Further details on the lifetime strategy for picking the number of clusters falls outside the scope of this work and are presented in \cite{Fred2005}.
-
-\subsection{Examples of applications}
-
-EAC has been used with success in several areas. Some of its applications are:
-\begin{itemize}
-	\item in the field of bioinformatics it was used for the automatic identification of chronic lymphocyt leukemia \cite{Qian2010};
-	\item also in bioinformatics it was used for the unsupervised analysis of ECG-based biometric database to highlight natural groups and gain further insight \cite{LourencoECG2009};
-	\item in computer vision it was used as a solution to the problem of clustering of contour images (from hardware tools) \cite{Lourenco2007}.
-\end{itemize}
-
-% \subsection{Advantages and Disadvantages}
-% %#REVIEW advantages and disadvantages of EAC
-
-% An advantage of EAC is that it takes no input parameters such as the number of output clusters.
-% Furthermore, it provides good accuracy on datasets with hard shapes \cite{Fred2005}.
-% On the other hand, a big disadvantage is space complexity of the evidence combination step.
-% In this step, when using the standard EAC, a co-association matrix is build, resulting in a complexity of $O(N^2)$.
-% This translates in an almost prohibitive use of this method for bigger datasets.
-
-
-\subsection{Scalability of EAC} 
+\section{Scalability of EAC}
+\label{sec:eac scaling}
 The quadratic space and time complexity of processing the $n \times n$ co-association matrix is an obstacle to an efficient scaling of EAC.
 Two approaches have been proposed to address this obstacle: one dealing with reducing the co-association matrix by considering only the distances of patterns to their $p$ neighbors and the other by using a sparse co-association matrix and maximizing its sparsity.
 
-\subsubsection{$p$ neighbors approach}
+\subsection{$p$ neighbors approach}
 The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbors of each pattern are considered in the evidence combination step.
 This comes at the cost of having to keep track of the neighbors of each pattern in a separate data structure of $O(np)$ memory complexity and also of pre-computing the $p$ neighbors, which has a time complexity of $O(n^2)$ to compute the similarity measure from each pattern to every other pattern.
 The quadratic space complexity is then transformed to $O(2np)$: $O(np)$ for the actual co-association matrix and $O(np)$ for keeping track of the neighbors.
 Since usually one has $p < \frac{n}{2}$ (value for which both this approach and the original $n \times p$ matrix would take the same space), the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than the $20$ neighbors used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
 % However, it should be noted that computing the $p$ nearest neighbors requires the computation of $n^2$ distance values.
 
-\subsubsection{Increased sparsity approach}
+\subsection{Increased sparsity approach}
 The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix.
 The co-association matrix is symmetric and with a varying degree of sparsity.
 The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results.
