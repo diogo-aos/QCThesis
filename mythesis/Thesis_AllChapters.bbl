@@ -1,4 +1,4 @@
-\begin{thebibliography}{104}
+\begin{thebibliography}{107}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -37,6 +37,37 @@ Edgar Anderson.
 Ronald~A Fisher.
 \newblock {The use of multiple measurements in taxonomic problems}.
 \newblock \emph{Annals of eugenics}, 7\penalty0 (2):\penalty0 179--188, 1936.
+
+\bibitem[Jarvis and Patrick(1973)]{jarvis1973clustering}
+Raymond~A Jarvis and Edward~A Patrick.
+\newblock {Clustering using a similarity measure based on shared near
+  neighbors}.
+\newblock \emph{Computers, IEEE Transactions on}, 100\penalty0 (11):\penalty0
+  1025--1034, 1973.
+
+\bibitem[Aggarwal and Reddy(2013)]{Aggarwal2014}
+Charu~C Aggarwal and Chandan~K Reddy.
+\newblock \emph{{Data clustering: algorithms and applications}}.
+\newblock CRC Press, 2013.
+\newblock ISBN 9781466558229.
+
+\bibitem[Fred(2001)]{Fred2001}
+Ana Fred.
+\newblock {Finding consistent clusters in data partitions}.
+\newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
+\newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
+
+\bibitem[Lange et~al.(2004)Lange, Roth, Braun, and Buhmann]{lange2004stability}
+Tilman Lange, Volker Roth, Mikio~L Braun, and Joachim~M Buhmann.
+\newblock {Stability-based validation of clustering solutions}.
+\newblock \emph{Neural computation}, 16\penalty0 (6):\penalty0 1299--1323,
+  2004.
+
+\bibitem[Davies and Bouldin(1979)]{davies1979cluster}
+David~L Davies and Donald~W Bouldin.
+\newblock {A cluster separation measure}.
+\newblock \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, \penalty0 (2):\penalty0 224--227, 1979.
 
 \bibitem[Boley(1998)]{Boley1998}
 Daniel Boley.
@@ -88,12 +119,6 @@ J~B MacQueen.
   Statistics and Probability, Berkeley, University of California Press},
   volume~1, pages 281--297, 1967.
 
-\bibitem[Aggarwal and Reddy(2013)]{Aggarwal2014}
-Charu~C Aggarwal and Chandan~K Reddy.
-\newblock \emph{{Data clustering: algorithms and applications}}.
-\newblock CRC Press, 2013.
-\newblock ISBN 9781466558229.
-
 \bibitem[Arthur et~al.(2007)Arthur, Arthur, Vassilvitskii, and
   Vassilvitskii]{Arthur2007}
 D.~Arthur, D.~Arthur, S.~Vassilvitskii, and S.~Vassilvitskii.
@@ -108,12 +133,6 @@ Malay~K Pakhira.
 \newblock {A Modified k -means Algorithm to Avoid Empty Clusters}.
 \newblock \emph{International Journal of Recent Trends in Enineering},
   1\penalty0 (1), 2009.
-
-\bibitem[Fred(2001)]{Fred2001}
-Ana Fred.
-\newblock {Finding consistent clusters in data partitions}.
-\newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
-\newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
 
 \bibitem[Sneath and Sokal(1962)]{sneath1962numerical}
 Peter H~A Sneath and Robert~R Sokal.
@@ -314,10 +333,16 @@ S.~a. {Arul Shalom} and Manoranjan Dash.
   Technologies, PDCAT Proceedings}, pages 134--139, 2011.
 \newblock \doi{10.1109/PDCAT.2011.38}.
 
-\bibitem[Gao et~al.()Gao, Li, and Jiang]{gao20xx}
-Zhanchun Gao, Enxing Li, and Yanjun Jiang.
-\newblock {A gpu-based harmony k-means algorithm for document clustering}.
-\newblock pages 2--5.
+\bibitem[{Yanjun Jiang} et~al.(2012){Yanjun Jiang}, {Enxing Li}, and {Zhanchun
+  Gao}]{gao20xx}
+{Yanjun Jiang}, {Enxing Li}, and {Zhanchun Gao}.
+\newblock {A GPU-based harmony k-means algorithm for document clustering}.
+\newblock In \emph{IET International Conference on Information Science and
+  Control Engineering 2012 (ICISCE 2012)}, pages 3.29--3.29, 2012.
+\newblock ISBN 978-1-84919-641-3.
+\newblock \doi{10.1049/cp.2012.2426}.
+\newblock URL
+  \url{http://digital-library.theiet.org/content/conferences/10.1049/cp.2012.2426}.
 
 \bibitem[Sirotkovi et~al.(2012)Sirotkovi, Dujmi, and Papi]{Sirotkovi2012}
 J~Sirotkovi, H~Dujmi, and V~Papi.
@@ -422,10 +447,11 @@ Scott Rostrup, Shweta Srivastava, and Kishore Singhal.
 \newblock \emph{International Journal of Computational Science and
   Engineering}, 8\penalty0 (1):\penalty0 21--33, 2013.
 
-\bibitem[Sousa et~al.()Sousa, Mariano, and Proen\c{c}a]{Sousa2015}
+\bibitem[Sousa et~al.(2015)Sousa, Mariano, and Proen\c{c}a]{Sousa2015}
 Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
 \newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
   Algorithm}.
+\newblock 2015.
 \newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
 
 \bibitem[Fred and Jain(2002)]{Fred2002}

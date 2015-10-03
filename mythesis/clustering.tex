@@ -105,16 +105,54 @@ A cluster $C$ is a subset of $nc$ patterns $\mathbf{x}_i$ taken from the pattern
 A clustering \emph{ensemble} $\mathbb{P}$ is a set of partitions from a given pattern set.
 The relationship between the above concepts is condensed in the following expressions:
 
-\begin{align}
-    ensemble \qquad \mathbb{P} &= \left \{   P^1, P^2, \ldots P^N   \right \}  \label{eq:ensemble} \\
-    partitions \qquad P^j &= \left \{   C^j_1, C^j_2, \ldots C^{j}_{k_j}   \right \}  \label{eq:partition} \\
-    clusters \qquad C^j_i &= \left \{   x_1, x_2, \ldots x_{nc^j_i}   \right \} \label{eq:cluster}
-\end{align}
+\begin{align*}
+    ensemble \qquad & \mathbb{P} = \left \{   P^1, P^2, \ldots P^N   \right \}  \\
+    partition \qquad & P^j = \left \{   C^j_1, C^j_2, \ldots C^{j}_{k_j}   \right \}  \\
+    cluster \qquad & C^j_i = \left \{   x_1, x_2, \ldots x_{nc^j_i}   \right \}
+\end{align*}
+
 
 
 %TODO do this part better
 %similarity
-Finally, a \emph{similarity measure} is a way of quantifying how similar two patterns are in the feature space. In contrast, a \emph{dissimilarity measure} measures how dissimilar two patterns are.  Examples of this measures are a metric (such as the euclidean distance) and the Pearson correlation coefficient.%TODO reference for a method for both euclidean distance and Pearson correlation
+% Em relação aos conceitos: Proximidade não tem que ser métrica e pode ser semelhança ou dissemelhança. Pode sempre converter-se semelhança em dissemelhança e vice-versa, no entanto o mesmo já não acontece quando se convertem métricas. Uma distância é uma dissemelhança que é uma métrica (obedece às várias propriedades de métrica: simetria; d(x,x)=0 e desigualdade triangular). Quando se faz a conversão de uma distância para uma semelhança pode deixar de ser métrica. Mas isso só é mesmo importante quando se está a usar explicita ou implicitamente no processamento (por exemplo procura de vizinhos mais próximos, etc) a característica de desigualdade triangular. Em geral a propriedade de simetria é suficiente (e que d(x,x)=0 e sim(x,x)>sim(x,y)).
+
+Typically, a clustering algorithm will use a \emph{proximity} measure for determining how alike are two patterns.
+A proximity measure can either be a \emph{similarity} or a \emph{dissimilarity} measure.
+One can easily be converted to the other and the main difference is that the former increases in value as patterns are more alike, while the latter decreases in value.
+A \emph{distance} is a dissimilarity function \emph{d} which yields non-negative real values and is also a \emph{metric}, which means it obeys the following three properties:
+
+
+
+\begin{align*} 
+    identity \qquad & d(\mathbf{x}_i, \mathbf{x}_i) = 0  \\
+    symmetry \qquad & d(\mathbf{x}_i, \mathbf{x}_j) = d(\mathbf{x}_j, \mathbf{x}_i), i \neq j \\ 
+    triangle \; inequality \qquad & d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z)  \ge d(\mathbf{x}_x, \mathbf{x}_z)
+\end{align*}
+
+
+
+% \begin{align}
+%     d(\mathbf{x}_i, \mathbf{x}_i) = 0 \qquad (identity) \label{eq:identity} \\
+%     d(\mathbf{x}_i, \mathbf{x}_j) = d(\mathbf{x}_j, \mathbf{x}_i), i \neq j \qquad (symmetry)  \label{eq:symmetry} \\
+%     d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z) \ge d(\mathbf{x}_x, \mathbf{x}_z) \qquad (triangle \; inequality) \label{eq:triangle inequality}
+% \end{align}
+
+where $\mathbf{x}_i$, $\mathbf{x}_j$ and $\mathbf{x}_z$ are 3 unique patterns belonging to the pattern set $\mathcal{X}$.
+Examples of proximity measures include the Euclidean distance, the Pearson’s correlation coefficien and Mutual Shared Neighbors \cite{jarvis1973clustering}.
+It should be noted that different proximity measures may be more appropriate in different contexts, such as document, biological or time-series clustering.
+Furthermore, data can come in different types such as numerical (discrete or continuous) or categorical (binary or multinomial) attributes.
+The researcher should take these factors into account as different proximity measures are more appropriate for some type or even heterogeneous type data. 
+
+An introduction of clustering would be incomplete without a discussion on how good is a partition after clustering.
+Several \emph{validation measures} exist and they can placed in two main categories \cite{Aggarwal2014}.
+\emph{External} measures use \emph{a priori} information about the data to evaluate the clustering against some external structure.
+An application of an external measure could be to test how accurate a clustering algorithm is for a particular dataset by matching the output partition against the ground truth.
+Examples of such measures include the \emph{Consistency Index} \cite{Fred2001} and a measure of accuracy based on the problem of minimum weighted bipartite graphs matching \cite{lange2004stability}, which throughout the remainder of the present work will be refered to as \emph{H-index}.
+\emph{Internal} measures, on the other hand, determine the quality of the clustering without the use of external information about the data.
+The Davies-Bouldin index \cite{davies1979cluster} is such a measure.
+
+
 
 \section{Characteristics of clustering techniques}
 \label{sec:clustering properties}
@@ -194,7 +232,7 @@ The K-Means algorithm uses $K$ \emph{centroid} representatives, $c_k$, for $K$ c
 Patterns are assigned to a cluster such that the squared error (or, more accurately, squared dissimilarity measure) between the cluster representatives and the patterns is minimized.
 In essence, K-Means is a solution (although not necessarily an optimal one) to an optimization problem having the Sum of Squared Errors as its objective function, which is known to be a computationally NP hard problem \cite{Jain2010}.
 It can be mathematically demonstrated that the optimal representatives for the clusters are the means of the patterns of each cluster \cite{Aggarwal2014}.
-K-Means, then, minimizes the following expression, where the distance measure used is the Euclidean distance:
+K-Means, then, minimizes the following expression, where the proximity measure used is the Euclidean distance:
 
 \begin{align}
     \sum^K_{k=1} \sum_{\mathbf{x}_i \in C_k} \| \mathbf{x}_i - c_k  \| ^2  \label{eq:sse}
@@ -211,9 +249,9 @@ The initial centroids are usually chosen randomly, but other schemes exist to im
 There are also methods to automatically choose the number of clusters \cite{Aggarwal2014}.
 
 % similarity measures
-The dissimilarity measure used is typically the Euclidean distance.
+The proximity measure used is typically the Euclidean distance.
 This tends to produce hyperspherical clusters \cite{Jain1999}.
-Still, according to \cite{Jain2010}, other measures have been used such as the L1 norm, Mahalanobis distance, as well as the cosine dissimilarity \cite{Aggarwal2014}.
+Still, according to \cite{Jain2010}, other measures have been used such as the L1 norm, Mahalanobis distance, as well as the cosine similarity \cite{Aggarwal2014}.
 The choice of similarity measure must be made carefully as it may not guarantee that the algorithm will converge.
 
 % empty clusters
@@ -262,7 +300,7 @@ Single-Link \cite{sneath1962numerical} is one of the most popular hierarchical a
 HAC algorithms operate over a pair-wise dissimilarity matrix and outputs a dendrogram (e.g. Fig \ref{fig:sl dendrogram}).
 The main steps of an agglomerative hierarchical clustering algorithm are the following \cite{Jain1999}:
 \begin{enumerate}
-    \item Create a pair-wise dissimilarity matrix of all patterns, where each  pattern is a distinct cluster;
+    \item Create a pair-wise dissimilarity matrix of all patterns, where each pattern is a distinct cluster singleton;
 
     \item Find the closest clusters, merge them and uptade the matrix to reflect this change. The rows and columns of the two merged clusters are deleted and a new row and column are created to store the new cluster.% whose dissimilarities to other clusters will be the minimum of either the merging clusters.
 
