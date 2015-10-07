@@ -16,10 +16,10 @@
 \contentsline {figure}{\numberline {3.8}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{27}{figure.caption.24}
 \contentsline {figure}{\numberline {3.9}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{28}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{38}{figure.caption.37}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{39}{figure.caption.38}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{41}{figure.caption.40}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{44}{figure.caption.45}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.34}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.35}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{42}{figure.caption.37}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{45}{figure.caption.42}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

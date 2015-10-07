@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  7 OCT 2015 10:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  7 OCT 2015 21:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -707,19 +707,19 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip62
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 385.
+Package hyperref Info: Option `colorlinks' set `true' on input line 386.
 
 
 Package hyperref Warning: Option `pagecolor' is not available anymore.
 
 
 Package hyperref Warning: Option `bookmarks' has already been used,
-(hyperref)                setting the option has no effect on input line 385.
+(hyperref)                setting the option has no effect on input line 386.
 
-Package hyperref Info: Option `bookmarksopen' set `false' on input line 385.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 385.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 386.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 386.
 
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 385
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 386
 .
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
@@ -867,7 +867,7 @@ LaTeX Info: Redefining \nameref on input line 70.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 15.
 
-<Figures/afa.png, id=92, 571.13374pt x 770.88pt>
+<Figures/afa.png, id=72, 571.13374pt x 770.88pt>
 File: Figures/afa.png Graphic file (type png)
  <use Figures/afa.png>
 Package pdftex.def Info: Figures/afa.png used on input line 15.
@@ -877,13 +877,13 @@ Package pdftex.def Info: Figures/afa.png used on input line 15.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 16.
 
-<IST_A_CMYK_POS.pdf, id=94, 845.0471pt x 597.51233pt>
+<IST_A_CMYK_POS.pdf, id=74, 845.0471pt x 597.51233pt>
 File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
  <use IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 16.
 (pdftex.def)             Requested size: 288.78807pt x -90.76195pt.
 
-<Figures/clustering.jpg, id=95, 274.02374pt x 159.59625pt>
+<Figures/clustering.jpg, id=75, 274.02374pt x 159.59625pt>
 File: Figures/clustering.jpg Graphic file (type jpg)
 
 <use Figures/clustering.jpg>
@@ -894,17 +894,17 @@ LaTeX Font Info:    Try loading font information for T1+phv on input line 32.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+LaTeX Font Info:    Try loading font information for U+msa on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+LaTeX Font Info:    Try loading font information for U+msb on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1371) has occurred while \output is active []
 
  [1
 
@@ -966,234 +966,163 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--46
 
 ] [18
 
-] (./introduction.tex
+] (./methodology.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 28.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 3.
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 77.
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 49.
+
+
+LaTeX Warning: Reference `chapter:stateofart' on page 2 undefined on input line
+ 56.
+
+
+LaTeX Warning: Reference `sec:qkmeans' on page 2 undefined on input line 59.
+
+
+LaTeX Warning: Reference `sec:parallel kmeans' on page 2 undefined on input lin
+e 79.
+
+[2]
+
+LaTeX Warning: Reference `chapter:stateofart' on page 3 undefined on input line
+ 110.
+
+[3]
+
+LaTeX Warning: Reference `chapter:stateofart' on page 4 undefined on input line
+ 119.
+
+[4]
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 167.
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 176.
+
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
 File: omsphv.fd 
 )
 LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
- [2]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 176.
+ [5]
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_part.p
+ng, id=256, 895.345pt x 445.665pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
+art.png Graphic file (type png)
 
-LaTeX Warning: Reference `chapter:stateofart' on page 3 undefined on input line
- 115.
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
+rt.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/eac_csr_first_part.png used on input line 198.
+(pdftex.def)             Requested size: 455.24411pt x 226.60611pt.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 210.
+ [6 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
+rt.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
+d=266, 930.47626pt x 557.08125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
+ng Graphic file (type png)
 
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/sorted_insert.png used on input line 254.
+(pdftex.def)             Requested size: 455.24411pt x 272.55568pt.
 
-LaTeX Warning: Reference `chapter:methodology' on page 3 undefined on input lin
-e 119.
-
-
-LaTeX Warning: Reference `chapter:results' on page 3 undefined on input line 12
-2.
-
-
-LaTeX Warning: Reference `chapter:discussion' on page 3 undefined on input line
- 123.
-
-
-LaTeX Warning: Reference `chapter:conclusions' on page 3 undefined on input lin
-e 124.
-
-) (./clustering.tex [3]
-Chapter 2.
-[4
-
-]
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/raw_data.eps>
-(epstopdf)                    date: 2015-10-01 11:01:27
-(epstopdf)                    size: 27995 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/raw_data-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:45
-(epstopdf)                    size: 30337 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/clustering/raw_data-eps-converted-to.pdf /home/chiroptera/wo
-rkspace/thesis_writing/rsc/clustering/raw_data.eps>
-(epstopdf)             \includegraphics on input line 63.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-converte
-d-to.pdf, id=271, 504.88625pt x 394.47375pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-con
-verted-to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
-erted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/raw_data-eps-converted-to.pdf used on input line 63.
-(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/desired.eps>
-(epstopdf)                    date: 2015-10-01 11:01:27
-(epstopdf)                    size: 29377 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/desired-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:46
-(epstopdf)                    size: 25560 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/clustering/desired-eps-converted-to.pdf /home/chiroptera/wor
-kspace/thesis_writing/rsc/clustering/desired.eps>
-(epstopdf)             \includegraphics on input line 70.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-converted
--to.pdf, id=272, 504.88625pt x 394.47375pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conv
-erted-to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conve
-rted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/desired-eps-converted-to.pdf used on input line 70.
-(pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
- [5 </home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-conv
-erted-to.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/desired
--eps-converted-to.pdf>] [6] [7] [8]
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/kmeans_progress.eps>
-(epstopdf)                    date: 2015-10-01 11:01:28
-(epstopdf)                    size: 74298 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/kmeans_progress-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:46
-(epstopdf)                    size: 53341 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/clustering/kmeans_progress-eps-converted-to.pdf /home/chirop
-tera/workspace/thesis_writing/rsc/clustering/kmeans_progress.eps>
-(epstopdf)             \includegraphics on input line 284.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-eps-c
-onverted-to.pdf, id=403, 951.555pt x 731.73375pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-
-eps-converted-to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-e
-ps-converted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/kmeans_progress-eps-converted-to.pdf used on input line 284.
-(pdftex.def)             Requested size: 455.24411pt x 350.07819pt.
- [9 </home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-e
-ps-converted-to.pdf>] [10]
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png, id=467
-, 352.84764pt x 226.72942pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png Gr
-aphic file (type png)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/mst_graph.png used on input line 349.
-(pdftex.def)             Requested size: 136.57462pt x 87.75641pt.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png, id=468, 
-249.93375pt x 160.6pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png Grap
-hic file (type png)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/mst_mst.png used on input line 357.
-(pdftex.def)             Requested size: 136.57462pt x 87.76173pt.
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/sl_dendrogram.eps>
-(epstopdf)                    date: 2015-10-01 11:01:28
-(epstopdf)                    size: 34949 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/sl_dendrogram-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:46
-(epstopdf)                    size: 22907 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/clustering/sl_dendrogram-eps-converted-to.pdf /home/chiropte
-ra/workspace/thesis_writing/rsc/clustering/sl_dendrogram.eps>
-(epstopdf)             \includegraphics on input line 375.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps-con
-verted-to.pdf, id=472, 498.86375pt x 398.48875pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-ep
-s-converted-to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps
--converted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/sl_dendrogram-eps-converted-to.pdf used on input line 375.
-(pdftex.def)             Requested size: 204.85846pt x 163.63683pt.
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/sl.eps>
-(epstopdf)                    date: 2015-10-01 11:01:28
-(epstopdf)                    size: 29344 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/clustering/sl-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:47
-(epstopdf)                    size: 22837 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/clustering/sl-eps-converted-to.pdf /home/chiroptera/workspac
-e/thesis_writing/rsc/clustering/sl.eps>
-(epstopdf)             \includegraphics on input line 382.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-to.p
-df, id=473, 504.88625pt x 396.48125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted
--to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-
-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
-ng/sl-eps-converted-to.pdf used on input line 382.
-(pdftex.def)             Requested size: 204.85846pt x 160.87045pt.
- [11 </home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png> <
-/home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png> </home/ch
-iroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps-converted-to
-.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converte
-d-to.pdf>]
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 428.
- [12] [13]
-
-LaTeX Warning: Reference `chapter:stateofart' on page 14 undefined on input lin
-e 479.
-
-) [14] (./Thesis.bbl
-Underfull \hbox (badness 3417) in paragraph at lines 78--86
-[]\OT1/phv/m/n/10 Daniel Bo-ley.  Prin-ci-pal Di-rec-tion Di-vi-sive Par-ti-tio
-n-ing.  \OT1/phv/m/sl/10 Data Min-ing and Knowl-edge
+Overfull \hbox (29.60349pt too wide) in paragraph at lines 264--265
+[]\OT1/phv/b/n/10 pro-ce-dure \OT1/phv/m/sc/10 sort[]indices\OT1/phv/m/n/10 ($\
+OML/cmm/m/it/10 indices; data; indptr; degree; n; new[]assocs[]ptr; new[]assocs
+[]ids; new[]assocs[]idx$\OT1/phv/m/n/10 ) 
  []
 
+[7]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/eac_csr_cond_full_degree_100k.eps>
+(epstopdf)                    date: 2015-08-15 17:21:01
+(epstopdf)                    size: 8607104 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-08-15 17:24:20
+(epstopdf)                    size: 2241728 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.p
+df /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_
+degree_100k.eps>
+(epstopdf)             \includegraphics on input line 327.
+Package epstopdf Info: Output file is already uptodate.
 
-Underfull \hbox (badness 4291) in paragraph at lines 78--86
-\OT1/phv/m/sl/10 Dis-cov-ery\OT1/phv/m/n/10 , 2(4):325--344, 1998.  ISSN 1384-5
-810.  doi: $10 . 1023 / A : 1009740529316$.
- []
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_de
+gree_100k-eps-converted-to.pdf, id=276, 967.615pt x 396.48125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_fu
+ll_degree_100k-eps-converted-to.pdf Graphic file (type pdf)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
+l_degree_100k-eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/eac_csr_cond_full_degree_100k-eps-converted-to.pdf used on input line 327.
+(pdftex.def)             Requested size: 435.42273pt x 178.4149pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
+g>]
+
+LaTeX Warning: Reference `chapter:stateofart' on page 9 undefined on input line
+ 345.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--86
-\OT1/phv/m/n/10 URL [][]$\OT1/cmtt/m/n/10 http : / / dx . doi . org / 10 . 1023
- / A : 1009740529316$ \ delimiter"026E30F$nhttp : / / www .
- []
+Underfull \vbox (badness 1742) has occurred while \output is active []
 
-[15
+ [9 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
+l_degree_100k-eps-converted-to.pdf>] [10]
+Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/connected_components_boruvka_flow.eps>
+(epstopdf)                    date: 2015-06-26 17:52:58
+(epstopdf)                    size: 19969 bytes
+(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
+rsc/methodology/connected_components_boruvka_flow-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-06-27 15:45:00
+(epstopdf)                    size: 7515 bytes
+(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
+thesis_writing/rsc/methodology/connected_components_boruvka_flow-eps-converted-
+to.pdf /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_comp
+onents_boruvka_flow.eps>
+(epstopdf)             \includegraphics on input line 409.
+Package epstopdf Info: Output file is already uptodate.
 
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
+_boruvka_flow-eps-converted-to.pdf, id=333, 748.7975pt x 1337.99875pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
+nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
 
-] [16]) [17] [18
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compon
+ents_boruvka_flow-eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/connected_components_boruvka_flow-eps-converted-to.pdf used on input line 4
+09.
+(pdftex.def)             Requested size: 374.39783pt x 668.99774pt.
 
-]
+Underfull \vbox (badness 4217) has occurred while \output is active []
+
+ [11]
+[12 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compon
+ents_boruvka_flow-eps-converted-to.pdf>]) [13] [14
+
+] (./Thesis.bbl [15
+
+])
+[16]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
  (./Thesis.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: EF4C5F4ADFB04E64346DA58C918A2C83;1391.
+(rerunfilecheck)             Checksum: 8E32AEADC301600274DBE88E2428D982;1138.
 
 
 LaTeX Warning: There were undefined references.
@@ -1201,32 +1130,28 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 10846 strings out of 495004
- 161236 string characters out of 6180663
- 269237 words of memory out of 5000000
- 13659 multiletter control sequences out of 15000+600000
- 38793 words of font info for 72 fonts, out of 8000000 for 9000
+ 10758 strings out of 495004
+ 158916 string characters out of 6180663
+ 269412 words of memory out of 5000000
+ 13603 multiletter control sequences out of 15000+600000
+ 40665 words of font info for 75 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 55i,9n,92p,841b,554s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,13n,92p,508b,466s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis.pdf (36 pages, 712347 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+t10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on Thesis.pdf (34 pages, 2795670 bytes).
 PDF statistics:
- 717 PDF objects out of 1000 (max. 8388607)
- 480 compressed objects within 5 object streams
- 107 named destinations out of 1000 (max. 500000)
- 227 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 431 PDF objects out of 1000 (max. 8388607)
+ 329 compressed objects within 4 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 

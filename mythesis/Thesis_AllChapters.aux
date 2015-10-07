@@ -199,6 +199,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite  {Nvidia2014}.\relax }}{20}{figure.caption.15}}
 \newlabel{fig:blockprocessor}{{3.2}{20}{Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }{figure.caption.15}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}Parallel K-Means}{20}{subsection.3.2.2}}
+\newlabel{sec:parallel kmeans}{{3.2.2}{20}{Parallel K-Means}{subsection.3.2.2}{}}
 \citation{Zechner2009b}
 \citation{DiMarco2013}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Memory model used by CUDA \cite  {Nvidia2014}.\relax }}{21}{figure.caption.16}}
@@ -284,11 +285,12 @@
 \citation{hung2013quantum}
 \citation{Casper2012KMeans}
 \@writefile{toc}{\contentsline {subsubsection}{Quantum K-Means}{30}{section*.27}}
+\newlabel{sec:qkmeans}{{3.3.1}{30}{Quantum K-Means}{section*.27}{}}
 \@writefile{toc}{\contentsline {paragraph}{Initialize population of oracles}{31}{section*.28}}
 \@writefile{toc}{\contentsline {paragraph}{Collapse oracles}{31}{section*.29}}
 \@writefile{toc}{\contentsline {paragraph}{K-Means}{31}{section*.30}}
 \@writefile{toc}{\contentsline {paragraph}{Compute cluster fitness}{31}{section*.31}}
-\citation{Wiebe2014}
+\citation{Liu2010}
 \citation{Liu2010}
 \citation{Horn2010}
 \citation{Weinstein2009}
@@ -303,89 +305,90 @@
 \citation{Horn2001a}
 \citation{Weinstein2009}
 \citation{Wittek2013}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Methodology}{34}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chapter:methodology}{{4}{34}{Methodology}{chapter.4}{}}
 \citation{VanDerWalt2011}
 \citation{JonesSciPy,Oliphant2007,Millman2011}
 \citation{hunter2007matplotlib}
 \citation{McKinney2010}
 \citation{Pedregosa2012}
 \citation{Perez2007}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Methodology}{34}{chapter.4}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:methodology}{{4}{34}{Methodology}{chapter.4}{}}
-\citation{Lourenco2010}
+\citation{Liu2010}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Quantum Clustering}{35}{section.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generations with Parallel K-Means}{35}{section.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Dealing with space complexity of coassocs}{35}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Exploiting the sparsity of the co-association matrix}{35}{subsection.4.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Using prototypes}{36}{subsection.4.3.2}}
-\@writefile{toc}{\contentsline {subsubsection}{k-Nearest Neighbors as prototypes}{36}{section*.34}}
-\@writefile{toc}{\contentsline {subsubsection}{Random prototypes}{36}{section*.35}}
-\@writefile{toc}{\contentsline {subsubsection}{Medoid prototypes}{36}{section*.36}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Building the sparse matrix}{36}{section.4.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{37}{subsection.4.4.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{38}{figure.caption.37}}
-\newlabel{fig:first part}{{4.1}{38}{Inserting a cluster of the first partition in the co-association matrix.\relax }{figure.caption.37}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Update matrix with cluster.\relax }}{38}{algorithm.1}}
-\newlabel{alg:eac csr update cluster}{{1}{38}{Update matrix with cluster.\relax }{algorithm.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{39}{figure.caption.38}}
-\newlabel{fig:normal part}{{4.2}{39}{Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }{figure.caption.38}{}}
-\citation{Sousa2015}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generation with Parallel K-Means}{35}{section.4.2}}
+\citation{Lourenco2010}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Dealing with the space complexity of the co-association matrix}{36}{section.4.3}}
+\citation{Lourenco2010}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Building the sparse matrix}{37}{section.4.4}}
+\newlabel{sec:sparse coassoc}{{4.4}{37}{Building the sparse matrix}{section.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{38}{subsection.4.4.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.34}}
+\newlabel{fig:first part}{{4.1}{39}{Inserting a cluster of the first partition in the co-association matrix.\relax }{figure.caption.34}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Update matrix with cluster.\relax }}{39}{algorithm.1}}
+\newlabel{alg:eac csr update cluster}{{1}{39}{Update matrix with cluster.\relax }{algorithm.1}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Sort the \emph  {indices} array in the interval of a sample $n$.\relax }}{40}{algorithm.2}}
 \newlabel{alg:eac csr sort cluster}{{2}{40}{Sort the \emph {indices} array in the interval of a sample $n$.\relax }{algorithm.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}EAC CSR Condensed}{40}{subsection.4.4.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.35}}
+\newlabel{fig:normal part}{{4.2}{41}{Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }{figure.caption.35}{}}
 \citation{Sousa2015}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction refers to the memory reduction relative to the type of matrix above, the absolute reduction refers to the reduction relative to the full complete matrix.\relax }}{41}{table.caption.39}}
-\newlabel{tab:mat type memory}{{4.1}{41}{Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction refers to the memory reduction relative to the type of matrix above, the absolute reduction refers to the reduction relative to the full complete matrix.\relax }{table.caption.39}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{41}{figure.caption.40}}
-\newlabel{fig:coassoc degree}{{4.3}{41}{The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }{figure.caption.40}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Hierarchical Agglomerative Clustering step}{41}{section.4.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}HAC and GPGPU}{41}{subsection.4.5.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Generating the MST}{41}{section*.41}}
-\@writefile{toc}{\contentsline {subsubsection}{Number of clusters and cutting edges}{42}{section*.42}}
-\@writefile{toc}{\contentsline {subsubsection}{Building the new graph}{43}{section*.43}}
-\@writefile{toc}{\contentsline {subsubsection}{Final clustering}{43}{section*.44}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Update component labels kernel\relax }}{43}{algorithm.3}}
-\newlabel{alg:comp_labels}{{3}{43}{Update component labels kernel\relax }{algorithm.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Memory transfer with the GPU}{43}{section*.46}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{44}{figure.caption.45}}
-\newlabel{fig:connected comps flow}{{4.4}{44}{Diagram of the connected components labeling algorithm used.\relax }{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{46}{chapter.5}}
+\citation{Sousa2015}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{42}{table.caption.36}}
+\newlabel{tab:mat type memory}{{4.1}{42}{Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }{table.caption.36}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{42}{figure.caption.37}}
+\newlabel{fig:coassoc degree}{{4.3}{42}{The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }{figure.caption.37}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Final partition recovery}{42}{section.4.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Single-Link and GPGPU}{42}{subsection.4.5.1}}
+\newlabel{sec:sl gpu}{{4.5.1}{42}{Single-Link and GPGPU}{subsection.4.5.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Generating the MST}{43}{section*.38}}
+\@writefile{toc}{\contentsline {subsubsection}{Number of clusters and pruning the MST}{43}{section*.39}}
+\@writefile{toc}{\contentsline {subsubsection}{Building the new graph}{44}{section*.40}}
+\@writefile{toc}{\contentsline {subsubsection}{Final clustering}{44}{section*.41}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Update component labels kernel\relax }}{44}{algorithm.3}}
+\newlabel{alg:comp_labels}{{3}{44}{Update component labels kernel\relax }{algorithm.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{45}{figure.caption.42}}
+\newlabel{fig:connected comps flow}{{4.4}{45}{Diagram of the connected components labeling algorithm used.\relax }{figure.caption.42}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Memory transfer with the GPU}{46}{section*.43}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Single-Link and out-of-core processing}{46}{subsection.4.5.2}}
+\newlabel{sec:sl disk}{{4.5.2}{46}{Single-Link and out-of-core processing}{subsection.4.5.2}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Results}{47}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:results}{{5}{46}{Results}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experimental environment}{46}{section.5.1}}
-\newlabel{sec:system configs}{{5.1}{46}{Experimental environment}{section.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf  {Alpha} machine specifications.\relax }}{47}{table.5.1}}
-\newlabel{tab:alpha}{{5.1}{47}{\textbf {Alpha} machine specifications.\relax }{table.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf  {Bravo} machine specifications.\relax }}{47}{table.5.2}}
-\newlabel{tab:bravo}{{5.2}{47}{\textbf {Bravo} machine specifications.\relax }{table.5.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf  {Charlie} machine specifications.\relax }}{48}{table.5.3}}
-\newlabel{tab:charlie}{{5.3}{48}{\textbf {Charlie} machine specifications.\relax }{table.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Parallel K-Means}{48}{section.5.2}}
-\newlabel{sec:parallel kmeans}{{5.2}{48}{Parallel K-Means}{section.5.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}GPU MST}{48}{section.5.3}}
-\newlabel{sec:gpu mst}{{5.3}{48}{GPU MST}{section.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}EAC}{48}{section.5.4}}
-\newlabel{sec:eac results}{{5.4}{48}{EAC}{section.5.4}{}}
+\newlabel{chapter:results}{{5}{47}{Results}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experimental environment}{47}{section.5.1}}
+\newlabel{sec:system configs}{{5.1}{47}{Experimental environment}{section.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf  {Alpha} machine specifications.\relax }}{48}{table.5.1}}
+\newlabel{tab:alpha}{{5.1}{48}{\textbf {Alpha} machine specifications.\relax }{table.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf  {Bravo} machine specifications.\relax }}{48}{table.5.2}}
+\newlabel{tab:bravo}{{5.2}{48}{\textbf {Bravo} machine specifications.\relax }{table.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf  {Charlie} machine specifications.\relax }}{49}{table.5.3}}
+\newlabel{tab:charlie}{{5.3}{49}{\textbf {Charlie} machine specifications.\relax }{table.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Parallel K-Means}{49}{section.5.2}}
+\newlabel{sec:parallel kmeans}{{5.2}{49}{Parallel K-Means}{section.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}GPU MST}{49}{section.5.3}}
+\newlabel{sec:gpu mst}{{5.3}{49}{GPU MST}{section.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}EAC}{49}{section.5.4}}
+\newlabel{sec:eac results}{{5.4}{49}{EAC}{section.5.4}{}}
 \citation{Lourenco2010}
 \citation{Sousa2015}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion?}{49}{chapter.6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Discussion?}{50}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:discussion}{{6}{49}{Discussion?}{chapter.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{49}{section.6.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{49}{section.6.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}GPU MST}{49}{section.6.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{50}{section.6.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusions}{51}{chapter.7}}
+\newlabel{chapter:discussion}{{6}{50}{Discussion?}{chapter.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{50}{section.6.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{50}{section.6.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}GPU MST}{50}{section.6.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{51}{section.6.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Conclusions}{52}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:conclusions}{{7}{51}{Conclusions}{chapter.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Achievements}{51}{section.7.1}}
-\newlabel{section:achievements}{{7.1}{51}{Achievements}{section.7.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Future Work}{51}{section.7.2}}
-\newlabel{section:future}{{7.2}{51}{Future Work}{section.7.2}{}}
+\newlabel{chapter:conclusions}{{7}{52}{Conclusions}{chapter.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Achievements}{52}{section.7.1}}
+\newlabel{section:achievements}{{7.1}{52}{Achievements}{section.7.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Future Work}{52}{section.7.2}}
+\newlabel{section:future}{{7.2}{52}{Future Work}{section.7.2}{}}
 \bibstyle{unsrtnat}
 \bibdata{library}
 \bibcite{Jain2010}{{1}{2010}{{Jain}}{{}}}
@@ -496,4 +499,4 @@
 \bibcite{McKinney2010}{{106}{2010}{{McKinney}}{{}}}
 \bibcite{Pedregosa2012}{{107}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos, Cournapeau, Brucher, Perrot, and Duchesnay}}}
 \bibcite{Perez2007}{{108}{2007}{{P\'{e}rez and Granger}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{62}{chapter*.47}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{64}{chapter*.44}}

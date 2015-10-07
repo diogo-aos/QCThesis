@@ -46,5 +46,13 @@ A good follow-up of the present work is to study the relationship between severa
 On a performance perspective it could prove useful to deduce better rules to set the maximum number of associations in the sparse matrix.
 On a accuracy perspective it would be interesting to see if there are types of datasets that simply are not a good fit for EAC while other are. It would also be interesting to relate complexity with the threshold cut-off.
 
+% cross with WEAC
+The WEAC algorithm is focused on improving accuracy.
+The underlying concept is to measure the quality of the partitions in the ensemble and allow the better ones to be more influential in the co-association matrix.
+The concept of measuring the quality of the partitions may prove useful for further decreasing the memory complexity with the EAC CSR scheme without compromising too much accuracy.
+The basic idea is to choose a $max\_assocs$ value that will likely be less than the number of associations many patterns will have, which will result in some associations being discarded.
+The associations that will be kept are the ones from the first partitions that were processed.
+With this in mind, one could order the partitions by quality and start the processing from those with better quality.
+
 \cleardoublepage
 

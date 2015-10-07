@@ -32,26 +32,25 @@
 \BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Schr\366dinger's equation approach}{section.3.3}% 32
 \BOOKMARK [0][-]{chapter.4}{4 Methodology}{}% 33
 \BOOKMARK [1][-]{section.4.1}{4.1 Quantum Clustering}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{4.2 Speeding up Ensemble Generations with Parallel K-Means}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.3}{4.3 Dealing with space complexity of coassocs}{chapter.4}% 36
-\BOOKMARK [2][-]{subsection.4.3.1}{4.3.1 Exploiting the sparsity of the co-association matrix}{section.4.3}% 37
-\BOOKMARK [2][-]{subsection.4.3.2}{4.3.2 Using prototypes}{section.4.3}% 38
-\BOOKMARK [1][-]{section.4.4}{4.4 Building the sparse matrix}{chapter.4}% 39
-\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 EAC CSR}{section.4.4}% 40
-\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 41
-\BOOKMARK [1][-]{section.4.5}{4.5 Hierarchical Agglomerative Clustering step}{chapter.4}% 42
-\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 HAC and GPGPU}{section.4.5}% 43
-\BOOKMARK [0][-]{chapter.5}{5 Results}{}% 44
-\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.3}{5.3 GPU MST}{chapter.5}% 47
-\BOOKMARK [1][-]{section.5.4}{5.4 EAC}{chapter.5}% 48
-\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 49
-\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 51
-\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 52
-\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 53
-\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 54
-\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 55
-\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 56
-\BOOKMARK [0][-]{chapter*.47}{Bibliography}{}% 57
+\BOOKMARK [1][-]{section.4.2}{4.2 Speeding up Ensemble Generation with Parallel K-Means}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.3}{4.3 Dealing with the space complexity of the co-association matrix}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.4}{4.4 Building the sparse matrix}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 EAC CSR}{section.4.4}% 38
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 39
+\BOOKMARK [1][-]{section.4.5}{4.5 Final partition recovery}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Single-Link and GPGPU}{section.4.5}% 41
+\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and out-of-core processing}{section.4.5}% 42
+\BOOKMARK [0][-]{chapter.5}{5 Results}{}% 43
+\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.3}{5.3 GPU MST}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.4}{5.4 EAC}{chapter.5}% 47
+\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 48
+\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 52
+\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 53
+\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 55
+\BOOKMARK [0][-]{chapter*.44}{Bibliography}{}% 56

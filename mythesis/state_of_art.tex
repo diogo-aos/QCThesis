@@ -322,6 +322,7 @@ In such a scenario, a block of the second kernel could be executed as soon as al
 
 
 \subsection{Parallel K-Means}
+\label{sec:parallel kmeans}
 
 K-Means is an obvious candidate to generate the ensemble of the first step of EAC.
 Other algorithms can be used, but due to its simplicity it is often used to produce ensembles varying the number of centroids to be used.
@@ -645,6 +646,7 @@ For the purpose of the following sections, the concept of the oracle is more rel
 
 
 \subsubsection{Quantum K-Means}
+\label{sec:qkmeans}
 
 % Several clustering algorithms \cite{Casper2013,Casper,Xiao2010}, as well as optimization problems \cite{Wang2013}, are modeled after this concept.
 % To test the potential of the algorithms under this paradigm, a quantum variant of the K-Means algorithm based on\cite{Casper} was chosen as a case study.
@@ -712,11 +714,12 @@ The basic idea is to shift the qubit coefficients of the least scoring oracles i
 This way, in future generations, we will not initiate with the best centroids so far (which will not converge further into a better solution) but we will be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm).
 In other words, we look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
 
-The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox. \cite{Wiebe2014} suggests that this operations may not be required to produce variability in the population of qubit strings.
-This is because, according to \cite{Liu2010}, use of the angle-distance rotation method in the quantum rotation operation produces enough variability, with a careful choice of the rotation angle.
-However, when used, their goal is to produce further variability into the population of qubit strings.
+The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox.
+Literature suggests that this operations may not be required to produce variability in the population of qubit strings \cite{Liu2010}.
+This is because, enough variability is produced with the use of the angle-distance rotation method \cite{Liu2010} in the quantum rotation operation, with a careful choice of the rotation angle.
+Still, when used, the goal of these operations is to produce further variability into the population of qubit strings.
 
-\subsection{Schrödinger's equation approach}%Horn and Gottlieb's algorithm}
+\subsection{Schrödinger's equation approach} % Horn and Gottlieb's algorithm}
 \label{sec:horn}
 
 The other approach to clustering that gathers inspiration from quantum mechanical concepts is to use the Schrödinger equation.
@@ -760,8 +763,7 @@ This method makes the Dynamic Quantum Clustering algorithm.
 The nature of the computations involved in this algorithm make it a good candidate for parallelization techniques.
 \cite{Wittek2013} parallelized this algorithm to the GPU obtaining speedups of up to two magnitudes relative to an optimized multicore CPU implementation. %TODO: leave this or not? I did not test this so maybe it is better not
 
-% #TODO describe the fine cluster algorithm; critique how this is done; what was developed; what  -->
-
+% #TODO describe the fine cluster algorithm; critique how this is done; what was developed;
 
 %[1] N. Wiebe, A. Kapoor, and K. Svore, “Quantum Algorithms for Nearest-Neighbor Methods for Supervised and Unsupervised Learning,” p. 31, 2014.
 %

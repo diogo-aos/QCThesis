@@ -48,34 +48,30 @@
 \contentsline {subsection}{\numberline {3.3.2}Schr\IeC {\"o}dinger's equation approach}{32}{subsection.3.3.2}
 \contentsline {chapter}{\numberline {4}Methodology}{34}{chapter.4}
 \contentsline {section}{\numberline {4.1}Quantum Clustering}{35}{section.4.1}
-\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generations with Parallel K-Means}{35}{section.4.2}
-\contentsline {section}{\numberline {4.3}Dealing with space complexity of coassocs}{35}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Exploiting the sparsity of the co-association matrix}{35}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Using prototypes}{36}{subsection.4.3.2}
-\contentsline {subsubsection}{k-Nearest Neighbors as prototypes}{36}{section*.34}
-\contentsline {subsubsection}{Random prototypes}{36}{section*.35}
-\contentsline {subsubsection}{Medoid prototypes}{36}{section*.36}
-\contentsline {section}{\numberline {4.4}Building the sparse matrix}{36}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{37}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generation with Parallel K-Means}{35}{section.4.2}
+\contentsline {section}{\numberline {4.3}Dealing with the space complexity of the co-association matrix}{36}{section.4.3}
+\contentsline {section}{\numberline {4.4}Building the sparse matrix}{37}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{38}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}EAC CSR Condensed}{40}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Hierarchical Agglomerative Clustering step}{41}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}HAC and GPGPU}{41}{subsection.4.5.1}
-\contentsline {subsubsection}{Generating the MST}{41}{section*.41}
-\contentsline {subsubsection}{Number of clusters and cutting edges}{42}{section*.42}
-\contentsline {subsubsection}{Building the new graph}{43}{section*.43}
-\contentsline {subsubsection}{Final clustering}{43}{section*.44}
-\contentsline {subsubsection}{Memory transfer with the GPU}{43}{section*.46}
-\contentsline {chapter}{\numberline {5}Results}{46}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experimental environment}{46}{section.5.1}
-\contentsline {section}{\numberline {5.2}Parallel K-Means}{48}{section.5.2}
-\contentsline {section}{\numberline {5.3}GPU MST}{48}{section.5.3}
-\contentsline {section}{\numberline {5.4}EAC}{48}{section.5.4}
-\contentsline {chapter}{\numberline {6}Discussion?}{49}{chapter.6}
-\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{49}{section.6.1}
-\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{49}{section.6.2}
-\contentsline {section}{\numberline {6.3}GPU MST}{49}{section.6.3}
-\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{50}{section.6.4}
-\contentsline {chapter}{\numberline {7}Conclusions}{51}{chapter.7}
-\contentsline {section}{\numberline {7.1}Achievements}{51}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future Work}{51}{section.7.2}
-\contentsline {chapter}{Bibliography}{62}{chapter*.47}
+\contentsline {section}{\numberline {4.5}Final partition recovery}{42}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Single-Link and GPGPU}{42}{subsection.4.5.1}
+\contentsline {subsubsection}{Generating the MST}{43}{section*.38}
+\contentsline {subsubsection}{Number of clusters and pruning the MST}{43}{section*.39}
+\contentsline {subsubsection}{Building the new graph}{44}{section*.40}
+\contentsline {subsubsection}{Final clustering}{44}{section*.41}
+\contentsline {subsubsection}{Memory transfer with the GPU}{46}{section*.43}
+\contentsline {subsection}{\numberline {4.5.2}Single-Link and out-of-core processing}{46}{subsection.4.5.2}
+\contentsline {chapter}{\numberline {5}Results}{47}{chapter.5}
+\contentsline {section}{\numberline {5.1}Experimental environment}{47}{section.5.1}
+\contentsline {section}{\numberline {5.2}Parallel K-Means}{49}{section.5.2}
+\contentsline {section}{\numberline {5.3}GPU MST}{49}{section.5.3}
+\contentsline {section}{\numberline {5.4}EAC}{49}{section.5.4}
+\contentsline {chapter}{\numberline {6}Discussion?}{50}{chapter.6}
+\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{50}{section.6.1}
+\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{50}{section.6.2}
+\contentsline {section}{\numberline {6.3}GPU MST}{50}{section.6.3}
+\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{51}{section.6.4}
+\contentsline {chapter}{\numberline {7}Conclusions}{52}{chapter.7}
+\contentsline {section}{\numberline {7.1}Achievements}{52}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future Work}{52}{section.7.2}
+\contentsline {chapter}{Bibliography}{64}{chapter*.44}

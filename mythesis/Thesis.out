@@ -4,19 +4,14 @@
 \BOOKMARK [1][-]{chapter*.5}{List of Tables}{}% 4
 \BOOKMARK [1][-]{chapter*.6}{List of Figures}{}% 5
 \BOOKMARK [1][-]{table.0.1}{Glossary}{}% 6
-\BOOKMARK [0][-]{chapter.1}{1 Introduction}{}% 7
-\BOOKMARK [1][-]{section.1.1}{1.1 Challenges and Motivation}{chapter.1}% 8
-\BOOKMARK [1][-]{section.1.2}{1.2 Goals}{chapter.1}% 9
-\BOOKMARK [1][-]{section.1.3}{1.3 Contributions}{chapter.1}% 10
-\BOOKMARK [1][-]{section.1.4}{1.4 Outline}{chapter.1}% 11
-\BOOKMARK [0][-]{chapter.2}{2 Clustering: basic concepts, definitions and algorithms}{}% 12
-\BOOKMARK [1][-]{section.2.1}{2.1 The problem of clustering}{chapter.2}% 13
-\BOOKMARK [1][-]{section.2.2}{2.2 Definitions and Notation}{chapter.2}% 14
-\BOOKMARK [1][-]{section.2.3}{2.3 Characteristics of clustering techniques}{chapter.2}% 15
-\BOOKMARK [1][-]{section.2.4}{2.4 K-Means}{chapter.2}% 16
-\BOOKMARK [1][-]{section.2.5}{2.5 Single-Link}{chapter.2}% 17
-\BOOKMARK [1][-]{section.2.6}{2.6 Ensemble Clustering}{chapter.2}% 18
-\BOOKMARK [1][-]{section.2.7}{2.7 Evidence Accumulation Clustering}{chapter.2}% 19
-\BOOKMARK [2][-]{subsection.2.7.1}{2.7.1 Overview}{section.2.7}% 20
-\BOOKMARK [2][-]{subsection.2.7.2}{2.7.2 Examples of applications}{section.2.7}% 21
-\BOOKMARK [0][-]{chapter*.12}{Bibliography}{}% 22
+\BOOKMARK [0][-]{chapter.1}{1 Methodology}{}% 7
+\BOOKMARK [1][-]{section.1.1}{1.1 Quantum Clustering}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{1.2 Speeding up Ensemble Generation with Parallel K-Means}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{1.3 Dealing with the space complexity of the co-association matrix}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{1.4 Building the sparse matrix}{chapter.1}% 11
+\BOOKMARK [2][-]{subsection.1.4.1}{1.4.1 EAC CSR}{section.1.4}% 12
+\BOOKMARK [2][-]{subsection.1.4.2}{1.4.2 EAC CSR Condensed}{section.1.4}% 13
+\BOOKMARK [1][-]{section.1.5}{1.5 Final partition recovery}{chapter.1}% 14
+\BOOKMARK [2][-]{subsection.1.5.1}{1.5.1 Single-Link and GPGPU}{section.1.5}% 15
+\BOOKMARK [2][-]{subsection.1.5.2}{1.5.2 Single-Link and out-of-core processing}{section.1.5}% 16
+\BOOKMARK [0][-]{chapter*.18}{Bibliography}{}% 17

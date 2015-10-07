@@ -5,19 +5,19 @@
 \contentsline {section}{List of Tables}{xiii}{chapter*.5}
 \contentsline {section}{List of Figures}{xv}{chapter*.6}
 \contentsline {section}{Glossary}{xvii}{table.0.1}
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Challenges and Motivation}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Contributions}{2}{section.1.3}
-\contentsline {section}{\numberline {1.4}Outline}{3}{section.1.4}
-\contentsline {chapter}{\numberline {2}Clustering: basic concepts, definitions and algorithms}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}The problem of clustering}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Definitions and Notation}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Characteristics of clustering techniques}{7}{section.2.3}
-\contentsline {section}{\numberline {2.4}K-Means}{8}{section.2.4}
-\contentsline {section}{\numberline {2.5}Single-Link}{10}{section.2.5}
-\contentsline {section}{\numberline {2.6}Ensemble Clustering}{12}{section.2.6}
-\contentsline {section}{\numberline {2.7}Evidence Accumulation Clustering}{12}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}Overview}{12}{subsection.2.7.1}
-\contentsline {subsection}{\numberline {2.7.2}Examples of applications}{14}{subsection.2.7.2}
-\contentsline {chapter}{Bibliography}{17}{chapter*.12}
+\contentsline {chapter}{\numberline {1}Methodology}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Quantum Clustering}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Speeding up Ensemble Generation with Parallel K-Means}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Dealing with the space complexity of the co-association matrix}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}Building the sparse matrix}{4}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}EAC CSR}{5}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}EAC CSR Condensed}{7}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Final partition recovery}{9}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Single-Link and GPGPU}{9}{subsection.1.5.1}
+\contentsline {subsubsection}{Generating the MST}{10}{section*.12}
+\contentsline {subsubsection}{Number of clusters and pruning the MST}{10}{section*.13}
+\contentsline {subsubsection}{Building the new graph}{11}{section*.14}
+\contentsline {subsubsection}{Final clustering}{11}{section*.15}
+\contentsline {subsubsection}{Memory transfer with the GPU}{13}{section*.17}
+\contentsline {subsection}{\numberline {1.5.2}Single-Link and out-of-core processing}{13}{subsection.1.5.2}
+\contentsline {chapter}{Bibliography}{16}{chapter*.18}
