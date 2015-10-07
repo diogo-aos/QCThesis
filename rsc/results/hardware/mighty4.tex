@@ -1,0 +1,25 @@
+% needs booktabs package
+% table inside minipage to have footnotes at the end
+% Mighty4 configuration an Instituto de Telecomunicações at 04OCT2015
+\begin{minipage}[h]{\hsize}
+	\centering
+	\captionof{table}{\textbf{Charlie} machine specifications.}
+	\begin{tabular}{ccc}
+		\toprule[2pt]
+												 & \textbf{CPU}      & \textbf{GPU} \\ \midrule
+		\textbf{\# Devices}                      & 1                 & 1            \\ 
+		\textbf{Manufacturer}                    & Intel             & NVIDIA       \\ 
+		\textbf{Model}                           & i7-4930K          & Quadro K600      \\ 
+		\textbf{Launch date}                     & Q3'13             & Q1'2013      \\ 
+		\textbf{Architecture}                    & Ivy Bridge      &         \\ 
+		\textbf{\# Cores}                        & 6                 & 192           \\ 
+		\textbf{Clock frequency {[}Mhz{]}}       & 3400              & 876         \\ 
+		\textbf{L1 Cache}                        & 192 KB IC \footnote{Instruction Cache (IC)} + 192 KB DC \footnote{Data Cache (IC)} & 16/48 KB/SM \footnote{Each Streaming Multiprocessor has 64 KB of on-chip memory that can be configured as either 16KB of L1 cache and 48 KB of shared memory, or vice versa.} + 48KB DC \footnote{The Kepler architecture has an extra read-only 48KB of Data Cache at the same level of the L1 cache.} \\ 
+		\textbf{L2 Cache}                        & 1,5 MB             & 1.5 MB         \\ 
+		\textbf{L3 Cache}                        & 12 MB              & n/a          \\ 
+		\textbf{Memory {[}GB{]}}                 & 32                & 1            \\ 
+		\textbf{Max. memory bandwidth {[}Gbps{]}} & 59,6              & 28,5        \\ 
+		\bottomrule[2pt]
+	\end{tabular}
+	\label{tab:charlie}
+\end{minipage}

@@ -23,7 +23,7 @@ Section \ref{sec:ensemble} will explain briefly the concept of ensemble clusteri
 \section{The problem of clustering}
 \label{sec:clustering}
 
-% have to say that I'm using a vectorial representation of the data (data as vector of features) without loss of generality. I have to specify that I'm dealing with a partitioning clustering but other kinds exist. In this context (of vectorial data and partitional algorithms) K-Means is one of the most known algorithms. It's simple and fast and, although it only yields good results in a specific set of cases, it's often used as a starting point for more robust algorithms, e.g. EAC. 
+% have to say that I'm using a vectorial representation of the data (data as vector of features) without loss of generality. I have to specify that I'm dealing with a partitioning clustering but other kinds exist. In this context (of vectorial data and partitional algorithms) K-Means is one of the most known algorithms. It is simple and fast and, although it only yields good results in a specific set of cases, it is often used as a starting point for more robust algorithms, e.g. EAC. 
 
 Cluster analysis methods are unsupervised and the backbone of the present work.
 The goal of data clustering, as defined by \cite{Jain2010}, is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects.
@@ -37,7 +37,7 @@ The process of clustering data has three main stages \cite{Jain1999}:
 \begin{itemize}
     \item \textbf{Pattern representation} refers to the choice of representation of the input data in terms of size, scale and type of features.
     The input patterns may be fed directly to the algorithms or undergo \emph{feature selection} and/or \emph{feature extraction}. The former is simply the selection of which features of the originally available should be used.
-    The later deals with the transformation of the original features such that the resulting features will produce more accurate and insightful clusterings, e.g. Principal Component Analysis.
+    The latter deals with the transformation of the original features such that the resulting features will produce more accurate and insightful clusterings, e.g. Principal Component Analysis.
     % It should be noted that
 
     \item \textbf{Pattern similarity} refers to the definition of a measure for computing the similarity between two patterns.
@@ -82,9 +82,9 @@ Figure \ref{fig:intro natural} presents the desired clustering for this data set
 
 This section will introduce relevant definitions and notation within the clustering context that will be used throughout the rest of this document and were largely adopted from \cite{Jain1999}.
 
-% TODO: review this part of the vector notation, it's fishy right now
+% TODO: review this part of the vector notation, it is fishy right now
 %pattern, features
-A \emph{pattern} $\mathbf{x}$ is a single data item and, without loss of generalization, can be represented as a vector of $d$ \emph{features} $x_i$ that characterize that data item, $\mathbf{x} = (x_1, \ldots, x_d)$, where $d$ is referred to as the dimensionality of the pattern.
+A \emph{pattern} $\mathbf{x}$ is a single data item and, without loss of generality, can be represented as a vector of $d$ \emph{features} $x_i$ that characterize that data item, $\mathbf{x} = (x_1, \ldots, x_d)$, where $d$ is referred to as the dimensionality of the pattern.
 %pattern set
 A \emph{pattern set} (or data set) $\mathcal{X}$ is then the collection of all $n$ patterns $\mathcal{X} = \{ \mathbf{x}_1, \ldots, \mathbf{x}_n \}$.
 The number of features is usually the same for all patterns in a given pattern set.
@@ -101,8 +101,9 @@ The whole set of labels corresponding to a pattern set $\mathcal{X}$ is given by
 % Throughout this document, the whole set of labels may also be referred to as a partition.
 Closely related to the whole set of labels is the concept of a \emph{partition}, which completely describes a clustering.
 A partition $P$ is a collection of $k$ \emph{clusters}.
-A cluster $C$ is a subset of $nc$ patterns $\mathbf{x}_i$ taken from the pattern set, where the patterns belonging to one subset don't belong to any other in the same partition.
-A clustering \emph{ensemble} $\mathbb{P}$ is a set of partitions from a given pattern set.
+A cluster $C$ is a subset of $nc$ patterns $\mathbf{x}_i$ taken from the pattern set, where the patterns belonging to one subset do not belong to any other in the same partition.
+A clustering \emph{ensemble} $\mathbb{P}$ is a set $N$ partitions $P^j$ from a given pattern set, each of which is composed by a set of $k_j$ clusters $C^j_i$, where $j=1, \ldots, N$, $i=1, \ldots, k_j$.
+Each cluster is composed by a set of $nc^j_i$ patterns that does not intercept any other cluster of the same partition.
 The relationship between the above concepts is condensed in the following expressions:
 
 \begin{align*}
@@ -133,9 +134,9 @@ A \emph{distance} is a dissimilarity function \emph{d} which yields non-negative
 
 
 % \begin{align}
-%     d(\mathbf{x}_i, \mathbf{x}_i) = 0 \qquad (identity) \label{eq:identity} \\
-%     d(\mathbf{x}_i, \mathbf{x}_j) = d(\mathbf{x}_j, \mathbf{x}_i), i \neq j \qquad (symmetry)  \label{eq:symmetry} \\
-%     d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z) \ge d(\mathbf{x}_x, \mathbf{x}_z) \qquad (triangle \; inequality) \label{eq:triangle inequality}
+%     identity \qquad & d(\mathbf{x}_i, \mathbf{x}_i) = 0  \label{eq:identity} \\
+%     symmetry \qquad & d(\mathbf{x}_i, \mathbf{x}_j) = d(\mathbf{x}_j, \mathbf{x}_i), i \neq j   \label{eq:symmetry} \\
+%     triangle \; inequality \qquad & d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z) \ge d(\mathbf{x}_x, \mathbf{x}_z) \label{eq:triangle inequality}
 % \end{align}
 
 where $\mathbf{x}_i$, $\mathbf{x}_j$ and $\mathbf{x}_z$ are 3 unique patterns belonging to the pattern set $\mathcal{X}$.
@@ -162,7 +163,7 @@ For the sake of completeness, a brief discussion of some of their properties wil
 
 % hierarchical and partitional
 %\emph{Partitional} and \emph{hierarchical} algorithms are the two most studied kinds of algorithms \cite{Aggarwal2014}.
-It's common to organize cluster algorithms into two distinct types: \emph{partitional} and \emph{hierarchical}.
+It is common to organize cluster algorithms into two distinct types: \emph{partitional} and \emph{hierarchical}.
 A partitional algorithm, such as K-Means, is a hard clustering algorithm that will output a partiton where each pattern belongs exclusively to one cluster.
 A hierarchical algorithm produces a tree-based data structure called \emph{dendrogram}.
 A dendrogram contains different partitions at different levels of the tree which means that the user can easily change the desired number of clusters by simply traversing the different levels.
@@ -172,13 +173,13 @@ Hierarchical algorithms can be further split into two approaches: bottom-up (or 
 % agglomerative
 The former starts with all patterns as distinct clusters and will group them together according to some dissimilarity measure, building the dendrogram from the ground up; examples of algorithms that take this approach are Single-Link and Average-Link.
 %divisive
-The later will start will all patterns in the same cluster and continuosly split it until all patterns are separated, building the dendrogram from the top level to the bottom; this approach is taken by the Principal Directon Divisive Partitioning\cite{Boley1998} and Bisecting K-Means \cite{Steinbach2000} algorithms.
+The latter will start will all patterns in the same cluster and continuosly split it until all patterns are separated, building the dendrogram from the top level to the bottom; this approach is taken by the Principal Directon Divisive Partitioning\cite{Boley1998} and Bisecting K-Means \cite{Steinbach2000} algorithms.
 
 
 % monothetic vs polithetic
 Another characteristic relates to how algorithms use the features for computing similarities.
 If all features are used simultaniously the algorithm is called \emph{polithetic}, e.g. K-Means.
-Otherwise, if the features are used sequentially, it's called \emph{monothetic}, e.g. \cite{Chavent1998}.
+Otherwise, if the features are used sequentially, it is called \emph{monothetic}, e.g. \cite{Chavent1998}.
 
 % fuzzy clustering
 Contrasting \emph{hard} clustering algorithm are the \emph{fuzzy} algorithms.
@@ -193,7 +194,7 @@ As an example, the K-Means algorithm typically picks the initialization centroid
 A \emph{deterministic} algorithm, on the other hand, will always produce the same result for a given input, e.g. Single-Link.
 
 Finally, the last characteristic discussed is how an algorithm processes the input data.
-An algorithm is said to be \emph{incremental} if it processes the input incrementally, i.e. taking part of the data, processing it and then doing the save for the remaining parts, e.g. PEGASUS \cite{Kang2011}.
+An algorithm is said to be \emph{incremental} if it processes the input incrementally, i.e. taking part of the data, processing it and then doing the same for the remaining parts, e.g. PEGASUS \cite{Kang2011}.
 A \emph{non-incremental} algorithm, on the other hand, will process the whole input in each run, e.g. K-Means.
 This discussion is specially relevant when considering large datasets that may not fit in memory or whose processing would take too long for a single run and is therefore done in parallel.
 
@@ -257,12 +258,12 @@ The choice of similarity measure must be made carefully as it may not guarantee 
 % empty clusters
 A detail of implementation is what to do with clusters that have no patterns assigned to them.
 One approach to this situation is to drop the empty clusters in further iterations.
-However, allowing the existence of empty clusters or dropping empty clusters is undesirable since the number of clusters is an input parameter and it's expected that the output contains the specified number of clusters.
+However, allowing the existence of empty clusters or dropping empty clusters is undesirable since the number of clusters is an input parameter and it is expected that the output contains the specified number of clusters.
 Other approaches exist dealing with this problem, such as equaling the centroid of an empty cluster to the pattern furthest away from its assigned centroid or reusing the old centroids as in \cite{Pakhira2009}.
 
 % kmeans as a step for other algorithms
-K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $k$ is the number of clusters and $t$ is the number of iterations that it executes.
-Because of this, K-Means is often used as foundational step of more complex and robust algorithms, such as the EAC algorithm.
+K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $n$ is the number of patterns in the pattern set, $k$ is the number of clusters and $t$ is the number of iterations that it executes.
+Accordingly, K-Means is often used as foundational step of more complex and robust algorithms, such as the EAC algorithm.
 
 % After the first iteration, the first step is executed with the new centroids.
 % The end result of the algorithm is the labels produced in the first step of the last iteration.
@@ -285,10 +286,10 @@ The algorithm was executed with 3 random centroids.
     \label{fig:intro kmeans}
 \end{figure}
 
-Even with the correct number of clusters, the clustering results don't match $100\%$ the natural clusters.
+Even with the correct number of clusters, the clustering results do not match $100\%$ the natural clusters.
 The accuracy relative to the natural clusters of Fig. \ref{fig:intro natural} is $88\%$ as measured by the Consistency Index (CI) \cite{Fred2001}.
 In this example, the problem is the two overlapping clusters.
-It's hard for an algorithm to discriminate between two clusters when they have similar patterns.
+It is hard for an algorithm to discriminate between two clusters when they have similar patterns.
 When no prior information about the dataset is given, the number of clusters can be hard to discover.
 This is why, when available, a domain expert may provide valuable insight on tuning the initialization parameters.
 % Others approaches, not addressed in this thesis, include the area of constrained clustering.
@@ -313,7 +314,7 @@ Just like in the K-Means algorithm, different similarity measures can be used fo
 %different linkages
 The proximity between clusters in the second step is distinguishes between the different HAC linkage algorithms, such as Single-Link , Average-Link, Complete-Link, among others.
 In Single-Link (SL), the proximity between any two clusters is the the dissimilarity between their closest patterns.
-On the other hand, in Complete-Link, it's the proximity between the their most distant patterns and, in Average-Link, is the proximity between the average point of each cluster.
+On the other hand, in Complete-Link, it is the proximity between their most distant patterns and, in Average-Link, is the proximity between the average point of each cluster.
 In SL, because the algorithm connects first clusters that are more similar, it naturally gives more importance to regions of higher density \cite{Aggarwal2014}.
 
 % naive & SLINK
@@ -406,15 +407,15 @@ Data from real world problems appear in different configurations regarding shape
 Different clustering algorithms are appropriate for different data configurations, e.g. K-Means tends to group patterns in hyperspheres \cite{Jain1999} so it is more appropriate for data whose structure is formed by hypershere like clusters.
 If the true structure of the data at hand is heterogeneous in its configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part.
 Since different algorithms can be used to produce the partitions in the ensemble, one can use a mix of algorithms to address different properties of the data such that the combination is more \textbf{robust} to noise and outliers \cite{topchy2004mixture} and the final clustering has a \textbf{better quality} \cite{Aggarwal2014}.
-Ensemble clustering can also be particularly useful in situations where one doesn't have direct access to all the features of a given data set but can have access to partitions from different subsets and later combining with an ensemble algorithm.
+Ensemble clustering can also be particularly useful in situations where one does not have direct access to all the features of a given data set but can have access to partitions from different subsets and later combining with an ensemble algorithm.
 Furthermore, the generation of the clustering ensemble can be \textbf{parallelized and distributed} since each partition is independent from every other partition.
 
 A clustering ensemble, according to \cite{Fred2005}, can be produced from (1) different data representations, e.g. choice of preprocessing, feature selection and extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters on the same algorithm.
 
 % different approaches to ensemble clustering
-Ensemble clustering algorithms can take three main distinct approaches \cite{Aggarwal2014}.
-The MMCE \cite{topchy2004mixture} and BCE \cite{wang2011bayesian} are examples of a probabilistic approach.
+Ensemble clustering algorithms can take three main distinct approaches \cite{Aggarwal2014}: based on pair-wise similarities, probabilistic or direct.
 EAC \cite{Fred2005} and CSPA \cite{Strehl2002} are examples of pair-wise similarity based approach, where the algorithms use a co-associations matrix.
+The MMCE \cite{topchy2004mixture} and BCE \cite{wang2011bayesian} are examples of a probabilistic approach.
 This approach will be further clarified when the EAC algorithm is explained.
 HGPA \cite{Strehl2002}, MCLA \cite{Strehl2002} and bagging \cite{Dudoit2003} are examples of a direct approach to combining the ensemble clusterings, where the algorithms work directly with the labels without creating a co-association matrix.
 A detailed and thorough review of the similarity measures that can be used on with clustering ensembles and the state of the art algorithms can be consulted in \cite{Aggarwal2014}.
@@ -441,27 +442,44 @@ Its approach is divided in 3 steps:
 
 \begin{enumerate}
 \item \textbf{Production} of a clustering ensemble $\mathbb{P}$ (the evidence);
-\item \textbf{Combination} of the ensemble is combined into a co-association matrix;
+\item \textbf{Combination} of the ensemble into a co-association matrix;
 \item \textbf{Recovery} of the natural clusters of the data.
 \end{enumerate}
 
-The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix, i.e. a matrix $\mathcal{C}$ where each of its elements $n_{ij}$ is the association value between the pattern pair $(i,j)$.
-The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble.
-The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns \cite{Fred2005}, revealing the underlying structure of the data.
-In other words, a high association $n_{ij}$ means it's more likely that patterns $i$ and $j$ belong to the same class.
+% introduce the creation of the ensemble
+In the first step, a clustering ensemble is produced.
+Within the context of EAC, it is of interest to have variety in the ensemble with the intention to better capture the underlying structure of the data.
+One such parameter to measure that variety is the number of clusters in the partitions of the ensemble.
+Typically, the number of clusters in each partition is drawn from an interval $[K_{min}, K_{max}]$ with uniform probability.
+This influences other properties of other parts of the algorithm such as the sparsity of the co-association matrix as will become clearer in future chapters.
+Reviewing the literature \cite{Fred2002,Fred2005,Lourenco2007,LourencoECG2009}, it is clear the ensemble is usually produced by random initialization of K-Means (specifying only the number of centroids within the above interval).
+Still, other clustering algorithms have been used for the production of the ensemble \cite{Duarte2005} such as Single-Link, Average-Link and CLARANS.
+
+The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix \cite{Fred2005}, i.e. a matrix $\mathcal{C}$ where each of its elements $n_{ij}$ is the association value between the pattern pair $(i,j)$.
+The association between any pair of patterns is given by the number of times those two patterns appear clustered together in any cluster of any partition of the ensemble, i.e. the number of co-occurrences in the same cluster.
+The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns \cite{Fred2002}, revealing the underlying structure of the data.
+In other words, a high association $n_{ij}$ means it is more likely that patterns $i$ and $j$ belong to the same class.
 The construction of the co-association matrix is at the very core of this method.
 
 The co-association matrix itself is not the output of EAC.
 Instead, it is used as input to other methods to obtain the final partition.
 The co-association between any two patterns can be interpreted as a similarity measure.
 Thus, since this matrix is a similarity matrix it's appropriate to use algorithms that take this type of matrices as input, e.g. K-Medoids or hierarchical algorithms such as Single-Link or Average-Link, to name a few.
-Typically, algorithms use a distance as the similarity, which means that they minimize the values of similarity to obtain the highest similarity between objects.
+Typically, algorithms use a distance as the dissimilarity, which means that they minimize the distance to obtain the highest similarity between objects.
 However, a low value on the co-association matrix translates in a low similarity between a pair of objects, which means that the co-association matrix requires prior transformation for accurate clustering results, e.g. replace every similarity value $n_{ij}$ between every pair of object $(i,j)$ by $max \{ \mathcal{C} \} - n_{ij}$.
 
-Although any algorithm can be used, the final clustering is usually done using the SL or AL algorithms.
-Each of this algorithms will take as input the co-association matrix as the similarity matrix.
+Although any algorithm can be used, the final clustering is usually done using SL or AL.
+Each of this algorithms will take as input the transformed co-association matrix as the dissimilarity matrix.
 Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria, i.e. the number of clusters $k$ should be such that it maximizes the cost of cutting the dendrogram from $k-1$ clusters to $k$.
 Further details on the lifetime strategy for picking the number of clusters falls outside the scope of this work and are presented in \cite{Fred2005}.
+
+% paragraph on weighted EAC: Weighting Cluster Ensembles in Evidence Accumulation Clustering
+Related work to EAC has been developed.
+The Weighted EAC (WEAC) algorithm \cite{Duarte2005} and a study on the sparsity of the co-association matrix \cite{Lourenco2010} should be mentioned.
+The latter is discussed in more depth in chapter \ref{chapter:stateofart}.
+The former introduces the novelty of having weights associated to each partition such that good quality partitions are more relevant than their counterparts.
+These weights are based on internal validity measures.
+Weighing the partitions in terms of quality has shown to improve the original algorithm, accuracy wise.
 
 \subsection{Examples of applications}
 

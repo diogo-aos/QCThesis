@@ -1,15 +1,9 @@
-\begin{thebibliography}{107}
+\begin{thebibliography}{108}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
-Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
-\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
-\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
 
 \bibitem[Jain(2010)]{Jain2010}
 Anil~K Jain.
@@ -176,13 +170,6 @@ Ana N~L Fred and Anil~K Jain.
 \newblock \emph{IEEE Transactions on Pattern Analysis and Machine
   Intelligence}, 27\penalty0 (6):\penalty0 835--850, 2005.
 
-\bibitem[Wang et~al.(2011{\natexlab{a}})Wang, Shan, and
-  Banerjee]{wang2011bayesian}
-Hongjun Wang, Hanhuai Shan, and Arindam Banerjee.
-\newblock {Bayesian cluster ensembles}.
-\newblock \emph{Statistical Analysis and Data Mining: The ASA Data Science
-  Journal}, 4\penalty0 (1):\penalty0 54--70, 2011{\natexlab{a}}.
-
 \bibitem[Strehl and Ghosh(2002)]{Strehl2002}
 Alexander Strehl and Joydeep Ghosh.
 \newblock {Cluster Ensembles – A Knowledge Reuse Framework for}.
@@ -191,6 +178,13 @@ Alexander Strehl and Joydeep Ghosh.
 \newblock ISSN 1532-4435.
 \newblock \doi{10.1162/153244303321897735}.
 
+\bibitem[Wang et~al.(2011{\natexlab{a}})Wang, Shan, and
+  Banerjee]{wang2011bayesian}
+Hongjun Wang, Hanhuai Shan, and Arindam Banerjee.
+\newblock {Bayesian cluster ensembles}.
+\newblock \emph{Statistical Analysis and Data Mining: The ASA Data Science
+  Journal}, 4\penalty0 (1):\penalty0 54--70, 2011{\natexlab{a}}.
+
 \bibitem[Dudoit and Fridlyand(2003)]{Dudoit2003}
 Sandrine Dudoit and Jane Fridlyand.
 \newblock {Bagging to improve the accuracy of a clustering procedure}.
@@ -198,20 +192,13 @@ Sandrine Dudoit and Jane Fridlyand.
 \newblock ISSN 13674803.
 \newblock \doi{10.1093/bioinformatics/btg038}.
 
-\bibitem[Qian et~al.(2010)Qian, Cukierski, Osman, and Goodell]{Qian2010}
-You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
-\newblock {Combined multiple clusterings on flow cytometry data to
-  automatically identify chronic lymphocytic leukemia}.
-\newblock \emph{ICBBT 2010 - 2010 International Conference on Bioinformatics
-  and Biomedical Technology}, pages 305--309, 2010.
-\newblock \doi{10.1109/ICBBT.2010.5478955}.
-
-\bibitem[Louren\c{c}o et~al.(2009)Louren\c{c}o, Carreiras, Bul\`{o}, and
-  Fred]{LourencoECG2009}
-Andr\'{e} Louren\c{c}o, Carlos Carreiras, Samuel~Rota Bul\`{o}, and Ana Fred.
-\newblock {ECG ANALYSIS USING CONSENSUS CLUSTERING}.
-\newblock pages 511--515, 2009.
-\newblock URL \url{Lourenco2009}.
+\bibitem[Fred and Jain(2002)]{Fred2002}
+Ana N~L Fred and Anil~K Jain.
+\newblock {Data clustering using evidence accumulation}.
+\newblock \emph{Object recognition supported by user interaction for service
+  robots}, 4, 2002.
+\newblock ISSN 1051-4651.
+\newblock \doi{10.1109/ICPR.2002.1047450}.
 
 \bibitem[Louren\c{c}o and Fred(2007)]{Lourenco2007}
 Andr\'{e} Louren\c{c}o and Ana Fred.
@@ -220,6 +207,21 @@ Andr\'{e} Louren\c{c}o and Ana Fred.
   Vision, WACV 2005}, pages 143--148, 2007.
 \newblock \doi{10.1109/ACVMOT.2005.46}.
 
+\bibitem[Louren\c{c}o et~al.(2009)Louren\c{c}o, Carreiras, Bul\`{o}, and
+  Fred]{LourencoECG2009}
+Andr\'{e} Louren\c{c}o, Carlos Carreiras, Samuel~Rota Bul\`{o}, and Ana Fred.
+\newblock {ECG ANALYSIS USING CONSENSUS CLUSTERING}.
+\newblock pages 511--515, 2009.
+\newblock URL \url{Lourenco2009}.
+
+\bibitem[Duarte et~al.(2005)Duarte, a.L.N. Fred, Lourenco, and
+  Rodrigues]{Duarte2005}
+F.J. Duarte, a.L.N. Fred, a.~Lourenco, and M.F. Rodrigues.
+\newblock {Weighting Cluster Ensembles in Evidence Accumulation Clustering}.
+\newblock \emph{2005 Portuguese Conference on Artificial Intelligence},
+  00:\penalty0 159--167, 2005.
+\newblock \doi{10.1109/EPIA.2005.341287}.
+
 \bibitem[Louren\c{c}o et~al.(2010)Louren\c{c}o, Fred, and Jain]{Lourenco2010}
 Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
 \newblock {On the scalability of evidence accumulation clustering}.
@@ -227,6 +229,14 @@ Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
   0:\penalty0 782--785, 2010.
 \newblock ISSN 10514651.
 \newblock \doi{10.1109/ICPR.2010.197}.
+
+\bibitem[Qian et~al.(2010)Qian, Cukierski, Osman, and Goodell]{Qian2010}
+You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
+\newblock {Combined multiple clusterings on flow cytometry data to
+  automatically identify chronic lymphocytic leukemia}.
+\newblock \emph{ICBBT 2010 - 2010 International Conference on Bioinformatics
+  and Biomedical Technology}, pages 305--309, 2010.
+\newblock \doi{10.1109/ICBBT.2010.5478955}.
 
 \bibitem[O'Callaghan et~al.(2002)O'Callaghan, Mishra, Meyerson, Guha, and
   Motwani]{bigdatastream}
@@ -454,14 +464,6 @@ Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
 \newblock 2015.
 \newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
 
-\bibitem[Fred and Jain(2002)]{Fred2002}
-Ana N~L Fred and Anil~K Jain.
-\newblock {Data clustering using evidence accumulation}.
-\newblock \emph{Object recognition supported by user interaction for service
-  robots}, 4, 2002.
-\newblock ISSN 1051-4651.
-\newblock \doi{10.1109/ICPR.2002.1047450}.
-
 \bibitem[Kruskal(1956)]{kruskal1956shortest}
 Joseph~B Kruskal.
 \newblock {On the shortest spanning subtree of a graph and the traveling
@@ -506,6 +508,12 @@ Guy~E Blelloch.
 \newblock \emph{Computer}, pages 35--60, 1990.
 \newblock \doi{10.1.1.47.6430}.
 \newblock URL \url{http://www.cs.cmu.edu/~blelloch/papers/Ble93.pdf}.
+
+\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
+Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
+\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
+\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
 
 \bibitem[A\"{\i}meur et~al.(2013)A\"{\i}meur, Brassard, and Gambs]{Aimeur2013}
 Esma A\"{\i}meur, Gilles Brassard, and S\'{e}bastien Gambs.

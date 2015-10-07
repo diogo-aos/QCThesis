@@ -3,49 +3,51 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
+Warning--there's a number but no volume in Nvidia2014
+Warning--there's a number but no volume in Harris2007
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
 Warning--empty journal in LourencoECG2009
-You've used 30 entries,
+You've used 35 entries,
             2481 wiz_defined-function locations,
-            792 strings with 10120 characters,
-and the built_in function-call counts, 12302 in all, are:
-= -- 1169
-> -- 460
-< -- 28
-+ -- 190
-- -- 130
-* -- 916
-:= -- 1879
-add.period$ -- 118
-call.type$ -- 30
-change.case$ -- 58
-chr.to.int$ -- 30
-cite$ -- 34
-duplicate$ -- 631
-empty$ -- 1147
-format.name$ -- 180
-if$ -- 2673
+            831 strings with 11058 characters,
+and the built_in function-call counts, 14183 in all, are:
+= -- 1341
+> -- 551
+< -- 30
++ -- 226
+- -- 156
+* -- 1067
+:= -- 2189
+add.period$ -- 139
+call.type$ -- 35
+change.case$ -- 68
+chr.to.int$ -- 35
+cite$ -- 41
+duplicate$ -- 724
+empty$ -- 1313
+format.name$ -- 213
+if$ -- 3067
 int.to.chr$ -- 1
-int.to.str$ -- 31
-missing$ -- 31
-newline$ -- 185
-num.names$ -- 90
-pop$ -- 224
+int.to.str$ -- 36
+missing$ -- 36
+newline$ -- 216
+num.names$ -- 105
+pop$ -- 255
 preamble$ -- 1
-purify$ -- 30
+purify$ -- 35
 quote$ -- 0
-skip$ -- 408
+skip$ -- 459
 stack$ -- 0
-substring$ -- 726
-swap$ -- 122
+substring$ -- 802
+swap$ -- 132
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 204
-warning$ -- 4
-while$ -- 116
+type$ -- 239
+warning$ -- 6
+while$ -- 132
 width$ -- 0
-write$ -- 448
-(There were 4 warnings)
+write$ -- 525
+(There were 6 warnings)

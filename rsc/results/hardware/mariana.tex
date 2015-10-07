@@ -1,0 +1,25 @@
+% needs booktabs package
+% table inside minipage to have footnotes at the end
+% Mariana configuration an INESC-ID at 04OCT2015
+\begin{minipage}[h]{\hsize}
+	\centering
+	\captionof{table}{\textbf{Bravo} machine specifications.}
+	\begin{tabular}{ccc}
+		\toprule[2pt]
+												 & \textbf{CPU}      & \textbf{GPU} \\ \midrule
+		\textbf{\# Devices}                      & 1                 & 1            \\ 
+		\textbf{Manufacturer}                    & Intel             & NVIDIA       \\ 
+		\textbf{Model}                           & i7 4770K          & K40c      \\ 
+		\textbf{Launch date}                     & Q2'13             & Q4'13      \\ 
+		\textbf{Architecture}                    & Haswell      & Kepler        \\ 
+		\textbf{\# Cores}                        & 4                 & 2880           \\ 
+		\textbf{Clock frequency {[}Mhz{]}}       & 3500              & 745         \\ 
+		\textbf{L1 Cache}                        & 128 KB IC \footnote{Instruction Cache (IC)} + 128 KB DC \footnote{Data Cache (IC)} & 16/48 KB/SM \footnote{Each Streaming Multiprocessor has 64 KB of on-chip memory that can be configured as either 16KB of L1 cache and 48 KB of shared memory, or vice versa.} + 48KB DC \footnote{The Kepler architecture has an extra read-only 48KB of Data Cache at the same level of the L1 cache.} \\ 
+		\textbf{L2 Cache}                        & 1 MB             & 1.5 MB         \\ 
+		\textbf{L3 Cache}                        & 8 MB              & n/a          \\ 
+		\textbf{Memory {[}GB{]}}                 & 32                & 12            \\ 
+		\textbf{Max. memory bandwidth {[}Gbps{]}} & 25,6              & 288        \\ 
+		\bottomrule[2pt]
+	\end{tabular}
+	\label{tab:bravo}
+\end{minipage}

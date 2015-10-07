@@ -7,6 +7,8 @@ FILE=Thesis
 FOLDER_ALL=allchapters
 FILE_ALL=Thesis_AllChapters
 
+RESOURCES_PATH=/home/chiroptera/workspace/thesis_writing/rsc/
+
 # ---------------------------------------------------------
 
 all:
@@ -27,6 +29,9 @@ chapters:
 
 clean:
 	(rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof *.log *.lot *.nlo *.nls *.out *.toc)
+
+cleanchapters:
+	find -name '$(FILE_ALL).*' ! -name '$(FILE_ALL).tex' -exec rm -f {} +
 
 veryclean:
 	make clean

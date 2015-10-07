@@ -21,8 +21,8 @@ This chapter reflects research done within both approaches.
 % This section provides a brief overview of ensemble clustering, explains the EAC algorithm, refers to where it has been applied and reviews what has been done in terms of scaling it.
 
 % large datasets section
-Although research on the application of EAC to large data sets hasn't been pursued before, cluster analysis of large data sets has. 
-Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of EAC.
+Although research on the application of EAC to large data sets has not been pursued before, cluster analysis of large data sets has. 
+Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they will have a big impact in the scalability of EAC.
 Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 To this end, section \ref{sec:big data} presents a brief review on cluster analysis of large data sets, with a focus on parallelization with GPUs.
 Furthermore, it offers a more detailed description of a GPU parallel version of K-Means and an approach for parallelizing Single-Link with the GPU.
@@ -32,7 +32,7 @@ An alternate approach on clustering for scaling with faster algorithms, the stil
 This line of research was taken mostly with the first step of EAC in mind.
 
 
-% The former in the form of the still young field of quantum clustering, which is briefly reviewed in section , and the later in the field of parallel computation, more specifically on computation in GPUs, reviewed in section \ref{sec:gpgpu}.
+% The former in the form of the still young field of quantum clustering, which is briefly reviewed in section , and the latter in the field of parallel computation, more specifically on computation in GPUs, reviewed in section \ref{sec:gpgpu}.
 % While quantum clustering was only reviewed for the first step, the parallel computation paradigm was investigated with all steps in mind.
 % For that reason, K-Means GPU versions were researched as well as a MST-based Single Linkage Clustering method.
 
@@ -51,7 +51,7 @@ Two approaches have been proposed to address this obstacle: one dealing with red
 \subsection{$p$ neighbors approach}
 The first approach, \cite{Fred2005}, proposes an alternative $n \times p$ co-association matrix, where only the $p$ nearest neighbors of each pattern are considered in the evidence combination step.
 This comes at the cost of having to keep track of the neighbors of each pattern in a separate data structure of $O(np)$ memory complexity and also of pre-computing the $p$ neighbors, which has a time complexity of $O(n^2)$ to compute the similarity measure from each pattern to every other pattern.
-The quadratic space complexity is then transformed to $O(2np)$: $O(np)$ for the actual co-association matrix and $O(np)$ for keeping track of the neighbors.
+The quadratic space complexity of the co-association matrix is then transformed to $O(2np)$: $O(np)$ for the actual co-association matrix and $O(np)$ for keeping track of the neighbors.
 Since usually one has $p < \frac{n}{2}$ (value for which both this approach and the original $n \times p$ matrix would take the same space), the cost of storing the extra data structure is lower than that of storing an $n \times n$ matrix, e.g. for a dataset with $10^6$ patterns and $p=\sqrt{10^6}$ (a value much higher than the $20$ neighbors used in \cite{Fred2005}), the total memory required for the co-association matrix would decrease from $3725.29 GB$ to $7.45 GB$ ($0.18\%$ of the memory occupied by the complete matrix).
 % However, it should be noted that computing the $p$ nearest neighbors requires the computation of $n^2$ distance values.
 
@@ -59,7 +59,7 @@ Since usually one has $p < \frac{n}{2}$ (value for which both this approach and 
 The second approach, presented in \cite{Lourenco2010}, exploits the sparse nature of the co-association matrix.
 The co-association matrix is symmetric and with a varying degree of sparsity.
 The former property translates in the ability of storing only the upper triangular of the matrix without any loss on the quality of the results.
-The later property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the partitions of the input ensemble.
+The latter property is further studied with regards to its relationship with the minimum $K_{min}$ and maximum $K_{max}$ number of clusters in the partitions of the input ensemble.
 The core of this approach is to only store the non-zero values of the upper triangular of the co-association matrix.
 The authors study 3 models for the choice of these parameters:
 
@@ -69,7 +69,8 @@ The authors study 3 models for the choice of these parameters:
 	\item or based on a linear transformation of the number of patterns ($\{K_{min},K_{max}\} = \{\frac{n}{A},\frac{n}{B}\},A<B$).
 \end{itemize}
 
-The study compared how each model impacted the sparsity of the co-association matrix (and, thus, the space complexity) and the relative accuracy of the final clusterings.
+where $A$ and $B$ are two suitable constants chosen by the researcher.
+The study compared the impact of each model in the sparsity of the co-association matrix (and, thus, the space complexity) and in the relative accuracy of the final clusterings.
 Both theoretical predictions and results revealed that the linear model produces the highest sparsity in the co-association matrix, under a dataset consisting of a mixture of Gaussians.
 Furthermore, it is true for both linear and square root models that the sparsity increases as the number of samples increases.
 
@@ -78,7 +79,7 @@ It was found that the chosen granularity of the input partitions ($K_{min}$) is 
 The authors reported this technique to have linear space and time complexity on benchmark data.
 
 The number of samples of the data sets analysed in \cite{Lourenco2010} was under $10^4$.
-Furthermore, it should be noted that the remarks concerning the sparsity of the co-association matrix in the aforementioned study refer to the number of non-zero elements in the matrix and doesn't take into account extra data structures that accompany real sparse matrices implementations.
+Furthermore, it should be noted that the remarks concerning the sparsity of the co-association matrix in the aforementioned study refer to the number of non-zero elements in the matrix and does not take into account extra data structures that accompany real sparse matrices implementations.
 
 % Although the results appear promising, the present work aims to deal with datasets much larger than this and, as a consequence, this technique should be further evaluated and tested to attest to its usefulness to very large datasets. %TODO: this paragraph is probably more relevant in the methodology section so as to introduce why other techniques were necessary
 
@@ -94,7 +95,7 @@ Furthermore, it should be noted that the remarks concerning the sparsity of the 
 
 % \subsection{The concept of Big Data}
 % % there is a difference between this and the big data section in the state of the art chapter
-% % here we're dealing with the big data paradigm, an overview of what is, what has been happening
+% % here we are dealing with the big data paradigm, an overview of what is, what has been happening
 % % I'm trying t justigy why big data is an interesting 
 % % most focus should into the problems themselves and why they are interesting
 
@@ -105,8 +106,8 @@ Furthermore, it should be noted that the remarks concerning the sparsity of the 
 
 % this is probably good for motivating this section in the introduction of the chapter
 % Scalability of EAC within the big data paradigm is the concern of this work.
-% Although this line of research hasn't been pursued before, cluster analysis of large data sets has.
-% Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they'll have a big impact in the scalability of EAC.
+% Although this line of research has not been pursued before, cluster analysis of large data sets has.
+% Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they will have a big impact in the scalability of EAC.
 % Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 
 
@@ -116,8 +117,7 @@ Furthermore, it should be noted that the remarks concerning the sparsity of the 
 When large datasets, and big data, is in discussion, two perspectives should be taken into account \cite{Aggarwal2014}.
 The first deals with the applications where data is too large to be stored efficiently.
 This is the problem that streaming algorithms such as LOCALSEARCH \cite{bigdatastream} try to solve by analyzing data as it is produced, close to real-time processing.
-The other perspective is data that is actually stored for later processing.
-The latter is the perspective relevant to the present work, so it is further discussed below.
+The other perspective is data that is actually stored for later processing which is the perspective relevant to the present work and will be further discussed below.
 
 % different approaches on big data clustering
 The flow of clustering algorithms typically involves some initialization step (e.g. choosing the number of centroids in K-Means) followed by an iterative process until some stopping criteria is met, where each iteration updates the clustering of the data \cite{Aggarwal2014}.
@@ -132,32 +132,34 @@ Parallelization can be attained by adapting algorithms to multi core CPU, GPU, d
 Each approach has its advantages and disadvantages.
 % CPU
 The CPU approach has access to a larger memory but the number of computation units is reduced when compared with the GPU or cluster approach.
-Furthermore CPUs have advanced techniques such as branch prediction, multiple level caching and out of order execution - techniques for optimized sequential computation.
+Furthermore, CPUs have advanced techniques such as branch prediction, multiple level caching and out of order execution - techniques for optimized sequential computation.
 % GPU
 GPU have hundreds or thousands of computing units but typically the available device memory is reduced which entails an increased overhead of memory transfer between host (workstation) and device (GPU) for computation of large datasets.
-In addition, it's harder to scale the above solutions for even bigger datasets.
-On the other hand, GPUs can be found on commodity computers, from laptops to workstations.
+In addition, it is harder to scale the above solutions for even bigger datasets.
+On the other hand, GPUs can be found on a large variety of computing platforms, from mobile devices to workstations and datacenters.
 % clusters
 A cluster offers a parallelized and distributed solution, which is easier to scale.
 According to \cite{Aggarwal2014}, the two algorithmic approaches for cluster solutions are (1) memory-based, where the problem data fits in the main memory of the machines of the cluster and each machine loads part of the data; or (2) disk-based, comprising the widely used MapReduce framework capable of processing massive amounts of data in a distributed way.
 The main disadvantage is that there is a high communication and memory I/O cost to pay.
-Communication is usually done over the network with TCP/IP, which is several orders of magnitude slower that the direct access of the CPU or GPU to memory (host or device).
+Communication is usually done over the network with TCP/IP, which is several orders of magnitude slower than the direct access of the CPU or GPU to memory (host or device).
 
 % overview of the section; motivation for GPU K-Means and GPU SL/MST
-The present work is oriented towards GPU based parallelization, since GPUs are an easily accessible commodity and since the goals of the dissertation are oriented towards computation on a single machine.
+The present work is oriented towards GPU based parallelization, since GPUs are an easily accessible commodity and the goals of the dissertation are oriented towards computation on a single machine.
 Taking that into consideration, this section starts by covering a review of the General Purpose computing on GPUs paradigm.
 It goes on to review a GPU parallel version of the K-Means algorithm and a GPU parallel approach for performing Single-Link clustering.
 
 \subsection{General Purpose computing on Graphical Processing Units}
 \label{sec:gpgpu}
 
-Using GPU for other applications other than graphic processing, commonly known as GPGPU, has become a trend in recent years.
+The original intended used for GPUs was graphics processing, hence its name.
+Recently, GPUs have been increasingly used for other purposes - a trend commonly known as General Purpose processing in Graphics Processing Units (GPGPU).
+%Using GPU for other applications other than graphic processing, commonly known as GPGPU, has become a trend in recent years.
 GPU present a solution for "extreme-scale, cost-effective, and power-efficient high performance computing" \cite{Chen2012}.
 Furthermore, GPU are typically found in consumer desktops and laptops, effectively bringing this computation power to the masses.
 
 GPUs were typically useful for users that required high performance graphics computation.
 Other applications were soon explored as users from different fields realized the high parallel computation power of these devices.
-However, the architecture of the GPUs themselves has been strictly oriented toward the graphics computing until recently as specialized GPU models (e.g. NVIDIA Tesla) have been designed for data computation.
+However, the architecture of the GPUs themselves has been strictly oriented toward the graphics computing until the appearance of specialized GPU models designed for data computation (e.g. NVIDIA Tesla).
 
 GPGPU application on several fields and algorithms has been reported with significant performance increase, e.g. application on the K-Means algorithm \cite{Bai2009,Wu2011,Zechner2009,Wu2009a}, hierarchical clustering \cite{Shalom2009,ArulShalom2011}, document clustering \cite{gao20xx}, image segmentation \cite{Sirotkovi2012}, integration in Hadoop clusters \cite{Malakar2013,Grossman2013}, among other applications.
 
@@ -176,8 +178,8 @@ With the appearance of DirectX 9, shader programming languages of higher level b
 % new part, i.e. interest in GPGPU sparkled unified devices and frameworks
 % overview of recent programming models, CUDA is computing framework, OpenCL is a standard
 More recent programming models, such as CUDA and OpenCL, removed a lot of that burden by exposing the power of GPUs in a way closer to traditional programming.
-At the time of writing, the major programming models used for computation in GPU are OpenCL and CUDA.
-While the first is widely available in most devices the later is only available for NVIDIA devices.
+Currently, the major programming models used for computation in GPU are OpenCL and CUDA.
+While the first is widely available in most devices, the latter is only available for NVIDIA devices.
 
 % give references for GPU MapReduce
 As Google's MapReduce computing model has increasingly become a standard for scalable and distributed computing over big data, attempts have been made to port the model to the GPU \cite{Ji2011,Xin2012,He2008}.
@@ -187,15 +189,14 @@ This translates in using the same programming model over a wide array of computi
 \subsubsection{OpenCL vs CUDA}
 % TODO rewrite this on terms of a better comparisson NEEDS REFS
 
-At the moment of writing the most mature programming models are CUDA and OpenCL.
-CUDA was appeared first is the most mature of the two and is supported only by NVidia devices.
+Presently, the most mature programming models are CUDA and OpenCL.
+CUDA appeared first and is supported only by NVidia devices.
+It is also the most mature of the two and performs well since it was designed alongside with the hardware architecture of the supporting devices.
 OpenCL has the advantage of portability, but that comes with issues of performance portability.
-CUDA performs well since it was designed alongside with the hardware architecture itself.
 Both models are, in fact, very similar and literature suggests that porting the code from one to the other requires minimal changes \cite{Karimi2010,Su2012}.
-Literature also reports that performance from CUDA is better than OpenCL even for equivalent code.
+Literature also reports that CUDA performs better than OpenCL \cite{Su2012} for equivalent code.
 
-
-% TODO CUDA and OpenCL comparison; they're very similar in lots of ways; languanges they support (Python, Java, C, Pascal,...)
+% TODO CUDA and OpenCL comparison; they are very similar in lots of ways; languanges they support (Python, Java, C, Pascal,...)
 
 
 % TODO performance portability problem, how the performance problem can be mitigated and even eliminated by careful choice of compiler parameters, device aware application and so on (Fang2011)
@@ -209,77 +210,111 @@ Literature also reports that performance from CUDA is better than OpenCL even fo
 
 \subsubsection{Overview of CUDA}
 
-%TODO needs refs, it's mostly the C CUDA programming guide
+%TODO needs refs, it is mostly the C CUDA programming guide
 
-This section presents an overview of the CUDA programming model and its main concepts and peculiarities.
+This section presents an overview of the CUDA programming model and its main concepts and characteristics.
 For a more thorough and extensive explanation of these topic, the CUDA C Programming Guides \cite{Nvidia2014}, the source of the present review, should be consulted.
-A GPU is constituted by one or several streaming processors (or multiprocessor).
+A GPU is comprised by one or several streaming processors (or multiprocessor).
 Each of this processors contains several simpler processors, each of which execute the same instruction at the same time at any given time.
 In the CUDA programming model, the basic unit of computation is a \emph{thread}.
 Threads are grouped into \emph{blocks} which are part of the block \emph{grid}.
 The number of threads in a block is typically higher than the number of processors in a multiprocessor.
-For that reason, the hardware automatically partitions threads in a block into smaller batches, called \emph{warps}.
+For that reason, the hardware automatically divides the threads from a block into smaller batches, called \emph{warps}.
 This hierarchy is represented in Figure \ref{fig:gridthread}.
 The computation of one block is independent from other blocks and each block is scheduled to one multiprocessor, which means that more multiprocessors results in more blocks being processed at the same time, as represented in Figure \ref{fig:blockprocessor}.
 
-
-\begin{figure}[!ht]
+\begin{figure}[ht]
+\centering
+\begin{minipage}[b]{.45\textwidth}
+	\centering
+	\includegraphics[width=.95\textwidth]{stateofart/gpgpu/threadgrid}
+	\captionof{figure}{Thread hierarchy \cite{Nvidia2014}.}
+	\label{fig:gridthread}  
+\end{minipage}
+\begin{minipage}[b]{.45\textwidth}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{stateofart/gpgpu/threadgrid}
-        \caption{Thread hierarchy \cite{Nvidia2014}.}
-        \label{fig:gridthread}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{stateofart/gpgpu/blockprocessor}
-        \caption{Automatic scalability \cite{Nvidia2014}.}
-        \label{fig:blockprocessor}
-    \end{subfigure}
-    \caption{\ref{fig:gridthread} represents the thread hierarchy and \ref{fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.}
-    \label{fig:cuda fig1}
+    \includegraphics[width=.95\textwidth]{stateofart/gpgpu/blockprocessor}
+    \captionof{figure}{Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite{Nvidia2014}.}%Automatic scalability 
+    \label{fig:blockprocessor}
+\end{minipage}
 \end{figure}
+
+% \begin{figure}[!ht]
+%     \centering
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{stateofart/gpgpu/threadgrid}
+%         \caption{Thread hierarchy \cite{Nvidia2014}.}
+%         \label{fig:gridthread}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{stateofart/gpgpu/blockprocessor}
+%         \caption{Automatic scalability \cite{Nvidia2014}.}
+%         \label{fig:blockprocessor}
+%     \end{subfigure}
+%     \caption{\ref{fig:gridthread} represents the thread hierarchy and \ref{fig:blockprocessor} shows how the distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors.}
+%     \label{fig:cuda fig1}
+% \end{figure}
 
 Block configuration can be multidimensional, up to and including 3 dimensions.
 Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of CUDA being used, e.g. for GPUs with CUDA compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads.
-For the previous example, it's wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
+For the previous example, it is wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
 
 Depending on the architecture, GPUs have several types of memories.
 Accessible to all processors (and threads) are the global memory, constant memory and texture memory, of which the last two are read-only.
-Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, which enables inter-thread communication inside a block.
-Lastly, each thread as access to local memory.
-Local memory resides in global memory space and has the latency for read and write operations.
-However, if the thread is using only single variables or constant sized arrays since it stores them in the register space, which is very fast.
+Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, enabling inter-thread communication inside a block.
+Finally, each thread has access to local memory.
+Local memory resides in global memory space and has the same latency for read and write operations.
+However, if the thread is using only single variables or constant sized arrays, it uses register space to, which is very fast.
 If the memory used exceeds the available register space the local memory used.
 This memory hierarchy is represented in Figure \ref{fig:memorymodel}.
 
-
-\begin{figure}[!ht]
-    \centering
-    % this was taken from the internet but is available at NVIDIA slides, couldn't find a decent reference
-    \begin{subfigure}[b]{0.45\textwidth}
+\begin{figure}[t]
+\centering
+\begin{minipage}[b]{.5\textwidth}
+	\centering
+	\includegraphics[width=0.9\textwidth]{stateofart/gpgpu/memorymodel}
+	\captionof{figure}{Memory model used by CUDA \cite{Nvidia2014}.}
+	\label{fig:memorymodel}  
+\end{minipage}%
+\begin{minipage}[b]{.5\textwidth}
         \centering
-        \includegraphics[width=\textwidth]{stateofart/gpgpu/memorymodel}
-        \caption{Memory model used by CUDA \cite{Nvidia2014}.}
-        \label{fig:memorymodel}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{stateofart/gpgpu/flow}
-        \caption{Sample execution flow of a CUDA application \cite{Nvidia2014}.}
+        \includegraphics[width=0.9\textwidth]{stateofart/gpgpu/flow}
+        \captionof{figure}{Sample execution flow of a CUDA application \cite{Nvidia2014}.}%Automatic scalability 
         \label{fig:cudaflow}
-    \end{subfigure}
-    \caption{}
-    \label{fig:cuda fig2}
+\end{minipage}
 \end{figure}
 
+% \begin{figure}[!ht]
+%     \centering
+%     % this was taken from the internet but is available at NVIDIA slides, could not find a decent reference
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{stateofart/gpgpu/memorymodel}
+%         \caption{Memory model used by CUDA \cite{Nvidia2014}.}
+%         \label{fig:memorymodel}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.45\textwidth}
+%         \centering
+%         \includegraphics[width=\textwidth]{stateofart/gpgpu/flow}
+%         \caption{Sample execution flow of a CUDA application \cite{Nvidia2014}.}
+%         \label{fig:cudaflow}
+%     \end{subfigure}
+%     \caption{}
+%     \label{fig:cuda fig2}
+% \end{figure}
+
 The typical flow of a CUDA application (and, typically, any modern GPU application) is explained in this paragraph and can be observed in Figure \ref{fig:cudaflow}.
-First, the host CPU transfers any necessary data to the device memory (global, texture or constant) and is responsible for setting up the device code execution, which entails selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
-The next phase is simply the device executing the kernel.
-Finally, the host CPU will transfer back the results from the device.
+First, the host CPU is responsible for several steps in the set-up phase.
+The host starts by transferring any necessary to the device memory (global, texture or constant).
+The next step is selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+% First, the host CPU transfers any necessary data to the device memory (global, texture or constant) and is responsible for setting up the device code execution, which entails selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+The set-up phase if followed by the computation phase in the GPU.
+% The next phase is simply the device executing the kernel.
+Finally, the host will transfer back the results from the device.
 It should be noted that the latest architectures support \emph{Dynamic Parallelism}.
 This functionality allows the device to start other kernels without the intervention of the host CPU, which would alter the typical execution flow explained above if used.
 It can be particularly useful if several kernels have to be executed in an application from the same input data but with dependencies.
@@ -298,9 +333,9 @@ The first step is inherently parallel as the computation of the label of the $i$
 Two possible approaches to parallelize this step on the GPU are possible, a centroid-centric or a data-centric \cite{Bai2009}.
 In the former each thread is responsible for a centroid and will compute the distance from its centroid to every pattern.
 These distances must be stored and, in the end, the patterns are assigned the closest centroid.
-In the later, each thread will compute the distance from one or more data points to every centroid and determines to which centroid they belong to (their labels).
-This strategy has the advantage of using less memory since it doesn't need to store all the pair-wise distances to perform the labeling - it only needs to store the best distance for each pattern.
-According to \cite{Bai2009}, the former approach is suitable for devices with a low number of processors so as to stream the data to each one while the later is better suited to devices with more processors.
+In the latter, each thread will compute the distance from one or more data points to every centroid and determines to which centroid they belong to (their labels).
+This strategy has the advantage of using less memory since it does not need to store all the pair-wise distances to perform the labeling - it only needs to store the best distance for each pattern.
+According to \cite{Bai2009}, the former approach is suitable for devices with a low number of processors so as to stream the data to each one while the latter is better suited to devices with more processors.
 
 The approach taken in \cite{Zechner2009b} only parallelizes the labeling stage and takes a data-centric approach to the problem.
 Each thread computes the distance from a set of data points to every centroid and determines the labels.
@@ -348,10 +383,10 @@ The same approach for extracting the final clustering in EAC was used in \cite{F
 There are several algorithms for computing an MST.
 The most famous are Kruskal \citep{kruskal1956shortest}, Prim \citep{prim1957shortest} and Borůvka \citep{boruuvka1926jistem}.
 Borůvka's algorithm is also known as Sollin's algorithm.
-The first two are mostly sequential, while the later has the highest potential for parallelization, specially in the first iterations.
+The first two are mostly sequential, while the latter has the highest potential for parallelization, specially in the first iterations.
 As such, even though GPU parallel variants of Kruskal's \citep{rostrup2013fast} and Prim's \citep{Wang2011} algorithms exist, the focus will be on Borůvka's.% (which was also the first to be parallelized for the GPU).
 
-Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a more in-depth review over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest, as to the moment of writing.
+Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a more in-depth review over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest.
 This section will review the algorithm proposed in \citep{Sousa2015}, referred to as \emph{Sousa2015} from henceforth.
 
 \subsubsection{CSR format}
@@ -402,7 +437,7 @@ Within the context of the algorithm the \emph{id} of a vertex is its index in th
 	If a vertex has no successor because that edge was removed in the previous step than its color is initialized with its own id.
 	The colors are then propagated by setting each vertex's color to the color of its successor, until convergence.
 
-	\item \emph{Create new vertex ids}: only the super-vertices will be propagated to the next iteration but they'll have new ids for building the new contracted graph.
+	\item \emph{Create new vertex ids}: only the super-vertices will be propagated to the next iteration but they will have new ids for building the new contracted graph.
 	The new ids will range from $0$ to $s$, where $s$ is the number of super-vertices.
 	The vertex that will represent a super-vertex is the vertex whose color is its own id.
 	The representative vertices will take the new ids in increasing order according to their own ids in increasing order, e.g. vertex $2$ is the representative with lowest id so it will have the id $0$ in the contracted graph.
@@ -439,13 +474,13 @@ Upon contact, the author reported that a solution to that problem is, on the ste
 
 The \emph{scan} operation is one of the fundamental building block of parallel computing. 
 Furthermore, two of the steps of the Borůvka variant of \cite{Sousa2015} are performed with an exclusive scan where the operation is a sum. 
-To illustrate the functioning of the exclusive scan, let's consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$.
-Let's further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$.
+To illustrate the functioning of the exclusive scan, let us consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$.
+Let us further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$.
 Then the output will be $[0,0,1,3,5,8,13,19]$.
 The first element of the output will be the identity (if it were an inclusive scan, it would be the first element itself).
 The second element is the sum between the first element of the input array and the first element of the output array, the third element is the sum between the second element of the input array with second element of the output array, and so on.
 This algorithm seems highly sequential in nature each element of the output array depends on the previous one, but two main parallel versions can be found in literature: Hillis and Steele's \cite{Hillis1986} and Blelloch's \cite{Blelloch1990}. 
-The two approaches focus on distinct efforts: the former focus on optimizing the number of steps \cite{Hillis1986} while the later focus on optimizing the amount of work done \cite{Blelloch1990}.
+The two approaches focus on distinct efforts: the former focus on optimizing the number of steps \cite{Hillis1986} while the latter focus on optimizing the amount of work done \cite{Blelloch1990}.
 The focus will be on the Blelloch's algorithm.
 
 Blelloch's algorithm is comprised by two main phases: the \emph{reduce phase} (or \emph{up-sweep}) and the \emph{down-sweep phase}.
@@ -492,14 +527,14 @@ However, \cite{Harris2007} explains how to overcome this limitation and also off
 % TODO add more refs for quantum inspired computational intelligence; Applications of quantum inspired computational intelligence: A survey is good article to take stuff from
 
 The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
-At the moment of writing, two major approaches for the concept of quantum clustering were found in the literature.
+Currently, two major approaches for the concept of quantum clustering were found in the literature.
 The first is the quantization of clustering methods to work in quantum computers.
 This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers.
 % relevant papers for machine learnigng quantum paradigm
 Both \cite{Aimeur2013} and \cite{Lloyd2013} show how the quantum paradigm can be used for speedups in the machine learning algorithms, with the possibility of obtaining exponential speed-ups.
 The quantization approach falls outside the scope of this dissertation, but \cite{wittek2014quantum} offers a thorough review on the state of the art of machine learning in the quantum paradigm.
 Many of the approaches for these quantizations make use of Groover's database search algorithm \cite{grover1996fast}, or a variant of it, e.g. \cite{Wiebe2014}.
-Most literature on this approach is also mostly theoretical since the physical requirements still don't exist for this methods to be tested.
+Most literature on this approach is also mostly theoretical since the physical requirements still do not exist for this methods to be tested.
 This approach can be seen as part of the bigger problem of quantum computing and quantum information processing.
 An alternative to using real quantum systems would be to simulate them.
 % get refs for simulation of quantum systems not being feasable; Feynmann; I think washington course had something
@@ -626,7 +661,7 @@ Within the context of this algorithm, oracles contain strings of qubits and gene
 After collapsing, the qubit value becomes corresponds to a classical bit, with a binary value.
 
 Ideally, oracles would contain actual quantum systems or simulate them - this would correctly account for the desirable quantum properties.
-As it stands, oracles aren't quantum systems or even simulate them and can be more appropriately described as random number generators.
+As it stands, oracles are not quantum systems or even simulate them and can be more appropriately described as random number generators.
 Each string of qubits represents a number, so the number of qubits in each string will define its precision.
 The number of strings chosen for the oracles depends on the number of clusters and dimensionality of the problem (e.g. for 3 centroids of 2 dimensions, 6 strings will be used since 6 numbers are required).
 Each oracle will represent a possible solution.
@@ -673,8 +708,8 @@ The best scoring oracle is stored.
 So far, the algorithm consisted of the classical K-Means with a complex random number generation for the centroids and complicated data structures, namely the oracles.
 This is the step that fundamentally differs from the classical version.
 In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one.
-The basic idea is to shift the qubit coefficients of the least scoring oracles in the direction of the best scoring one so they'll have a higher probability of collapsing into initial centroid values closer to the best solution so far.
-This way, in future generations, we'll not initiate with the best centroids so far (which will not converge further into a better solution) but we'll be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm).
+The basic idea is to shift the qubit coefficients of the least scoring oracles in the direction of the best scoring one so they will have a higher probability of collapsing into initial centroid values closer to the best solution so far.
+This way, in future generations, we will not initiate with the best centroids so far (which will not converge further into a better solution) but we will be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm).
 In other words, we look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
 
 The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox. \cite{Wiebe2014} suggests that this operations may not be required to produce variability in the population of qubit strings.
@@ -696,7 +731,7 @@ $$ \psi (\mathbf{x}) = \sum ^N _{i=1} e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_
 where $N$ is the total number of points in the dataset, $\sigma$ is the variance and $\psi$ is the probability density estimation. $\psi$ is chosen to be the wave function in Schrödinger's equation.
 The details of why this is fall outside of the scope of the present work and are explained in \cite{Weinstein2009,Horn2001a,Horn2001b}.
 
-Having this information we'll compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
+Having this information we will compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
 
 $$
 V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
@@ -713,7 +748,7 @@ With all of the above, $V(x)$ can be computed.
 This potential function is akin to the inverse of a probability density function.
 Minima of the potential correspond to intervals in space where points are together.
 So minima will naturally correspond to cluster centers \cite{Horn2001a}.
-However, it's very computationally intensive to compute $V(x)$ to the whole space, so the compututation of of the potential function is only done at the data points.
+However, it is very computationally intensive to compute $V(x)$ to the whole space, so the compututation of of the potential function is only done at the data points.
 This should not be problematic since clusters' centers are generally close to the data points themselves. 
 Even so, the minima may not lie on the data points themselves.
 One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function.
@@ -723,7 +758,7 @@ Another method \cite{Weinstein2009} is to think of the input data as particles a
 Given enough time steps, the particles will converge to and oscillate around potential minima.
 This method makes the Dynamic Quantum Clustering algorithm.
 The nature of the computations involved in this algorithm make it a good candidate for parallelization techniques.
-\cite{Wittek2013} parallelized this algorithm to the GPU obtaining speedups of up to two magnitudes relative to an optimized multicore CPU implementation. %TODO: leave this or not? I didn't test this so maybe it's better not
+\cite{Wittek2013} parallelized this algorithm to the GPU obtaining speedups of up to two magnitudes relative to an optimized multicore CPU implementation. %TODO: leave this or not? I did not test this so maybe it is better not
 
 % #TODO describe the fine cluster algorithm; critique how this is done; what was developed; what  -->
 

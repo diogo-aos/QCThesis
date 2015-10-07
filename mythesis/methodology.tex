@@ -4,7 +4,7 @@
 \label{chapter:methodology}
 
 
-%TODO explain methodology to obtain results of quantum clustering of just present results on why it wasn't viable?
+%TODO explain methodology to obtain results of quantum clustering of just present results on why it was not viable?
 
 %TODO This is where I explain my approach to the problem of EAC in Big Data
 
@@ -48,12 +48,10 @@ For both, the experiments that were setup had the goal of evaluating the speed a
 Under the qubit concept, no other algorithms were experimented with since the results for this particular algorithm showed that this kind of approach is infeasible due to the cost in computational speed.
 The results highlight that fact.
 
-
-
 \section{Speeding up Ensemble Generations with Parallel K-Means}
-K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions don't require big accuracy - variability in the partitions is a desirable property which translates in few iterations.
+K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions do not require big accuracy - variability in the partitions is a desirable property which translates in few iterations.
 For that reason, optimizing this algorithm ensures that the accumulation of evidence is performed in an efficient manner.
-Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.g. K-Means doesn't have to converge - 3 iterations should suffice.
+Furthermore, it is not necessary for K-Means to produce accurate clusterings, e.g. K-Means does not have to converge - 3 iterations should suffice.
 The reason for this is the desire for variability within the partition population.
 
 
@@ -82,13 +80,13 @@ Previous to building the co-association matrix, the $p$ closest samples to each 
 The co-association matrix is reduced to size $n \times p$ and only considers the neighbors of each sample during the voting mechanism.
 This means two $n \times p$ matrices have to be stored, which, as long as $p$ is significantly lowers than the number of samples, is close to a sparse representation of the full matrix.
 
-It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they're not necessarily compatible.
-When the neighbor approach is used, it is unlikely that a sample will never be clustered with it's closest $p$ neighbors.
+It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they are not necessarily compatible.
+When the neighbor approach is used, it is unlikely that a sample will never be clustered with it is closest $p$ neighbors.
 However, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions.
 If the number of neighbors is high, one of the neighbors can be sufficiently far away from the sample to not clustered with it.
 If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few samples that neighbors are not included.
 This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach.
-To illustrate this point, let's consider a dataset of $10^6$ patterns. 
+To illustrate this point, let us consider a dataset of $10^6$ patterns. 
 
 %comment on which method is more effective, maybe some experiment is needed to see which
 %demonstrate why both methods are not compatible - a simple filling of knn matrix should suffice
@@ -108,7 +106,7 @@ This approach is similar to the random prototypes but, instead of choosing $p$ r
 
 Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct.
 When using sparse matrices, the former is not true.
-In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it's not possible to pre-allocate the memory to the correct size of the matrix.
+In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it is not possible to pre-allocate the memory to the correct size of the matrix.
 This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
 
 % Several sparse matrices exist
@@ -116,7 +114,7 @@ This translates in allocating the memory gradually which may result in fragmenta
 % describe my solution
 
 Experiments showed that building the matrix with the recommended sparse structures for building the matrix saturated the memory and were very slow.
-Using a CSR matrix didn't saturate memory but was too slow. % TODO add reference to experiments in results
+Using a CSR matrix did not saturate memory but was too slow. % TODO add reference to experiments in results
 The core of the solution devised is the CSR sparse structure, which has the desired properties of having a low memory trace and allows for fast computations.
 
 \subsection{EAC CSR}
@@ -136,17 +134,17 @@ This scheme for building the matrix uses 4 supporting arrays:
 
 Each sample (row) has a maximum of \emph{max\_assocs} pre-allocated that it can use to fill with new associations.
 New associations that exceed this pre-allocated maximum are discarded.
-%Since each sample has a maximum pre-defined number of associations, \emph{indptr} doesn't really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$).
+%Since each sample has a maximum pre-defined number of associations, \emph{indptr} does not really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$).
 The \emph{degree} array is the one keeping track of the number of associations of each sample.
 
 Before continuing with the explanation of how the matrix is actually filled, it should be noted that this method assumes that the clusters received come sorted in a increasing order.
 The first partition is inserted in a special way.
-Since it is the first and the clusters are sorted, it's a matter of copying the cluster to the \emph{indices} array in the positions of each sample, with the exclusion of the sample itself.
+Since it is the first and the clusters are sorted, it is a matter of copying the cluster to the \emph{indices} array in the positions of each sample, with the exclusion of the sample itself.
 This process can be observed clearly in Fig. \ref{fig:first part}.
-Because it's the fastest partition to be inserted, it's picked to be the one with the least amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
+Because it is the fastest partition to be inserted, it is picked to be the one with the least amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
 This is only appliable if the whole ensemble is provided, otherwise there is no way to know what is the biggest cluster of the whole ensemble.
 This increases the probability that any new cluster will have more samples that correspond to already established associations.
-Because the clusters are sorted and only a copy of each cluster was made, it's not necessary to sort each row of the matrix by column index.
+Because the clusters are sorted and only a copy of each cluster was made, it is not necessary to sort each row of the matrix by column index.
 
 \begin{figure}[hbtp]
 \centering
@@ -156,8 +154,8 @@ Because the clusters are sorted and only a copy of each cluster was made, it's n
 \end{figure}
 
 For the remaining partitions, the process is different.
-Now, it's necessary to check if an association already exists.
-For each sample in a cluster it's necessary to add or increment the association to every other sample in the cluster.
+Now, it is necessary to check if an association already exists.
+For each sample in a cluster it is necessary to add or increment the association to every other sample in the cluster.
 This is described in Algorithm \ref{alg:eac csr update cluster}.
 
 
@@ -197,9 +195,9 @@ After each pass on a cluster (adding or incrementing all associations to a sampl
 The number of associations associatied with the $i$-th sample (\emph{degree[i]}) is incremented by the amount of new associations to be added.
 %The new interval of the \emph{indices} array belonging to the $i$-th sample now has \emph{degree[i]} plus the number of new associations.
 An element is added to the end of the \emph{new\_assoc\_idx} array with the value of \emph{degree[i]} so that the last new association can be included in the general cycle.
-During the sorting process a pointer to the current index to add associations $o\_ptr$ is kept (it's initialized to the new total number of associations of a sample).
+During the sorting process a pointer to the current index to add associations $o\_ptr$ is kept ( it is initialized to the new total number of associations of a sample).
 The sorting mechanism looks at two consecutive elements in the \emph{new\_assoc\_idx} array, starting from the end.
-If the $i$-th element of the \emph{new\_assoc\_idx} array is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between them (including the first element) are copied to the end of the \emph{indices} interval, i.e. they're shifted to the right by $i$ positions.
+If the $i$-th element of the \emph{new\_assoc\_idx} array is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between them (including the first element) are copied to the end of the \emph{indices} interval, i.e. they are shifted to the right by $i$ positions.
 Then, or in case the comparison fails, the $(i-1)$-th element of the \emph{new\_assoc\_ids} is copied to the \emph{indices} array in the position specified by \emph{o\_ptr}.
 
 % TODO check which or the three fast sorting approaches is best and describe only that one
@@ -254,7 +252,7 @@ Even though there is no direct memory reduction for switching to the condensed m
 Previously, the number of associations for each sample (number of non zero values in each row) remained constant throughout the whole set of samples.
 However, using a condensed scheme means that the number of associations decreases the further down a sample is in the matrix, i.e. the closer to the bottom its respective row is.
 An example of this can be seen in the plot of the number of associations per sample in a complete and condensed matrix of Fig. \ref{fig:coassoc degree}.
-It's clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, then the pre-allocated memory for each sample can decrease accordingly.
+It is clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, then the pre-allocated memory for each sample can decrease accordingly.
 One possible strategy, illustrated in Fig. \ref{fig:coassoc degree}, is to decrease the maximum number of associations linearly.
 In the example, the first 5\% of samples have the 100\% of the maximum number of associations and it decreases linearly until 5\% of the maximum number of associations for the last sample.
 
@@ -330,7 +328,7 @@ If there are independent components inside the MST those are taken into consider
 If the number of clusters $k$ is higher than the number of independent components the final number of clusters will be the number of independent components.
 
 To compute the number of clusters (which results in a truly unsupervised method) the lifetimes are computed.
-In the traditional EAC, lifetimes are computed on the weights of the clusters by the order they're formed.
+In the traditional EAC, lifetimes are computed on the weights of the clusters by the order they are formed.
 With the MST, the lifetimes are computed over the ordered \emph{mst\_weights} array, which is equivalent.
 If there are independent components, an extra lifetime that will serve as the threshold between choosing the number of independent components as the number of clusters or looking into the lifetimes within the MST.
 This is because links between independent vertices are not included in the MST.
@@ -396,7 +394,7 @@ This happens because the initial device arrays used for the graph are deallocate
 This implementation design had in mind memory consumption in mind and could easily be avoided with the cost of having to store the bigger initial graph for the entire duration of the MST computation, which might be worthwhile if the GPU memory is abundant.
 The final labels array is transfered back to the host in the end of computation, but its size is small relative the to the size of the original graph.
 Furthermore, because the control logic is processed by the host and it is dependent on some values computed by the device, extra memory transfers of single values (e.g. number of vertices and number of edges on each iteration) are necessary.
-These, however, may be safely dismissed since they're of little consequence in the overall computation time.
+These, however, may be safely dismissed since they are of little consequence in the overall computation time.
 
 
 \begin{tabular}{lrrr}

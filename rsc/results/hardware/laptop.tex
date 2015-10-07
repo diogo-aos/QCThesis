@@ -1,0 +1,25 @@
+% needs booktabs package
+% table inside minipage to have footnotes at the end
+% system configuration of Samsung RV520.
+\begin{minipage}[h]{\hsize}
+	\centering
+	\captionof{table}{\textbf{Alpha} machine specifications.}
+	\begin{tabular}{ccc}
+		\toprule[2pt]
+												 & \textbf{CPU}      & \textbf{GPU} \\ \midrule
+		\textbf{\# Devices}                      & 1                 & 1            \\ 
+		\textbf{Manufacturer}                    & Intel             & NVIDIA       \\ 
+		\textbf{Model}                           & i3-2310M          & GT 520M      \\ 
+		\textbf{Launch date}                     & Q1'11             & Q1'2011      \\ 
+		\textbf{Architecture}                    & Sandy Bridge      & Fermi        \\ 
+		\textbf{\# Cores}                        & 2                 & 48           \\ 
+		\textbf{Clock frequency {[}Mhz{]}}       & 2100              & 1480         \\ 
+		\textbf{L1 Cache}                        & 64KB IC \footnote{Instruction Cache (IC)} + 64KB DC \footnote{Data Cache (IC)} & 16/48 KB/SM \footnote{Each Streaming Multiprocessor has 64 KB of on-chip memory that can be configured as either 16KB of L1 cache and 48 KB of shared memory, or vice versa.}  \\ 
+		\textbf{L2 Cache}                        & 512KB             & n/a          \\ 
+		\textbf{L3 Cache}                        & 3 MB              & n/a          \\ 
+		\textbf{Memory {[}GB{]}}                 & 4                 & 1            \\ 
+		\textbf{Max. memory bandwidth {[}Gbps{]}} & 21.3              & 12.8        \\ 
+		\bottomrule[2pt]
+	\end{tabular}
+	\label{tab:alpha}
+\end{minipage}

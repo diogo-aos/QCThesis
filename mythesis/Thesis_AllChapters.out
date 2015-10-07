@@ -42,21 +42,16 @@
 \BOOKMARK [1][-]{section.4.5}{4.5 Hierarchical Agglomerative Clustering step}{chapter.4}% 42
 \BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 HAC and GPGPU}{section.4.5}% 43
 \BOOKMARK [0][-]{chapter.5}{5 Results}{}% 44
-\BOOKMARK [1][-]{section.5.1}{5.1 Quantum K-Means}{chapter.5}% 45
-\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Testing and Results}{section.5.1}% 46
-\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Discussion}{section.5.1}% 47
-\BOOKMARK [1][-]{section.5.2}{5.2 Horn and Gottlieb's algorithm}{chapter.5}% 48
-\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Testing and Results}{section.5.2}% 49
-\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Iris data}{section.5.2}% 50
-\BOOKMARK [2][-]{subsection.5.2.3}{5.2.3 Crab data}{section.5.2}% 51
-\BOOKMARK [1][-]{section.5.3}{5.3 GPGPU K-Means}{chapter.5}% 52
-\BOOKMARK [1][-]{section.5.4}{5.4 K-prototypes influence on coassocs}{chapter.5}% 53
-\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 54
-\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 55
-\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 56
-\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 57
-\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 58
-\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 59
-\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 60
-\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 61
-\BOOKMARK [0][-]{chapter*.64}{Bibliography}{}% 62
+\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.3}{5.3 GPU MST}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.4}{5.4 EAC}{chapter.5}% 48
+\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 49
+\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 53
+\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 54
+\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 56
+\BOOKMARK [0][-]{chapter*.47}{Bibliography}{}% 57

@@ -3,8 +3,6 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis_AllChapters.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
-Warning--I didn't find a database entry for "Casper"
-Warning--there's a number but no volume in Harris2007
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
@@ -18,51 +16,52 @@ Warning--there's a number but no volume in Nvidia2014
 Warning--empty journal in Vineet2009
 Warning--empty journal in Sousa2015
 Warning--empty journal in boruuvka1926jistem
+Warning--there's a number but no volume in Harris2007
 Warning--empty journal in Wiebe2014
 Warning--empty journal in Casper2013
 Warning--can't use both volume and number fields in Casper2012KMeans
 Warning--empty publisher in Lanzagorta2008
 Warning--there's a number but no volume in Horn2001a
 Warning--empty year in JonesSciPy
-You've used 107 entries,
+You've used 108 entries,
             2481 wiz_defined-function locations,
-            1352 strings with 27563 characters,
-and the built_in function-call counts, 46517 in all, are:
-= -- 4347
-> -- 2033
+            1359 strings with 27801 characters,
+and the built_in function-call counts, 46964 in all, are:
+= -- 4386
+> -- 2060
 < -- 102
-+ -- 805
-- -- 586
-* -- 3531
-:= -- 7125
-add.period$ -- 446
-call.type$ -- 107
-change.case$ -- 210
-chr.to.int$ -- 102
-cite$ -- 127
-duplicate$ -- 2373
-empty$ -- 4122
-format.name$ -- 759
-if$ -- 10155
++ -- 815
+- -- 594
+* -- 3571
+:= -- 7199
+add.period$ -- 450
+call.type$ -- 108
+change.case$ -- 212
+chr.to.int$ -- 103
+cite$ -- 128
+duplicate$ -- 2392
+empty$ -- 4159
+format.name$ -- 768
+if$ -- 10247
 int.to.chr$ -- 6
-int.to.str$ -- 108
-missing$ -- 108
-newline$ -- 660
-num.names$ -- 321
-pop$ -- 813
+int.to.str$ -- 109
+missing$ -- 109
+newline$ -- 666
+num.names$ -- 324
+pop$ -- 819
 preamble$ -- 1
-purify$ -- 107
+purify$ -- 108
 quote$ -- 0
-skip$ -- 1573
+skip$ -- 1583
 stack$ -- 0
-substring$ -- 2477
-swap$ -- 569
+substring$ -- 2504
+swap$ -- 571
 text.length$ -- 46
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 737
+type$ -- 744
 warning$ -- 20
-while$ -- 417
+while$ -- 421
 width$ -- 0
-write$ -- 1624
-(There were 21 warnings)
+write$ -- 1639
+(There were 20 warnings)
