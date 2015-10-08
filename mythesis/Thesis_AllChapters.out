@@ -40,17 +40,18 @@
 \BOOKMARK [1][-]{section.4.5}{4.5 Final partition recovery}{chapter.4}% 40
 \BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Single-Link and GPGPU}{section.4.5}% 41
 \BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and external memory algorithms}{section.4.5}% 42
-\BOOKMARK [0][-]{chapter.5}{5 Results}{}% 43
-\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 44
-\BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 45
-\BOOKMARK [1][-]{section.5.3}{5.3 GPU MST}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.4}{5.4 EAC}{chapter.5}% 47
-\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 48
-\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 49
-\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 51
-\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 52
-\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 53
-\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 54
-\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 55
-\BOOKMARK [0][-]{chapter*.46}{Bibliography}{}% 56
+\BOOKMARK [1][-]{section.4.6}{4.6 Resume of the developed work}{chapter.4}% 43
+\BOOKMARK [0][-]{chapter.5}{5 Results}{}% 44
+\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.3}{5.3 GPU MST}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.4}{5.4 EAC}{chapter.5}% 48
+\BOOKMARK [0][-]{chapter.6}{6 Discussion?}{}% 49
+\BOOKMARK [1][-]{section.6.1}{6.1 real num assocs compared to samples per cluster}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.2}{6.2 Trade-off speed accuracy memory}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.4}{6.4 Expanding this work to other scalability paradigms}{chapter.6}% 53
+\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 54
+\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 56
+\BOOKMARK [0][-]{chapter*.46}{Bibliography}{}% 57

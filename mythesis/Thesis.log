@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 OCT 2015 14:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 OCT 2015 14:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -900,7 +900,7 @@ LaTeX Info: Redefining \nameref on input line 70.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 15.
 
-<Figures/afa.png, id=72, 571.13374pt x 770.88pt>
+<Figures/afa.png, id=76, 571.13374pt x 770.88pt>
 File: Figures/afa.png Graphic file (type png)
  <use Figures/afa.png>
 Package pdftex.def Info: Figures/afa.png used on input line 15.
@@ -910,13 +910,13 @@ Package pdftex.def Info: Figures/afa.png used on input line 15.
 Package pdftex.def Warning: Option `bb' does not make sense,
 (pdftex.def)                using `viewport' instead on input line 16.
 
-<IST_A_CMYK_POS.pdf, id=74, 845.0471pt x 597.51233pt>
+<IST_A_CMYK_POS.pdf, id=78, 845.0471pt x 597.51233pt>
 File: IST_A_CMYK_POS.pdf Graphic file (type pdf)
  <use IST_A_CMYK_POS.pdf>
 Package pdftex.def Info: IST_A_CMYK_POS.pdf used on input line 16.
 (pdftex.def)             Requested size: 288.78807pt x -90.76195pt.
 
-<Figures/clustering.jpg, id=75, 274.02374pt x 159.59625pt>
+<Figures/clustering.jpg, id=79, 274.02374pt x 159.59625pt>
 File: Figures/clustering.jpg Graphic file (type jpg)
 
 <use Figures/clustering.jpg>
@@ -1045,7 +1045,7 @@ LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 176.
  [5]
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_part.p
-ng, id=254, 895.345pt x 445.665pt>
+ng, id=259, 895.345pt x 445.665pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
 art.png Graphic file (type png)
 
@@ -1059,7 +1059,7 @@ put line 213.
  [6 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
 rt.png>]
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
-d=264, 930.47626pt x 557.08125pt>
+d=269, 930.47626pt x 557.08125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
 ng Graphic file (type png)
 
@@ -1093,7 +1093,7 @@ degree_100k.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_de
-gree_100k-eps-converted-to.pdf, id=279, 967.615pt x 396.48125pt>
+gree_100k-eps-converted-to.pdf, id=284, 967.615pt x 396.48125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_fu
 ll_degree_100k-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1128,7 +1128,7 @@ onents_boruvka_flow.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
-_boruvka_flow-eps-converted-to.pdf, id=338, 748.7975pt x 1337.99875pt>
+_boruvka_flow-eps-converted-to.pdf, id=343, 748.7975pt x 1337.99875pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
 nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1144,10 +1144,14 @@ LaTeX Warning: Reference `chapter:stateofart' on page 12 undefined on input lin
 e 466.
 
 [12] [13 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_c
-omponents_boruvka_flow-eps-converted-to.pdf>] [14]) [15] [16
+omponents_boruvka_flow-eps-converted-to.pdf>] [14]
 
-] (./Thesis.bbl
-[17
+LaTeX Warning: Reference `chapter:stateofart' on page 15 undefined on input lin
+e 519.
+
+) [15] [16
+
+] (./Thesis.bbl [17
 
 ]) [18]
 
@@ -1159,7 +1163,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 74A02F70FD2E28EE72564FCBA63C40A5;1142.
+(rerunfilecheck)             Checksum: 3834A10EAF39FBCF590BEB13CA1DC90C;1221.
 
 
 LaTeX Warning: There were undefined references.
@@ -1167,10 +1171,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 11640 strings out of 495004
- 171525 string characters out of 6180663
+ 11642 strings out of 495004
+ 171549 string characters out of 6180663
  295791 words of memory out of 5000000
- 14462 multiletter control sequences out of 15000+600000
+ 14463 multiletter control sequences out of 15000+600000
  40665 words of font info for 75 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  55i,13n,92p,907b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1185,10 +1189,10 @@ sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 t10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis.pdf (36 pages, 2804001 bytes).
+Output written on Thesis.pdf (36 pages, 2805129 bytes).
 PDF statistics:
- 452 PDF objects out of 1000 (max. 8388607)
- 348 compressed objects within 4 object streams
- 85 named destinations out of 1000 (max. 500000)
- 172 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 353 compressed objects within 4 object streams
+ 86 named destinations out of 1000 (max. 500000)
+ 180 words of extra memory for PDF output out of 10000 (max. 10000000)
 

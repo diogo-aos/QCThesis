@@ -22,4 +22,5 @@
 \contentsline {subsection}{\numberline {1.5.2}Single-Link and external memory algorithms}{12}{subsection.1.5.2}
 \contentsline {subsubsection}{Kruskal's algorithm and implementation}{14}{section*.18}
 \contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{14}{section*.19}
+\contentsline {section}{\numberline {1.6}Resume of the developed work}{15}{section.1.6}
 \contentsline {chapter}{Bibliography}{18}{chapter*.20}

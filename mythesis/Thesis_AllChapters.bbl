@@ -5,6 +5,17 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Nvidia(2015)]{Nvidia2014}
+Nvidia.
+\newblock {CUDA C Programming Guide}.
+\newblock \emph{Programming Guides}, \penalty0 (August), 2015.
+
+\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
+Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
+\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
+\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
+
 \bibitem[Jain(2010)]{Jain2010}
 Anil~K Jain.
 \newblock {Data clustering: 50 years beyond K-means}.
@@ -423,11 +434,6 @@ Ching~Lung Su, Po~Yu Chen, Chun~Chieh Lan, Long~Sheng Huang, and Kuo~Hsuan Wu.
   Proceedings, APCCAS}, pages 448--451, 2012.
 \newblock \doi{10.1109/APCCAS.2012.6419068}.
 
-\bibitem[Nvidia(2015)]{Nvidia2014}
-Nvidia.
-\newblock {CUDA C Programming Guide}.
-\newblock \emph{Programming Guides}, \penalty0 (August), 2015.
-
 \bibitem[Farivar et~al.(2008)Farivar, Rebolledo, and Chan]{Farivar2008}
 Reza Farivar, Daniel Rebolledo, and Ellick Chan.
 \newblock {A parallel implementation of k-means clustering on GPUs}.
@@ -508,12 +514,6 @@ Guy~E Blelloch.
 \newblock \emph{Computer}, pages 35--60, 1990.
 \newblock \doi{10.1.1.47.6430}.
 \newblock URL \url{http://www.cs.cmu.edu/~blelloch/papers/Ble93.pdf}.
-
-\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
-Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
-\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
-\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
-\newblock URL \url{http://dl.acm.org/citation.cfm?id=1407436}.
 
 \bibitem[A\"{\i}meur et~al.(2013)A\"{\i}meur, Brassard, and Gambs]{Aimeur2013}
 Esma A\"{\i}meur, Gilles Brassard, and S\'{e}bastien Gambs.

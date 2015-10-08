@@ -63,6 +63,7 @@
 \contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{45}{subsection.4.5.2}
 \contentsline {subsubsection}{Kruskal's algorithm and implementation}{47}{section*.44}
 \contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{47}{section*.45}
+\contentsline {section}{\numberline {4.6}Resume of the developed work}{48}{section.4.6}
 \contentsline {chapter}{\numberline {5}Results}{49}{chapter.5}
 \contentsline {section}{\numberline {5.1}Experimental environment}{49}{section.5.1}
 \contentsline {section}{\numberline {5.2}Parallel K-Means}{51}{section.5.2}

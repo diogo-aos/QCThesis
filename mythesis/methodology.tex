@@ -18,7 +18,7 @@ Since each partition is independent from every other partition, parallel computi
 Using either or any combination of these strategies will guarantee a speed-up.
 
 Initial research was under the field of quantum clustering.
-After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
+After this pursuit proved fruitless regarding one of the main requirements (speed), the focus of researched shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
 	
 The second step is mostly bound by memory.
 The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$.
@@ -511,6 +511,17 @@ Typically, the batch size is a very small fraction of the size of the edges, whi
 The time complexity for building the CSI is higher that of computing the argsort operation, but the formal time complexity is not reported in the source \cite{AltetiAbad2007}.
 As an example, for a 500000 pattern set the SL-MST approach took 54.9 seconds while the external memory approach took 2613.5 seconds - an order of magnitude higher.
 
+\section{Resume of the developed work}
+
+This chapter exposed a great deal of the actual developed work.
+It covered solutions and implementations related to the three phases of EAC.
+For the production of the ensemble, two quantum clustering algorithms and a GPU parallel K-Means variant were implemented.
+These are algorithms existing in the literature (presented in chapter \ref{chapter:stateofart}) and implementation details were presented when relevant.
+For addressing the computation complexity of the second phase of EAC, a novel method \textbf{EAC CSR} for building the co-association matrix was designed and implemented.
+Finally, three approaches are presented for the last phase of EAC.
+An implementation of a parallel GPU MST algorithm based on Borůvka's algorithm was presented along with a labeling algorithm for a forest of MSTs.
+Also, an implementation of SL-MST based on Kruskal's algorithm and an external memory variant of it were presented.
+The core of the external memory variant is based on using an external algorithm for sorting a very big array stored in disk and, although this is not something new, its application within the SL clustering framework was not found in literature.
 
 % \subsubsection{Effects on the EAC algorithm}
 
