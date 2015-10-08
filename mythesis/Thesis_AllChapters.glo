@@ -1,12 +1,12 @@
-\glossaryentry{\textbf {Qubit}@{\glosslabel{glo:\textbf {Qubit}}{\textbf {Qubit}}}Quantum bit.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {QK-Means}@{\glosslabel{glo:\textbf {QK-Means}}{\textbf {QK-Means}}}Quantum K-Means.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {PCA}@{\glosslabel{glo:\textbf {PCA}}{\textbf {PCA}}}Principal Component Analysis.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {PC}@{\glosslabel{glo:\textbf {PC}}{\textbf {PC}}}Principal Component.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {SVD}@{\glosslabel{glo:\textbf {SVD}}{\textbf {SVD}}}Singular Value Decomposition.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {EAC}@{\glosslabel{glo:\textbf {EAC}}{\textbf {EAC}}}Evidence Accumulation Clustering.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {HAC}@{\glosslabel{glo:\textbf {HAC}}{\textbf {HAC}}}Hierarchical Agglomeration Clustering.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {SL-HAC}@{\glosslabel{glo:\textbf {SL-HAC}}{\textbf {SL-HAC}}}Single-Linkage Hierarchical Agglomeration Clustering.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {CPU}@{\glosslabel{glo:\textbf {CPU}}{\textbf {CPU}}}Central Processing Unit.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {GPU}@{\glosslabel{glo:\textbf {GPU}}{\textbf {GPU}}}Graphics Processing Unit.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {GPGPU}@{\glosslabel{glo:\textbf {GPGPU}}{\textbf {GPGPU}}}General Purpose computing in Graphics Processing Units.\relax|glsnumformat}{xvii}
-\glossaryentry{\textbf {API}@{\glosslabel{glo:\textbf {API}}{\textbf {API}}}Application Programming Interface.\relax|glsnumformat}{xvii}
+\glossaryentry{\textbf {Qubit}@{\glosslabel{glo:\textbf {Qubit}}{\textbf {Qubit}}}Quantum bit.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {QK-Means}@{\glosslabel{glo:\textbf {QK-Means}}{\textbf {QK-Means}}}Quantum K-Means.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {PCA}@{\glosslabel{glo:\textbf {PCA}}{\textbf {PCA}}}Principal Component Analysis.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {PC}@{\glosslabel{glo:\textbf {PC}}{\textbf {PC}}}Principal Component.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {SVD}@{\glosslabel{glo:\textbf {SVD}}{\textbf {SVD}}}Singular Value Decomposition.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {EAC}@{\glosslabel{glo:\textbf {EAC}}{\textbf {EAC}}}Evidence Accumulation Clustering.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {HAC}@{\glosslabel{glo:\textbf {HAC}}{\textbf {HAC}}}Hierarchical Agglomeration Clustering.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {SL-HAC}@{\glosslabel{glo:\textbf {SL-HAC}}{\textbf {SL-HAC}}}Single-Linkage Hierarchical Agglomeration Clustering.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {CPU}@{\glosslabel{glo:\textbf {CPU}}{\textbf {CPU}}}Central Processing Unit.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {GPU}@{\glosslabel{glo:\textbf {GPU}}{\textbf {GPU}}}Graphics Processing Unit.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {GPGPU}@{\glosslabel{glo:\textbf {GPGPU}}{\textbf {GPGPU}}}General Purpose computing in Graphics Processing Units.\relax|glsnumformat}{1}
+\glossaryentry{\textbf {API}@{\glosslabel{glo:\textbf {API}}{\textbf {API}}}Application Programming Interface.\relax|glsnumformat}{1}

@@ -324,24 +324,25 @@ In such a scenario, a block of the second kernel could be executed as soon as al
 \subsection{Parallel K-Means}
 \label{sec:parallel kmeans}
 
-K-Means is an obvious candidate to generate the ensemble of the first step of EAC.
-Other algorithms can be used, but due to its simplicity it is often used to produce ensembles varying the number of centroids to be used.
-Furthermore, it is a very good candidate for parallelization.
-As explained in chapter \ref{chapter:clustering}, K-Means has two main steps: labeling and update.
+K-Means is an obvious candidate to generate the ensemble of the first step of EAC because it uses different initializations and parameters and due to its simplicity.
+Besides, K-Means is a very good candidate for parallelization.
+Still, other algorithms can be used to produce ensembles.
 
-Several parallel implementations of this algorithm for the GPU exist \cite{Bai2009, Wu2011, Zechner2009, Sirotkovi2012, Farivar2008} and all report significant speedups relative to their sequential counterparts in certain conditions, usually after the input data set goes above a certain cardinality, dimensionality or number of clusters threshold.
+% As explained in chapter \ref{chapter:clustering}, K-Means has two main steps: labeling and update.
+
+Several parallel implementations of this algorithm for the GPU exist \cite{Bai2009, Wu2011, Zechner2009, Sirotkovi2012, Farivar2008} and all report significant speed-ups relative to their sequential counterparts in certain conditions, usually after the input data set goes above a certain cardinality, dimensionality or number of clusters threshold.
 The first step is inherently parallel as the computation of the label of the $i$-th pattern is not dependent on any other pattern, but only on the centroids.
-Two possible approaches to parallelize this step on the GPU are possible, a centroid-centric or a data-centric \cite{Bai2009}.
+Two approaches to parallelize this step on the GPU are possible, a centroid-centric or a data-centric \cite{Bai2009}.
 In the former each thread is responsible for a centroid and will compute the distance from its centroid to every pattern.
-These distances must be stored and, in the end, the patterns are assigned the closest centroid.
-In the latter, each thread will compute the distance from one or more data points to every centroid and determines to which centroid they belong to (their labels).
+These distances must be stored and, in the end, the patterns are assigned to the closest centroid.
+In the latter, each thread will compute the distance from one or more data points to every centroid and determines to which centroid they are closest.
 This strategy has the advantage of using less memory since it does not need to store all the pair-wise distances to perform the labeling - it only needs to store the best distance for each pattern.
-According to \cite{Bai2009}, the former approach is suitable for devices with a low number of processors so as to stream the data to each one while the latter is better suited to devices with more processors.
+According to \cite{Bai2009}, the former approach is suitable for devices with a low number of processors so as to stream the data to each one, while the latter is better suited to devices with more processors.
 
 The approach taken in \cite{Zechner2009b} only parallelizes the labeling stage and takes a data-centric approach to the problem.
 Each thread computes the distance from a set of data points to every centroid and determines the labels.
 The remaining steps are performed by the host CPU.
-This study reported speed ups up to 14, for input datasets of 500000 points.
+This study reported speed ups up to 14, for input datasets of $500\:000$ points.
 Furthermore, it should be noted that the speed up was measured against a sequential version with all C++ compiler optimizations turned on, including vector operations (which, by themselves, are a way of parallelizing computation).
 The parallelized algorithm's flow can be observed in Figure \ref{fig:kmeans}.
 
@@ -352,7 +353,7 @@ The parallelized algorithm's flow can be observed in Figure \ref{fig:kmeans}.
 	\label{fig:kmeans}
 \end{figure}
 
-It should be noted that the literature reports that the performance of K-Means using Dynamic Parallelism is slightly worse than that of its standard GPU counterpart \cite{DiMarco2013}.
+It should be noted that the literature reports that the performance of K-Means using Dynamic Parallelism is slightly worse than its standard GPU counterpart \cite{DiMarco2013}.
 % The results of aforementioned study showed datasets sufficiently large to make them relevant for the present work, considering the focus of the dissertation. 
 
 \subsection{Parallel Single-Link Clustering}
@@ -367,10 +368,10 @@ Given the new similarity metric (how many times a pair of patterns are clustered
 % The output is a dendrogram connecting all the data points at different levels.
 
 % SL link to MST
-SL is not easily parallelized since, typically, a new cluster generated at each step may include the one generated in the previous iteration.
+SL is not easily parallelized since a new cluster generated at each step may include the one generated in the previous iteration.
 The most parallelizable part is the computation of the pair-wise similarity matrix, which is only useful if the input is raw data instead of a similarity matrix as in the case of EAC.
 %, which in EAC is computed with the part of the input (the co-association matrix) and, thus, not considered.
-The relationship between SL and the Minimum Spanning Tree problem explained in chapter \ref{chapter:clustering} is the key to parallelize it.
+The relationship between SL and the Minimum Spanning Tree, explained in chapter \ref{chapter:clustering}, is the key to parallelize it.
 If one takes this approach for solving the SL problem, it becomes easier to parallelize it since parallel MST algorithms are abundant in literature \cite{Vineet2009,rostrup2013fast,Sousa2015}.
 The same approach for extracting the final clustering in EAC was used in \cite{Fred2002}.
 
@@ -409,8 +410,10 @@ It requires three arrays to fully describe the graph:
 \label{fig:csr}
 \end{figure}
 
-Within the algorithm's context, the three arrays are denominated as \emph{first\_edge} (previously \emph{indptr}, \emph{destination} (\emph{indices}) and \emph{weight} (\emph{data}). Although these three arrays can completely describe a graph, the algorithm uses an extra array \emph{outdegree} that stores the number of non-zero values of each row and can be deduced from the \emph{first\_edge} array.
-The length and purpose of each of this arrays:
+Within the algorithm's context, these three arrays are denominated as \emph{first\_edge}, \emph{destination} and \emph{weight}, respectively.
+There change in denomination is for making their purposes clearer.
+Although these three arrays can completely describe a graph, the algorithm uses an extra array \emph{outdegree} that stores the number of non-zero values of each row and can be deduced from the \emph{first\_edge} array.
+The length and purpose of each of this arrays are:
 \begin{itemize}
 	\item \emph{first\_edge} is an array of size $\|V\|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} edge.
 	\item \emph{outdegree} is an array of size $\|V\|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} edge.
@@ -527,27 +530,28 @@ However, \cite{Harris2007} explains how to overcome this limitation and also off
 
 % TODO add more refs for quantum inspired computational intelligence; Applications of quantum inspired computational intelligence: A survey is good article to take stuff from
 
-The field of quantum clustering has shown promising results regarding potential speedups in several tasks over their classical counterparts. 
-Currently, two major approaches for the concept of quantum clustering were found in the literature.
-The first is the quantization of clustering methods to work in quantum computers.
-This translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers.
+The field of quantum clustering has shown promising results regarding potential speed-ups in several tasks over their classical counterparts. 
+Currently, two major approaches for the concept of quantum clustering were found in the literature: quantization quantization of clustering methods to work in quantum computers or algorithms inspired by quantum physics.
+
+The former approach translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers.
 % relevant papers for machine learnigng quantum paradigm
-Both \cite{Aimeur2013} and \cite{Lloyd2013} show how the quantum paradigm can be used for speedups in the machine learning algorithms, with the possibility of obtaining exponential speed-ups.
-The quantization approach falls outside the scope of this dissertation, but \cite{wittek2014quantum} offers a thorough review on the state of the art of machine learning in the quantum paradigm.
-Many of the approaches for these quantizations make use of Groover's database search algorithm \cite{grover1996fast}, or a variant of it, e.g. \cite{Wiebe2014}.
-Most literature on this approach is also mostly theoretical since the physical requirements still do not exist for this methods to be tested.
+Both \citet{Aimeur2013} and \citet{Lloyd2013} show how the quantum paradigm can be used for speed-ups in the machine learning algorithms, with the possibility of obtaining exponential speed-ups.
+Many of these quantizations make use of Groover's database search algorithm \cite{grover1996fast}, or a variant of it, e.g. \citet{Wiebe2014}.
+Most literature on this approach is also mostly theoretical, since the physical requirements still do not exist for testing these methods.
 This approach can be seen as part of the bigger problem of quantum computing and quantum information processing.
 An alternative to using real quantum systems would be to simulate them.
 % get refs for simulation of quantum systems not being feasable; Feynmann; I think washington course had something
-However, simulating quantum systems in classical computers is a very hard task by itself and literature suggest is not feasible \cite{Feynman1982}.
-% Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would not allow speedups. 
+However, simulating quantum systems in classical computers is a very hard task by itself and literature suggest that it is not feasible \cite{Feynman1982}.
+% Given that the scope of the thesis is to accelerate clustering, having the extra overhead of simulating the systems would not allow speed-ups. 
+The quantization approach falls outside the scope of this dissertation, but \citet{wittek2014quantum} offers a thorough review on the state of the art of machine learning in the quantum paradigm.
 
-Computational intelligence is the second approach, i.e. to use algorithms that muster inspiration from quantum analogies.
-A study of the literature reveals that this approach typically further divides itself into two concepts \cite{Casper2013}.
-One comprehends the algorithms based on the concept of the qubit, the quantum analogue of a classical bit with interesting properties found in quantum objects.
-Several algorithms have been modeled after this concept, often also mustering inspiration from evolutionary genetic algorithms successfully applied in several areas:
+% Computational intelligence is the second approach, i.e. to use algorithms that muster inspiration from quantum analogies.
+The second approach is part of the wider field of Computational Intelligence.
+A study of the literature reveals that it typically further divides itself into two categories \cite{Casper2013}.%, depending on which concept the algorithm is based: the quantum bit or Schrödinger's wave equation.
+One comprises the algorithms based on the concept of the qubit, the quantum analogue of a classical bit with interesting properties found in quantum objects.
+Several algorithms have been modeled after this concept, often also gathering inspiration from evolutionary genetic algorithms, which were successfully applied in several areas:
 \begin{itemize}
-	\item tackling the Knapsack problem as described in \cite{Han2000} and its improved version \cite{Liu2010};
+	\item tackling the Knapsack problem as described in \citet{Han2000} and its improved version \cite{Liu2010};
 
 	\item solving the traveling salesman problem \cite{Talbi2004};
 
@@ -563,31 +567,32 @@ Several algorithms have been modeled after this concept, often also mustering in
 \end{itemize}
 
 %schrodinger
-The other approach models data as a quantum system and uses Schrödinger's equation in some way, usually to evolve the data modeled particle system into a solution.
+The other approach models data as a quantum system and uses Schrödinger's equation in some way.
+Often, the data is modeled as a quantum system, where each pattern is a particle, and Schrödinger's equation is used to evolve the particle system into a solution.
 This has been applied in an optimization problem for electromagnetics using a quantum particle swarm \cite{mikki2006quantum} and also on several clustering algorithms:
 \begin{itemize}
 	\item the Quantum Clustering \cite{Horn2001b} algorithm treats patterns as quantum particles whose potential is computed with Schrödinger's equation and the system is evolved with the Gradient Descent method;
 
-	\item Dynamic Quantum Clustering \cite{Weinstein2009b} is a variation of \cite{Horn2001b} that uses Schrödinger's equation to evolve the system;
+	\item Dynamic Quantum Clustering \cite{Weinstein2009b} is a variation of \citet{Horn2001b} that uses Schrödinger's equation to evolve the system;
 
-	\item a Quantum Clustering \cite{Horn2001b} based Fuzzy C-Means approach \cite{li2007quantum};
+	\item a Fuzzy C-Means approach \cite{li2007quantum} based on Quantum Clustering \cite{Horn2001b};
 
-	\item QPSO+FCM, a Quantum-behaved Particle Swarm Optimization (QPSO) \cite{Sun2004} based approach to Fuzzy C-means \cite{Wang2007}.
+	\item QPSO+FCM, a Fuzzy C-means \cite{Wang2007} based on Quantum-behaved Particle Swarm Optimization (QPSO) \cite{Sun2004}.
 
 \end{itemize}
 
-For more information on quantum inspired algorithms, the reader is referred to \cite{Manju2014} which offers a thorough survey on the state of the art of quantum inspired computation intelligence algorithms.
-The following two sections contain a brief overview of the concept of the qubit and the description of an algorithm that takes this approach.
-After that, an algorithm that follows the Schrödinger's equation approach is reviewed.
+For more information on quantum inspired algorithms, the reader is referred to \citet{Manju2014} which offers a thorough survey on the state of the art of quantum inspired computation intelligence algorithms.
+The following two sections contain a brief overview of the concept of the qubit and the description of an algorithm that uses this approach.
+Afterwards, an algorithm that follows the Schrödinger's equation approach is reviewed.
 
 \subsection{The quantum bit approach}
 \label{sec:qubit}
 
 \subsubsection{The quantum bit}
 
-To understand the workings of the algorithms based on the concept of the qubit, it is useful to cast some insight about its properties and functioning.
+To understand the algorithms based on the concept of the qubit, it is useful to cast some insight about its properties and functioning.
 This section has the purpose to provide a brief introduction to this topic.
-An extended and in-depth review of this and related topics can be found in \cite{Lanzagorta2008}.
+An extended and in-depth review of this and related topics can be found in \citet{Lanzagorta2008}.
 The qubit is a quantum object with certain quantum properties such as entanglement and superposition.
 Within the context of the studied algorithm, the only property used is superposition.
 A qubit can have any value between 0 and 1 (superposition property) until it is observed, which is when the system collapses to either state.
@@ -601,7 +606,7 @@ $$
 $$
 
 where $\psi$ is an arbitrary state vector and $\alpha$, $\beta$ are the the probability amplitude coefficients of basis states $| 0 \rangle$ and $| 1 \rangle$, respectively.
-The Dirac bra ket notation is emplyed, where the \emph{ket} $| . \rangle$ corresponds to a column vector.
+The Dirac bra ket notation is employed, where the \emph{ket} $| . \rangle$ corresponds to a column vector.
 The basis states correspond to the spin of the modeled particle (in this case, a ferminion, e.g. electron).
 The coefficients are subjected to the following normalization:
 
@@ -630,10 +635,10 @@ $$
 \end{bmatrix}
 $$
 
-The probability of observing the state $|000 \rangle$ will be $|\alpha_1|^2 \times |\alpha_2|^2 \times |\alpha_3|^2$
+The probability of observing the state $|000 \rangle$ will be $|\alpha_1|^2 \times |\alpha_2|^2 \times |\alpha_3|^2$.
 To use this model for computing purposes, black-box objects called \emph{oracles} are used.
-Oracles are important to understand quantum speedups.
-They can be understood as subroutines that cannot be usefully examined or unknown physical systems with properties one would like to estimate that perform a quantum operation on a qubit string \cite{Rosenbaum2011}.
+Oracles are important to understand quantum speed-ups.
+They can be understood as subroutines that cannot be usefully examined or as unknown physical systems that perform a quantum operation on a qubit string \cite{Rosenbaum2011} and with properties one would like to estimate.
 Within the context of the present work an oracle is an abstraction for the programmer.
 It is an object which can be called and changes state (which can be observed) as a consequence.
 For the purpose of the following sections, the concept of the oracle is more related to \emph{oracles with internal randomness} \cite{Rosenbaum2011} or, more simply, a probabilistic Turing machine, as in the case of \cite{hung2013quantum}.
@@ -660,7 +665,7 @@ The Quantum K-Means (QK-Means) algorithm, as described in \cite{Casper2012KMeans
 It extends the basic K-Means with concepts from quantum mechanics (the qubit) and evolutionary genetic algorithms.
 
 Within the context of this algorithm, oracles contain strings of qubits and generate their own input by observing the state of the qubits.
-After collapsing, the qubit value becomes corresponds to a classical bit, with a binary value.
+After collapsing, the qubit value corresponds to a classical bit, with a binary value.
 
 Ideally, oracles would contain actual quantum systems or simulate them - this would correctly account for the desirable quantum properties.
 As it stands, oracles are not quantum systems or even simulate them and can be more appropriately described as random number generators.
@@ -689,7 +694,7 @@ This value is chosen taken into account the necessary normalization of the coeff
 
 \paragraph{Collapse oracles}
 
-Collapsing the oracles implies making an observation of each qubit of each qubit string in each oracle.
+Collapsing the oracles implies making an observation of every qubit of each string in all oracles.
 This is done by first choosing a coefficient to use (either can be used), e.g. $\alpha$.
 Then, a random value $r$ between 0 and 1 is generated.
 If $\alpha \ge r$ then the system collapses to $[0]$, otherwise to $[1]$.
@@ -709,14 +714,15 @@ The best scoring oracle is stored.
 \paragraph{Quantum Rotation Gate}
 So far, the algorithm consisted of the classical K-Means with a complex random number generation for the centroids and complicated data structures, namely the oracles.
 This is the step that fundamentally differs from the classical version.
-In this step a quantum gate (in this case a rotation gate) is applied to all oracles except the best one.
-The basic idea is to shift the qubit coefficients of the least scoring oracles in the direction of the best scoring one so they will have a higher probability of collapsing into initial centroid values closer to the best solution so far.
-This way, in future generations, we will not initiate with the best centroids so far (which will not converge further into a better solution) but we will be closer while still ensuring diversity (which is also a desired property of the genetic computing paradigm).
+In this step, a quantum gate (in this case a rotation gate) is applied to all oracles except the best one.
+The basic idea is to shift the qubit coefficients of the least scoring oracles in the direction of the best scoring one.
+These oracles will have a higher probability of collapsing into initial centroid values closer to the best solution so far.
+This way, in future generations, the oracles do not initiate with the best centroids so far (which would not converge into a better solution) but we they are close while still ensuring diversity (which is also a desired property in the genetic computing paradigm).
 In other words, we look for better solutions than the one we got before in each oracle while moving in the direction of the best we found so far.
 
 The genetic operations of cross-over and mutation are both part of the genetic algorithms toolbox.
 Literature suggests that this operations may not be required to produce variability in the population of qubit strings \cite{Liu2010}.
-This is because, enough variability is produced with the use of the angle-distance rotation method \cite{Liu2010} in the quantum rotation operation, with a careful choice of the rotation angle.
+The reason for this is that enough variability is produced with the use of the angle-distance rotation method \cite{Liu2010} in the quantum rotation operation, with a careful choice of the rotation angle.
 Still, when used, the goal of these operations is to produce further variability into the population of qubit strings.
 
 \subsection{Schrödinger's equation approach} % Horn and Gottlieb's algorithm}
@@ -732,36 +738,40 @@ The Parzen-window density estimation of the input data is done by associating a 
 $$ \psi (\mathbf{x}) = \sum ^N _{i=1} e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}} $$
 
 where $N$ is the total number of points in the dataset, $\sigma$ is the variance and $\psi$ is the probability density estimation. $\psi$ is chosen to be the wave function in Schrödinger's equation.
-The details of why this is fall outside of the scope of the present work and are explained in \cite{Weinstein2009,Horn2001a,Horn2001b}.
+%The details of why this is fall outside of the scope of the present work and are explained in \cite{Weinstein2009,Horn2001a,Horn2001b}.
+Further detals can be found in \citet{Weinstein2009,Horn2001a,Horn2001b}.
 
-Having this information we will compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
+With this information, one will compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
 
-$$
+\begin{align}
+
 V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
 = E - \frac{d}{2} + \frac {1}{2 \sigma^2 \psi} \sum ^N _{i=1} \left \| \mathbf{x}-\mathbf{x}_i \right \| ^2 e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}}
-$$
+\label{eq:wave}
+\end{align}
 
 And since the energy should be chosen such that $\psi$ is the groundstate (i.e. eigenstate corresponding to minimum eigenvalue) of the Hamiltonian operator associated with Schrödinger's equation (not represented above), the following is true
 
-$$
+\begin{align}
 E = - min \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
-$$
+\label{eq:wave sol}
+\end{align}
 
-With all of the above, $V(x)$ can be computed.
-This potential function is akin to the inverse of a probability density function.
+From equations \ref{eq:wave} and \ref{eq:wave sol}, $V(x)$ can be computed.
+This potential function is related to the inverse of a probability density function.
 Minima of the potential correspond to intervals in space where points are together.
 So minima will naturally correspond to cluster centers \cite{Horn2001a}.
-However, it is very computationally intensive to compute $V(x)$ to the whole space, so the compututation of of the potential function is only done at the data points.
+However, it is very computationally intensive to compute $V(x)$ to the whole space, so the compututation of the potential function is only done at the data points.
 This should not be problematic since clusters' centers are generally close to the data points themselves. 
 Even so, the minima may not lie on the data points themselves.
 One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function.
 This is done with the gradient descent method in \cite{Horn2001a}. 
 
-Another method \cite{Weinstein2009} is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependant Schrödinger equation.
+Another method \cite{Weinstein2009} is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependent Schrödinger's equation.
 Given enough time steps, the particles will converge to and oscillate around potential minima.
 This method makes the Dynamic Quantum Clustering algorithm.
 The nature of the computations involved in this algorithm make it a good candidate for parallelization techniques.
-\cite{Wittek2013} parallelized this algorithm to the GPU obtaining speedups of up to two magnitudes relative to an optimized multicore CPU implementation. %TODO: leave this or not? I did not test this so maybe it is better not
+\citet{Wittek2013} parallelized this algorithm to the GPU obtaining speed-ups of up to two magnitudes relative to an optimized multicore CPU implementation. %TODO: leave this or not? I did not test this so maybe it is better not
 
 % #TODO describe the fine cluster algorithm; critique how this is done; what was developed;
 

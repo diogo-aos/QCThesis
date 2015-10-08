@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 OCT 2015 14:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  8 OCT 2015 15:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -982,7 +982,10 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 
 ] [14
 
-] (./Thesis.lof)
+] (./Thesis.lof
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 10.
+)
 \tf@lof=\write9
 \openout9 = `Thesis.lof'.
 
@@ -999,200 +1002,187 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--46
 
 ] [18
 
-] (./methodology.tex
+] (./state_of_art.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20.74> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 3.
-[1
-
-]
-
-Package natbib Warning: Citation `Pedregosa2012' on page 2 undefined on input l
-ine 44.
-
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 49.
-
-LaTeX Warning: Reference `chapter:stateofart' on page 2 undefined on input line
- 56.
-
-
-LaTeX Warning: Reference `sec:qkmeans' on page 2 undefined on input line 59.
-
-
-LaTeX Warning: Reference `sec:parallel kmeans' on page 2 undefined on input lin
-e 79.
-
-[2]
-
-LaTeX Warning: Reference `chapter:stateofart' on page 3 undefined on input line
- 110.
-
-[3]
-
-LaTeX Warning: Reference `chapter:stateofart' on page 4 undefined on input line
- 119.
-
-[4]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 167.
-LaTeX Font Info:    Try loading font information for OMS+phv on input line 176.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 51.
 
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
-File: omsphv.fd 
-)
-LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 176.
- [5]
-</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_part.p
-ng, id=259, 895.345pt x 445.665pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_p
-art.png Graphic file (type png)
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 51.
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
-rt.png>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
-ogy/eac_csr_first_part.png used on input line 201.
-(pdftex.def)             Requested size: 455.24411pt x 226.60611pt.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 213.
- [6 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_first_pa
-rt.png>]
-</home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
-d=269, 930.47626pt x 557.08125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
-ng Graphic file (type png)
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
-g>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
-ogy/sorted_insert.png used on input line 261.
-(pdftex.def)             Requested size: 455.24411pt x 272.55568pt.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 51.
 
-Overfull \hbox (29.60349pt too wide) in paragraph at lines 271--272
-[]\OT1/phv/b/n/10 pro-ce-dure \OT1/phv/m/sc/10 sort[]indices\OT1/phv/m/n/10 ($\
-OML/cmm/m/it/10 indices; data; indptr; degree; n; new[]assocs[]ptr; new[]assocs
-[]ids; new[]assocs[]idx$\OT1/phv/m/n/10 ) 
- []
-
-[7] [8 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert
-.png>]
-Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/methodology/eac_csr_cond_full_degree_100k.eps>
-(epstopdf)                    date: 2015-08-15 17:21:01
-(epstopdf)                    size: 8607104 bytes
-(epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-08-15 17:24:20
-(epstopdf)                    size: 2241728 bytes
-(epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/methodology/eac_csr_cond_full_degree_100k-eps-converted-to.p
-df /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_
-degree_100k.eps>
-(epstopdf)             \includegraphics on input line 335.
-Package epstopdf Info: Output file is already uptodate.
-
-</home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_full_de
-gree_100k-eps-converted-to.pdf, id=284, 967.615pt x 396.48125pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_fu
-ll_degree_100k-eps-converted-to.pdf Graphic file (type pdf)
-
-<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
-l_degree_100k-eps-converted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
-ogy/eac_csr_cond_full_degree_100k-eps-converted-to.pdf used on input line 335.
-(pdftex.def)             Requested size: 435.42273pt x 178.4149pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9 </home/chiroptera/workspace/thesis_writing/rsc/methodology/eac_csr_cond_ful
-l_degree_100k-eps-converted-to.pdf>]
+ [1
 
-LaTeX Warning: Reference `chapter:stateofart' on page 10 undefined on input lin
-e 352.
+]
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 67.
 
-[10] [11]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 67.
+ [2] [3] [4]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid.png,
+ id=309, 481.8pt x 609.27625pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid
+.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgrid.
+png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/threadgrid.png used on input line 230.
+(pdftex.def)             Requested size: 194.6149pt x 246.10475pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockprocessor.
+png, id=312, 432.61626pt x 403.5075pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockproce
+ssor.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blockproces
+sor.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blockprocessor.png used on input line 236.
+(pdftex.def)             Requested size: 194.6149pt x 181.52129pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel.png
+, id=316, 581.17125pt x 643.40375pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymode
+l.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/memorymodel.png used on input line 278.
+(pdftex.def)             Requested size: 204.85846pt x 226.79494pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png, id=31
+9, 586.19pt x 554.07pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png G
+raphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/flow.png used on input line 284.
+(pdftex.def)             Requested size: 204.85846pt x 193.6315pt.
+
+[5] [6 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/threadgr
+id.png (PNG copy)> </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gp
+gpu/blockprocessor.png (PNG copy)>]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png, id=
+349, 853.06941pt x 966.43411pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png
+ Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/kmeans.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/kmeans.png used on input line 351.
+(pdftex.def)             Requested size: 318.66948pt x 361.01097pt.
+
+LaTeX Warning: Reference `chapter:clustering' on page 7 undefined on input line
+ 374.
+
+[7 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/memorymodel.
+png> </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/flow.png (
+PNG copy)>] [8 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/
+kmeans.png>]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
-rsc/methodology/connected_components_boruvka_flow.eps>
-(epstopdf)                    date: 2015-06-26 17:52:58
-(epstopdf)                    size: 19969 bytes
+rsc/stateofart/gpgpu/csr_format.eps>
+(epstopdf)                    date: 2015-07-07 17:22:01
+(epstopdf)                    size: 19228 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
-rsc/methodology/connected_components_boruvka_flow-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-06-27 15:45:00
-(epstopdf)                    size: 7515 bytes
+rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-07-07 17:25:12
+(epstopdf)                    size: 5970 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
-thesis_writing/rsc/methodology/connected_components_boruvka_flow-eps-converted-
-to.pdf /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_comp
-onents_boruvka_flow.eps>
-(epstopdf)             \includegraphics on input line 416.
+thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf /home/chiro
+ptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format.eps>
+(epstopdf)             \includegraphics on input line 408.
 Package epstopdf Info: Output file is already uptodate.
 
-</home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_components
-_boruvka_flow-eps-converted-to.pdf, id=343, 748.7975pt x 1337.99875pt>
-File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compo
-nents_boruvka_flow-eps-converted-to.pdf Graphic file (type pdf)
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-
+converted-to.pdf, id=377, 709.65125pt x 321.2pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format
+-eps-converted-to.pdf Graphic file (type pdf)
 
-<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_compon
-ents_boruvka_flow-eps-converted-to.pdf>
-Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
-ogy/connected_components_boruvka_flow-eps-converted-to.pdf used on input line 4
-16.
-(pdftex.def)             Requested size: 374.39783pt x 668.99774pt.
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_format-
+eps-converted-to.pdf>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/csr_format-eps-converted-to.pdf used on input line 408.
+(pdftex.def)             Requested size: 227.62206pt x 103.02625pt.
+ [9] [10 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/csr_fo
+rmat-eps-converted-to.pdf>]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvka_flo
+w.png, id=408, 660.34941pt x 1347.62294pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvk
+a_flow.png Graphic file (type png)
 
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_boruvka
+_flow.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/mst_boruvka_flow.png used on input line 465.
+(pdftex.def)             Requested size: 227.62206pt x 464.51917pt.
+ [11] [12 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/mst_b
+oruvka_flow.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_reduce
+.png, id=430, 678.535pt x 344.28625pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_r
+educe.png Graphic file (type png)
 
-LaTeX Warning: Reference `chapter:stateofart' on page 12 undefined on input lin
-e 466.
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_re
+duce.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blelloch_reduce.png used on input line 499.
+(pdftex.def)             Requested size: 364.19667pt x 184.78757pt.
 
-[12] [13 </home/chiroptera/workspace/thesis_writing/rsc/methodology/connected_c
-omponents_boruvka_flow-eps-converted-to.pdf>] [14]
+</home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_downsw
+eep.png, id=434, 492.84125pt x 320.19624pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_d
+ownsweep.png Graphic file (type png)
 
-LaTeX Warning: Reference `chapter:stateofart' on page 15 undefined on input lin
-e 519.
+<use /home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_do
+wnsweep.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/stateofa
+rt/gpgpu/blelloch_downsweep.png used on input line 509.
+(pdftex.def)             Requested size: 364.19667pt x 236.62881pt.
+ [13 </home/chiroptera/workspace/thesis_writing/rsc/stateofart/gpgpu/blelloch_r
+educe.png (PNG copy)>] [14 </home/chiroptera/workspace/thesis_writing/rsc/state
+ofart/gpgpu/blelloch_downsweep.png (PNG copy)>]
+Overfull \hbox (3.86108pt too wide) in paragraph at lines 574--575
+\OT1/phv/m/n/10 com-puted with Schr[]odinger's equa-tion and the sys-tem is evo
+lved with the Gra-di-ent De-scent method; 
+ []
 
-) [15] [16
+[15] [16] [17]
+Runaway argument?
+ 
+! Paragraph ended before \align was complete.
+<to be read again> 
+                   \par 
+l.747 
+      
+? 
+! Emergency stop.
+<to be read again> 
+                   \par 
+l.747 
+      
+End of file on the terminal!
 
-] (./Thesis.bbl [17
-
-]) [18]
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
-(./Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
-Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 3834A10EAF39FBCF590BEB13CA1DC90C;1221.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 11642 strings out of 495004
- 171549 string characters out of 6180663
- 295791 words of memory out of 5000000
- 14463 multiletter control sequences out of 15000+600000
- 40665 words of font info for 75 fonts, out of 8000000 for 9000
+ 11706 strings out of 495004
+ 173278 string characters out of 6180663
+ 293773 words of memory out of 5000000
+ 14459 multiletter control sequences out of 15000+600000
+ 36865 words of font info for 69 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 55i,13n,92p,907b,510s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
-t10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis.pdf (36 pages, 2805129 bytes).
-PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 353 compressed objects within 4 object streams
- 86 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 55i,12n,92p,952b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

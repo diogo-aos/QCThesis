@@ -3,8 +3,8 @@
 \contentsline {section}{Resumo}{vii}{section*.2}
 \contentsline {section}{Abstract}{ix}{section*.3}
 \contentsline {section}{List of Tables}{xiii}{chapter*.5}
-\contentsline {section}{List of Figures}{xvi}{chapter*.6}
-\contentsline {section}{Glossary}{xvii}{table.0.1}
+\contentsline {section}{List of Figures}{xv}{chapter*.6}
+\contentsline {section}{Glossary}{1}{chapter*.6}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Challenges and Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -26,25 +26,25 @@
 \contentsline {subsection}{\numberline {3.1.2}Increased sparsity approach}{16}{subsection.3.1.2}
 \contentsline {section}{\numberline {3.2}Clustering with large datasets}{17}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}General Purpose computing on Graphical Processing Units}{18}{subsection.3.2.1}
-\contentsline {subsubsection}{Programming GPUs}{18}{section*.12}
-\contentsline {subsubsection}{OpenCL vs CUDA}{19}{section*.13}
-\contentsline {subsubsection}{Overview of CUDA}{19}{section*.14}
-\contentsline {subsection}{\numberline {3.2.2}Parallel K-Means}{20}{subsection.3.2.2}
+\contentsline {subsubsection}{Programming GPUs}{18}{section*.11}
+\contentsline {subsubsection}{OpenCL vs CUDA}{19}{section*.12}
+\contentsline {subsubsection}{Overview of CUDA}{19}{section*.13}
+\contentsline {subsection}{\numberline {3.2.2}Parallel K-Means}{21}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Parallel Single-Link Clustering}{21}{subsection.3.2.3}
-\contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{23}{section*.18}
-\contentsline {subsubsection}{CSR format}{23}{section*.19}
-\contentsline {subsubsection}{Steps of the algorithm}{24}{section*.21}
-\contentsline {subsubsection}{Exclusive scan}{25}{section*.23}
+\contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{23}{section*.17}
+\contentsline {subsubsection}{CSR format}{23}{section*.18}
+\contentsline {subsubsection}{Steps of the algorithm}{24}{section*.20}
+\contentsline {subsubsection}{Exclusive scan}{25}{section*.22}
 \contentsline {section}{\numberline {3.3}Quantum clustering}{28}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}The quantum bit approach}{29}{subsection.3.3.1}
-\contentsline {subsubsection}{The quantum bit}{29}{section*.26}
-\contentsline {subsubsection}{Quantum K-Means}{30}{section*.27}
-\contentsline {paragraph}{Initialize population of oracles}{31}{section*.28}
-\contentsline {paragraph}{Collapse oracles}{31}{section*.29}
-\contentsline {paragraph}{K-Means}{31}{section*.30}
-\contentsline {paragraph}{Compute cluster fitness}{31}{section*.31}
-\contentsline {paragraph}{Store}{32}{section*.32}
-\contentsline {paragraph}{Quantum Rotation Gate}{32}{section*.33}
+\contentsline {subsubsection}{The quantum bit}{29}{section*.25}
+\contentsline {subsubsection}{Quantum K-Means}{30}{section*.26}
+\contentsline {paragraph}{Initialize population of oracles}{31}{section*.27}
+\contentsline {paragraph}{Collapse oracles}{31}{section*.28}
+\contentsline {paragraph}{K-Means}{31}{section*.29}
+\contentsline {paragraph}{Compute cluster fitness}{31}{section*.30}
+\contentsline {paragraph}{Store}{31}{section*.31}
+\contentsline {paragraph}{Quantum Rotation Gate}{32}{section*.32}
 \contentsline {subsection}{\numberline {3.3.2}Schr\IeC {\"o}dinger's equation approach}{32}{subsection.3.3.2}
 \contentsline {chapter}{\numberline {4}Methodology}{34}{chapter.4}
 \contentsline {section}{\numberline {4.1}Quantum Clustering}{35}{section.4.1}
@@ -55,14 +55,14 @@
 \contentsline {subsection}{\numberline {4.4.2}EAC CSR Condensed}{40}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}Final partition recovery}{43}{section.4.5}
 \contentsline {subsection}{\numberline {4.5.1}Single-Link and GPGPU}{43}{subsection.4.5.1}
-\contentsline {subsubsection}{Generating the MST}{43}{section*.38}
-\contentsline {subsubsection}{Number of clusters and pruning the MST}{44}{section*.39}
-\contentsline {subsubsection}{Building the new graph}{44}{section*.40}
-\contentsline {subsubsection}{Final clustering}{44}{section*.41}
-\contentsline {subsubsection}{Memory transfer with the GPU}{45}{section*.43}
+\contentsline {subsubsection}{Generating the MST}{43}{section*.37}
+\contentsline {subsubsection}{Number of clusters and pruning the MST}{44}{section*.38}
+\contentsline {subsubsection}{Building the new graph}{44}{section*.39}
+\contentsline {subsubsection}{Final clustering}{44}{section*.40}
+\contentsline {subsubsection}{Memory transfer with the GPU}{45}{section*.42}
 \contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{45}{subsection.4.5.2}
-\contentsline {subsubsection}{Kruskal's algorithm and implementation}{47}{section*.44}
-\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{47}{section*.45}
+\contentsline {subsubsection}{Kruskal's algorithm and implementation}{47}{section*.43}
+\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{47}{section*.44}
 \contentsline {section}{\numberline {4.6}Resume of the developed work}{48}{section.4.6}
 \contentsline {chapter}{\numberline {5}Results}{49}{chapter.5}
 \contentsline {section}{\numberline {5.1}Experimental environment}{49}{section.5.1}
@@ -77,4 +77,3 @@
 \contentsline {chapter}{\numberline {7}Conclusions}{54}{chapter.7}
 \contentsline {section}{\numberline {7.1}Achievements}{54}{section.7.1}
 \contentsline {section}{\numberline {7.2}Future Work}{54}{section.7.2}
-\contentsline {chapter}{Bibliography}{66}{chapter*.46}

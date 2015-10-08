@@ -4,15 +4,13 @@
 \BOOKMARK [1][-]{chapter*.5}{List of Tables}{}% 4
 \BOOKMARK [1][-]{chapter*.6}{List of Figures}{}% 5
 \BOOKMARK [1][-]{table.0.1}{Glossary}{}% 6
-\BOOKMARK [0][-]{chapter.1}{1 Methodology}{}% 7
-\BOOKMARK [1][-]{section.1.1}{1.1 Quantum Clustering}{chapter.1}% 8
-\BOOKMARK [1][-]{section.1.2}{1.2 Speeding up Ensemble Generation with Parallel K-Means}{chapter.1}% 9
-\BOOKMARK [1][-]{section.1.3}{1.3 Dealing with the space complexity of the co-association matrix}{chapter.1}% 10
-\BOOKMARK [1][-]{section.1.4}{1.4 Building the sparse matrix}{chapter.1}% 11
-\BOOKMARK [2][-]{subsection.1.4.1}{1.4.1 EAC CSR}{section.1.4}% 12
-\BOOKMARK [2][-]{subsection.1.4.2}{1.4.2 EAC CSR Condensed}{section.1.4}% 13
-\BOOKMARK [1][-]{section.1.5}{1.5 Final partition recovery}{chapter.1}% 14
-\BOOKMARK [2][-]{subsection.1.5.1}{1.5.1 Single-Link and GPGPU}{section.1.5}% 15
-\BOOKMARK [2][-]{subsection.1.5.2}{1.5.2 Single-Link and external memory algorithms}{section.1.5}% 16
-\BOOKMARK [1][-]{section.1.6}{1.6 Resume of the developed work}{chapter.1}% 17
-\BOOKMARK [0][-]{chapter*.20}{Bibliography}{}% 18
+\BOOKMARK [0][-]{chapter.1}{1 State of the art}{}% 7
+\BOOKMARK [1][-]{section.1.1}{1.1 Scalability of EAC}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.1.1}{1.1.1 p neighbors approach}{section.1.1}% 9
+\BOOKMARK [2][-]{subsection.1.1.2}{1.1.2 Increased sparsity approach}{section.1.1}% 10
+\BOOKMARK [1][-]{section.1.2}{1.2 Clustering with large datasets}{chapter.1}% 11
+\BOOKMARK [2][-]{subsection.1.2.1}{1.2.1 General Purpose computing on Graphical Processing Units}{section.1.2}% 12
+\BOOKMARK [2][-]{subsection.1.2.2}{1.2.2 Parallel K-Means}{section.1.2}% 13
+\BOOKMARK [2][-]{subsection.1.2.3}{1.2.3 Parallel Single-Link Clustering}{section.1.2}% 14
+\BOOKMARK [1][-]{section.1.3}{1.3 Quantum clustering}{chapter.1}% 15
+\BOOKMARK [2][-]{subsection.1.3.1}{1.3.1 The quantum bit approach}{section.1.3}% 16
