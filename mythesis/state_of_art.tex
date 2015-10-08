@@ -391,6 +391,14 @@ As such, even though GPU parallel variants of Kruskal's \citep{rostrup2013fast} 
 Several parallel implementations of this algorithm for the GPU exist, e.g. \citep{Vineet2009}, \cite{harish2009large} and \citep{Sousa2015}. \citet{Sousa2015} provides a more in-depth review over the current state of the art of MST solvers for the GPU and proposes an algorithm reported to be the fastest.
 This section will review the algorithm proposed in \citep{Sousa2015}, referred to as \emph{Sousa2015} from henceforth.
 
+%some graph theory and graph representation
+Since this algorithm operates over graphs, relevant graph notation is introduced here.
+In graph theory, a graph $G = (V,E)$ is composed by a set of vertices $V$ and a set of edges $E$ connecting those vertices.
+Furthermore, if $G$ is a connected graph, then there is a path between any $s,t \in V$.
+An example of a graph can be observed in Fig. \ref{fig:mst example} of chapter \ref{chapter:clustering}, where the MST was first introduced.
+A $|V| \times |V|$ matrix can fully represent a graph if one takes each element $(i,j)$ of the matrix to be the weight of the edge connecting vertices $i$ and $j$.
+Typically, a graphs is not fully connected (vertices connected to all the other vertices), which means that the matrix is often sparse.
+
 \subsubsection{CSR format}
 \emph{Sousa2015} takes in a graph as input, represented in the CSR format (a format used for sparse matrices).
 This representation is equivalent to having a square matrix $G$ with zeroed diagonal where the $g_{ij}$ element of the matrix is the weight of the link connecting the node $i$ with the node $j$.
@@ -413,51 +421,61 @@ It requires three arrays to fully describe the graph:
 Within the algorithm's context, these three arrays are denominated as \emph{first\_edge}, \emph{destination} and \emph{weight}, respectively.
 There change in denomination is for making their purposes clearer.
 Although these three arrays can completely describe a graph, the algorithm uses an extra array \emph{outdegree} that stores the number of non-zero values of each row and can be deduced from the \emph{first\_edge} array.
+
 The length and purpose of each of this arrays are:
 \begin{itemize}
-	\item \emph{first\_edge} is an array of size $\|V\|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} edge.
-	\item \emph{outdegree} is an array of size $\|V\|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} edge.
-	\item \emph{destination} is an array of size $\|E\|$, where the \emph{j-th} element points to the destination vertex of the \emph{j-th} edge.
-	\item \emph{weight} is an array of size $\|E\|$, where the \emph{j-th} element contains the weight of the \emph{j-th} edge.
+	\item \emph{first\_edge} is an array of size $|V|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} vertex.
+	\item \emph{outdegree} is an array of size $|V|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} vertex.
+	\item \emph{destination} is an array of size $|E|$, where the \emph{j-th} element points to the destination vertex of the \emph{j-th} edge.
+	\item \emph{weight} is an array of size $|E|$, where the \emph{j-th} element contains the weight of the \emph{j-th} edge.
 \end{itemize}
 
-$V$ is the number of vertices and $E$ is the number of edges.
+$|V|$ is the number of vertices and $|E|$ is the number of edges.
 The number of edges is duplicated to cover both directions, since the algorithm works with undirected graphs.
-This basically means that instead of using the the upper (of lower) triangular matrix (which can also completely describe the graph), it uses the complete one resulting in double redundancy of each edge.
-The edges in the \emph{destination} array are grouped together by the vertex they originate from, e.g. if edge $j$ is the first edge of vertex $i$ and this vertex has 3 edges, then edges $\{j,j+1,j+2\}$ are the outgoing edges of vertex $i$.
+This basically means that instead of using the the upper (or lower) triangular matrix (which can also completely describe the graph), it uses a complete matrix resulting in double redundancy of each edge.
+The edges in the \emph{destination} array are grouped together by the vertex they originate from, e.g. if edge $j$ is the first edge of vertex $i$ and this vertex has 3 edges, then edges $\{j,j+1,j+2\}$ are the outgoing edges of vertex $i$ and are stored sequentially in the \emph{destination} array.
 
 \subsubsection{Steps of the algorithm}
 
-Within the context of the algorithm the \emph{id} of a vertex is its index in the \emph{first\_edge} array, the \emph{color} is related to the \emph{ids} and the \emph{successor} of a vertex is the destination vertex of one of its edges. The algorithm's flow is represented in Figure \ref{fig:mst sousa} and its main steps are explained below:
+Within the context of the algorithm the \emph{id} of a vertex is its index in the \emph{first\_edge} array, the \emph{color} represents a component and is the \emph{id} of the component representative and the \emph{successor} of a vertex is the destination vertex of one of its edges.
+One should keep in mind this is a parallel algorithm and each of its steps is computed concurrently.
+Except for the \emph{exclusive prefix sum}, each thread processes a single vertex and each computation is usually independent.
+In some steps, however, threads need to access the same resource and it is important the state of the resource does not change in the middle of the operation that accesses it.
+In this cases, atomic operations (operation that are guaranteed to be isolated and, thus, not interruptible) are used.
+The algorithm's flow is presented in Figure \ref{fig:mst sousa} and its main steps are explained below.
 
+%maybe have the figures from the paper here to illustrate the process?
 \begin{enumerate}
 	\item \emph{Find minimum edge per vertex}: select and store the minimum weighted edge for each vertex and resolve same weight conflict by picking the edge with lower destination vertex id.
-	\item \emph{Remove mirrored edges}: a mirrored edge the successor of its destination vertex is its origin vertex.
+
+	\item \emph{Remove mirrored edges}: an edge is mirrored if the successor of its the destination vertex is the origin vertex, e.g. if vertex 1 points to vertex 2 and vertex 2 points back to vertex 1.
+	% a mirrored edge the successor of its destination vertex is its origin vertex.
 	All mirrored edges are removed from the selected edges in the first step. All edges that are not removed are added to the resulting MST.
 
 	\item \emph{Initialize and propagate colors}: this step is responsible for identifying connected components so the graph may be contracted.
-	Each connected component will be a super-vertex in the contracted graph, which means it will be a single vertex that is representing a subgraph.
+	Each connected component will be a super-vertex in the contracted graph, which means it will be a single vertex representing a subgraph.
 	Each vertex is initialized with the same color of its successor's id.
-	If a vertex has no successor because that edge was removed in the previous step than its color is initialized with its own id.
+	If a vertex has no successor because that edge was removed in the previous step, then it will be the representative vertex of the component and its color is initialized with its own id.
 	The colors are then propagated by setting each vertex's color to the color of its successor, until convergence.
 
 	\item \emph{Create new vertex ids}: only the super-vertices will be propagated to the next iteration but they will have new ids for building the new contracted graph.
 	The new ids will range from $0$ to $s$, where $s$ is the number of super-vertices.
-	The vertex that will represent a super-vertex is the vertex whose color is its own id.
-	The representative vertices will take the new ids in increasing order according to their own ids in increasing order, e.g. vertex $2$ is the representative with lowest id so it will have the id $0$ in the contracted graph.
+	% The vertex that will represent a super-vertex is the vertex whose color has its own id.
+	The vertices representating a super-vertex (component) will take the new ids in increasing order according to their own ids in increasing order, e.g. vertex $2$ is the representative with lowest id so it will have the id $0$ in the contracted graph.
 	This step relied on the \emph{exclusive scan} operation, which is explained in section \ref{sub:scan}.
 
-	\item \emph{Count, assign, and insert new edges}: the final step is where the final operations for building the contracted graph are performed.
-	The algorithm will count the number of edges that each super-vertex has connecting to other super-vertices, i.e. the connections between subgraphs.
+	\item \emph{Count, assign, and insert new edges}: the final step consists in building the contracted graph.
+	The algorithm will count the number of edges connecting each super-vertex to other super-vertices, i.e. the connections between subgraphs.
 	This is simply accomplished by selecting every edge whose origin and destination colors are distinct.
 	For each such edge the corresponding positions of the origin and destination super-vertices in a new \emph{outdegree} array are incremented with an atomic operation.
 	The new \emph{first\_edge} array is obtained from performing an exclusive scan over \emph{outdegree}.
 	The next step is to assign and insert edges in the contracted graph.
 	Once again, the algorithm will determine which edges will be in the contracted graph by checking the origin and destination colors.
-	A copy \emph{top\_edge} of the new \emph{first\_edge} array is done to keep track of where to insert the new edges.
-	When an edge is assigned to a super-vertex it is inserted (in the new \emph{weight} and \emph{destination} arrays) in the position specified in \emph{top\_edge} and the algorithm increments \emph{top\_edge} so the next edge will not overwrite the previous one.
+	A copy, called \emph{top\_edge}, of the new \emph{first\_edge} array will track of where to insert the new edges.
+	When an edge is assigned to a super-vertex it is inserted in the new \emph{weight} and \emph{destination} arrays composing the contracted graph.
+	The position of insertion is specified by \emph{top\_edge} and the algorithm increments \emph{top\_edge} atomically so the next edge will not overwrite the previous one.
 	The increment is done with an atomic operation since multiple edges can be assigned to the same super-vertex and the insertion of all edges is being done in parallel.
-	It should be noted that duplicated edges are note removed, i.e. several distinct connections between two super-vertices can be kept, since the author considers that the benefit of doing so does not outweigh the computational overhead.
+	It should be noted that duplicated edges are not removed, i.e. several distinct connections between two super-vertices can be kept, since the author considers that the benefit of doing so does not outweigh the computational overhead.
 \end{enumerate}
 
 \begin{figure}[hbtp]
@@ -467,8 +485,9 @@ Within the context of the algorithm the \emph{id} of a vertex is its index in th
 \label{fig:mst sousa}
 \end{figure}
 
-It should be noted, however, that this algorithm doe not support unconnected graphs, i.e., it is not able to output a forest of MSTs.
-Upon contact, the author reported that a solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
+It should be noted, however, that this algorithm does not support unconnected graphs, i.e., it is not able to output a forest of MSTs.
+%Upon contact, the author reported that 
+A solution to that problem is, on the step of building the flag array, only mark a vertex if it is both the representative of its supervertex and has at least one neighbour.
 
 \subsubsection{Exclusive scan}
 \label{sub:scan}
@@ -476,20 +495,36 @@ Upon contact, the author reported that a solution to that problem is, on the ste
 
 %To solve this problem, we need to double-buffer the array we are scanning using two temporary arrays. Pseudocode for this is given in Algorithm 2, and CUDA C code for the naive scan is given in Listing 39-1. Note that this code will run on only a single thread block of the GPU, and so the size of the arrays it can process is limited (to 512 elements on NVIDIA 8 Series GPUs). Extension of scan to large arrays is discussed in Section 39.2.4.
 
-The \emph{scan} operation is one of the fundamental building block of parallel computing. 
+The \emph{scan} operation is one of the fundamental building blocks of parallel computing. 
 Furthermore, two of the steps of the Borůvka variant of \cite{Sousa2015} are performed with an exclusive scan where the operation is a sum. 
 To illustrate the functioning of the exclusive scan, let us consider the particular case where the operation of the scan is the sum and the identity (the value for which the operation produces the same output as the input) is naturally $0$.
-Let us further consider the input array to be the sequence $[0,1,2,3,4,5,6,7]$.
-Then the output will be $[0,0,1,3,5,8,13,19]$.
+An example of this operation is presented in Fig. \ref{fig:exprefix sum}.
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.5\textwidth]{stateofart/gpgpu/exprefix_sum}
+\caption{Example of the exprefix sum operation.}
+\label{fig:exprefix sum}
+\end{figure}
+
 The first element of the output will be the identity (if it were an inclusive scan, it would be the first element itself).
-The second element is the sum between the first element of the input array and the first element of the output array, the third element is the sum between the second element of the input array with second element of the output array, and so on.
-This algorithm seems highly sequential in nature each element of the output array depends on the previous one, but two main parallel versions can be found in literature: Hillis and Steele's \cite{Hillis1986} and Blelloch's \cite{Blelloch1990}. 
-The two approaches focus on distinct efforts: the former focus on optimizing the number of steps \cite{Hillis1986} while the latter focus on optimizing the amount of work done \cite{Blelloch1990}.
-The focus will be on the Blelloch's algorithm.
+The second element is the sum between the first element of the input array and the first element of the output array, etc.
+The nature of this algorithm seems highly sequential, since each element of the output array depends on the previous one, but two main parallel versions can be found in literature: \citet{Hillis1986} and \citet{Blelloch1990}. 
+The two approaches focus on distinct efforts.
+The former focuses on optimizing the number of steps \cite{Hillis1986}, has a work complexity of $O(nlogn)$ and a step complexity of $O(logn)$.
+The latter focuses on optimizing the amount of work done \cite{Blelloch1990}, has a work complexity of $O(n)$ and a step complexity of $O(2logn)$.
+The focus of this dissertation will be on the Blelloch's algorithm.
+The reason for this is that the main objective is to deal with very large data sets which guarantees that there will be more work to be done (operations on the data) than there will be available computing resources (streaming processors in the GPU in this case).
+When there is more work than processors, one wants to minimize the total amount of work.
+On the other hand, when there is more processors than work, one wants to minimize the amount of steps of the algorithm as this translates in the biggest increase in speed.
+
+
+% HIlli and Steele complexities: $nlogn$ work (operations) and $logn$ steps
+% Blelloch complexities: $2n$ work and $2logn$ steps
 
 Blelloch's algorithm is comprised by two main phases: the \emph{reduce phase} (or \emph{up-sweep}) and the \emph{down-sweep phase}.
 The algorithm is based on the concept of \emph{balanced binary trees} \cite{Harris2007}, but it should be noted that no such data structure is actually used.
-An in-depth explanation of this concept and how it relates to the algorithm being reviewed falls outside the scope of the present work and it is recommended that the reader consult \cite{Harris2007} or \cite{Blelloch1990} for such details.
+An in-depth explanation of this concept and how it relates to the algorithm falls outside the scope of the present work and it is recommended that the reader consult \cite{Harris2007} or \cite{Blelloch1990} for such details.
 
 During the reduce phase (see Figure \ref{fig:scan reduce}), the algorithm traverses the tree and computes partial sums at the internal nodes of the tree.
 This operation is also known as a parallel reduction due to the fact that the total sum is stored in the root node (last node) of the tree \cite{Harris2007}.
@@ -511,12 +546,12 @@ During the traversal, and using the partial sums calculated in the reduce phase,
 \label{fig:scan down-sweep}
 \end{figure}
 
-This the computational complexity of this algorithm is higher than that of its sequential counterpart.
-The sequential version has a $O(n)$ computational complexity since it only goes through the input array once and performs exactly $n$ additions.
-Blelloch's algorithm, in the other hand, performs $2(n-1)$ additions in the reduce phase and $n-1$ swaps in the down-sweep phase.
-However, since it is a parallel algorithm and the computation will be distributed across several processing units, it still performs better.
-It should also be noted that, as described, the algorithm supports input arrays of a size that is a power of $2$.
-However, \cite{Harris2007} explains how to overcome this limitation and also offers an implementation for CUDA and hardware specific optimizations.
+The computational complexity of this algorithm is higher than that of its sequential counterpart.
+The sequential version has a $O(n)$ computational complexity, since it only goes through the input array once and performs exactly $n$ additions.
+Blelloch's algorithm, on the other hand, performs $n-1$ additions in the reduce phase and $n-1$  in the down-sweep phase, but still keeps the linear work complexity of the sequential version.
+Since it is a parallel algorithm and the computation will be distributed across several processing units, its performance is significantly better.
+It should be noted that, as described, the algorithm supports input arrays of a size that is a power of $2$.
+However, \citet{Harris2007} explains how to overcome this limitation and also offers the description of an implementation for CUDA along with hardware specific optimizations.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %
@@ -742,14 +777,6 @@ where $N$ is the total number of points in the dataset, $\sigma$ is the variance
 Further detals can be found in \citet{Weinstein2009,Horn2001a,Horn2001b}.
 
 With this information, one will compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
-
-% \begin{align}
-
-% V \left ( \mathbf{x} \right ) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
-% = E - \frac{d}{2} + \frac {1}{2 \sigma^2 \psi} \sum ^N _{i=1} \left \| \mathbf{x}-\mathbf{x}_i \right \| ^2 e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}}
-% E = - min \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
-% \label{eq:wave}
-% \end{align}
 
 \begin{align}
 V \left ( \mathbf{x} \right ) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}

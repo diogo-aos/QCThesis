@@ -13,13 +13,14 @@
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{22}{figure.caption.17}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{24}{figure.caption.20}
 \contentsline {figure}{\numberline {3.7}{\ignorespaces Flow execution of Sousa2015.\relax }}{26}{figure.caption.22}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{27}{figure.caption.24}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{28}{figure.caption.25}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Example of the exprefix sum operation.\relax }}{27}{figure.caption.24}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{28}{figure.caption.25}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{28}{figure.caption.26}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.34}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.35}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{42}{figure.caption.37}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{46}{figure.caption.42}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{40}{figure.caption.35}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{42}{figure.caption.36}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{43}{figure.caption.38}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{47}{figure.caption.43}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

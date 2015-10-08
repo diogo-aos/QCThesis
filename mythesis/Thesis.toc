@@ -19,16 +19,16 @@
 \contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{9}{section*.14}
 \contentsline {subsubsection}{CSR format}{9}{section*.15}
 \contentsline {subsubsection}{Steps of the algorithm}{10}{section*.17}
-\contentsline {subsubsection}{Exclusive scan}{11}{section*.19}
-\contentsline {section}{\numberline {1.3}Quantum clustering}{14}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}The quantum bit approach}{15}{subsection.1.3.1}
-\contentsline {subsubsection}{The quantum bit}{15}{section*.22}
-\contentsline {subsubsection}{Quantum K-Means}{16}{section*.23}
-\contentsline {paragraph}{Initialize population of oracles}{17}{section*.24}
-\contentsline {paragraph}{Collapse oracles}{17}{section*.25}
-\contentsline {paragraph}{K-Means}{17}{section*.26}
-\contentsline {paragraph}{Compute cluster fitness}{17}{section*.27}
-\contentsline {paragraph}{Store}{18}{section*.28}
-\contentsline {paragraph}{Quantum Rotation Gate}{18}{section*.29}
-\contentsline {subsection}{\numberline {1.3.2}Schr\IeC {\"o}dinger's equation approach}{18}{subsection.1.3.2}
-\contentsline {chapter}{Bibliography}{27}{chapter*.30}
+\contentsline {subsubsection}{Exclusive scan}{12}{section*.19}
+\contentsline {section}{\numberline {1.3}Quantum clustering}{15}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}The quantum bit approach}{16}{subsection.1.3.1}
+\contentsline {subsubsection}{The quantum bit}{16}{section*.23}
+\contentsline {subsubsection}{Quantum K-Means}{17}{section*.24}
+\contentsline {paragraph}{Initialize population of oracles}{18}{section*.25}
+\contentsline {paragraph}{Collapse oracles}{18}{section*.26}
+\contentsline {paragraph}{K-Means}{18}{section*.27}
+\contentsline {paragraph}{Compute cluster fitness}{18}{section*.28}
+\contentsline {paragraph}{Store}{18}{section*.29}
+\contentsline {paragraph}{Quantum Rotation Gate}{18}{section*.30}
+\contentsline {subsection}{\numberline {1.3.2}Schr\IeC {\"o}dinger's equation approach}{19}{subsection.1.3.2}
+\contentsline {chapter}{Bibliography}{27}{chapter*.31}

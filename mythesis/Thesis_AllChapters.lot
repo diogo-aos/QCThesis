@@ -3,10 +3,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{42}{table.caption.36}
+\contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{43}{table.caption.37}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{50}{table.5.1}
-\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{50}{table.5.2}
-\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{51}{table.5.3}
+\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{51}{table.5.1}
+\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{51}{table.5.2}
+\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{52}{table.5.3}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

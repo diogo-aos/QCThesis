@@ -34,47 +34,47 @@
 \contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{23}{section*.18}
 \contentsline {subsubsection}{CSR format}{23}{section*.19}
 \contentsline {subsubsection}{Steps of the algorithm}{24}{section*.21}
-\contentsline {subsubsection}{Exclusive scan}{25}{section*.23}
-\contentsline {section}{\numberline {3.3}Quantum clustering}{28}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}The quantum bit approach}{29}{subsection.3.3.1}
-\contentsline {subsubsection}{The quantum bit}{29}{section*.26}
-\contentsline {subsubsection}{Quantum K-Means}{30}{section*.27}
-\contentsline {paragraph}{Initialize population of oracles}{31}{section*.28}
-\contentsline {paragraph}{Collapse oracles}{31}{section*.29}
-\contentsline {paragraph}{K-Means}{31}{section*.30}
-\contentsline {paragraph}{Compute cluster fitness}{31}{section*.31}
-\contentsline {paragraph}{Store}{32}{section*.32}
-\contentsline {paragraph}{Quantum Rotation Gate}{32}{section*.33}
-\contentsline {subsection}{\numberline {3.3.2}Schr\IeC {\"o}dinger's equation approach}{32}{subsection.3.3.2}
-\contentsline {chapter}{\numberline {4}Methodology}{34}{chapter.4}
-\contentsline {section}{\numberline {4.1}Quantum Clustering}{35}{section.4.1}
-\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generation with Parallel K-Means}{35}{section.4.2}
-\contentsline {section}{\numberline {4.3}Dealing with the space complexity of the co-association matrix}{36}{section.4.3}
-\contentsline {section}{\numberline {4.4}Building the sparse matrix}{37}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{38}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}EAC CSR Condensed}{40}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}Final partition recovery}{43}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Single-Link and GPGPU}{43}{subsection.4.5.1}
-\contentsline {subsubsection}{Generating the MST}{43}{section*.38}
-\contentsline {subsubsection}{Number of clusters and pruning the MST}{44}{section*.39}
-\contentsline {subsubsection}{Building the new graph}{44}{section*.40}
-\contentsline {subsubsection}{Final clustering}{44}{section*.41}
-\contentsline {subsubsection}{Memory transfer with the GPU}{45}{section*.43}
-\contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{45}{subsection.4.5.2}
-\contentsline {subsubsection}{Kruskal's algorithm and implementation}{47}{section*.44}
-\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{47}{section*.45}
-\contentsline {section}{\numberline {4.6}Resume of the developed work}{48}{section.4.6}
-\contentsline {chapter}{\numberline {5}Results}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experimental environment}{49}{section.5.1}
-\contentsline {section}{\numberline {5.2}Parallel K-Means}{51}{section.5.2}
-\contentsline {section}{\numberline {5.3}GPU MST}{51}{section.5.3}
-\contentsline {section}{\numberline {5.4}EAC}{51}{section.5.4}
-\contentsline {chapter}{\numberline {6}Discussion?}{52}{chapter.6}
-\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{52}{section.6.1}
-\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{52}{section.6.2}
-\contentsline {section}{\numberline {6.3}GPU MST}{52}{section.6.3}
-\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{53}{section.6.4}
-\contentsline {chapter}{\numberline {7}Conclusions}{54}{chapter.7}
-\contentsline {section}{\numberline {7.1}Achievements}{54}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future Work}{54}{section.7.2}
-\contentsline {chapter}{Bibliography}{66}{chapter*.46}
+\contentsline {subsubsection}{Exclusive scan}{26}{section*.23}
+\contentsline {section}{\numberline {3.3}Quantum clustering}{29}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}The quantum bit approach}{30}{subsection.3.3.1}
+\contentsline {subsubsection}{The quantum bit}{30}{section*.27}
+\contentsline {subsubsection}{Quantum K-Means}{31}{section*.28}
+\contentsline {paragraph}{Initialize population of oracles}{32}{section*.29}
+\contentsline {paragraph}{Collapse oracles}{32}{section*.30}
+\contentsline {paragraph}{K-Means}{32}{section*.31}
+\contentsline {paragraph}{Compute cluster fitness}{32}{section*.32}
+\contentsline {paragraph}{Store}{32}{section*.33}
+\contentsline {paragraph}{Quantum Rotation Gate}{32}{section*.34}
+\contentsline {subsection}{\numberline {3.3.2}Schr\IeC {\"o}dinger's equation approach}{33}{subsection.3.3.2}
+\contentsline {chapter}{\numberline {4}Methodology}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}Quantum Clustering}{36}{section.4.1}
+\contentsline {section}{\numberline {4.2}Speeding up Ensemble Generation with Parallel K-Means}{36}{section.4.2}
+\contentsline {section}{\numberline {4.3}Dealing with the space complexity of the co-association matrix}{37}{section.4.3}
+\contentsline {section}{\numberline {4.4}Building the sparse matrix}{38}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}EAC CSR}{39}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}EAC CSR Condensed}{41}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Final partition recovery}{44}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Single-Link and GPGPU}{44}{subsection.4.5.1}
+\contentsline {subsubsection}{Generating the MST}{44}{section*.39}
+\contentsline {subsubsection}{Number of clusters and pruning the MST}{45}{section*.40}
+\contentsline {subsubsection}{Building the new graph}{45}{section*.41}
+\contentsline {subsubsection}{Final clustering}{45}{section*.42}
+\contentsline {subsubsection}{Memory transfer with the GPU}{46}{section*.44}
+\contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{46}{subsection.4.5.2}
+\contentsline {subsubsection}{Kruskal's algorithm and implementation}{48}{section*.45}
+\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{48}{section*.46}
+\contentsline {section}{\numberline {4.6}Resume of the developed work}{49}{section.4.6}
+\contentsline {chapter}{\numberline {5}Results}{50}{chapter.5}
+\contentsline {section}{\numberline {5.1}Experimental environment}{50}{section.5.1}
+\contentsline {section}{\numberline {5.2}Parallel K-Means}{52}{section.5.2}
+\contentsline {section}{\numberline {5.3}GPU MST}{52}{section.5.3}
+\contentsline {section}{\numberline {5.4}EAC}{52}{section.5.4}
+\contentsline {chapter}{\numberline {6}Discussion?}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{53}{section.6.1}
+\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{53}{section.6.2}
+\contentsline {section}{\numberline {6.3}GPU MST}{53}{section.6.3}
+\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{54}{section.6.4}
+\contentsline {chapter}{\numberline {7}Conclusions}{55}{chapter.7}
+\contentsline {section}{\numberline {7.1}Achievements}{55}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future Work}{55}{section.7.2}
+\contentsline {chapter}{Bibliography}{66}{chapter*.47}
