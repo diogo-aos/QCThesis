@@ -12,12 +12,14 @@
 \contentsline {section}{\numberline {1.4}Building the sparse matrix}{4}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}EAC CSR}{5}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}EAC CSR Condensed}{7}{subsection.1.4.2}
-\contentsline {section}{\numberline {1.5}Final partition recovery}{9}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Single-Link and GPGPU}{9}{subsection.1.5.1}
+\contentsline {section}{\numberline {1.5}Final partition recovery}{10}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Single-Link and GPGPU}{10}{subsection.1.5.1}
 \contentsline {subsubsection}{Generating the MST}{10}{section*.12}
-\contentsline {subsubsection}{Number of clusters and pruning the MST}{10}{section*.13}
+\contentsline {subsubsection}{Number of clusters and pruning the MST}{11}{section*.13}
 \contentsline {subsubsection}{Building the new graph}{11}{section*.14}
 \contentsline {subsubsection}{Final clustering}{11}{section*.15}
-\contentsline {subsubsection}{Memory transfer with the GPU}{13}{section*.17}
-\contentsline {subsection}{\numberline {1.5.2}Single-Link and out-of-core processing}{13}{subsection.1.5.2}
-\contentsline {chapter}{Bibliography}{16}{chapter*.18}
+\contentsline {subsubsection}{Memory transfer with the GPU}{12}{section*.17}
+\contentsline {subsection}{\numberline {1.5.2}Single-Link and external memory algorithms}{12}{subsection.1.5.2}
+\contentsline {subsubsection}{Kruskal's algorithm and implementation}{14}{section*.18}
+\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{14}{section*.19}
+\contentsline {chapter}{Bibliography}{18}{chapter*.20}

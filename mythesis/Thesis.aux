@@ -55,32 +55,39 @@
 \newlabel{fig:first part}{{1.1}{6}{Inserting a cluster of the first partition in the co-association matrix.\relax }{figure.caption.8}{}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Update matrix with cluster.\relax }}{6}{algorithm.1}}
 \newlabel{alg:eac csr update cluster}{{1}{6}{Update matrix with cluster.\relax }{algorithm.1}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Sort the \emph  {indices} array in the interval of a sample $n$.\relax }}{7}{algorithm.2}}
-\newlabel{alg:eac csr sort cluster}{{2}{7}{Sort the \emph {indices} array in the interval of a sample $n$.\relax }{algorithm.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4.2}EAC CSR Condensed}{7}{subsection.1.4.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{8}{figure.caption.9}}
 \newlabel{fig:normal part}{{1.2}{8}{Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }{figure.caption.9}{}}
-\citation{Sousa2015}
-\citation{Sousa2015}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Sort the \emph  {indices} array in the interval of a sample $n$.\relax }}{8}{algorithm.2}}
+\newlabel{alg:eac csr sort cluster}{{2}{8}{Sort the \emph {indices} array in the interval of a sample $n$.\relax }{algorithm.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{9}{table.caption.10}}
 \newlabel{tab:mat type memory}{{1.1}{9}{Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }{table.caption.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{9}{figure.caption.11}}
 \newlabel{fig:coassoc degree}{{1.3}{9}{The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.5}Final partition recovery}{9}{section.1.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5.1}Single-Link and GPGPU}{9}{subsection.1.5.1}}
-\newlabel{sec:sl gpu}{{1.5.1}{9}{Single-Link and GPGPU}{subsection.1.5.1}{}}
+\citation{Sousa2015}
+\citation{Sousa2015}
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}Final partition recovery}{10}{section.1.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5.1}Single-Link and GPGPU}{10}{subsection.1.5.1}}
+\newlabel{sec:sl gpu}{{1.5.1}{10}{Single-Link and GPGPU}{subsection.1.5.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Generating the MST}{10}{section*.12}}
-\@writefile{toc}{\contentsline {subsubsection}{Number of clusters and pruning the MST}{10}{section*.13}}
+\@writefile{toc}{\contentsline {subsubsection}{Number of clusters and pruning the MST}{11}{section*.13}}
 \@writefile{toc}{\contentsline {subsubsection}{Building the new graph}{11}{section*.14}}
 \@writefile{toc}{\contentsline {subsubsection}{Final clustering}{11}{section*.15}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Update component labels kernel\relax }}{11}{algorithm.3}}
-\newlabel{alg:comp_labels}{{3}{11}{Update component labels kernel\relax }{algorithm.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{12}{figure.caption.16}}
-\newlabel{fig:connected comps flow}{{1.4}{12}{Diagram of the connected components labeling algorithm used.\relax }{figure.caption.16}{}}
+\citation{kruskal1956shortest}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces Update component labels kernel\relax }}{12}{algorithm.3}}
+\newlabel{alg:comp_labels}{{3}{12}{Update component labels kernel\relax }{algorithm.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Memory transfer with the GPU}{12}{section*.17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5.2}Single-Link and external memory algorithms}{12}{subsection.1.5.2}}
+\newlabel{sec:sl disk}{{1.5.2}{12}{Single-Link and external memory algorithms}{subsection.1.5.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{13}{figure.caption.16}}
+\newlabel{fig:connected comps flow}{{1.4}{13}{Diagram of the connected components labeling algorithm used.\relax }{figure.caption.16}{}}
+\citation{pytables}
+\citation{hdf5}
+\citation{AltetiAbad2007}
+\@writefile{toc}{\contentsline {subsubsection}{Kruskal's algorithm and implementation}{14}{section*.18}}
+\@writefile{toc}{\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{14}{section*.19}}
+\citation{AltetiAbad2007}
 \bibstyle{unsrtnat}
-\@writefile{toc}{\contentsline {subsubsection}{Memory transfer with the GPU}{13}{section*.17}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.5.2}Single-Link and out-of-core processing}{13}{subsection.1.5.2}}
-\newlabel{sec:sl disk}{{1.5.2}{13}{Single-Link and out-of-core processing}{subsection.1.5.2}{}}
 \bibdata{library}
 \bibcite{VanDerWalt2011}{{1}{2011}{{{Van Der Walt} et~al.}}{{{Van Der Walt}, Colbert, and Varoquaux}}}
 \bibcite{JonesSciPy}{{2}{}{{Jones et~al.}}{{Jones, Oliphant, Peterson, and Others}}}
@@ -88,9 +95,12 @@
 \bibcite{Millman2011}{{4}{2011}{{Millman and Aivazis}}{{}}}
 \bibcite{hunter2007matplotlib}{{5}{2007}{{Hunter}}{{}}}
 \bibcite{McKinney2010}{{6}{2010}{{McKinney}}{{}}}
-\bibcite{Pedregosa2012}{{7}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos, Cournapeau, Brucher, Perrot, and Duchesnay}}}
-\bibcite{Perez2007}{{8}{2007}{{P\'{e}rez and Granger}}{{}}}
-\bibcite{Liu2010}{{9}{2010}{{Liu et~al.}}{{Liu, Chen, Yan, Liu, Xu, and Zheng}}}
-\bibcite{Lourenco2010}{{10}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
-\bibcite{Sousa2015}{{11}{2015}{{Sousa et~al.}}{{Sousa, Mariano, and Proen\c {c}a}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{16}{chapter*.18}}
+\bibcite{Perez2007}{{7}{2007}{{P\'{e}rez and Granger}}{{}}}
+\bibcite{Liu2010}{{8}{2010}{{Liu et~al.}}{{Liu, Chen, Yan, Liu, Xu, and Zheng}}}
+\bibcite{Lourenco2010}{{9}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
+\bibcite{Sousa2015}{{10}{2015}{{Sousa et~al.}}{{Sousa, Mariano, and Proen\c {c}a}}}
+\bibcite{kruskal1956shortest}{{11}{1956}{{Kruskal}}{{}}}
+\bibcite{pytables}{{12}{}{{Alted et~al.}}{{Alted, Vilata, and Others}}}
+\bibcite{hdf5}{{13}{}{{The HDF Group}}{{}}}
+\bibcite{AltetiAbad2007}{{14}{2007}{{{Altet i Abad} and Balaguer}}{{}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{18}{chapter*.20}}

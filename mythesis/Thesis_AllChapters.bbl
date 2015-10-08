@@ -1,4 +1,4 @@
-\begin{thebibliography}{108}
+\begin{thebibliography}{110}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -792,18 +792,6 @@ Wes McKinney.
 \newblock URL
   \url{http://conference.scipy.org/proceedings/scipy2010/mckinney.html}.
 
-\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
-  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
-  Cournapeau, Brucher, Perrot, and Duchesnay]{Pedregosa2012}
-Fabian Pedregosa, Ga\"{e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
-  Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
-  Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau,
-  Matthieu Brucher, Matthieu Perrot, and \'{E}douard Duchesnay.
-\newblock {Scikit-learn: Machine Learning in Python}.
-\newblock \emph{Journal of Machine Learning Research}, 12:\penalty0 2825--2830,
-  2011.
-\newblock URL \url{http://arxiv.org/abs/1201.0490}.
-
 \bibitem[P\'{e}rez and Granger(2007)]{Perez2007}
 Fernando P\'{e}rez and Brian~E. Granger.
 \newblock {IPython: A system for interactive scientific computing}.
@@ -811,5 +799,20 @@ Fernando P\'{e}rez and Brian~E. Granger.
   21--29, 2007.
 \newblock ISSN 15219615.
 \newblock \doi{10.1109/MCSE.2007.53}.
+
+\bibitem[Alted et~al.()Alted, Vilata, and Others]{pytables}
+Francesc Alted, Ivan Vilata, and Others.
+\newblock {\{PyTables\}: Hierarchical Datasets in \{Python\}}.
+\newblock URL \url{http://www.pytables.org/}.
+
+\bibitem[{The HDF Group}()]{hdf5}
+{The HDF Group}.
+\newblock {Hierarchical Data Format, version 5}.
+
+\bibitem[{Altet i Abad} and Balaguer(2007)]{AltetiAbad2007}
+Francesc {Altet i Abad} and Ivan~Vilata Balaguer.
+\newblock {OPSI : The indexing system of PyTables 2 Professional Edition}.
+\newblock pages 1--27, 2007.
+\newblock URL \url{http://www.pytables.org/docs/OPSI-indexes.pdf}.
 
 \end{thebibliography}

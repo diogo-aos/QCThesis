@@ -3,47 +3,53 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
+Warning--entry type for "hdf5" isn't style-file defined
+--line 6 of file library.bib
+Warning--I didn't find a database entry for "Pedregosa2012"
 Warning--empty year in JonesSciPy
 Warning--empty journal in Sousa2015
-You've used 11 entries,
+Warning--empty year in pytables
+Warning--empty year in hdf5
+Warning--empty journal in AltetiAbad2007
+You've used 14 entries,
             2481 wiz_defined-function locations,
-            635 strings with 6891 characters,
-and the built_in function-call counts, 4585 in all, are:
-= -- 385
-> -- 279
-< -- 5
-+ -- 106
-- -- 84
-* -- 393
-:= -- 775
-add.period$ -- 47
-call.type$ -- 11
-change.case$ -- 22
-chr.to.int$ -- 11
-cite$ -- 13
-duplicate$ -- 202
-empty$ -- 378
-format.name$ -- 99
-if$ -- 936
+            650 strings with 6981 characters,
+and the built_in function-call counts, 5129 in all, are:
+= -- 459
+> -- 230
+< -- 9
++ -- 94
+- -- 66
+* -- 385
+:= -- 825
+add.period$ -- 55
+call.type$ -- 14
+change.case$ -- 28
+chr.to.int$ -- 14
+cite$ -- 19
+duplicate$ -- 254
+empty$ -- 473
+format.name$ -- 86
+if$ -- 1080
 int.to.chr$ -- 1
-int.to.str$ -- 12
-missing$ -- 10
-newline$ -- 77
-num.names$ -- 33
-pop$ -- 74
+int.to.str$ -- 15
+missing$ -- 11
+newline$ -- 91
+num.names$ -- 42
+pop$ -- 110
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 14
 quote$ -- 0
-skip$ -- 120
+skip$ -- 164
 stack$ -- 0
-substring$ -- 189
-swap$ -- 21
-text.length$ -- 0
+substring$ -- 202
+swap$ -- 31
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 77
-warning$ -- 2
-while$ -- 38
+type$ -- 98
+warning$ -- 5
+while$ -- 47
 width$ -- 0
-write$ -- 173
-(There were 2 warnings)
+write$ -- 205
+(There were 7 warnings)

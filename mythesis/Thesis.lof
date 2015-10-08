@@ -3,4 +3,4 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{6}{figure.caption.8}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{8}{figure.caption.9}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{9}{figure.caption.11}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{12}{figure.caption.16}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{13}{figure.caption.16}

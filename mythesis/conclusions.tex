@@ -54,5 +54,9 @@ The basic idea is to choose a $max\_assocs$ value that will likely be less than 
 The associations that will be kept are the ones from the first partitions that were processed.
 With this in mind, one could order the partitions by quality and start the processing from those with better quality.
 
+% More efficient external sorting
+% It is believed that a significant speedup may be obtained by using GPUs for external sorting in the argsort step of the cluster recovery of EAC.
+% Even without using GPU's further speedup may be possible simply by using more memory. After the co-association matrix is stored it can be deleted from main memory. This means that almostthe entire memory is available for the computation of the argsort array. Currently the PyTables CSI algorithm uses a insignificant amount of memory.
+
 \cleardoublepage
 

@@ -15,7 +15,7 @@ The first step is the accumulation of evidence, i.e. generating an ensemble of p
 The main objective for the optimization of this step is speed.
 Using fast clustering methods for generating partitions is an obvious solution, as is the optimization of particular algorithms aiming for the same objective.
 Since each partition is independent from every other partition, parallel computing over a cluster of computing units would result in a fast ensemble generation.
-Using either or any combination of these strategies will guarantee a speedup.
+Using either or any combination of these strategies will guarantee a speed-up.
 
 Initial research was under the field of quantum clustering.
 After this pursuit proved fruitless regarding one of the main requirements (computational speed), the focus of researched shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
@@ -130,7 +130,7 @@ The difference is that instead of choosing $p$ random samples from the dataset, 
 
 It would be ideal to combine both approaches (sparsity and neighbors) to further reduce space complexity, but they are not necessarily compatible.
 This is specially true for the p-Nearest Neighbors strategy since it is unlikely that a sample will never be clustered with its closest $p$ neighbors.
-This means that the $n \times p$ co-association matrix may not have many zeros which translates in little return for using the sparsity augmentation approach the matrix of co-associations.
+This means that the $n \times p$ co-association matrix may not have many zeros which translates in little advantage for using the sparsity augmentation approach the matrix of co-associations.
 % Still, one should note that the p-Nearest Neighbors strategy is closely related to a sparse representation.
 % these seem more like comments for results.
 % Still, this highly depends on the the number of neighbors relative to the number of samples and also the granularity of the partitions.
@@ -140,16 +140,14 @@ This means that the $n \times p$ co-association matrix may not have many zeros w
 \section{Building the sparse matrix}
 \label{sec:sparse coassoc}
 
-Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and accessing any position of the matrix is direct.
-When using sparse matrices, the former is not true.
+Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and indexing the matrix is direct.
+When using sparse matrices, neither is true.
 In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it is not possible to pre-allocate the memory to the correct size of the matrix.
-This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation. 
+This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation, and more complex data structures, which incurs overhead.
 
 % Several sparse matrices exist
 % some are better for building others for computing
 % describe my solution
-As observed before, the sparsity study of EAC \cite{Lourenco2010} did not account for the overhead of using the data structures supporting sparse matrices.
-However, scaling to very large data sets must take this into account.
 
 Documentation of the SciPy library recommends different sparse formats for either building a matrix or operating over it.
 For building a matrix, the COO (COOrdinate), DOK (Dictionary of Keys) and LIL (List of Lists) formats are recommended.
@@ -157,6 +155,8 @@ All of these formats rely on extra data structures such as lists as dictionaries
 For operating over a matrix, the documentation recommends converting from one of the previous formats to either CSR (Compressed Sparse Row) or CSC (Compressed Sparse Column).
 
 %TODO insert real times from small simulation
+As observed before, the sparsity study of EAC \cite{Lourenco2010} did not account for the overhead of using the data structures supporting sparse matrices.
+However, scaling to very large data sets must take this into account.
 Exploratory testing revealed that using one of the recommended matrices allowed for building the matrix took around two orders of magnitude as long as using a full allocated matrix.
 Furthermore, because of the extra data structures, the implementations from SciPy would saturate the main memory from data sets with less than 1 million patterns.
 Using the CSR format did not saturate memory but it took a completely unacceptable amount of time, many orders of magnitude above any of the formats recommended for building the matrix.
@@ -168,8 +168,8 @@ The solution devised is based on the CSR format, which has the desired propertie
 
 The first step is making an initial assumption on the maximum number of associations \emph{max\_assocs} that each sample can have.
 A possible rule is $$max\_assocs = 3 \times bgs$$ where $bgs$ is the biggest cluster size in the ensemble.
-The cluster size is a good metric for trying to predict the number of associations a sample will have since it is the limit of how many associations each sample will have in each partition.
-Furthermore, one would expect that the cluster neighbors of each sample will not vary significantly, i.e. the same neighbors will be clustered together with a sample repeatedly in many partitions.
+The biggest cluster size is a good heuristic for trying to predict the number of associations a sample will have since it is the limit of how many associations each sample will have in any partition.
+Furthermore, one would expect that the neighbors of each sample will not vary significantly, i.e. the same neighbors will be clustered together with a sample repeatedly in many partitions.
 This scheme for building the matrix uses 4 supporting arrays:
 
 \begin{itemize}
@@ -183,13 +183,16 @@ Each sample (row) has a maximum of \emph{max\_assocs} pre-allocated that it can 
 New associations that exceed this pre-allocated maximum are discarded.
 %Since each sample has a maximum pre-defined number of associations, \emph{indptr} does not really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$).
 The \emph{degree} array is the one keeping track of the number of associations of each sample.
+Throughout this section, the interval of the \emph{indices} array corresponding to a specific pattern (row) is referred to as the \emph{indices} interval.
+If it is said that an association is added to the end of the \emph{indices} interval, this refers to the beginning of the part of the interval that is free for new associations.
+Furthermore, it should be noted that this method assumes that the clusters received come sorted in a increasing order.
 
-Before continuing with the explanation of how the matrix is actually filled, it should be noted that this method assumes that the clusters received come sorted in a increasing order.
 The first partition is inserted in a special way.
 Since it is the first and the clusters are sorted, it is a matter of copying the cluster to the \emph{indices} array in the positions of each sample, with the exclusion of the sample itself.
+The data array (containing the co-association score) is set to 1 on the relevant positions.
 This process can be observed clearly in Fig. \ref{fig:first part}.
-Because it is the fastest partition to be inserted, it is picked to be the one with the least amount of clusters (which translated in more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
-This is only appliable if the whole ensemble is provided, otherwise there is no way to know what is the biggest cluster of the whole ensemble.
+Because it is the fastest partition to be inserted, it is picked to be the one with the least amount of clusters (more samples per cluster) so that each sample gets the most amount of associations in the beginning (on average).
+This is only applicable if the whole ensemble is provided, otherwise there is no way to know what is the biggest cluster of the whole ensemble.
 This increases the probability that any new cluster will have more samples that correspond to already established associations.
 Because the clusters are sorted and only a copy of each cluster was made, it is not necessary to sort each row of the matrix by column index.
 
@@ -226,26 +229,30 @@ This is described in Algorithm \ref{alg:eac csr update cluster}.
 \end{algorithmic}
 \end{algorithm}
 
+The binary search is used to search for the association in the indices array in the interval corresponding to a specific row (or pattern).
+This is necessary because it is not possible to index directly a specific position of a row in the CSR format.
 Since a binary search is performed $(ns - 1)^2$ times for each cluster, where $ns$ is the number of samples in any given cluster, the indices of each sample must be in a sorted state at the beginning of each partition insertion.
 Two strategies for sorting were devised.
 The \underline{first strategy} is to just insert the new associations at the end of the \emph{indices} array (in the correct interval for each sample) and then, at the end of processing each partition, use a sorting algorithm to sort all the samples' intervals in the \emph{indices} array.
 This was easily implemented with existing code, namely using \emph{NumPy}'s \emph{quicksort} implementation, which has an average time complexity of $O(n \log n)$
 
-The \underline{second strategy} is more involved.
-It results from the observation that, if one could know in which position each new association should be inserted, it would be possible to move all old associations to their final sorted positions and insert the new ones, all in an efficient manner with minimum comparisons (and thus branches in the execution of the code).
+The \underline{second strategy} is more complex.
+It results from the observation that, if one could know in which position each new association should be inserted, it would be possible to move all old associations to their final sorted positions and insert the new ones.
+Furthermore, this would be done in an efficient manner with minimum number of comparisons (and thus branches in the execution of the code).
 For this end, the implemented binary search returns the index of the searched value (key) if it is found or $-ind -1$, where $ind$ is the position for a sorted insertion of the key in the array, if it is not found.
 This means that the position where each new association should be inserted is now available.
-Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one for storing the samples of the associations \emph{new\_assoc\_ids} and the other to store the indices that were the result of the binary search for each of the new associations \emph{new\_assoc\_idx}, i.e. the indices where the new associations should be inserted.
+Instead of just adding the new associations after the old ones of each sample, new associations are stored in two auxiliary arrays of size $max\_assocs$: one (\emph{new\_assoc\_ids}) for storing the patterns of the associations and the other (\emph{new\_assoc\_idx}) to store the indices where the new associations should be inserted (the result of the binary search).
 The process is illustrated with an example in Fig. \ref{fig:normal part}, detailed in Algorithm \ref{alg:eac csr sort cluster} and explained in the following paragraph.
 
-After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the sample's indices interval in a sorted manner.
-The number of associations associatied with the $i$-th sample (\emph{degree[i]}) is incremented by the amount of new associations to be added.
+After each pass on a cluster (adding or incrementing all associations to a sample in the cluster), the new associations have to be added to the pattern's indices interval in a sorted manner.
+The number of associations corresponding to the $i$-th pattern (\emph{degree[i]}) is incremented by the amount of new associations to be added.
 %The new interval of the \emph{indices} array belonging to the $i$-th sample now has \emph{degree[i]} plus the number of new associations.
 An element is added to the end of the \emph{new\_assoc\_idx} array with the value of \emph{degree[i]} so that the last new association can be included in the general cycle.
 During the sorting process a pointer to the current index to add associations $o\_ptr$ is kept ( it is initialized to the new total number of associations of a sample).
 The sorting mechanism looks at two consecutive elements in the \emph{new\_assoc\_idx} array, starting from the end.
 If the $i$-th element of the \emph{new\_assoc\_idx} array is greater or equal than the $(i-1)$-th element, then all the associations in the \emph{indices} array between them (including the first element) are copied to the end of the \emph{indices} interval, i.e. they are shifted to the right by $i$ positions.
 Then, or in case the comparison fails, the $(i-1)$-th element of the \emph{new\_assoc\_ids} is copied to the \emph{indices} array in the position specified by \emph{o\_ptr}.
+The \emph{o\_ptr} pointer is decremented anytime an association is written in the \emph{indices} array.
 
 % TODO check which or the three fast sorting approaches is best and describe only that one
 
@@ -289,21 +296,22 @@ Then, or in case the comparison fails, the $(i-1)$-th element of the \emph{new\_
 
 The co-association matrix is symmetric, which means that only half is necessary to describe the whole matrix.
 That fact has consequences on both memory usage and computational effort on building the matrix.
-In the case of the fully allocated matrix, this translates in a reduction of approximately 50\% of the memory required.
+In the case of the fully allocated matrix, this translates in a reduction to 49.5\% of the memory required.
 Furthermore, only half the operations are made since only half the matrix is accessed, which also accelerates the building of the matrix.
-There is, however, a small overhead for translating the two dimensional index to the 1 dimensional index of the upper triangle matrix.
+There is, however, a small overhead for translating the two dimensional index to the single dimensional index of the upper triangle matrix.
 When using a sparse matrix according to the EAC CSR scheme described above, there is no direct memory usage reduction.
 However, the number of binary searches performed by inserting new associations is half which has a significant impact on the computation time relative to the complete matrix.
 
 Even though there is no direct memory reduction for switching to the condensed matrix form, this scheme does open possibilities for it.
-Previously, the number of associations for each sample (number of non zero values in each row) remained constant throughout the whole set of samples.
-However, using a condensed scheme means that the number of associations decreases the further down a sample is in the matrix, i.e. the closer to the bottom its respective row is.
+Previously, the number of associations for each sample (number of non zero values in each row) remained constant throughout the whole set of patterns.
+However, using a condensed scheme means that the number of associations decreases as one steps further to the end of the set, i.e. closer to the bottom the co-association matrix.
 An example of this can be seen in the plot of the number of associations per sample in a complete and condensed matrix of Fig. \ref{fig:coassoc degree}.
-It is clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, then the pre-allocated memory for each sample can decrease accordingly.
+It is clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, the pre-allocated memory for each sample can decrease accordingly.
 One possible strategy, illustrated in Fig. \ref{fig:coassoc degree}, is to decrease the maximum number of associations linearly.
 In the example, the first 5\% of samples have the 100\% of the maximum number of associations and it decreases linearly until 5\% of the maximum number of associations for the last sample.
 
-Table \ref{tab:mat type memory} shows the memory usage of the different co-association matrix strategies in the general case and for an example of 100000 samples.
+Table \ref{tab:mat type memory} shows the memory usage of the different co-association matrix strategies in the general case and for an example of 100000 patterns.
+The memory consumption for the \emph{sparse condensed linear} type of matrix if given for the parameters presented above for Fig. \ref{fig:coassoc degree}.
 
 \begin{table}[hbtp]
 \centering
@@ -315,7 +323,7 @@ Table \ref{tab:mat type memory} shows the memory usage of the different co-assoc
 \midrule% \hline
 Full complete           & $N^2$                  & $9536.7431$              & -                  & -             \\
 Full condensed          & $\frac{N(N-1)}{2}$     & $4768.3238$              & $0.4999$     & $0.4999$      \\
-Sparse constant         & $N \times max\_assocs$ & $678.8253$               & $0.1423$           & $0.0711$      \\
+Sparse constant         & $ 0.54 \times N \times max\_assocs$ & $678.8253$               & $0.1423$           & $0.0711$      \\
 Sparse condensed linear & $N \times max\_assocs$ & $372.8497$               & $0.5492$           & $0.0390$      \\
 \bottomrule
 \end{tabular}
@@ -334,16 +342,15 @@ Sparse condensed linear & $N \times max\_assocs$ & $372.8497$               & $0
 
 This section will present the considered candidates for the final step of EAC.
 A GPU version of SL is described in section \ref{sec:sl gpu}.
-A out-of-core based solution is presented in section \ref{sec:sl disk}.
+External algorithms are a candidate solution and this approach is presented in section \ref{sec:sl disk}.
 This solution is based on storing the co-association matrix on disk, performing the expensive computation (memory and speed wise) of \emph{argsort} and then processing the matrix in batches until the final MST is extracted.
-Since the co-association is stored in disk and the computation of \emph{argsort} in these circumstances has low memory footprint, the range of data sets that EAC may be applied to is increased significantly.
 
 \subsection{Single-Link and GPGPU}
 \label{sec:sl gpu}
 % introduction to the procedure of SL with MST
 Single-Link is an inherently sequential algorithm which means an efficient GPU version is hard to implement.
 However, SL can be performed by computing the MST and cutting edges until we have the desired number of clusters, as described in chapter \ref{chapter:stateofart}.
-Considerable speedups are reported in the literature for MST solvers in the GPGPU paradigm.
+Considerable speed-ups are reported in the literature for MST solvers in the GPGPU paradigm.
 The considered solution uses the efficient parallel variant of Borůvka's algorithm \cite{Sousa2015}.
 After the necessary pruning of the MST edges has been performed to achieve the desired number of clusters, the output MST is fed to the labeling algorithm which will provide the final clustering.
 
@@ -445,11 +452,75 @@ Furthermore, because the control logic is processed by the host and it is depend
 These, however, may be safely dismissed since they are of little consequence in the overall computation time.
 
 
-\subsection{Single-Link and out-of-core processing}
+\subsection{Single-Link and external memory algorithms}
 \label{sec:sl disk}
 
 
+The co-association matrix can become very large for large data sets.
+Even using the EAC CSR method to reduce memory usage, the memory used occupy a significant portion of main memory.
+Furthermore, the algorithm to compute a MST brings additional space complexity that make it infeasible to perform the final partition recovery on a large co-association matrix in main memory.
+External memory algorithms address this issue.
+% out of core processing %TODO check
+External memory algorithms refers to algorithms that are based on disk (or other large capacity but typically low latency storage technology), usually by loading small batches to main memory, processing them, saving the results and repeat until the whole computation is done.
+This section describes the process of building the MST with low memory usage.
+The details of converting the MST in a Single-Link clustering are described in chapter \ref{chapter:stateofart} and omitted here.
 
+\subsubsection{Kruskal's algorithm and implementation}
+
+% Kruskal algorithm
+The sequential MST algorithm used was Kruskal.
+The original paper of Kruskal's \cite{kruskal1956shortest} algorithm describes three approaches for finding a MST.
+The SciPy library offers an efficient implementation for the following construct (taken directly from the original paper of Kruskal's algorithm):
+\begin{displayquote}
+CONSTRUCTION A. Perform the following step as many times as possible: Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen. Clearly the set of edges eventually chosen must form a spanning tree of G, and in fact it forms a shortest spanning tree.
+\end{displayquote}
+If the graph if connected, the algorithm will stop before processing all edges when $|V| - 1$ edges are added to the MST.
+Within the EAC context, it is very common for the co-association graph to have independent components which translates in every edge being processed.
+It should be noted that this implementation works on a sparse matrix in the CSR format.
+
+One of the main steps of the implementation is computing the order of the edges of the graph without sorting the edges themselves, an operation called \emph{argsort}.
+To illustrate this, the argsort operation on the array $ \left [  4 , 5 , 2 , 1, 3 \right ]$ would yield $ \left [  3 , 2 , 4, 0 , 1 \right ]$ since the the smallest element is at position 3 (starting from 0), the second smalled at position 2, etc.
+This operation is useful to avoid computing the edge with minimum (\emph{min}) weight in every iteration.
+Doing so would increase time complexity since a sorting algorithm may have an average time complexity to $O(n log n)$ (QuickSort algorithm) while a single minimum has a time complexity of $O(n)$.
+Computing the minimum at every iteration when every edge must be processed means that there will be $|E|$ iterations and so the total time complexity for the minimum operation alone will be $O(E ^ E)$ if processed edges are only given the maximum value possible or $O(E!)$ if they are removed.
+These time complexities are much higher than a $O(E log E)$.
+The result of this operation is an array of length $|E|$ (i.e. the number of associations in EAC), which means it will occupy at least the same size as the array containing the weights of the edges.
+However, the total size is typically 8 times larger for EAC since the data type of the weights uses only one byte and the number of associations is very large, forcing a the use o 8 bytes for the argsort array.
+This is the real motivation to store the co-association matrix in disk and use an external sorting algorithm.
+
+\subsubsection{Kruskal's implementation with an external sorting algorithm}
+
+The \emph{PyTables} library \cite{pytables}, which is built on top of the \emph{HDF5} format \cite{hdf5}, was used for storing the graph, performing the external sorting for the argsort operation and loading the graph in batches for processing.
+This implementation starts by storing the CSR graph to disk.
+However, instead of saving the \emph{indptr} array directly, an expanded version is stored instead.
+The expanded version will be of the same length as the \emph{indices} array and the $i$-th element contains the origin vertex (or row) of the $i$-th edge.
+This way, a binary search for discovering the origin vertex becomes unnecessary.
+
+Afterwards, the argsort operation is performed by building a completely sorted index (CSI) of the \emph{data} array of the CSR matrix.
+The details of CSI implementation fall outside the scope of this dissertation but are explained in further detail in \cite{AltetiAbad2007}.
+It should be noted that the arrays themselves are not sorted.
+Instead, the CSI allows for a fast indexing of the arrays in a sorted manner (according to the order of the edges).
+%The CSI will be used to retrieve edges from the stored graph in a sorted manner.
+The process of building the CSI has a very low main memory usage that can be disregarded.
+
+The SciPy implementation of Kruskal's algorithm was modified to work with batches of the graph.
+This was easily implemented just by making the additional data structures used in the building of MST persistent between calls of the function.
+The new implementation loads the graph in batches and in a sorted manner, e.g. first load a batch of the 1000 smallest edges, then a batch of the next 1000 smalled edges, etc.
+Each batch must be processed sequentially since the edges must be processed in a sorted manner, which means that there is no possibility for parallelism in this process.
+Typically, the batch size is a very small fraction of the size of the edges, which means that the total memory usage for building the MST is overshadowed by the size of the co-association matrix.
+The time complexity for building the CSI is higher that of computing the argsort operation, but the formal time complexity is not reported in the source \cite{AltetiAbad2007}.
+As an example, for a 500000 pattern set the SL-MST approach took 54.9 seconds while the external memory approach took 2613.5 seconds - an order of magnitude higher.
+
+
+% \subsubsection{Effects on the EAC algorithm}
+
+% This section described two implementations for building a MST from a CSR graph.
+% As mentioned before, using an MST based approach to Single-Link (SL-MST) already reduces significantly its computational complexity by only processing non-zero edges, which compose only a fraction of a co-association matrix in EAC.
+% The implementation of SL-MST is based on the SciPy library and is explained above. 
+% Still, the space complexity of MST-based SL can be too high for large data sets.
+% This motivated the use of external algorithms using the PyTables library.
+% The core concept of this approach is to store the co-association graph in disk and building a sorted index for later use.
+% The sorted index is used for 
 
 
 

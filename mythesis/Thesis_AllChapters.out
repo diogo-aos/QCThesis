@@ -39,7 +39,7 @@
 \BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 39
 \BOOKMARK [1][-]{section.4.5}{4.5 Final partition recovery}{chapter.4}% 40
 \BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Single-Link and GPGPU}{section.4.5}% 41
-\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and out-of-core processing}{section.4.5}% 42
+\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and external memory algorithms}{section.4.5}% 42
 \BOOKMARK [0][-]{chapter.5}{5 Results}{}% 43
 \BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 44
 \BOOKMARK [1][-]{section.5.2}{5.2 Parallel K-Means}{chapter.5}% 45
@@ -53,4 +53,4 @@
 \BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 53
 \BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 54
 \BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 55
-\BOOKMARK [0][-]{chapter*.44}{Bibliography}{}% 56
+\BOOKMARK [0][-]{chapter*.46}{Bibliography}{}% 56
