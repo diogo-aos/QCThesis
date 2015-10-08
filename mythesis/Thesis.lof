@@ -1,0 +1,11 @@
+\select@language {english}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Thread hierarchy \cite {Nvidia2014}.\relax }}{6}{figure.caption.11}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }}{6}{figure.caption.11}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Memory model used by CUDA \cite {Nvidia2014}.\relax }}{7}{figure.caption.12}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Sample execution flow of a CUDA application \cite {Nvidia2014}.\relax }}{7}{figure.caption.12}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{8}{figure.caption.13}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{10}{figure.caption.16}
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Flow execution of Sousa2015.\relax }}{12}{figure.caption.18}
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{13}{figure.caption.20}
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{14}{figure.caption.21}

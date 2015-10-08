@@ -743,9 +743,16 @@ Further detals can be found in \citet{Weinstein2009,Horn2001a,Horn2001b}.
 
 With this information, one will compute the potential function $V(x)$ that corresponds to the state of minimum energy (ground state = eigenstate with minimum eigenvalue) \cite{Horn2001a}, by solving the Schrödinger's equation in order of $V(x)$:      
 
-\begin{align}
+% \begin{align}
 
-V(\mathbf{x}) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
+% V \left ( \mathbf{x} \right ) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi} 
+% = E - \frac{d}{2} + \frac {1}{2 \sigma^2 \psi} \sum ^N _{i=1} \left \| \mathbf{x}-\mathbf{x}_i \right \| ^2 e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}}
+% E = - min \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
+% \label{eq:wave}
+% \end{align}
+
+\begin{align}
+V \left ( \mathbf{x} \right ) = E + \frac {\frac{\sigma^2}{2}\nabla^2 \psi }{\psi}
 = E - \frac{d}{2} + \frac {1}{2 \sigma^2 \psi} \sum ^N _{i=1} \left \| \mathbf{x}-\mathbf{x}_i \right \| ^2 e^{- \frac{\left \| \mathbf{x}-\mathbf{x}_i \right \| ^2}{2 \sigma ^2}}
 \label{eq:wave}
 \end{align}

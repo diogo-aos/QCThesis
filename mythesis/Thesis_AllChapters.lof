@@ -1,25 +1,25 @@
 \select@language {english}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }}{5}{figure.caption.7}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3. The different plots show the centroids (squares) evolution on each iteration. Between iteration 3 and the converged state 2 more iterations were executed.\relax }}{9}{figure.caption.8}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }}{11}{figure.caption.9}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{11}{figure.caption.10}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }}{5}{figure.caption.8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3. The different plots show the centroids (squares) evolution on each iteration. Between iteration 3 and the converged state 2 more iterations were executed.\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }}{11}{figure.caption.10}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{11}{figure.caption.11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Thread hierarchy \cite {Nvidia2014}.\relax }}{19}{figure.caption.14}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }}{19}{figure.caption.14}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Memory model used by CUDA \cite {Nvidia2014}.\relax }}{20}{figure.caption.15}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Sample execution flow of a CUDA application \cite {Nvidia2014}.\relax }}{20}{figure.caption.15}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{22}{figure.caption.16}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{24}{figure.caption.19}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Flow execution of Sousa2015.\relax }}{26}{figure.caption.21}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{27}{figure.caption.23}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{28}{figure.caption.24}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Thread hierarchy \cite {Nvidia2014}.\relax }}{20}{figure.caption.15}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }}{20}{figure.caption.15}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Memory model used by CUDA \cite {Nvidia2014}.\relax }}{21}{figure.caption.16}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Sample execution flow of a CUDA application \cite {Nvidia2014}.\relax }}{21}{figure.caption.16}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{24}{figure.caption.20}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Flow execution of Sousa2015.\relax }}{26}{figure.caption.22}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{27}{figure.caption.24}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{28}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.33}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.34}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{42}{figure.caption.36}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{46}{figure.caption.41}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.34}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.35}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The left figure shows the number of associations per sample in a complete matrix; the right figure shows the number of associations per sample in a condensed matrix.\relax }}{42}{figure.caption.37}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{46}{figure.caption.42}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
