@@ -4,15 +4,25 @@
 \BOOKMARK [1][-]{chapter*.5}{List of Tables}{}% 4
 \BOOKMARK [1][-]{chapter*.6}{List of Figures}{}% 5
 \BOOKMARK [1][-]{table.0.1}{Glossary}{}% 6
-\BOOKMARK [0][-]{chapter.1}{1 State of the art}{}% 7
-\BOOKMARK [1][-]{section.1.1}{1.1 Scalability of EAC}{chapter.1}% 8
-\BOOKMARK [2][-]{subsection.1.1.1}{1.1.1 p neighbors approach}{section.1.1}% 9
-\BOOKMARK [2][-]{subsection.1.1.2}{1.1.2 Increased sparsity approach}{section.1.1}% 10
-\BOOKMARK [1][-]{section.1.2}{1.2 Clustering with large datasets}{chapter.1}% 11
-\BOOKMARK [2][-]{subsection.1.2.1}{1.2.1 General Purpose computing on Graphical Processing Units}{section.1.2}% 12
-\BOOKMARK [2][-]{subsection.1.2.2}{1.2.2 Parallel K-Means}{section.1.2}% 13
-\BOOKMARK [2][-]{subsection.1.2.3}{1.2.3 Parallel Single-Link Clustering}{section.1.2}% 14
-\BOOKMARK [1][-]{section.1.3}{1.3 Quantum clustering}{chapter.1}% 15
-\BOOKMARK [2][-]{subsection.1.3.1}{1.3.1 The quantum bit approach}{section.1.3}% 16
-\BOOKMARK [2][-]{subsection.1.3.2}{1.3.2 Schr\366dinger's equation approach}{section.1.3}% 17
-\BOOKMARK [0][-]{chapter*.31}{Bibliography}{}% 18
+\BOOKMARK [0][-]{chapter.1}{1 Clustering: basic concepts, definitions and algorithms}{}% 7
+\BOOKMARK [1][-]{section.1.1}{1.1 The problem of clustering}{chapter.1}% 8
+\BOOKMARK [1][-]{section.1.2}{1.2 Definitions and Notation}{chapter.1}% 9
+\BOOKMARK [1][-]{section.1.3}{1.3 Characteristics of clustering techniques}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{1.4 K-Means}{chapter.1}% 11
+\BOOKMARK [1][-]{section.1.5}{1.5 Single-Link}{chapter.1}% 12
+\BOOKMARK [1][-]{section.1.6}{1.6 Ensemble Clustering}{chapter.1}% 13
+\BOOKMARK [1][-]{section.1.7}{1.7 Evidence Accumulation Clustering}{chapter.1}% 14
+\BOOKMARK [2][-]{subsection.1.7.1}{1.7.1 Overview}{section.1.7}% 15
+\BOOKMARK [2][-]{subsection.1.7.2}{1.7.2 Examples of applications}{section.1.7}% 16
+\BOOKMARK [0][-]{chapter.2}{2 Results and Discussion}{}% 17
+\BOOKMARK [1][-]{section.2.1}{2.1 Experimental environment}{chapter.2}% 18
+\BOOKMARK [1][-]{section.2.2}{2.2 Parallel K-Means}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.3}{2.3 GPU MST}{chapter.2}% 20
+\BOOKMARK [1][-]{section.2.4}{2.4 Building the co-association matrix with different sparse formats}{chapter.2}% 21
+\BOOKMARK [1][-]{section.2.5}{2.5 EAC Validation}{chapter.2}% 22
+\BOOKMARK [1][-]{section.2.6}{2.6 EAC}{chapter.2}% 23
+\BOOKMARK [0][-]{chapter.3}{3 Discussion?}{}% 24
+\BOOKMARK [1][-]{section.3.1}{3.1 real num assocs compared to samples per cluster}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.2}{3.2 Trade-off speed accuracy memory}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.3}{3.3 Expanding this work to other scalability paradigms}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 28

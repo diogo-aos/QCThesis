@@ -26,255 +26,184 @@
 \@writefile{toc}{\contentsline {section}{Resumo}{vii}{section*.2}}
 \@writefile{toc}{\contentsline {section}{Abstract}{ix}{section*.3}}
 \@writefile{toc}{\contentsline {section}{List of Tables}{xiii}{chapter*.5}}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Harris2007}
-\citation{Harris2007}
 \@writefile{toc}{\contentsline {section}{List of Figures}{xv}{chapter*.6}}
 \gdef \LT@i {\LT@entry 
     {3}{61.44958pt}\LT@entry 
     {3}{219.0021pt}}
 \@writefile{toc}{\contentsline {section}{Glossary}{xvii}{table.0.1}}
-\citation{Fred2005}
-\citation{Fred2005}
-\@writefile{toc}{\contentsline {chapter}{\numberline {1}State of the art}{1}{chapter.1}}
+\citation{Jain2010}
+\citation{Jain1999}
+\citation{Jain1999}
+\@writefile{toc}{\contentsline {chapter}{\numberline {1}Clustering: basic concepts, definitions and algorithms}{1}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:stateofart}{{1}{1}{State of the art}{chapter.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1.1}Scalability of EAC}{1}{section.1.1}}
-\newlabel{sec:eac scaling}{{1.1}{1}{Scalability of EAC}{section.1.1}{}}
-\citation{Lourenco2010}
-\citation{Lourenco2010}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}$p$ neighbors approach}{2}{subsection.1.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1.2}Increased sparsity approach}{2}{subsection.1.1.2}}
-\citation{Aggarwal2014}
-\citation{bigdatastream}
-\citation{Aggarwal2014}
-\citation{ng2002clarans}
-\citation{zhang1996birch}
-\citation{guha1998cure}
-\citation{drineas2006fast}
-\citation{Zechner2009b}
-\citation{chen2011parallel}
-\citation{Aggarwal2014}
-\@writefile{toc}{\contentsline {section}{\numberline {1.2}Clustering with large datasets}{3}{section.1.2}}
-\newlabel{sec:big data}{{1.2}{3}{Clustering with large datasets}{section.1.2}{}}
-\citation{Chen2012}
-\citation{Bai2009,Wu2011,Zechner2009,Wu2009a}
-\citation{Shalom2009,ArulShalom2011}
-\citation{gao20xx}
-\citation{Sirotkovi2012}
-\citation{Malakar2013,Grossman2013}
-\citation{Misi2012}
-\citation{Ji2011,Xin2012,He2008}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.1}General Purpose computing on Graphical Processing Units}{4}{subsection.1.2.1}}
-\newlabel{sec:gpgpu}{{1.2.1}{4}{General Purpose computing on Graphical Processing Units}{subsection.1.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Programming GPUs}{4}{section*.8}}
-\citation{Karimi2010,Su2012}
-\citation{Su2012}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\citation{Nvidia2014}
-\@writefile{toc}{\contentsline {subsubsection}{OpenCL vs CUDA}{5}{section*.9}}
-\@writefile{toc}{\contentsline {subsubsection}{Overview of CUDA}{5}{section*.10}}
-\citation{Bai2009,Wu2011,Zechner2009,Sirotkovi2012,Farivar2008}
-\citation{Bai2009}
-\citation{Bai2009}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Thread hierarchy \cite  {Nvidia2014}.\relax }}{6}{figure.caption.11}}
+\newlabel{chapter:clustering}{{1}{1}{Clustering: basic concepts, definitions and algorithms}{chapter.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.1}The problem of clustering}{1}{section.1.1}}
+\newlabel{sec:clustering}{{1.1}{1}{The problem of clustering}{section.1.1}{}}
+\citation{anderson1936species,fisher1936use}
+\citation{Jain1999}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:gridthread}{{1.1}{6}{Thread hierarchy \cite {Nvidia2014}.\relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite  {Nvidia2014}.\relax }}{6}{figure.caption.11}}
-\newlabel{fig:blockprocessor}{{1.2}{6}{Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.2}Parallel K-Means}{6}{subsection.1.2.2}}
-\newlabel{sec:parallel kmeans}{{1.2.2}{6}{Parallel K-Means}{subsection.1.2.2}{}}
-\citation{Zechner2009b}
-\citation{DiMarco2013}
-\citation{Vineet2009,rostrup2013fast,Sousa2015}
+\newlabel{fig:intro raw}{{1.1a}{2}{Input data, unlabeled.\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:intro raw}{{a}{2}{Input data, unlabeled.\relax }{figure.caption.8}{}}
+\newlabel{fig:intro natural}{{1.1b}{2}{Desired labels.\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:intro natural}{{b}{2}{Desired labels.\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref  {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref  {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }}{2}{figure.caption.8}}
+\newlabel{fig:clustering plots}{{1.1}{2}{First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color is coded to a class.\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.2}Definitions and Notation}{2}{section.1.2}}
+\newlabel{sec:definitions and notation}{{1.2}{2}{Definitions and Notation}{section.1.2}{}}
+\citation{jarvis1973clustering}
+\citation{Aggarwal2014}
+\citation{Fred2001}
+\citation{lange2004stability}
+\citation{davies1979cluster}
+\citation{Boley1998}
+\citation{Steinbach2000}
+\citation{Chavent1998}
+\citation{Bezdek1984}
+\@writefile{toc}{\contentsline {section}{\numberline {1.3}Characteristics of clustering techniques}{4}{section.1.3}}
+\newlabel{sec:clustering properties}{{1.3}{4}{Characteristics of clustering techniques}{section.1.3}{}}
+\citation{Kang2011}
+\citation{kmeansoriginal}
+\citation{Jain2010}
+\citation{Aggarwal2014}
+\citation{Arthur2007}
+\citation{Aggarwal2014}
+\citation{Jain1999}
+\citation{Jain2010}
+\citation{Aggarwal2014}
+\citation{Pakhira2009}
+\@writefile{toc}{\contentsline {section}{\numberline {1.4}K-Means}{5}{section.1.4}}
+\newlabel{sec:kmeans}{{1.4}{5}{K-Means}{section.1.4}{}}
+\newlabel{eq:sse}{{1.1}{5}{K-Means}{equation.1.4.1}{}}
+\citation{Fred2001}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3. The different plots show the centroids (squares) evolution on each iteration. Between iteration 3 and the converged state 2 more iterations were executed.\relax }}{6}{figure.caption.9}}
+\newlabel{fig:intro kmeans}{{1.2}{6}{The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3. The different plots show the centroids (squares) evolution on each iteration. Between iteration 3 and the converged state 2 more iterations were executed.\relax }{figure.caption.9}{}}
+\citation{sneath1962numerical}
+\citation{Jain1999}
+\citation{Aggarwal2014}
+\citation{Sibson1973}
+\citation{Gower1969}
+\citation{Mullner2011}
+\@writefile{toc}{\contentsline {section}{\numberline {1.5}Single-Link}{7}{section.1.5}}
+\newlabel{sec:sl}{{1.5}{7}{Single-Link}{section.1.5}{}}
+\citation{starck2007astronomical}
+\citation{Jain1999}
+\citation{topchy2004mixture}
+\citation{Aggarwal2014}
+\newlabel{fig:graph}{{1.3a}{8}{Example of a graph.\relax }{figure.caption.10}{}}
+\newlabel{sub@fig:graph}{{a}{8}{Example of a graph.\relax }{figure.caption.10}{}}
+\newlabel{fig:graph mst}{{1.3b}{8}{MST of the graph to the left.\relax }{figure.caption.10}{}}
+\newlabel{sub@fig:graph mst}{{b}{8}{MST of the graph to the left.\relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }}{8}{figure.caption.10}}
+\newlabel{fig:mst example}{{1.3}{8}{The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }{figure.caption.10}{}}
+\newlabel{fig:sl dendrogram}{{1.4a}{8}{Single-Link dendrogram truncated to 25 clusters in the bottom level.\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:sl dendrogram}{{a}{8}{Single-Link dendrogram truncated to 25 clusters in the bottom level.\relax }{figure.caption.11}{}}
+\newlabel{fig:sl clustering}{{1.4b}{8}{Clustering with 3 clusters.\relax }{figure.caption.11}{}}
+\newlabel{sub@fig:sl clustering}{{b}{8}{Clustering with 3 clusters.\relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref  {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{8}{figure.caption.11}}
+\newlabel{fig:sl plots}{{1.4}{8}{The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }{figure.caption.11}{}}
+\citation{Fred2005}
+\citation{Aggarwal2014}
+\citation{Fred2005}
+\citation{Strehl2002}
+\citation{topchy2004mixture}
+\citation{wang2011bayesian}
+\citation{Strehl2002}
+\citation{Strehl2002}
+\citation{Dudoit2003}
+\citation{Aggarwal2014}
+\citation{Fred2005}
+\@writefile{toc}{\contentsline {section}{\numberline {1.6}Ensemble Clustering}{9}{section.1.6}}
+\newlabel{sec:ensemble}{{1.6}{9}{Ensemble Clustering}{section.1.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {1.7}Evidence Accumulation Clustering}{9}{section.1.7}}
+\newlabel{sec:eac}{{1.7}{9}{Evidence Accumulation Clustering}{section.1.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.1}Overview}{9}{subsection.1.7.1}}
+\citation{Fred2002,Fred2005,Lourenco2007,LourencoECG2009}
+\citation{Duarte2005}
+\citation{Fred2005}
 \citation{Fred2002}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Memory model used by CUDA \cite  {Nvidia2014}.\relax }}{7}{figure.caption.12}}
-\newlabel{fig:memorymodel}{{1.3}{7}{Memory model used by CUDA \cite {Nvidia2014}.\relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Sample execution flow of a CUDA application \cite  {Nvidia2014}.\relax }}{7}{figure.caption.12}}
-\newlabel{fig:cudaflow}{{1.4}{7}{Sample execution flow of a CUDA application \cite {Nvidia2014}.\relax }{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.2.3}Parallel Single-Link Clustering}{7}{subsection.1.2.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{8}{figure.caption.13}}
-\newlabel{fig:kmeans}{{1.5}{8}{Flow execution of the GPU parallel K-Means algorithm.\relax }{figure.caption.13}{}}
-\citation{kruskal1956shortest}
-\citation{prim1957shortest}
-\citation{boruuvka1926jistem}
-\citation{rostrup2013fast}
-\citation{Wang2011}
-\citation{Vineet2009}
-\citation{harish2009large}
+\citation{Fred2005}
+\citation{Duarte2005}
+\citation{Lourenco2010}
+\citation{Qian2010}
+\citation{LourencoECG2009}
+\citation{Lourenco2007}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.7.2}Examples of applications}{11}{subsection.1.7.2}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Results and Discussion}{12}{chapter.2}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chapter:results}{{2}{12}{Results and Discussion}{chapter.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Experimental environment}{12}{section.2.1}}
+\newlabel{sec:system configs}{{2.1}{12}{Experimental environment}{section.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.1}{\ignorespaces \textbf  {Alpha} machine specifications.\relax }}{13}{table.2.1}}
+\newlabel{tab:alpha}{{2.1}{13}{\textbf {Alpha} machine specifications.\relax }{table.2.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.2}{\ignorespaces \textbf  {Bravo} machine specifications.\relax }}{13}{table.2.2}}
+\newlabel{tab:bravo}{{2.2}{13}{\textbf {Bravo} machine specifications.\relax }{table.2.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.3}{\ignorespaces \textbf  {Charlie} machine specifications.\relax }}{14}{table.2.3}}
+\newlabel{tab:charlie}{{2.3}{14}{\textbf {Charlie} machine specifications.\relax }{table.2.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Parallel K-Means}{14}{section.2.2}}
+\newlabel{sec:parallel kmeans}{{2.2}{14}{Parallel K-Means}{section.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}GPU MST}{14}{section.2.3}}
+\newlabel{sec:gpu mst}{{2.3}{14}{GPU MST}{section.2.3}{}}
 \citation{Sousa2015}
 \citation{Sousa2015}
+\@writefile{lot}{\contentsline {table}{\numberline {2.4}{\ignorespaces Average speed-up of the GPU MST algorithm for different data sets.\relax }}{15}{table.2.4}}
+\newlabel{tab:mst speedup}{{2.4}{15}{Average speed-up of the GPU MST algorithm for different data sets.\relax }{table.2.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.5}{\ignorespaces Cross-correlation between several characteristics of the graphs and the average speed-up.\relax }}{15}{table.caption.12}}
+\newlabel{tab:mst corr}{{2.5}{15}{Cross-correlation between several characteristics of the graphs and the average speed-up.\relax }{table.caption.12}{}}
 \citation{Sousa2015}
-\@writefile{toc}{\contentsline {subsubsection}{Algorithm for finding Minimum Spanning Trees}{9}{section*.14}}
-\@writefile{toc}{\contentsline {subsubsection}{CSR format}{9}{section*.15}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{10}{figure.caption.16}}
-\newlabel{fig:csr}{{1.6}{10}{Correspondence between a sparse matrix and its CSR counterpart.\relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Steps of the algorithm}{10}{section*.17}}
-\citation{Sousa2015}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Flow execution of Sousa2015.\relax }}{12}{figure.caption.18}}
-\newlabel{fig:mst sousa}{{1.7}{12}{Flow execution of Sousa2015.\relax }{figure.caption.18}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Exclusive scan}{12}{section*.19}}
-\newlabel{sub:scan}{{1.2.3}{12}{Exclusive scan}{section*.19}{}}
-\citation{Hillis1986}
-\citation{Blelloch1990}
-\citation{Hillis1986}
-\citation{Blelloch1990}
-\citation{Harris2007}
-\citation{Harris2007}
-\citation{Blelloch1990}
-\citation{Harris2007}
-\citation{Harris2007}
-\citation{Harris2007}
-\citation{Harris2007}
-\citation{Harris2007}
-\citation{Harris2007}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.8}{\ignorespaces Example of the exprefix sum operation.\relax }}{13}{figure.caption.20}}
-\newlabel{fig:exprefix sum}{{1.8}{13}{Example of the exprefix sum operation.\relax }{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.9}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite  {Harris2007}. \emph  {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{14}{figure.caption.21}}
-\newlabel{fig:scan reduce}{{1.9}{14}{Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }{figure.caption.21}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1.10}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite  {Harris2007}. \emph  {d} is the level of the tree.\relax }}{14}{figure.caption.22}}
-\newlabel{fig:scan down-sweep}{{1.10}{14}{Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }{figure.caption.22}{}}
-\citation{Aimeur2013}
-\citation{Lloyd2013}
-\citation{grover1996fast}
-\citation{Wiebe2014}
-\citation{Feynman1982}
-\citation{wittek2014quantum}
-\citation{Casper2013}
-\citation{Han2000}
-\citation{Liu2010}
-\citation{Talbi2004}
-\citation{Casper2012KMeans,Xiao2010}
-\citation{hung2013quantum,Casper2013}
-\citation{Casper2013}
-\citation{hung2013quantumcmeans,Casper2013}
-\citation{Liang2009}
-\citation{Li2010}
-\citation{mikki2006quantum}
-\@writefile{toc}{\contentsline {section}{\numberline {1.3}Quantum clustering}{15}{section.1.3}}
-\newlabel{sec:quantum clustering}{{1.3}{15}{Quantum clustering}{section.1.3}{}}
-\citation{Horn2001b}
-\citation{Weinstein2009b}
-\citation{Horn2001b}
-\citation{li2007quantum}
-\citation{Horn2001b}
-\citation{Wang2007}
-\citation{Sun2004}
-\citation{Manju2014}
-\citation{Lanzagorta2008}
-\citation{Casper2012KMeans}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.1}The quantum bit approach}{16}{subsection.1.3.1}}
-\newlabel{sec:qubit}{{1.3.1}{16}{The quantum bit approach}{subsection.1.3.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{The quantum bit}{16}{section*.23}}
-\citation{Rosenbaum2011}
-\citation{Rosenbaum2011}
-\citation{hung2013quantum}
-\citation{Casper2012KMeans}
-\@writefile{toc}{\contentsline {subsubsection}{Quantum K-Means}{17}{section*.24}}
-\newlabel{sec:qkmeans}{{1.3.1}{17}{Quantum K-Means}{section*.24}{}}
-\citation{Liu2010}
-\citation{Liu2010}
-\@writefile{toc}{\contentsline {paragraph}{Initialize population of oracles}{18}{section*.25}}
-\@writefile{toc}{\contentsline {paragraph}{Collapse oracles}{18}{section*.26}}
-\@writefile{toc}{\contentsline {paragraph}{K-Means}{18}{section*.27}}
-\@writefile{toc}{\contentsline {paragraph}{Compute cluster fitness}{18}{section*.28}}
-\@writefile{toc}{\contentsline {paragraph}{Store}{18}{section*.29}}
-\@writefile{toc}{\contentsline {paragraph}{Quantum Rotation Gate}{18}{section*.30}}
-\citation{Horn2010}
-\citation{Weinstein2009}
-\citation{Horn2001a,Weinstein2009}
-\citation{Weinstein2009,Horn2001a,Horn2001b}
-\citation{Horn2001a}
-\citation{Horn2001a}
-\citation{Horn2001a}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3.2}Schr\IeC {\"o}dinger's equation approach}{19}{subsection.1.3.2}}
-\newlabel{sec:horn}{{1.3.2}{19}{Schrödinger's equation approach}{subsection.1.3.2}{}}
-\newlabel{eq:wave}{{1.1}{19}{Schrödinger's equation approach}{equation.1.3.1}{}}
-\newlabel{eq:wave sol}{{1.2}{19}{Schrödinger's equation approach}{equation.1.3.2}{}}
-\citation{Weinstein2009}
-\citation{Wittek2013}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Building the co-association matrix with different sparse formats}{16}{section.2.4}}
+\newlabel{sec:spare building}{{2.4}{16}{Building the co-association matrix with different sparse formats}{section.2.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.6}{\ignorespaces Times for computing the condensed co-association matrix using different matrix strategies.\relax }}{17}{table.caption.13}}
+\newlabel{tab:coassoc build sparse}{{2.6}{17}{Times for computing the condensed co-association matrix using different matrix strategies.\relax }{table.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces sd\relax }}{17}{figure.caption.14}}
+\newlabel{fig:coassoc build sparse}{{2.1}{17}{sd\relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}EAC Validation}{17}{section.2.5}}
+\newlabel{sec:eac validation}{{2.5}{17}{EAC Validation}{section.2.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}EAC}{17}{section.2.6}}
+\newlabel{sec:eac results}{{2.6}{17}{EAC}{section.2.6}{}}
+\citation{Lourenco2010}
 \bibstyle{unsrtnat}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Discussion?}{18}{chapter.3}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{chapter:discussion}{{3}{18}{Discussion?}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}real num assocs compared to samples per cluster}{18}{section.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Trade-off speed accuracy memory}{18}{section.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Expanding this work to other scalability paradigms}{18}{section.3.3}}
 \bibdata{library}
-\bibcite{Nvidia2014}{{1}{2015}{{Nvidia}}{{}}}
-\bibcite{Harris2007}{{2}{2007}{{Harris et~al.}}{{Harris, Sengupta, and Owens}}}
-\bibcite{Fred2005}{{3}{2005}{{Fred and Jain}}{{}}}
-\bibcite{Lourenco2010}{{4}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
-\bibcite{Aggarwal2014}{{5}{2013}{{Aggarwal and Reddy}}{{}}}
-\bibcite{bigdatastream}{{6}{2002}{{O'Callaghan et~al.}}{{O'Callaghan, Mishra, Meyerson, Guha, and Motwani}}}
-\bibcite{ng2002clarans}{{7}{2002}{{Ng and Han}}{{}}}
-\bibcite{zhang1996birch}{{8}{1996}{{Zhang et~al.}}{{Zhang, Ramakrishnan, and Livny}}}
-\bibcite{guha1998cure}{{9}{1998}{{Guha et~al.}}{{Guha, Rastogi, and Shim}}}
-\bibcite{drineas2006fast}{{10}{2006}{{Drineas et~al.}}{{Drineas, Kannan, and Mahoney}}}
-\bibcite{Zechner2009b}{{11}{2009{}}{{Zechner and Granitzer}}{{}}}
-\bibcite{chen2011parallel}{{12}{2011}{{Chen et~al.}}{{Chen, Song, Bai, Lin, and Chang}}}
-\bibcite{Chen2012}{{13}{2012}{{Chen and Agrawal}}{{}}}
-\bibcite{Bai2009}{{14}{2009}{{Bai et~al.}}{{Bai, He, Ouyang, Li, and Li}}}
-\bibcite{Wu2011}{{15}{2011}{{Wu and Hong}}{{}}}
-\bibcite{Zechner2009}{{16}{2009{}}{{Zechner and Granitzer}}{{}}}
-\bibcite{Wu2009a}{{17}{2009}{{Wu et~al.}}{{Wu, Zhang, and Hsu}}}
-\bibcite{Shalom2009}{{18}{2009}{{Shalom et~al.}}{{Shalom, Dash, Tue, and Wilson}}}
-\bibcite{ArulShalom2011}{{19}{2011}{{{Arul Shalom} and Dash}}{{}}}
-\bibcite{gao20xx}{{20}{2012}{{{Yanjun Jiang} et~al.}}{{{Yanjun Jiang}, {Enxing Li}, and {Zhanchun Gao}}}}
-\bibcite{Sirotkovi2012}{{21}{2012}{{Sirotkovi et~al.}}{{Sirotkovi, Dujmi, and Papi}}}
-\bibcite{Malakar2013}{{22}{2013}{{Malakar and Vydyanathan}}{{}}}
-\bibcite{Grossman2013}{{23}{2013}{{Grossman et~al.}}{{Grossman, Breternitz, and Sarkar}}}
-\bibcite{Misi2012}{{24}{2012}{{Mi\v {s}i et~al.}}{{Mi\v {s}i, \^{C}, and Toma\v {s}evi}}}
-\bibcite{Ji2011}{{25}{2011}{{Ji and Ma}}{{}}}
-\bibcite{Xin2012}{{26}{2012}{{Xin and Li}}{{}}}
-\bibcite{He2008}{{27}{2008}{{He et~al.}}{{He, Fang, Luo, Govindaraju, and Wang}}}
-\bibcite{Karimi2010}{{28}{2010}{{Karimi et~al.}}{{Karimi, Dickson, and Hamze}}}
-\bibcite{Su2012}{{29}{2012}{{Su et~al.}}{{Su, Chen, Lan, Huang, and Wu}}}
-\bibcite{Farivar2008}{{30}{2008}{{Farivar et~al.}}{{Farivar, Rebolledo, and Chan}}}
-\bibcite{DiMarco2013}{{31}{2013}{{DiMarco and Taufer}}{{}}}
-\bibcite{Vineet2009}{{32}{2009}{{Vineet}}{{}}}
-\bibcite{rostrup2013fast}{{33}{2013}{{Rostrup et~al.}}{{Rostrup, Srivastava, and Singhal}}}
+\bibcite{Jain2010}{{1}{2010}{{Jain}}{{}}}
+\bibcite{Jain1999}{{2}{1999}{{Jain et~al.}}{{Jain, Murty, and Flynn}}}
+\bibcite{anderson1936species}{{3}{1936}{{Anderson}}{{}}}
+\bibcite{fisher1936use}{{4}{1936}{{Fisher}}{{}}}
+\bibcite{jarvis1973clustering}{{5}{1973}{{Jarvis and Patrick}}{{}}}
+\bibcite{Aggarwal2014}{{6}{2013}{{Aggarwal and Reddy}}{{}}}
+\bibcite{Fred2001}{{7}{2001}{{Fred}}{{}}}
+\bibcite{lange2004stability}{{8}{2004}{{Lange et~al.}}{{Lange, Roth, Braun, and Buhmann}}}
+\bibcite{davies1979cluster}{{9}{1979}{{Davies and Bouldin}}{{}}}
+\bibcite{Boley1998}{{10}{1998}{{Boley}}{{}}}
+\bibcite{Steinbach2000}{{11}{2000}{{Steinbach et~al.}}{{Steinbach, Karypis, Kumar, and Others}}}
+\bibcite{Chavent1998}{{12}{1998}{{Chavent}}{{}}}
+\bibcite{Bezdek1984}{{13}{1984}{{Bezdek et~al.}}{{Bezdek, Ehrlich, and Full}}}
+\bibcite{Kang2011}{{14}{2011}{{Kang et~al.}}{{Kang, Tsourakakis, and Faloutsos}}}
+\bibcite{kmeansoriginal}{{15}{1967}{{MacQueen}}{{}}}
+\bibcite{Arthur2007}{{16}{2007}{{Arthur et~al.}}{{Arthur, Arthur, Vassilvitskii, and Vassilvitskii}}}
+\bibcite{Pakhira2009}{{17}{2009}{{Pakhira}}{{}}}
+\bibcite{sneath1962numerical}{{18}{1962}{{Sneath and Sokal}}{{}}}
+\bibcite{Sibson1973}{{19}{1973}{{Sibson}}{{}}}
+\bibcite{Gower1969}{{20}{1969}{{Gower and Ross}}{{}}}
+\bibcite{Mullner2011}{{21}{2011}{{M\"{u}llner}}{{}}}
+\bibcite{starck2007astronomical}{{22}{2007}{{Starck and Murtagh}}{{}}}
+\bibcite{topchy2004mixture}{{23}{2004}{{Topchy et~al.}}{{Topchy, Jain, and Punch}}}
+\bibcite{Fred2005}{{24}{2005}{{Fred and Jain}}{{}}}
+\bibcite{Strehl2002}{{25}{2002}{{Strehl and Ghosh}}{{}}}
+\bibcite{wang2011bayesian}{{26}{2011}{{Wang et~al.}}{{Wang, Shan, and Banerjee}}}
+\bibcite{Dudoit2003}{{27}{2003}{{Dudoit and Fridlyand}}{{}}}
+\bibcite{Fred2002}{{28}{2002}{{Fred and Jain}}{{}}}
+\bibcite{Lourenco2007}{{29}{2007}{{Louren\c {c}o and Fred}}{{}}}
+\bibcite{LourencoECG2009}{{30}{2009}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Carreiras, Bul\`{o}, and Fred}}}
+\bibcite{Duarte2005}{{31}{2005}{{Duarte et~al.}}{{Duarte, a.L.N. Fred, Lourenco, and Rodrigues}}}
+\bibcite{Lourenco2010}{{32}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
+\bibcite{Qian2010}{{33}{2010}{{Qian et~al.}}{{Qian, Cukierski, Osman, and Goodell}}}
 \bibcite{Sousa2015}{{34}{2015}{{Sousa et~al.}}{{Sousa, Mariano, and Proen\c {c}a}}}
-\bibcite{Fred2002}{{35}{2002}{{Fred and Jain}}{{}}}
-\bibcite{kruskal1956shortest}{{36}{1956}{{Kruskal}}{{}}}
-\bibcite{prim1957shortest}{{37}{1957}{{Prim}}{{}}}
-\bibcite{boruuvka1926jistem}{{38}{1926}{{Bor\IeC {\r u}vka}}{{}}}
-\bibcite{Wang2011}{{39}{2011}{{Wang et~al.}}{{Wang, Huang, and Guo}}}
-\bibcite{harish2009large}{{40}{2009}{{Harish et~al.}}{{Harish, Vineet, and Narayanan}}}
-\bibcite{Hillis1986}{{41}{1986}{{Hillis and Steele}}{{}}}
-\bibcite{Blelloch1990}{{42}{1990}{{Blelloch}}{{}}}
-\bibcite{Aimeur2013}{{43}{2013}{{A\"{\i }meur et~al.}}{{A\"{\i }meur, Brassard, and Gambs}}}
-\bibcite{Lloyd2013}{{44}{2013}{{Lloyd et~al.}}{{Lloyd, Mohseni, and Rebentrost}}}
-\bibcite{grover1996fast}{{45}{1996}{{Grover}}{{}}}
-\bibcite{Wiebe2014}{{46}{2014}{{Wiebe et~al.}}{{Wiebe, Kapoor, and Svore}}}
-\bibcite{Feynman1982}{{47}{1982}{{Feynman}}{{}}}
-\bibcite{wittek2014quantum}{{48}{2014}{{Wittek}}{{}}}
-\bibcite{Casper2013}{{49}{2013}{{Casper and Hung}}{{}}}
-\bibcite{Han2000}{{50}{2000}{{Han and Kim}}{{}}}
-\bibcite{Liu2010}{{51}{2010}{{Liu et~al.}}{{Liu, Chen, Yan, Liu, Xu, and Zheng}}}
-\bibcite{Talbi2004}{{52}{2004}{{Talbi et~al.}}{{Talbi, Draa, and Batouche}}}
-\bibcite{Casper2012KMeans}{{53}{2012}{{Casper et~al.}}{{Casper, Hung, Jung, and Yang}}}
-\bibcite{Xiao2010}{{54}{2010}{{Xiao et~al.}}{{Xiao, Yan, Zhang, and Tang}}}
-\bibcite{hung2013quantum}{{55}{2013{}}{{Hung et~al.}}{{Hung, Casper, Kuo, Liu, Jung, Yang, Yu, Jung, and Yang}}}
-\bibcite{hung2013quantumcmeans}{{56}{2013{}}{{Hung et~al.}}{{Hung, Casper, Kuo, Liu, Yu, Jung, and Yang}}}
-\bibcite{Liang2009}{{57}{2009}{{Liang et~al.}}{{Liang, Wang, Liu, and Jian}}}
-\bibcite{Li2010}{{58}{2010}{{Li et~al.}}{{Li, Wu, Ma, and Jiao}}}
-\bibcite{mikki2006quantum}{{59}{2006}{{Mikki et~al.}}{{Mikki, Kishk, and Others}}}
-\bibcite{Horn2001b}{{60}{2001{}}{{Horn and Gottlieb}}{{}}}
-\bibcite{Weinstein2009b}{{61}{2009{}}{{Weinstein and Horn}}{{}}}
-\bibcite{li2007quantum}{{62}{2007}{{Li et~al.}}{{Li, Wang, and Wuxi}}}
-\bibcite{Wang2007}{{63}{2007}{{Wang et~al.}}{{Wang, Yang, Xu, and Sun}}}
-\bibcite{Sun2004}{{64}{2004}{{Sun et~al.}}{{Sun, Feng, and Xu}}}
-\bibcite{Manju2014}{{65}{2014}{{Manju and Nigam}}{{}}}
-\bibcite{Lanzagorta2008}{{66}{2008}{{Lanzagorta and Uhlmann}}{{}}}
-\bibcite{Rosenbaum2011}{{67}{2011}{{Rosenbaum and Harrow}}{{}}}
-\bibcite{Horn2010}{{68}{2010}{{Horn et~al.}}{{Horn, Aviv, Gottlieb, HaSharon, Axel, and Gan}}}
-\bibcite{Weinstein2009}{{69}{2009{}}{{Weinstein and Horn}}{{}}}
-\bibcite{Horn2001a}{{70}{2001{}}{{Horn and Gottlieb}}{{}}}
-\bibcite{Wittek2013}{{71}{2013}{{Wittek}}{{}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{27}{chapter*.31}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{21}{chapter*.15}}

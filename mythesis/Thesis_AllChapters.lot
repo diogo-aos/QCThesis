@@ -5,8 +5,12 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 samples. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{43}{table.caption.37}
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{51}{table.5.1}
-\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{51}{table.5.2}
-\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{52}{table.5.3}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{52}{table.6.1}
+\contentsline {table}{\numberline {6.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{52}{table.6.2}
+\contentsline {table}{\numberline {6.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{53}{table.6.3}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Average speed-up of the GPU MST algorithm for different data sets.\relax }}{54}{table.6.4}
+\contentsline {table}{\numberline {6.5}{\ignorespaces Cross-correlation between several characteristics of the graphs and the average speed-up.\relax }}{54}{table.caption.48}
+\contentsline {table}{\numberline {6.6}{\ignorespaces Times for computing the condensed co-association matrix using different matrix strategies.\relax }}{56}{table.caption.49}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

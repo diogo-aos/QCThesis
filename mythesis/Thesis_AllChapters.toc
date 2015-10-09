@@ -60,21 +60,24 @@
 \contentsline {subsubsection}{Building the new graph}{45}{section*.41}
 \contentsline {subsubsection}{Final clustering}{45}{section*.42}
 \contentsline {subsubsection}{Memory transfer with the GPU}{46}{section*.44}
-\contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{46}{subsection.4.5.2}
-\contentsline {subsubsection}{Kruskal's algorithm and implementation}{48}{section*.45}
-\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{48}{section*.46}
+\contentsline {subsubsection}{Contrast between implementations}{46}{section*.45}
+\contentsline {subsection}{\numberline {4.5.2}Single-Link and external memory algorithms}{48}{subsection.4.5.2}
+\contentsline {subsubsection}{Kruskal's algorithm and implementation}{48}{section*.46}
+\contentsline {subsubsection}{Kruskal's implementation with an external sorting algorithm}{49}{section*.47}
 \contentsline {section}{\numberline {4.6}Resume of the developed work}{49}{section.4.6}
-\contentsline {chapter}{\numberline {5}Results}{50}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experimental environment}{50}{section.5.1}
-\contentsline {section}{\numberline {5.2}Parallel K-Means}{52}{section.5.2}
-\contentsline {section}{\numberline {5.3}GPU MST}{52}{section.5.3}
-\contentsline {section}{\numberline {5.4}EAC}{52}{section.5.4}
-\contentsline {chapter}{\numberline {6}Discussion?}{53}{chapter.6}
-\contentsline {section}{\numberline {6.1}real num assocs compared to samples per cluster}{53}{section.6.1}
-\contentsline {section}{\numberline {6.2}Trade-off speed accuracy memory}{53}{section.6.2}
+\contentsline {chapter}{\numberline {5}Final solution proposed}{50}{chapter.5}
+\contentsline {chapter}{\numberline {6}Results and Discussion}{51}{chapter.6}
+\contentsline {section}{\numberline {6.1}Experimental environment}{51}{section.6.1}
+\contentsline {section}{\numberline {6.2}Parallel K-Means}{53}{section.6.2}
 \contentsline {section}{\numberline {6.3}GPU MST}{53}{section.6.3}
-\contentsline {section}{\numberline {6.4}Expanding this work to other scalability paradigms}{54}{section.6.4}
-\contentsline {chapter}{\numberline {7}Conclusions}{55}{chapter.7}
-\contentsline {section}{\numberline {7.1}Achievements}{55}{section.7.1}
-\contentsline {section}{\numberline {7.2}Future Work}{55}{section.7.2}
-\contentsline {chapter}{Bibliography}{66}{chapter*.47}
+\contentsline {section}{\numberline {6.4}Building the co-association matrix with different sparse formats}{55}{section.6.4}
+\contentsline {section}{\numberline {6.5}EAC Validation}{56}{section.6.5}
+\contentsline {section}{\numberline {6.6}EAC}{56}{section.6.6}
+\contentsline {chapter}{\numberline {7}Discussion?}{57}{chapter.7}
+\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{57}{section.7.1}
+\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{57}{section.7.2}
+\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{57}{section.7.3}
+\contentsline {chapter}{\numberline {8}Conclusions}{58}{chapter.8}
+\contentsline {section}{\numberline {8.1}Achievements}{58}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{58}{section.8.2}
+\contentsline {chapter}{Bibliography}{70}{chapter*.51}

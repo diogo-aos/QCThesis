@@ -15,15 +15,6 @@ The results suggest that the contribution of the ensemble is in fact higher. %TO
 % in the Discussion or Conclusions chapter, include a reflection along the folloing lines
 When a problem of clustering of big data is at hand, the user should reflect upon what the problem at hand really requires: speed or accuracy. The user should take into consideration the nature of the data and the requirements of the problem (concerning speed and accuracy) before proceeding to the execution of the analysis. The present body of work reflects a method of clustering over big data using a high accuracy, but also high cost, method. Other methods offer the opposite, low cost, low to average accuracy. 
 
-\section{GPU MST}
-
-The parallel version of the final step of EAC showed a slowdown relative to its sequential counterpart.
-This slowdown is related with the performance of the MST algorithm.
-The implementation of the algorithm was tested in some of the same graphs as those reported in \cite{Sousa2015} and revealed a speedup.
-However, when using the this MST solver on the target graphs (the co-association matrices) not only there was no speedup, but a significantly slowdown was observed, reaching up to nine times slower.
-The underlying reason for this is believed to be that the number of edges to node ratio of these graphs is low compared to that typically seen in co-associations matrix, even when using a prototype subset of the original matrix.
-Since the parallel computation is anchored to nodes, the workload per node is higher from the beginning and can increase significantly as the algorithm progresses.
-Furthermore, the workload can become highly unbalanced with some threads having to process hundreds of thousands of edges while others only a few thousands.
 
 
 \section{Expanding this work to other scalability paradigms}

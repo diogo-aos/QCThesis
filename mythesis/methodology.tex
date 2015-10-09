@@ -452,6 +452,16 @@ Furthermore, because the control logic is processed by the host and it is depend
 These, however, may be safely dismissed since they are of little consequence in the overall computation time.
 
 
+\subsubsection{Contrast between implementations}
+
+At this point it should be noted, for future reference, the contrast between the technology stack used by \citet{Sousa2015} and the one used here.
+\citet{Sousa2015} used the native CUDA language to program the GPUs and highly optimized libraries.
+The implementation in the present work used none of the above.
+Accordingly, some performance may be lost.
+This if specially true for some highly optimized operations that can be found in some libraries, since those use optimization mechanism that are not available in used CUDA API offered by the Numba package.
+An evaluation of the interoperability between the technology stacks was made but, currently, this does not seem feasible.
+Nevertheless, and whenever possible, we tried to close the gap so that these shortcomings become less noticeable in the overall performance.
+
 \subsection{Single-Link and external memory algorithms}
 \label{sec:sl disk}
 
@@ -566,3 +576,36 @@ The core of the external memory variant is based on using an external algorithm 
 % % \hline
 % \end{tabular}
 
+
+
+\chapter{Final solution proposed}
+\label{chapter:solution}
+
+The final solution proposed is composed by the parallel K-Means implementation described, the EAC CSR method and the external memory variant for performing Single-Link.
+The implementations have several parameters available for tinkering.
+A general guideline of what is available and when should it be used is presented in this chapter.
+
+It is recommended that the execution of the parallel K-Means algorithm be done with a "manual" memory transfer, so as to optimize GPU and host communication.
+When the combined size of the data set, centroid set, labels and distance arrays exceed the available device memory, the pure sequential version of K-Means should be executed.
+An optimized sequential version is offered alongside the implementation its parallel counterpart.
+
+The choice of parameters of the method for building the co-association matrix is a simple one to make.
+The available choices are:
+
+\begin{itemize}
+	\item if the matrix should be condensed (filling only the upper triangular) or not, 
+	\item if the matrix should be sparse or not;
+	\item within the sparse matrices, if a constant or linear memory allocation should be used.
+\end{itemize}
+
+The condensed version of the matrix is always preferred.
+Not only does it occupy less than half of the memory, it also takes less time to build.
+Furthermore, when this is paired with a sparse strategy, the final clustering is also nearly twice as fast.
+A sparse representation should be chosen whenever $n (n-1) / 2$ times the size of the data type used (typically unsigned 1 byte integer) exceeds the available memory, where $n$ is the number of patterns in the data set.
+The linear memory allocation is the ideal choice when a sparse representation of the condensed matrix is used, since half the memory is saved.
+
+For the final clustering, the SLINK algorithm must be paired with a fully allocated matrix while the SL-MST strategy must be paired with a sparse representation.
+Then, the final choice to make is if one should use the main memory approach for the final Single-Link clustering or the external memory approach.
+Here, again, the decision is straightforward.
+Typically if the sparse co-association matrix exceeds half of the available main memory, a external memory approach should be chosen.
+The reason for this is that one of the crucial steps of the final clustering will almost double the memory used.
