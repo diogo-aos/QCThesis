@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  9 OCT 2015 22:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  11 OCT 2015 08:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1030,7 +1030,7 @@ rkspace/thesis_writing/rsc/clustering/raw_data.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-converte
-d-to.pdf, id=301, 504.88625pt x 394.47375pt>
+d-to.pdf, id=308, 504.88625pt x 394.47375pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/raw_data-eps-con
 verted-to.pdf Graphic file (type pdf)
 
@@ -1054,7 +1054,7 @@ kspace/thesis_writing/rsc/clustering/desired.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-converted
--to.pdf, id=302, 504.88625pt x 394.47375pt>
+-to.pdf, id=309, 504.88625pt x 394.47375pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/desired-eps-conv
 erted-to.pdf Graphic file (type pdf)
 
@@ -1081,7 +1081,7 @@ tera/workspace/thesis_writing/rsc/clustering/kmeans_progress.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-eps-c
-onverted-to.pdf, id=433, 951.555pt x 731.73375pt>
+onverted-to.pdf, id=440, 951.555pt x 731.73375pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-
 eps-converted-to.pdf Graphic file (type pdf)
 
@@ -1092,7 +1092,7 @@ ng/kmeans_progress-eps-converted-to.pdf used on input line 284.
 (pdftex.def)             Requested size: 455.24411pt x 350.07819pt.
  [6 </home/chiroptera/workspace/thesis_writing/rsc/clustering/kmeans_progress-e
 ps-converted-to.pdf>] [7]
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png, id=498
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png, id=505
 , 352.84764pt x 226.72942pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_graph.png Gr
 aphic file (type png)
@@ -1102,7 +1102,7 @@ Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/clusteri
 ng/mst_graph.png used on input line 349.
 (pdftex.def)             Requested size: 136.57462pt x 87.75641pt.
 
-</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png, id=499, 
+</home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png, id=506, 
 249.93375pt x 160.6pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/mst_mst.png Grap
 hic file (type png)
@@ -1126,7 +1126,7 @@ ra/workspace/thesis_writing/rsc/clustering/sl_dendrogram.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-eps-con
-verted-to.pdf, id=503, 498.86375pt x 398.48875pt>
+verted-to.pdf, id=510, 498.86375pt x 398.48875pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl_dendrogram-ep
 s-converted-to.pdf Graphic file (type pdf)
 
@@ -1150,7 +1150,7 @@ e/thesis_writing/rsc/clustering/sl.eps>
 Package epstopdf Info: Output file is already uptodate.
 
 </home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted-to.p
-df, id=504, 504.88625pt x 396.48125pt>
+df, id=511, 504.88625pt x 396.48125pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/clustering/sl-eps-converted
 -to.pdf Graphic file (type pdf)
 
@@ -1181,12 +1181,12 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <6> not available
 )
 (/home/chiroptera/workspace/thesis_writing/rsc/results/hardware/mariana.tex)
 (/home/chiroptera/workspace/thesis_writing/rsc/results/hardware/mighty4.tex)
-Overfull \hbox (15.0pt too wide) in paragraph at lines 4--36
+Overfull \hbox (15.0pt too wide) in paragraph at lines 4--41
 []$[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--36
+Underfull \hbox (badness 10000) in paragraph at lines 4--41
 
  []
 
@@ -1201,12 +1201,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [13]
 (/home/chiroptera/workspace/thesis_writing/rsc/results/mst_gpu/mst_speedup_tabl
 e.tex)
-Overfull \hbox (15.0pt too wide) in paragraph at lines 1--71
+Overfull \hbox (15.0pt too wide) in paragraph at lines 1--76
 []$[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--71
+Underfull \hbox (badness 10000) in paragraph at lines 1--76
 
  []
 
@@ -1216,24 +1216,26 @@ Underfull \vbox (badness 2726) has occurred while \output is active []
  [14]
 
 LaTeX Warning: Reference `chapter:methodology' on page 15 undefined on input li
-ne 82.
+ne 87.
 
 (/home/chiroptera/workspace/thesis_writing/rsc/results/mst_gpu/corr_table.tex)
 [15] [16]
 </home/chiroptera/workspace/thesis_writing/rsc/results/eac_sparse_build/coassoc
-_build.png, id=703, 518.93875pt x 480.79625pt>
+_build.png, id=710, 518.93875pt x 480.79625pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac_sparse_build/co
 assoc_build.png Graphic file (type png)
 
 <use /home/chiroptera/workspace/thesis_writing/rsc/results/eac_sparse_build/coa
 ssoc_build.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
-eac_sparse_build/coassoc_build.png used on input line 164.
+eac_sparse_build/coassoc_build.png used on input line 174.
 (pdftex.def)             Requested size: 259.46873pt x 240.39752pt.
-) (./discussion.tex [17 </home/chiroptera/workspace/thesis_writing/rsc/results/
-eac_sparse_build/coassoc_build.png>]
+ [17 </home/chiroptera/workspace/thesis_writing/rsc/results/eac_sparse_build/co
+assoc_build.png>]) (./discussion.tex [18]
 Chapter 3.
-) [18
+) [19
+
+] [20
 
 ] (./Thesis.bbl
 Underfull \hbox (badness 3417) in paragraph at lines 67--75
@@ -1253,10 +1255,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 67--75
  / A : 1009740529316$ \ delimiter"026E30F$nhttp : / / www .
  []
 
-[19
+[21
 
-
-] [20]) [21] [22
+] [22]) [23] [24
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
@@ -1265,7 +1266,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
 Package rerunfilecheck Info: File `Thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 708D40D7DF2A3D6C75FDF0828AB35FD9;1911.
+(rerunfilecheck)             Checksum: 85B0ECF679BD28F646B6BAACDC8C795F;1911.
 
 
 LaTeX Warning: There were undefined references.
@@ -1273,10 +1274,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 11803 strings out of 495004
- 175769 string characters out of 6180663
- 298510 words of memory out of 5000000
- 14540 multiletter control sequences out of 15000+600000
+ 11809 strings out of 495004
+ 175869 string characters out of 6180663
+ 299829 words of memory out of 5000000
+ 14542 multiletter control sequences out of 15000+600000
  48466 words of font info for 84 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  55i,16n,92p,907b,557s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1296,10 +1297,10 @@ texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/helvetic/uhvro8a.pfb>
-Output written on Thesis.pdf (40 pages, 757552 bytes).
+Output written on Thesis.pdf (42 pages, 762220 bytes).
 PDF statistics:
- 831 PDF objects out of 1000 (max. 8388607)
- 586 compressed objects within 6 object streams
- 137 named destinations out of 1000 (max. 500000)
+ 851 PDF objects out of 1000 (max. 8388607)
+ 603 compressed objects within 7 object streams
+ 141 named destinations out of 1000 (max. 500000)
  280 words of extra memory for PDF output out of 10000 (max. 10000000)
 

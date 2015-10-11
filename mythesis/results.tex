@@ -21,7 +21,12 @@ The present chapter is dedicated to the results relevant to the work produced an
 
 All experiments were carried out in one (or more) of three distinct machines what will be referred to as \textbf{Alpha}, \textbf{Bravo} and \textbf{Charlie}.
 Their CPU and GPU hardware configurations are described in Tables \ref{tab:alpha}, \ref{tab:bravo} and \ref{tab:charlie}, respectively.
-\textbf{Charlie} also has a Seagate ST2000DM001 7200 rpm spinning disk and a Samsung 840 EVO Solid State Drive, informations relevant for the third phase of EAC.% with sequential read/write speeds of up to 540/410 MB/s.
+Besides, Charlie has a \emph{Seagate ST2000DM001} 7200 RPM spinning disk and a \emph{Samsung 840 EVO} Solid State Drive, informations relevant for the third phase of EAC.% with sequential read/write speeds of up to 540/410 MB/s.
+
+Software wise, all machines are running Linux based operating systems.
+Alpha and Bravo are using the Ubuntu 14.04 and 12.04, respectively, with a graphical interface.
+Whether the machine is running a graphical interface or not is important because, in the case that it only has one GPU (as is the case with all the machines here presented) the available memory for computation is less than total and there is a limit to how long a CUDA kernel can be executed.
+Charlie is running Fedora 21 without a user interface.
 
 % SAMSUNG HM641JI
 % http://www.farnell.com/datasheets/841934.pdf
@@ -116,6 +121,11 @@ For these reasons, the device memory (which typically is smaller than the host m
 % The implementation of the algorithm was tested in some of the same graphs as those reported in \cite{Sousa2015} and revealed a speedup.
 % However, when using the this MST solver on the target graphs (the co-association matrices) not only there was no speedup, but a significantly slowdown was observed, reaching up to nine times slower.
 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+%
+%  					SPARSE BUILDNG RESUTLS 
+%
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 \section{Building the co-association matrix with different sparse formats}
 \label{sec:spare building}
@@ -176,6 +186,104 @@ The difference between the two optimized versions will become clearer on future 
 \section{EAC Validation}
 \label{sec:eac validation}
 
+The present section aims to provide results showing that the proposed methods do not alter the overall quality of the results.
+With this in mind, the results of original version of EAC, implemented in Matlab, are compared with those of the proposed solution.
+Several small data sets, chosen from the data sets used by \citet{Lourenco2010}, were processed by the two versions of EAC.
+All these data sets were taken from the UCI Machine Learning Repository. %TODO add ref
+Furthermore, since the generation of the ensemble is probabilistic and can change the results between runs, the proposed version is processed with the ensembles created by the original version as well.
+This guarantees that the combination and recovery phases of EAC, which are deterministic when using SL, are equivalent to the original.
+
+Table \ref{tab:validation error acc} presents the difference between the accuracies of the two versions.
+Analyzing these results, it is apparent that the difference is minimal.
+It should be noted at this point that the original implementation always maps the dissimilarities of the co-association matrix to the range $\left [ 0 , 1 \right ]$.
+This forces the co-association matrix to have a floating point data type.
+However, since the number of partitions used is usually less than 255, the proposed version uses unsigned integers of 1 byte to reduce the used memory considerably.
+The differences in accuracy are thought to come from rounding differences of the two frameworks used and from this difference in data type.
+
+
+
+% \begin{table}[h]
+% \centering
+% \caption{Times for computing the condensed co-association matrix using different matrix strategies.}
+
+% \label{tab:coassoc build sparse}
+% \end{table}
+
+
+\begin{table}[h]
+\centering
+\caption{Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.}
+
+\begin{tabular}{lll}
+\toprule
+{} &      accuracy & lifetime accuracy \\
+\midrule
+breast\_cancer &  4.948755e-06 &      2.825769e-06 \\
+ionosphere    &  1.652422e-06 &      1.452991e-06 \\
+iris          &  3.333333e-06 &      3.333333e-06 \\
+isolet        &  1.038861e-07 &      4.084904e-07 \\
+optdigits     &  3.795449e-06 &      1.480513e-06 \\
+pima          &  3.333333e-06 &      3.333333e-06 \\
+pima\_norm     &  4.166667e-07 &      4.166667e-07 \\
+wine\_norm     &  1.123596e-07 &      1.910112e-06 \\
+\bottomrule
+\end{tabular}
+
+\label{tab:validation error acc}
+\end{table}
+
+
+
+
+% \begin{table}[h]
+% \centering
+% \caption{Speed-ups obtained in the combination and recovery phases of EAC, using the ensemble generated from the original EAC implementation.}
+
+% \begin{tabular}{lll}
+% \toprule
+% Data set & Combination & Recovery \\
+% \midrule
+% breast\_cancer &   7.713564 &        15.22334 \\
+% ionosphere    &   9.678288 &        20.12336 \\
+% iris          &   14.25549 &         28.4751 \\
+% isolet        &   5.500147 &        174.4283 \\
+% optdigits     &   9.783604 &        53.21466 \\
+% pima          &   85.21744 &        8.406726 \\
+% pima\_norm     &   127.2274 &        12.89474 \\
+% wine\_norm     &     8.0178 &        12.98206 \\
+% \bottomrule
+% \end{tabular}
+
+% \label{tab:validation speedup comb rec}
+% \end{table}
+
+Table \ref{tab:validation speedup all} presents the speed-up of the proposed version over the original one.
+It is clear that speed-up is obtained in all phases of EAC, often by an order of magnitude.
+This result, combined with the demonstration that the differences in accuracy are negligible, show that the proposed algorithm performs well in small data sets.
+
+\begin{table}[h]
+\centering
+\caption{Speed-ups obtained in the different phases of EAC, with independent production of ensembles.}
+
+\begin{tabular}{lccllll}
+\toprule
+Data set &  No. patterns &  No. features & No. classes & Production & Combination & Recovery \\
+\midrule
+breast\_cancer &           683 &            10 &           2 &      50.43974 &   7.544247 &        15.83316 \\
+ionosphere    &           351 &            34 &           2 &      21.86286 &   11.30883 &        19.97219 \\
+iris          &           150 &             4 &           3 &      19.76525 &   14.49562 &        28.50479 \\
+isolet        &          7797 &           617 &          26 &      7.010007 &   6.183124 &        206.2837 \\
+optdigits     &          3823 &            64 &          10 &      17.30209 &    10.2096 &        53.02636 \\
+pima          &           768 &             8 &           2 &      50.65624 &   141.4828 &        13.93502 \\
+pima\_norm     &           768 &             8 &           2 &      54.25415 &   132.8632 &          14.355 \\
+wine\_norm     &           178 &             4 &           3 &      22.92404 &   14.56994 &        25.27709 \\
+\bottomrule
+\end{tabular}
+
+\label{tab:validation speedup all}
+\end{table}
+
+
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -187,14 +295,11 @@ The difference between the two optimized versions will become clearer on future 
 \section{EAC}
 \label{sec:eac results}
 
+This section will present thorough results concerning several characteristics related to the EAC method.
 
 
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-%
-%  					SPARSE BUILDNG RESUTLS 
-%
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
 
 
 

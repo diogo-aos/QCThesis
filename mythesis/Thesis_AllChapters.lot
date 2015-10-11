@@ -9,8 +9,10 @@
 \contentsline {table}{\numberline {6.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{52}{table.6.1}
 \contentsline {table}{\numberline {6.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{52}{table.6.2}
 \contentsline {table}{\numberline {6.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{53}{table.6.3}
-\contentsline {table}{\numberline {6.4}{\ignorespaces Average speed-up of the GPU MST algorithm for different data sets.\relax }}{54}{table.6.4}
+\contentsline {table}{\numberline {6.4}{\ignorespaces Average speed-up of the GPU MST algorithm for different data sets, sorted by number of edges.\relax }}{54}{table.6.4}
 \contentsline {table}{\numberline {6.5}{\ignorespaces Cross-correlation between several characteristics of the graphs and the average speed-up.\relax }}{54}{table.caption.48}
 \contentsline {table}{\numberline {6.6}{\ignorespaces Times for computing the condensed co-association matrix using different matrix strategies.\relax }}{56}{table.caption.49}
+\contentsline {table}{\numberline {6.7}{\ignorespaces Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.\relax }}{57}{table.caption.51}
+\contentsline {table}{\numberline {6.8}{\ignorespaces Speed-ups obtained in the different phases of EAC, with independent production of ensembles.\relax }}{57}{table.caption.52}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

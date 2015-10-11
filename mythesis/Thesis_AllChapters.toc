@@ -72,12 +72,12 @@
 \contentsline {section}{\numberline {6.3}GPU MST}{53}{section.6.3}
 \contentsline {section}{\numberline {6.4}Building the co-association matrix with different sparse formats}{55}{section.6.4}
 \contentsline {section}{\numberline {6.5}EAC Validation}{56}{section.6.5}
-\contentsline {section}{\numberline {6.6}EAC}{56}{section.6.6}
-\contentsline {chapter}{\numberline {7}Discussion?}{57}{chapter.7}
-\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{57}{section.7.1}
-\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{57}{section.7.2}
-\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{57}{section.7.3}
-\contentsline {chapter}{\numberline {8}Conclusions}{58}{chapter.8}
-\contentsline {section}{\numberline {8.1}Achievements}{58}{section.8.1}
-\contentsline {section}{\numberline {8.2}Future Work}{58}{section.8.2}
-\contentsline {chapter}{Bibliography}{70}{chapter*.51}
+\contentsline {section}{\numberline {6.6}EAC}{57}{section.6.6}
+\contentsline {chapter}{\numberline {7}Discussion?}{58}{chapter.7}
+\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{58}{section.7.1}
+\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{58}{section.7.2}
+\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{58}{section.7.3}
+\contentsline {chapter}{\numberline {8}Conclusions}{59}{chapter.8}
+\contentsline {section}{\numberline {8.1}Achievements}{59}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{59}{section.8.2}
+\contentsline {chapter}{Bibliography}{70}{chapter*.53}
