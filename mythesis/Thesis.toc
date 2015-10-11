@@ -22,8 +22,19 @@
 \contentsline {section}{\numberline {2.4}Building the co-association matrix with different sparse formats}{16}{section.2.4}
 \contentsline {section}{\numberline {2.5}EAC Validation}{17}{section.2.5}
 \contentsline {section}{\numberline {2.6}EAC}{18}{section.2.6}
-\contentsline {chapter}{\numberline {3}Discussion?}{19}{chapter.3}
-\contentsline {section}{\numberline {3.1}real num assocs compared to samples per cluster}{19}{section.3.1}
-\contentsline {section}{\numberline {3.2}Trade-off speed accuracy memory}{19}{section.3.2}
-\contentsline {section}{\numberline {3.3}Expanding this work to other scalability paradigms}{19}{section.3.3}
-\contentsline {chapter}{Bibliography}{23}{chapter*.17}
+\contentsline {section}{\numberline {2.7}Quantum K-Means}{19}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Testing and Results}{19}{subsection.2.7.1}
+\contentsline {subsubsection}{Timing results}{19}{section*.17}
+\contentsline {subsubsection}{Accuracy}{19}{section*.19}
+\contentsline {subsubsection}{QK-Means details}{20}{section*.21}
+\contentsline {subsection}{\numberline {2.7.2}Discussion}{22}{subsection.2.7.2}
+\contentsline {section}{\numberline {2.8}Horn and Gottlieb's algorithm}{23}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Performance}{23}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Accuracy}{23}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}Iris data}{23}{subsection.2.8.3}
+\contentsline {subsection}{\numberline {2.8.4}Crab data}{24}{subsection.2.8.4}
+\contentsline {chapter}{\numberline {3}Discussion?}{26}{chapter.3}
+\contentsline {section}{\numberline {3.1}real num assocs compared to samples per cluster}{26}{section.3.1}
+\contentsline {section}{\numberline {3.2}Trade-off speed accuracy memory}{26}{section.3.2}
+\contentsline {section}{\numberline {3.3}Expanding this work to other scalability paradigms}{26}{section.3.3}
+\contentsline {chapter}{Bibliography}{30}{chapter*.31}

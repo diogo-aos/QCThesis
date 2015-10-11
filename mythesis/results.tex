@@ -1,6 +1,13 @@
 %!TEX root = thesis.tex
 % \rscpath = contains the path to the resources folder
 
+% \begin{table}[h]
+% \centering
+% \caption{}
+
+% \label{tab:}
+% \end{table}
+
 \chapter{Results and Discussion}
 \label{chapter:results}
 
@@ -192,6 +199,7 @@ Several small data sets, chosen from the data sets used by \citet{Lourenco2010},
 All these data sets were taken from the UCI Machine Learning Repository. %TODO add ref
 Furthermore, since the generation of the ensemble is probabilistic and can change the results between runs, the proposed version is processed with the ensembles created by the original version as well.
 This guarantees that the combination and recovery phases of EAC, which are deterministic when using SL, are equivalent to the original.
+All data in this section refers to processing done in machine Alpha.
 
 Table \ref{tab:validation error acc} presents the difference between the accuracies of the two versions.
 Analyzing these results, it is apparent that the difference is minimal.
@@ -202,12 +210,7 @@ The differences in accuracy are thought to come from rounding differences of the
 
 
 
-% \begin{table}[h]
-% \centering
-% \caption{Times for computing the condensed co-association matrix using different matrix strategies.}
 
-% \label{tab:coassoc build sparse}
-% \end{table}
 
 
 \begin{table}[h]
@@ -216,7 +219,7 @@ The differences in accuracy are thought to come from rounding differences of the
 
 \begin{tabular}{lll}
 \toprule
-{} &      accuracy & lifetime accuracy \\
+Data set &      Accuracy & Accuracy (lifetime) \\
 \midrule
 breast\_cancer &  4.948755e-06 &      2.825769e-06 \\
 ionosphere    &  1.652422e-06 &      1.452991e-06 \\
@@ -312,4 +315,4 @@ This section will present thorough results concerning several characteristics re
 %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-% \input{results_quantum}
+\input{results_quantum}

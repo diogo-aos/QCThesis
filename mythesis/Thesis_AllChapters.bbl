@@ -51,11 +51,16 @@ Ana Fred.
 \newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
 \newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
 
-\bibitem[Lange et~al.(2004)Lange, Roth, Braun, and Buhmann]{lange2004stability}
-Tilman Lange, Volker Roth, Mikio~L Braun, and Joachim~M Buhmann.
-\newblock {Stability-based validation of clustering solutions}.
-\newblock \emph{Neural computation}, 16\penalty0 (6):\penalty0 1299--1323,
-  2004.
+\bibitem[Meila(2003)]{Meila2003}
+Marina Meila.
+\newblock {Comparing clusterings by the variation of information}.
+\newblock \emph{Learning theory and Kernel machines: 16th Annual Conference on
+  Learning Theory and 7th Kernel Workshop, COLT/Kernel 2003, Washington, DC,
+  USA, August 24-27, 2003: proceedings}, page 173, 2003.
+\newblock ISSN 03029743.
+\newblock \doi{10.1007/978-3-540-45167-9\_14}.
+\newblock URL
+  \url{http://books.google.com/books?hl=en\&amp;lr=\&amp;id=hk1dqsM0XF4C\&amp;oi=fnd\&amp;pg=PA173\&amp;dq=Comparing+Clusterings+by+the+Variation+of+Information\&amp;ots=7rcmrLpFV1\&amp;sig=P-AXGQnlenPfAlSb3fdhphYv6dI}.
 
 \bibitem[Davies and Bouldin(1979)]{davies1979cluster}
 David~L Davies and Donald~W Bouldin.

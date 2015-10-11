@@ -4,8 +4,9 @@ The top-level auxiliary file: Thesis_AllChapters.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
 Warning--entry type for "hdf5" isn't style-file defined
---line 1762 of file library.bib
+--line 2037 of file library.bib
 Warning--I didn't find a database entry for "Pedregosa2012"
+Warning--I didn't find a database entry for "Casper"
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
@@ -31,43 +32,43 @@ Warning--empty year in hdf5
 Warning--empty journal in AltetiAbad2007
 You've used 110 entries,
             2481 wiz_defined-function locations,
-            1368 strings with 27749 characters,
-and the built_in function-call counts, 47175 in all, are:
-= -- 4428
-> -- 2004
-< -- 105
-+ -- 799
-- -- 574
-* -- 3540
-:= -- 7198
-add.period$ -- 455
+            1374 strings with 28128 characters,
+and the built_in function-call counts, 47103 in all, are:
+= -- 4431
+> -- 1984
+< -- 107
++ -- 793
+- -- 568
+* -- 3516
+:= -- 7183
+add.period$ -- 458
 call.type$ -- 110
 change.case$ -- 216
 chr.to.int$ -- 105
 cite$ -- 133
-duplicate$ -- 2425
-empty$ -- 4218
-format.name$ -- 752
-if$ -- 10320
+duplicate$ -- 2432
+empty$ -- 4212
+format.name$ -- 746
+if$ -- 10316
 int.to.chr$ -- 6
 int.to.str$ -- 111
 missing$ -- 109
-newline$ -- 675
+newline$ -- 678
 num.names$ -- 330
 pop$ -- 848
 preamble$ -- 1
 purify$ -- 110
 quote$ -- 0
-skip$ -- 1616
+skip$ -- 1625
 stack$ -- 0
-substring$ -- 2496
-swap$ -- 579
-text.length$ -- 47
+substring$ -- 2471
+swap$ -- 586
+text.length$ -- 48
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 758
 warning$ -- 23
-while$ -- 426
+while$ -- 425
 width$ -- 0
-write$ -- 1658
-(There were 25 warnings)
+write$ -- 1664
+(There were 26 warnings)

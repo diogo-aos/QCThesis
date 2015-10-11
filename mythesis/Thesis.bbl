@@ -1,9 +1,19 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{37}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Horn and Gottlieb(2001)]{Horn2001b}
+David Horn and Assaf Gottlieb.
+\newblock {Algorithm for Data Clustering in Pattern Recognition Problems Based
+  on Quantum Mechanics}.
+\newblock \emph{Physical Review Letters}, 88\penalty0 (1):\penalty0 1--4, 2001.
+\newblock ISSN 0031-9007.
+\newblock \doi{10.1103/PhysRevLett.88.018702}.
+\newblock URL
+  \url{http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.018702}.
 
 \bibitem[Jain(2010)]{Jain2010}
 Anil~K Jain.
@@ -51,11 +61,16 @@ Ana Fred.
 \newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
 \newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
 
-\bibitem[Lange et~al.(2004)Lange, Roth, Braun, and Buhmann]{lange2004stability}
-Tilman Lange, Volker Roth, Mikio~L Braun, and Joachim~M Buhmann.
-\newblock {Stability-based validation of clustering solutions}.
-\newblock \emph{Neural computation}, 16\penalty0 (6):\penalty0 1299--1323,
-  2004.
+\bibitem[Meila(2003)]{Meila2003}
+Marina Meila.
+\newblock {Comparing clusterings by the variation of information}.
+\newblock \emph{Learning theory and Kernel machines: 16th Annual Conference on
+  Learning Theory and 7th Kernel Workshop, COLT/Kernel 2003, Washington, DC,
+  USA, August 24-27, 2003: proceedings}, page 173, 2003.
+\newblock ISSN 03029743.
+\newblock \doi{10.1007/978-3-540-45167-9\_14}.
+\newblock URL
+  \url{http://books.google.com/books?hl=en\&amp;lr=\&amp;id=hk1dqsM0XF4C\&amp;oi=fnd\&amp;pg=PA173\&amp;dq=Comparing+Clusterings+by+the+Variation+of+Information\&amp;ots=7rcmrLpFV1\&amp;sig=P-AXGQnlenPfAlSb3fdhphYv6dI}.
 
 \bibitem[Davies and Bouldin(1979)]{davies1979cluster}
 David~L Davies and Donald~W Bouldin.
@@ -243,5 +258,20 @@ Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
   Algorithm}.
 \newblock 2015.
 \newblock URL \url{https://github.com/Beatgodes/BoruvkaUMinho}.
+
+\bibitem[Wiebe et~al.(2014)Wiebe, Kapoor, and Svore]{Wiebe2014}
+Nathan Wiebe, Ashish Kapoor, and Krysta Svore.
+\newblock {Quantum Algorithms for Nearest-Neighbor Methods for Supervised and
+  Unsupervised Learning}.
+\newblock page~31, 2014.
+\newblock URL \url{http://arxiv.org/abs/1401.2142}.
+
+\bibitem[Liu et~al.(2010)Liu, Chen, Yan, Liu, Xu, and Zheng]{Liu2010}
+Wenjie Liu, Hanwu Chen, Qiaoqiao Yan, Zhihao Liu, Juan Xu, and Yu~Zheng.
+\newblock {A novel quantum-inspired evolutionary algorithm based on variable
+  angle-distance rotation}.
+\newblock \emph{2010 IEEE World Congress on Computational Intelligence, WCCI
+  2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
+\newblock \doi{10.1109/CEC.2010.5586281}.
 
 \end{thebibliography}

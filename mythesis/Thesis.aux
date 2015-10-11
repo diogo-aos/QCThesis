@@ -25,6 +25,7 @@
 \@writefile{toc}{\contentsline {section}{Acknowledgments}{v}{section*.1}}
 \@writefile{toc}{\contentsline {section}{Resumo}{vii}{section*.2}}
 \@writefile{toc}{\contentsline {section}{Abstract}{ix}{section*.3}}
+\citation{Horn2001b}
 \@writefile{toc}{\contentsline {section}{List of Tables}{xiii}{chapter*.5}}
 \@writefile{toc}{\contentsline {section}{List of Figures}{xv}{chapter*.6}}
 \gdef \LT@i {\LT@entry 
@@ -54,7 +55,7 @@
 \citation{jarvis1973clustering}
 \citation{Aggarwal2014}
 \citation{Fred2001}
-\citation{lange2004stability}
+\citation{Meila2003}
 \citation{davies1979cluster}
 \citation{Boley1998}
 \citation{Steinbach2000}
@@ -161,54 +162,94 @@
 \newlabel{fig:coassoc build sparse}{{2.1}{17}{sd\relax }{figure.caption.14}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}EAC Validation}{17}{section.2.5}}
 \newlabel{sec:eac validation}{{2.5}{17}{EAC Validation}{section.2.5}{}}
+\citation{Casper}
+\citation{Wiebe2014}
+\citation{Liu2010}
 \@writefile{lot}{\contentsline {table}{\numberline {2.7}{\ignorespaces Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.\relax }}{18}{table.caption.15}}
 \newlabel{tab:validation error acc}{{2.7}{18}{Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.\relax }{table.caption.15}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2.8}{\ignorespaces Speed-ups obtained in the different phases of EAC, with independent production of ensembles.\relax }}{18}{table.caption.16}}
 \newlabel{tab:validation speedup all}{{2.8}{18}{Speed-ups obtained in the different phases of EAC, with independent production of ensembles.\relax }{table.caption.16}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}EAC}{18}{section.2.6}}
 \newlabel{sec:eac results}{{2.6}{18}{EAC}{section.2.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Quantum K-Means}{19}{section.2.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.1}Testing and Results}{19}{subsection.2.7.1}}
+\@writefile{toc}{\contentsline {subsubsection}{Timing results}{19}{section*.17}}
+\@writefile{toc}{\contentsline {subsubsection}{Accuracy}{19}{section*.19}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.9}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{20}{table.caption.18}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.10}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{20}{table.caption.20}}
+\@writefile{toc}{\contentsline {subsubsection}{QK-Means details}{20}{section*.21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{21}{figure.caption.22}}
+\newlabel{fig:db_index_mean_t2}{{2.2}{21}{DB index mean of the population in T2. Only 4 rounds represented.\relax }{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.3}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{21}{figure.caption.23}}
+\newlabel{fig:db_index_var_t2}{{2.3}{21}{DB index variance of the population in T2. Only 4 rounds represented.\relax }{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.4}{\ignorespaces DB index of best solution in T2.\relax }}{22}{figure.caption.24}}
+\newlabel{fig:qk_db_index_best_evo_t2}{{2.4}{22}{DB index of best solution in T2.\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.5}{\ignorespaces DB index of best solution in T3.\relax }}{22}{figure.caption.25}}
+\newlabel{fig:qk_db_index_best_evo_t3}{{2.5}{22}{DB index of best solution in T3.\relax }{figure.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.7.2}Discussion}{22}{subsection.2.7.2}}
+\citation{Horn2001b}
+\citation{Horn2001b}
+\@writefile{lot}{\contentsline {table}{\numberline {2.11}{\ignorespaces The values represent generations.\relax }}{23}{table.caption.26}}
+\newlabel{tab:db_index_t1_t3}{{2.11}{23}{The values represent generations.\relax }{table.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Horn and Gottlieb's algorithm}{23}{section.2.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.1}Performance}{23}{subsection.2.8.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {2.12}{\ignorespaces Time of computation of \citet  {Horn2001b} algorithm for a mixture of 4 Gaussians of different cardinality and dimensionality.\relax }}{23}{table.caption.27}}
+\newlabel{tab:horn performance}{{2.12}{23}{Time of computation of \citet {Horn2001b} algorithm for a mixture of 4 Gaussians of different cardinality and dimensionality.\relax }{table.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.2}Accuracy}{23}{subsection.2.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.3}Iris data}{23}{subsection.2.8.3}}
+\newlabel{sec:horn_iris}{{2.8.3}{23}{Iris data}{subsection.2.8.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces Plot of the two first principal components (PC).\relax }}{24}{figure.caption.28}}
+\newlabel{fig:iris_natural}{{2.6}{24}{Plot of the two first principal components (PC).\relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{24}{figure.caption.29}}
+\newlabel{fig:iris_2pc_cluster}{{2.7}{24}{Plots of the converged data data points and final clustering for 2 PC.\relax }{figure.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.8.4}Crab data}{24}{subsection.2.8.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{25}{figure.caption.30}}
+\newlabel{fig:iris_allpc_cluster}{{2.8}{25}{Plots of the converged data data points and final clustering for all PC of Iris data.\relax }{figure.caption.30}{}}
 \citation{Lourenco2010}
 \bibstyle{unsrtnat}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Discussion?}{19}{chapter.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Discussion?}{26}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{chapter:discussion}{{3}{19}{Discussion?}{chapter.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}real num assocs compared to samples per cluster}{19}{section.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Trade-off speed accuracy memory}{19}{section.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Expanding this work to other scalability paradigms}{19}{section.3.3}}
+\newlabel{chapter:discussion}{{3}{26}{Discussion?}{chapter.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}real num assocs compared to samples per cluster}{26}{section.3.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Trade-off speed accuracy memory}{26}{section.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Expanding this work to other scalability paradigms}{26}{section.3.3}}
 \bibdata{library}
-\bibcite{Jain2010}{{1}{2010}{{Jain}}{{}}}
-\bibcite{Jain1999}{{2}{1999}{{Jain et~al.}}{{Jain, Murty, and Flynn}}}
-\bibcite{anderson1936species}{{3}{1936}{{Anderson}}{{}}}
-\bibcite{fisher1936use}{{4}{1936}{{Fisher}}{{}}}
-\bibcite{jarvis1973clustering}{{5}{1973}{{Jarvis and Patrick}}{{}}}
-\bibcite{Aggarwal2014}{{6}{2013}{{Aggarwal and Reddy}}{{}}}
-\bibcite{Fred2001}{{7}{2001}{{Fred}}{{}}}
-\bibcite{lange2004stability}{{8}{2004}{{Lange et~al.}}{{Lange, Roth, Braun, and Buhmann}}}
-\bibcite{davies1979cluster}{{9}{1979}{{Davies and Bouldin}}{{}}}
-\bibcite{Boley1998}{{10}{1998}{{Boley}}{{}}}
-\bibcite{Steinbach2000}{{11}{2000}{{Steinbach et~al.}}{{Steinbach, Karypis, Kumar, and Others}}}
-\bibcite{Chavent1998}{{12}{1998}{{Chavent}}{{}}}
-\bibcite{Bezdek1984}{{13}{1984}{{Bezdek et~al.}}{{Bezdek, Ehrlich, and Full}}}
-\bibcite{Kang2011}{{14}{2011}{{Kang et~al.}}{{Kang, Tsourakakis, and Faloutsos}}}
-\bibcite{kmeansoriginal}{{15}{1967}{{MacQueen}}{{}}}
-\bibcite{Arthur2007}{{16}{2007}{{Arthur et~al.}}{{Arthur, Arthur, Vassilvitskii, and Vassilvitskii}}}
-\bibcite{Pakhira2009}{{17}{2009}{{Pakhira}}{{}}}
-\bibcite{sneath1962numerical}{{18}{1962}{{Sneath and Sokal}}{{}}}
-\bibcite{Sibson1973}{{19}{1973}{{Sibson}}{{}}}
-\bibcite{Gower1969}{{20}{1969}{{Gower and Ross}}{{}}}
-\bibcite{Mullner2011}{{21}{2011}{{M\"{u}llner}}{{}}}
-\bibcite{starck2007astronomical}{{22}{2007}{{Starck and Murtagh}}{{}}}
-\bibcite{topchy2004mixture}{{23}{2004}{{Topchy et~al.}}{{Topchy, Jain, and Punch}}}
-\bibcite{Fred2005}{{24}{2005}{{Fred and Jain}}{{}}}
-\bibcite{Strehl2002}{{25}{2002}{{Strehl and Ghosh}}{{}}}
-\bibcite{wang2011bayesian}{{26}{2011}{{Wang et~al.}}{{Wang, Shan, and Banerjee}}}
-\bibcite{Dudoit2003}{{27}{2003}{{Dudoit and Fridlyand}}{{}}}
-\bibcite{Fred2002}{{28}{2002}{{Fred and Jain}}{{}}}
-\bibcite{Lourenco2007}{{29}{2007}{{Louren\c {c}o and Fred}}{{}}}
-\bibcite{LourencoECG2009}{{30}{2009}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Carreiras, Bul\`{o}, and Fred}}}
-\bibcite{Duarte2005}{{31}{2005}{{Duarte et~al.}}{{Duarte, a.L.N. Fred, Lourenco, and Rodrigues}}}
-\bibcite{Lourenco2010}{{32}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
-\bibcite{Qian2010}{{33}{2010}{{Qian et~al.}}{{Qian, Cukierski, Osman, and Goodell}}}
-\bibcite{Sousa2015}{{34}{2015}{{Sousa et~al.}}{{Sousa, Mariano, and Proen\c {c}a}}}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{23}{chapter*.17}}
+\bibcite{Horn2001b}{{1}{2001}{{Horn and Gottlieb}}{{}}}
+\bibcite{Jain2010}{{2}{2010}{{Jain}}{{}}}
+\bibcite{Jain1999}{{3}{1999}{{Jain et~al.}}{{Jain, Murty, and Flynn}}}
+\bibcite{anderson1936species}{{4}{1936}{{Anderson}}{{}}}
+\bibcite{fisher1936use}{{5}{1936}{{Fisher}}{{}}}
+\bibcite{jarvis1973clustering}{{6}{1973}{{Jarvis and Patrick}}{{}}}
+\bibcite{Aggarwal2014}{{7}{2013}{{Aggarwal and Reddy}}{{}}}
+\bibcite{Fred2001}{{8}{2001}{{Fred}}{{}}}
+\bibcite{Meila2003}{{9}{2003}{{Meila}}{{}}}
+\bibcite{davies1979cluster}{{10}{1979}{{Davies and Bouldin}}{{}}}
+\bibcite{Boley1998}{{11}{1998}{{Boley}}{{}}}
+\bibcite{Steinbach2000}{{12}{2000}{{Steinbach et~al.}}{{Steinbach, Karypis, Kumar, and Others}}}
+\bibcite{Chavent1998}{{13}{1998}{{Chavent}}{{}}}
+\bibcite{Bezdek1984}{{14}{1984}{{Bezdek et~al.}}{{Bezdek, Ehrlich, and Full}}}
+\bibcite{Kang2011}{{15}{2011}{{Kang et~al.}}{{Kang, Tsourakakis, and Faloutsos}}}
+\bibcite{kmeansoriginal}{{16}{1967}{{MacQueen}}{{}}}
+\bibcite{Arthur2007}{{17}{2007}{{Arthur et~al.}}{{Arthur, Arthur, Vassilvitskii, and Vassilvitskii}}}
+\bibcite{Pakhira2009}{{18}{2009}{{Pakhira}}{{}}}
+\bibcite{sneath1962numerical}{{19}{1962}{{Sneath and Sokal}}{{}}}
+\bibcite{Sibson1973}{{20}{1973}{{Sibson}}{{}}}
+\bibcite{Gower1969}{{21}{1969}{{Gower and Ross}}{{}}}
+\bibcite{Mullner2011}{{22}{2011}{{M\"{u}llner}}{{}}}
+\bibcite{starck2007astronomical}{{23}{2007}{{Starck and Murtagh}}{{}}}
+\bibcite{topchy2004mixture}{{24}{2004}{{Topchy et~al.}}{{Topchy, Jain, and Punch}}}
+\bibcite{Fred2005}{{25}{2005}{{Fred and Jain}}{{}}}
+\bibcite{Strehl2002}{{26}{2002}{{Strehl and Ghosh}}{{}}}
+\bibcite{wang2011bayesian}{{27}{2011}{{Wang et~al.}}{{Wang, Shan, and Banerjee}}}
+\bibcite{Dudoit2003}{{28}{2003}{{Dudoit and Fridlyand}}{{}}}
+\bibcite{Fred2002}{{29}{2002}{{Fred and Jain}}{{}}}
+\bibcite{Lourenco2007}{{30}{2007}{{Louren\c {c}o and Fred}}{{}}}
+\bibcite{LourencoECG2009}{{31}{2009}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Carreiras, Bul\`{o}, and Fred}}}
+\bibcite{Duarte2005}{{32}{2005}{{Duarte et~al.}}{{Duarte, a.L.N. Fred, Lourenco, and Rodrigues}}}
+\bibcite{Lourenco2010}{{33}{2010}{{Louren\c {c}o et~al.}}{{Louren\c {c}o, Fred, and Jain}}}
+\bibcite{Qian2010}{{34}{2010}{{Qian et~al.}}{{Qian, Cukierski, Osman, and Goodell}}}
+\bibcite{Sousa2015}{{35}{2015}{{Sousa et~al.}}{{Sousa, Mariano, and Proen\c {c}a}}}
+\bibcite{Wiebe2014}{{36}{2014}{{Wiebe et~al.}}{{Wiebe, Kapoor, and Svore}}}
+\bibcite{Liu2010}{{37}{2010}{{Liu et~al.}}{{Liu, Chen, Yan, Liu, Xu, and Zheng}}}
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{30}{chapter*.31}}

@@ -24,5 +24,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces sd\relax }}{56}{figure.caption.50}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{60}{figure.caption.58}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{60}{figure.caption.59}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces DB index of best solution in T2.\relax }}{61}{figure.caption.60}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces DB index of best solution in T3.\relax }}{61}{figure.caption.61}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Plot of the two first principal components (PC).\relax }}{63}{figure.caption.64}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{63}{figure.caption.65}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{64}{figure.caption.66}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

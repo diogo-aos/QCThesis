@@ -6,4 +6,11 @@
 \contentsline {figure}{\numberline {1.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris data set. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{8}{figure.caption.11}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces sd\relax }}{17}{figure.caption.14}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{21}{figure.caption.22}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{21}{figure.caption.23}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces DB index of best solution in T2.\relax }}{22}{figure.caption.24}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces DB index of best solution in T3.\relax }}{22}{figure.caption.25}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Plot of the two first principal components (PC).\relax }}{24}{figure.caption.28}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{24}{figure.caption.29}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{25}{figure.caption.30}
 \addvspace {10\p@ }
