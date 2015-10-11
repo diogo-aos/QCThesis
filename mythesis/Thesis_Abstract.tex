@@ -13,11 +13,22 @@
 % Add entry in the table of contents as section
 \addcontentsline{toc}{section}{Abstract}
 
-Insert your abstract here with a maximum of 250 words, followed by 4 to 6 keywords...
+Advances in technology allow for the collection and storage of unprecedented amount and variety of data.
+Most of this data is stored electronically and there is an interest in automated analysis for generation of knowledge and new insights.
+Since, often, the structure of the data is unknown, clustering techniques become particularly interesting for knowledge discovery and data mining, since they makes as few assumptions on the data as possible.
+A vast body of work on these algorithms exist, yet, typically, no single algorithm is able to respond to the specificities of all data.
+Ensemble clustering algorithm address this problem by combining other algorithms.
+Evidence Accumulation Clustering (EAC) is a robust ensemble algorithm that has shown good results and is the focus of this dissertation.
+However, this robustness comes with higher computational cost.
+Its application is slower and restricted to smaller data sets.
+Thus, the objective of this dissertation is to scale EAC, allowing its applicability to big data sets (more than $500 \: 000$ patterns), with technology available at a typical workstation.
+Accordingly, several approaches were explored: speed-up with other algorithms (\emph{quantum clustering}) or parallel computing (with GPU) and reducing space complexity by using external memory (hard drive) algorithms and exploiting the sparse nature of EAC.
+A relevant contribution is a novel method to build a sparse matrix specialized in EAC.
+Results show that the proposed solution is applicable to large data sets and is significantly faster than the original for smaller data sets.
 
 \vfill
 
-\textbf{\Large Keywords:} keyword1, keyword2,...
+\textbf{\Large Key words:} clustering, EAC, quantum clustering, K-Means, Single-Link, sparse matrix, GPGPU
 
 \cleardoublepage
 

@@ -3,52 +3,49 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
-Warning--I didn't find a database entry for "Casper"
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
 Warning--empty journal in LourencoECG2009
-Warning--empty journal in Sousa2015
-Warning--empty journal in Wiebe2014
-You've used 37 entries,
+You've used 33 entries,
             2481 wiz_defined-function locations,
-            852 strings with 12200 characters,
-and the built_in function-call counts, 14978 in all, are:
-= -- 1413
-> -- 599
-< -- 33
-+ -- 244
-- -- 170
-* -- 1112
-:= -- 2324
-add.period$ -- 153
-call.type$ -- 37
-change.case$ -- 72
-chr.to.int$ -- 37
-cite$ -- 43
-duplicate$ -- 773
-empty$ -- 1366
-format.name$ -- 231
-if$ -- 3245
+            821 strings with 11162 characters,
+and the built_in function-call counts, 13441 in all, are:
+= -- 1285
+> -- 503
+< -- 31
++ -- 208
+- -- 142
+* -- 990
+:= -- 2065
+add.period$ -- 135
+call.type$ -- 33
+change.case$ -- 64
+chr.to.int$ -- 33
+cite$ -- 37
+duplicate$ -- 694
+empty$ -- 1243
+format.name$ -- 197
+if$ -- 2923
 int.to.chr$ -- 1
-int.to.str$ -- 38
-missing$ -- 38
-newline$ -- 234
-num.names$ -- 111
-pop$ -- 273
+int.to.str$ -- 34
+missing$ -- 34
+newline$ -- 208
+num.names$ -- 99
+pop$ -- 240
 preamble$ -- 1
-purify$ -- 37
+purify$ -- 33
 quote$ -- 0
-skip$ -- 497
+skip$ -- 450
 stack$ -- 0
-substring$ -- 782
-swap$ -- 146
-text.length$ -- 10
+substring$ -- 757
+swap$ -- 135
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 253
-warning$ -- 6
-while$ -- 136
+type$ -- 225
+warning$ -- 4
+while$ -- 125
 width$ -- 0
-write$ -- 563
-(There were 7 warnings)
+write$ -- 503
+(There were 4 warnings)

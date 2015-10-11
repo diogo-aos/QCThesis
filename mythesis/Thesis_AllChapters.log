@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  11 OCT 2015 10:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  11 OCT 2015 11:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -942,17 +942,14 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 50.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \vbox (badness 1371) has occurred while \output is active []
-
- [1
+) [1
 
 \openout4 = `Thesis_AllChapters.ist'.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Figures/afa.png> <./IST_
-A_CMYK_POS.pdf> <./Figures/clustering.jpg>] [2]) (./Thesis_Dedication.tex [3
+A_CMYK_POS.pdf> <./Figures/clustering.jpg>] [2
 
-] [4
+]) (./Thesis_Dedication.tex [3] [4
 
 ])
 (./Thesis_Acknowledgements.tex
@@ -961,12 +958,20 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
  [5] [6
 
 ]) (./Thesis_Resumo.tex
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 18.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 20.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 30.
  [7] [8
 
 ])
-(./Thesis_Abstract.tex [9] [10
+(./Thesis_Abstract.tex
+Overfull \hbox (0.38857pt too wide) in paragraph at lines 31--32
+[]\OT1/phv/b/n/14.4 Key words: \OT1/phv/m/n/10 clus-ter-ing, EAC, quan-tum clus
+-ter-ing, K-Means, Single-Link, sparse ma-trix, GPGPU 
+ []
+
+[9] [10
 
 ])
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
@@ -993,10 +998,7 @@ Overfull \hbox (1.15988pt too wide) detected at line 6
 ] [16
 
 ]
-(./Thesis_AllChapters.lof
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 17.
- [17
+(./Thesis_AllChapters.lof [17
 
 ])
 \tf@lof=\write9
@@ -1711,13 +1713,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 12550 strings out of 495004
- 193872 string characters out of 6180663
+ 12551 strings out of 495004
+ 193880 string characters out of 6180663
  309652 words of memory out of 5000000
- 14997 multiletter control sequences out of 15000+600000
+ 14998 multiletter control sequences out of 15000+600000
  50039 words of font info for 87 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
- 55i,16n,92p,964b,700s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,92p,964b,699s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/
@@ -1737,7 +1739,7 @@ s/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1
 c/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
 lvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis_AllChapters.pdf (98 pages, 4891525 bytes).
+Output written on Thesis_AllChapters.pdf (98 pages, 4894832 bytes).
 PDF statistics:
  1866 PDF objects out of 2073 (max. 8388607)
  1483 compressed objects within 15 object streams

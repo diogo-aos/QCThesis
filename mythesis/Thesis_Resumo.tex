@@ -13,11 +13,25 @@
 % Add entry in the table of contents as section
 \addcontentsline{toc}{section}{Resumo}
 
-Inserir o resumo em Portugu\^{e}s aqui com o máximo de 250 palavras e acompanhado de 4 a 6 palavras-chave...
+Avanços na tecnologia permitem a recolha e armazenamento de quantidades e variedades de dados sem precedente.
+A maior parte destes dados são armazenados eletrónicamente e existe interesse em realizar análise automática dos mesmos.
+As técnicas de \emph{clustering} estão entre as mais populares para essa tarefa porque não assumem nada sobre a estrutura dos dados \emph{a priori}.
+Dezenas de técnicas existem, mas, típicamente, uma só técnica não tem um bom desempenho em todos os conjuntos de dados devido às especifidades de cada um.
+Técnicas de \emph{ensemble clustering} tentam responder a esse desafio ao combinar outros algoritmos.
+Esta dissertação foca-se numa em particular, o \emph{Evidence Accumulation Clustering} (EAC).
+O EAC é uma algorithm robusto que tem demonstrado bons desempenhos na literatura numa variedade de conjuntos de dados.
+No entanto, esta robustez vem com um maior custo computacional associado.
+A sua aplicação não só é mais lenta como está restrita a conjuntos de dados pequenos.
+Assim, o objetivo desta dissertação é escalar o EAC, possibilitando a sua a aplicação a conjuntos de dados grandes (mais que $500 \: 000$ amostras), com tecnologia disponivel numa típica estação de trabalho.
+Com isto em mente, várias abordagens foram exploradas: acelerar processamento com outros algoritmos (\emph{quantum clustering}), através de processamento paralelo (com GPU), escalar para maiores conjuntos de dados com algoritmos de memória externa (disco rígido) e explorando a natureza esparsa do EAC.
+Uma contribuição de relevo é um método novo para construir uma matriz de esparsa específico ao EAC.
+Os resultados mostram que a solução proposta é, efetivamente, aplicável a conjuntos de dados grandes e é significativamente mais rápida que a original para conjuntos pequenos.
 
-\vfill
+\textbf{\Large Palavras-chave:} clustering, EAC, quantum clustering, K-Means, Single-Link, matriz esparsa, GPGPU
 
-\textbf{\Large Palavras-chave:} palavra-chave1, palavra-chave2,...
+
+
+
 
 \cleardoublepage
 
