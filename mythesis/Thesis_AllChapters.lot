@@ -17,9 +17,9 @@
 \contentsline {table}{\numberline {6.9}{\ignorespaces Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.\relax }}{61}{table.caption.55}
 \contentsline {table}{\numberline {6.10}{\ignorespaces Speed-ups obtained in the different phases of EAC, with independent production of ensembles.\relax }}{61}{table.caption.56}
 \contentsline {table}{\numberline {6.11}{\ignorespaces Different rules for computing $K_{min}$ and $K_{max}$. $n$ is the number of patterns in the data set and $sk$ is the number of samples per cluster.\relax }}{61}{table.caption.57}
-\contentsline {table}{\numberline {6.12}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{66}{table.caption.67}
-\contentsline {table}{\numberline {6.13}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{67}{table.caption.69}
-\contentsline {table}{\numberline {6.14}{\ignorespaces The values represent generations.\relax }}{67}{table.caption.75}
-\contentsline {table}{\numberline {6.15}{\ignorespaces Time of computation of \citet {Horn2001b} algorithm for a mixture of 4 Gaussians of different cardinality and dimensionality.\relax }}{70}{table.caption.76}
+\contentsline {table}{\numberline {6.12}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{69}{table.caption.68}
+\contentsline {table}{\numberline {6.13}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{70}{table.caption.70}
+\contentsline {table}{\numberline {6.14}{\ignorespaces The values represent generations.\relax }}{72}{table.caption.76}
+\contentsline {table}{\numberline {6.15}{\ignorespaces Time of computation of \citet {Horn2001b} algorithm for a mixture of 4 Gaussians of different cardinality and dimensionality.\relax }}{73}{table.caption.77}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

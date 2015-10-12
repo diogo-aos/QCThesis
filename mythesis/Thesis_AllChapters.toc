@@ -77,25 +77,26 @@
 \contentsline {section}{\numberline {6.4}Building the co-association matrix with different sparse formats}{58}{section.6.4}
 \contentsline {section}{\numberline {6.5}EAC Validation}{59}{section.6.5}
 \contentsline {section}{\numberline {6.6}EAC}{61}{section.6.6}
-\contentsline {subsubsection}{Building the co-association matrix}{62}{section*.58}
-\contentsline {subsubsection}{SLINK vs SL-MST vs SL-MST-Disk}{63}{section*.61}
-\contentsline {subsection}{\numberline {6.6.1}Number of associations, allocated associations and actual used memory}{63}{subsection.6.6.1}
-\contentsline {section}{\numberline {6.7}Quantum K-Means}{63}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Testing and Results}{66}{subsection.6.7.1}
-\contentsline {subsubsection}{Timing results}{66}{section*.66}
-\contentsline {subsubsection}{Accuracy}{67}{section*.68}
-\contentsline {subsubsection}{QK-Means details}{67}{section*.70}
-\contentsline {subsection}{\numberline {6.7.2}Discussion}{70}{subsection.6.7.2}
-\contentsline {section}{\numberline {6.8}Horn and Gottlieb's algorithm}{70}{section.6.8}
-\contentsline {subsection}{\numberline {6.8.1}Performance}{70}{subsection.6.8.1}
-\contentsline {subsection}{\numberline {6.8.2}Accuracy}{70}{subsection.6.8.2}
-\contentsline {subsection}{\numberline {6.8.3}Iris data}{71}{subsection.6.8.3}
-\contentsline {subsection}{\numberline {6.8.4}Crab data}{71}{subsection.6.8.4}
-\contentsline {chapter}{\numberline {7}Discussion?}{73}{chapter.7}
-\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{73}{section.7.1}
-\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{73}{section.7.2}
-\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{73}{section.7.3}
-\contentsline {chapter}{\numberline {8}Conclusions}{74}{chapter.8}
-\contentsline {section}{\numberline {8.1}Achievements}{74}{section.8.1}
-\contentsline {section}{\numberline {8.2}Future Work}{74}{section.8.2}
-\contentsline {chapter}{Bibliography}{86}{chapter*.80}
+\contentsline {subsection}{\numberline {6.6.1}Building the co-association matrix}{62}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}SLINK vs SL-MST vs SL-MST-Disk}{62}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Analysis of the number of associations}{64}{subsection.6.6.3}
+\contentsline {subsection}{\numberline {6.6.4}Space complexity}{68}{subsection.6.6.4}
+\contentsline {section}{\numberline {6.7}Quantum K-Means}{68}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Testing and Results}{68}{subsection.6.7.1}
+\contentsline {subsubsection}{Timing results}{69}{section*.67}
+\contentsline {subsubsection}{Accuracy}{69}{section*.69}
+\contentsline {subsubsection}{QK-Means details}{70}{section*.71}
+\contentsline {subsection}{\numberline {6.7.2}Discussion}{72}{subsection.6.7.2}
+\contentsline {section}{\numberline {6.8}Horn and Gottlieb's algorithm}{72}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Performance}{72}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Accuracy}{72}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.3}Iris data}{73}{subsection.6.8.3}
+\contentsline {subsection}{\numberline {6.8.4}Crab data}{75}{subsection.6.8.4}
+\contentsline {chapter}{\numberline {7}Discussion?}{76}{chapter.7}
+\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{76}{section.7.1}
+\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{76}{section.7.2}
+\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{76}{section.7.3}
+\contentsline {chapter}{\numberline {8}Conclusions}{77}{chapter.8}
+\contentsline {section}{\numberline {8.1}Achievements}{77}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{77}{section.8.2}
+\contentsline {chapter}{Bibliography}{88}{chapter*.81}
