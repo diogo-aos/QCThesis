@@ -2,9 +2,9 @@
 \contentsline {section}{Acknowledgments}{v}{section*.1}
 \contentsline {section}{Resumo}{vii}{section*.2}
 \contentsline {section}{Abstract}{ix}{section*.3}
-\contentsline {section}{List of Tables}{xiii}{chapter*.5}
-\contentsline {section}{List of Figures}{xvi}{chapter*.6}
-\contentsline {section}{Glossary}{xvii}{table.0.1}
+\contentsline {section}{List of Tables}{xvi}{chapter*.5}
+\contentsline {section}{List of Figures}{xviii}{chapter*.6}
+\contentsline {section}{Glossary}{xix}{table.0.1}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Challenges and Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -67,15 +67,35 @@
 \contentsline {section}{\numberline {4.6}Resume of the developed work}{49}{section.4.6}
 \contentsline {chapter}{\numberline {5}Final solution proposed}{50}{chapter.5}
 \contentsline {chapter}{\numberline {6}Results and Discussion}{51}{chapter.6}
-\contentsline {section}{\numberline {6.1}EAC}{51}{section.6.1}
-\contentsline {subsubsection}{Building the co-association matrix}{52}{section*.49}
-\contentsline {subsubsection}{SLINK vs SL-MST vs SL-MST-Disk}{52}{section*.52}
-\contentsline {subsection}{\numberline {6.1.1}Number of associations, allocated associations and actual used memory}{54}{subsection.6.1.1}
-\contentsline {chapter}{\numberline {7}Discussion?}{56}{chapter.7}
-\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{56}{section.7.1}
-\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{56}{section.7.2}
-\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{56}{section.7.3}
-\contentsline {chapter}{\numberline {8}Conclusions}{57}{chapter.8}
-\contentsline {section}{\numberline {8.1}Achievements}{57}{section.8.1}
-\contentsline {section}{\numberline {8.2}Future Work}{57}{section.8.2}
-\contentsline {chapter}{Bibliography}{68}{chapter*.57}
+\contentsline {section}{\numberline {6.1}Experimental environment}{51}{section.6.1}
+\contentsline {section}{\numberline {6.2}Parallel K-Means}{53}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Maximum potential speed-up}{53}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Analysis of speed-up}{54}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Effective bandwidth and computational throughput}{55}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Influence of the number of points per thread}{56}{subsection.6.2.4}
+\contentsline {section}{\numberline {6.3}GPU MST}{56}{section.6.3}
+\contentsline {section}{\numberline {6.4}Building the co-association matrix with different sparse formats}{58}{section.6.4}
+\contentsline {section}{\numberline {6.5}EAC Validation}{59}{section.6.5}
+\contentsline {section}{\numberline {6.6}EAC}{61}{section.6.6}
+\contentsline {subsubsection}{Building the co-association matrix}{62}{section*.58}
+\contentsline {subsubsection}{SLINK vs SL-MST vs SL-MST-Disk}{63}{section*.61}
+\contentsline {subsection}{\numberline {6.6.1}Number of associations, allocated associations and actual used memory}{63}{subsection.6.6.1}
+\contentsline {section}{\numberline {6.7}Quantum K-Means}{63}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Testing and Results}{66}{subsection.6.7.1}
+\contentsline {subsubsection}{Timing results}{66}{section*.66}
+\contentsline {subsubsection}{Accuracy}{67}{section*.68}
+\contentsline {subsubsection}{QK-Means details}{67}{section*.70}
+\contentsline {subsection}{\numberline {6.7.2}Discussion}{70}{subsection.6.7.2}
+\contentsline {section}{\numberline {6.8}Horn and Gottlieb's algorithm}{70}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}Performance}{70}{subsection.6.8.1}
+\contentsline {subsection}{\numberline {6.8.2}Accuracy}{70}{subsection.6.8.2}
+\contentsline {subsection}{\numberline {6.8.3}Iris data}{71}{subsection.6.8.3}
+\contentsline {subsection}{\numberline {6.8.4}Crab data}{71}{subsection.6.8.4}
+\contentsline {chapter}{\numberline {7}Discussion?}{73}{chapter.7}
+\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{73}{section.7.1}
+\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{73}{section.7.2}
+\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{73}{section.7.3}
+\contentsline {chapter}{\numberline {8}Conclusions}{74}{chapter.8}
+\contentsline {section}{\numberline {8.1}Achievements}{74}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{74}{section.8.2}
+\contentsline {chapter}{Bibliography}{86}{chapter*.80}
