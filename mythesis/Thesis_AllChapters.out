@@ -43,25 +43,13 @@
 \BOOKMARK [1][-]{section.4.6}{4.6 Resume of the developed work}{chapter.4}% 43
 \BOOKMARK [0][-]{chapter.5}{5 Final solution proposed}{}% 44
 \BOOKMARK [0][-]{chapter.6}{6 Results and Discussion}{}% 45
-\BOOKMARK [1][-]{section.6.1}{6.1 Experimental environment}{chapter.6}% 46
-\BOOKMARK [1][-]{section.6.2}{6.2 Parallel K-Means}{chapter.6}% 47
-\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 48
-\BOOKMARK [1][-]{section.6.4}{6.4 Building the co-association matrix with different sparse formats}{chapter.6}% 49
-\BOOKMARK [1][-]{section.6.5}{6.5 EAC Validation}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.6}{6.6 EAC}{chapter.6}% 51
-\BOOKMARK [1][-]{section.6.7}{6.7 Quantum K-Means}{chapter.6}% 52
-\BOOKMARK [2][-]{subsection.6.7.1}{6.7.1 Testing and Results}{section.6.7}% 53
-\BOOKMARK [2][-]{subsection.6.7.2}{6.7.2 Discussion}{section.6.7}% 54
-\BOOKMARK [1][-]{section.6.8}{6.8 Horn and Gottlieb's algorithm}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.8.1}{6.8.1 Performance}{section.6.8}% 56
-\BOOKMARK [2][-]{subsection.6.8.2}{6.8.2 Accuracy}{section.6.8}% 57
-\BOOKMARK [2][-]{subsection.6.8.3}{6.8.3 Iris data}{section.6.8}% 58
-\BOOKMARK [2][-]{subsection.6.8.4}{6.8.4 Crab data}{section.6.8}% 59
-\BOOKMARK [0][-]{chapter.7}{7 Discussion?}{}% 60
-\BOOKMARK [1][-]{section.7.1}{7.1 real num assocs compared to samples per cluster}{chapter.7}% 61
-\BOOKMARK [1][-]{section.7.2}{7.2 Trade-off speed accuracy memory}{chapter.7}% 62
-\BOOKMARK [1][-]{section.7.3}{7.3 Expanding this work to other scalability paradigms}{chapter.7}% 63
-\BOOKMARK [0][-]{chapter.8}{8 Conclusions}{}% 64
-\BOOKMARK [1][-]{section.8.1}{8.1 Achievements}{chapter.8}% 65
-\BOOKMARK [1][-]{section.8.2}{8.2 Future Work}{chapter.8}% 66
-\BOOKMARK [0][-]{chapter*.67}{Bibliography}{}% 67
+\BOOKMARK [1][-]{section.6.1}{6.1 EAC}{chapter.6}% 46
+\BOOKMARK [2][-]{subsection.6.1.1}{6.1.1 Number of associations, allocated associations and actual used memory}{section.6.1}% 47
+\BOOKMARK [0][-]{chapter.7}{7 Discussion?}{}% 48
+\BOOKMARK [1][-]{section.7.1}{7.1 real num assocs compared to samples per cluster}{chapter.7}% 49
+\BOOKMARK [1][-]{section.7.2}{7.2 Trade-off speed accuracy memory}{chapter.7}% 50
+\BOOKMARK [1][-]{section.7.3}{7.3 Expanding this work to other scalability paradigms}{chapter.7}% 51
+\BOOKMARK [0][-]{chapter.8}{8 Conclusions}{}% 52
+\BOOKMARK [1][-]{section.8.1}{8.1 Achievements}{chapter.8}% 53
+\BOOKMARK [1][-]{section.8.2}{8.2 Future Work}{chapter.8}% 54
+\BOOKMARK [0][-]{chapter*.57}{Bibliography}{}% 55

@@ -1,0 +1,22 @@
+\section{Experimental environment}
+\label{sec:system configs}
+
+All experiments were carried out in one (or more) of three distinct machines that will be referred to as \textbf{Alpha}, \textbf{Bravo} and \textbf{Charlie}.
+Their CPU and GPU hardware configurations are described in Tables \ref{tab:alpha}, \ref{tab:bravo} and \ref{tab:charlie}, respectively.
+Besides, Charlie has a \emph{Seagate ST2000DM001} 7200 RPM spinning disk and a \emph{Samsung 840 EVO} Solid State Drive, informations relevant for the third phase of EAC.% with sequential read/write speeds of up to 540/410 MB/s.
+
+Software wise, all machines are running Linux based operating systems.
+Alpha and Bravo are using the Ubuntu 14.04 and 12.04, respectively, with a graphical interface.
+Whether the machine is running a graphical interface or not is important because, in the case that it only has one GPU (as is the case with all the machines here presented) the available memory for computation is less than total and there is a limit to how long a CUDA kernel can be executed.
+Charlie is running Fedora 21 without a user interface.
+
+% SAMSUNG HM641JI
+% http://www.farnell.com/datasheets/841934.pdf
+% 5400 RPM
+% 209.3IOPS
+
+
+% Mighty4 SSD : http://hexus.net/tech/reviews/storage/58229-samsung-ssd-840-evo-120gb/
+\input{\rscpath/results/hardware/laptop}
+\input{\rscpath/results/hardware/mariana}
+\input{\rscpath/results/hardware/mighty4}

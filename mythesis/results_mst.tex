@@ -1,0 +1,64 @@
+\section{GPU MST}
+\label{sec:gpu mst}
+
+% From Sousa dissertation - the graphs he used and where he took them from
+% The graph collection supplied provided by 9th DIMACS Implementation Challeng \footnote{http://www.dis.uniroma1.it/~challenge9/} include sparse graphs
+% that depict the United States road network. These graphs are seen frequently in the recent literature. Furthermore, the OpenStreetMap’s \footnote{http://www.openstreetmap.org/} Portuguese road-network, provided by Geofabrik \footnote{http://download.geofabrik.de/europe/portugal.html} is included.
+
+To test the performance of the GPU MST algorithm, several graphs were used.
+Most of the graphs are United Stated road network graphs taken from the 9th DIMACS Implementation Challenge \footnote{http://www.dis.uniroma1.it/~challenge9/}.
+Furthermore, graphs taken from co-association matrix of the second step of EAC were used.
+This is important because, as will become clear, the graphs within the EAC paradigm have different characteristics.
+All the tests were performed on machine Bravo.
+The average speed-up obtained by using the GPU version over the sequential one is presented in Table \ref{tab:mst speedup}.
+Characteristics of the different graphs are also shown so as to illustrate what variables influence the speed-up obtained.
+It should be noted that a speed-up below 0 is actually a slow-down and its absolute value corresponds to the speed-up of the sequential version relative its GPU counterpart.
+
+\input{\rscpath/results/mst_gpu/mst_speedup_table}
+
+% note on the memory usage
+Although all the graphs presented in Table \ref{tab:mst speedup} occupy significantly less memory than the available in the used machine, the processing of bigger graphs is not possible.
+The reason for this is that between in each iteration two graphs have to be held in memory: the initial and the contracted.
+Moreover, the space occupied by the contracted graph will depend on the characteristics of the graph.
+
+% speed-ups are possible, contrast with original paper
+The results clearly show that it is possible to obtain speed-ups for computing a MST.
+This speed-up seems to increase with the size of the graph, with the notable exception of the graph from the EAC context.
+A note should be made here to bring to attention the contrast between these results and those presented by \citet{Sousa2015}.
+The speed-ups observed here are less than those reported by \citet{Sousa2015}.
+This is believed to be related with the technology stack used and this topic has been discussed in more depth in chapter \ref{chapter:methodology}.
+To understand how different parameters affect the speed-up of the algorithm, Table \ref{tab:mst corr} presents the correlation matrix of these variables.
+
+\input{\rscpath/results/mst_gpu/corr_table}
+
+%TODO run MST algorithm with more graphs of different characteristics
+% what are the variables that influence speed-up
+The row corresponding to the average speed-up is of special relevance.
+One can observe that the parameters most correlated with the speed-up are the number of vertices and the number of edges per vertex (EPV).
+The correlation matrix suggests that as one increases the number of vertices, the speed-up will also increase.
+In fact, if no graphs from the EAC context were present in the results, the same would apply to the number of edges, since the EPV would very similar.
+The reason for this is that speed-ups from parallelism are more salient when applied to big data sets, so that the speed-up of the computation itself outweighs the overhead associated with communication between host and device.
+The EPV is the other parameter that shows has highest (inverse) correlation with the speed-up.
+This suggests that the relationship between the number of edges and the number of vertices in the graph actually plays a big role in deciding if there will be a speed-up.
+
+% why, programatically, there is slow-down
+The underlying reason for the poor performance of graphs with high EPV ratio is believed to be that, since the parallel computation is anchored to vertices, the workload per vertex is higher than if the graph had a low ratio.
+Accordingly, the workload per vertex is higher from the beginning and can increase significantly as the algorithm progresses.
+Besides, the workload can become highly unbalanced with some threads having to process hundreds of thousands of edges while others only a few thousands, which translates threads not doing any computation when waiting for the others.
+
+% connection with original paper
+The original source \cite{Sousa2015} of the algorithm doesn't address graphs with a EPV as high as presented here.
+In that sense, the results here complement those of the original source and suggest an increase in EPC translates in the decrease in speed-up.
+Still, more in-depth studies should be made.
+
+% connection with EAC
+Within EAC paradigm, this algorithm is of little contribution.
+The most obvious reason is that the EAC method would actually be slower if this algorithm was used.
+Still, even considering that speed-ups like those reported in literature were possible for EAC co-association graphs, the algorithm requires a double redundancy of edges (which effectively doubles the necessary memory to hold a graph) and at any iteration the device must be able to hold two distinct graphs (the initial and the contracted).
+For these reasons, the device memory (which typically is smaller than the host memory) would confine the EAC method to small input data sets. 
+
+% The underlying reason for this is believed to be that the number of edges to node ratio of these graphs is low compared to that typically seen in co-associations matrix, even when using a prototype subset of the original matrix.
+% The parallel version of the final step of EAC showed a slowdown relative to its sequential counterpart.
+% This slowdown is related with the performance of the MST algorithm.
+% The implementation of the algorithm was tested in some of the same graphs as those reported in \cite{Sousa2015} and revealed a speedup.
+% However, when using the this MST solver on the target graphs (the co-association matrices) not only there was no speedup, but a significantly slowdown was observed, reaching up to nine times slower.

@@ -1,3 +1,5 @@
 \select@language {english}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Different rules for computing $K_{min}$ and $K_{max}$. $n$ is the number of patterns in the data set and $sk$ is the number of samples per cluster.\relax }}{12}{table.caption.12}
+\addvspace {10\p@ }

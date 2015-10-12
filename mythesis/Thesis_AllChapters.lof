@@ -23,13 +23,11 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{47}{figure.caption.43}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces sd\relax }}{56}{figure.caption.50}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces DB index mean of the population in T2. Only 4 rounds represented.\relax }}{60}{figure.caption.58}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces DB index variance of the population in T2. Only 4 rounds represented.\relax }}{60}{figure.caption.59}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces DB index of best solution in T2.\relax }}{61}{figure.caption.60}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces DB index of best solution in T3.\relax }}{61}{figure.caption.61}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Plot of the two first principal components (PC).\relax }}{63}{figure.caption.64}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Plots of the converged data data points and final clustering for 2 PC.\relax }}{63}{figure.caption.65}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Plots of the converged data data points and final clustering for all PC of Iris data.\relax }}{64}{figure.caption.66}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Execution time for building the co-association matrix from ensemble with different rules.\relax }}{52}{figure.caption.50}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Execution time for building the co-association matrix with different matrix formats.\relax }}{53}{figure.caption.51}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Comparison between the execution times of SLINK to different rules.\relax }}{53}{figure.caption.53}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Comparison between the execution times of the three methods of SL over condensed matrices. SLINK runs over fully allocated condensed matrix while SL-MST and SL-MST-Disk run over the sparse matrix.\relax }}{54}{figure.caption.54}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Density of associations relative to the full co-association matrix, which hold $n^2$ associations.\relax }}{55}{figure.caption.55}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Comparison between the execution times of the three methods of SL over condensed matrices. SLINK runs over fully allocated condensed matrix while SL-MST and SL-MST-Disk run over the sparse matrix.\relax }}{55}{figure.caption.56}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

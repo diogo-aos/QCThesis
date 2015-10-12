@@ -2,9 +2,9 @@
 \contentsline {section}{Acknowledgments}{v}{section*.1}
 \contentsline {section}{Resumo}{vii}{section*.2}
 \contentsline {section}{Abstract}{ix}{section*.3}
-\contentsline {section}{List of Tables}{xv}{chapter*.5}
-\contentsline {section}{List of Figures}{xviii}{chapter*.6}
-\contentsline {section}{Glossary}{xix}{table.0.1}
+\contentsline {section}{List of Tables}{xiii}{chapter*.5}
+\contentsline {section}{List of Figures}{xvi}{chapter*.6}
+\contentsline {section}{Glossary}{xvii}{table.0.1}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Challenges and Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -67,28 +67,15 @@
 \contentsline {section}{\numberline {4.6}Resume of the developed work}{49}{section.4.6}
 \contentsline {chapter}{\numberline {5}Final solution proposed}{50}{chapter.5}
 \contentsline {chapter}{\numberline {6}Results and Discussion}{51}{chapter.6}
-\contentsline {section}{\numberline {6.1}Experimental environment}{51}{section.6.1}
-\contentsline {section}{\numberline {6.2}Parallel K-Means}{53}{section.6.2}
-\contentsline {section}{\numberline {6.3}GPU MST}{53}{section.6.3}
-\contentsline {section}{\numberline {6.4}Building the co-association matrix with different sparse formats}{55}{section.6.4}
-\contentsline {section}{\numberline {6.5}EAC Validation}{56}{section.6.5}
-\contentsline {section}{\numberline {6.6}EAC}{57}{section.6.6}
-\contentsline {section}{\numberline {6.7}Quantum K-Means}{58}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Testing and Results}{58}{subsection.6.7.1}
-\contentsline {subsubsection}{Timing results}{58}{section*.53}
-\contentsline {subsubsection}{Accuracy}{58}{section*.55}
-\contentsline {subsubsection}{QK-Means details}{59}{section*.57}
-\contentsline {subsection}{\numberline {6.7.2}Discussion}{61}{subsection.6.7.2}
-\contentsline {section}{\numberline {6.8}Horn and Gottlieb's algorithm}{62}{section.6.8}
-\contentsline {subsection}{\numberline {6.8.1}Performance}{62}{subsection.6.8.1}
-\contentsline {subsection}{\numberline {6.8.2}Accuracy}{62}{subsection.6.8.2}
-\contentsline {subsection}{\numberline {6.8.3}Iris data}{62}{subsection.6.8.3}
-\contentsline {subsection}{\numberline {6.8.4}Crab data}{63}{subsection.6.8.4}
-\contentsline {chapter}{\numberline {7}Discussion?}{65}{chapter.7}
-\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{65}{section.7.1}
-\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{65}{section.7.2}
-\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{65}{section.7.3}
-\contentsline {chapter}{\numberline {8}Conclusions}{66}{chapter.8}
-\contentsline {section}{\numberline {8.1}Achievements}{66}{section.8.1}
-\contentsline {section}{\numberline {8.2}Future Work}{66}{section.8.2}
-\contentsline {chapter}{Bibliography}{78}{chapter*.67}
+\contentsline {section}{\numberline {6.1}EAC}{51}{section.6.1}
+\contentsline {subsubsection}{Building the co-association matrix}{52}{section*.49}
+\contentsline {subsubsection}{SLINK vs SL-MST vs SL-MST-Disk}{52}{section*.52}
+\contentsline {subsection}{\numberline {6.1.1}Number of associations, allocated associations and actual used memory}{54}{subsection.6.1.1}
+\contentsline {chapter}{\numberline {7}Discussion?}{56}{chapter.7}
+\contentsline {section}{\numberline {7.1}real num assocs compared to samples per cluster}{56}{section.7.1}
+\contentsline {section}{\numberline {7.2}Trade-off speed accuracy memory}{56}{section.7.2}
+\contentsline {section}{\numberline {7.3}Expanding this work to other scalability paradigms}{56}{section.7.3}
+\contentsline {chapter}{\numberline {8}Conclusions}{57}{chapter.8}
+\contentsline {section}{\numberline {8.1}Achievements}{57}{section.8.1}
+\contentsline {section}{\numberline {8.2}Future Work}{57}{section.8.2}
+\contentsline {chapter}{Bibliography}{68}{chapter*.57}
