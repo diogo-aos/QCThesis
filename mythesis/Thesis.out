@@ -15,13 +15,10 @@
 \BOOKMARK [2][-]{subsection.1.7.1}{1.7.1 Overview}{section.1.7}% 15
 \BOOKMARK [2][-]{subsection.1.7.2}{1.7.2 Examples of applications}{section.1.7}% 16
 \BOOKMARK [0][-]{chapter.2}{2 Results and Discussion}{}% 17
-\BOOKMARK [1][-]{section.2.1}{2.1 EAC}{chapter.2}% 18
-\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Building the co-association matrix}{section.2.1}% 19
-\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 SLINK vs SL-MST vs SL-MST-Disk}{section.2.1}% 20
-\BOOKMARK [2][-]{subsection.2.1.3}{2.1.3 Analysis of the number of associations}{section.2.1}% 21
-\BOOKMARK [2][-]{subsection.2.1.4}{2.1.4 Space complexity}{section.2.1}% 22
-\BOOKMARK [0][-]{chapter.3}{3 Discussion?}{}% 23
-\BOOKMARK [1][-]{section.3.1}{3.1 real num assocs compared to samples per cluster}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.2}{3.2 Trade-off speed accuracy memory}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{3.3 Expanding this work to other scalability paradigms}{chapter.3}% 26
-\BOOKMARK [0][-]{chapter*.22}{Bibliography}{}% 27
+\BOOKMARK [1][-]{section.2.1}{2.1 Quantum Clustering}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Quantum K-Means}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Horn and Gottlieb's algorithm}{section.2.1}% 20
+\BOOKMARK [0][-]{chapter.3}{3 Conclusions}{}% 21
+\BOOKMARK [1][-]{section.3.1}{3.1 Achievements}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.2}{3.2 Future Work}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter*.15}{Bibliography}{}% 24
