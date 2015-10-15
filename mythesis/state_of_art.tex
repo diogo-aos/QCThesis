@@ -9,7 +9,7 @@
 
 
 % motivation
-Scalability of EAC to large data sets is the concern of this work and, because of that, this chapter starts by reviewing what has been done in terms of scaling EAC in section \ref{sec:eac scaling}.
+Scalability of EAC to large datasets is the concern of this work and, because of that, this chapter starts by reviewing what has been done in terms of scaling EAC in section \ref{sec:eac scaling}.
 EAC is a method of three parts and this dissertation is concerned with the scalability of the whole algorithm which means that each step must be optimized.
 Scaling an algorithm means one has to take into account both speed of execution and memory requirements.
 Increasing speed can be attained with either faster algorithms and/or faster computation of existing algorithms.
@@ -21,14 +21,14 @@ This chapter reflects research done within both approaches.
 % This section provides a brief overview of ensemble clustering, explains the EAC algorithm, refers to where it has been applied and reviews what has been done in terms of scaling it.
 
 % large datasets section
-Although research on the application of EAC to large data sets has not been pursued before, cluster analysis of large data sets has. 
+Although research on the application of EAC to large datasets has not been pursued before, cluster analysis of large datasets has. 
 Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they will have a big impact in the scalability of EAC.
 Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
-To this end, section \ref{sec:big data} presents a brief review on cluster analysis of large data sets, with a focus on parallelization with GPUs.
+To this end, section \ref{sec:big data} presents a brief review on cluster analysis of large datasets, with a focus on parallelization with GPUs.
 Furthermore, it offers a more detailed description of a GPU parallel version of K-Means and an approach for parallelizing Single-Link with the GPU.
 
 % quantum clustering
-An alternate approach on clustering for scaling with faster algorithms, the still young field of quantum clustering, was reviewed in section \ref{sec:quantum clustering}.
+An alternative approach on clustering for scaling with faster algorithms, the still young field of quantum clustering, was reviewed in section \ref{sec:quantum clustering}.
 This line of research was taken mostly with the first step of EAC in mind.
 
 
@@ -74,11 +74,11 @@ The study compared the impact of each model in the sparsity of the co-associatio
 Both theoretical predictions and results revealed that the linear model produces the highest sparsity in the co-association matrix, under a dataset consisting of a mixture of Gaussians.
 Furthermore, it is true for both linear and square root models that the sparsity increases as the number of samples increases.
 
-For real data sets, the performance of the three models became increasingly similar with the increase of the cardinality of the problem.
+For real datasets, the performance of the three models became increasingly similar with the increase of the cardinality of the problem.
 It was found that the chosen granularity of the input partitions ($K_{min}$) is the variable with most impact, affecting both accuracy and sparsity.
 The authors reported this technique to have linear space and time complexity on benchmark data.
 
-The number of samples of the data sets analysed in \cite{Lourenco2010} was under $10^4$.
+The number of samples of the datasets analysed in \cite{Lourenco2010} was under $10^4$.
 Furthermore, it should be noted that the remarks concerning the sparsity of the co-association matrix in the aforementioned study refer to the number of non-zero elements in the matrix and does not take into account extra data structures that accompany real sparse matrices implementations.
 
 % Although the results appear promising, the present work aims to deal with datasets much larger than this and, as a consequence, this technique should be further evaluated and tested to attest to its usefulness to very large datasets. %TODO: this paragraph is probably more relevant in the methodology section so as to introduce why other techniques were necessary
@@ -106,7 +106,7 @@ Furthermore, it should be noted that the remarks concerning the sparsity of the 
 
 % this is probably good for motivating this section in the introduction of the chapter
 % Scalability of EAC within the big data paradigm is the concern of this work.
-% Although this line of research has not been pursued before, cluster analysis of large data sets has.
+% Although this line of research has not been pursued before, cluster analysis of large datasets has.
 % Since EAC uses traditional clustering algorithms (e.g. K-Means, Single-Link) in its approach, it is useful to understand how scalable the individual algorithms are as they will have a big impact in the scalability of EAC.
 % Furthermore, valuable insights may be taken from the techniques used in the scalability of other algorithms.
 
@@ -122,7 +122,7 @@ The other perspective is data that is actually stored for later processing which
 % different approaches on big data clustering
 The flow of clustering algorithms typically involves some initialization step (e.g. choosing the number of centroids in K-Means) followed by an iterative process until some stopping criteria is met, where each iteration updates the clustering of the data \cite{Aggarwal2014}.
 In light of this, to speed up and/or scale up an algorithm, three approaches are available: (1) reduce the number of iterations, (2) reduce the number of patterns and/or features to process or (3) parallelizing and distributing the computation.
-The solutions for each of this approaches are, respectively, one-pass algorithms (e.g. CLARANS \cite{ng2002clarans}, BIRCH \cite{zhang1996birch}, CURE \cite{guha1998cure}), randomized techniques that reduce the input space complexity (e.g. PCA, CX/CUR \cite{drineas2006fast}) and parallel algorithms (parallel K-Means \cite{Zechner2009b}, parallel spectral clustering \cite{chen2011parallel}).
+The solutions for each of these approaches are, respectively, one-pass algorithms (e.g. CLARANS \cite{ng2002clarans}, BIRCH \cite{zhang1996birch}, CURE \cite{guha1998cure}), randomized techniques that reduce the input space complexity (e.g. PCA, CX/CUR \cite{drineas2006fast}) and parallel algorithms (parallel K-Means \cite{Zechner2009b}, parallel spectral clustering \cite{chen2011parallel}).
 
 % another example for randomized techniques that reduce input space complexity: local-preserving projection \cite{johnson1984extensions};
 % CX/CUR is a global projection
@@ -213,9 +213,9 @@ Literature also reports that CUDA performs better than OpenCL \cite{Su2012} for 
 %TODO needs refs, it is mostly the C CUDA programming guide
 
 This section presents an overview of the CUDA programming model and its main concepts and characteristics.
-For a more thorough and extensive explanation of these topic, the CUDA C Programming Guides \cite{Nvidia2014}, the source of the present review, should be consulted.
+For a more thorough and extensive explanation of this topic, the CUDA C Programming Guides \cite{Nvidia2014}, the source of the present review, should be consulted.
 A GPU is comprised by one or several streaming processors (or multiprocessor).
-Each of this processors contains several simpler processors, each of which execute the same instruction at the same time at any given time.
+Each of these processors contains several simpler processors, each of which execute the same instruction at the same time at any given time.
 In the CUDA programming model, the basic unit of computation is a \emph{thread}.
 Threads are grouped into \emph{blocks} which are part of the block \emph{grid}.
 The number of threads in a block is typically higher than the number of processors in a multiprocessor.
@@ -267,7 +267,7 @@ Accessible to all processors (and threads) are the global memory, constant memor
 Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, enabling inter-thread communication inside a block.
 Finally, each thread has access to local memory.
 Local memory resides in global memory space and has the same latency for read and write operations.
-However, if the thread is using only single variables or constant sized arrays, it uses register space to, which is very fast.
+However, if the thread is using only single variables or constant sized arrays, it uses register space, which is very fast.
 If the memory used exceeds the available register space the local memory used.
 This memory hierarchy is represented in Figure \ref{fig:memorymodel}.
 
@@ -309,16 +309,16 @@ This memory hierarchy is represented in Figure \ref{fig:memorymodel}.
 
 The typical flow of a CUDA application (and, typically, any modern GPU application) is explained in this paragraph and can be observed in Figure \ref{fig:cudaflow}.
 First, the host CPU is responsible for several steps in the set-up phase.
-The host starts by transferring any necessary to the device memory (global, texture or constant).
+The host starts by transferring any necessary data to the device memory (global, texture or constant).
 The next step is selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
 % First, the host CPU transfers any necessary data to the device memory (global, texture or constant) and is responsible for setting up the device code execution, which entails selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
-The set-up phase if followed by the computation phase in the GPU.
+The set-up phase is followed by the computation phase in the GPU.
 % The next phase is simply the device executing the kernel.
 Finally, the host will transfer back the results from the device.
 It should be noted that the latest architectures support \emph{Dynamic Parallelism}.
 This functionality allows the device to start other kernels without the intervention of the host CPU, which would alter the typical execution flow explained above if used.
-It can be particularly useful if several kernels have to be executed in an application from the same input data but with dependencies.
-In such a scenario, a block of the second kernel could be executed as soon as all dependencies from the first kernel were met, effectively cutting overheads for kernel calling from the host CPU.
+It can be particularly useful if several kernels have data dependencies with other kernels, i.e. their input data is the output from others.%have to be executed in an application from the same input data but with dependencies.
+In such a scenario, a block of the second kernel could be executed as soon as all dependencies were met, effectively cutting overheads for kernel calling from the host CPU.
 
 
 \subsection{Parallel K-Means}
@@ -330,7 +330,7 @@ Still, other algorithms can be used to produce ensembles.
 
 % As explained in chapter \ref{chapter:clustering}, K-Means has two main steps: labeling and update.
 
-Several parallel implementations of this algorithm for the GPU exist \cite{Bai2009, Wu2011, Zechner2009, Sirotkovi2012, Farivar2008} and all report significant speed-ups relative to their sequential counterparts in certain conditions, usually after the input data set goes above a certain cardinality, dimensionality or number of clusters threshold.
+Several parallel implementations of this algorithm for the GPU exist \cite{Bai2009, Wu2011, Zechner2009, Sirotkovi2012, Farivar2008} and all report significant speed-ups relative to their sequential counterparts in certain conditions, usually after the input dataset goes above a certain cardinality, dimensionality or number of clusters threshold.
 The first step is inherently parallel as the computation of the label of the $i$-th pattern is not dependent on any other pattern, but only on the centroids.
 Two approaches to parallelize this step on the GPU are possible, a centroid-centric or a data-centric \cite{Bai2009}.
 In the former each thread is responsible for a centroid and will compute the distance from its centroid to every pattern.
@@ -407,8 +407,8 @@ It requires three arrays to fully describe the graph:
 
 \begin{itemize}
 	\item a \emph{data} array containing all the non-zero values, where values from the same row appear sequentially from left to right and top to bottom, i.e. in \emph{row-major} order, e.g. if the first row has 20 non-zero values, then the first 20 elements from this array belong to the first row;
-	\item a \emph{indices} array of the same size as \emph{data} containing the column index of each non-zero value;
-	\item a \emph{indptr} array of the size of the number of rows containing a pointer to the first element in the \emph{data} and \emph{indices} arrays that belongs to each row, e.g. if the $i-th$ element (row) of \emph{indptr} is $k$ and it has 10 values, then all the elements from $k$ to $k + 10$ in \emph{data} belong to the $i-th$ row.
+	\item an \emph{indices} array of the same size as \emph{data} containing the column index of each non-zero value;
+	\item an \emph{indptr} array of the size of the number of rows containing a pointer to the first element in the \emph{data} and \emph{indices} arrays that belongs to each row, e.g. if the $i-th$ element (row) of \emph{indptr} is $k$ and it has 10 values, then all the elements from $k$ to $k + 10$ in \emph{data} belong to the $i-th$ row.
 \end{itemize}
 
 \begin{figure}[hbtp]
@@ -422,7 +422,7 @@ Within the algorithm's context, these three arrays are denominated as \emph{firs
 There change in denomination is for making their purposes clearer.
 Although these three arrays can completely describe a graph, the algorithm uses an extra array \emph{outdegree} that stores the number of non-zero values of each row and can be deduced from the \emph{first\_edge} array.
 
-The length and purpose of each of this arrays are:
+The length and purpose of each of these arrays are:
 \begin{itemize}
 	\item \emph{first\_edge} is an array of size $|V|$, where the \emph{i-th} element points to the first edge corresponding to the \emph{i-th} vertex.
 	\item \emph{outdegree} is an array of size $|V|$, where the \emph{i-th} element contains the number of edges attached to the \emph{i-th} vertex.
@@ -441,7 +441,7 @@ Within the context of the algorithm the \emph{id} of a vertex is its index in th
 One should keep in mind this is a parallel algorithm and each of its steps is computed concurrently.
 Except for the \emph{exclusive prefix sum}, each thread processes a single vertex and each computation is usually independent.
 In some steps, however, threads need to access the same resource and it is important the state of the resource does not change in the middle of the operation that accesses it.
-In this cases, atomic operations (operation that are guaranteed to be isolated and, thus, not interruptible) are used.
+In these cases, atomic operations (operation that are guaranteed to be isolated and, thus, not interruptible) are used.
 The algorithm's flow is presented in Figure \ref{fig:mst sousa} and its main steps are explained below.
 
 %maybe have the figures from the paper here to illustrate the process?
@@ -514,7 +514,7 @@ The two approaches focus on distinct efforts.
 The former focuses on optimizing the number of steps \cite{Hillis1986}, has a work complexity of $O(nlogn)$ and a step complexity of $O(logn)$.
 The latter focuses on optimizing the amount of work done \cite{Blelloch1990}, has a work complexity of $O(n)$ and a step complexity of $O(2logn)$.
 The focus of this dissertation will be on the Blelloch's algorithm.
-The reason for this is that the main objective is to deal with very large data sets which guarantees that there will be more work to be done (operations on the data) than there will be available computing resources (streaming processors in the GPU in this case).
+The reason for this is that the main objective is to deal with very large datasets which guarantees that there will be more work to be done (operations on the data) than there will be available computing resources (streaming processors in the GPU in this case).
 When there is more work than processors, one wants to minimize the total amount of work.
 On the other hand, when there is more processors than work, one wants to minimize the amount of steps of the algorithm as this translates in the biggest increase in speed.
 
@@ -566,7 +566,7 @@ However, \citet{Harris2007} explains how to overcome this limitation and also of
 % TODO add more refs for quantum inspired computational intelligence; Applications of quantum inspired computational intelligence: A survey is good article to take stuff from
 
 The field of quantum clustering has shown promising results regarding potential speed-ups in several tasks over their classical counterparts. 
-Currently, two major approaches for the concept of quantum clustering were found in the literature: quantization quantization of clustering methods to work in quantum computers or algorithms inspired by quantum physics.
+Currently, two major approaches for the concept of quantum clustering were found in the literature: quantization of clustering methods to work in quantum computers or algorithms inspired by quantum physics.
 
 The former approach translates in converting algorithms to work partially or totally on a different computing paradigm, with support of quantum circuits or quantum computers.
 % relevant papers for machine learnigng quantum paradigm
@@ -798,7 +798,7 @@ So minima will naturally correspond to cluster centers \cite{Horn2001a}.
 However, it is very computationally intensive to compute $V(x)$ to the whole space, so the compututation of the potential function is only done at the data points.
 This should not be problematic since clusters' centers are generally close to the data points themselves. 
 Even so, the minima may not lie on the data points themselves.
-One method to address this problem is to compute the potential on the input data and converge this points toward some minima of the potential function.
+One method to address this problem is to compute the potential on the input data and converge these points toward some minima of the potential function.
 This is done with the gradient descent method in \cite{Horn2001a}. 
 
 Another method \cite{Weinstein2009} is to think of the input data as particles and use the Hamiltonian operator to evolve the quantum system in the time-dependent Schrödinger's equation.

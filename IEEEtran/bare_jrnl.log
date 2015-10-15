@@ -1,0 +1,594 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  15 OCT 2015 13:06
+entering extended mode
+ \write18 enabled.
+ %&-line parsing enabled.
+**bare_jrnl
+(./bare_jrnl.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 3 languages loaded.
+(./IEEEtran.cls
+Document Class: IEEEtran 2014/09/17 V1.8a by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+\@IEEEtrantmpdimenA=\dimen102
+\@IEEEtrantmpdimenB=\dimen103
+\@IEEEtrantmpdimenC=\dimen104
+\@IEEEtrantmpcountA=\count79
+\@IEEEtrantmpcountB=\count80
+\@IEEEtrantmpcountC=\count81
+\@IEEEtrantmptoksA=\toks14
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 458.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+-- Using 8.5in x 11in (letter) paper.
+-- Using PDF output.
+\@IEEEnormalsizeunitybaselineskip=\dimen105
+-- This is a 10 point document.
+\CLASSINFOnormalsizebaselineskip=\dimen106
+\CLASSINFOnormalsizeunitybaselineskip=\dimen107
+\IEEEnormaljot=\dimen108
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <11> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <20> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1039.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 1039.
+
+\IEEEquantizedlength=\dimen109
+\IEEEquantizedlengthdiff=\dimen110
+\IEEEquantizedtextheightdiff=\dimen111
+\IEEEilabelindentA=\dimen112
+\IEEEilabelindentB=\dimen113
+\IEEEilabelindent=\dimen114
+\IEEEelabelindent=\dimen115
+\IEEEdlabelindent=\dimen116
+\IEEElabelindent=\dimen117
+\IEEEiednormlabelsep=\dimen118
+\IEEEiedmathlabelsep=\dimen119
+\IEEEiedtopsep=\skip41
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@IEEEsubequation=\count86
+\abovecaptionskip=\skip42
+\belowcaptionskip=\skip43
+\c@figure=\count87
+\c@table=\count88
+\@IEEEeqnnumcols=\count89
+\@IEEEeqncolcnt=\count90
+\@IEEEsubeqnnumrollback=\count91
+\@IEEEquantizeheightA=\dimen120
+\@IEEEquantizeheightB=\dimen121
+\@IEEEquantizeheightC=\dimen122
+\@IEEEquantizeprevdepth=\dimen123
+\@IEEEquantizemultiple=\count92
+\@IEEEquantizeboxA=\box26
+\@IEEEtmpitemindent=\dimen124
+\c@IEEEbiography=\count93
+\@IEEEtranrubishbin=\box27
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen125
+\lightrulewidth=\dimen126
+\cmidrulewidth=\dimen127
+\belowrulesep=\dimen128
+\belowbottomsep=\dimen129
+\aboverulesep=\dimen130
+\abovetopsep=\dimen131
+\cmidrulesep=\dimen132
+\cmidrulekern=\dimen133
+\defaultaddspace=\dimen134
+\@cmidla=\count94
+\@cmidlb=\count95
+\@aboverulesep=\dimen135
+\@belowrulesep=\dimen136
+\@thisruleclass=\count96
+\@lastruleclass=\count97
+\@thisrulewidth=\dimen137
+)
+(/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 373.
+Package: cite 2010/09/10  v 5.3
+)
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2011/10/22 v5.1d context-sensitive quotations
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count98
+)
+\etb@tempcnta=\count99
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+\csq@reset=\count100
+\csq@gtype=\count101
+\csq@glevel=\count102
+\csq@qlevel=\count103
+\csq@maxlvl=\count104
+\csq@tshold=\count105
+\csq@ltx@everypar=\toks16
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2011/10/22 v5.1d csquotes generic definitions
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count106
+))
+\Gin@req@height=\dimen138
+\Gin@req@width=\dimen139
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip44
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks17
+\ex@=\dimen140
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen141
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count107
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count108
+\leftroot@=\count109
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count110
+\DOTSCASE@=\count111
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen142
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count112
+\c@MaxMatrixCols=\count113
+\dotsspace@=\muskip10
+\c@parentequation=\count114
+\dspbrk@lvl=\count115
+\tag@help=\toks18
+\row@=\count116
+\column@=\count117
+\maxfields@=\count118
+\andhelp@=\toks19
+\eqnshift@=\dimen143
+\alignsep@=\dimen144
+\tagshift@=\dimen145
+\tagwidth@=\dimen146
+\totwidth@=\dimen147
+\lineht@=\dimen148
+\@envbody=\toks20
+\multlinegap=\skip45
+\multlinetaggap=\skip46
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... none found.
+
+(./bare_jrnl.aux
+
+LaTeX Warning: Label `tab:eac rules' multiply defined.
+
+)
+\openout1 = `bare_jrnl.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 360.
+LaTeX Font Info:    ... okay on input line 360.
+
+-- Lines per column: 58 (exact).
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count119
+\scratchdimen=\dimen149
+\scratchbox=\box30
+\nofMPsegments=\count120
+\nofMParguments=\count121
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen150
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
+\everyMPtoPDFconversion=\toks23
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+(./ExtendedAbstract_intro.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 40.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 40.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+(./ExtendedAbstract_backg.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.
+map}
+
+
+] [2]) (./ExtendedAbstract_production.tex)
+(./ExtendedAbstract_combination.tex [3]
+</home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.png, i
+d=24, 930.47626pt x 557.08125pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/methodol
+ogy/sorted_insert.png used on input line 91.
+(pdftex.def)             Requested size: 252.0pt x 150.87297pt.
+ [4 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
+g>]) (./ExtendedAbstract_recovery.tex) (./ExtendedAbstract_resul.tex [5]
+</home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensions/
+2.0.png, id=31, 816.04875pt x 419.5675pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimens
+ions/2.0.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensi
+ons/2.0.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+kmeans/fixed_dimensions/2.0.png used on input line 48.
+(pdftex.def)             Requested size: 252.0pt x 129.56522pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensions/
+200.0.png, id=33, 818.05624pt x 419.5675pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimens
+ions/200.0.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensi
+ons/200.0.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+kmeans/fixed_dimensions/200.0.png used on input line 64.
+(pdftex.def)             Requested size: 252.0pt x 129.2451pt.
+
+Underfull \vbox (badness 5446) has occurred while \output is active []
+
+ [6 </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensi
+ons/2.0.png> </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixe
+d_dimensions/200.0.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/kmin_evolution.png, 
+id=39, 746.79pt x 529.98pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/kmin_evolution.
+png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/kmin_evolution.p
+ng>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/kmin_evolution.png used on input line 162.
+(pdftex.def)             Requested size: 201.60077pt x 143.07224pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/ensemble_time.png, i
+d=40, 748.7975pt x 527.9725pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/ensemble_time.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/ensemble_time.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/ensemble_time.png used on input line 169.
+(pdftex.def)             Requested size: 201.60077pt x 142.1436pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/sparse_co
+ndensed_linear.png, id=41, 749.4399pt x 541.3023pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/spar
+se_condensed_linear.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/spars
+e_condensed_linear.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/build_time/sparse_condensed_linear.png used on input line 176.
+(pdftex.def)             Requested size: 201.60077pt x 145.60843pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/2sqrt.png
+, id=42, 749.4399pt x 541.3023pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/2sqr
+t.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/2sqrt
+.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/build_time/2sqrt.png used on input line 189.
+(pdftex.def)             Requested size: 201.60077pt x 145.60843pt.
+
+Underfull \vbox (badness 6396) has occurred while \output is active []
+
+ [7 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/kmin_evolution.p
+ng> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/ensemble_time.pn
+g> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/sparse
+_condensed_linear.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_time/slink_vs_sl-
+mst.png, id=56, 750.805pt x 527.9725pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_time/slink_v
+s_sl-mst.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_time/slink_vs
+_sl-mst.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/sl_time/slink_vs_sl-mst.png used on input line 210.
+(pdftex.def)             Requested size: 201.60077pt x 141.76497pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_mem_time/sparse_c
+ondensed_linear.png, id=57, 751.608pt x 541.3023pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_mem_time/spa
+rse_condensed_linear.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_mem_time/spar
+se_condensed_linear.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/sl_mem_time/sparse_condensed_linear.png used on input line 217.
+(pdftex.def)             Requested size: 201.60077pt x 145.1872pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-mst.pn
+g, id=58, 748.7975pt x 527.9725pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-m
+st.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-ms
+t.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/total_time_sl-mst.png used on input line 233.
+(pdftex.def)             Requested size: 201.60077pt x 142.1436pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-mst-di
+sk.png, id=59, 748.7975pt x 527.9725pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-m
+st-disk.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-ms
+t-disk.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/total_time_sl-mst-disk.png used on input line 240.
+(pdftex.def)             Requested size: 201.60077pt x 142.1436pt.
+ [8 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/build_time/2sqrt
+.png> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_time/slink_
+vs_sl-mst.png> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/sl_me
+m_time/sparse_condensed_linear.png> </home/chiroptera/workspace/thesis_writing/
+rsc/results/eac/total_time_sl-mst.png>]
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/assoc_density/sparse
+_condensed_linear.png, id=67, 758.835pt x 541.3023pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/assoc_density/s
+parse_condensed_linear.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/assoc_density/sp
+arse_condensed_linear.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/assoc_density/sparse_condensed_linear.png used on input line 276.
+(pdftex.def)             Requested size: 201.60077pt x 143.80785pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/max_assoc_bgs.png, i
+d=68, 742.775pt x 527.9725pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/max_assoc_bgs.p
+ng Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/max_assoc_bgs.pn
+g>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/max_assoc_bgs.png used on input line 295.
+(pdftex.def)             Requested size: 201.60077pt x 143.29564pt.
+
+</home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk=300.p
+ng, id=69, 749.4399pt x 541.3023pt>
+File: /home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk=
+300.png Graphic file (type png)
+
+<use /home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk=3
+00.png>
+Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
+eac/mem_density/sk=300.png used on input line 324.
+(pdftex.def)             Requested size: 201.60077pt x 145.60843pt.
+ [9 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-ms
+t-disk.png> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/assoc_de
+nsity/sparse_condensed_linear.png> </home/chiroptera/workspace/thesis_writing/r
+sc/results/eac/max_assoc_bgs.png>]
+Overfull \hbox (15.6306pt too wide) in paragraph at lines 349--360
+ [][] 
+ []
+
+) (./bare_jrnl.bbl
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 104.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+Missing character: There is no â in font ptmr7t!
+Missing character: There is no € in font ptmr7t!
+Missing character: There is no ™ in font ptmr7t!
+)
+[10 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk=3
+00.png>] (./bare_jrnl.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 4191 strings out of 495004
+ 67448 string characters out of 6180663
+ 139746 words of memory out of 5000000
+ 7292 multiletter control sequences out of 15000+600000
+ 46544 words of font info for 95 fonts, out of 8000000 for 9000
+ 19 hyphenation exceptions out of 8191
+ 38i,10n,24p,794b,262s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_jrnl.pdf (10 pages, 1001780 bytes).
+PDF statistics:
+ 138 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+

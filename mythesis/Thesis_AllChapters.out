@@ -18,51 +18,51 @@
 \BOOKMARK [1][-]{section.2.6}{2.6 Ensemble Clustering}{chapter.2}% 18
 \BOOKMARK [1][-]{section.2.7}{2.7 Evidence Accumulation Clustering}{chapter.2}% 19
 \BOOKMARK [2][-]{subsection.2.7.1}{2.7.1 Overview}{section.2.7}% 20
-\BOOKMARK [2][-]{subsection.2.7.2}{2.7.2 Examples of applications}{section.2.7}% 21
-\BOOKMARK [0][-]{chapter.3}{3 State of the art}{}% 22
-\BOOKMARK [1][-]{section.3.1}{3.1 Scalability of EAC}{chapter.3}% 23
-\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 p neighbors approach}{section.3.1}% 24
-\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Increased sparsity approach}{section.3.1}% 25
-\BOOKMARK [1][-]{section.3.2}{3.2 Clustering with large datasets}{chapter.3}% 26
-\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 General Purpose computing on Graphical Processing Units}{section.3.2}% 27
-\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Parallel K-Means}{section.3.2}% 28
-\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Parallel Single-Link Clustering}{section.3.2}% 29
-\BOOKMARK [1][-]{section.3.3}{3.3 Quantum clustering}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 The quantum bit approach}{section.3.3}% 31
-\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Schr\366dinger's equation approach}{section.3.3}% 32
-\BOOKMARK [0][-]{chapter.4}{4 Methodology}{}% 33
-\BOOKMARK [1][-]{section.4.1}{4.1 Quantum Clustering}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.2}{4.2 Speeding up Ensemble Generation with Parallel K-Means}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.3}{4.3 Dealing with the space complexity of the co-association matrix}{chapter.4}% 36
-\BOOKMARK [1][-]{section.4.4}{4.4 Building the sparse matrix}{chapter.4}% 37
-\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 EAC CSR}{section.4.4}% 38
-\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 39
-\BOOKMARK [1][-]{section.4.5}{4.5 Final partition recovery}{chapter.4}% 40
-\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Single-Link and GPGPU}{section.4.5}% 41
-\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and external memory algorithms}{section.4.5}% 42
-\BOOKMARK [1][-]{section.4.6}{4.6 Resume of the developed work}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{5 Final solution proposed}{}% 44
-\BOOKMARK [0][-]{chapter.6}{6 Results and Discussion}{}% 45
-\BOOKMARK [1][-]{section.6.1}{6.1 Experimental environment}{chapter.6}% 46
-\BOOKMARK [1][-]{section.6.2}{6.2 Parallel K-Means}{chapter.6}% 47
-\BOOKMARK [2][-]{subsection.6.2.1}{6.2.1 Maximum potential speed-up}{section.6.2}% 48
-\BOOKMARK [2][-]{subsection.6.2.2}{6.2.2 Analysis of speed-up}{section.6.2}% 49
-\BOOKMARK [2][-]{subsection.6.2.3}{6.2.3 Effective bandwidth and computational throughput}{section.6.2}% 50
-\BOOKMARK [2][-]{subsection.6.2.4}{6.2.4 Influence of the number of points per thread}{section.6.2}% 51
-\BOOKMARK [1][-]{section.6.3}{6.3 GPU MST}{chapter.6}% 52
-\BOOKMARK [1][-]{section.6.4}{6.4 Building the co-association matrix with different sparse formats}{chapter.6}% 53
-\BOOKMARK [1][-]{section.6.5}{6.5 EAC Validation}{chapter.6}% 54
-\BOOKMARK [1][-]{section.6.6}{6.6 EAC}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.6.1}{6.6.1 Performance of production and combination phases}{section.6.6}% 56
-\BOOKMARK [2][-]{subsection.6.6.2}{6.6.2 Performance comparison between SLINK, SL-MST and SL-MST-Disk}{section.6.6}% 57
-\BOOKMARK [2][-]{subsection.6.6.3}{6.6.3 Performance of all phases combined}{section.6.6}% 58
-\BOOKMARK [2][-]{subsection.6.6.4}{6.6.4 Analysis of the number of associations}{section.6.6}% 59
-\BOOKMARK [2][-]{subsection.6.6.5}{6.6.5 Space complexity}{section.6.6}% 60
-\BOOKMARK [2][-]{subsection.6.6.6}{6.6.6 Accuracy}{section.6.6}% 61
-\BOOKMARK [1][-]{section.6.7}{6.7 Quantum Clustering}{chapter.6}% 62
-\BOOKMARK [2][-]{subsection.6.7.1}{6.7.1 Quantum K-Means}{section.6.7}% 63
-\BOOKMARK [2][-]{subsection.6.7.2}{6.7.2 Horn and Gottlieb's algorithm}{section.6.7}% 64
-\BOOKMARK [0][-]{chapter.7}{7 Conclusions}{}% 65
-\BOOKMARK [1][-]{section.7.1}{7.1 Achievements}{chapter.7}% 66
-\BOOKMARK [1][-]{section.7.2}{7.2 Future Work}{chapter.7}% 67
-\BOOKMARK [0][-]{chapter*.77}{Bibliography}{}% 68
+\BOOKMARK [0][-]{chapter.3}{3 State of the art}{}% 21
+\BOOKMARK [1][-]{section.3.1}{3.1 Scalability of EAC}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 p neighbors approach}{section.3.1}% 23
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 Increased sparsity approach}{section.3.1}% 24
+\BOOKMARK [1][-]{section.3.2}{3.2 Clustering with large datasets}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 General Purpose computing on Graphical Processing Units}{section.3.2}% 26
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Parallel K-Means}{section.3.2}% 27
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Parallel Single-Link Clustering}{section.3.2}% 28
+\BOOKMARK [1][-]{section.3.3}{3.3 Quantum clustering}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 The quantum bit approach}{section.3.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 Schr\366dinger's equation approach}{section.3.3}% 31
+\BOOKMARK [0][-]{chapter.4}{4 EAC for large datasets: proposed solutions}{}% 32
+\BOOKMARK [1][-]{section.4.1}{4.1 Quantum Clustering}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.2}{4.2 Speeding up Ensemble Generation with Parallel K-Means}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.3}{4.3 Dealing with the space complexity of the co-association matrix}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.4}{4.4 Building the sparse matrix}{chapter.4}% 36
+\BOOKMARK [2][-]{subsection.4.4.1}{4.4.1 EAC CSR}{section.4.4}% 37
+\BOOKMARK [2][-]{subsection.4.4.2}{4.4.2 EAC CSR Condensed}{section.4.4}% 38
+\BOOKMARK [1][-]{section.4.5}{4.5 Final partition recovery}{chapter.4}% 39
+\BOOKMARK [2][-]{subsection.4.5.1}{4.5.1 Single-Link and GPGPU}{section.4.5}% 40
+\BOOKMARK [2][-]{subsection.4.5.2}{4.5.2 Single-Link and external memory algorithms}{section.4.5}% 41
+\BOOKMARK [1][-]{section.4.6}{4.6 Overview of the developed work}{chapter.4}% 42
+\BOOKMARK [1][-]{section.4.7}{4.7 Guidelines for using the different solutions}{chapter.4}% 43
+\BOOKMARK [0][-]{chapter.5}{5 Results and Discussion}{}% 44
+\BOOKMARK [1][-]{section.5.1}{5.1 Experimental environment}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.2}{5.2 Quantum Clustering}{chapter.5}% 46
+\BOOKMARK [2][-]{subsection.5.2.1}{5.2.1 Quantum K-Means}{section.5.2}% 47
+\BOOKMARK [2][-]{subsection.5.2.2}{5.2.2 Horn and Gottlieb's algorithm}{section.5.2}% 48
+\BOOKMARK [1][-]{section.5.3}{5.3 Parallel K-Means}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.3.1}{5.3.1 Maximum potential speed-up}{section.5.3}% 50
+\BOOKMARK [2][-]{subsection.5.3.2}{5.3.2 Analysis of speed-up}{section.5.3}% 51
+\BOOKMARK [2][-]{subsection.5.3.3}{5.3.3 Effective bandwidth and computational throughput}{section.5.3}% 52
+\BOOKMARK [2][-]{subsection.5.3.4}{5.3.4 Influence of the number of points per thread}{section.5.3}% 53
+\BOOKMARK [1][-]{section.5.4}{5.4 Building the co-association matrix with different sparse formats}{chapter.5}% 54
+\BOOKMARK [1][-]{section.5.5}{5.5 GPU MST}{chapter.5}% 55
+\BOOKMARK [1][-]{section.5.6}{5.6 EAC Validation}{chapter.5}% 56
+\BOOKMARK [1][-]{section.5.7}{5.7 EAC}{chapter.5}% 57
+\BOOKMARK [2][-]{subsection.5.7.1}{5.7.1 Performance of production and combination phases}{section.5.7}% 58
+\BOOKMARK [2][-]{subsection.5.7.2}{5.7.2 Performance comparison between SLINK, SL-MST and SL-MST-Disk}{section.5.7}% 59
+\BOOKMARK [2][-]{subsection.5.7.3}{5.7.3 Performance of all phases combined}{section.5.7}% 60
+\BOOKMARK [2][-]{subsection.5.7.4}{5.7.4 Analysis of the number of associations}{section.5.7}% 61
+\BOOKMARK [2][-]{subsection.5.7.5}{5.7.5 Space complexity}{section.5.7}% 62
+\BOOKMARK [2][-]{subsection.5.7.6}{5.7.6 Accuracy}{section.5.7}% 63
+\BOOKMARK [1][-]{section.5.8}{5.8 Performance on real world datasets}{chapter.5}% 64
+\BOOKMARK [0][-]{chapter.6}{6 Conclusions}{}% 65
+\BOOKMARK [1][-]{section.6.1}{6.1 Achievements}{chapter.6}% 66
+\BOOKMARK [1][-]{section.6.2}{6.2 Future Work}{chapter.6}% 67
+\BOOKMARK [0][-]{chapter*.80}{Bibliography}{}% 68

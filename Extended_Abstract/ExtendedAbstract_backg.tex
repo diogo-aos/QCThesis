@@ -1,0 +1,164 @@
+%!TEX root = ExtendedAbstract.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File: ExtendedAbstract_backg.tex                               %
+%     Tex Master: ExtendedAbstract.tex                               %
+%                                                                    %
+%     Author: Andre Calado Marta                                     %
+%     Last modified : 27 Dez 2011                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A Theory section should extend, not repeat, the background to the
+% article already dealt with in the Introduction and lay the
+% foundation for further work.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Background}
+\label{sec:backg}
+
+Place text here...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Clustering: main concepts and notation}
+
+The goal of data clustering is the discovery of the \textit{natural grouping(s)} of a set of patterns, points or objects \cite{Jain2010}, by grouping patterns (usually represented as a vector of measurements or a point in space \cite{Jain1999}) based on some similarity, such that patterns belonging to the same cluster are typically more similar to each other than to patterns of other clusters.
+
+Within the clustering context, a \emph{pattern} $\mathbf{x}$ is a single data item represented as a vector of $d$ \emph{features} $x_i$ that characterize it.
+A \emph{pattern set} (or data set) $\mathcal{X}$ is then the collection of all $n$ patterns $\mathcal{X} = \{ \mathbf{x}_1, \ldots, \mathbf{x}_n \}$.
+The desired clustering, typically, is one that reflects the natural structure of the data, i.e. the original ground truth labeling.
+\emph{Hard} clustering (or partitional) techniques assign a class label $l_i$ to each pattern $\mathbf{x}_i$.
+The whole set of labels corresponding to a pattern set $\mathcal{X}$ is given by $\mathcal{L} = \{ l_1, \ldots, l_n \}$, where $l_i$ is the label of pattern $\mathbf{x}_i$.
+A partition $P$ is a collection of $k$ \emph{clusters}, which are an exclusive subset of $nc$ patterns $\mathbf{x}_i$ taken from the pattern set.
+%, where the patterns belonging to one subset do not belong to any other in the same partition.
+A clustering \emph{ensemble} $\mathbb{P}$ is a set of $N$ partitions $P^j$ of a given pattern set, each of which is composed by a set of $k_j$ clusters $C^j_i$, where $j=1, \ldots, N$, $i=1, \ldots, k_j$.
+Each cluster is composed by a set of $nc^j_i$ patterns that does not intercept any other cluster of the same partition.
+The relationship between the above concepts is condensed in the following expressions:
+
+% \begin{align*}
+%     ensemble \qquad & \mathbb{P} = \left \{   P^1, P^2, \ldots P^N   \right \}  \\
+%     partition \qquad & P^j = \left \{   C^j_1, C^j_2, \ldots C^{j}_{k_j}   \right \}  \\
+%     cluster \qquad & C^j_i = \left \{   x_1, x_2, \ldots x_{nc^j_i}   \right \}
+% \end{align*}
+
+Typically, a clustering algorithm will use a \emph{proximity} measure for determining how alike are two patterns, which can either be a \emph{similarity} or a \emph{dissimilarity} measure.
+A \emph{distance} is a dissimilarity function \emph{d} which yields non-negative real values and is also a \emph{metric}, which means it obeys the following three properties: identity, symmetry and triangle inequality.
+Different proximity measures may be more appropriate in certain contexts.
+% \begin{align*} 
+%     identity \qquad & d(\mathbf{x}_i, \mathbf{x}_i) = 0  \\
+%     symmetry \qquad & d(\mathbf{x}_i, \mathbf{x}_j) = d(\mathbf{x}_j, \mathbf{x}_i), i \neq j \\ 
+%     triangle \; inequality \qquad & d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z)  \ge d(\mathbf{x}_x, \mathbf{x}_z)
+% \end{align*}
+
+
+% where $\mathbf{x}_i$, $\mathbf{x}_j$ and $\mathbf{x}_z$ are 3 unique patterns belonging to the pattern set $\mathcal{X}$.
+% Examples of proximity measures include the Euclidean distance, the Pearson’s correlation coefficien and Mutual Shared Neighbors \cite{jarvis1973clustering}.
+% It should be noted that different proximity measures may be more appropriate in different contexts, such as document, biological or time-series clustering.
+% Furthermore, data can come in different types such as numerical (discrete or continuous) or categorical (binary or multinomial) attributes.
+% The researcher should take these factors into account as different proximity measures are more appropriate for some type or even heterogeneous type data. 
+
+\emph{Validity measures} measure the quality of a partition.
+Several \emph{validity measures} exist and they can placed in two main categories \cite{Aggarwal2014}.
+\emph{External} measures use \emph{a priori} information about the data to evaluate the clustering against some external structure.
+Examples of such measures include the \emph{Consistency Index} \cite{Fred2001} and the H-index \cite{Meila2003}. %a measure of accuracy based on the problem of minimum weighted bipartite graphs matching \cite{lange2004stability}, which throughout the remainder of the present work will be refered to as \emph{H-index}.
+%Both these methods are based matching clusters by the number of co-occurrences they have, i.e. 
+\emph{Internal} measures, on the other hand, determine the quality of the clustering without the use of external information about the data.
+%The Davies-Bouldin index \cite{davies1979cluster} is such a measure.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Evidence Accumulation Clustering}
+
+EAC is a clustering ensemble method.
+The underlying idea behind ensemble clustering is to take a collection of partitions, a \emph{clustering ensemble}, and combine it into a single partition of better quality than any in the ensemble.
+The goal of EAC is to find an optimal partition $P^*$ containing $k^*$ clusters that is consistent with $\mathbb{P}$, robust to small variations in $\mathbb{P}$ and has a good fit with ground truth, when available.
+EAC makes no assumption on the number of clusters in each partition in $\mathbb{P}$.
+Its approach is divided in 3 steps:
+
+\begin{enumerate}
+\item \textbf{Production} of a clustering ensemble $\mathbb{P}$ (the evidence);
+\item \textbf{Combination} of the ensemble into a co-association matrix;
+\item \textbf{Recovery} of the natural clusters of the data.
+\end{enumerate}
+
+% introduce the creation of the ensemble
+In the first step, a clustering ensemble is produced.
+It is of interest to have variety in the ensemble with the intention to better capture the underlying structure of the data, which can be obtained by varying the number of clusters in $\mathbb{P}$ within an interval $[K_{min}, K_{max}]$.
+The ensemble is usually produced by random initialization of K-Means, specifying only the $[K_{min}, K_{max}]$ interval from which a random number of centroids will be picked.
+The choice of this interval and its influence on the EAC's properties will be a topic of discussion further ahead.
+
+The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix \cite{Fred2005}, i.e. a matrix $\mathcal{C}$ where each of its elements $n_{ij}$ is the association value between the pattern pair $(i,j)$, which is computed as the number of co-occurrences in the same cluster.
+The rationale is that pairs that are frequently clustered together are more likely to be representative of a true link between the patterns \cite{Fred2002}, revealing the underlying structure of the data.
+The construction of the co-association matrix is at the very core of this method.
+
+The co-association matrix is then used in the final step for obtaining the final partition.
+The co-association between any two patterns can be interpreted as a proximity measure.
+Hierarchical algorithms such as Single-Link or Average-Link have been used, since they operate over pair-wise dissimilarity matrices.
+However, one must convert the original similarity values to dissimilarities.
+Furthermore, the lifetime criteria can automatically decide the number of clusters by cutting a dendrogram in the interval corresponding to the longest lifetime.
+The k-cluster lifetime is defined as the range of threshold values on the dendrogram that lead to the identification of k clusters \cite{Fred2005}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{K-Means}
+
+K-Means is briefly reviewed here, since it is used by EAC.
+K-Means is a hard clustering algorithm that takes two initialization parameters: the number of clusters and the centroid initializations.
+It starts by assigning each pattern to its closer cluster based on the cluster's centroid.
+This is called the \textbf{labeling} step since one usually uses cluster labels for this assignment.
+The centroids are then recomputed based on this assignment, in the \textbf{update} step.
+The new centroids are the mean of all the patterns belonging to the clusters, hence the name of the algorithm.
+% convergence
+These two steps are executed iteratively until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
+The initial centroids are usually chosen randomly, but other schemes exist to improve the overall accuracy of the algorithm. %, e.g. K-Means++ \cite{Arthur2007}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Single-Link}
+
+Single-Link (SL) is a hierarchical agglomerative algorithm that has been used for the last step of EAC.
+HAC algorithms operate over a pair-wise dissimilarity matrix and output a dendrogram.
+The main steps of an agglomerative hierarchical clustering algorithm are \cite{Jain1999} (1) the creation of a pair-wise dissimilarity matrix of all patterns, where each pattern is a distinct cluster singleton; (2) finding the closest clusters, merge them and update the matrix to reflect this change; and, (3) repeating step 2 until all patterns belong to the same cluster.
+The algorithm stops when $n-1$ merges have been performed, which is when all patterns have been connected in the same cluster.
+The proximity measure between clusters in the second step distinguishes between the different HAC linkage algorithms, such as Single-Link , Average-Link, Complete-Link, among others.
+In SL, the proximity between any two clusters is the the dissimilarity between their closest patterns.
+
+An interesting property of SL, which will be relevant further on, is its equivalence with a Minimum Spanning Tree (MST), an observation first made by \cite{Gower1969}.
+In graph theory, a MST is a tree that connects all vertices together while minimizing the sum of all the distance between them.
+In this context, the edges of the MST are the distances between the patterns and the vertices are the patterns themselves.
+A MST contains all the information necessary to build a SL dendrogram.
+One of the advantages of using an MST based clustering is that it processes only non-zero values while a typical SL algorithm will process all pair-wise proximities, even if they are null.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Programming for GPUs with CUDA}
+
+Parallel processing with Graphics Processing Units was one of the lines of research pursued.
+Implemented work for the GPU used the Compute Unified Device Architecture (CUDA).
+This section will introduce a very brief overview of the main concepts to keep in mind for programming GPUs with CUDA.
+
+A GPU is comprised by one or several streaming processors (or multiprocessor).
+Each of these processors contains several simpler processors, each of which execute the same instruction at the same time at any given time.
+In the CUDA programming model, the basic unit of computation is a \emph{thread}.
+Threads are grouped into \emph{blocks} which are part of the block \emph{grid}.
+The number of threads in a block is typically higher than the number of processors in a multiprocessor.
+For that reason, the hardware automatically divides the threads from a block into smaller batches, called \emph{warps}.
+The computation of one block is independent from other blocks and each block is scheduled to one multiprocessor, which means that more multiprocessors results in more blocks being processed at the same time.
+
+% Block configuration can be multidimensional, up to and including 3 dimensions.
+% Furthermore, there is a limit to the amount of threads in each dimension that varies with the version of CUDA being used, e.g. for GPUs with CUDA compute capability 2.x  the number of threads is 1024 for the x- or y-dimensions, 64 for the z-dimension, an overall maximum number of threads is 1024 and a warp size of 32 threads.
+% For the previous example, it is wise for the number of threads used in a block to be a multiple of 32 to maximize processor utilization, otherwise some blocks will have processors that will do no work.
+
+Depending on the architecture, GPUs have several types of memories.
+Accessible to all processors (and threads) are the global memory, constant memory and texture memory, of which the last two are read-only.
+Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, enabling inter-thread communication inside a block.
+Finally, each thread has access to local memory, which resides in global memory space and has the same latency for read and write operations.
+However, if the thread is using only single variables or constant sized arrays, it uses register space, which is very fast.
+
+Typically, CUDA applications follow the same flow.
+% , the host CPU is responsible for several steps in the set-up phase.
+First, the host starts by transferring any necessary data to the device memory.
+The next step is selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+% First, the host CPU transfers any necessary data to the device memory (global, texture or constant) and is responsible for setting up the device code execution, which entails selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+The set-up phase is followed by the computation phase in the GPU.
+% The next phase is simply the device executing the kernel.
+Finally, the host will transfer back the results from the device.
+% It should be noted that the latest architectures support \emph{Dynamic Parallelism}.
+% This functionality allows the device to start other kernels without the intervention of the host CPU, which would alter the typical execution flow explained above if used.
+% It can be particularly useful if several kernels have data dependencies with other kernels, i.e. their input data is the output from others.%have to be executed in an application from the same input data but with dependencies.
+% In such a scenario, a block of the second kernel could be executed as soon as all dependencies were met, effectively cutting overheads for kernel calling from the host CPU.

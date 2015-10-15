@@ -1,51 +1,72 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Thesis.aux
-The style file: unsrtnat.bst
+The style file: unsrtnat_nodoi.bst
 Database file #1: library.bib
+Warning--entry type for "hdf5" isn't style-file defined
+--line 3572 of file library.bib
+Warning--there's a number but no volume in Nvidia2014
+Warning--there's a number but no volume in Harris2007
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
 Warning--empty journal in LourencoECG2009
-You've used 34 entries,
-            2481 wiz_defined-function locations,
-            831 strings with 11434 characters,
-and the built_in function-call counts, 13838 in all, are:
-= -- 1327
-> -- 518
-< -- 32
-+ -- 214
-- -- 146
-* -- 1022
-:= -- 2129
-add.period$ -- 141
-call.type$ -- 34
-change.case$ -- 66
-chr.to.int$ -- 34
-cite$ -- 38
-duplicate$ -- 713
-empty$ -- 1277
-format.name$ -- 204
-if$ -- 3008
-int.to.chr$ -- 1
-int.to.str$ -- 35
-missing$ -- 35
-newline$ -- 216
-num.names$ -- 102
-pop$ -- 244
+Warning--can't use both volume and number fields in zhang1996birch
+Warning--can't use both volume and number fields in guha1998cure
+Warning--empty journal in Sirotkovi2012
+Warning--empty journal in Karimi2010
+Warning--there's a number but no volume in Karimi2010
+Warning--empty journal in Vineet2009
+Warning--empty journal in Sousa2015
+Warning--empty journal in boruuvka1926jistem
+Warning--empty journal in Wiebe2014
+Warning--empty journal in Casper2013
+Warning--can't use both volume and number fields in Casper2012KMeans
+Warning--empty publisher in Lanzagorta2008
+Warning--there's a number but no volume in Horn2001a
+Warning--empty year in JonesSciPy
+Warning--empty year in pytables
+Warning--empty year in hdf5
+Warning--empty journal in AltetiAbad2007
+You've used 116 entries,
+            2439 wiz_defined-function locations,
+            1408 strings with 29908 characters,
+and the built_in function-call counts, 46108 in all, are:
+= -- 4244
+> -- 2214
+< -- 110
++ -- 877
+- -- 640
+* -- 3552
+:= -- 7283
+add.period$ -- 354
+call.type$ -- 116
+change.case$ -- 228
+chr.to.int$ -- 111
+cite$ -- 139
+duplicate$ -- 2209
+empty$ -- 3753
+format.name$ -- 826
+if$ -- 9819
+int.to.chr$ -- 6
+int.to.str$ -- 117
+missing$ -- 114
+newline$ -- 586
+num.names$ -- 348
+pop$ -- 687
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 116
 quote$ -- 0
-skip$ -- 462
+skip$ -- 1691
 stack$ -- 0
-substring$ -- 772
-swap$ -- 137
-text.length$ -- 9
+substring$ -- 2558
+swap$ -- 598
+text.length$ -- 48
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 232
-warning$ -- 4
-while$ -- 129
+type$ -- 800
+warning$ -- 23
+while$ -- 443
 width$ -- 0
-write$ -- 522
-(There were 4 warnings)
+write$ -- 1497
+(There were 24 warnings)

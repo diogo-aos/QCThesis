@@ -1,0 +1,75 @@
+%!TEX root = bare_jrnl.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File: ExtendedAbstract_imple.tex                               %
+%     Tex Master: ExtendedAbstract.tex                               %
+%                                                                    %
+%     Author: Andre Calado Marta                                     %
+%     Last modified : 27 Dez 2011                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A Calculation section represents a practical development
+% from a theoretical basis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Optimization of the recovery step of EAC}
+\label{sec:recovery}
+
+
+Two candidates were considered for the final step of EAC.
+A SL based on a GPU version of MST \cite{Sousa2015} was implemented.
+Although the GPU MST algorithm showed speed-up on benchmark datasets, the co-association matrix is typically less sparse than those, which made any speed-up impossible.
+External algorithms were the second candidate solution.
+This solution is based on storing the co-association matrix on disk, performing the expensive computation (memory and speed wise) of \emph{argsort} and then processing the matrix in batches until the final MST is extracted.
+
+% The co-association matrix can become very large for large datasets.
+% Even using the EAC CSR method to reduce memory usage, the memory used occupies a significant portion of main memory.
+
+% The algorithm to compute a MST brings additional space complexity that make it infeasible to perform the final partition recovery on a large co-association matrix in main memory.
+% External memory algorithms address this issue.
+% % out of core processing %TODO check
+% External memory algorithms refers to algorithms that are based on disk (or other large capacity but typically low latency storage technology), usually by loading small batches to main memory, processing them, saving the results and repeat until the whole computation is done.
+% This section describes the process of building the MST with low memory usage.
+% The details of converting the MST in a Single-Link clustering are described in chapter \ref{chapter:stateofart} and omitted here.
+
+\subsection{Kruskal's algorithm and implementation}
+
+% Kruskal algorithm
+The MST algorithm used was Kruskal.
+The original paper of Kruskal's \cite{kruskal1956shortest} algorithm describes three approaches for finding a MST.
+The SciPy library offers an efficient implementation for the following construct (taken directly from the original paper of Kruskal's algorithm):
+\begin{displayquote}
+CONSTRUCTION A. Perform the following step as many times as possible: Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen. Clearly the set of edges eventually chosen must form a spanning tree of G, and in fact it forms a shortest spanning tree.
+\end{displayquote}
+If the graph $G$ if connected, the algorithm will stop before processing all edges when $|V| - 1$ edges are added to the MST, where $V$ is the set of edges.
+This implementation works on a sparse matrix in the CSR format.
+
+One of the main steps of the implementation is computing the order of the edges of the graph without sorting the edges themselves, an operation called \emph{argsort}.
+To illustrate this, the \emph{argsort} operation on the array $ \left [  4 , 5 , 2 , 1, 3 \right ]$ would yield $ \left [  3 , 2 , 4, 0 , 1 \right ]$ since the the smallest element is at position 3 (starting from 0), the second smalled at position 2, etc.
+% This operation is useful to avoid computing the edge with minimum (\emph{min}) weight in every iteration.
+% Doing so would increase time complexity since a sorting algorithm may have an average time complexity to $O(n log n)$ (QuickSort algorithm) while a single minimum has a time complexity of $O(n)$.
+% Computing the minimum at every iteration when every edge must be processed means that there will be $|E|$ iterations and so the total time complexity for the minimum operation alone will be $O(E ^ E)$ if processed edges are only given the maximum value possible or $O(E!)$ if they are removed.
+% These time complexities are much higher than a $O(E log E)$.
+% The result of this operation is an array of length $|E|$ (i.e. the number of associations in EAC), which means it will occupy at least the same size as the array containing the weights of the edges.
+This operation is much less time intensive than computing the shortest edge at each iteration.
+However, the total space used is typically 8 times larger for EAC since the data type of the weights uses only one byte and the number of associations is very large, forcing the use of a 8 byte integer for the \emph{argsort} output array.
+This is the real motivation to store the co-association matrix in disk and use an external sorting algorithm.
+
+\subsection{Kruskal's implementation with an external sorting algorithm}
+
+The \emph{PyTables} library \cite{pytables}, which is built on top of the \emph{HDF5} format \cite{hdf5}, was used for storing the graph, performing the external sorting for the \emph{argsort} operation and loading the graph in batches for processing.
+This implementation starts by storing the CSR graph to disk.
+However, instead of saving the \emph{indptr} array directly, it stores an expanded version of the same length as the \emph{indices} array, where the $i$-th element contains the origin vertex (or row) of the $i$-th edge.
+This way, a binary search for discovering the origin vertex becomes unnecessary.
+
+Afterwards, the \emph{argsort} operation is performed by building a completely sorted index (CSI) \cite{AltetiAbad2007} of the \emph{data} array of the CSR matrix.
+It should be noted that the arrays themselves are not sorted.
+Instead, the CSI allows for a fast indexing of the arrays in a sorted manner (according to the order of the edges).
+%The CSI will be used to retrieve edges from the stored graph in a sorted manner.
+The process of building the CSI has a very low main memory usage and can be disregarded in comparison to the co-association matrix.
+
+The SciPy implementation of Kruskal's algorithm was modified to work with batches of the graph.
+This was easily implemented just by making the additional data structures used in the building of MST persistent between iterations.
+The new implementation loads the graph in batches and in a sorted manner, e.g. first load a batch of the 1000 shortest edges, then a batch of the next 1000 shortest edges, etc.
+Each batch must be processed sequentially since the edges must be processed in a sorted manner, which means there is no possibility for parallelism in this process.
+Typically, the batch size is a very small fraction of the size of the edges, so the total memory usage for building the MST is overshadowed by the size of the co-association matrix.
+The time complexity for building the CSI is higher that of computing the \emph{argsort} operation, but the formal time complexity is not reported in the source \cite{AltetiAbad2007}.
+As an example, for a $500 \: 000$ vertex graph the SL-MST approach took $54.9$ seconds while the external memory approach took $2613.5$ seconds - 2 orders of magnitude higher.

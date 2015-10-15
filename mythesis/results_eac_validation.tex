@@ -2,9 +2,8 @@
 \label{sec:eac validation}
 
 The present section aims to provide results showing that the proposed methods do not alter the overall quality of the results.
-With this in mind, the results of original version of EAC, implemented in Matlab, are compared with those of the proposed solution.
-Several small data sets, chosen from the data sets used by \citet{Lourenco2010}, were processed by the two versions of EAC.
-All these data sets were taken from the UCI Machine Learning Repository. %TODO add ref
+With this in mind, the results of the original version of EAC, implemented in Matlab, are compared with those of the proposed solution.
+Several small datasets, chosen from the datasets used by \citet{Lourenco2010} and taken from the UCI Machine Learning repository \cite{Lichman:2013}, were processed by the two versions of EAC.
 Furthermore, since the generation of the ensemble is probabilistic and can change the results between runs, the proposed version is processed with the ensembles created by the original version as well.
 This guarantees that the combination and recovery phases of EAC, which are deterministic when using SL, are equivalent to the original.
 All data in this section refers to processing done in machine Alpha.
@@ -14,12 +13,7 @@ Analyzing these results, it is apparent that the difference is minimal.
 It should be noted at this point that the original implementation always maps the dissimilarities of the co-association matrix to the range $\left [ 0 , 1 \right ]$.
 This forces the co-association matrix to have a floating point data type.
 However, since the number of partitions used is usually less than 255, the proposed version uses unsigned integers of 1 byte to reduce the used memory considerably.
-The differences in accuracy are thought to come from rounding differences of the two frameworks used and from this difference in data type.
-
-
-
-
-
+The differences in accuracy are thought to come from rounding differences between Matlab and Python.
 
 \begin{table}[h]
 \centering
@@ -27,7 +21,8 @@ The differences in accuracy are thought to come from rounding differences of the
 
 \begin{tabular}{lll}
 \toprule
-Data set &      Accuracy & Accuracy (lifetime) \\
+         &        \multicolumn{2}{c}{Difference between accuracies of implementations} \\
+dataset &      True number of clusters & Lifetime criteria \\
 \midrule
 breast\_cancer &  4.948755e-06 &      2.825769e-06 \\
 ionosphere    &  1.652422e-06 &      1.452991e-06 \\
@@ -46,13 +41,14 @@ wine\_norm     &  1.123596e-07 &      1.910112e-06 \\
 
 
 
+
 % \begin{table}[h]
 % \centering
 % \caption{Speed-ups obtained in the combination and recovery phases of EAC, using the ensemble generated from the original EAC implementation.}
 
 % \begin{tabular}{lll}
 % \toprule
-% Data set & Combination & Recovery \\
+% dataset & Combination & Recovery \\
 % \midrule
 % breast\_cancer &   7.713564 &        15.22334 \\
 % ionosphere    &   9.678288 &        20.12336 \\
@@ -70,7 +66,7 @@ wine\_norm     &  1.123596e-07 &      1.910112e-06 \\
 
 Table \ref{tab:validation speedup all} presents the speed-up of the proposed version over the original one.
 It is clear that speed-up is obtained in all phases of EAC, often by an order of magnitude.
-This result, combined with the demonstration that the differences in accuracy are negligible, show that the proposed algorithm performs well in small data sets.
+This result, combined with the demonstration that the differences in accuracy are negligible, show that the proposed algorithm performs well in small datasets.
 
 \begin{table}[h]
 \centering
@@ -78,7 +74,7 @@ This result, combined with the demonstration that the differences in accuracy ar
 
 \begin{tabular}{lccllll}
 \toprule
-Data set &  No. patterns &  No. features & No. classes & Production & Combination & Recovery \\
+dataset &  No. patterns &  No. features & No. classes & Production & Combination & Recovery \\
 \midrule
 breast\_cancer &           683 &            10 &           2 &      50.43974 &   7.544247 &        15.83316 \\
 ionosphere    &           351 &            34 &           2 &      21.86286 &   11.30883 &        19.97219 \\

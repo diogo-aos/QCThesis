@@ -1,0 +1,37 @@
+%!TEX root = ExtendedAbstract.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File: ExtendedAbstract_imple.tex                               %
+%     Tex Master: ExtendedAbstract.tex                               %
+%                                                                    %
+%     Author: Andre Calado Marta                                     %
+%     Last modified : 27 Dez 2011                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A Calculation section represents a practical development
+% from a theoretical basis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Optimization of the combination step of EAC}
+\label{sec:imple}
+
+Space complexity is the main challenge building the co-association matrix.
+A complete pair-wire matrix has $O(n^2)$ complexity but can be reduced to $O(\frac{n(n-1)}/2)$ without loss of information.
+Still, these complexities are rather high when large data sets are contemplated, since it becomes impossible to fit these "conventional" co-association matrices in main memory.
+Two solutions in literature address this challenge.
+\cite{Fred2005} approaches it by using a $k$-Nearest Neighbor approach, only considering associations between the $k$ closes neighbors of each pattern.
+\cite{Lourenco2010} approaches the problem by exploiting the sparse nature of the co-association matrix for reducing space complexity, but doesn't cover the efficiency of building a sparse matrix or the space overhead associated with sparse data structures.
+The effort of the present work was focused on further exploiting the sparse nature of EAC, building on previous insights and exploring the topics that literature has neglected so far.
+
+Building a non-sparse matrix is easy and fast since the memory for the whole matrix is allocated and indexing the matrix is direct.
+When using sparse matrices, neither is true.
+In the specific case of EAC, there is no way to know what is the number of associations the co-association matrix will have which means it is not possible to pre-allocate the memory to the correct size of the matrix.
+This translates in allocating the memory gradually which may result in fragmentation, depending on the implementation, and more complex data structures, which incurs significant computational overhead.
+For building a matrix, the DOK (Dictionary of Keys) and LIL (List of Lists) formats are recommended in the documentation of the SciPy \cite{JonesSciPy} scientific computation library.
+These were briefly tested on simple EAC problems and not only was their execution time several orders of magnitude higher than a traditional fully allocated matrix, but the overhead of the sparse data strucutres resulted in a space complexity higher than what would be needed to process large data sets.
+For operating over a matrix, the documentation recommends converting from one of the previous formats to either CSR (Compressed Sparse Row) or CSC (Compressed Sparse Column).
+Building with the CSR format had a low space complexity but the execution time was much higher than even one of the other sparse formats.
+
+The bad performance of the above sparse formats combined with the fact that no relevant literature was found on efficiently building sparse matrices led to the design and implementation of a novel strategy for a CSR matrix specialized to the EAC context, the \textbf{EAC CSR}.
+
+
+

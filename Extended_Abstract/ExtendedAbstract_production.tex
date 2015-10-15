@@ -1,0 +1,44 @@
+%!TEX root = ExtendedAbstract.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File: ExtendedAbstract_imple.tex                               %
+%     Tex Master: ExtendedAbstract.tex                               %
+%                                                                    %
+%     Author: Andre Calado Marta                                     %
+%     Last modified : 27 Dez 2011                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A Calculation section represents a practical development
+% from a theoretical basis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Optimization of the production step of EAC}
+\label{sec:imple}
+
+The main contribution for the optimization of the production of clustering ensemble is the implementation of a parallel K-Means for GPUs.
+Several parallel implementations of this algorithm for the GPU exist in literature \cite{Bai2009, Zechner2009, Sirotkovi2012} and all report speed-ups relative to their sequential counterparts.
+% in certain conditions, usually after the input data set goes above a certain cardinality, dimensionality or number of clusters threshold.
+% The first step is inherently parallel as the computation of the label of the $i$-th pattern is not dependent on any other pattern, but only on the centroids.
+% Two approaches to parallelize this step on the GPU are possible\cite{Bai2009}, a centroid-centric or a data-centric .
+% In the former each thread is responsible for a centroid and will compute the distance from its centroid to every pattern.
+% These distances must be stored and, in the end, the patterns are assigned to the closest centroid.
+% In the latter, each thread will compute the distance from one or more data points to every centroid and determines to which centroid they are closest.
+% This strategy has the advantage of using less memory since it does not need to store all the pair-wise distances to perform the labeling - it only needs to store the best distance for each pattern.
+% According to \cite{Bai2009}, the former approach is suitable for devices with a low number of processors so as to stream the data to each one, while the latter is better suited to devices with more processors.
+
+The implementation of the present work followed the version in \cite{Zechner2009b}, which only parallelizes the labeling stage. %, and was programmed in Python using the Numba \cite{numba} CUDA API. % and takes a data-centric approach to the problem.
+This was further motivated from empirical data that suggested the average theoretical maximum speed-up for the labeling stage was $880$, whereas for the the update phase the maximum was only $1.5$.
+%Each thread computes the distance from a set of data points to every centroid and determines the labels.
+% The remaining steps are performed by the host CPU.
+% This study reported speed ups up to 14, for input datasets of $500\:000$ points.
+% The current implementation sought to provide an efficient GPU parallel version of K-Means while making it accessible to users not knowledgeable of GPU architecture and programming.
+The CUDA implementation of the labeling step starts by transferring the data to the GPU (pattern set and initial centroids) and allocates space for the labels and corresponding distances.
+Still, several parameters are accessible to the user, such as the shape of the block of threads and grid of blocks, if data transfer should be handled by the CUDA API or optimized to minimize communication between host and device, and also how many patterns to process per thread.
+The computation of a label for one pattern is done by iteratively computing the distance from the pattern to each centroid and storing the label and the distance corresponding to the closest centroid to that pattern.
+Finally, the labels and distances are sent back to the host for computation of the new centroids.
+% This procedure is available as a CUDA kernel or as three different sequential versions: pure Python, based on NumPy or compiled code with Numba.
+% These same sequential versions exist for the recomputation of the centroids.
+The implementation of the centroid computation starts by counting the number of patterns attributed to each centroid.
+Afterwards, it checks if there are any "empty" clusters, i.e. if there are centroids that are not the closest ones to any pattern.
+Dealing with empty clusters is important because the target use expects that the output number of clusters be the same as defined in the input parameter.
+Centroids corresponding to empty clusters will be the patterns that are furthest away from their centroids.
+Any other centroid $c_i$ will be the mean of the patterns that were labeled $i$.

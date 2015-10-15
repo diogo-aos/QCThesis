@@ -1,7 +1,7 @@
 This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
 Scanning style file ./Thesis_AllChapters.ist..............done (14 attributes redefined, 0 ignored).
-Scanning input file Thesis_AllChapters.glo....done (12 entries accepted, 0 rejected).
-Sorting entries....done (44 comparisons).
-Generating output file Thesis_AllChapters.gls....done (38 lines written, 0 warnings).
+Scanning input file Thesis_AllChapters.glo....done (16 entries accepted, 0 rejected).
+Sorting entries....done (68 comparisons).
+Generating output file Thesis_AllChapters.gls....done (50 lines written, 0 warnings).
 Output written in Thesis_AllChapters.gls.
 Transcript written in Thesis_AllChapters.glg.

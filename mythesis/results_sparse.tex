@@ -9,7 +9,7 @@ The SciPy's LIL, DOK and CSR implementations were used.
 All tests were executed in machine Bravo.
 
 The time that took to update the first partition and the total time were recorded for the different types of matrix.
-The results can are presented in Table \ref{tab:coassoc build sparse} and also in Fig. \ref{fig:coassoc build sparse}.
+The results are presented in Table \ref{tab:coassoc build sparse} and also in Fig. \ref{fig:coassoc build sparse}.
 For the CSR format only the first partition was updated, since it took a very long time to update just the first partition.
 A rough estimate for the time it would take to update the whole matrix is around 15h, 100 times the time it took to update the first partition.
 Observing the other timings, and for the exception of the EAC CSR matrix, this estimate should not be too far off.
@@ -17,8 +17,8 @@ The reason that the first partition update of the EAC CSR matrix was so much fas
 
 It is clear from the results that the optimized versions are much faster than any of the others.
 These results focus on providing a justification for the design and implementation of a novel method of building the co-association matrix: a fully allocated matrix consumes too much memory but available sparse implementations are too slow.
-For this purpose a small data set as the one used suffices to demonstrate this point.
-The difference between the two optimized versions will become clearer on future sections, where a more thorough study covering a wider spectrum of data sets is presented. 
+For this purpose a small dataset as the one used suffices to demonstrate this point.
+The difference between the two optimized versions will become clearer on future sections, where a more thorough study covering a wider spectrum of datasets is presented. 
 
 
 \begin{table}[h]

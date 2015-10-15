@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ExtendedAbstract.aux
+The style file: unsrt.bst
+Database file #1: ExtendedAbstract_ref_db.bib
+Warning--can't use both volume and number fields in Casper2012KMeans
+Warning--there's a number but no volume in Horn2001a
+Warning--empty journal in Sirotkovi2012
+You've used 16 entries,
+            1791 wiz_defined-function locations,
+            549 strings with 6195 characters,
+and the built_in function-call counts, 3886 in all, are:
+= -- 367
+> -- 146
+< -- 6
++ -- 55
+- -- 39
+* -- 246
+:= -- 590
+add.period$ -- 47
+call.type$ -- 16
+change.case$ -- 15
+chr.to.int$ -- 0
+cite$ -- 19
+duplicate$ -- 181
+empty$ -- 371
+format.name$ -- 39
+if$ -- 878
+int.to.chr$ -- 0
+int.to.str$ -- 16
+missing$ -- 16
+newline$ -- 82
+num.names$ -- 16
+pop$ -- 41
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 109
+stack$ -- 0
+substring$ -- 290
+swap$ -- 57
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 43
+width$ -- 18
+write$ -- 173
+(There were 3 warnings)

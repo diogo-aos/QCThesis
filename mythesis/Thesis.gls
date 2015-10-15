@@ -1,50 +1,66 @@
 \begin{theglossary}\glogroupSymbols
 
-\gloitem {\glosslabel{glo:\textbf {API}}{\textbf {API}}}Application Programming Interface.\relax
+\gloitem {\glosslabel{glo:\textbf {API}}{\textbf {API}}}Application Programming Interface\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {CPU}}{\textbf {CPU}}}Central Processing Unit.\relax
+\gloitem {\glosslabel{glo:\textbf {CPU}}{\textbf {CPU}}}Central Processing Unit\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {EAC}}{\textbf {EAC}}}Evidence Accumulation Clustering.\relax
+\gloitem {\glosslabel{glo:\textbf {EAC}}{\textbf {EAC}}}Evidence Accumulation Clustering\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {GPGPU}}{\textbf {GPGPU}}}General Purpose computing in Graphics Processing Units.\relax
+\gloitem {\glosslabel{glo:\textbf {FCM}}{\textbf {FCM}}}Fuzzy C-Means\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {GPU}}{\textbf {GPU}}}Graphics Processing Unit.\relax
+\gloitem {\glosslabel{glo:\textbf {GPGPU}}{\textbf {GPGPU}}}General Purpose computing in Graphics Processing Units\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {HAC}}{\textbf {HAC}}}Hierarchical Agglomeration Clustering.\relax
+\gloitem {\glosslabel{glo:\textbf {GPU}}{\textbf {GPU}}}Graphics Processing Unit\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {PCA}}{\textbf {PCA}}}Principal Component Analysis.\relax
+\gloitem {\glosslabel{glo:\textbf {HAC}}{\textbf {HAC}}}Hierarchical Agglomeration Clustering\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {PC}}{\textbf {PC}}}Principal Component.\relax
+\gloitem {\glosslabel{glo:\textbf {MST}}{\textbf {MST}}}Minimum Spanning Tree\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {QK-Means}}{\textbf {QK-Means}}}Quantum K-Means.\relax
+\gloitem {\glosslabel{glo:\textbf {PCA}}{\textbf {PCA}}}Principal Component Analysis\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {Qubit}}{\textbf {Qubit}}}Quantum bit.\relax
+\gloitem {\glosslabel{glo:\textbf {PC}}{\textbf {PC}}}Principal Component\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {SL-HAC}}{\textbf {SL-HAC}}}Single-Linkage Hierarchical Agglomeration Clustering.\relax
+\gloitem {\glosslabel{glo:\textbf {QC}}{\textbf {QC}}}Quantum clustering\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 
-\gloitem {\glosslabel{glo:\textbf {SVD}}{\textbf {SVD}}}Singular Value Decomposition.\relax
+\gloitem {\glosslabel{glo:\textbf {QK-Means}}{\textbf {QK-Means}}}Quantum K-Means\relax
+\glodelim 
+		\glsnumformat{xvii}\delimT 
+
+\gloitem {\glosslabel{glo:\textbf {Qubit}}{\textbf {Qubit}}}Quantum bit\relax
+\glodelim 
+		\glsnumformat{xvii}\delimT 
+
+\gloitem {\glosslabel{glo:\textbf {SL-MST}}{\textbf {SL-MST}}}Single-Link based on Minimum Spanning Tree\relax
+\glodelim 
+		\glsnumformat{xvii}\delimT 
+
+\gloitem {\glosslabel{glo:\textbf {SL}}{\textbf {SL}}}Single Link\relax
+\glodelim 
+		\glsnumformat{xvii}\delimT 
+
+\gloitem {\glosslabel{glo:\textbf {WEAC}}{\textbf {WEAC}}}Weighted Evidence Accumulation Clustering\relax
 \glodelim 
 		\glsnumformat{xvii}\delimT 
 \end{theglossary}

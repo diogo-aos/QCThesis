@@ -2,13 +2,13 @@
 
 \section{Quantum Clustering}
 
-This section presents performance and accuracy results of Quantum K-Means and Horn and Gottlieb's algorithm.
+This section presents performance and validity results of Quantum K-Means and Horn and Gottlieb's algorithm.
 All results were obtained using machine Alpha.
 
 \subsection{Quantum K-Means}
 
 The testing was aimed at benchmarking both accuracy and speed.
-The input used was synthetic data, namely, Gaussian mixtures with variable cardinality and dimensionality.
+The input used was synthetic data, namely, Gaussian mixtures with variable number of clusters and features.
 
 The tests were performed using 10 oracles, a qubit string length of 8 and 100 generations per round.
 The classicalK-Means was executed using the \emph{k-means++} centroid initialization method to make for a fairer comparison, since QK-Means also has some computational cost in the beginning of the algorithm.
@@ -27,7 +27,7 @@ However, the solution chosen in classical K-Means was the one with lowest sum of
 To analyze the influence of the Davies-Bouldin (DB) index, it was computed on all classical K-Means solutions and used as the criteria to choose the best solution.
 When this is done, we can see that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations.
 In T2, the computation times become very similar with only a 2\% difference between these two variants.
-Results show that most computational cost (88\% on T1) lies on the evaluation of the solutions obtained from each oracle, i.e. computing the DB index.
+Results show that most computational cost (88\% on T2) lies on the evaluation of the solutions obtained from each oracle, i.e. computing the DB index.
 This is a costly but necessary step in this algorithm.
 
 \begin{table}[h]
@@ -56,8 +56,8 @@ This is a costly but necessary step in this algorithm.
 \label{tab:qkmeans times}
 \end{table}
 
-DB index results are presented in Table \ref{tab:qkmeans DB}
-These results show that the quality of the solutions from K-Means and QK-Means do not differ significantly on these data sets.
+DB index results are presented in Table \ref{tab:qkmeans DB}.
+These results show that the quality of the solutions from K-Means and QK-Means do not differ significantly on these datasets.
 The results presented before steered the direction of the analysis to a "fairer" comparison.
 Yet, the main requirement for the target application of this algorithm is speed.
 In this regard, it is several orders of magnitude slower than the classical K-Means, since the K-Means performance results refer to many runs.
@@ -148,13 +148,10 @@ This, allied with the fact that the quality of the solutions does not differ muc
 
 \subsection{Horn and Gottlieb's algorithm}
 
-
-
-All data in this section refers to processing done in machine Alpha.
-For measuring the performance of this algorithm, several mixtures of 4 Gaussians with different cardinality and dimensionality were produced.
-Table \ref{tab:horn performance} presents the execution times for each of these data sets.
-It can be seen that the execution time of this algorithm is rather high even for small data sets as the ones presented, since this algorithm is being analyzed with the goal of speed optimization.
-More than 1 hour for a small data set such as $10 \: 000$ patterns is prohibitive for application in the EAC context.
+For measuring the performance of this algorithm, several mixtures of 4 Gaussians with different number of patterns and dimensions were produced. %cardinality and dimensionality were produced.
+Table \ref{tab:horn performance} presents the execution times for each of these datasets.
+It can be seen that the execution time of this algorithm is rather high even for small datasets as the ones presented, since this algorithm is being analyzed with the goal of speed optimization.
+More than 1 hour for a small dataset such as $10 \: 000$ patterns is prohibitive for application in the EAC context.
 
 \begin{table}[h]
 \centering
@@ -187,12 +184,12 @@ More than 1 hour for a small data set such as $10 \: 000$ patterns is prohibitiv
 \end{table}
 
 
-In spite of its computational complexity, the accuracy of the algorithm was tested on the Iris and Crab data sets.
-The Iris data set has 150 patterns, 4 features and 3 classes where 2 are overlapping.
-The Crab data set has 200 patterns, 5 features and 4 classes where 2 pairs of classes are overlapping.
-Principal Component Analysis (PCA) was applied to both data sets before clustering.
-An accuracy as high as $86\%$ was obtained for the Iris data set when using the first and second principal components (PC), and as high as $82\%$ when using all PCs.
-For the Crab data set an accuracy of $81.5\%$ was obtained for the second and third PCs (PCs chosen to reproduce the results of the original source of the algorithm), $63\%$ when using all PCs.
+In spite of its computational complexity, the accuracy of the algorithm was tested on the Iris and Crab datasets, taken from the UCI Machine Learning repository \cite{Lichman:2013}.
+The Iris dataset has 150 patterns, 4 features and 3 classes where 2 are overlapping.
+The Crab dataset has 200 patterns, 5 features and 4 classes where 2 pairs of classes are overlapping.
+Principal Component Analysis (PCA) was applied to both datasets before clustering.
+An accuracy as high as $86\%$ was obtained for the Iris dataset when using the first and second principal components (PC), and as high as $82\%$ when using all PCs.
+For the Crab dataset an accuracy of $81.5\%$ was obtained for the second and third PCs (PCs chosen to reproduce the results of the original source of the algorithm), $63\%$ when using all PCs.
 However, when applied to the unprocessed data the accuracy was only $34\%$ .
 
 

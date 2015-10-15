@@ -1,36 +1,38 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{116}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Horn and Gottlieb(2001)]{Horn2001b}
+\bibitem[Horn and Gottlieb(2001{\natexlab{a}})]{Horn2001b}
 David Horn and Assaf Gottlieb.
 \newblock {Algorithm for Data Clustering in Pattern Recognition Problems Based
   on Quantum Mechanics}.
-\newblock \emph{Physical Review Letters}, 88\penalty0 (1):\penalty0 1--4, 2001.
-\newblock ISSN 0031-9007.
-\newblock \doi{10.1103/PhysRevLett.88.018702}.
-\newblock URL
-  \url{http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.88.018702}.
+\newblock \emph{Physical Review Letters}, 88\penalty0 (1):\penalty0 1--4,
+  2001{\natexlab{a}}.
+
+\bibitem[Nvidia(2015)]{Nvidia2014}
+Nvidia.
+\newblock {CUDA C Programming Guide}.
+\newblock \emph{Programming Guides}, \penalty0 (August), 2015.
+
+\bibitem[Harris et~al.(2007)Harris, Sengupta, and Owens]{Harris2007}
+Mark Harris, Shubhabrata Sengupta, and John~D. Owens.
+\newblock {Parallel Prefix Sum (Scan) with CUDA Mark}.
+\newblock \emph{Gpu gems 3}, \penalty0 (April):\penalty0 1--24, 2007.
 
 \bibitem[Jain(2010)]{Jain2010}
 Anil~K Jain.
 \newblock {Data clustering: 50 years beyond K-means}.
 \newblock \emph{Pattern Recognition Letters}, 31\penalty0 (8):\penalty0
   651--666, 2010.
-\newblock ISSN 01678655.
-\newblock \doi{10.1016/j.patrec.2009.09.011}.
-\newblock URL \url{http://dx.doi.org/10.1016/j.patrec.2009.09.011}.
 
 \bibitem[Jain et~al.(1999)Jain, Murty, and Flynn]{Jain1999}
 a.~K. Jain, M.~N. Murty, and P.~J. Flynn.
 \newblock {Data clustering: a review}.
 \newblock \emph{ACM Computing Surveys}, 31\penalty0 (3):\penalty0 264--323,
   1999.
-\newblock ISSN 03600300.
-\newblock \doi{10.1145/331499.331504}.
 
 \bibitem[Anderson(1936)]{anderson1936species}
 Edgar Anderson.
@@ -53,13 +55,11 @@ Raymond~A Jarvis and Edward~A Patrick.
 Charu~C Aggarwal and Chandan~K Reddy.
 \newblock \emph{{Data clustering: algorithms and applications}}.
 \newblock CRC Press, 2013.
-\newblock ISBN 9781466558229.
 
 \bibitem[Fred(2001)]{Fred2001}
 Ana Fred.
 \newblock {Finding consistent clusters in data partitions}.
 \newblock \emph{Multiple classifier systems}, pages 309--318, 2001.
-\newblock URL \url{http://link.springer.com/chapter/10.1007/3-540-48219-9\_31}.
 
 \bibitem[Meila(2003)]{Meila2003}
 Marina Meila.
@@ -67,10 +67,6 @@ Marina Meila.
 \newblock \emph{Learning theory and Kernel machines: 16th Annual Conference on
   Learning Theory and 7th Kernel Workshop, COLT/Kernel 2003, Washington, DC,
   USA, August 24-27, 2003: proceedings}, page 173, 2003.
-\newblock ISSN 03029743.
-\newblock \doi{10.1007/978-3-540-45167-9\_14}.
-\newblock URL
-  \url{http://books.google.com/books?hl=en\&amp;lr=\&amp;id=hk1dqsM0XF4C\&amp;oi=fnd\&amp;pg=PA173\&amp;dq=Comparing+Clusterings+by+the+Variation+of+Information\&amp;ots=7rcmrLpFV1\&amp;sig=P-AXGQnlenPfAlSb3fdhphYv6dI}.
 
 \bibitem[Davies and Bouldin(1979)]{davies1979cluster}
 David~L Davies and Donald~W Bouldin.
@@ -83,10 +79,6 @@ Daniel Boley.
 \newblock {Principal Direction Divisive Partitioning}.
 \newblock \emph{Data Mining and Knowledge Discovery}, 2\penalty0 (4):\penalty0
   325--344, 1998.
-\newblock ISSN 1384-5810.
-\newblock \doi{10.1023/A:1009740529316}.
-\newblock URL
-  \url{http://dx.doi.org/10.1023/A:1009740529316$\backslash$nhttp://www.springerlink.com/content/w15313n737603612/}.
 
 \bibitem[Steinbach et~al.(2000)Steinbach, Karypis, Kumar, and
   Others]{Steinbach2000}
@@ -94,25 +86,18 @@ Michael Steinbach, George Karypis, Vipin Kumar, and Others.
 \newblock {A comparison of document clustering techniques}.
 \newblock \emph{KDD workshop on text mining}, 400\penalty0 (1):\penalty0
   525--526, 2000.
-\newblock \doi{10.1.1.125.9225}.
 
 \bibitem[Chavent(1998)]{Chavent1998}
 Marie Chavent.
 \newblock {A monothetic clustering method}.
 \newblock \emph{Pattern Recognition Letters}, 19\penalty0 (11):\penalty0
   989--996, 1998.
-\newblock ISSN 01678655.
-\newblock \doi{10.1016/S0167-8655(98)00087-7}.
 
 \bibitem[Bezdek et~al.(1984)Bezdek, Ehrlich, and Full]{Bezdek1984}
 James~C. Bezdek, Robert Ehrlich, and William Full.
-\newblock {FCM: The fuzzy <i>c</i>-means clustering algorithm}.
+\newblock {FCM: The Fuzzy C-Means Clustering Algorithm}.
 \newblock \emph{Computers \& Geosciences}, 10\penalty0 (2–3):\penalty0
   191--203, 1984.
-\newblock ISSN 0098-3004.
-\newblock \doi{10.1016/0098-3004(84)90020-7}.
-\newblock URL
-  \url{http://www.sciencedirect.com/science/article/pii/0098300484900207}.
 
 \bibitem[Kang et~al.(2011)Kang, Tsourakakis, and Faloutsos]{Kang2011}
 U~Kang, Charalampos~E Tsourakakis, and Christos Faloutsos.
@@ -134,8 +119,6 @@ D.~Arthur, D.~Arthur, S.~Vassilvitskii, and S.~Vassilvitskii.
 \newblock {k-means++: The advantages of careful seeding}.
 \newblock \emph{Proceedings of the eighteenth annual ACM-SIAM symposium on
   Discrete algorithms}, 8:\penalty0 1027--1035, 2007.
-\newblock \doi{10.1145/1283383.1283494}.
-\newblock URL \url{http://portal.acm.org/citation.cfm?id=1283494}.
 
 \bibitem[Pakhira(2009)]{Pakhira2009}
 Malay~K Pakhira.
@@ -151,9 +134,8 @@ Peter H~A Sneath and Robert~R Sokal.
 \bibitem[Sibson(1973)]{Sibson1973}
 R.~Sibson.
 \newblock {SLINK: an optimally efficient algorithm for the single-link cluster
-  method}, 1973.
-\newblock ISSN 1460-2067.
-\newblock URL \url{http://comjnl.oxfordjournals.org/content/16/1/30.short}.
+  method}.
+\newblock \emph{The Computer Journal}, 16\penalty0 (1):\penalty0 30--34, 1973.
 
 \bibitem[Gower and Ross(1969)]{Gower1969}
 J.~C. Gower and G.~J.~S. Ross.
@@ -165,7 +147,6 @@ J.~C. Gower and G.~J.~S. Ross.
 Daniel M\"{u}llner.
 \newblock {Modern hierarchical, agglomerative clustering algorithms}.
 \newblock \penalty0 (1973):\penalty0 29, 2011.
-\newblock URL \url{http://arxiv.org/abs/1109.2378}.
 
 \bibitem[Starck and Murtagh(2007)]{starck2007astronomical}
 J-L Starck and Fionn Murtagh.
@@ -190,43 +171,36 @@ Alexander Strehl and Joydeep Ghosh.
 \newblock {Cluster Ensembles – A Knowledge Reuse Framework for}.
 \newblock \emph{Journal of Machine Learning Research}, 3:\penalty0 583--617,
   2002.
-\newblock ISSN 1532-4435.
-\newblock \doi{10.1162/153244303321897735}.
 
-\bibitem[Wang et~al.(2011)Wang, Shan, and Banerjee]{wang2011bayesian}
+\bibitem[Wang et~al.(2011{\natexlab{a}})Wang, Shan, and
+  Banerjee]{wang2011bayesian}
 Hongjun Wang, Hanhuai Shan, and Arindam Banerjee.
 \newblock {Bayesian cluster ensembles}.
 \newblock \emph{Statistical Analysis and Data Mining: The ASA Data Science
-  Journal}, 4\penalty0 (1):\penalty0 54--70, 2011.
+  Journal}, 4\penalty0 (1):\penalty0 54--70, 2011{\natexlab{a}}.
 
 \bibitem[Dudoit and Fridlyand(2003)]{Dudoit2003}
 Sandrine Dudoit and Jane Fridlyand.
 \newblock {Bagging to improve the accuracy of a clustering procedure}.
 \newblock \emph{Bioinformatics}, 19\penalty0 (9):\penalty0 1090--1099, 2003.
-\newblock ISSN 13674803.
-\newblock \doi{10.1093/bioinformatics/btg038}.
 
 \bibitem[Fred and Jain(2002)]{Fred2002}
 Ana N~L Fred and Anil~K Jain.
 \newblock {Data clustering using evidence accumulation}.
 \newblock \emph{Object recognition supported by user interaction for service
   robots}, 4, 2002.
-\newblock ISSN 1051-4651.
-\newblock \doi{10.1109/ICPR.2002.1047450}.
 
 \bibitem[Louren\c{c}o and Fred(2007)]{Lourenco2007}
 Andr\'{e} Louren\c{c}o and Ana Fred.
 \newblock {Ensemble methods in the clustering of string patterns}.
 \newblock \emph{Proceedings - Seventh IEEE Workshop on Applications of Computer
   Vision, WACV 2005}, pages 143--148, 2007.
-\newblock \doi{10.1109/ACVMOT.2005.46}.
 
 \bibitem[Louren\c{c}o et~al.(2009)Louren\c{c}o, Carreiras, Bul\`{o}, and
   Fred]{LourencoECG2009}
 Andr\'{e} Louren\c{c}o, Carlos Carreiras, Samuel~Rota Bul\`{o}, and Ana Fred.
 \newblock {ECG ANALYSIS USING CONSENSUS CLUSTERING}.
 \newblock pages 511--515, 2009.
-\newblock URL \url{Lourenco2009}.
 
 \bibitem[Duarte et~al.(2005)Duarte, a.L.N. Fred, Lourenco, and
   Rodrigues]{Duarte2005}
@@ -234,15 +208,12 @@ F.J. Duarte, a.L.N. Fred, a.~Lourenco, and M.F. Rodrigues.
 \newblock {Weighting Cluster Ensembles in Evidence Accumulation Clustering}.
 \newblock \emph{2005 Portuguese Conference on Artificial Intelligence},
   00:\penalty0 159--167, 2005.
-\newblock \doi{10.1109/EPIA.2005.341287}.
 
 \bibitem[Louren\c{c}o et~al.(2010)Louren\c{c}o, Fred, and Jain]{Lourenco2010}
 Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
 \newblock {On the scalability of evidence accumulation clustering}.
 \newblock \emph{Proceedings - International Conference on Pattern Recognition},
   0:\penalty0 782--785, 2010.
-\newblock ISSN 10514651.
-\newblock \doi{10.1109/ICPR.2010.197}.
 
 \bibitem[Qian et~al.(2010)Qian, Cukierski, Osman, and Goodell]{Qian2010}
 You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
@@ -250,6 +221,509 @@ You~Wen Qian, William Cukierski, Mona Osman, and Lauri Goodell.
   automatically identify chronic lymphocytic leukemia}.
 \newblock \emph{ICBBT 2010 - 2010 International Conference on Bioinformatics
   and Biomedical Technology}, pages 305--309, 2010.
-\newblock \doi{10.1109/ICBBT.2010.5478955}.
+
+\bibitem[O'Callaghan et~al.(2002)O'Callaghan, Mishra, Meyerson, Guha, and
+  Motwani]{bigdatastream}
+L~O'Callaghan, N~Mishra, A~Meyerson, S~Guha, and R~Motwani.
+\newblock {Streaming-data algorithms for high-quality clustering}.
+\newblock In \emph{Data Engineering, 2002. Proceedings. 18th International
+  Conference on}, pages 685--694, 2002.
+
+\bibitem[Ng and Han(2002)]{ng2002clarans}
+Raymond~T Ng and Jiawei Han.
+\newblock {Clarans: A method for clustering objects for spatial data mining}.
+\newblock \emph{Knowledge and Data Engineering, IEEE Transactions on},
+  14\penalty0 (5):\penalty0 1003--1016, 2002.
+
+\bibitem[Zhang et~al.(1996)Zhang, Ramakrishnan, and Livny]{zhang1996birch}
+Tian Zhang, Raghu Ramakrishnan, and Miron Livny.
+\newblock {BIRCH: an efficient data clustering method for very large
+  databases}.
+\newblock In \emph{ACM SIGMOD Record}, volume~25, pages 103--114. ACM, 1996.
+
+\bibitem[Guha et~al.(1998)Guha, Rastogi, and Shim]{guha1998cure}
+Sudipto Guha, Rajeev Rastogi, and Kyuseok Shim.
+\newblock {CURE: an efficient clustering algorithm for large databases}.
+\newblock In \emph{ACM SIGMOD Record}, volume~27, pages 73--84. ACM, 1998.
+
+\bibitem[Drineas et~al.(2006)Drineas, Kannan, and Mahoney]{drineas2006fast}
+Petros Drineas, Ravi Kannan, and Michael~W Mahoney.
+\newblock {Fast Monte Carlo algorithms for matrices III: Computing a compressed
+  approximate matrix decomposition}.
+\newblock \emph{SIAM Journal on Computing}, 36\penalty0 (1):\penalty0 184--206,
+  2006.
+
+\bibitem[Zechner and Granitzer(2009{\natexlab{a}})]{Zechner2009b}
+Mario Zechner and Michael Granitzer.
+\newblock {K-Means on the Graphics Processor: Design And Experimental
+  Analysis}.
+\newblock \emph{International Journal on Advances in System and Measurements},
+  2\penalty0 (2):\penalty0 224--235, 2009{\natexlab{a}}.
+
+\bibitem[Chen et~al.(2011)Chen, Song, Bai, Lin, and Chang]{chen2011parallel}
+Wen-Yen Chen, Yangqiu Song, Hongjie Bai, Chih-Jen Lin, and Edward~Y Chang.
+\newblock {Parallel spectral clustering in distributed systems}.
+\newblock \emph{Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 33\penalty0 (3):\penalty0 568--586, 2011.
+
+\bibitem[Chen and Agrawal(2012)]{Chen2012}
+Linchuan Chen and Gagan Agrawal.
+\newblock {Optimizing MapReduce for GPUs with Effective Shared Memory Usage}.
+\newblock \emph{Proceedings of the 21st international symposium on
+  High-Performance Parallel and Distributed Computing (HPDC'12)}, pages
+  199--210, 2012.
+
+\bibitem[Bai et~al.(2009)Bai, He, Ouyang, Li, and Li]{Bai2009}
+Hong~Tao Bai, Li~Li He, Dan~Tong Ouyang, Zhan~Shan Li, and He~Li.
+\newblock {K-means on commodity GPUs with CUDA}.
+\newblock \emph{2009 WRI World Congress on Computer Science and Information
+  Engineering, CSIE 2009}, 3:\penalty0 651--655, 2009.
+
+\bibitem[Wu and Hong(2011)]{Wu2011}
+Jiadong Wu and Bo~Hong.
+\newblock {An efficient k-means algorithm on CUDA}.
+\newblock \emph{IEEE International Symposium on Parallel and Distributed
+  Processing Workshops and Phd Forum}, pages 1740--1749, 2011.
+
+\bibitem[Zechner and Granitzer(2009{\natexlab{b}})]{Zechner2009}
+Mario Zechner and Michael Granitzer.
+\newblock {Accelerating k-means on the graphics processor via CUDA}.
+\newblock \emph{Proceedings of the 1st International Conference on Intensive
+  Applications and Services, INTENSIVE 2009}, pages 7--15, 2009{\natexlab{b}}.
+
+\bibitem[Wu et~al.(2009)Wu, Zhang, and Hsu]{Wu2009a}
+Ren Wu, Bin Zhang, and Meichun Hsu.
+\newblock {Clustering billions of data points using GPUs}.
+\newblock \emph{Proceedings of the combined workshops on UnConventional high
+  performance computing workshop plus memory access workshop}, pages 1--5,
+  2009.
+
+\bibitem[Shalom et~al.(2009)Shalom, Dash, Tue, and Wilson]{Shalom2009}
+S.~a~Arul Shalom, Manoranjan Dash, Minh Tue, and Nithin Wilson.
+\newblock {Hierarchical agglomerative clustering using graphics processor with
+  compute unified device architecture}.
+\newblock \emph{2009 International Conference on Signal Processing Systems,
+  ICSPS 2009}, pages 556--561, 2009.
+
+\bibitem[{Arul Shalom} and Dash(2011)]{ArulShalom2011}
+S.~a. {Arul Shalom} and Manoranjan Dash.
+\newblock {Efficient hierarchical agglomerative clustering algorithms on GPU
+  using data partitioning}.
+\newblock \emph{Parallel and Distributed Computing, Applications and
+  Technologies, PDCAT Proceedings}, pages 134--139, 2011.
+
+\bibitem[{Yanjun Jiang} et~al.(2012){Yanjun Jiang}, {Enxing Li}, and {Zhanchun
+  Gao}]{gao20xx}
+{Yanjun Jiang}, {Enxing Li}, and {Zhanchun Gao}.
+\newblock {A GPU-based harmony k-means algorithm for document clustering}.
+\newblock In \emph{IET International Conference on Information Science and
+  Control Engineering 2012 (ICISCE 2012)}, pages 3.29--3.29, 2012.
+
+\bibitem[Sirotkovi et~al.(2012)Sirotkovi, Dujmi, and Papi]{Sirotkovi2012}
+J~Sirotkovi, H~Dujmi, and V~Papi.
+\newblock {K-Means Image Segmentation on Massively Parallel GPU Architecture}.
+\newblock pages 489--494, 2012.
+
+\bibitem[Malakar and Vydyanathan(2013)]{Malakar2013}
+Ranajoy Malakar and Naga Vydyanathan.
+\newblock {A CUDA-enabled hadoop cluster for fast distributed image
+  processing}.
+\newblock \emph{2013 National Conference on Parallel Computing Technologies,
+  PARCOMPTECH 2013}, 2013.
+
+\bibitem[Grossman et~al.(2013)Grossman, Breternitz, and Sarkar]{Grossman2013}
+Max Grossman, Mauricio Breternitz, and Vivek Sarkar.
+\newblock {HadoopCL: MapReduce on distributed heterogeneous platforms through
+  seamless integration of hadoop and OpenCL}.
+\newblock \emph{Proceedings - IEEE 27th International Parallel and Distributed
+  Processing Symposium Workshops and PhD Forum, IPDPSW 2013}, pages 1918--1927,
+  2013.
+
+\bibitem[Mi\v{s}i et~al.(2012)Mi\v{s}i, \^{C}, and Toma\v{s}evi]{Misi2012}
+Marko~J Mi\v{s}i, M~\^{C}, and Milo~V Toma\v{s}evi.
+\newblock {Evolution and Trends in GPU Computing}.
+\newblock \emph{MIPRO, 2012 Proceedings of the 35th International Convention},
+  pages 289--294, 2012.
+
+\bibitem[Ji and Ma(2011)]{Ji2011}
+Feng Ji and Xiaosong Ma.
+\newblock {Using Shared Memory to Accelerate MapReduce on Graphics Processing
+  Units}.
+\newblock \emph{2011 IEEE International Parallel \& Distributed Processing
+  Symposium}, pages 805--816, 2011.
+
+\bibitem[Xin and Li(2012)]{Xin2012}
+Miao Xin and Hao Li.
+\newblock {An implementation of GPU accelerated MapReduce: Using Hadoop with
+  OpenCL for data- and compute-intensive jobs}.
+\newblock \emph{Proceedings - 2012 International Joint Conference on Service
+  Sciences, Service Innovation in Emerging Economy: Cross-Disciplinary and
+  Cross-Cultural Perspective, IJCSS 2012}, pages 6--11, 2012.
+
+\bibitem[He et~al.(2008)He, Fang, Luo, Govindaraju, and Wang]{He2008}
+Bingsheng He, Weibin Fang, Qiong Luo, Naga~K Govindaraju, and Tuyong Wang.
+\newblock {Mars: a MapReduce framework on graphics processors}.
+\newblock \emph{International Conference on Parallel Architectures and
+  Compilation Techniques}, pages 260--269, 2008.
+
+\bibitem[Karimi et~al.(2010)Karimi, Dickson, and Hamze]{Karimi2010}
+Kamran Karimi, Neil~G. Dickson, and Firas Hamze.
+\newblock {A Performance Comparison of CUDA and OpenCL}.
+\newblock \penalty0 (1):\penalty0 12, 2010.
+
+\bibitem[Su et~al.(2012)Su, Chen, Lan, Huang, and Wu]{Su2012}
+Ching~Lung Su, Po~Yu Chen, Chun~Chieh Lan, Long~Sheng Huang, and Kuo~Hsuan Wu.
+\newblock {Overview and comparison of OpenCL and CUDA technology for GPGPU}.
+\newblock \emph{IEEE Asia-Pacific Conference on Circuits and Systems,
+  Proceedings, APCCAS}, pages 448--451, 2012.
+
+\bibitem[Farivar et~al.(2008)Farivar, Rebolledo, and Chan]{Farivar2008}
+Reza Farivar, Daniel Rebolledo, and Ellick Chan.
+\newblock {A parallel implementation of k-means clustering on GPUs}.
+\newblock \emph{on Parallel and}, pages 1--6, 2008.
+
+\bibitem[DiMarco and Taufer(2013)]{DiMarco2013}
+Jeffrey DiMarco and Michela Taufer.
+\newblock {Performance impact of dynamic parallelism on different clustering
+  algorithms}.
+\newblock \emph{Spie}, page 87520E, 2013.
+
+\bibitem[Vineet(2009)]{Vineet2009}
+Vibhav Vineet.
+\newblock {Fast Minimum Spanning Tree for Large Graphs on the GPU by Fast
+  Minimum Spanning Tree for Large Graphs on the GPU}.
+\newblock 2009\penalty0 (August), 2009.
+
+\bibitem[Rostrup et~al.(2013)Rostrup, Srivastava, and Singhal]{rostrup2013fast}
+Scott Rostrup, Shweta Srivastava, and Kishore Singhal.
+\newblock {Fast and memory-efficient minimum spanning tree on the GPU}.
+\newblock \emph{International Journal of Computational Science and
+  Engineering}, 8\penalty0 (1):\penalty0 21--33, 2013.
+
+\bibitem[Sousa et~al.(2015)Sousa, Mariano, and Proen\c{c}a]{Sousa2015}
+Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
+\newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
+  Algorithm}.
+\newblock 2015.
+
+\bibitem[Kruskal(1956)]{kruskal1956shortest}
+Joseph~B Kruskal.
+\newblock {On the shortest spanning subtree of a graph and the traveling
+  salesman problem}.
+\newblock \emph{Proceedings of the American Mathematical society}, 7\penalty0
+  (1):\penalty0 48--50, 1956.
+
+\bibitem[Prim(1957)]{prim1957shortest}
+Robert~Clay Prim.
+\newblock {Shortest connection networks and some generalizations}.
+\newblock \emph{Bell system technical journal}, 36\penalty0 (6):\penalty0
+  1389--1401, 1957.
+
+\bibitem[Borůvka(1926)]{boruuvka1926jistem}
+Otakar Borůvka.
+\newblock {O jist\'{e}m probl\'{e}mu minim\'{a}ln\'{\i}m}.
+\newblock 1926.
+
+\bibitem[Wang et~al.(2011{\natexlab{b}})Wang, Huang, and Guo]{Wang2011}
+Wei Wang, Yongzhong Huang, and Shaozhong Guo.
+\newblock {Design and Implementation of GPU-Based Prim ' s Algorithm}.
+\newblock \emph{International Journal of Modern Education and Computer
+  Science}, 4\penalty0 (July):\penalty0 55--62, 2011{\natexlab{b}}.
+
+\bibitem[Harish et~al.(2009)Harish, Vineet, and Narayanan]{harish2009large}
+Pawan Harish, Vibhav Vineet, and P~J Narayanan.
+\newblock {Large graph algorithms for massively multithreaded architectures}.
+\newblock \emph{International Institute of Information Technology Hyderabad,
+  Tech. Rep. IIIT/TR/2009/74}, 2009.
+
+\bibitem[Hillis and Steele(1986)]{Hillis1986}
+W.~Daniel Hillis and Guy~L. Steele.
+\newblock {Data parallel algorithms}.
+\newblock \emph{Communications of the ACM}, 29\penalty0 (12):\penalty0
+  1170--1183, 1986.
+
+\bibitem[Blelloch(1990)]{Blelloch1990}
+Guy~E Blelloch.
+\newblock {Prefix Sums and Their Applications}.
+\newblock \emph{Computer}, pages 35--60, 1990.
+
+\bibitem[A\"{\i}meur et~al.(2013)A\"{\i}meur, Brassard, and Gambs]{Aimeur2013}
+Esma A\"{\i}meur, Gilles Brassard, and S\'{e}bastien Gambs.
+\newblock {Quantum speed-up for unsupervised learning}.
+\newblock \emph{Machine Learning}, 90\penalty0 (February 2012):\penalty0
+  261--287, 2013.
+
+\bibitem[Lloyd et~al.(2013)Lloyd, Mohseni, and Rebentrost]{Lloyd2013}
+Seth Lloyd, Masoud Mohseni, and Patrick Rebentrost.
+\newblock {Quantum algorithms for supervised and unsupervised machine
+  learning}.
+\newblock \emph{arXiv preprint arXiv:1307.0411}, 2013.
+
+\bibitem[Grover(1996)]{grover1996fast}
+Lov~K Grover.
+\newblock {A fast quantum mechanical algorithm for database search}.
+\newblock In \emph{Proceedings of the twenty-eighth annual ACM symposium on
+  Theory of computing}, pages 212--219. ACM, 1996.
+
+\bibitem[Wiebe et~al.(2014)Wiebe, Kapoor, and Svore]{Wiebe2014}
+Nathan Wiebe, Ashish Kapoor, and Krysta Svore.
+\newblock {Quantum Algorithms for Nearest-Neighbor Methods for Supervised and
+  Unsupervised Learning}.
+\newblock page~31, 2014.
+
+\bibitem[Feynman(1982)]{Feynman1982}
+Richard~P. Feynman.
+\newblock {Simulating physics with computers}.
+\newblock \emph{International Journal of Theoretical Physics}, 21\penalty0
+  (6-7):\penalty0 467--488, 1982.
+
+\bibitem[Wittek(2014)]{wittek2014quantum}
+Peter Wittek.
+\newblock \emph{{Quantum Machine Learning: What Quantum Computing Means to Data
+  Mining}}.
+\newblock Academic Press, 2014.
+
+\bibitem[Casper and Hung(2013)]{Casper2013}
+Ellis Casper and Chih-cheng Hung.
+\newblock {Quantum Modeled Clustering Algorithms for Image Segmentation}.
+\newblock 2\penalty0 (March):\penalty0 1--21, 2013.
+
+\bibitem[Han and Kim(2000)]{Han2000}
+Kuk-Hyun Han and Jong-Hwan Kim.
+\newblock {Genetic quantum algorithm and its application to combinatorial
+  optimization problem}.
+\newblock \emph{Proceedings of the 2000 Congress on Evolutionary Computation.
+  CEC00 (Cat. No.00TH8512)}, 2, 2000.
+
+\bibitem[Liu et~al.(2010)Liu, Chen, Yan, Liu, Xu, and Zheng]{Liu2010}
+Wenjie Liu, Hanwu Chen, Qiaoqiao Yan, Zhihao Liu, Juan Xu, and Yu~Zheng.
+\newblock {A novel quantum-inspired evolutionary algorithm based on variable
+  angle-distance rotation}.
+\newblock \emph{2010 IEEE World Congress on Computational Intelligence, WCCI
+  2010 - 2010 IEEE Congress on Evolutionary Computation, CEC 2010}, 2010.
+
+\bibitem[Talbi et~al.(2004)Talbi, Draa, and Batouche]{Talbi2004}
+H~Talbi, A~Draa, and M~Batouche.
+\newblock {A new quantum-inspired genetic algorithm for solving the travelling
+  salesman problem}.
+\newblock In \emph{Industrial Technology, 2004. IEEE ICIT '04. 2004 IEEE
+  International Conference on}, volume~3, pages 1192--1197 Vol. 3, 2004.
+
+\bibitem[Casper et~al.(2012)Casper, Hung, Jung, and Yang]{Casper2012KMeans}
+Ellis Casper, Chih-Cheng Hung, Edward Jung, and Ming Yang.
+\newblock {A Quantum-Modeled K-Means Clustering Algorithm for Multi-band Image
+  Segmentation}.
+\newblock In \emph{Proceedings of the 2012 ACM Research in Applied Computation
+  Symposium}, volume~1, pages 158--163, 2012.
+
+\bibitem[Xiao et~al.(2010)Xiao, Yan, Zhang, and Tang]{Xiao2010}
+Jing Xiao, YuPing Yan, Jun Zhang, and Yong Tang.
+\newblock {A quantum-inspired genetic algorithm for k-means clustering}.
+\newblock \emph{Expert Systems with Applications}, 37:\penalty0 4966--4973,
+  2010.
+
+\bibitem[Hung et~al.(2013{\natexlab{a}})Hung, Casper, Kuo, Liu, Jung, Yang, Yu,
+  Jung, and Yang]{hung2013quantum}
+Chih-Cheng Hung, Ellis Casper, Bor-chen Kuo, Wenping Liu, Edward Jung, Ming
+  Yang, Xiaoyi Yu, Edward Jung, and Ming Yang.
+\newblock {A Quantum-Modeled Artificial Bee Colony clustering algorithm for
+  remotely sensed multi-band image segmentation}.
+\newblock In \emph{Geoscience and Remote Sensing Symposium (IGARSS), 2013 IEEE
+  International}, pages 2501--2504. IEEE, 2013{\natexlab{a}}.
+
+\bibitem[Hung et~al.(2013{\natexlab{b}})Hung, Casper, Kuo, Liu, Yu, Jung, and
+  Yang]{hung2013quantumcmeans}
+Chih-Cheng Hung, Ellis Casper, Bor-Chen Kuo, Wenping Liu, Xiaoyi Yu, Edward
+  Jung, and Ming Yang.
+\newblock {A Quantum-Modeled Fuzzy C-Means clustering algorithm for remotely
+  sensed multi-band image segmentation}.
+\newblock In \emph{Geoscience and Remote Sensing Symposium (IGARSS), 2013 IEEE
+  International}, pages 2501--2504. IEEE, 2013{\natexlab{b}}.
+
+\bibitem[Liang et~al.(2009)Liang, Wang, Liu, and Jian]{Liang2009}
+Shenshen Liang, Cheng Wang, Ying Liu, and Liheng Jian.
+\newblock {CUKNN: A parallel implementation of K-nearest neighbor on
+  CUDA-enabled GPU}.
+\newblock \emph{Proceedings - 2009 IEEE Youth Conference on Information,
+  Computing and Telecommunication, YC-ICT2009}, pages 415--418, 2009.
+
+\bibitem[Li et~al.(2010)Li, Wu, Ma, and Jiao]{Li2010}
+Yangyang Li, Nana Wu, Jingjing Ma, and Licheng Jiao.
+\newblock {Quantum-inspired immune clonal clustering algorithm based on
+  watershed}.
+\newblock In \emph{IEEE Congress on Evolutionary Computation}, pages 1--7.
+  IEEE, July 2010.
+
+\bibitem[Mikki et~al.(2006)Mikki, Kishk, and Others]{mikki2006quantum}
+Said~M Mikki, Ahmed Kishk, and Others.
+\newblock {Quantum particle swarm optimization for electromagnetics}.
+\newblock \emph{Antennas and Propagation, IEEE Transactions on}, 54\penalty0
+  (10):\penalty0 2764--2775, 2006.
+
+\bibitem[Weinstein and Horn(2009{\natexlab{a}})]{Weinstein2009b}
+Marvin Weinstein and David Horn.
+\newblock {Dynamic quantum clustering: A method for visual exploration of
+  structures in data}.
+\newblock \emph{Physical Review E}, 80\penalty0 (6):\penalty0 066117, December
+  2009{\natexlab{a}}.
+
+\bibitem[Li et~al.(2007)Li, Wang, and Wuxi]{li2007quantum}
+Zhi-Hua Li, Shi-Tong Wang, and Jiangsu Wuxi.
+\newblock {Quantum Theory: The unified framework for FCM and QC algorithm}.
+\newblock In \emph{Wavelet Analysis and Pattern Recognition, 2007. ICWAPR'07.
+  International Conference on}, volume~3, pages 1045--1048. IEEE, 2007.
+
+\bibitem[Wang et~al.(2007)Wang, Yang, Xu, and Sun]{Wang2007}
+Hao Wang~Hao Wang, Shiqin Yang~Shiqin Yang, Wenbo Xu~Wenbo Xu, and Jun Sun~Jun
+  Sun.
+\newblock {Scalability of Hybrid Fuzzy C-Means Algorithm Based on
+  Quantum-Behaved PSO}.
+\newblock \emph{Fourth International Conference on Fuzzy Systems and Knowledge
+  Discovery (FSKD 2007)}, 2\penalty0 (Fskd), 2007.
+
+\bibitem[Sun et~al.(2004)Sun, Feng, and Xu]{Sun2004}
+Jun Sun, Bin Feng, and Wenbo Xu.
+\newblock {Particle swarm optimization with particles having quantum behavior}.
+\newblock In \emph{Evolutionary Computation, 2004. CEC2004. Congress on},
+  volume~1, pages 325--331 Vol.1, 2004.
+
+\bibitem[Manju and Nigam(2014)]{Manju2014}
+a.~Manju and M.~J. Nigam.
+\newblock {Applications of quantum inspired computational intelligence: A
+  survey}.
+\newblock \emph{Artificial Intelligence Review}, 42:\penalty0 79--156, 2014.
+
+\bibitem[Lanzagorta and Uhlmann(2008)]{Lanzagorta2008}
+Marco Lanzagorta and Jeffrey Uhlmann.
+\newblock \emph{{Quantum Computer Science}}, volume~1.
+\newblock 2008.
+
+\bibitem[Rosenbaum and Harrow(2011)]{Rosenbaum2011}
+David Rosenbaum and Aram~W. Harrow.
+\newblock {Uselessness for an Oracle Model with Internal Randomness}.
+\newblock \emph{arXiv:1111.1462}, pages 1--23, 2011.
+
+\bibitem[Horn et~al.(2010)Horn, Aviv, Gottlieb, HaSharon, Axel, and
+  Gan]{Horn2010}
+David Horn, Tel Aviv, Assaf Gottlieb, Hod HaSharon, Inon Axel, and Ramat Gan.
+\newblock {Method and Apparatus for Quantum Clustring}, 2010.
+
+\bibitem[Weinstein and Horn(2009{\natexlab{b}})]{Weinstein2009}
+Marvin Weinstein and David Horn.
+\newblock {Dynamic quantum clustering: a method for visual exploration of
+  structures in data}.
+\newblock \emph{Physical Review E - Statistical, Nonlinear, and Soft Matter
+  Physics}, 80\penalty0 (6):\penalty0 1--15, December 2009{\natexlab{b}}.
+
+\bibitem[Horn and Gottlieb(2001{\natexlab{b}})]{Horn2001a}
+David Horn and Assaf Gottlieb.
+\newblock {The Method of Quantum Clustering.}
+\newblock \emph{NIPS}, \penalty0 (1), 2001{\natexlab{b}}.
+
+\bibitem[Wittek(2013)]{Wittek2013}
+Peter Wittek.
+\newblock {High-performance dynamic quantum clustering on graphics processors}.
+\newblock \emph{Journal of Computational Physics}, 233:\penalty0 262--271,
+  2013.
+
+\bibitem[{Van Der Walt} et~al.(2011){Van Der Walt}, Colbert, and
+  Varoquaux]{VanDerWalt2011}
+St\'{e}fan {Van Der Walt}, S.~Chris Colbert, and Ga\"{e}l Varoquaux.
+\newblock {The NumPy array: A structure for efficient numerical computation}.
+\newblock \emph{Computing in Science and Engineering}, 13\penalty0
+  (2):\penalty0 22--30, 2011.
+
+\bibitem[Jones et~al.()Jones, Oliphant, Peterson, and Others]{JonesSciPy}
+Eric Jones, Travis Oliphant, Pearu Peterson, and Others.
+\newblock {SciPy: Open source scientific tools for Python}.
+\newblock URL \url{http://www.scipy.org/}.
+
+\bibitem[Oliphant(2007)]{Oliphant2007}
+Travis~E. Oliphant.
+\newblock {Python for scientific computing}.
+\newblock \emph{Computing in Science and Engineering}, 9\penalty0 (3):\penalty0
+  10--20, 2007.
+
+\bibitem[Millman and Aivazis(2011)]{Millman2011}
+K.~Jarrod Millman and Michael Aivazis.
+\newblock {Python for scientists and engineers}.
+\newblock \emph{Computing in Science and Engineering}, 13\penalty0
+  (2):\penalty0 9--12, 2011.
+
+\bibitem[Hunter(2007)]{hunter2007matplotlib}
+John~D Hunter.
+\newblock {Matplotlib: A 2D graphics environment}.
+\newblock \emph{Computing in science and engineering}, 9\penalty0 (3):\penalty0
+  90--95, 2007.
+
+\bibitem[McKinney(2010)]{McKinney2010}
+Wes McKinney.
+\newblock {Data Structures for Statistical Computing in Python}.
+\newblock \emph{Proceedings of the 9th Python in Science Conference},
+  1697900\penalty0 (Scipy):\penalty0 51--56, 2010.
+
+\bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
+  Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
+  Cournapeau, Brucher, Perrot, and Duchesnay]{Pedregosa2011}
+Fabian Pedregosa, Ga\"{e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
+  Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
+  Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau,
+  Matthieu Brucher, Matthieu Perrot, and \'{E}douard Duchesnay.
+\newblock {Scikit-learn: Machine Learning in Python}.
+\newblock \emph{Journal of Machine Learning Research}, 12\penalty0
+  (Oct):\penalty0 2825--2830, 2011.
+
+\bibitem[P\'{e}rez and Granger(2007)]{Perez2007}
+Fernando P\'{e}rez and Brian~E. Granger.
+\newblock {IPython: A system for interactive scientific computing}.
+\newblock \emph{Computing in Science and Engineering}, 9\penalty0 (3):\penalty0
+  21--29, 2007.
+
+\bibitem[Team(2015)]{numba}
+Numba~Development Team.
+\newblock {Numba}.
+\newblock $\backslash$url\{http://numba.pydata.org\}, 2015.
+
+\bibitem[Alted et~al.()Alted, Vilata, and Others]{pytables}
+Francesc Alted, Ivan Vilata, and Others.
+\newblock {PyTables: Hierarchical Datasets in Python}.
+\newblock URL \url{http://www.pytables.org/}.
+
+\bibitem[{The HDF Group}()]{hdf5}
+{The HDF Group}.
+\newblock {Hierarchical Data Format, version 5}.
+
+\bibitem[{Altet i Abad} and Balaguer(2007)]{AltetiAbad2007}
+Francesc {Altet i Abad} and Ivan~Vilata Balaguer.
+\newblock {OPSI : The indexing system of PyTables 2 Professional Edition}.
+\newblock pages 1--27, 2007.
+
+\bibitem[Lichman(2013)]{Lichman:2013}
+M~Lichman.
+\newblock {\{UCI\} Machine Learning Repository}, 2013.
+\newblock URL \url{http://archive.ics.uci.edu/ml}.
+
+\bibitem[Yuksel et~al.(2013)Yuksel, Slaughter, Mukhtar, Ochieng, Sun, Goutte,
+  Muddana, {Gaelyn Garrett}, and Vaezi]{yuk13oro}
+E~S Yuksel, J~C Slaughter, N~Mukhtar, M~Ochieng, G~Sun, M~Goutte, S~Muddana,
+  C~{Gaelyn Garrett}, and M~F Vaezi.
+\newblock {An oropharyngeal pH monitoring device to evaluate patients with
+  chronic laryngitis.}
+\newblock \emph{Neurogastroenterology and motility : the official journal of
+  the European Gastrointestinal Motility Society}, 25\penalty0 (5), 2013.
+
+\bibitem[Strack et~al.(2014)Strack, DeShazo, Gennings, Olmo, Ventura, Cios, and
+  Clore]{strack2014impact}
+Beata Strack, Jonathan~P DeShazo, Chris Gennings, Juan~L Olmo, Sebastian
+  Ventura, Krzysztof~J Cios, and John~N Clore.
+\newblock {Impact of HbA1c measurement on hospital readmission rates: analysis
+  of 70,000 clinical database patient records}.
+\newblock \emph{BioMed research international}, 2014, 2014.
+
+\bibitem[Ho and Basu(2002)]{Ho2002}
+Tin~K Ho and Mitra Basu.
+\newblock {Complexity measures of supervised classification problems}.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Learning},
+  24\penalty0 (3):\penalty0 289--300, 2002.
 
 \end{thebibliography}

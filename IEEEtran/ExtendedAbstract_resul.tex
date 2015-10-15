@@ -1,0 +1,363 @@
+%!TEX root = bare_jrnl.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     File: ExtendedAbstract_resul.tex                               %
+%     Tex Master: ExtendedAbstract.tex                               %
+%                                                                    %
+%     Author: Andre Calado Marta                                     %
+%     Last modified : 27 Dez 2011                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Results
+% Results should be clear and concise.
+% Discussion
+% This should explore the significance of the results of the work, not
+% repeat them. A combined Results and Discussion section is often
+% appropriate. Avoid extensive citations and discussion of published
+% literature.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Results}
+\label{sec:resul}
+
+Results presented here originated from one of three machines, that will be referred to as Alpha, Bravo and Charlie.
+The main specifications of each machine are as follows:
+\begin{itemize}
+  \item \textbf{Alpha}: 4 GBs of main memory, a 2 core Intel i3-2310M 2.1GHz CPU and a NVIDIA GT520M with 1 GB;
+  \item \textbf{Bravo}: 32 GBs of main memory, a 6 core Intel i7-4930K 3.4GHz CPU and a NVIDIA Quadro K600 with 1 GB;
+  \item \textbf{Charlie}: 32 GBs of main memory, a 4 core Intel i7-4770K 3.5GHz CPU and a NVIDIA K40c with 12 GB.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{GPU Parallel K-Means}
+
+Both sequential and parallel versions of K-Means were executed over a wide spectrum of datasets varying number of patterns, features and centroids.
+All tests were executed on machine Charlie and the block size was maintained constant at 512.
+Whenever the number of clusters was superior to $70\%$ of the number of patterns, that particular test case was not executed.
+
+
+Observing Figures \ref{fig:kmeans dim 2} and \ref{fig:kmeans dim 200}, it is clear that the number of patterns, features and clusters influence the speed-up.
+For the simple case of 2 dimensions (Fig \ref{fig:kmeans dim 2}), the speed-up increases with the number of patterns.
+However, there is no speed-up when the overall complexity of the datasets is low.
+For 2 clusters, there is no speed-up before $100 \: 000$ patterns.
+And even after that mark, the speed-up is not significant.
+On the other hand, for a large number of clusters, there is speed-up for any number of patterns executed.
+Not only that, that speed-up is highest of any other case with inferior number of clusters.
+The reason for this is that the total amount of work increases linearly with the number of clusters but is diluted by the number of threads that can execute simultaneously.
+
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=\columnwidth]{{{results/kmeans/fixed_dimensions/2.0}}}
+    \caption{Speed-up of the labeling phase for datasets of 2 dimensions and varying the number of patterns and clusters. The dotted black line represents a speed-up of one.}
+    \label{fig:kmeans dim 2}
+\end{figure}
+
+However, as the dimensionality increases (observe Fig. \ref{fig:kmeans dim 200}), the speed-up increases until a certain number of patterns and then decreases.
+Here, the initial number of patterns for which there is a speed-up is lower than in the low dimensionality case and the number of clusters plays less an influence on the speed-up.
+It is believed that the reason for this is related to the implementation itself.
+The current parallel implementation does not use shared memory, which is fast.
+As such, for every computation, each thread fetches the relevant data from global memory which is significantly slower.
+As the number of dimensions increases, the amount of data that each thread must fetch also increases.
+Furthermore, since the number of dimensions affects both data points and centroids, if the number of dimensions increases by 2 the number of fetches to memory increases by 4.
+So, the speed-up increases with the dataset complexity until a point where the number of fetches to memory starts having a very significant effect on the execution time and it decreases close to $50\%$.
+
+\begin{figure}[hbtp]
+    \centering
+    \includegraphics[width=\columnwidth]{{{results/kmeans/fixed_dimensions/200.0}}}
+    \caption{Speed-up of the labeling phase for datasets of 200 dimensions and varying cardinality and number of clusters. The dotted black line represents a speed-up of one.}
+    \label{fig:kmeans dim 200}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Validation with original implementation}
+
+The results of the original version of EAC, implemented in Matlab, are compared with those of the proposed solution.
+Several small datasets, chosen from the datasets used in \cite{Lourenco2010} and taken from the UCI Machine Learning repository \cite{Lichman:2013}, were processed by the two versions of EAC.
+Furthermore, since the generation of the ensemble is probabilistic and can change the results between runs, the proposed version is processed with the ensembles created by the original version as well.
+This guarantees that the combination and recovery phases of EAC, which are deterministic when using SL, are equivalent to the original.
+All data in this section refers to processing done in machine Alpha.
+Table \ref{tab:validation error acc} presents the difference between the accuracies of the two versions.
+Analyzing these results, it is apparent that the difference is minimal, most likely due the original version using Matlab and the proposed using Python.
+Furthermore, a speed-up as low as 6 and as high as 200 was obtained over the original version in the various steps, even for these small datasets.
+
+% It should be noted at this point that the original implementation always maps the dissimilarities of the co-association matrix to the range $\left [ 0 , 1 \right ]$.
+% This forces the co-association matrix to have a floating point data type.
+% However, since the number of partitions used is usually less than 255, the proposed version uses unsigned integers of 1 byte to reduce the used memory considerably.
+% The differences in accuracy are thought to come from rounding differences of the two frameworks used and from this difference in data type.
+
+\begin{table}[h]
+\centering
+\caption{Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.}
+
+\begin{tabular}{lll}
+\toprule
+         &        \multicolumn{2}{c}{Difference between accuracies of implementations} \\
+dataset &      True number of clusters & Lifetime criteria \\
+\midrule
+breast\_cancer &  4.948755e-06 &     2.825769e-06 \\
+ionosphere     &  1.652422e-06 &     1.452991e-06 \\
+iris           &  3.333333e-06 &     3.333333e-06 \\
+isolet         &  1.038861e-07 &     4.084904e-07 \\
+optdigits      &  3.795449e-06 &     1.480513e-06 \\
+pima           &  3.333333e-06 &     3.333333e-06 \\
+pima\_norm     &  4.166667e-07 &     4.166667e-07 \\
+wine\_norm     &  1.123596e-07 &     1.910112e-06 \\
+\bottomrule
+\end{tabular}
+
+\label{tab:validation error acc}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Set-up for large dataset testing}
+% It was suggested before that $K_{min}$ would influence other properties of EAC.
+% This includes the execution times of the production, combination and recovery phases.
+The results here presented refer to a synthetic large dataset comprised by a mixture of 6 Gaussians, where 2 pairs are overlapped and 1 pair is touching.
+This dataset was sampled into several smaller datasets to cover a wider range of number of patterns.
+
+Different rules for computing the $K_{min}$, different co-association matrix formats and different approaches for the final clustering will be mentioned.
+The different rules and their aliases are presented in Table \ref{tab:eac rules}.
+The different formats for the co-association matrix are the \emph{full} (for fully allocated $n \times n$ matrix), \emph{full condensed} (for a fully allocated $\frac{n(n-1)}{2}$ array to build the upper triangular matrix), \emph{sparse complete} (for EAC CSR), \emph{sparse condensed const} (for EAC CSR building only the upper triangular matrix) and \emph{sparse condensed linear} (for EAC CSR condensed).
+The different approaches for the final clustering are \emph{SLINK} \cite{Sibson1973}, \emph{SL-MST} (for using the Kruskal implementation in SciPy) and \emph{SL-MST-Disk} for the modified version that performs an external memory sort.
+
+\begin{table}[h]
+\centering
+\caption{Different rules for computing $K_{min}$ and $K_{max}$. $n$ is the number of patterns and $sk$ is the number of patterns per cluster.}
+
+\begin{tabular}{lcc}
+\toprule
+Rule &  $K_{min}$ &  $K_{max}$ \\
+\midrule
+\emph{sqrt}     & $\frac{\sqrt{n}}{2}$      & $\sqrt{n}$    \\
+\emph{2sqrt}    & $\sqrt{n}$                & $2 \sqrt{n}$  \\
+\emph{sk=sqrt2} & $sk = \frac{\sqrt{n}}{2}$ & $1.3 K_{min}$ \\
+\emph{sk=300}   & $sk = 300$                & $1.3 K_{min}$ \\
+\bottomrule
+\end{tabular}
+
+\label{tab:eac rules}
+\end{table}
+
+
+The experiment that generated the results of these section was set up as follows.
+A large dataset was generated.
+The dataset was sampled uniformly to produce a smaller dataset with the desired number of patterns.
+A clustering ensemble was produced (production phase) for each of these smaller datasets and for each of the rules, using K-Means.
+From each ensemble, co-association matrices of every applicable format were built (combination phase).
+A matrix format was not applicable when the dataset complexity would make its correspondent co-association matrix too big to fit in main memory.
+The final clustering (recovery phase) was also done for each of the matrix formats.
+SL-MST was not executed if its space complexity was too big to fit in main memory.
+Furthermore, the combination and recovery phases were repeated several times for smaller datasets for statistical relevant of the execution times, so as to make the influence of any background process less salient.
+For big datasets, the execution times are big enough that the influence of background processes is negligible.
+All results presented here originated from machine Bravo.
+The same analysis that is presented here was performed on a similar dataset with separated Gaussians, from which similar conclusions were drawn.
+
+\subsection{Execution times}
+
+Execution times are related with the $K_{min}$ parameter, whose evolution is presented in Fig. \ref{fig:eac kmin evo}.
+Rules \emph{sqrt}, \emph{2sqrt} and \emph{sk=sqrt2} never intersect but rule $sk=300$ intersects all of them, finishing with the highest $K_{min}$.
+Observing Fig. \ref{fig:eac ensemble times}, one can see that the same thing happens to the production execution time associated with the $sk=300$ rule and the inverse happens to the combination time (Fig. \ref{fig:eac build rules}).
+A higher $K_{min}$ means more centroids for each K-Means run to compute, so it is not surprising that the execution time for computing the ensemble increases as $K_{min}$ increases.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/kmin_evolution}}}
+    \caption{Evolution of $K_{min}$ with cardinality for different rules.}
+    \label{fig:eac kmin evo}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/ensemble_time}}}
+    \caption{Execution time for the production of the clustering ensemble.}
+    \label{fig:eac ensemble times}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/build_time/sparse_condensed_linear}}}
+    \caption{Execution time for building the co-association matrix from ensemble with different rules.}
+    \label{fig:eac build rules}
+\end{figure}
+
+Fig. \ref{fig:eac build matrices} shows the execution times on a longitudinal study for optimized matrix formats.
+It is clear that the sparse formats are significantly slower than the fully allocated ones, specially for smaller datasets.
+The \emph{full condensed} format usually takes close to half the time than the \emph{full} format, which is natural given that it performs half the operations.
+Idem for the \emph{sparse condensed} formats compared to the \emph{sparse complete}.
+The big discrepancy between the sparse and full formats is due to the fact that the former needs to do a binary search at each association update and needs to keep the internal sparse data structure sorted.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/build_time/2sqrt}}}
+    \caption{Execution time for building the co-association matrix with different matrix formats.}
+    \label{fig:eac build matrices}
+\end{figure}
+
+\subsection{Performance comparison between SLINK, SL-MST and SL-MST-Disk}
+
+The clustering times of the different methods of SL discussed previously (SLINK, SL-MST and SL-MST-Disk) are presented in Figures \ref{fig:eac sl} and \ref{fig:eac sl-mst}.
+The SL-MST-Disk method is significantly slower than any of the other methods.
+This is expected, since it uses the hard drive which has very slow access times compared to main memory.
+SL-MST is faster than SLINK, since it processes zero associations while SL-MST takes advantage of a graph representation and only processes the non-zero associations.
+In resemblance to what happened with combination times, the condensed variants take roughly half the time has their complete counterparts.
+This is expected, since SL-MST and SL-MST-Disk over condensed co-association matrices only process half the number of associations.
+Although this is not depicted, SLINK takes roughly the same time for every rule, which means $K_{min}$ has no influence.
+% This comes as no surprise, since SLINK processes both zero and non-zero associations and $K_{min}$ only influences the number of non-zero associations.
+This comes as no surprise, since SLINK processes the whole matrix, regardless of its association sparsity.
+The same rationale can be applied to SL-MST, where different rules can have significant influence over execution time, since they change the total number of associations.
+As with the combination phase, the execution time referent to the \emph{sk=300} rule started with the greatest time and decreased with an increase in the number of patterns until it was the fastest.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/sl_time/slink_vs_sl-mst}}}
+    \caption{Comparison between the execution times of the three methods of SL. SLINK runs over fully allocated condensed matrix while SL-MST and SL-MST-Disk run over the condensed and complete sparse matrices.}
+    \label{fig:eac sl}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/sl_mem_time/sparse_condensed_linear}}}
+    \caption{Comparison between the execution times of SL-MST for different rules.}
+    \label{fig:eac sl-mst}
+\end{figure}
+
+The execution times of all phases combined are presented in Figures \ref{fig:eac total mem} and \ref{fig:eac total disk}.
+The results are presented for the \emph{sparse condensed linear} format but the remaining results follow the same pattern.
+It is interesting to note that, when using the SL-MST method in the recovery phase, the execution time for three of the rules do not differ much.
+This is due to a sort of balancing between a slowing down of the production phase and a speeding up of the combination and recovery phases as the $K_{min}$ increases at a higher rate for $sk=300$ than for other rules.
+This is not observed for the $sqrt$ rule as $K_{min}$ is always low enough that the total time is always dominated by the combination and recovery phases.
+The same does not happen when using the SL-MST-Disk method, as the total time is completely dominated by the recovery phase.
+This is clear, since the results in Fig. \ref{fig:eac total disk} follow a pattern similar to that presented in Fig. \ref{fig:eac sl-mst}.
+
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/total_time_sl-mst}}}
+    \caption{Execution times for all phases combined, using SL-MST in the recovery phase.}
+    \label{fig:eac total mem}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/total_time_sl-mst-disk}}}
+    \caption{Execution times for all phases combined, using SL-MST-Disk in the recovery phase.}
+    \label{fig:eac total disk}
+\end{figure}
+
+
+\subsection{Analysis of the number of associations}
+
+The sparse nature of EAC has been referred to before and is clearer in Fig. \ref{fig:eac assoc density}.
+This figure shows the association density, i.e. number of associations relative to the $n^2$ associations in a full matrix.
+The \emph{full condensed} format has a constant density of $49.5\%$.
+Idem for the \emph{sparse complete} and \emph{sparse condensed} formats, as long as no associations are discarded.
+The overall tendency is for the density to decrease as the number of patterns of the dataset increases.
+This is to be expected since the \emph{full} matrix grows quadratically.
+Besides, it would be expected that the same associations would be grouped together more frequently in partitions and simply make previous connections stronger instead of creating new ones, if the relationship between the number of patterns and $K_{min}$ is constant.
+
+% The sparse nature of EAC has been referred to before and is clearer in Fig. \ref{fig:eac assoc density}.
+% This figure shows the association density, i.e. number of associations relative to the $n^2$ associations in a full matrix.
+% The \emph{full condensed} format as a constant density of $49.5\%$ and the density of \emph{sparse complete} is two times that of the \emph{sparse condensed} formats.
+% The overall tendency is for the density to decrease as the number of patterns of the dataset increases.
+% This is to be expected since the \emph{full} matrix grows quadratically.
+% Besides, it would be expected that the same associations would be grouped together more frequently in partitions and simply make previous connections stronger instead of creating new ones.
+% Results presented in Fig. \ref{fig:eac assocs per pattern}, which presents the number of associations per pattern, suggest otherwise.
+% The number of associations per pattern increases with the number of patterns of the dataset, with the notable exception of the \emph{sk=300} rule which increases until it reaches a certain limit and then stabilizes.
+% This is explained by the fact that this rule is based on setting a maximum constant number ($300$) of patterns in any given cluster, while in the other rules this number increases with the number of patterns.
+% The number of associations per pattern is not $300$ for the $sk=300$ rule because a pattern will be clustered with different neighbors in different partitions.
+% Still, the number of neighbors doesn't change enough that the number of associations per pattern increases boundlessly.
+% In fact, Fig. \ref{fig:eac assocs per pattern} suggests that the number of associations per pattern is around 3 times the upper bound on the number of patterns per cluster (strictly related to $K_{min}$).
+% This is clearer for $sk=300$, but if one would trace the the number of patterns divided by $K_{min}$ for each rule, the contribution is close.
+% \cite{Lourenco2010} reported that, on average, \"the overall contribution of the clustering ensemble (including unbalanced clusters) duplicates the co-associations produced in a single balanced clustering with Kmin clusters\".
+% The spectrum of datasets evaluated regarding the number of patterns was smaller than that evaluated in the present work.
+% The present results suggest a slightly higher value.
+% So, the decrease in density is more related with the quadratic growth of the \emph{full} matrix in contrast with a linear growth of the number of associations.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/assoc_density/sparse_condensed_linear}}}
+    \caption{Density of associations relative to the full co-association matrix, which hold $n^2$ associations.}
+    \label{fig:eac assoc density}
+\end{figure}
+
+% \begin{figure}[hbt!]
+%     \centering
+%     \includegraphics[width=0.8\columnwidth]{{{results/eac/assocs_per_sample}}}
+%     \caption{Evolution of the total number of associations divided by the number of patterns according to the different rules.}
+%     \label{fig:eac assocs per pattern}
+% \end{figure}
+
+Predicting the number of associations before building the co-association matrix is useful for coming up with combination schemes that are both memory and speed efficient.
+It was stated before that the biggest cluster size in any partition of the ensemble is a good parameter for this end.
+Fig. \ref{fig:eac max assocs bgs} presents the relationship between the biggest cluster size and the maximum number of associations of any pattern.
+These ratio increases with the number of patterns in the beginning, but as the number of patterns increases it never goes over 3.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/max_assoc_bgs}}}
+    \caption{Maximum number of associations of any pattern divided by the number of patterns in the biggest cluster of the ensemble.}
+    \label{fig:eac max assocs bgs}
+\end{figure}
+
+However, the number of features of the used datasets is rather reduced.
+It might be the case that this ratio would increase with the number of features, since there would be more degrees where the clusters might include other neighbors.
+With this in mind, further studies ranging a wider spectrum of datasets should yield more enlightening conclusions or reinforce those presented here.
+
+\subsection{Space complexity}
+
+As explained previously, the allocated space for the space formats is based on a prediction that uses the biggest cluster size of the ensemble.
+This allocated space is usually more than what is necessary to store the total number of associations, to keep a safety margin.
+Furthermore, the CSR sparse format, on which the EAC CSR strategy is based, requires an array of the same size of the predicted number of associations.
+This overhead may in fact make the sparse format pre-allocate more associations than are actually possible for some rules and in very small datasets.
+Still, the allocated number of associations becomes a very small fraction compared to the \emph{full} matrix as the dataset complexity increases, which is the typical case for using a sparse format.
+The actual memory used is presented in Fig. \ref{fig:eac mem density}.
+Here, the data types used play a big role in the amount of memory that is required.
+The associations can be stored in a single byte, since the number of partitions is usually less than 255.
+This means that the memory used by the fully allocated formats is $n^2$ and $\frac{n(n-1)}{2}$ Bytes for the complete and condensed versions, respectively.
+In the sparse formats, the values of the associations are also stored in an array of unsigned integers of 1 Byte.
+However, an array of integers of 4 bytes of the same size must also be kept to keep track of the destination pattern each association belongs to.
+Besides, one other array of integers of 8 bytes is kept but it is negligible compared to the other two arrays.
+The impact of the data types can be seen for smaller datasets where the total memory used is actually significantly higher than that of the \emph{full} matrix.
+It should be noted that this discrepancy is not as high for other rules as for $sk=300$.
+Still, the sparse formats, and in particular the condensed sparse format, is preferred since the memory used for large datasets is a small fraction of what would be necessary if using any of the fully allocated formats.
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{{{results/eac/mem_density/sk=300}}}
+    \caption{Memory used relative to the full $n^2$ matrix. The \emph{sparse complete} and \emph{sparse condensed const} curves are overlapped.}
+    \label{fig:eac mem density}
+\end{figure}
+
+\subsection{Accuracy}
+
+The accuracy of each produced clustering was measured using the Consistency Index.
+The number of clusters was chosen with the lifetime criteria.
+The accuracy for all rules, matrix formats and SL approaches was the same for each of the datasets, with the notable exception of the $sk=300$ rule, for which the partitions in ensembles of datasets smaller than $1000$ patterns had less clusters than the true amount of clusters.
+For small datasets the accuracy was roughly $84\%$, since only one pair of Gaussians were overlapped at that point.
+The accuracy lowers to around $66\%$ for datasets higher than $7500$, since 2 pairs of Gaussians are now overlapped.
+There were two datasets (of $75 \: 000$ and $2 \: 500 \: 000$ patterns) for which the accuracy was $50\%$, due to existence of patterns there made a "bridge" between the other pair of Gaussians.
+
+\subsection{Performance on real world datasets}
+
+The proposed EAC method was tested on real world datasets.
+Large real world datasets appropriate for clustering were hard to find freely available.
+The datasets used are aimed at other Machine Learning analysis, such as classification or regression.
+For this reason, the presented results are focused on performance.
+
+\begin{table}[h]
+\centering
+\caption{Execution times for real-world large datasets. P and F refer to the number of patterns and features. P, C and R times refer to the production, combination and recovery times.}
+
+\begin{tabular}{llrrrrr}
+\toprule
+dataset alias &  \# P &  \# F &  P time [s] &  C time [s] &  R time [s] \\
+\midrule
+PHYACT 1 \cite{Lichman:2013}.&              441568 &                  30 &      2158.69 &        123.85 &      19.76 \\
+PHYACT 2 \cite{Lichman:2013}.&              359170 &                  30 &      1477.34 &         98.86 &      15.79 \\
+% KDD99 &             2449216 &                  41 &     10284.166381 &  not possible to run because the bgs was 964287... &            NaN \\
+esopH \cite{yuk13oro}        &                 136127 &                   2 &        17.94 &  35.15 &       3.95 \\
+diabetes \cite{strack2014impact,Lichman:2013}&              101766 &                  41 &       188.56 &  33.79 &       5.07 \\
+\bottomrule
+\end{tabular}
+
+
+\label{tab:eac rules}
+\end{table}

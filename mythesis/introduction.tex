@@ -28,10 +28,10 @@
 Advances in technology allow for the collection and storage of unprecedented amount and variety of data, a concept commonly designated by \emph{Big Data}.
 Most of this data is stored electronically and there is an interest in automated analysis for generation of knowledge and new insights.
 %examples of applications; jet engine example is nice for Air Force: taken from http://wikibon.org/wiki/v/Big_Data_in_the_Aviation_Industry; related Carnegie Mellon: http://bigdatasymposium.dsigroup.org/wp-content/uploads/2011/12/Dubrawski-DSI-Big-Data-Symposium-January-29-2013.pdf
-The applications of such analysis are abundant and across many fields, ranging from recommender systems and customer segmentation in business, to predicting when a jet engine is likely to fail using sensor data, or even the study of gene expression in biomedics, to namy a few.
+The applications of such analysis are abundant and across many fields, ranging from recommender systems and customer segmentation in business, to predicting when a jet engine is likely to fail using sensor data, or even the study of gene expression in biomedics, to name a few.
 
 % examples of analisis tools
-A growing body of statistical methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks.
+A growing body of formal methods aiming to model, structure and/or classify data already exist, e.g. linear regression, principal component analysis, cluster analysis, support vector machines, neural networks.
 % tecnicas de clustering como as tecnicas formais de abordar estes problemas
 Cluster analysis is an interesting tool because it typically does not make assumptions on the structure of the data.
 Since, often, the structure of the data is unknown, clustering techniques become particularly interesting for transforming this data into knowledge and discovering its underlying structure and patterns.
@@ -42,8 +42,8 @@ Different methods are suited to datasets of different characteristics and, often
 
 % dificuldades tradicionais que levaram ao state-of-art dos metodos de ensemble.
 Currently, there are state of the art algorithms that are more robust than "traditional" algorithms by having a wider applicability or being less dependent on input parameters, e.g. algorithms that do not take any parameters for performing an analysis.
-One such algorithm is Evidence Accumulation Clustering (EAC), belonging to the wider class of ensemble methods.
-EAC is a state-of-the art clustering algorithm that addresses the robustness challenge.
+One such approach is Evidence Accumulation Clustering (EAC), belonging to the wider class of ensemble methods.
+EAC is a state-of-the art clustering method that addresses the robustness challenge.
 % novos desafios face a grande quantidade de dados; % Dificuldades adicionais asociados ao Big Data
 However, the current reality of capturing massive amounts of data rises new challenges.
 Two important challenges are efficiency and scalability, which translate on how fast the algorithms are and how well they scale when the input data multiplies in size, dimensionality and variety.
@@ -83,6 +83,7 @@ The main objectives for this work are:
 \item Application of Evidence Accumulation Clustering to Big Data.
 
 \item Validation of Big Data EAC on real data.% (ECG for emotional state discovery and/or discovery of natural groups, or other datasets)
+\item Application of EAC to real-world large datasets.
 \end{itemize}
 
 \section{Contributions}
@@ -94,6 +95,8 @@ Worthy of mention is a novel and specialized method for building a sparse matrix
 %A post-processing operation on the second stage product was briefly studied. % the threshold cut
 A GPU parallel version of a MST (Minimum Spanning Tree) solver algorithm was reviewed and tested for the last stage, a co-product of which was an algorithm to find the connected components of a MST.
 A hard disk solution was implemented for dealing with large datasets whose space complexity in the final stage exceeded the available memory.
+
+Selected work from the present dissertation was compiled into a conference paper and submitted to the $5^{th}$ The International Conference on Pattern Recognition Applications and Methods.
 
 
 % Explain briefly the work done
@@ -119,7 +122,9 @@ With a parallelization approach in mind, a programming model for the GPU (CUDA) 
 The following chapter, \ref{chapter:methodology}, presents the approach that was actually taken to scale EAC.
 It presents the steps taken on each part of the algorithm, the underlying difficulties and what was done to address them.
 It also includes the reference of approaches that were developed but were not deemed suited to integrate the EAC toolchain.
-In the results chapter, \ref{chapter:results}, the results of the different approaches of optimizing the EAC method are presented.
-Chapter \ref{chapter:discussion} presents an interpretation and critical discussion of those results.
+% this is how it was delivered for dissertation discussion on October 15th 2015.
+% In the results chapter, \ref{chapter:results}, the results of the different approaches of optimizing the EAC method are presented.
+% Chapter \ref{chapter:discussion} presents an interpretation and critical discussion of those results.
+Chapter \ref{chapter:results} presents the results of the different approaches for optimizing the EAC method and critical discussion of those results.
 Finally, chapter \ref{chapter:conclusions} concludes the dissertation.
 It also offers recommendations for future work.

@@ -11,56 +11,110 @@
 \chapter{Conclusions}
 \label{chapter:conclusions}
 
-Insert your chapter material here...
+
 
 
 % ----------------------------------------------------------------------
 \section{Achievements}
 \label{section:achievements}
 
-The major achievements of the present work...
+It has now come the moment to look back on the presented goals in the introductory chapter and make critical comments on the research and developed work.
+The main goal of this dissertation was scaling the EAC method for larger datasets than was previously possible and speeding it up for smaller datasets.
+The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately but maintaining interoperability.
+
+The first step was the production of clustering ensembles, which was originally done with K-Means.
+The space complexity was low compared to the whole algorithm, so the main focus was on speed optimization.
+For that end, algorithms in the young field of quantum clustering were researched and tested.
+Their computational complexity was shown to be prohibitive in the EAC context, which moved the research to parallel computation, more specifically, GPGPU.
+A GPU parallel K-Means was implemented and yielded positive results, effectively providing a speed-up over its sequential counterpart.
+
+In the combination step, the main problem for scaling was the space complexity.
+The clear solution here was exploiting the sparse nature of the co-association matrix of EAC.
+After implementations of sparse matrices in numerical libraries proved to be inadequate and literature lacked methods for efficient building a sparse matrix, the next direction was designing a strategy for efficiently building the co-association matrix.
+This strategy, EAC CSR, was tested and shown to be much faster an other sparse matrix implementation tested.
+Besides, it provided the much needed space complexity reduction that allowed the processing of large datasets.
+
+For the recovery step, the SL algorithm was identified as the best candidate for optimization.
+This was due to its relationship with MSTs, of which optimized implementations existed.
+GPU Boruvka was reported to have significant speed-ups and was identified has the best parallel GPU MST algorithm in literature.
+It was implemented but it showed to not be able to handle the lower sparsity of EAC co-associations graphs.
+This moved the focus of optimization of this step to external memory algorithms, which, although slower, were what ultimately allowed for the final processing of EAC in large datasets.
+
+In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
+These contributions together allow for the application of the EAC method to datasets whose complexity was not handled by the original implementation.
+Furthermore, the proposed optimized version is also faster for smaller datasets.
 
 
 % ----------------------------------------------------------------------
 \section{Future Work}
 \label{section:future}
 
-%further optimization on K-Means
-% using local memory to speed-up
-% study on optimal number of pointer per thread
+Naturally, during the research and development of the present work, divergent lines of research were deemed interesting.
+%Naturally, room for improvement is ample in both the presented work and in divergent directions.
+Occasionally, shortcomings in the present work were identified for which possible solutions were envisioned.
+%Other times, divergent lines of research were deemed interesting.
+Time restrictions have moved those possible solutions and lines of research from the main body of the present work to this section of recommendations for future work.
 
-% other algorithms in the first and last phase
-Much effort was put developing and testing co-association matrix building strategies.
-The schemes presented here provide a solid framework to work with large data sets in this middle step of EAC.
-As such, interesting directions for this work to take are testing how state of the art algorithms designed for Big Data would complement EAC in the first and last steps.
+An obvious line of work is porting the work here presented to other technologies.
+As an example, the GPU algorithms could be implemented in OpenCL.
+This would bring major benefits in respect to portability since OpenCL supports most devices.
+Moreover, OpenCL's performance is becoming closer to CUDA's and since it's programming model was based on CUDA, it should be straightforward for a developers to make the switch.
 
-The programming model used for the GPU was CUDA, used through a Python library called Numba.
-This library offers an interface to access most of CUDA's capabilities, but not all.
-One of those capabilities is Dynamic Parallelism.
-This offers the ability of having a host kernel call on other host kernel without intervention from the host.
-This translates in the possibility of moving the control logic in the Borůvka variant (and also its the Connected Components Labeling variant) to the device, effectevely removing the memory transfer of values related with the control logic.
+The implementation of the GPU K-Means could be improved by using shared memory.
+Each block of threads would read centroids to this memory which would decrease the number of fetches to global memory significantly and therefore improve performance.
+A study of the optimal block size and a more thorough study of the optimal number of patterns to process in each thread are also relevant lines of research.
 
-Adaptation of the present implementation to OpenCL. This brings major benefits in respect to portability since OpenCL supports most devices. Moreover, OpenCL's performance is catching in on that of CUDA's and since it's programming model was based on CUDA, it should be straightforward for developers to make the switch.
+%The programming model used for the GPU was CUDA, used through a Python library called Numba.
+%This library offers an interface to access most of CUDA's capabilities, but not all.
+%One of those capabilities is Dynamic Parallelism.
+Dynamic Parallelism offers the ability of having a kernel call on other kernel without intervention from the host.
+This translates in the possibility of moving the control logic in the Borůvka variant to the device, effectively removing the memory transfer of values related with the control logic.
 
-Application of EAC to the MapReduce framework will further expand the possibilities of application of EAC.
+A possible way to further reducing the space complexity of the recovery step is threshold cut-off of associations, i.e. cutting associations in the co-association matrix that are weaker than a certain threshold.
+The underlying idea is that strong associations will have the bigger effect on the final clustering, while the weak will have little to no effect.
+This assumption could allow for the reduction of space complexity while keeping the final accuracy, or even improving it by cutting bad associations.
+This line of research was briefly explored on small datasets and is in fact implemented, but robust testing was not possible.
+The main challenge here is to find safe thresholds that will not damage the overall quality of the results.
 
-Study the integration of other clustering algorithms within the the EAC toolchain.
-
-A good follow-up of the present work is to study the relationship between several metrics (e.g. sparsity, accuracy, maximum number of co-associations) and the complexity of the dataset. Some metrics for describing the complexity of the dataset exist (Tin Kam Ho) and it would be interesting to profile several datasets of different complexities and structures and search for the former relationship.
+A good follow-up of the present work is to study the relationship between several metrics (e.g. sparsity, accuracy, maximum number of co-associations) and the complexity of the dataset.
+Several measures for describing the complexity of the dataset exist \cite{Ho2002} and it would be interesting to profile several datasets of different complexities and structures and analyze the relationship between these complexity measures and EAC properties.
 On a performance perspective it could prove useful to deduce better rules to set the maximum number of associations in the sparse matrix.
-On a accuracy perspective it would be interesting to see if there are types of datasets that simply are not a good fit for EAC while other are. It would also be interesting to relate complexity with the threshold cut-off.
+On a accuracy perspective it would be interesting to see if there are types of datasets that simply are not a good fit for EAC while other are, as well as perform automatic choosing of the $K_{min}$ parameter.
+It would also be interesting to relate complexity with the threshold cut-off.
 
 % cross with WEAC
-The WEAC algorithm is focused on improving accuracy.
+The WEAC algorithm, presented in chapter \ref{chapter:clustering}, is focused on improving accuracy.
 The underlying concept is to measure the quality of the partitions in the ensemble and allow the better ones to be more influential in the co-association matrix.
-The concept of measuring the quality of the partitions may prove useful for further decreasing the memory complexity with the EAC CSR scheme without compromising too much accuracy.
+The concept of measuring the quality of the partitions may prove useful for further decreasing the memory complexity with the EAC CSR scheme without compromising accuracy.
 The basic idea is to choose a $max\_assocs$ value that will likely be less than the number of associations many patterns will have, which will result in some associations being discarded.
 The associations that will be kept are the ones from the first partitions that were processed.
 With this in mind, one could order the partitions by quality and start the processing from those with better quality.
+This would increase the likelihood that the discarded associations are, in fact, weaker associations.
+
+% bigger than main memory association matrices
+A possible extension to EAC CSR is allowing for bigger than main memory co-association matrices.
+An approach for this would be to divide the co-association matrix in several parts.
+The entire ensemble would then have to be processed for each of these parts, but it would allow for the processing of even larger datasets than is now possible.
+
+Two ways of dealing with the space complexity of EAC were identified in literature: exploiting sparsity and using $k$-Nearest Neighbors.
+Building a k-Nearest Neighbors co-association matrix requires two matrices: one for holding the association values and another for holding the neighbors of each pattern.
+The mechanism for building this co-association matrix was implemented but it was not possible to make it inter-operable with the final step of EAC.
+However, this should be a straightforward process since its conversion to EAC CSR is can be done simply by linearizing both matrices.
+The values matrix would become the \emph{data} array, the neighbors matrix would be the \emph{indices} array and finally an \emph{indptr} array would have to be created, which is straighforward, since the number of neighbors of each pattern is constant.
+
 
 % More efficient external sorting
-% It is believed that a significant speedup may be obtained by using GPUs for external sorting in the argsort step of the cluster recovery of EAC.
-% Even without using GPU's further speedup may be possible simply by using more memory. After the co-association matrix is stored it can be deleted from main memory. This means that almostthe entire memory is available for the computation of the argsort array. Currently the PyTables CSI algorithm uses a insignificant amount of memory.
+The \emph{argsort} operation in the recovery step is one of the most computationally intensive.
+This operation is typically done by sorting chunks of the array in main memory and then merging them.
+The external algorithm used for this operation has a very low main memory profile.
+However, when it is executed most main memory is free.
+This means that a more efficient algorithm for performing this operation is possible simply by using more main memory, and therefore processing bigger chunks at a time.
+Besides, it is believed that a significant speed-up may be obtained by using GPUs for sorting these chunks.
+
+% other algorithms in the first and last phase
+Much effort was put into developing and testing co-association matrix building strategies.
+The schemes presented here provide a solid framework to work with large datasets in the middle step of EAC.
+As such, interesting directions for this work to take include researching and testing how state of the art algorithms designed for Big Data would complement EAC in the first and last steps.
 
 \cleardoublepage
 

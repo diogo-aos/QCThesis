@@ -1,3 +1,4 @@
+%!TEX root = Thesis.tex
 \section{GPU MST}
 \label{sec:gpu mst}
 
@@ -6,7 +7,7 @@
 % that depict the United States road network. These graphs are seen frequently in the recent literature. Furthermore, the OpenStreetMap’s \footnote{http://www.openstreetmap.org/} Portuguese road-network, provided by Geofabrik \footnote{http://download.geofabrik.de/europe/portugal.html} is included.
 
 To test the performance of the GPU MST algorithm, several graphs were used.
-Most of the graphs are United Stated road network graphs taken from the 9th DIMACS Implementation Challenge \footnote{http://www.dis.uniroma1.it/~challenge9/}.
+Most of the graphs are United Stated road network graphs taken from the 9th DIMACS Implementation Challenge \footnote{http://www.dis.uniroma1.it/~challenge9/}, the same used in the original source \cite{Sousa2015}.
 Furthermore, graphs taken from co-association matrix of the second step of EAC were used.
 This is important because, as will become clear, the graphs within the EAC paradigm have different characteristics.
 All the tests were performed on machine Bravo.
@@ -17,8 +18,8 @@ It should be noted that a speed-up below 0 is actually a slow-down and its absol
 \input{\rscpath/results/mst_gpu/mst_speedup_table}
 
 % note on the memory usage
-Although all the graphs presented in Table \ref{tab:mst speedup} occupy significantly less memory than the available in the used machine, the processing of bigger graphs is not possible.
-The reason for this is that between in each iteration two graphs have to be held in memory: the initial and the contracted.
+Although all the graphs presented in Table \ref{tab:mst speedup} occupy significantly less memory than available in the used machine, the processing of bigger graphs is not possible.
+The reason for this is that between each iteration two graphs have to be held in memory: the initial and the contracted.
 Moreover, the space occupied by the contracted graph will depend on the characteristics of the graph.
 
 % speed-ups are possible, contrast with original paper
@@ -36,10 +37,11 @@ To understand how different parameters affect the speed-up of the algorithm, Tab
 The row corresponding to the average speed-up is of special relevance.
 One can observe that the parameters most correlated with the speed-up are the number of vertices and the number of edges per vertex (EPV).
 The correlation matrix suggests that as one increases the number of vertices, the speed-up will also increase.
-In fact, if no graphs from the EAC context were present in the results, the same would apply to the number of edges, since the EPV would very similar.
-The reason for this is that speed-ups from parallelism are more salient when applied to big data sets, so that the speed-up of the computation itself outweighs the overhead associated with communication between host and device.
+In fact, if no graphs from the EAC context were present in the results, the same would apply to the number of edges, since the EPV would be very similar.
+The reason for this is that speed-ups from parallelism are more salient when applied to big datasets, so that the speed-up of the computation itself outweighs the overhead associated with communication between host and device.
 The EPV is the other parameter that shows has highest (inverse) correlation with the speed-up.
 This suggests that the relationship between the number of edges and the number of vertices in the graph actually plays a big role in deciding if there will be a speed-up.
+In essence, this expresses the sparsity of the graph and results manifested speed-ups only for very sparse graphs.
 
 % why, programatically, there is slow-down
 The underlying reason for the poor performance of graphs with high EPV ratio is believed to be that, since the parallel computation is anchored to vertices, the workload per vertex is higher than if the graph had a low ratio.
@@ -48,14 +50,14 @@ Besides, the workload can become highly unbalanced with some threads having to p
 
 % connection with original paper
 The original source \cite{Sousa2015} of the algorithm doesn't address graphs with a EPV as high as presented here.
-In that sense, the results here complement those of the original source and suggest an increase in EPC translates in the decrease in speed-up.
-Still, more in-depth studies should be made.
+In that sense, the results here complement those of the original source and suggest an increase in EPV translates in a decrease in speed-up.
+Still, this serves as motivation for more in-depth studies.
 
 % connection with EAC
-Within EAC paradigm, this algorithm is of little contribution.
+Within EAC paradigm, this algorithm is of little contribution for scaling to large datasets.
 The most obvious reason is that the EAC method would actually be slower if this algorithm was used.
 Still, even considering that speed-ups like those reported in literature were possible for EAC co-association graphs, the algorithm requires a double redundancy of edges (which effectively doubles the necessary memory to hold a graph) and at any iteration the device must be able to hold two distinct graphs (the initial and the contracted).
-For these reasons, the device memory (which typically is smaller than the host memory) would confine the EAC method to small input data sets. 
+For these reasons, the device memory (which typically is smaller than the host memory) would confine the EAC method to small input datasets. 
 
 % The underlying reason for this is believed to be that the number of edges to node ratio of these graphs is low compared to that typically seen in co-associations matrix, even when using a prototype subset of the original matrix.
 % The parallel version of the final step of EAC showed a slowdown relative to its sequential counterpart.
