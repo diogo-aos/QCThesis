@@ -4,11 +4,11 @@ The top-level auxiliary file: Thesis_AllChapters.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
 Warning--entry type for "hdf5" isn't style-file defined
---line 3572 of file library.bib
+--line 1162 of file library.bib
+Warning--I didn't find a database entry for "LourencoECG2009"
 Warning--there's a number but no volume in davies1979cluster
 Warning--empty journal in Mullner2011
 Warning--there's a number but no volume in Mullner2011
-Warning--empty journal in LourencoECG2009
 Warning--can't use both volume and number fields in zhang1996birch
 Warning--can't use both volume and number fields in guha1998cure
 Warning--empty journal in Sirotkovi2012
@@ -28,45 +28,45 @@ Warning--empty year in JonesSciPy
 Warning--empty year in pytables
 Warning--empty year in hdf5
 Warning--empty journal in AltetiAbad2007
-You've used 116 entries,
+You've used 115 entries,
             2475 wiz_defined-function locations,
-            1408 strings with 29926 characters,
-and the built_in function-call counts, 46636 in all, are:
-= -- 4289
-> -- 2214
-< -- 110
-+ -- 877
-- -- 640
-* -- 3576
-:= -- 7328
-add.period$ -- 369
-call.type$ -- 116
-change.case$ -- 228
-chr.to.int$ -- 111
-cite$ -- 139
-duplicate$ -- 2263
-empty$ -- 3861
-format.name$ -- 826
-if$ -- 9972
+            1404 strings with 29924 characters,
+and the built_in function-call counts, 46126 in all, are:
+= -- 4242
+> -- 2187
+< -- 109
++ -- 867
+- -- 632
+* -- 3538
+:= -- 7252
+add.period$ -- 366
+call.type$ -- 115
+change.case$ -- 226
+chr.to.int$ -- 110
+cite$ -- 137
+duplicate$ -- 2238
+empty$ -- 3824
+format.name$ -- 817
+if$ -- 9860
 int.to.chr$ -- 6
-int.to.str$ -- 117
-missing$ -- 114
-newline$ -- 601
-num.names$ -- 348
-pop$ -- 726
+int.to.str$ -- 116
+missing$ -- 113
+newline$ -- 596
+num.names$ -- 345
+pop$ -- 718
 preamble$ -- 1
-purify$ -- 116
+purify$ -- 115
 quote$ -- 0
-skip$ -- 1691
+skip$ -- 1669
 stack$ -- 0
-substring$ -- 2558
-swap$ -- 598
-text.length$ -- 48
+substring$ -- 2524
+swap$ -- 588
+text.length$ -- 47
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 800
-warning$ -- 23
-while$ -- 443
+type$ -- 793
+warning$ -- 22
+while$ -- 438
 width$ -- 0
-write$ -- 1527
+write$ -- 1515
 (There were 24 warnings)

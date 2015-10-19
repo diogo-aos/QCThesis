@@ -84,7 +84,7 @@
 \contentsline {subsection}{\numberline {5.7.3}Performance of all phases combined}{69}{subsection.5.7.3}
 \contentsline {subsection}{\numberline {5.7.4}Analysis of the number of associations}{70}{subsection.5.7.4}
 \contentsline {subsection}{\numberline {5.7.5}Space complexity}{72}{subsection.5.7.5}
-\contentsline {subsection}{\numberline {5.7.6}Accuracy}{73}{subsection.5.7.6}
+\contentsline {subsection}{\numberline {5.7.6}Accuracy}{74}{subsection.5.7.6}
 \contentsline {section}{\numberline {5.8}Performance on real world datasets}{74}{section.5.8}
 \contentsline {chapter}{\numberline {6}Conclusions}{76}{chapter.6}
 \contentsline {section}{\numberline {6.1}Achievements}{76}{section.6.1}

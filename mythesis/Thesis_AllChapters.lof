@@ -39,6 +39,6 @@
 \contentsline {figure}{\numberline {5.14}{\ignorespaces Evolution of the total number of associations divided by the number of patterns according to the different rules.\relax }}{72}{figure.caption.73}
 \contentsline {figure}{\numberline {5.15}{\ignorespaces Maximum number of associations of any pattern divided by the number of patterns in the biggest cluster of the ensemble.\relax }}{72}{figure.caption.74}
 \contentsline {figure}{\numberline {5.16}{\ignorespaces Allocated number of associations relative to the full $n^2$ matrix.\relax }}{73}{figure.caption.75}
-\contentsline {figure}{\numberline {5.17}{\ignorespaces Memory used relative to the full $n^2$ matrix.\relax }}{74}{figure.caption.76}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Memory used relative to the full $n^2$ matrix.\relax }}{73}{figure.caption.76}
 \contentsline {figure}{\numberline {5.18}{\ignorespaces Accuracy of the final clusterings as measured with the Consistency Index.\relax }}{74}{figure.caption.77}
 \addvspace {10\p@ }
