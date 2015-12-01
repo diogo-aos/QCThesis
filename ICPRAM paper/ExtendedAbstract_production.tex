@@ -1,0 +1,72 @@
+\section{\uppercase{Optimization of the production step of EAC}}
+\label{sec:production}
+
+K-Means is typically used for the production of the ensemble.
+The main contribution for the optimization of the production of clustering ensemble is the implementation of a parallel K-Means for GPUs using NVIDIA's Compute Unified Device Architecture (CUDA).
+
+
+\subsection{K-Means}
+
+K-Means is a hard clustering algorithm that takes two initialization parameters: the number of clusters and the centroid initializations.
+It starts by assigning each pattern to its closer cluster based on the cluster's centroid.
+This is called the \textbf{labeling} step since one usually uses cluster labels for this assignment.
+The centroids are then recomputed based on this assignment, in the \textbf{update} step.
+The new centroids are the mean of all the patterns belonging to the clusters. %, hence the name of the algorithm.
+% convergence
+These two steps are executed iteratively until a stopping condition is met, usually the number of iterations, a convergence criteria or both.
+The initial centroids are usually chosen randomly, but other schemes exist to improve the overall accuracy of the algorithm, such as K-Means++ \cite{Arthur2007}.
+
+\subsection{Programming for GPUs with CUDA}
+
+%Parallel processing with Graphics Processing Units was one of the lines of research pursued.
+%Implemented work for the GPU used the Compute Unified Device Architecture (CUDA).
+%This section will introduce a very brief overview of the main concepts to keep in mind for programming GPUs with CUDA.
+
+A GPU is comprised by one or several streaming processors (or multiprocessors).
+Each of these multiprocessors contains several simpler processors, which execute a \emph{thread}, the basic unit of computation in CUDA.
+%execute the same instruction at the same time at any given time,in a \emph{single-instruction multiple-thread} execution model \cite{lindholm2008nvidia}.
+%In the CUDA programming model, the basic unit of computation is a \emph{thread}.
+Threads are grouped into \emph{blocks} which are part of the block \emph{grid}.
+The number of threads in a block is typically higher than the number of processors in a multiprocessor.
+For that reason, the hardware automatically divides the threads from a block into smaller batches, called \emph{warps}.
+The computation of one block is independent from other blocks and each block is scheduled to one multiprocessor.
+CUDA employs a \emph{single-instruction multiple-thread} execution model \cite{lindholm2008nvidia}, where all processors in a multiprocessor execute the same instruction of their respective threads at the same time.
+
+Depending on the architecture, GPUs have several types of memories.
+Accessible to all processors (and threads) are the global memory, constant memory and texture memory, of which the last two are read-only.
+Blocks share a smaller but significantly faster memory called shared memory, which is a memory inside a multiprocessor to which all processors have access to, enabling inter-thread communication inside a block.
+Finally, each thread has access to local memory, which resides in global memory space and has the same latency for read and write operations.
+However, if the thread is using only single variables or constant sized arrays, it uses register space, which is very fast.
+
+Typically, CUDA applications follow the same flow.
+First, the host starts by transferring any necessary data to the device memory.
+The next step is selecting the \emph{kernel} (the function that will run on the GPU processors) and the thread topology (configuration of threads in a block and blocks in the grid).
+The set-up phase is followed by the computation phase in the GPU.
+Finally, the host will transfer back the results from the device.
+
+\subsection{Parallel K-Means}
+
+Several parallel implementations of K-Means for the GPU exist in literature \cite{Bai2009,Zechner2009,Sirotkovi2012} and all report speed-ups relative to their sequential counterparts.
+The implementation of the present work followed the version in \cite{Zechner2009b}, which only parallelizes the labeling stage. %, and was programmed in Python using the Numba \cite{numba} CUDA API. % and takes a data-centric approach to the problem.
+%This was further motivated from empirical data that suggested the average theoretical maximum speed-up for the labeling stage was $880$, whereas for the the update phase the maximum was only $1.5$.
+This was further motivated from empirical data which suggested that, on average, roughly $98 \%$ of the time was spent in the labeling step.
+%Each thread computes the distance from a set of data points to every
+%centroid and determines the labels.
+% The remaining steps are performed by the host CPU.
+% This study reported speed ups up to 14, for input datasets of $500\:000$ points.
+% The current implementation sought to provide an efficient GPU parallel version of K-Means while making it accessible to users not knowledgeable of GPU architecture and programming.
+The CUDA implementation of the labeling step starts by transferring the data to the GPU (pattern set and initial centroids) and allocates space for the labels and distances from patterns to their closest centroids.
+%Still, several parameters are accessible to the user, such as the shape of the block of threads and grid of blocks,
+%if data transfer should be handled by the CUDA API or optimized to minimize communication between host and device, and also how many patterns to process per thread.
+The computation of a label for one pattern is done by iteratively computing the distance from the pattern to each centroid and storing the label and the distance corresponding to the closest centroid to that pattern.
+Finally, the labels and distances are sent back to the host for computation of the new centroids.
+% This procedure is available as a CUDA kernel or as three different sequential versions: pure Python, based on NumPy or compiled code with Numba.
+% These same sequential versions exist for the recomputation of the centroids.
+The implementation of the centroid recomputation, in the CPU, starts by counting the number of patterns attributed to each centroid.
+Afterwards, it checks if there are any "empty" clusters, i.e. if there are centroids that are not the closest ones to any pattern.
+Dealing with empty clusters is important because the target use expects that the output number of clusters be the same as defined in the input parameter.
+Centroids corresponding to empty clusters will be the patterns that are furthest away from their centroids.
+Any other centroid $c_i$ will be the mean of the patterns that were labeled $i$.
+
+In the current implementation several parameters can be adjusted by the user.
+These include the block and grid topology and the number of patterns that each thread should process.

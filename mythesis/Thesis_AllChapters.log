@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  19 OCT 2015 16:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  1 DEC 2015 13:36
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1023,11 +1023,11 @@ Chapter 2.
 ]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/raw_data.eps>
-(epstopdf)                    date: 2015-10-01 11:01:27
+(epstopdf)                    date: 2015-10-01 12:01:27
 (epstopdf)                    size: 27995 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/raw_data-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:45
+(epstopdf)                    date: 2015-10-01 12:02:45
 (epstopdf)                    size: 30337 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/clustering/raw_data-eps-converted-to.pdf /home/chiroptera/wo
@@ -1047,11 +1047,11 @@ ng/raw_data-eps-converted-to.pdf used on input line 65.
 (pdftex.def)             Requested size: 204.85846pt x 160.05592pt.
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/desired.eps>
-(epstopdf)                    date: 2015-10-01 11:01:27
+(epstopdf)                    date: 2015-10-01 12:01:27
 (epstopdf)                    size: 29377 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/desired-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:46
+(epstopdf)                    date: 2015-10-01 12:02:46
 (epstopdf)                    size: 25560 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/clustering/desired-eps-converted-to.pdf /home/chiroptera/wor
@@ -1074,11 +1074,11 @@ erted-to.pdf> </home/chiroptera/workspace/thesis_writing/rsc/clustering/desired
 -eps-converted-to.pdf>] [6] [7] [8]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/kmeans_progress.eps>
-(epstopdf)                    date: 2015-10-01 11:01:28
+(epstopdf)                    date: 2015-10-01 12:01:28
 (epstopdf)                    size: 74298 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/kmeans_progress-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:46
+(epstopdf)                    date: 2015-10-01 12:02:46
 (epstopdf)                    size: 53341 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/clustering/kmeans_progress-eps-converted-to.pdf /home/chirop
@@ -1119,11 +1119,11 @@ ng/mst_mst.png used on input line 363.
 (pdftex.def)             Requested size: 136.57462pt x 87.76173pt.
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/sl_dendrogram.eps>
-(epstopdf)                    date: 2015-10-13 20:15:19
+(epstopdf)                    date: 2015-10-13 21:15:19
 (epstopdf)                    size: 37750 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/sl_dendrogram-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-13 20:15:29
+(epstopdf)                    date: 2015-10-13 21:15:29
 (epstopdf)                    size: 23228 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/clustering/sl_dendrogram-eps-converted-to.pdf /home/chiropte
@@ -1143,11 +1143,11 @@ ng/sl_dendrogram-eps-converted-to.pdf used on input line 381.
 (pdftex.def)             Requested size: 204.85846pt x 163.63683pt.
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/sl.eps>
-(epstopdf)                    date: 2015-10-01 11:01:28
+(epstopdf)                    date: 2015-10-01 12:01:28
 (epstopdf)                    size: 29344 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/clustering/sl-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-01 11:02:47
+(epstopdf)                    date: 2015-10-01 12:02:47
 (epstopdf)                    size: 22837 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/clustering/sl-eps-converted-to.pdf /home/chiroptera/workspac
@@ -1260,11 +1260,11 @@ rt/gpgpu/kmeans.png used on input line 351.
 u/kmeans.png>] [23]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/stateofart/gpgpu/csr_format.eps>
-(epstopdf)                    date: 2015-07-07 17:22:01
+(epstopdf)                    date: 2015-07-07 18:22:01
 (epstopdf)                    size: 19228 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-07-07 17:25:12
+(epstopdf)                    date: 2015-07-07 18:25:12
 (epstopdf)                    size: 5970 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/stateofart/gpgpu/csr_format-eps-converted-to.pdf /home/chiro
@@ -1341,11 +1341,11 @@ lved with the Gra-di-ent De-scent method;
 Chapter 4.
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/methodology/diagram_proposed_solutions.eps>
-(epstopdf)                    date: 2015-10-13 16:00:56
+(epstopdf)                    date: 2015-10-13 17:00:56
 (epstopdf)                    size: 54514 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/methodology/diagram_proposed_solutions-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-10-13 16:06:38
+(epstopdf)                    date: 2015-10-13 17:06:38
 (epstopdf)                    size: 24200 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/methodology/diagram_proposed_solutions-eps-converted-to.pdf 
@@ -1426,11 +1426,11 @@ ogy/eac_csr_cond_full_degree_100k.png used on input line 342.
 nd_full_degree_100k.png>] [45]
 Package epstopdf Info: Source file: </home/chiroptera/workspace/thesis_writing/
 rsc/methodology/connected_components_boruvka_flow.eps>
-(epstopdf)                    date: 2015-06-26 17:52:58
+(epstopdf)                    date: 2015-06-26 18:52:58
 (epstopdf)                    size: 19969 bytes
 (epstopdf)             Output file: </home/chiroptera/workspace/thesis_writing/
 rsc/methodology/connected_components_boruvka_flow-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-06-27 15:45:00
+(epstopdf)                    date: 2015-06-27 16:45:00
 (epstopdf)                    size: 7515 bytes
 (epstopdf)             Command: <epstopdf --outfile=/home/chiroptera/workspace/
 thesis_writing/rsc/methodology/connected_components_boruvka_flow-eps-converted-
@@ -1873,7 +1873,7 @@ s/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1
 c/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/he
 lvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8
 a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on Thesis_AllChapters.pdf (108 pages, 1696454 bytes).
+Output written on Thesis_AllChapters.pdf (108 pages, 1696826 bytes).
 PDF statistics:
  2667 PDF objects out of 2984 (max. 8388607)
  1661 compressed objects within 17 object streams

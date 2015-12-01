@@ -1,0 +1,78 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{calc}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{pslatex}
+\usepackage{apalike}
+
+\usepackage{booktabs}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\graphicspath{{rsc/}}
+\DeclareGraphicsExtensions{.pdf,.eps,.png}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{SCITEPRESS}     % Please add other packages that you may need BEFORE the SCITEPRESS.sty package.
+
+\subfigtopskip=0pt
+\subfigcapskip=0pt
+\subfigbottomskip=0pt
+
+\begin{document}
+
+\title{Efficient Evidence Accumulation Clustering for large datasets/big data}
+
+\author{\authorname{Diogo Silva\sup{1}, Ana Fred\sup{2} and Helena Aidos\sup{2}}
+\affiliation{\sup{1}Portuguese Air Force Academy, Sintra, Portugal}
+\affiliation{\sup{2}Instituto de Telecomunicacões, Instituto Superior Técnico, Lisboa, Portugal}
+\email{dasilva@academiafa.edu.pt, \{afred, haidos\}@lx.it.pt}
+}
+
+\keywords{Clustering methods, EAC, K-Means, MST, GPGPU, CUDA, Sparse matrices, Single-Link}
+
+\abstract{The unprecedented collection and storage of data in electronic format has given rise to an interested in automated analysis for generation of knowledge and new insights.
+Cluster analysis is a good candidate since it makes as few assumptions about the data as possible.
+A vast body of work on clustering methods exist, yet, typically, no single method is able to respond to the specificities of all kinds of data.
+Evidence Accumulation Clustering (EAC) is a robust state of the art ensemble algorithm that has shown good results.
+However, this robustness comes with higher computational cost.
+Currently, its application is slow or restricted to small datasets.
+The objective of the present work is to scale EAC, allowing its applicability to big datasets, with technology available at a typical workstation.
+Three approaches for different parts of EAC are presented: a parallel GPU K-Means implementation, a novel strategy to build a sparse CSR matrix specialized to EAC and Single-Link based on Minimum Spanning Trees using an external memory sorting algorithm.
+Combining these approaches, the application of EAC to much larger datasets than before possible was accomplished.}
+
+\onecolumn \maketitle \normalsize \vfill
+
+\input{ExtendedAbstract_intro}
+%\input{ExtendedAbstract_backg}
+\input{ExtendedAbstract_production}
+\input{ExtendedAbstract_combination}
+\input{ExtendedAbstract_recovery}
+\input{ExtendedAbstract_resul}
+
+\section{\uppercase{Conclusions}}
+\label{sec:conc}
+The main goal of scaling the EAC method for larger datasets than was previously possible was achieved.
+In the process, it was also optimized for smaller datasets.
+The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately but maintaining interoperability.
+In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
+These contributions together allow for the application of the EAC method to datasets whose complexity was not handled by the original implementation.
+
+Further work involves thorough evaluation in real world.deproblems and datasets.
+Additional work may include further optimization of the Parallel GPU K-means by using shared memory and a better sorting of the co-association graph in the \emph{SL-MST-Disk}.
+By using using bigger chunks in main memory and possibly even using the GPU, sorting the co-association graph should become significantly faster.
+
+
+%\vfill
+\bibliographystyle{apalike}
+{\small
+\bibliography{library}}
+
+\vfill
+\end{document}

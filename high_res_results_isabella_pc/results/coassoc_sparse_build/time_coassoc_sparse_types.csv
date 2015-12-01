@@ -1,0 +1,7 @@
+Matrix type (condensed),Time 1st partition [s],Time ensemble [s]
+Optimzed Fully allocated,0.0017,0.139
+EAC_CSR,0.00481,1.47
+Fully allocated,0.855,96
+LIL,5.39,614
+DOK,12.5,1535
+CSR,548,

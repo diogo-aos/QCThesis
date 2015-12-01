@@ -1,0 +1,239 @@
+\documentclass{beamer}					%printtaukseen [handout]
+\usetheme{Frankfurt}
+\usecolortheme{dove}
+
+%\usepackage{pgfpages}							%printtaukseen
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]	%printtaukseen
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+%\usepackage{natbib}							%for citations in Harvard style
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xfrac}
+\usepackage[british]{babel}
+\usepackage{cleveref}						%for multiple refs in one ref
+\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+\usepackage{courier}
+\usepackage{booktabs}
+\usepackage[backend=biber,citestyle=authoryear,bibstyle=authoryear]{biblatex}
+\addbibresource{references.bib}
+\usepackage{csquotes} % for proper quotation marks
+\usepackage{textpos}
+
+\DeclareMathOperator*{\E}{\mathbb{E}}				% Expectation symbol
+
+
+
+%%%%% PATHS %%%%%
+
+\graphicspath{{./plotit/}}
+\DeclareGraphicsExtensions{.png,.pdf,.eps,.jpg}
+%\addbibresource{refs.bib} %for citations
+
+%%%% CUSTOMIZATION OF THE TEMPLATE %%%%%
+
+\useinnertheme{rectangles} %rectangle bullets etc
+\beamertemplatenavigationsymbolsempty	%no navigation bar
+\setbeamercovered{transparent}		%future bullet points transparent 
+\setbeamertemplate{frametitle}[default][colsep=-4bp,rounded=false,shadow=false] %no shadows
+\definecolor{dark-gray}{gray}{0.80} %color for the navigation squares
+
+%%%% FOOTLINE CUSTOMIZATION %%%%%
+
+\setbeamercolor{section in head/foot}{fg=black, bg=white}
+\makeatletter
+\setbeamertemplate{footline}
+{
+	\leavevmode%
+	\hbox{%
+	\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+		%\usebeamerfont{author in head/foot}\insertshortauthor~~
+		%\beamer@ifempty{\insertshortinstitute}{}{(\insertshortinstitute)}
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+ 		%\usebeamerfont{title in head/foot}\insertshorttitle
+	\end{beamercolorbox}%
+	\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+		%\usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+		\insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+	\end{beamercolorbox}
+    }%
+	\vskip0pt%
+}
+
+%%%% HEADER CUSTOMIZATION %%%%%
+
+
+\setbeamertemplate{mini frame}
+{%
+  \begin{pgfpicture}{0pt}{0pt}{.1cm}{.1cm}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\the\beamer@boxsize}{\the\beamer@boxsize}}
+    \pgfusepath{fill,stroke}
+  \end{pgfpicture}%
+}
+
+\def\slideentry#1#2#3#4#5#6{%
+  %section number, subsection number, slide number, first/last frame, page number, part number
+  \ifnum#6=\c@part\ifnum#2>0\ifnum#3>0%
+    \ifbeamer@compress%
+      \advance\beamer@xpos by1\relax%
+    \else%
+      \beamer@xpos=#3\relax%
+      \beamer@ypos=#2\relax%
+    \fi%
+  \hbox to 2pt{%
+    \beamer@tempdim=-\beamer@vboxoffset%
+    \advance\beamer@tempdim by-\beamer@boxsize%
+    \multiply\beamer@tempdim by\beamer@ypos%
+    \advance\beamer@tempdim by -.05cm%
+    \raise\beamer@tempdim\hbox{%
+      \beamer@tempdim=\beamer@boxsize%
+      \multiply\beamer@tempdim by\beamer@xpos%
+      \advance\beamer@tempdim by -\beamer@boxsize%
+      \advance\beamer@tempdim by 1pt%
+      \kern\beamer@tempdim
+      \global\beamer@section@min@dim\beamer@tempdim
+      \hbox{\beamer@link(#4){%
+          \usebeamerfont{mini frame}%
+          \ifnum\c@section>#1%
+            \color{dark-gray}%
+          \else%
+            \ifnum\c@section=#1%
+              \ifnum\c@subsection>#2%
+                \color{dark-gray}%
+              \else%
+                \ifnum\c@subsection=#2%
+                  \ifnum\c@subsectionslide>#3%
+                    \color{dark-gray}%
+                  \else%
+                    \color{fg}%
+                  \fi%
+                \else%
+                  \color{dark-gray}%
+                \fi%
+              \fi%
+            \else%
+              \color{dark-gray}%
+            \fi%
+          \fi%
+          \usebeamertemplate{mini frame}%
+        }}}\hskip-10cm plus 1fil%
+  }\fi\fi%
+  \else%
+  \fakeslideentry{#1}{#2}{#3}{#4}{#5}{#6}%
+  \fi\ignorespaces
+  }
+  
+%%%% SOME BUG %%%%%
+
+\def\pdftex@driver{pdftex.def}
+\ifx\Gin@driver\pdftex@driver
+  \def\pgfsys@color@unstacked#1{%
+    \pdfliteral{\csname\string\color@#1\endcsname}%
+  }
+\fi
+
+\makeatother
+
+
+
+%%%%% INFORMATION ABOUT THE DOCUMENT %%%%%
+
+\title[Thesis presentation]{Efficient Evidence Accumulation Clustering for large datasets / big data}
+
+\author[Silva]{Diogo Alexandre Oliveira Silva \\ \tiny ALFAL / ENGEL}
+
+\institute[AFA/IST]{
+Academia da For\c{c}a A\'erea / Instituto Superior T\'ecnico \\
+% \medskip
+% %\textit{john@smith.com} % Your email address
+% \vspace{2mm}
+% \tiny \scalebox{1.2}{\textbf{J\'uri}}\\
+% \vspace{2mm}
+% \begin{tabular}{ll}
+%  \tiny Presidente:						& \tiny Prof. Dr. Jo\~ao da Silva Sequeira\\ 
+%  \tiny Orientador:						& \tiny Prof. Dr. Ana Lu\'sa Nobre Fred \\ 
+%  \tiny Vogais:	 						& \tiny BGEN/ENGEL Luis Filipe Basto Dam\'asio\\
+% 										& \tiny TCOR/ENGEL Ana Paula da Silva Jorge\\	
+%  	 									& \tiny Prof. Dr. Pedro Filipe Zeferino Tom\'as\\
+% \end{tabular}
+}
+
+\titlegraphic{\includegraphics[scale=0.06]{afa}\hfill%\hspace*{4.75cm}~%
+   \includegraphics[scale=0.14]{IST_A_CMYK_POS}
+}
+
+\date{November, 2015}
+
+					  
+%%%%% ACTUAL DOCUMENT PAGES %%%%%					  
+
+\begin{document}
+
+
+\begin{frame}[plain]
+
+%Instirutions symbols
+%\begin{flushleft}
+%\includegraphics[bb=4cm 11cm 0cm 0cm,scale=0.14]{IST_A_CMYK_POS}
+%\includegraphics[bb=-186cm 15cm 0cm 0cm,scale=0.06]{afa}
+
+% \includegraphics[bb=4cm 13cm 0cm 0cm,scale=0.14]{IST_A_CMYK_POS}
+% \includegraphics[bb=-180cm 16cm 0cm 0cm,scale=0.05]{afa}
+%\end{flushleft}
+
+% \begin{textblock}{20}(0,0)
+%       \includegraphics[scale=0.14]{IST_A_CMYK_POS}
+% \end{textblock}
+
+% \begin{picture}(0,0)
+% \put(100,100){\hbox{\includegraphics[scale=0.14]{IST_A_CMYK_POS}}}
+% \end{picture} 
+
+% \begin{figure}
+% \centering
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[scale=0.14]{IST_A_CMYK_POS}
+% \end{minipage}%
+% \hfill
+% \begin{minipage}{.5\textwidth}
+%   \centering
+%   \includegraphics[scale=0.06]{afa}
+% \end{minipage}
+% \end{figure}
+
+\titlepage
+
+\end{frame}
+
+%--------------------------------------------%
+%    OVERVIEW 
+%--------------------------------------------%
+
+\begin{frame}
+\frametitle{Contents} % Table of contents slide, comment this block out to remove it
+\footnotesize \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+          
+
+
+\input{introduction}
+\input{proposed_solution}
+\input{results}
+\input{conclusion}
+
+% blank side for ending
+\bgroup
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain]{}
+\end{frame}
+\egroup
+
+\end{document}

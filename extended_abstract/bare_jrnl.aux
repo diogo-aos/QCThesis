@@ -1,0 +1,127 @@
+\relax 
+\citation{IEEEexample:BSTcontrol}
+\citation{Fred2005}
+\citation{Casper2012KMeans,Horn2001a}
+\citation{Jain2010}
+\citation{Jain1999}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
+\newlabel{sec:intro}{{I}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Background}{1}}
+\newlabel{sec:backg}{{II}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Clustering: main concepts and notation}{1}}
+\citation{Aggarwal2014}
+\citation{Fred2001}
+\citation{Meila2003}
+\citation{Fred2005}
+\citation{Fred2002}
+\citation{Fred2005}
+\citation{Jain1999}
+\citation{Gower1969}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Evidence Accumulation Clustering}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}K-Means}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-D}}Single-Link}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-E}}Programming for GPUs with CUDA}{2}}
+\citation{Bai2009,Zechner2009,Sirotkovi2012}
+\citation{Zechner2009b}
+\citation{Fred2005}
+\citation{Lourenco2010}
+\citation{JonesSciPy}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Optimization of the production step of EAC}{3}}
+\newlabel{sec:production}{{III}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Optimization of the combination step of EAC}{3}}
+\newlabel{sec:combination}{{IV}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Underlying structure of EAC CSR}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Updating the matrix with partitions}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Keeping the \emph  {indices} sorted}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.}}{4}}
+\newlabel{fig:normal part}{{1}{4}}
+\citation{Sousa2015}
+\citation{kruskal1956shortest}
+\citation{pytables}
+\citation{hdf5}
+\citation{AltetiAbad2007}
+\citation{AltetiAbad2007}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}EAC CSR Condensed}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Optimization of the recovery step of EAC}{5}}
+\newlabel{sec:recovery}{{V}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Kruskal's algorithm and implementation}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Kruskal's implementation with an external sorting algorithm}{5}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Results}{5}}
+\newlabel{sec:resul}{{VI}{5}}
+\citation{Lourenco2010}
+\citation{Lichman:2013}
+\citation{Sibson1973}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-A}}GPU Parallel K-Means}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Speed-up of the labeling phase for datasets of 2 dimensions and varying the number of patterns and clusters. The dotted black line represents a speed-up of one.}}{6}}
+\newlabel{fig:kmeans dim 2}{{2}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Speed-up of the labeling phase for datasets of 200 dimensions and varying cardinality and number of clusters. The dotted black line represents a speed-up of one.}}{6}}
+\newlabel{fig:kmeans dim 200}{{3}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-B}}Validation with original implementation}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.}}{6}}
+\newlabel{tab:validation error acc}{{I}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-C}}Set-up for large dataset testing}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Different rules for computing $K_{min}$ and $K_{max}$. $n$ is the number of patterns and $sk$ is the number of patterns per cluster.}}{7}}
+\newlabel{tab:eac rules}{{II}{7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-D}}Execution times}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evolution of $K_{min}$ with cardinality for different rules.}}{7}}
+\newlabel{fig:eac kmin evo}{{4}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Execution time for the production of the clustering ensemble.}}{7}}
+\newlabel{fig:eac ensemble times}{{5}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Execution time for building the co-association matrix from ensemble with different rules.}}{7}}
+\newlabel{fig:eac build rules}{{6}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Execution time for building the co-association matrix with different matrix formats.}}{8}}
+\newlabel{fig:eac build matrices}{{7}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-E}}Performance comparison between SLINK, SL-MST and SL-MST-Disk}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparison between the execution times of the three methods of SL. SLINK runs over fully allocated condensed matrix while SL-MST and SL-MST-Disk run over the condensed and complete sparse matrices.}}{8}}
+\newlabel{fig:eac sl}{{8}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparison between the execution times of SL-MST for different rules.}}{8}}
+\newlabel{fig:eac sl-mst}{{9}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Execution times for all phases combined, using SL-MST in the recovery phase.}}{8}}
+\newlabel{fig:eac total mem}{{10}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-F}}Analysis of the number of associations}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Execution times for all phases combined, using SL-MST-Disk in the recovery phase.}}{9}}
+\newlabel{fig:eac total disk}{{11}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Density of associations relative to the full co-association matrix, which hold $n^2$ associations.}}{9}}
+\newlabel{fig:eac assoc density}{{12}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-G}}Space complexity}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Maximum number of associations of any pattern divided by the number of patterns in the biggest cluster of the ensemble.}}{9}}
+\newlabel{fig:eac max assocs bgs}{{13}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-H}}Accuracy}{9}}
+\citation{Lichman:2013}
+\citation{Lichman:2013}
+\citation{yuk13oro}
+\citation{strack2014impact,Lichman:2013}
+\bibstyle{./bibtex/myIEEEtranS}
+\bibdata{./bibtex/IEEEabrv,./library}
+\bibcite{Aggarwal2014}{1}
+\bibcite{pytables}{2}
+\bibcite{AltetiAbad2007}{3}
+\bibcite{Bai2009}{4}
+\bibcite{Casper2012KMeans}{5}
+\bibcite{Fred2001}{6}
+\bibcite{Fred2002}{7}
+\bibcite{Fred2005}{8}
+\bibcite{Gower1969}{9}
+\bibcite{Horn2001a}{10}
+\bibcite{Jain1999}{11}
+\bibcite{Jain2010}{12}
+\bibcite{JonesSciPy}{13}
+\bibcite{kruskal1956shortest}{14}
+\bibcite{Lichman:2013}{15}
+\bibcite{Lourenco2010}{16}
+\bibcite{Meila2003}{17}
+\bibcite{Sibson1973}{18}
+\bibcite{Sirotkovi2012}{19}
+\bibcite{Sousa2015}{20}
+\bibcite{strack2014impact}{21}
+\bibcite{hdf5}{22}
+\bibcite{yuk13oro}{23}
+\bibcite{Zechner2009}{24}
+\bibcite{Zechner2009b}{25}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Memory used relative to the full $n^2$ matrix. The \emph  {sparse complete} and \emph  {sparse condensed const} curves are overlapped.}}{10}}
+\newlabel{fig:eac mem density}{{14}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {VI-I}}Performance on real world datasets}{10}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Execution times for real-world large datasets. P and F refer to the number of patterns and features. P, C and R times refer to the production, combination and recovery times.}}{10}}
+\newlabel{tab:eac rules}{{III}{10}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion}{10}}
+\@writefile{toc}{\contentsline {section}{References}{10}}

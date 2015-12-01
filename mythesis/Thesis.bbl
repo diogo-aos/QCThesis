@@ -1,4 +1,4 @@
-\begin{thebibliography}{116}
+\begin{thebibliography}{115}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -96,7 +96,7 @@ Marie Chavent.
 \bibitem[Bezdek et~al.(1984)Bezdek, Ehrlich, and Full]{Bezdek1984}
 James~C. Bezdek, Robert Ehrlich, and William Full.
 \newblock {FCM: The Fuzzy C-Means Clustering Algorithm}.
-\newblock \emph{Computers \& Geosciences}, 10\penalty0 (2–3):\penalty0
+\newblock \emph{Computers {\&} Geosciences}, 10\penalty0 (2–3):\penalty0
   191--203, 1984.
 
 \bibitem[Kang et~al.(2011)Kang, Tsourakakis, and Faloutsos]{Kang2011}
@@ -143,15 +143,15 @@ J.~C. Gower and G.~J.~S. Ross.
 \newblock \emph{Journal of the Royal Statistical Society}, 18\penalty0
   (1):\penalty0 54--64, 1969.
 
-\bibitem[M\"{u}llner(2011)]{Mullner2011}
-Daniel M\"{u}llner.
+\bibitem[M{\"{u}}llner(2011)]{Mullner2011}
+Daniel M{\"{u}}llner.
 \newblock {Modern hierarchical, agglomerative clustering algorithms}.
 \newblock \penalty0 (1973):\penalty0 29, 2011.
 
 \bibitem[Starck and Murtagh(2007)]{starck2007astronomical}
 J-L Starck and Fionn Murtagh.
 \newblock \emph{{Astronomical image and data analysis}}.
-\newblock Springer Science \& Business Media, 2007.
+\newblock Springer Science {\&} Business Media, 2007.
 
 \bibitem[Topchy et~al.(2004)Topchy, Jain, and Punch]{topchy2004mixture}
 Alexander Topchy, Anil~K Jain, and William Punch.
@@ -168,7 +168,8 @@ Ana N~L Fred and Anil~K Jain.
 
 \bibitem[Strehl and Ghosh(2002)]{Strehl2002}
 Alexander Strehl and Joydeep Ghosh.
-\newblock {Cluster Ensembles – A Knowledge Reuse Framework for}.
+\newblock {Cluster Ensembles – A Knowledge Reuse Framework for Combining
+  Multiple Partitions}.
 \newblock \emph{Journal of Machine Learning Research}, 3:\penalty0 583--617,
   2002.
 
@@ -190,17 +191,11 @@ Ana N~L Fred and Anil~K Jain.
 \newblock \emph{Object recognition supported by user interaction for service
   robots}, 4, 2002.
 
-\bibitem[Louren\c{c}o and Fred(2007)]{Lourenco2007}
-Andr\'{e} Louren\c{c}o and Ana Fred.
+\bibitem[Louren{\c{c}}o and Fred(2007)]{Lourenco2007}
+Andr{\'{e}} Louren{\c{c}}o and Ana Fred.
 \newblock {Ensemble methods in the clustering of string patterns}.
 \newblock \emph{Proceedings - Seventh IEEE Workshop on Applications of Computer
   Vision, WACV 2005}, pages 143--148, 2007.
-
-\bibitem[Louren\c{c}o et~al.(2009)Louren\c{c}o, Carreiras, Bul\`{o}, and
-  Fred]{LourencoECG2009}
-Andr\'{e} Louren\c{c}o, Carlos Carreiras, Samuel~Rota Bul\`{o}, and Ana Fred.
-\newblock {ECG ANALYSIS USING CONSENSUS CLUSTERING}.
-\newblock pages 511--515, 2009.
 
 \bibitem[Duarte et~al.(2005)Duarte, a.L.N. Fred, Lourenco, and
   Rodrigues]{Duarte2005}
@@ -209,8 +204,9 @@ F.J. Duarte, a.L.N. Fred, a.~Lourenco, and M.F. Rodrigues.
 \newblock \emph{2005 Portuguese Conference on Artificial Intelligence},
   00:\penalty0 159--167, 2005.
 
-\bibitem[Louren\c{c}o et~al.(2010)Louren\c{c}o, Fred, and Jain]{Lourenco2010}
-Andr\'{e} Louren\c{c}o, Ana L~N Fred, and Anil~K. Jain.
+\bibitem[Louren{\c{c}}o et~al.(2010)Louren{\c{c}}o, Fred, and
+  Jain]{Lourenco2010}
+Andr{\'{e}} Louren{\c{c}}o, Ana L~N Fred, and Anil~K. Jain.
 \newblock {On the scalability of evidence accumulation clustering}.
 \newblock \emph{Proceedings - International Conference on Pattern Recognition},
   0:\penalty0 782--785, 2010.
@@ -339,8 +335,9 @@ Max Grossman, Mauricio Breternitz, and Vivek Sarkar.
   Processing Symposium Workshops and PhD Forum, IPDPSW 2013}, pages 1918--1927,
   2013.
 
-\bibitem[Mi\v{s}i et~al.(2012)Mi\v{s}i, \^{C}, and Toma\v{s}evi]{Misi2012}
-Marko~J Mi\v{s}i, M~\^{C}, and Milo~V Toma\v{s}evi.
+\bibitem[Mi{\v{s}}i et~al.(2012)Mi{\v{s}}i, {\^{C}}, and
+  Toma{\v{s}}evi]{Misi2012}
+Marko~J Mi{\v{s}}i, M~{\^{C}}, and Milo~V Toma{\v{s}}evi.
 \newblock {Evolution and Trends in GPU Computing}.
 \newblock \emph{MIPRO, 2012 Proceedings of the 35th International Convention},
   pages 289--294, 2012.
@@ -349,7 +346,7 @@ Marko~J Mi\v{s}i, M~\^{C}, and Milo~V Toma\v{s}evi.
 Feng Ji and Xiaosong Ma.
 \newblock {Using Shared Memory to Accelerate MapReduce on Graphics Processing
   Units}.
-\newblock \emph{2011 IEEE International Parallel \& Distributed Processing
+\newblock \emph{2011 IEEE International Parallel {\&} Distributed Processing
   Symposium}, pages 805--816, 2011.
 
 \bibitem[Xin and Li(2012)]{Xin2012}
@@ -400,8 +397,8 @@ Scott Rostrup, Shweta Srivastava, and Kishore Singhal.
 \newblock \emph{International Journal of Computational Science and
   Engineering}, 8\penalty0 (1):\penalty0 21--33, 2013.
 
-\bibitem[Sousa et~al.(2015)Sousa, Mariano, and Proen\c{c}a]{Sousa2015}
-Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen\c{c}a.
+\bibitem[Sousa et~al.(2015)Sousa, Mariano, and Proen{\c{c}}a]{Sousa2015}
+Cristiano da~Silva Sousa, Artur Mariano, and Alberto Proen{\c{c}}a.
 \newblock {A Generic and Highly Efficient Parallel Variant of Boruvka ’s
   Algorithm}.
 \newblock 2015.
@@ -421,7 +418,7 @@ Robert~Clay Prim.
 
 \bibitem[Borůvka(1926)]{boruuvka1926jistem}
 Otakar Borůvka.
-\newblock {O jist\'{e}m probl\'{e}mu minim\'{a}ln\'{\i}m}.
+\newblock {O jist{\'{e}}m probl{\'{e}}mu minim{\'{a}}ln{\'{\i}}m}.
 \newblock 1926.
 
 \bibitem[Wang et~al.(2011{\natexlab{b}})Wang, Huang, and Guo]{Wang2011}
@@ -447,8 +444,9 @@ Guy~E Blelloch.
 \newblock {Prefix Sums and Their Applications}.
 \newblock \emph{Computer}, pages 35--60, 1990.
 
-\bibitem[A\"{\i}meur et~al.(2013)A\"{\i}meur, Brassard, and Gambs]{Aimeur2013}
-Esma A\"{\i}meur, Gilles Brassard, and S\'{e}bastien Gambs.
+\bibitem[A{\"{\i}}meur et~al.(2013)A{\"{\i}}meur, Brassard, and
+  Gambs]{Aimeur2013}
+Esma A{\"{\i}}meur, Gilles Brassard, and S{\'{e}}bastien Gambs.
 \newblock {Quantum speed-up for unsupervised learning}.
 \newblock \emph{Machine Learning}, 90\penalty0 (February 2012):\penalty0
   261--287, 2013.
@@ -552,7 +550,7 @@ Yangyang Li, Nana Wu, Jingjing Ma, and Licheng Jiao.
 \newblock {Quantum-inspired immune clonal clustering algorithm based on
   watershed}.
 \newblock In \emph{IEEE Congress on Evolutionary Computation}, pages 1--7.
-  IEEE, July 2010.
+  IEEE, jul 2010.
 
 \bibitem[Mikki et~al.(2006)Mikki, Kishk, and Others]{mikki2006quantum}
 Said~M Mikki, Ahmed Kishk, and Others.
@@ -564,7 +562,7 @@ Said~M Mikki, Ahmed Kishk, and Others.
 Marvin Weinstein and David Horn.
 \newblock {Dynamic quantum clustering: A method for visual exploration of
   structures in data}.
-\newblock \emph{Physical Review E}, 80\penalty0 (6):\penalty0 066117, December
+\newblock \emph{Physical Review E}, 80\penalty0 (6):\penalty0 066117, dec
   2009{\natexlab{a}}.
 
 \bibitem[Li et~al.(2007)Li, Wang, and Wuxi]{li2007quantum}
@@ -613,7 +611,7 @@ Marvin Weinstein and David Horn.
 \newblock {Dynamic quantum clustering: a method for visual exploration of
   structures in data}.
 \newblock \emph{Physical Review E - Statistical, Nonlinear, and Soft Matter
-  Physics}, 80\penalty0 (6):\penalty0 1--15, December 2009{\natexlab{b}}.
+  Physics}, 80\penalty0 (6):\penalty0 1--15, dec 2009{\natexlab{b}}.
 
 \bibitem[Horn and Gottlieb(2001{\natexlab{b}})]{Horn2001a}
 David Horn and Assaf Gottlieb.
@@ -628,7 +626,7 @@ Peter Wittek.
 
 \bibitem[{Van Der Walt} et~al.(2011){Van Der Walt}, Colbert, and
   Varoquaux]{VanDerWalt2011}
-St\'{e}fan {Van Der Walt}, S.~Chris Colbert, and Ga\"{e}l Varoquaux.
+St{\'{e}}fan {Van Der Walt}, S.~Chris Colbert, and Ga{\"{e}}l Varoquaux.
 \newblock {The NumPy array: A structure for efficient numerical computation}.
 \newblock \emph{Computing in Science and Engineering}, 13\penalty0
   (2):\penalty0 22--30, 2011.
@@ -665,16 +663,16 @@ Wes McKinney.
 \bibitem[Pedregosa et~al.(2011)Pedregosa, Varoquaux, Gramfort, Michel, Thirion,
   Grisel, Blondel, Prettenhofer, Weiss, Dubourg, Vanderplas, Passos,
   Cournapeau, Brucher, Perrot, and Duchesnay]{Pedregosa2011}
-Fabian Pedregosa, Ga\"{e}l Varoquaux, Alexandre Gramfort, Vincent Michel,
+Fabian Pedregosa, Ga{\"{e}}l Varoquaux, Alexandre Gramfort, Vincent Michel,
   Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron
   Weiss, Vincent Dubourg, Jake Vanderplas, Alexandre Passos, David Cournapeau,
-  Matthieu Brucher, Matthieu Perrot, and \'{E}douard Duchesnay.
+  Matthieu Brucher, Matthieu Perrot, and {\'{E}}douard Duchesnay.
 \newblock {Scikit-learn: Machine Learning in Python}.
 \newblock \emph{Journal of Machine Learning Research}, 12\penalty0
   (Oct):\penalty0 2825--2830, 2011.
 
-\bibitem[P\'{e}rez and Granger(2007)]{Perez2007}
-Fernando P\'{e}rez and Brian~E. Granger.
+\bibitem[P{\'{e}}rez and Granger(2007)]{Perez2007}
+Fernando P{\'{e}}rez and Brian~E. Granger.
 \newblock {IPython: A system for interactive scientific computing}.
 \newblock \emph{Computing in Science and Engineering}, 9\penalty0 (3):\penalty0
   21--29, 2007.
@@ -682,7 +680,7 @@ Fernando P\'{e}rez and Brian~E. Granger.
 \bibitem[Team(2015)]{numba}
 Numba~Development Team.
 \newblock {Numba}.
-\newblock $\backslash$url\{http://numba.pydata.org\}, 2015.
+\newblock $\backslash$url{\{}http://numba.pydata.org{\}}, 2015.
 
 \bibitem[Alted et~al.()Alted, Vilata, and Others]{pytables}
 Francesc Alted, Ivan Vilata, and Others.
@@ -700,7 +698,7 @@ Francesc {Altet i Abad} and Ivan~Vilata Balaguer.
 
 \bibitem[Lichman(2013)]{Lichman:2013}
 M~Lichman.
-\newblock {\{UCI\} Machine Learning Repository}, 2013.
+\newblock {{\{}UCI{\}} Machine Learning Repository}, 2013.
 \newblock URL \url{http://archive.ics.uci.edu/ml}.
 
 \bibitem[Yuksel et~al.(2013)Yuksel, Slaughter, Mukhtar, Ochieng, Sun, Goutte,
