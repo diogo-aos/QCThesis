@@ -4,69 +4,58 @@ The top-level auxiliary file: Thesis_AllChapters.aux
 The style file: unsrtnat.bst
 Database file #1: library.bib
 Warning--entry type for "hdf5" isn't style-file defined
---line 199 of file library.bib
-Warning--I didn't find a database entry for "LourencoECG2009"
+--line 560 of file library.bib
+Warning--there's a number but no volume in Silva2016
 Warning--there's a number but no volume in davies1979cluster
-Warning--empty journal in Mullner2011
-Warning--there's a number but no volume in Mullner2011
 Warning--can't use both volume and number fields in zhang1996birch
 Warning--can't use both volume and number fields in guha1998cure
-Warning--empty journal in Sirotkovi2012
-Warning--empty journal in Karimi2010
-Warning--there's a number but no volume in Karimi2010
-Warning--there's a number but no volume in Nvidia2014
-Warning--empty journal in Vineet2009
-Warning--empty journal in Sousa2015
-Warning--empty journal in boruuvka1926jistem
+Warning--empty publisher in Blelloch1990
 Warning--there's a number but no volume in Harris2007
-Warning--empty journal in Wiebe2014
-Warning--empty journal in Casper2013
 Warning--can't use both volume and number fields in Casper2012KMeans
 Warning--empty publisher in Lanzagorta2008
-Warning--there's a number but no volume in Horn2001a
 Warning--empty year in JonesSciPy
 Warning--empty year in pytables
 Warning--empty year in hdf5
-Warning--empty journal in AltetiAbad2007
-You've used 115 entries,
+Warning--empty institution in AltetiAbad2007
+You've used 102 entries,
             2475 wiz_defined-function locations,
-            1404 strings with 29924 characters,
-and the built_in function-call counts, 46126 in all, are:
-= -- 4242
-> -- 2187
-< -- 109
-+ -- 867
-- -- 632
-* -- 3538
-:= -- 7252
-add.period$ -- 366
-call.type$ -- 115
-change.case$ -- 226
-chr.to.int$ -- 110
-cite$ -- 137
-duplicate$ -- 2238
-empty$ -- 3824
-format.name$ -- 817
-if$ -- 9860
-int.to.chr$ -- 6
-int.to.str$ -- 116
-missing$ -- 113
-newline$ -- 596
-num.names$ -- 345
-pop$ -- 718
+            1313 strings with 26934 characters,
+and the built_in function-call counts, 42089 in all, are:
+= -- 3879
+> -- 1960
+< -- 98
++ -- 776
+- -- 568
+* -- 3243
+:= -- 6555
+add.period$ -- 342
+call.type$ -- 102
+change.case$ -- 200
+chr.to.int$ -- 98
+cite$ -- 114
+duplicate$ -- 2047
+empty$ -- 3578
+format.name$ -- 728
+if$ -- 9042
+int.to.chr$ -- 5
+int.to.str$ -- 103
+missing$ -- 100
+newline$ -- 544
+num.names$ -- 306
+pop$ -- 673
 preamble$ -- 1
-purify$ -- 115
+purify$ -- 102
 quote$ -- 0
-skip$ -- 1669
+skip$ -- 1485
 stack$ -- 0
-substring$ -- 2524
-swap$ -- 588
-text.length$ -- 47
+substring$ -- 2368
+swap$ -- 537
+text.length$ -- 44
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 793
-warning$ -- 22
-while$ -- 438
+type$ -- 699
+warning$ -- 12
+while$ -- 395
 width$ -- 0
-write$ -- 1515
-(There were 24 warnings)
+write$ -- 1385
+(There were 13 warnings)

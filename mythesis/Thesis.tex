@@ -64,6 +64,10 @@
 \input{Thesis_Preamble} % file "Thesis_Preamble.tex"
 
 
+
+	
+\AtBeginDocument{\renewcommand{\bibname}{References}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Begin Document                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -198,8 +202,10 @@
 % ----------------------------------------------------------------------
 %  Appendix (optional)
 % ----------------------------------------------------------------------
-% \appendix
+\appendix
 % \input{Thesis_Appendix} % file "Thesis_Appendix.tex"
+\input{appendix_gpgpu}
+\cleardoublepage
 
 % ----------------------------------------------------------------------
 \end{document}

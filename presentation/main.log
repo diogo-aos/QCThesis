@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  28 NOV 2015 18:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  4 DEC 2015 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1637,12 +1637,6 @@ LaTeX Warning: Label `fig:eac kmin evo' multiply defined.
 
 LaTeX Warning: Label `fig:eac kmin evo@cref' multiply defined.
 
-
-LaTeX Warning: Label `fig:eac kmin evo' multiply defined.
-
-
-LaTeX Warning: Label `fig:eac kmin evo@cref' multiply defined.
-
 )
 \openout1 = `main.aux'.
 
@@ -1930,13 +1924,56 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [3
 
-] <./plotit/diff_algs_Fred2005.png, id=246, 833.1125pt x 566.115pt>
-File: ./plotit/diff_algs_Fred2005.png Graphic file (type png)
+] <./plotit/diff_algs/raw.png, id=246, 266.9975pt x 266.9975pt>
+File: ./plotit/diff_algs/raw.png Graphic file (type png)
 
-<use ./plotit/diff_algs_Fred2005.png>
-Package pdftex.def Info: ./plotit/diff_algs_Fred2005.png used on input line 33.
+<use ./plotit/diff_algs/raw.png>
+Package pdftex.def Info: ./plotit/diff_algs/raw.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 92.18756pt.
 
-(pdftex.def)             Requested size: 245.83282pt x 167.04567pt.
+<./plotit/diff_algs/b.png, id=247, 269.005pt x 268.00125pt>
+File: ./plotit/diff_algs/b.png Graphic file (type png)
+
+<use ./plotit/diff_algs/b.png>
+Package pdftex.def Info: ./plotit/diff_algs/b.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 91.84303pt.
+
+<./plotit/diff_algs/c.png, id=248, 266.9975pt x 265.99374pt>
+File: ./plotit/diff_algs/c.png Graphic file (type png)
+
+<use ./plotit/diff_algs/c.png>
+Package pdftex.def Info: ./plotit/diff_algs/c.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 91.84099pt.
+
+<./plotit/diff_algs/d.png, id=249, 269.005pt x 261.97874pt>
+File: ./plotit/diff_algs/d.png Graphic file (type png)
+
+<use ./plotit/diff_algs/d.png>
+Package pdftex.def Info: ./plotit/diff_algs/d.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 89.77914pt.
+
+<./plotit/diff_algs/e.png, id=250, 269.005pt x 261.97874pt>
+File: ./plotit/diff_algs/e.png Graphic file (type png)
+
+<use ./plotit/diff_algs/e.png>
+Package pdftex.def Info: ./plotit/diff_algs/e.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 89.77914pt.
+
+<./plotit/diff_algs/f.png, id=251, 262.9825pt x 261.97874pt>
+File: ./plotit/diff_algs/f.png Graphic file (type png)
+
+<use ./plotit/diff_algs/f.png>
+Package pdftex.def Info: ./plotit/diff_algs/f.png used on input line 45.
+(pdftex.def)             Requested size: 92.1879pt x 91.83783pt.
+
+Overfull \hbox (5.27382pt too wide) in paragraph at lines 45--45
+ [][] 
+ []
+
+
+Overfull \vbox (16.75616pt too high) detected at line 45
+ []
+
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
@@ -1944,33 +1981,35 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [4
 
- <./plotit/diff_algs_Fred2005.png (PNG copy)>]
+ <./plotit/diff_algs/raw.png> <./plotit/diff_algs/b.png> <./plotit/diff_algs/c.
+png> <./plotit/diff_algs/d.png> <./plotit/diff_algs/e.png> <./plotit/diff_algs/
+f.png>]
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
  []
 
 [5
 
-] <./plotit/EAC_plots/raw_data.png, id=327, 608.2725pt x 584.1825pt>
+] <./plotit/EAC_plots/raw_data.png, id=337, 608.2725pt x 584.1825pt>
 File: ./plotit/EAC_plots/raw_data.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/raw_data.png>
-Package pdftex.def Info: ./plotit/EAC_plots/raw_data.png used on input line 82.
+Package pdftex.def Info: ./plotit/EAC_plots/raw_data.png used on input line 93.
 
 (pdftex.def)             Requested size: 92.1879pt x 88.5328pt.
 
-<./plotit/EAC_plots/kmeans1.png, id=328, 612.2875pt x 578.16pt>
+<./plotit/EAC_plots/kmeans1.png, id=338, 612.2875pt x 578.16pt>
 File: ./plotit/EAC_plots/kmeans1.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/kmeans1.png>
-Package pdftex.def Info: ./plotit/EAC_plots/kmeans1.png used on input line 82.
+Package pdftex.def Info: ./plotit/EAC_plots/kmeans1.png used on input line 93.
 (pdftex.def)             Requested size: 92.1879pt x 87.04666pt.
 
-<./plotit/EAC_plots/kmeans2.png, id=329, 602.25pt x 579.16376pt>
+<./plotit/EAC_plots/kmeans2.png, id=339, 602.25pt x 579.16376pt>
 File: ./plotit/EAC_plots/kmeans2.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/kmeans2.png>
-Package pdftex.def Info: ./plotit/EAC_plots/kmeans2.png used on input line 82.
+Package pdftex.def Info: ./plotit/EAC_plots/kmeans2.png used on input line 93.
 (pdftex.def)             Requested size: 92.1879pt x 88.64711pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -1983,40 +2022,40 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 <./plotit/EAC_plots/kmeans2.png>]
 File: ./plotit/EAC_plots/kmeans1.png Graphic file (type png)
  <use ./plotit/EAC_plots/kmeans1.png>
-Package pdftex.def Info: ./plotit/EAC_plots/kmeans1.png used on input line 103.
+Package pdftex.def Info: ./plotit/EAC_plots/kmeans1.png used on input line 114.
 
 (pdftex.def)             Requested size: 92.1879pt x 87.04666pt.
 
-<./plotit/EAC_plots/coassoc1.png, id=371, 570.13pt x 546.04pt>
+<./plotit/EAC_plots/coassoc1.png, id=381, 570.13pt x 546.04pt>
 File: ./plotit/EAC_plots/coassoc1.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/coassoc1.png>
-Package pdftex.def Info: ./plotit/EAC_plots/coassoc1.png used on input line 103
+Package pdftex.def Info: ./plotit/EAC_plots/coassoc1.png used on input line 114
 .
 (pdftex.def)             Requested size: 92.1879pt x 88.29301pt.
 
-<./plotit/EAC_plots/coassocEAC.png, id=372, 695.59875pt x 543.02875pt>
+<./plotit/EAC_plots/coassocEAC.png, id=382, 695.59875pt x 543.02875pt>
 File: ./plotit/EAC_plots/coassocEAC.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/coassocEAC.png>
 Package pdftex.def Info: ./plotit/EAC_plots/coassocEAC.png used on input line 1
-03.
+14.
 (pdftex.def)             Requested size: 92.1879pt x 71.9634pt.
 File: ./plotit/EAC_plots/kmeans2.png Graphic file (type png)
  <use ./plotit/EAC_plots/kmeans2.png>
-Package pdftex.def Info: ./plotit/EAC_plots/kmeans2.png used on input line 103.
+Package pdftex.def Info: ./plotit/EAC_plots/kmeans2.png used on input line 114.
 
 (pdftex.def)             Requested size: 92.1879pt x 88.64711pt.
 
-<./plotit/EAC_plots/coassoc2.png, id=373, 570.13pt x 542.025pt>
+<./plotit/EAC_plots/coassoc2.png, id=383, 570.13pt x 542.025pt>
 File: ./plotit/EAC_plots/coassoc2.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/coassoc2.png>
-Package pdftex.def Info: ./plotit/EAC_plots/coassoc2.png used on input line 103
+Package pdftex.def Info: ./plotit/EAC_plots/coassoc2.png used on input line 114
 .
 (pdftex.def)             Requested size: 92.1879pt x 87.6438pt.
 
-Overfull \hbox (5.27382pt too wide) in paragraph at lines 103--103
+Overfull \hbox (5.27382pt too wide) in paragraph at lines 114--114
  [][] 
  []
 
@@ -2033,14 +2072,14 @@ File: ./plotit/EAC_plots/coassocEAC.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/coassocEAC.png>
 Package pdftex.def Info: ./plotit/EAC_plots/coassocEAC.png used on input line 1
-17.
+28.
 (pdftex.def)             Requested size: 92.1879pt x 71.9634pt.
 
-<./plotit/EAC_plots/eac.png, id=414, 510.90875pt x 492.84125pt>
+<./plotit/EAC_plots/eac.png, id=424, 510.90875pt x 492.84125pt>
 File: ./plotit/EAC_plots/eac.png Graphic file (type png)
 
 <use ./plotit/EAC_plots/eac.png>
-Package pdftex.def Info: ./plotit/EAC_plots/eac.png used on input line 117.
+Package pdftex.def Info: ./plotit/EAC_plots/eac.png used on input line 128.
 (pdftex.def)             Requested size: 92.1879pt x 88.92567pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2069,7 +2108,7 @@ solutions-eps-converted-to.pdf ./plotit/diagram_proposed_solutions.eps>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
 
-<./plotit/diagram_proposed_solutions-eps-converted-to.pdf, id=494, 908.39375pt 
+<./plotit/diagram_proposed_solutions-eps-converted-to.pdf, id=504, 908.39375pt 
 x 637.38126pt>
 File: ./plotit/diagram_proposed_solutions-eps-converted-to.pdf Graphic file (ty
 pe pdf)
@@ -2077,12 +2116,7 @@ pe pdf)
 Package pdftex.def Info: ./plotit/diagram_proposed_solutions-eps-converted-to.p
 df used on input line 20.
 (pdftex.def)             Requested size: 245.83282pt x 172.48425pt.
-pdfTeX warning (ext4): destination with the same identifier (name{fig:eac\040km
-in\040evo}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.20 \end{frame}
-                
+
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
  []
@@ -2104,7 +2138,7 @@ solutions_BAD-eps-converted-to.pdf ./plotit/diagram_proposed_solutions_BAD.eps>
 (epstopdf)             \includegraphics on input line 30.
 Package epstopdf Info: Output file is already uptodate.
 
-<./plotit/diagram_proposed_solutions_BAD-eps-converted-to.pdf, id=537, 1327.961
+<./plotit/diagram_proposed_solutions_BAD-eps-converted-to.pdf, id=548, 1327.961
 24pt x 639.38875pt>
 File: ./plotit/diagram_proposed_solutions_BAD-eps-converted-to.pdf Graphic file
  (type pdf)
@@ -2186,13 +2220,25 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [16
 
 ]
-<./plotit/eac_csr_cond_full_degree_100k.png, id=786, 967.615pt x 396.48125pt>
-File: ./plotit/eac_csr_cond_full_degree_100k.png Graphic file (type png)
+<./plotit/eac_csr_cond_full_degree_100k_1.png, id=797, 471.7625pt x 395.4775pt>
+File: ./plotit/eac_csr_cond_full_degree_100k_1.png Graphic file (type png)
+<use ./plotit/eac_csr_cond_full_degree_100k_1.png>
+Package pdftex.def Info: ./plotit/eac_csr_cond_full_degree_100k_1.png used on i
+nput line 195.
+(pdftex.def)             Requested size: 153.64493pt x 128.80022pt.
 
-<use ./plotit/eac_csr_cond_full_degree_100k.png>
-Package pdftex.def Info: ./plotit/eac_csr_cond_full_degree_100k.png used on inp
-ut line 200.
-(pdftex.def)             Requested size: 245.83282pt x 100.72931pt.
+<./plotit/eac_csr_cond_full_degree_100k_2.png, id=798, 471.7625pt x 394.47375pt
+>
+File: ./plotit/eac_csr_cond_full_degree_100k_2.png Graphic file (type png)
+ <use ./plotit/eac_csr_cond_full_degree_100k_2.png>
+Package pdftex.def Info: ./plotit/eac_csr_cond_full_degree_100k_2.png used on i
+nput line 195.
+(pdftex.def)             Requested size: 153.64493pt x 128.4733pt.
+
+Overfull \hbox (23.99998pt too wide) in paragraph at lines 195--195
+[][]  
+ []
+
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
@@ -2200,7 +2246,8 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [17
 
- <./plotit/eac_csr_cond_full_degree_100k.png>]
+ <./plotit/eac_csr_cond_full_degree_100k_1.png> <./plotit/eac_csr_cond_full_deg
+ree_100k_2.png>]
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
  []
@@ -2226,11 +2273,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [20
 
-] <./plotit/2_0.png, id=947, 816.04875pt x 419.5675pt>
+] <./plotit/2_0.png, id=960, 816.04875pt x 419.5675pt>
 File: ./plotit/2_0.png Graphic file (type png)
 
 <use ./plotit/2_0.png>
-Package pdftex.def Info: ./plotit/2_0.png used on input line 73.
+Package pdftex.def Info: ./plotit/2_0.png used on input line 74.
 (pdftex.def)             Requested size: 245.83282pt x 126.38979pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2239,11 +2286,12 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [21
 
- <./plotit/2_0.png>] <./plotit/200_0.png, id=988, 818.05624pt x 419.5675pt>
+ <./plotit/2_0.png>]
+<./plotit/200_0.png, id=1001, 818.05624pt x 419.5675pt>
 File: ./plotit/200_0.png Graphic file (type png)
 
 <use ./plotit/200_0.png>
-Package pdftex.def Info: ./plotit/200_0.png used on input line 83.
+Package pdftex.def Info: ./plotit/200_0.png used on input line 84.
 (pdftex.def)             Requested size: 245.83282pt x 126.08249pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2254,11 +2302,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
  <./plotit/200_0.png>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10.95> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 107.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 108.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 107.
+(Font)              <14.4> on input line 108.
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 107.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 108.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [][] 
@@ -2266,11 +2314,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 [23
 
-] <./plotit/kmin_evolution.png, id=1071, 750.805pt x 529.98pt>
+] <./plotit/kmin_evolution.png, id=1084, 750.805pt x 529.98pt>
 File: ./plotit/kmin_evolution.png Graphic file (type png)
 
 <use ./plotit/kmin_evolution.png>
-Package pdftex.def Info: ./plotit/kmin_evolution.png used on input line 117.
+Package pdftex.def Info: ./plotit/kmin_evolution.png used on input line 118.
 (pdftex.def)             Requested size: 245.83282pt x 173.52725pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2280,11 +2328,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [24
 
  <./plotit/kmin_evolution.png>]
-<./plotit/ensemble_time.png, id=1112, 747.0309pt x 524.1984pt>
+<./plotit/ensemble_time.png, id=1125, 747.0309pt x 524.1984pt>
 File: ./plotit/ensemble_time.png Graphic file (type png)
 
 <use ./plotit/ensemble_time.png>
-Package pdftex.def Info: ./plotit/ensemble_time.png used on input line 127.
+Package pdftex.def Info: ./plotit/ensemble_time.png used on input line 128.
 (pdftex.def)             Requested size: 245.83282pt x 172.50609pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2294,12 +2342,12 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [25
 
  <./plotit/ensemble_time.png>]
-<./plotit/build_sparse_condensed_linear.png, id=1155, 748.4763pt x 524.6802pt>
+<./plotit/build_sparse_condensed_linear.png, id=1168, 748.4763pt x 524.6802pt>
 File: ./plotit/build_sparse_condensed_linear.png Graphic file (type png)
 
 <use ./plotit/build_sparse_condensed_linear.png>
 Package pdftex.def Info: ./plotit/build_sparse_condensed_linear.png used on inp
-ut line 137.
+ut line 138.
 (pdftex.def)             Requested size: 245.83282pt x 172.32838pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2309,12 +2357,12 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [26
 
  <./plotit/build_sparse_condensed_linear.png>]
-<./plotit/sl_mem_time_sparse_condensed_linear.png, id=1196, 751.608pt x 524.439
+<./plotit/sl_mem_time_sparse_condensed_linear.png, id=1209, 751.608pt x 524.439
 3pt>
 File: ./plotit/sl_mem_time_sparse_condensed_linear.png Graphic file (type png)
  <use ./plotit/sl_mem_time_sparse_condensed_linear.png>
 Package pdftex.def Info: ./plotit/sl_mem_time_sparse_condensed_linear.png used 
-on input line 147.
+on input line 148.
 (pdftex.def)             Requested size: 245.83282pt x 171.52905pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2324,11 +2372,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [27
 
  <./plotit/sl_mem_time_sparse_condensed_linear.png>]
-<./plotit/2sqrt.png, id=1237, 748.4763pt x 524.4393pt>
+<./plotit/2sqrt.png, id=1250, 748.4763pt x 524.4393pt>
 File: ./plotit/2sqrt.png Graphic file (type png)
 
 <use ./plotit/2sqrt.png>
-Package pdftex.def Info: ./plotit/2sqrt.png used on input line 158.
+Package pdftex.def Info: ./plotit/2sqrt.png used on input line 159.
 (pdftex.def)             Requested size: 245.83282pt x 172.24927pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2338,11 +2386,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [28
 
  <./plotit/2sqrt.png>]
-<./plotit/slink_vs_sl-mst.png, id=1279, 750.805pt x 527.9725pt>
+<./plotit/slink_vs_sl-mst.png, id=1292, 750.805pt x 527.9725pt>
 File: ./plotit/slink_vs_sl-mst.png Graphic file (type png)
 
 <use ./plotit/slink_vs_sl-mst.png>
-Package pdftex.def Info: ./plotit/slink_vs_sl-mst.png used on input line 171.
+Package pdftex.def Info: ./plotit/slink_vs_sl-mst.png used on input line 172.
 (pdftex.def)             Requested size: 245.83282pt x 172.86996pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2352,11 +2400,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [29
 
  <./plotit/slink_vs_sl-mst.png>]
-<./plotit/total_time_sl-mst.png, id=1320, 747.0309pt x 523.9575pt>
+<./plotit/total_time_sl-mst.png, id=1333, 747.0309pt x 523.9575pt>
 File: ./plotit/total_time_sl-mst.png Graphic file (type png)
 
 <use ./plotit/total_time_sl-mst.png>
-Package pdftex.def Info: ./plotit/total_time_sl-mst.png used on input line 183.
+Package pdftex.def Info: ./plotit/total_time_sl-mst.png used on input line 184.
 
 (pdftex.def)             Requested size: 245.83282pt x 172.4268pt.
 
@@ -2367,12 +2415,12 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [30
 
  <./plotit/total_time_sl-mst.png>]
-<./plotit/total_time_sl-mst-disk.png, id=1361, 747.0309pt x 524.1984pt>
+<./plotit/total_time_sl-mst-disk.png, id=1374, 747.0309pt x 524.1984pt>
 File: ./plotit/total_time_sl-mst-disk.png Graphic file (type png)
 
 <use ./plotit/total_time_sl-mst-disk.png>
 Package pdftex.def Info: ./plotit/total_time_sl-mst-disk.png used on input line
- 193.
+ 194.
 (pdftex.def)             Requested size: 245.83282pt x 172.50609pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2382,13 +2430,13 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [31
 
  <./plotit/total_time_sl-mst-disk.png>]
-<./plotit/assoc_density_sparse_condensed_linear.png, id=1404, 759.0759pt x 524.
+<./plotit/assoc_density_sparse_condensed_linear.png, id=1417, 759.0759pt x 524.
 4393pt>
 File: ./plotit/assoc_density_sparse_condensed_linear.png Graphic file (type png
 )
  <use ./plotit/assoc_density_sparse_condensed_linear.png>
 Package pdftex.def Info: ./plotit/assoc_density_sparse_condensed_linear.png use
-d on input line 203.
+d on input line 204.
 (pdftex.def)             Requested size: 245.83282pt x 169.84058pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2398,11 +2446,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 [32
 
  <./plotit/assoc_density_sparse_condensed_linear.png>]
-<./plotit/sk_300.png, id=1445, 748.7172pt x 524.6802pt>
+<./plotit/sk_300.png, id=1458, 748.7172pt x 524.6802pt>
 File: ./plotit/sk_300.png Graphic file (type png)
 
 <use ./plotit/sk_300.png>
-Package pdftex.def Info: ./plotit/sk_300.png used on input line 213.
+Package pdftex.def Info: ./plotit/sk_300.png used on input line 214.
 (pdftex.def)             Requested size: 245.83282pt x 172.27235pt.
 
 Overfull \hbox (3.5944pt too wide) has occurred while \output is active
@@ -2420,7 +2468,20 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 
 ]) [35
 
-]
+] <./plotit/max_assoc_bgs.png, id=1543, 742.775pt x 527.9725pt>
+File: ./plotit/max_assoc_bgs.png Graphic file (type png)
+
+<use ./plotit/max_assoc_bgs.png>
+Package pdftex.def Info: ./plotit/max_assoc_bgs.png used on input line 245.
+(pdftex.def)             Requested size: 245.83282pt x 174.739pt.
+
+Overfull \hbox (3.5944pt too wide) has occurred while \output is active
+[][] 
+ []
+
+[36
+
+ <./plotit/max_assoc_bgs.png>]
 \tf@nav=\write7
 \openout7 = `main.nav'.
 
@@ -2430,11 +2491,11 @@ Overfull \hbox (3.5944pt too wide) has occurred while \output is active
 \tf@snm=\write9
 \openout9 = `main.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 239.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 239.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 239.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 239.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 44C9C9506EBF880DBD69D841E5F5FAA0;773.
 
@@ -2444,13 +2505,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 239.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 30686 strings out of 495004
- 580887 string characters out of 6180663
- 995094 words of memory out of 5000000
- 33123 multiletter control sequences out of 15000+600000
+ 30727 strings out of 495004
+ 581898 string characters out of 6180663
+ 995083 words of memory out of 5000000
+ 33153 multiletter control sequences out of 15000+600000
  68572 words of font info for 98 fonts, out of 8000000 for 9000
  16 hyphenation exceptions out of 8191
  49i,20n,63p,10467b,1729s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2466,10 +2527,10 @@ sy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
 /courier/ucrro8a.pfb>
-Output written on main.pdf (35 pages, 3685778 bytes).
+Output written on main.pdf (36 pages, 3724547 bytes).
 PDF statistics:
- 1594 PDF objects out of 1728 (max. 8388607)
- 1445 compressed objects within 15 object streams
- 84 named destinations out of 1000 (max. 500000)
- 298 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1650 PDF objects out of 1728 (max. 8388607)
+ 1485 compressed objects within 15 object streams
+ 86 named destinations out of 1000 (max. 500000)
+ 333 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -7,7 +7,7 @@
 Hundreds of methods for data analysis exist.
 Many of these methods fall into the realm of machine learning, which is usually divided into 2 major groups: \textit{supervised} and \textit{unsupervised} learning.
 % TODO: add some reference for the 2 major groups; optional: explain what learning is
-Supervised learning deals with labeled data, i.e. data for which ground truth is known, and tries to solve the problem of classification.
+Supervised learning deals with labeled data, i.e. data for which the ground truth is known, and tries to solve the problem of classification.
 Examples of supervised learning algorithms are Neural Networks, Decision Trees, Linear Regression and Support Vector Machines. %TODO add refs
  %TODO: add ref for solving classification
 Unsupervised learning deals with unlabeled data for which no extra information is known.
@@ -32,14 +32,14 @@ In other words, the goal of data clustering is to discover structure on data.
 The methodology used is to group patterns (usually represented as a vector of measurements or a point in space \cite{Jain1999}) based on some similarity, such that patterns belonging to the same cluster are typically more similar to each other than to patterns of other clusters.
 Clustering is a strictly data-driven method, in contrast with classification techniques which have a training set with the desired labels for a limited collection of patterns.
 Because there is very little information, as few assumptions as possible should be made about the structure of the data (e.g. number of clusters).
-And, because clustering typically makes as few assumptions on the data as possible, it is appropriate to use it on exploratory data analysis.
+Also, because clustering typically makes as few assumptions on the data as possible, it is appropriate to use it on exploratory data analysis.
 The process of clustering data has three main aspects \cite{Jain1999}:
 
 \begin{itemize}
     \item \textbf{Pattern representation} refers to the choice of representation of the input data in terms of size, scale and type of features.
     The input patterns may be fed directly to the algorithms or undergo \emph{feature selection} and/or \emph{feature extraction}.
-    The former is simply the selection of which features of the originally available should be used.
-    The latter deals with the transformation of the original feature space such that the resulting space will produce more accurate and insightful clusterings, e.g. Principal Component Analysis.
+    The former is simply the selection of which features should be used.
+    The latter deals with the transformation of the original feature space such that the resulting space will produce more accurate and insightful clusterings, e.g. by applying Principal Component Analysis.
     % It should be noted that
 
     \item \textbf{Pattern similarity} refers to the definition of a measure for computing the similarity between two patterns.
@@ -49,7 +49,7 @@ The process of clustering data has three main aspects \cite{Jain1999}:
 %TODO iris dataset reference
 As an example, Figure \ref{fig:intro raw} shows the plot of the Iris dataset \cite{anderson1936species,fisher1936use}, a small well-known Machine Learning dataset.
 This dataset has 4 features, of which only 2 are represented, and 3 classes, of which 2 are overlapping.
-A class is overlapping another if they share part of the feature space, i.e. there is a zone in the feature space whose patterns might belong to either class.
+A class is overlapping another if they share part of the feature space, i.e. there is a region in the feature space whose patterns might belong to either class.
 Figure \ref{fig:intro natural} presents the desired clustering for this dataset.
 
 % Part of this went to the K-Means section
@@ -104,8 +104,8 @@ The whole set of labels corresponding to a pattern set $\mathcal{X}$ is given by
 Closely related to the whole set of labels is the concept of a \emph{partition}, which completely describes a clustering.
 A partition $P$ is a collection of $k$ \emph{clusters}.
 A cluster $C$ is a subset of $nc$ patterns $\mathbf{x}_i$ taken from the pattern set, where the patterns belonging to one subset do not belong to any other in the same partition.
-A clustering \emph{ensemble} $\mathbb{P}$ is a set of $N$ partitions $P^j$ of a given pattern set, each of which is composed by a set of $k_j$ clusters $C^j_i$, where $j=1, \ldots, N$, $i=1, \ldots, k_j$.
-Each cluster is composed by a set of $nc^j_i$ patterns that does not intercept any other cluster of the same partition.
+A clustering \emph{ensemble} $\mathbb{P}$ is a set of $N$ partitions $P^j$ of a given pattern set, each composed of a set of $k_j$ clusters $C^j_i$, where $j=1, \ldots, N$, $i=1, \ldots, k_j$.
+Each cluster is composed of a set of $nc^j_i$ patterns that does not intercept any other cluster of the same partition.
 The relationship between the above concepts is condensed in the following expressions:
 
 \begin{align*}
@@ -121,8 +121,8 @@ The relationship between the above concepts is condensed in the following expres
 % Em relação aos conceitos: Proximidade não tem que ser métrica e pode ser semelhança ou dissemelhança. Pode sempre converter-se semelhança em dissemelhança e vice-versa, no entanto o mesmo já não acontece quando se convertem métricas. Uma distância é uma dissemelhança que é uma métrica (obedece às várias propriedades de métrica: simetria; d(x,x)=0 e desigualdade triangular). Quando se faz a conversão de uma distância para uma semelhança pode deixar de ser métrica. Mas isso só é mesmo importante quando se está a usar explicita ou implicitamente no processamento (por exemplo procura de vizinhos mais próximos, etc) a característica de desigualdade triangular. Em geral a propriedade de simetria é suficiente (e que d(x,x)=0 e sim(x,x)>sim(x,y)).
 
 Typically, a clustering algorithm will use a \emph{proximity} measure for determining how alike are two patterns.
-A proximity measure can either be a \emph{similarity} or a \emph{dissimilarity} measure.
-One can easily be converted to the other and the main difference is that the former increases in value as patterns are more alike, while the latter decreases in value.
+A proximity measure can either be a \emph{similarity} or a \emph{dissimilarity} measure, as one can easily be converted to the other.
+The main difference is that the former increases in value as patterns are more alike, while the latter decreases in value.
 A \emph{distance} is a dissimilarity function \emph{d} which yields non-negative real values and is also a \emph{metric}, which means it obeys the following three properties:
 
 
@@ -141,8 +141,8 @@ A \emph{distance} is a dissimilarity function \emph{d} which yields non-negative
 %     triangle \; inequality \qquad & d(\mathbf{x}_i, \mathbf{x}_j) + d(\mathbf{x}_j, \mathbf{x}_z) \ge d(\mathbf{x}_x, \mathbf{x}_z) \label{eq:triangle inequality}
 % \end{align}
 
-where $\mathbf{x}_i$, $\mathbf{x}_j$ and $\mathbf{x}_z$ are 3 unique patterns belonging to the pattern set $\mathcal{X}$.
-Examples of proximity measures include the Euclidean distance, the Pearson’s correlation coefficien and Mutual Shared Neighbors \cite{jarvis1973clustering}.
+where $\mathbf{x}_i$, $\mathbf{x}_j$ and $\mathbf{x}_z$ are 3 distinct patterns belonging to the pattern set $\mathcal{X}$.
+Examples of proximity measures include the Euclidean distance, the Pearson’s correlation coefficient and Mutual Shared Neighbors \cite{jarvis1973clustering}.
 It should be noted that different proximity measures may be more appropriate in different contexts, such as document, biological or time-series clustering.
 Furthermore, data can come in different types such as numerical (discrete or continuous) or categorical (binary or multinomial) attributes.
 The researcher should take these factors into account as different proximity measures are more appropriate for some type or even heterogeneous type data. 
@@ -179,16 +179,16 @@ Hierarchical algorithms can be further split into two approaches: bottom-up (or 
 % agglomerative
 The former starts with all patterns as distinct clusters and will group them together according to some dissimilarity measure, building the dendrogram from the ground up; examples of algorithms that take this approach are Single-Link and Average-Link.
 %divisive
-The latter will start will all patterns in the same cluster and continuosly split it until all patterns are separated, building the dendrogram from the top level to the bottom; this approach is taken by the Principal Directon Divisive Partitioning\cite{Boley1998} and Bisecting K-Means \cite{Steinbach2000} algorithms.
+The latter will start will all patterns in the same cluster and continuously split it until all patterns are separated, building the dendrogram from the top level to the bottom; this approach is taken by the Principal Directon Divisive Partitioning \cite{Boley1998} and Bisecting K-Means \cite{Steinbach2000} algorithms.
 
 
 % monothetic vs polithetic
 Another characteristic relates to how algorithms use the features for computing similarities.
-If all features are used simultaniously the algorithm is called \emph{polithetic}, e.g. K-Means.
+If all features are used simultaneously the algorithm is called \emph{polithetic}, e.g. K-Means.
 Otherwise, if the features are used sequentially, it is called \emph{monothetic}, e.g. \cite{Chavent1998}.
 
 % fuzzy clustering
-Contrasting \emph{hard} clustering algorithm are the \emph{fuzzy} algorithms.
+Contrasting with \emph{hard} clustering algorithms, are the \emph{fuzzy} algorithms.
 A fuzzy algorithm will attribute to each pattern a degree of membership to each cluster.
 A partition can still be extracted from this output by choosing, for each pattern, the cluster with higher degree of membership.
 An example of a fuzzy algorithm is the Fuzzy C-Means \cite{Bezdek1984}.
@@ -269,7 +269,7 @@ Other approaches exist dealing with this problem, such as equaling the centroid 
 
 % kmeans as a step for other algorithms
 K-Means is a simple algorithm with reduced complexity $O(ntk)$, where $n$ is the number of patterns in the pattern set, $k$ is the number of clusters and $t$ is the number of iterations that it executes.
-Accordingly, K-Means is often used as foundational step of more complex and robust algorithms, such as the EAC algorithm.
+Accordingly, K-Means is often used as a foundational step of more complex and robust algorithms, such as the EAC algorithm.
 
 % After the first iteration, the first step is executed with the new centroids.
 % The end result of the algorithm is the labels produced in the first step of the last iteration.
@@ -339,9 +339,9 @@ In this context, the edges of the MST are the distances between the patterns and
 A MST contains all the information necessary to build a Single-Link dendrogram.
 To walk down through the levels of the dendrogram from the MST, one cuts the least similar edges.
 Furthermore, this approach can be used to apply Single-Link clustering to graphs-encoded problems in a straight-forward way.
-Furthermore, the performance properties of this method are roughly the same as SLINK  \cite{Mullner2011}.
+Furthermore, the performance properties of this method are roughly the same as SLINK \cite{Mullner2011}.
 
-The true advantage of using an MST based approach comes when the number of edges (similarities) $m$ of the MST is less than $\frac{n(n-1)}{2}$, where $n$ is the number of nodes (patterns) \cite{starck2007astronomical}.
+The true advantage of using a MST based approach comes when the number of edges (similarities) $m$ of the MST is less than $\frac{n(n-1)}{2}$, where $n$ is the number of nodes (patterns) \cite{starck2007astronomical}.
 This is because SLINK works over a inter pattern similarity matrix, meaning that the similarity between every pair of patterns must be explicitly represented.
 The minimum number of similarities is $\frac{n(n-1)}{2}$, which is equivalent to the upper or lower half triangular matrices of the similarity matrix.
 The MST, on the other hand, works over a graph that may or may not have edges between every pair of nodes.
@@ -412,8 +412,9 @@ There are several motivations for ensemble clustering.
 Data from real world problems appear in different configurations regarding shape, cardinality, dimensionality, sparsity, etc. 
 Different clustering algorithms are appropriate for different data configurations, e.g. K-Means tends to group patterns in hyperspheres \cite{Jain1999} so it is more appropriate for data whose structure is formed by hypershere like clusters.
 If the true structure of the data at hand is heterogeneous in its configuration, a single clustering algorithm might perform well for some part of the data while other performs better for some other part.
-Since different algorithms can be used to produce the partitions in the ensemble, one can use a mix of algorithms to address different properties of the data such that the combination is more \textbf{robust} to noise and outliers \cite{topchy2004mixture} and the final clustering has a \textbf{better quality} \cite{Aggarwal2014}.
-Ensemble clustering can also be particularly useful in situations where one does not have direct access to all the features of a given dataset but can have access to partitions from different subsets and later combining with an ensemble algorithm.
+Since different partitions are used, one can use a mix of algorithms to address different properties of the data such that the combination is more \textbf{robust} to noise and outliers \cite{topchy2004mixture} and the final clustering has a \textbf{better quality} \cite{Aggarwal2014}.
+Even using several partitions from different initializations of the same algorithm may also allow retrieving complex shaped structures from otherwise simple methods.
+Ensemble clustering can also be useful in situations where one does not have direct access to all the features of a given dataset but can have access to partitions from different subsets and later combining with an ensemble algorithm.
 Furthermore, the generation of the clustering ensemble can be \textbf{parallelized and distributed} since each partition is independent from every other partition.
 
 A clustering ensemble, according to \cite{Fred2005}, can be produced from (1) different data representations, e.g. choice of preprocessing, feature selection and extraction, sampling; or (2) different partitions of the data, e.g. output of different algorithms, varying the initialization parameters on the same algorithm.
@@ -454,11 +455,11 @@ Its approach is divided in 3 steps:
 
 % introduce the creation of the ensemble
 In the first step, a clustering ensemble is produced.
-Within the context of EAC, it is of interest to have variety in the ensemble with the intention to better capture the underlying structure of the data.
+Within the context of EAC, it is of interest to have variety in the ensemble with the intention of better capturing the underlying structure of the data.
 One such parameter to measure that variety is the number of clusters in the partitions of the ensemble.
 Typically, the number of clusters in each partition is drawn from an interval $[K_{min}, K_{max}]$ with uniform probability.
 This influences other properties of other parts of the algorithm such as the sparsity of the co-association matrix as will become clearer in future chapters.
-Reviewing the literature \cite{Fred2002,Fred2005,Lourenco2007,LourencoECG2009}, it is clear the ensemble is usually produced by random initialization of K-Means (specifying only the number of centroids within the above interval).
+Reviewing the literature \cite{Fred2002,Fred2005,Lourenco2007,lourenco2014ecg}, it is clear the ensemble is usually produced by random initialization of K-Means (specifying only the number of centroids within the above interval).
 Still, other clustering algorithms have been used for the production of the ensemble \cite{Duarte2005} such as Single-Link, Average-Link and CLARANS.
 
 The ensemble of partitions is combined in the second step, where a non-linear transformation turns the ensemble into a co-association matrix \cite{Fred2005}, i.e. a matrix $\mathcal{C}$ where each of its elements $n_{ij}$ is the association value between the pattern pair $(i,j)$.
@@ -478,7 +479,7 @@ Although any algorithm can be used, the final clustering is usually done using S
 Each of these algorithms will take as input the transformed co-association matrix as the dissimilarity matrix.
 Furthermore, not knowing the "natural" number of clusters one can use the lifetime criteria.
 The k-cluster lifetime is defined by \citet{Fred2005} as the range of threshold values on the dendrogram that lead to the identification of k clusters.
-The lifetime criteria chooses the longest lifetime as the threshold interval where a cut in the dendrogram should made so as to produce a partition.
+The lifetime criteria chooses the longest lifetime as the threshold interval where a cut in the dendrogram should be made so as to produce a partition.
 In other words, the number of clusters $k$ should be such that it maximizes the cost of cutting the dendrogram from $k-1$ clusters to $k$.
 
 
@@ -493,7 +494,7 @@ Weighing the partitions in terms of quality has shown to improve the original al
 
 %examples of applications
 EAC has been used with success in several areas.
-To name a few, it was used for the automatic identification of chronic lymphocyt leukemia \cite{Qian2010}, d for the unsupervised analysis of ECG-based biometric database to highlight natural groups and gain further insight \cite{LourencoECG2009} and as a solution to the problem of clustering of contour images (from hardware tools) \cite{Lourenco2007}.
+To name a few, it was used for the automatic identification of chronic lymphocyt leukemia \cite{Qian2010}, for the unsupervised analysis of ECG-based biometric database to highlight natural groups and gain further insight \cite{lourenco2014ecg} and as a solution to the problem of clustering of contour images (from hardware tools) \cite{Lourenco2007}.
 
 % \subsection{Advantages and Disadvantages}
 % %#REVIEW advantages and disadvantages of EAC

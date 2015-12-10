@@ -1,0 +1,45 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces First and second features of the Iris dataset. Fig. \ref {fig:intro raw} shows the scatter plot of the raw input data, i.e. how the algorithms "see" the data. Fig. \ref {fig:intro natural} shows the desired labels for each point, where each color and symbol are coded to a class.\relax }}{5}{figure.caption.8}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The output labels of the K-Means algorithm with the number of clusters (input parameter) set to 3. The different plots show the centroids (squares) evolution on each iteration. Between iteration 3 and the converged state 2 more iterations were executed.\relax }}{9}{figure.caption.9}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces The above figures show an example of a graph (left) and its corresponding Minimum Spanning Tree (right). The circles are vertices and the edges are the lines linking the vertices.\relax }}{11}{figure.caption.10}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces The above plots show the dendrogram and a possible clustering taken from a Single-Link run over the Iris dataset. Fig. \ref {fig:sl clustering} was obtained by performing a cut on a level that would yield a partition of 3 clusters.\relax }}{11}{figure.caption.11}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Flow execution of the GPU parallel K-Means algorithm.\relax }}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Correspondence between a sparse matrix and its CSR counterpart.\relax }}{21}{figure.caption.15}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Flow execution of Sousa2015.\relax }}{23}{figure.caption.17}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Example of the exprefix sum operation.\relax }}{24}{figure.caption.19}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Representation of the reduce phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree and the input array can be observed at $d=0$.\relax }}{25}{figure.caption.20}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Representation of the down-sweep phase of Blelloch's algorithm \cite {Harris2007}. \emph {d} is the level of the tree.\relax }}{25}{figure.caption.21}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagram of proposed solution in each phase of EAC.\relax }}{32}{figure.caption.30}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Inserting a cluster of the first partition in the co-association matrix.\relax }}{39}{figure.caption.32}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Inserting a cluster from a partition in the co-association matrix. The arrows indicate to where the indices are moved. The numbers indicate the order of the operation.\relax }}{41}{figure.caption.33}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces The left figure shows the number of associations per pattern in a complete matrix; the right figure shows the number of associations per pattern in a condensed matrix. Dataset used is a bidimensional mixture of 6 Gaussians with a total of $100 \tmspace +\medmuskip {.2222em} 000$ patterns.\relax }}{43}{figure.caption.35}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Diagram of the connected components labeling algorithm used.\relax }}{46}{figure.caption.40}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Speed-up of the labeling phase for datasets of 2 dimensions and varying cardinality and number of clusters. The dotted black line represents a speed-up of one.\relax }}{56}{figure.caption.48}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Speed-up of the labeling phase for datasets of 200 dimensions and varying cardinality and number of clusters. The dotted black line represents a speed-up of one.\relax }}{57}{figure.caption.49}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Execution times for computing the condensed co-association matrix using different matrix strategies.\relax }}{60}{figure.caption.53}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Evolution of $K_{min}$ with cardinality for different rules.\relax }}{64}{figure.caption.58}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Execution time for the production of the clustering ensemble.\relax }}{65}{figure.caption.59}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Execution time for building the co-association matrix from ensemble with different rules.\relax }}{65}{figure.caption.60}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Execution time for building the co-association matrix with different matrix formats.\relax }}{66}{figure.caption.61}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Comparison between the execution times of the three methods of SL. SLINK runs over fully allocated condensed matrix while SL-MST and SL-MST-Disk run over the condensed and complete sparse matrices.\relax }}{67}{figure.caption.62}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Comparison between the execution times of SLINK to different rules.\relax }}{67}{figure.caption.63}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Comparison between the execution times of SL-MST for different rules.\relax }}{68}{figure.caption.64}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Execution times for all phases combined, using SL-MST in the recovery phase.\relax }}{68}{figure.caption.65}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Execution times for all phases combined, using SL-MST-Disk in the recovery phase.\relax }}{69}{figure.caption.66}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Density of associations relative to the full co-association matrix, which hold $n^2$ associations.\relax }}{69}{figure.caption.67}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Evolution of the total number of associations divided by the number of patterns according to the different rules.\relax }}{70}{figure.caption.68}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Maximum number of associations of any pattern divided by the number of patterns in the biggest cluster of the ensemble.\relax }}{70}{figure.caption.69}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Allocated number of associations relative to the full $n^2$ matrix.\relax }}{71}{figure.caption.70}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Memory used relative to the full $n^2$ matrix.\relax }}{72}{figure.caption.71}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Accuracy of the final clusterings as measured with the Consistency Index.\relax }}{72}{figure.caption.72}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Thread hierarchy \cite {Nvidia2014}.\relax }}{91}{figure.caption.75}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Distribution of thread blocks is automatically scaled with the increase of the number of multiprocessors \cite {Nvidia2014}.\relax }}{91}{figure.caption.75}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Memory model used by CUDA \cite {Nvidia2014}.\relax }}{92}{figure.caption.76}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Sample execution flow of a CUDA application \cite {Nvidia2014}.\relax }}{92}{figure.caption.76}

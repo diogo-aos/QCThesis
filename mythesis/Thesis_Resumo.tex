@@ -16,16 +16,18 @@
 Avanços na tecnologia permitem a recolha e armazenamento de quantidades e variedades de dados sem precedente.
 A maior parte destes dados são armazenados eletrónicamente e existe interesse em realizar análise automática dos mesmos.
 As técnicas de \emph{clustering} estão entre as mais populares para essa tarefa porque não assumem nada sobre a estrutura dos dados \emph{a priori}.
-Dezenas de técnicas existem, mas, típicamente, uma só técnica não tem um bom desempenho em todos os conjuntos de dados devido às especifidades de cada um.
+Muitas técnicas existem, mas, típicamente, não têm um bom desempenho em todos os conjuntos de dados devido às especifidades de cada um.
 Técnicas de \emph{ensemble clustering} tentam responder a esse desafio ao combinar outros algoritmos.
 Esta dissertação foca-se numa em particular, o \emph{Evidence Accumulation Clustering} (EAC).
 O EAC é uma algorithm robusto que tem demonstrado bons desempenhos na literatura numa variedade de conjuntos de dados.
 No entanto, esta robustez vem com um maior custo computacional associado.
 A sua aplicação não só é mais lenta como está restrita a conjuntos de dados pequenos.
 Assim, o objetivo desta dissertação é escalar o EAC, possibilitando a sua a aplicação a conjuntos de dados grandes, com tecnologia disponivel numa típica estação de trabalho.
-Com isto em mente, várias abordagens foram exploradas: acelerar processamento com outros algoritmos (\emph{quantum clustering}), através de processamento paralelo (com GPU), escalar para maiores conjuntos de dados com algoritmos de memória externa (disco rígido) e explorando a natureza esparsa do EAC.
-Uma contribuição de relevo é um método novo para construir uma matriz de esparsa específico ao EAC.
-Os resultados mostram que a solução proposta é, efetivamente, aplicável a conjuntos de dados grandes e é significativamente mais rápida que a original para conjuntos pequenos.
+Com isto em mente, várias abordagens foram exploradas: acelerar processamento com outros algoritmos (\emph{quantum clustering}), através de processamento paralelo (com GPU), escalar com algoritmos de memória externa (disco rígido) e explorando a natureza esparsa do EAC.
+Além disto, foi desenvolvido um método eficiente para construir uma matriz esparsa específico ao EAC.
+A solução proposta é aplicável a conjuntos de dados grandes e é entre 6 a 200 vezes mais rápida que a original para conjuntos pequenos.
+
+\vfill
 
 \textbf{\Large Palavras-chave:} Métodos de agrupamento, EAC, K-Means, MST, GPGPU, CUDA, Matrizes esparsas, Single-Link
 

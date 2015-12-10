@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  15 NOV 2015 11:27
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.9.9)  7 DEC 2015 05:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -266,11 +266,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
 
-(./bare_jrnl.aux
-
-LaTeX Warning: Label `tab:eac rules' multiply defined.
-
-)
+(./bare_jrnl.aux)
 \openout1 = `bare_jrnl.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 360.
@@ -378,7 +374,7 @@ ogy/sorted_insert.png used on input line 91.
  [4 </home/chiroptera/workspace/thesis_writing/rsc/methodology/sorted_insert.pn
 g>]) (./ExtendedAbstract_recovery.tex) (./ExtendedAbstract_resul.tex [5]
 </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensions/
-2.0.png, id=31, 816.04875pt x 419.5675pt>
+2.0.png, id=31, 805.0075pt x 419.5675pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimens
 ions/2.0.png Graphic file (type png)
 
@@ -386,10 +382,10 @@ ions/2.0.png Graphic file (type png)
 ons/2.0.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
 kmeans/fixed_dimensions/2.0.png used on input line 48.
-(pdftex.def)             Requested size: 252.0pt x 129.56522pt.
+(pdftex.def)             Requested size: 252.0pt x 131.3386pt.
 
 </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensions/
-200.0.png, id=33, 818.05624pt x 419.5675pt>
+200.0.png, id=33, 808.01875pt x 419.5675pt>
 File: /home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimens
 ions/200.0.png Graphic file (type png)
 
@@ -397,9 +393,9 @@ ions/200.0.png Graphic file (type png)
 ons/200.0.png>
 Package pdftex.def Info: /home/chiroptera/workspace/thesis_writing/rsc/results/
 kmeans/fixed_dimensions/200.0.png used on input line 64.
-(pdftex.def)             Requested size: 252.0pt x 129.2451pt.
+(pdftex.def)             Requested size: 252.0pt x 130.85204pt.
 
-Underfull \vbox (badness 5446) has occurred while \output is active []
+Underfull \vbox (badness 4621) has occurred while \output is active []
 
  [6 </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixed_dimensi
 ons/2.0.png> </home/chiroptera/workspace/thesis_writing/rsc/results/kmeans/fixe
@@ -537,15 +533,11 @@ eac/mem_density/sk=300.png used on input line 324.
  [9 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/total_time_sl-ms
 t-disk.png> </home/chiroptera/workspace/thesis_writing/rsc/results/eac/assoc_de
 nsity/sparse_condensed_linear.png> </home/chiroptera/workspace/thesis_writing/r
-sc/results/eac/max_assoc_bgs.png>]
-Overfull \hbox (15.6306pt too wide) in paragraph at lines 349--360
- [][] 
- []
-
-) (./bare_jrnl.bbl
+sc/results/eac/max_assoc_bgs.png>]) (./bare_jrnl.bbl
 LaTeX Font Info:    Try loading font information for OMS+ptm on input line 104.
 
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
@@ -553,39 +545,36 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <8> not available
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
-)
-[10 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk=3
-00.png>] (./bare_jrnl.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+) [10 </home/chiroptera/workspace/thesis_writing/rsc/results/eac/mem_density/sk
+=300.png>]
+(./bare_jrnl.aux) ) 
 Here is how much of TeX's memory you used:
- 4191 strings out of 495004
- 67448 string characters out of 6180663
- 139746 words of memory out of 5000000
- 7292 multiletter control sequences out of 15000+600000
+ 4189 strings out of 495004
+ 67420 string characters out of 6180663
+ 137697 words of memory out of 5000000
+ 7290 multiletter control sequences out of 15000+600000
  46544 words of font info for 95 fonts, out of 8000000 for 9000
  19 hyphenation exceptions out of 8191
  38i,10n,24p,794b,262s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_jrnl.pdf (10 pages, 1001764 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}<
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri
+8a.pfb>
+Output written on bare_jrnl.pdf (10 pages, 995301 bytes).
 PDF statistics:
  138 PDF objects out of 1000 (max. 8388607)
  80 compressed objects within 1 object stream

@@ -8,12 +8,12 @@
 
 To test the performance of the GPU MST algorithm, several graphs were used.
 Most of the graphs are United Stated road network graphs taken from the 9th DIMACS Implementation Challenge \footnote{http://www.dis.uniroma1.it/~challenge9/}, the same used in the original source \cite{Sousa2015}.
-Furthermore, graphs taken from co-association matrix of the second step of EAC were used.
+Furthermore, graphs taken from the co-association matrix of the second step of EAC were used.
 This is important because, as will become clear, the graphs within the EAC paradigm have different characteristics.
 All the tests were performed on machine Bravo.
 The average speed-up obtained by using the GPU version over the sequential one is presented in Table \ref{tab:mst speedup}.
 Characteristics of the different graphs are also shown so as to illustrate what variables influence the speed-up obtained.
-It should be noted that a speed-up below 0 is actually a slow-down and its absolute value corresponds to the speed-up of the sequential version relative its GPU counterpart.
+It should be noted that a speed-up below 1 is actually a slow-down.
 
 \input{\rscpath/results/mst_gpu/mst_speedup_table}
 

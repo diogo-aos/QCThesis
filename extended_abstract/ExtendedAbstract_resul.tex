@@ -335,29 +335,29 @@ For small datasets the accuracy was roughly $84\%$, since only one pair of Gauss
 The accuracy lowers to around $66\%$ for datasets higher than $7500$, since 2 pairs of Gaussians are now overlapped.
 There were two datasets (of $75 \: 000$ and $2 \: 500 \: 000$ patterns) for which the accuracy was $50\%$, due to existence of patterns there made a "bridge" between the other pair of Gaussians.
 
-\subsection{Performance on real world datasets}
+% \subsection{Performance on real world datasets}
 
-The proposed EAC method was tested on real world datasets.
-Large real world datasets appropriate for clustering were hard to find freely available.
-The datasets used are aimed at other Machine Learning analysis, such as classification or regression.
-For this reason, the presented results are focused on performance.
+% The proposed EAC method was tested on real world datasets.
+% Large real world datasets appropriate for clustering were hard to find freely available.
+% The datasets used are aimed at other Machine Learning analysis, such as classification or regression.
+% For this reason, the presented results are focused on performance.
 
-\begin{table}[h]
-\centering
-\caption{Execution times for real-world large datasets. P and F refer to the number of patterns and features. P, C and R times refer to the production, combination and recovery times.}
+% \begin{table}[h]
+% \centering
+% \caption{Execution times for real-world large datasets. P and F refer to the number of patterns and features. P, C and R times refer to the production, combination and recovery times.}
 
-\begin{tabular}{llrrrrr}
-\toprule
-dataset alias &  \# P &  \# F &  P time [s] &  C time [s] &  R time [s] \\
-\midrule
-PHYACT 1 \cite{Lichman:2013}.&              441568 &                  30 &      2158.69 &        123.85 &      19.76 \\
-PHYACT 2 \cite{Lichman:2013}.&              359170 &                  30 &      1477.34 &         98.86 &      15.79 \\
-% KDD99 &             2449216 &                  41 &     10284.166381 &  not possible to run because the bgs was 964287... &            NaN \\
-esopH \cite{yuk13oro}        &                 136127 &                   2 &        17.94 &  35.15 &       3.95 \\
-diabetes \cite{strack2014impact,Lichman:2013}&              101766 &                  41 &       188.56 &  33.79 &       5.07 \\
-\bottomrule
-\end{tabular}
+% \begin{tabular}{llrrrrr}
+% \toprule
+% dataset alias &  \# P &  \# F &  P time [s] &  C time [s] &  R time [s] \\
+% \midrule
+% PHYACT 1 \cite{Lichman:2013}.&              441568 &                  30 &      2158.69 &        123.85 &      19.76 \\
+% PHYACT 2 \cite{Lichman:2013}.&              359170 &                  30 &      1477.34 &         98.86 &      15.79 \\
+% % KDD99 &             2449216 &                  41 &     10284.166381 &  not possible to run because the bgs was 964287... &            NaN \\
+% esopH \cite{yuk13oro}        &                 136127 &                   2 &        17.94 &  35.15 &       3.95 \\
+% diabetes \cite{strack2014impact,Lichman:2013}&              101766 &                  41 &       188.56 &  33.79 &       5.07 \\
+% \bottomrule
+% \end{tabular}
 
 
-\label{tab:eac rules}
-\end{table}
+% \label{tab:eac rules}
+% \end{table}

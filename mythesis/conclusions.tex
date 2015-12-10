@@ -18,20 +18,27 @@
 \section{Achievements}
 \label{section:achievements}
 
-It has now come the moment to look back on the presented goals in the introductory chapter and make critical comments on the research and developed work.
+%It has now come the moment to look back on the presented goals in the introductory chapter and make critical comments on the research and developed work.
 The main goal of this dissertation was scaling the EAC method for larger datasets than was previously possible and speeding it up for smaller datasets.
-The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately but maintaining interoperability.
+The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately while maintaining interoperability.
+During this process, a dichotomy between optimizing for speed or memory usage appeared repeatedly.
+An important lesson learn it that the right solution is not always obvious and one has to step back, ponder how the optimizations in one part affect the whole and choose wisely.
+% Furthermore, the right solution will ultimately depend on the system and end use.
 
 The first step was the production of clustering ensembles, which was originally done with K-Means.
 The space complexity was low compared to the whole algorithm, so the main focus was on speed optimization.
 For that end, algorithms in the young field of quantum clustering were researched and tested.
 Their computational complexity was shown to be prohibitive in the EAC context, which moved the research to parallel computation, more specifically, GPGPU.
-A GPU parallel K-Means was implemented and yielded positive results, effectively providing a speed-up over its sequential counterpart.
+A GPU parallel K-Means was implemented and yielded positive results, effectively providing a speed-up over its sequential counterpart, ranging from as low as 1.25 for high dimensional datasets to close to 25 for bidimensional datasets.
+On low dimensional datasets the highest speed-up was observed with a high number of clusters, which is a desirable result since EAC usually deals with a very high number of clusters in the ensemble's partitions.
+Still, the speed-ups observed are lower that those reported in literature for problems of similar complexity.
+Since our results were produced from more modern machines, this shortcoming falls on the implementation itself.
+The burdens of the API and language used, along with the absence of possible optimizations, are the culprits for the sub-optimal performance.
 
 In the combination step, the main problem for scaling was the space complexity.
 The clear solution here was exploiting the sparse nature of the co-association matrix of EAC.
-After implementations of sparse matrices in numerical libraries proved to be inadequate and literature lacked methods for efficient building a sparse matrix, the next direction was designing a strategy for efficiently building the co-association matrix.
-This strategy, EAC CSR, was tested and shown to be much faster an other sparse matrix implementation tested.
+After implementations of sparse matrices in numerical libraries proved to be inadequate and literature lacked methods for efficiently building a sparse matrix, the next direction was designing a strategy for efficiently building the co-association matrix.
+This strategy, EAC CSR, was tested and shown to be much faster than other sparse matrix implementations tested.
 Besides, it provided the much needed space complexity reduction that allowed the processing of large datasets.
 
 For the recovery step, the SL algorithm was identified as the best candidate for optimization.
@@ -40,7 +47,8 @@ GPU Boruvka was reported to have significant speed-ups and was identified has th
 It was implemented but it showed to not be able to handle the lower sparsity of EAC co-associations graphs.
 This moved the focus of optimization of this step to external memory algorithms, which, although slower, were what ultimately allowed for the final processing of EAC in large datasets.
 
-In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
+The main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
+New $K_{min}$ rules for optimizing the sparsity of the co-association matrix were proposed and a deeper understanding of how they affect the properties of EAC are also relevant contributions.
 These contributions together allow for the application of the EAC method to datasets whose complexity was not handled by the original implementation.
 Furthermore, the proposed optimized version is also faster for smaller datasets.
 

@@ -1,4 +1,4 @@
-% makeindex style file created by LaTeX for document "Thesis_AllChapters" on 2015-12-1
+% makeindex style file created by LaTeX for document "Thesis_AllChapters" on 2015-12-10
 keyword "\\glossaryentry"
 preamble "\\begin{theglossary}"
 postamble "\n\\end{theglossary}\n"

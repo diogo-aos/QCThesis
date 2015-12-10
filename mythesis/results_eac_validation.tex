@@ -13,7 +13,7 @@ Analyzing these results, it is apparent that the difference is minimal.
 It should be noted at this point that the original implementation always maps the dissimilarities of the co-association matrix to the range $\left [ 0 , 1 \right ]$.
 This forces the co-association matrix to have a floating point data type.
 However, since the number of partitions used is usually less than 255, the proposed version uses unsigned integers of 1 byte to reduce the used memory considerably.
-The differences in accuracy are thought to come from rounding differences between Matlab and Python.
+The differences in accuracy are thought to come from possible rounding differences and different implementations of core operations between Matlab and Python.
 
 \begin{table}[h]
 \centering
@@ -24,14 +24,14 @@ The differences in accuracy are thought to come from rounding differences betwee
          &        \multicolumn{2}{c}{Difference between accuracies of implementations} \\
 dataset &      True number of clusters & Lifetime criteria \\
 \midrule
-breast\_cancer &  4.948755e-06 &      2.825769e-06 \\
-ionosphere    &  1.652422e-06 &      1.452991e-06 \\
-iris          &  3.333333e-06 &      3.333333e-06 \\
-isolet        &  1.038861e-07 &      4.084904e-07 \\
-optdigits     &  3.795449e-06 &      1.480513e-06 \\
-pima          &  3.333333e-06 &      3.333333e-06 \\
-pima\_norm     &  4.166667e-07 &      4.166667e-07 \\
-wine\_norm     &  1.123596e-07 &      1.910112e-06 \\
+breast\_cancer &  4.94e-06 &     2.82e-06 \\
+ionosphere     &  1.65e-06 &      1.45e-06 \\
+iris           &  3.33e-06 &      3.33e-06 \\
+isolet         &  1.03e-07 &      4.08e-07 \\
+optdigits      &  3.79e-06 &      1.48e-06 \\
+pima           &  3.33e-06 &      3.33e-06 \\
+pima\_norm     &  4.16e-07 &      4.16e-07 \\
+wine\_norm     &  1.12e-07 &      1.91e-06 \\
 \bottomrule
 \end{tabular}
 
@@ -72,18 +72,18 @@ This result, combined with the demonstration that the differences in accuracy ar
 \centering
 \caption{Speed-ups obtained in the different phases of EAC, with independent production of ensembles.}
 
-\begin{tabular}{lccllll}
+\begin{tabular}{lccrrrr}
 \toprule
 dataset &  No. patterns &  No. features & No. classes & Production & Combination & Recovery \\
 \midrule
-breast\_cancer &           683 &            10 &           2 &      50.43974 &   7.544247 &        15.83316 \\
-ionosphere    &           351 &            34 &           2 &      21.86286 &   11.30883 &        19.97219 \\
-iris          &           150 &             4 &           3 &      19.76525 &   14.49562 &        28.50479 \\
-isolet        &          7797 &           617 &          26 &      7.010007 &   6.183124 &        206.2837 \\
-optdigits     &          3823 &            64 &          10 &      17.30209 &    10.2096 &        53.02636 \\
-pima          &           768 &             8 &           2 &      50.65624 &   141.4828 &        13.93502 \\
-pima\_norm     &           768 &             8 &           2 &      54.25415 &   132.8632 &          14.355 \\
-wine\_norm     &           178 &             4 &           3 &      22.92404 &   14.56994 &        25.27709 \\
+breast\_cancer &           683 &            10 &           2 &      50.4 &    7.5 &        15.8 \\
+ionosphere     &           351 &            34 &           2 &      21.9 &   11.3 &        19.9 \\
+iris           &           150 &             4 &           3 &      19.8 &   14.5 &        28.5 \\
+isolet         &          7797 &           617 &          26 &       7.0 &    6.2 &       206.3 \\
+optdigits      &          3823 &            64 &          10 &      17.3 &   10.2 &        53.0 \\
+pima           &           768 &             8 &           2 &      50.7 &  141.5 &        13.9 \\
+pima\_norm     &           768 &             8 &           2 &      54.3 &  132.9 &        14.4 \\
+wine\_norm     &           178 &             4 &           3 &      22.9 &   14.6 &        25.3 \\
 \bottomrule
 \end{tabular}
 

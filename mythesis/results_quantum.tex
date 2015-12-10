@@ -11,21 +11,22 @@ The testing was aimed at benchmarking both accuracy and speed.
 The input used was synthetic data, namely, Gaussian mixtures with variable number of clusters and features.
 
 The tests were performed using 10 oracles, a qubit string length of 8 and 100 generations per round.
-The classicalK-Means was executed using the \emph{k-means++} centroid initialization method to make for a fairer comparison, since QK-Means also has some computational cost in the beginning of the algorithm.
-Since QK-Means executes a classical K-Means for each oracle each generation, the performance results for K-Means alone refer to $num.oracles \times num.generations \times factor$ runs, where $factor$ is an adjustable multiplier.
-Each test had 20 rounds to allow for statistical analysis of the results.
+The classical K-Means was executed using the \emph{k-means++} centroid initialization method to make for a fairer comparison, since QK-Means performs several operations (initialization and collapse of oracles) at the beginning of the algorithm.
+Furthermore, the performance results for K-Means alone refer to $num.oracles \times num.generations \times factor$ runs, where $factor$ is an adjustable multiplier.
+Each test had 20 rounds to allow for statistical analysis of the results. %, since QK-Means executes a classical K-Means for each oracle each generation,
+The stopping criteria for all classical K-Means runs was the error between the centroids of two subsequent iterations, more specifically, when the centroids of two iterations differed by less than $0.001$.
 
 All tests were done with 6 clusters (natural number of clusters).
 Two tests were done with the two dimensional dataset: one with a $factor=1.10$ (increase initializations by $10\%$) and another with $factor=1$.
 These tests will be called T1 and T2, respectively.
-The test done with the six dimensional dataset (T3) used $factor=1.10$.
+The test was done with the six dimensional dataset (T3) using $factor=1.10$.
 
 % table in csv format available in resource directory -->
 Performance results are presented in Table \ref{tab:qkmeans times}.
 The mean computation time of classical K-Means is an order of magnitude lower than that of QK-Means.
 However, the solution chosen in classical K-Means was the one with lowest sum of squared euclidean distances of points to their attributed centroid.
 To analyze the influence of the Davies-Bouldin (DB) index, it was computed on all classical K-Means solutions and used as the criteria to choose the best solution.
-When this is done, we can see that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations.
+When this is done, we can see in Table \ref{tab:qkmeans times} that the total time of classical K-Means is actually higher that that of QK-Means in T1 and T3, but this is only due to the 1.10 multiplier on the number of initializations.
 In T2, the computation times become very similar with only a 2\% difference between these two variants.
 Results show that most computational cost (88\% on T2) lies on the evaluation of the solutions obtained from each oracle, i.e. computing the DB index.
 This is a costly but necessary step in this algorithm.
@@ -148,7 +149,7 @@ This, allied with the fact that the quality of the solutions does not differ muc
 
 \subsection{Horn and Gottlieb's algorithm}
 
-For measuring the performance of this algorithm, several mixtures of 4 Gaussians with different number of patterns and dimensions were produced. %cardinality and dimensionality were produced.
+For measuring the performance of Horn and Gottlieb's algorithm, several mixtures of 4 Gaussians with different number of patterns and dimensions were produced. %cardinality and dimensionality were produced.
 Table \ref{tab:horn performance} presents the execution times for each of these datasets.
 It can be seen that the execution time of this algorithm is rather high even for small datasets as the ones presented, since this algorithm is being analyzed with the goal of speed optimization.
 More than 1 hour for a small dataset such as $10 \: 000$ patterns is prohibitive for application in the EAC context.

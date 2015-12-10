@@ -49,14 +49,8 @@ All results presented here originated from machine Bravo.
 
 \subsection{Performance of production and combination phases}
 
-The execution times for the production and combination phase can be observed in Figures \ref{fig:eac ensemble times}, \ref{fig:eac build rules} and \ref{fig:eac build matrices}, which allow the comparison between the different rules and the different matrix formats, respectively.
-To avoid redundancy, only one matrix format is depicted to compare the execution times for the different rules and only one rule to compare the matrix formats.
-The results of the other cases follow the same pattern.
-
-These times are related with the $K_{min}$ parameter, whose evolution is presented in Fig. \ref{fig:eac kmin evo}.
-Rules \emph{sqrt}, \emph{2sqrt} and \emph{sk=sqrt2} never intersect but rule $sk=300$ intersects all of them, finishing with the highest $K_{min}$.
-Observing Fig. \ref{fig:eac build rules}, one can see the same tendency in the production execution time associated with the $sk=300$ rule and the inverse in the combination time.
-A higher $K_{min}$ means more centroids for each K-Means run to compute, so it is not surprising that the execution time for computing the ensemble increases as $K_{min}$ increases.
+The $K_{min}$ parameter, whose evolution is presented in Fig. \ref{fig:eac kmin evo}, influences several other EAC properties.
+Rules \emph{sqrt}, \emph{2sqrt} and \emph{sk=sqrt2} never intersect with the increase if the number of patterns, but rule $sk=300$ intersects the others, finishing with the highest $K_{min}$.
 
 \begin{figure}[hbt!]
     \centering
@@ -65,11 +59,26 @@ A higher $K_{min}$ means more centroids for each K-Means run to compute, so it i
     \label{fig:eac kmin evo}
 \end{figure}
 
+The execution times for the production and combination phase can be observed in Figures \ref{fig:eac ensemble times}, \ref{fig:eac build rules} and \ref{fig:eac build matrices}, which allow the comparison between the different rules and the different matrix formats, respectively.
+To avoid redundancy, only one matrix format is depicted to compare the execution times for the different rules and only one rule to compare the matrix formats.
+The results of the other cases follow the same pattern.
+Observing Fig. \ref{fig:eac build rules}, one can see the tendency of the evolution of$K_{min}$ in the production execution time associated with the $sk=300$ rule and the inverse in the combination time.
+A higher $K_{min}$ means more centroids for K-Means to compute, so it is not surprising that the execution time for computing the ensemble increases as $K_{min}$ increases.
+On the other hand, a higher $K_{min}$ translates in more condensed clusters and less associations per pattern.
+With less associations, the computation time for building the co-association matrix naturally decreases.
+
 \begin{figure}[hbt!]
     \centering
     \includegraphics[width=0.6\textwidth]{{{results/eac/ensemble_time}}}
     \caption{Execution time for the production of the clustering ensemble.}
     \label{fig:eac ensemble times}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{{{results/eac/build_time/sparse_condensed_linear}}}
+    \caption{Execution time for building the co-association matrix from ensemble with different rules.}
+    \label{fig:eac build rules}
 \end{figure}
 
 In a previous section, the execution times for the combination phase had already been briefly presented when comparing different sparse formats.
@@ -79,13 +88,6 @@ The \emph{full condensed} format usually takes close to half the time than the \
 Idem for the \emph{sparse condensed} formats compared to the \emph{sparse complete}.
 The big discrepancy between the sparse and full formats is due to the fact that the former needs to do a binary search at each association update and needs to keep the internal sparse data structure sorted.
 
-
-\begin{figure}[hbt!]
-    \centering
-    \includegraphics[width=0.6\textwidth]{{{results/eac/build_time/sparse_condensed_linear}}}
-    \caption{Execution time for building the co-association matrix from ensemble with different rules.}
-    \label{fig:eac build rules}
-\end{figure}
 
 \begin{figure}[hbt!]
     \centering
@@ -157,7 +159,7 @@ This is clear, since the results in Fig. \ref{fig:eac total disk} follow a patte
 
 The sparse nature of EAC has been pointed out before and is clearer in Fig. \ref{fig:eac assoc density}.
 This figure shows the association density, i.e. number of associations relative to the $n^2$ possible associations in a full matrix.
-The \emph{full condensed} format as a constant density of $49.5\%$ and the density of \emph{sparse complete} is two times that of the \emph{sparse condensed} formats.
+The \emph{full condensed} format maintains a density of roughly $50\%$ and the density of \emph{sparse complete} is two times that of the \emph{sparse condensed} formats.
 The overall tendency is for the density to decrease as the number of patterns of the dataset increases.
 This is to be expected since the \emph{full} matrix grows quadratically.
 Besides, it would be expected that the same associations would be grouped together more frequently in partitions and simply make previous connections stronger instead of creating new ones.
@@ -224,14 +226,15 @@ Still, the allocated number of associations becomes a very small fraction compar
 
 The actual memory used, presented in Fig. \ref{fig:eac mem density}, follows roughly the same pattern.
 Here, the data types used play a big role in the amount of memory that is required.
-The associations can be stored in a single byte, since the number of partitions is usually less than 255.
-This means that the memory used by the fully allocated formats is $n^2$ and $\frac{n(n-1)}{2}$ Bytes for the complete and condensed versions, respectively.
-In the sparse formats, the values of the associations are also stored in an array of unsigned integers of 1 Byte.
-However, an array of integers of 4 Bytes of the same size must also be kept to keep track of the destination pattern each association belongs to.
+Each association was stored in a single byte, since the number of partitions was less than 255, as is usually the case.
+This means that the memory used by the fully allocated formats is $n^2$ and $\frac{n(n-1)}{2}$ Bytes for the fully allocated complete and condensed formats, respectively.
+In the sparse formats, the values of the associations were stored in an array of unsigned integers of 1 Byte.
+However, an array of integers of 4 Bytes of the same size existed to keep track of the destination pattern each association belongs to.
 Besides, one other array of integers of 8 Bytes is kept but it is negligible compared to the other two arrays.
 The impact of the data types can be seen for smaller datasets where the total memory used is actually significantly higher than that of the \emph{full} matrix.
 It should be noted that this discrepancy is not as high for other rules as for $sk=300$.
 Still, the sparse formats, and in particular the condensed sparse format, is preferred since the memory used for large datasets is a small fraction of would be necessary if using any of the fully allocated formats.
+The data types used depend on the problem at hand, since a user may choose to use a large ensemble or have a very large 
 
 \begin{figure}[hbt!]
     \centering
@@ -260,31 +263,19 @@ The last is duo to the same reason, since now more patterns are included in the 
     \label{fig:eac accuracy}
 \end{figure}
 
-
-\begin{table}[h]
-\centering
-\caption{Execution times for real-world large datasets.}
-
-\begin{tabular}{llrrrrr}
-\toprule
-{} & dataset alias &  \# patterns &  \# features &  Production [sec] &  Combination [sec] &  Recovery [sec] \\
-\midrule
-0 &       PHYACT 1 &              441568 &                  30 &      2158.694059 &        123.858485 &      19.765186 \\
-1 &       PHYACT 2 &              359170 &                  30 &      1477.346136 &         98.866711 &      15.796466 \\
-\bottomrule
-\end{tabular}
-
-
-
-\label{tab:eac rules}
-\end{table}
-
 \section{Performance on real world datasets}
 
 The proposed EAC method was tested on real world datasets.
 Large real world datasets appropriate for clustering were hard to find freely available.
 The datasets used are aimed at other Machine Learning analysis, such as classification or regression.
 For this reason, the presented results are focused on performance.
+Table \ref{tab:eac big real} presents execution times for different phases of EAC on several real world datasets.
+The ensemble size was of 30, the combination phase used sparse condensed matrices and the \emph{sk=300} rule and the recovery phase was done with SL based on main memory.
+No comparison is possible with the original implementation, since computation would not be possible.
+In most datasets the production phase took the longest.
+The reason for this is that clusters in the ensemble were small which led to fewer associations and, thus, more time spent in the production phase than in the others.
+Furthermore, the recovery phase was fast because SL was based on main memory.
+Although high, the computation times are acceptable for the processing of large datasets with a robust algorithm such as EAC in a typical workstation.
 
 \begin{table}[h]
 \centering
@@ -292,16 +283,15 @@ For this reason, the presented results are focused on performance.
 
 \begin{tabular}{llrrrrr}
 \toprule
-dataset alias &  \# P &  \# F &  P time [s] &  C time [s] &  R time [s] \\
+dataset alias                                 &  \# P               &  \# F               &  P time [s]  &  C time [s] &  R time [s] \\
 \midrule
-PHYACT 1 \cite{Lichman:2013}.&              441568 &                  30 &      2158.69 &        123.85 &      19.76 \\
-PHYACT 2 \cite{Lichman:2013}.&              359170 &                  30 &      1477.34 &         98.86 &      15.79 \\
-% KDD99 &             2449216 &                  41 &     10284.166381 &  not possible to run because the bgs was 964287... &            NaN \\
-esopH \cite{yuk13oro}        &                 136127 &                   2 &        17.94 &  35.15 &       3.95 \\
-diabetes \cite{strack2014impact,Lichman:2013}&              101766 &                  41 &       188.56 &  33.79 &       5.07 \\
+PHYACT 1 \cite{Lichman:2013}                  &              441568 &                  30 &      2158.69 &      123.85 &      19.76 \\
+PHYACT 2 \cite{Lichman:2013}                  &              359170 &                  30 &      1477.34 &       98.86 &      15.79 \\
+esopH \cite{yuk13oro}                         &              136127 &                   2 &        17.94 &       35.15 &       3.95 \\
+diabetes \cite{strack2014impact,Lichman:2013} &              101766 &                  41 &       188.56 &       36.79 &       5.07 \\
 \bottomrule
 \end{tabular}
 
 
-\label{tab:eac rules}
+\label{tab:eac big real}
 \end{table}

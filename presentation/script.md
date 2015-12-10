@@ -28,7 +28,7 @@ time: 51s
 
 Nesta figura, isso torna-se claro. Na figura (a) está um conjunto de dados. Para um humano é trivial identificar grupos nesta figura, mas para um computador isto é uma tarefa difícil. Contudo, um humano teria dificuldades em analisar um conjunto de dados grande ou conjuntos de dados com mais de 2 ou 3 dimensões.
 
-As restantes figuras são agrupamentos resultantes de diferentes algoritmos (neste caso _K-Means_ e _Single-Link_) ou o mesmo algoritmo com parâmetros de inicialização diferentes. Diferentes cores representam grupos diferentes.
+As restantes figuras são agrupamentos resultantes de diferentes algoritmos (neste caso _K-Médias_ e _Single-Link_) ou o mesmo algoritmo com parâmetros de inicialização diferentes. Diferentes cores representam grupos diferentes.
 
 Por simples observação destas figuras, torna-se óbvio que diferentes algoritmos ou parâmetros de inicialização dão resultados considerávelmente diferentes.
 
@@ -42,7 +42,7 @@ O EAC é um algoritmo moderno e robusto, tentando dar bons resultados num grande
 ## EAC: Production (2)
 time: 17s
 
-EAC é um método de 3 partes. A primeira parte, __produção__, começa por produzir um conjunto (ou _ensemble_) de várias partições distintas. Neste exemplo, as figuras (b) e (c) são duas partições resultantes da aplicação do método K-Means no conjunto de dados da figura (a).
+EAC é um método de 3 partes. A primeira parte, __produção__, começa por produzir um conjunto (ou _ensemble_) de várias partições distintas. Neste exemplo, as figuras (b) e (c) são duas partições resultantes da aplicação do método K-Médias no conjunto de dados da figura (a).
 
 ## EAC: Combination (3)
 time: 45s
@@ -76,7 +76,7 @@ Devo referir que a optimização do EAC foi feita de modo a ser possível analis
 ## Proposed Solution: overview (1)
 time: s
 
-Passemos agora para a solução proposta para optimização do EAC. Cada uma das fases do EAC foi submetida a optimização. Nesta figura estão os vários candidatos a optimização nas diferentes fases. Na fase de produção consideraram-se quantum clustering, algoritmos de clustering inspirados em analogias de mecânica quântica, e uma versão paralelizada em GPU do K-Means.
+Passemos agora para a solução proposta para optimização do EAC. Cada uma das fases do EAC foi submetida a optimização. Nesta figura estão os vários candidatos a optimização nas diferentes fases. Na fase de produção consideraram-se quantum clustering, algoritmos de clustering inspirados em analogias de mecânica quântica, e uma versão paralelizada em GPU do K-Médias.
 
 Na fase de combinação explorou-se um método de rápida construção de matrizes esparsas.
 
@@ -90,25 +90,25 @@ Destes, o quantum clustering foi descartado por ser demasiado lento e o candidat
 ## Optimizing production of ensemble (1)
 time: s
 
-Passemos então para a optimização da produção. Usou-se o K-Means, um algoritmo simples e um dos mais conhecidos algortmos de clustering. Além disso, este algoritmo já foi usado para a produção de ensembles em EAC com sucesso anteriormente.
+Passemos então para a optimização da produção. Usou-se o K-Médias, um algoritmo simples e um dos mais conhecidos algortmos de clustering. Além disso, este algoritmo já foi usado para a produção de ensembles em EAC com sucesso anteriormente.
 
-A primeira fase do K-Means, a de _labelling_, começa por encontrar qual o centroide (o representante de um cluster) mais perto de cada ponto. Na fase seguinte, a de _update_, as centroides são actualizadas com os novos valores - a média dos pontos correspondentes a cada centroide.
+A primeira fase do K-Médias, a de _labelling_, começa por encontrar qual o centroide (o representante de um cluster) mais perto de cada ponto. Na fase seguinte, a de _update_, as centroides são actualizadas com os novos valores - a média dos pontos correspondentes a cada centroide.
 
-O parâmetro de inicialização do K-Means é o número de clusters que a partição final terá e, tipicamente, os centroides iniciais são aleatórios. No caso do EAC, o K-Means é executado várias vezes e o número de clusters varia entre um intervalo [Kmin, Kmax].
+O parâmetro de inicialização do K-Médias é o número de clusters que a partição final terá e, tipicamente, os centroides iniciais são aleatórios. No caso do EAC, o K-Médias é executado várias vezes e o número de clusters varia entre um intervalo [Kmin, Kmax].
 
-A fase de labelling do K-Means é inerentemente paralela, uma vez que o cálculo do centroide mais perto de um ponto é independente do cálculo dos restantes pontos. Foi nesta óptica que se procedeu à optimização da fase de produção.
+A fase de labelling do K-Médias é inerentemente paralela, uma vez que o cálculo do centroide mais perto de um ponto é independente do cálculo dos restantes pontos. Foi nesta óptica que se procedeu à optimização da fase de produção.
 
 ## GPU (2)
 time: s
 
-Antes de descrever a paralelização do K-Means, vou dar um pequena introdução a computação em GPUs. Eu usei CUDA, a plataforma de computação em GPU da NVIDIA. Uma GPU tem dezenas, centenas ou até milhares de processadores simples, representando uma capacidade de paralelismo muito maior que um CPU tradicional. Cada processador corre uma _thread_ de execução com o mesmo programa e cada thread processa uma parte dos dados. As threads têm acesso a memória partilhada que permite alguma comunição entre elas.
+Antes de descrever a paralelização do K-Médias, vou dar um pequena introdução a computação em GPUs. Eu usei CUDA, a plataforma de computação em GPU da NVIDIA. Uma GPU tem dezenas, centenas ou até milhares de processadores simples, representando uma capacidade de paralelismo muito maior que um CPU tradicional. Cada processador corre uma _thread_ de execução com o mesmo programa e cada thread processa uma parte dos dados. As threads têm acesso a memória partilhada que permite alguma comunição entre elas.
 
 Isto é uma explicação muito simplificada mas é suficiente para perceber porque é que é possível ter melhor desempenho que em CPU.
 
-## GPU K-Means (3)
+## GPU K-Médias (3)
 time: s
 
-Como é que o K-Means foi paralelizado? O CPU começa por transferir os dados e os centroides para a GPU. Cada thread na GPU vai calcular a centroide mais perto de cada ponto e guardar o resultado num vector. Esse vector é depois transferido para a memória principal, o CPU é responsável pela fase de update e envia os novos centroides para a GPU. Os passos 2-4 são repetidos enquanto não se atingir o critério de paragem, que no nosso caso é o número de iterações.
+Como é que o K-Médias foi paralelizado? O CPU começa por transferir os dados e os centroides para a GPU. Cada thread na GPU vai calcular a centroide mais perto de cada ponto e guardar o resultado num vector. Esse vector é depois transferido para a memória principal, o CPU é responsável pela fase de update e envia os novos centroides para a GPU. Os passos 2-4 são repetidos enquanto não se atingir o critério de paragem, que no nosso caso é o número de iterações.
 
 ## Optimizing combination (1)
 time: s
@@ -162,17 +162,17 @@ time: s
 
 Apesar de não ser o principal objectivo da dissertação, a versão optimizada é bastante mais rápida que a original em datasets de pequena dimensão, como se pode ver nesta tabela. Existe speedup considerável em todas as fases e em todos os datasets.
 
-## Results: GPU K-Means (1)
+## Results: GPU K-Médias (1)
 time: s
 
-Vou agora falar do speed-up apenas do K-Means em GPU. Esta figura mostra o speed-up obtido para problemas bidimensionais e as diferentes linhas correspondem a diferentes número de clusters. Pode-se ver que o speedup aumenta com o número de clusters e com número de pontos do problema, uma vez que existe maior capacidade de paralelismo. 
+Vou agora falar do speed-up apenas do K-Médias em GPU. Esta figura mostra o speed-up obtido para problemas bidimensionais e as diferentes linhas correspondem a diferentes número de clusters. Pode-se ver que o speedup aumenta com o número de clusters e com número de pontos do problema, uma vez que existe maior capacidade de paralelismo. 
 
-## Results: GPU K-Means (2)
+## Results: GPU K-Médias (2)
 time: s
 
 Contudo, o speed-up diminui com o aumento do número de dimensões. Nesta caso, temos 200 dimensões e o speed-up não passa de 3. Os resultados aqui apresentados não espelham o que existe na literatura. Estou convencido que a razão para isto é a não utilização de todas as optimizações possíveis. Ainda assim, registou-se sempre speed-up. 
 
-(Além disso, no EAC, o K-Means é executado várias vezes sobre os mesmos dados o que permite que exista menos transferência de dados do que o que acontece na experiência destes resultados.)
+(Além disso, no EAC, o K-Médias é executado várias vezes sobre os mesmos dados o que permite que exista menos transferência de dados do que o que acontece na experiência destes resultados.)
 
 ## Results: Kmin rules
 time: s
@@ -193,7 +193,7 @@ Vou começar pela evolução do Kmin. Podemos ver que o Kmin cresce com o númer
 ## Results: Production time per rule
 time: s
 
-A mesma tendência é observada com o tempo de produção da ensemble. A razão para isto é que um maior número de clusters corresponde a uma computação mais pesada do K-Means.
+A mesma tendência é observada com o tempo de produção da ensemble. A razão para isto é que um maior número de clusters corresponde a uma computação mais pesada do K-Médias.
 
 ## Results: Combination time per rule
 time: s
@@ -208,15 +208,15 @@ O mesmo acontece com a fase final pela mesma razão - não existem tantas associ
 ## Results: Combination time per matrix format
 time: s
 
-Observemos agora o tempo de combinação nos diferentes formatos utilizados. Estes formatos são: uma matriz tradicional completa ou condensada (que aqui significa que apenas metade da matriz é preenchida), matriz esparsa completa ou condensada. Como seria de esperar, a matriz tradicional é a mais rápida, especialmente quando é condensada. As matrizes esparsas são cerca de 10 vezes mais lentas.
+Observemos agora o tempo de combinação nos diferentes formatos utilizados. Estes formatos são: uma matriz tradicional completa ou condensada (que aqui significa que apenas metade da matriz é preenchida) e matriz esparsa completa ou condensada. Como seria de esperar, a matriz tradicional é a mais rápida, especialmente quando é condensada. As matrizes esparsas são cerca de 10 vezes mais lentas.
 
 ## Results: SL times per matrix format
 time: s
 
 Uma análise semelhante é feita ao Single-Link. As diferentes abordagens são:
- - Single-Link baseado em MST usando uma matriz esparsa completa ou, duas vezes mais lenta, matriz condensada;
- - SLINK (a implementação "clássica" mais rápida que trabalha sobre uma matriz tradicional), mais lenta que qualquer uma das outras;
- - e Single-Link baseado em MST utilizando matriz guardada em disco, também completa ou condensada, que é significativamente mais lenta que qualquer uma das outras versões.
+ - Single-Link baseado em MST usando uma matriz esparsa completa ou matriz condensada, que é duas vezes mais rápida;
+ - SLINK, a implementação "clássica" mais rápida que trabalha sobre uma matriz tradicional, é mais lento que estas duas;
+ - e Single-Link baseado em MST utilizando o disco, que é significativamente mais lenta que qualquer uma das outras versões.
 
 ## Results: Total time main memory
 time: s
@@ -236,12 +236,12 @@ Já apresentei alguns resultados relacionados o tempo computacional; agora vou f
 ## Results: Memory density
 time: s
 
-No entanto, a memória utilizada com uma matriz de co-associações não é apenas o valor das associações. É necessário uma estrutura de dados para suportar a matriz esparsa e isso vem com um custo. Esta figura mostra a memória utilizada para os diferentes formatos para a regra _sk300_ (a que produziu maior esparsidade de associações em problemas grandes) relativamente a n^2. A matriz esparsa condensada com um corte linear apresenta a menor utilização de memória, como seria de esperar, mas a "esparsidade" de memória não é tanta como no caso das associações.
+No entanto, a memória utilizada com uma matriz de co-associações não é apenas o valor das associações. É necessário uma estrutura de dados para suportar a matriz esparsa e isso vem com um custo. Esta figura mostra a memória utilizada para os diferentes formatos para a regra _sk300_ (a que produziu maior esparsidade de associações em problemas grandes) relativamente a n^2. A matriz esparsa condensada com um corte linear apresenta a menor utilização de memória, como seria de esperar, mas a "esparsidade" de memória não é tanta como no caso das associações (que chegava a 0.1%)
 
 ## Conclusions
 time: s
 
-Uma das lições aprendidas foi a dicotomia entre utilizar mais memória ou ser mais rápido. Isto apareceu várias vezes nas diferentes abordagens de optimização nas diversas fases. E nem sempre existe uma resposta certo: cada caso é um caso.
+Uma das lições aprendidas foi a dicotomia entre utilizar mais memória ou ser mais rápido. Isto apareceu várias vezes nas diferentes abordagens de optimização e nem sempre existe uma resposta certa: cada caso é um caso.
 
 Outra impressão com que fiquei é que a GPU é um recurso pouco utilizado. Actualmente, GPUs são extremamente abundantes. Ainda assim, embora ofereçam uma grande capacidade de paralelismo, as bibliotecas de computação númerica, cientifica e as de Aprendizagem Automática não apreveitam esta capacidade.
 

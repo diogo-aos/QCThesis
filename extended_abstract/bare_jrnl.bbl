@@ -135,25 +135,8 @@ C.~d.~S. Sousa, A.~Mariano, and A.~Proen\c{c}a, ``{A Generic and Highly
   Efficient Parallel Variant of Boruvka ’s Algorithm},'' 2015.
 \BIBentrySTDinterwordspacing
 
-\bibitem{strack2014impact}
-\BIBentryALTinterwordspacing
-B.~Strack, J.~P. DeShazo, C.~Gennings, J.~L. Olmo, S.~Ventura, K.~J. Cios, and
-  J.~N. Clore, ``{Impact of HbA1c measurement on hospital readmission rates:
-  analysis of 70,000 clinical database patient records},'' \emph{BioMed
-  research international}, vol. 2014, 2014.
-\BIBentrySTDinterwordspacing
-
 \bibitem{hdf5}
 {The HDF Group}. {Hierarchical Data Format, version 5}.
-
-\bibitem{yuk13oro}
-\BIBentryALTinterwordspacing
-E.~S. Yuksel, J.~C. Slaughter, N.~Mukhtar, M.~Ochieng, G.~Sun, M.~Goutte,
-  S.~Muddana, C.~{Gaelyn Garrett}, and M.~F. Vaezi, ``{An oropharyngeal pH
-  monitoring device to evaluate patients with chronic laryngitis.}''
-  \emph{Neurogastroenterology and motility : the official journal of the
-  European Gastrointestinal Motility Society}, vol.~25, no.~5, 2013.
-\BIBentrySTDinterwordspacing
 
 \bibitem{Zechner2009}
 M.~Zechner and M.~Granitzer, ``{Accelerating k-means on the graphics processor

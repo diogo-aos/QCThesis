@@ -633,6 +633,11 @@ In the process, it was also optimized for smaller datasets.
 The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately but maintaining interoperability.
 In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
 These contributions together allow for the application of the EAC method to datasets whose complexity was not handled by the original implementation.
+However, it should be noted that the present GPU parallel K-Means implementation yielded worst results than those found in literature for similar datasets.
+The main reason for this are the burdens imposed by the language used and the absence of possible optimizations, such as shared memory utilization.
+Finally, new $K_{min}$ rules to optimize sparsity were proposed, accompanied with a deeper understanding on how these affect EAC properties.
+
+
 
 
 

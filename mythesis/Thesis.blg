@@ -4,69 +4,59 @@ The top-level auxiliary file: Thesis.aux
 The style file: unsrtnat_nodoi.bst
 Database file #1: library.bib
 Warning--entry type for "hdf5" isn't style-file defined
---line 3600 of file library.bib
-Warning--I didn't find a database entry for "LourencoECG2009"
-Warning--there's a number but no volume in Nvidia2014
-Warning--there's a number but no volume in Harris2007
+--line 560 of file library.bib
+Warning--there's a number but no volume in Silva2016
 Warning--there's a number but no volume in davies1979cluster
-Warning--empty journal in Mullner2011
-Warning--there's a number but no volume in Mullner2011
 Warning--can't use both volume and number fields in zhang1996birch
 Warning--can't use both volume and number fields in guha1998cure
-Warning--empty journal in Sirotkovi2012
-Warning--empty journal in Karimi2010
-Warning--there's a number but no volume in Karimi2010
-Warning--empty journal in Vineet2009
-Warning--empty journal in Sousa2015
-Warning--empty journal in boruuvka1926jistem
-Warning--empty journal in Wiebe2014
-Warning--empty journal in Casper2013
+Warning--empty publisher in Blelloch1990
+Warning--there's a number but no volume in Harris2007
 Warning--can't use both volume and number fields in Casper2012KMeans
 Warning--empty publisher in Lanzagorta2008
-Warning--there's a number but no volume in Horn2001a
 Warning--empty year in JonesSciPy
 Warning--empty year in pytables
 Warning--empty year in hdf5
-Warning--empty journal in AltetiAbad2007
-You've used 115 entries,
+Warning--empty institution in AltetiAbad2007
+Warning--there's a number but no volume in Nvidia2014
+You've used 116 entries,
             2439 wiz_defined-function locations,
-            1404 strings with 29906 characters,
-and the built_in function-call counts, 45598 in all, are:
-= -- 4197
-> -- 2187
-< -- 109
-+ -- 867
-- -- 632
-* -- 3514
-:= -- 7207
-add.period$ -- 351
-call.type$ -- 115
-change.case$ -- 226
-chr.to.int$ -- 110
-cite$ -- 137
-duplicate$ -- 2184
-empty$ -- 3716
-format.name$ -- 817
-if$ -- 9707
-int.to.chr$ -- 6
-int.to.str$ -- 116
-missing$ -- 113
-newline$ -- 581
-num.names$ -- 345
-pop$ -- 679
+            1421 strings with 30768 characters,
+and the built_in function-call counts, 47397 in all, are:
+= -- 4378
+> -- 2240
+< -- 115
++ -- 884
+- -- 648
+* -- 3621
+:= -- 7395
+add.period$ -- 357
+call.type$ -- 116
+change.case$ -- 228
+chr.to.int$ -- 112
+cite$ -- 129
+duplicate$ -- 2291
+empty$ -- 3916
+format.name$ -- 832
+if$ -- 10171
+int.to.chr$ -- 5
+int.to.str$ -- 117
+missing$ -- 114
+newline$ -- 587
+num.names$ -- 348
+pop$ -- 717
 preamble$ -- 1
-purify$ -- 115
+purify$ -- 116
 quote$ -- 0
-skip$ -- 1669
+skip$ -- 1757
 stack$ -- 0
-substring$ -- 2524
-swap$ -- 588
-text.length$ -- 47
+substring$ -- 2711
+swap$ -- 659
+text.length$ -- 55
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 793
-warning$ -- 22
-while$ -- 438
+type$ -- 797
+warning$ -- 13
+while$ -- 456
 width$ -- 0
-write$ -- 1485
-(There were 24 warnings)
+write$ -- 1511
+(There were 14 warnings)

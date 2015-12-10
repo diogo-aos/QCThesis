@@ -26,11 +26,12 @@ Since each partition is independent from every other partition, parallel computi
 Using either or any combination of these strategies will guarantee a speed-up.
 
 Initial research was under the field of quantum clustering.
-After this pursuit proved fruitless regarding one of the main requirements (speed), the focus of research shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
+After this pursuit proved fruitless for being slow, the focus of research shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
+%After this pursuit proved fruitless regarding one of the main requirements (speed), the focus of research shifted to parallel computing, more specifically a K-Means parallel version within the GPGPU paradigm.
 	
 The second step is mostly bound by memory.
 The complete co-association matrix has a space complexity of $\mathcal{O}(n^2)$.
-Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ patterns will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single floating-point precision.
+Such complexity becomes prohibitive for big data, e.g. a dataset of $2 \times 10^6$ patterns will result in a complete co-association matrix of $14901 \; GB$ if values are stored in single precision floating-point format.
 %This work was focused on sparse matrices.% and cutting associations.
 This problem is addressed by exploring the inherent sparse nature of the co-association matrix.
 
@@ -48,6 +49,7 @@ On the other hand, if one optimizes the second part, the local speed-up is infin
 %refer Amdhal Law? it is formally more oriented torwards parallel computing and number of threads
 
 All the algorithms were implemented in Python with high reliance on numerical and scientific modules, namely NumPy \cite{VanDerWalt2011} and SciPy \cite{JonesSciPy,Oliphant2007,Millman2011}.
+The main reason for using Python on all implementations was to use the same technology everywhere and have a high interoperability between modules.
 Important modules for visualizing and processing statistical results were MatplotLib \cite{hunter2007matplotlib} and Pandas \cite{McKinney2010}, respectively.
 The SciKit-Learn \cite{Pedregosa2011} machine learning library has a plethora of implemented algorithms which were used for benchmarking as well as integration in the devised solutions.
 The iPython \cite{Perez2007} module was used for interactive computing which allowed for accelerated prototyping and testing of algorithms.
@@ -64,10 +66,10 @@ Two candidates were considered: Quantum K-Means (QK-Means) and Horn and Gottlieb
 These algorithms were chosen so as to have a representative from both approaches of quantum inspired algorithms identified in chapter \ref{chapter:stateofart}.
 
 
-The implementation of QK-Means followed the description presented in section \ref{sec:qkmeans}, with the exception of the genetic operations \emph{cross-over} and \emph{mutation}.
-This change was made because literature \cite{Liu2010} suggested that enough variability is produced in the quantum rotation step with the angle-distance rotation method.
-Furthermore, the main goal for the first phase of EAC is speed but these operations aim at improving the quality of the solution.
-As such, it was an implementation decision to cut overhead where possible since literature supported that no significant changes would affect the final result.
+The implementation of QK-Means followed the description presented in section \ref{sec:qkmeans}, with the exception of the removal of the genetic operations \emph{cross-over} and \emph{mutation}.
+The main goal for the first phase of EAC is speed but these operations aim at improving the quality of the solution by producing variability in the oracles.
+Furthermore, literature \cite{Liu2010} suggests that enough variability is produced in the quantum rotation step with the angle-distance rotation method.
+As such, it was an implementation decision to cut the overhead of these operations for the sake of time optimization.
 
 An implementation of QC was already available in Matlab.
 Accordingly, implementing this algorithm translated into porting the code from Matlab to Python.
@@ -84,12 +86,48 @@ Accordingly, implementing this algorithm translated into porting the code from M
 K-Means is an obvious candidate for the generation of partitions since it is simple, fast and partitions do not need to be accurate - variability in the partitions is a desirable property.
 This relaxation on the accuracy of the partitions already allows for a faster generation of partitions since fewer iterations of the algorithm need to be executed for a partition to be generated - typically 3 iterations suffice.
 Further gains are possible with a parallel GPU version of K-Means.
-The overview of the algorithm used is presented in section \ref{sec:parallel kmeans}.
-This section will offer implementation details.
+The overview of the algorithm used is presented in section \ref{sec:art parallel kmeans}, but some implementation differences exist, namely the lack of some optimizations used in the original source.
+The choice to only parallelize the labeling phase was motivated by the maximum potential speed-ups presented below.
+Afterwards, the implementation is described.
+
+\subsection{Maximum potential speed-up}
+
+Previously, it was mentioned that the methodology followed for speeding up an application was to first profile the code and identify the portions of code that can be optimized and what fraction of the total computational time they take.
+Table \ref{tab:kmeans max speedup} presents statistical results on the theoretical maximum speed-up for the two K-Means phases.
+These results came from the same experiment as that presented in section \ref{sec:parallel kmeans}.
+The sequential version of K-Means was executed over a wide spectrum of datasets varying the number of patterns, dimensions and centroids.
+The theoretical maximum speed-up is considered to be the overall speed-up of the algorithm if one of its phases had infinite speed-up, i.e. when its time is negligible relative to the other phases.
+Analyzing these results it is clear that the labeling phase holds the most potential for optimizations.
+Furthermore, the theoretical speed-up also increases with the problem complexity (number of patterns, dimensions and centroids), since, the execution time for the labeling phase with more complex datasets is higher compared to the update phase.
+The theoretical speed-up of the update phase is almost negligible when compared to the labeling phase.
+This illustrates the importance of profiling the code before proceeding with optimizations, since effort invested in the update phase would yield little effect.
+
+\begin{table}[h]
+\centering
+\caption{Maximum theoretical speed-up for the labeling and update phases of K-Means based on experimental data. The datasets used range from $1000$ to $500 \: 000$ patterns, from $2$ to $1000$ dimensions and from $2$ to $2048$ centroids.}
+
+\begin{tabular}{lrr}
+\toprule
+{} &  Labeling phase &  Update phase \\
+\midrule
+mean  &               540.8308 &                    1.0468 \\
+std   &               879.9143 &                    0.0836 \\
+min   &                 2.9983 &                    1.0002 \\
+25\% percentile &      18.6578 &                    1.0015 \\
+50\% percentile &      99.8681 &                    1.0101 \\
+75\% percentile &     681.2509 &                    1.0567 \\
+max   &              5026.9722 &                    1.5199 \\
+\bottomrule
+\end{tabular}
+
+\label{tab:kmeans max speedup}
+\end{table}
+
+\subsection{Implementation details}
 
 The implementation gives as much freedom as possible to the user regarding CUDA parameter choices, such as the threads per block, blocks per grid or number of patterns to process per thread.
-By default, each thread will compute the label of one pattern and the blocks are unidimensional and composed by 512 threads.
-The number of blocks, then, is the number of patterns divided by the the number of threads per block.
+By default, each thread will compute the label of one pattern and the blocks are unidimensional and composed by 512 threads, which maximizes GPU occupancy since no shared memory is used.
+The number of blocks, then, is the number of patterns divided by the number of threads per block.
 If the number of blocks exceeds the maximum allowed for one dimension (65535), the grid configuration automatically uses other dimensions.
 The other parameter that the user can choose deals with how data is transfered back and forward between host and device.
 The user can choose to allow the Numba CUDA API to handle all the memory transfers or to allow the implementation to optimize those.
@@ -99,19 +137,22 @@ This permits the production of an entire ensemble with a single transfer of the 
 These parameters (number of patterns per thread, number of threads per block and memory transfer mode) may be configured at runtime.
 Still, a typical user does not need to be knowledgeable about CUDA to be able to use this implementation, since the tuning of these parameters is optional.
 
-The CUDA implementation of the label computation part of the algorithm starts by transferring the data to the GPU (pattern set and initial centroids) and allocates space for the labels and corresponding distances.
+The CUDA implementation of the label computation part of the algorithm starts by transferring the data to global memory (pattern set and initial centroids) and allocates space for the labels and corresponding distances, also in global memory.
+Both data and centroids are transfered and stored in a row-major order and all memory transfers are synchronous.
 The computation of a label for one pattern is done by iteratively computing the distance from the pattern to each centroid and storing the label and the distance corresponding to the closest centroid.
 Finally, the labels and distances are sent back to the host for computation of the centroids.
 This procedure is available as a CUDA kernel or as three different sequential versions: pure Python, based on NumPy or compiled code with Numba.
 These same sequential versions exist for the recomputation of the centroids.
+The fastest of CPU versions is the Numba based, followed by the one based on NumPy and finally pure Python.
 The implementation of the centroid computation starts by counting the number of patterns attributed to each centroid.
 Afterwards, it checks if there are any "empty" clusters, i.e. if there are centroids that are not the closest ones to any pattern.
 Dealing with empty clusters is important because, although empty clusters may be desirable in some situations, the target use expects that the output number of clusters to be the same as defined in the input parameter.
-Centroids corresponding to empty clusters will be the patterns that are furthest away from their centroids.
+Centroids corresponding to empty clusters will be the patterns that are furthest away from their centroids, which is the reason why the distances to the centroids are kept and transfered.
 Any other centroid $c_i$ will be the mean of the patterns that were labeled $i$.
 
+At the end of each iteration, a stopping criteria is checked: either the difference between the centroids of two consecutive iterations reached an user supplied threshold (default of 0.0001) or the maximum number of iterations was reached (default of 300).
+In EAC, the number of iterations is the stopping criteria used with a low number of iterations (e.g. 3 in the present work).
 
-%TODO pseudocode & diagrams
 
 \section{Dealing with the space complexity of the co-association matrix}
 
@@ -120,7 +161,7 @@ In chapter \ref{chapter:stateofart}, two approaches to the space complexity of t
 The results presented in the sparsity study of EAC \cite{Lourenco2010} show that it is possible to obtain a high sparsity in the co-association matrix.
 In some cases the density of the matrix was as low as 1\%.
 This motivated the focus of the work on exploiting the inherent sparsity of the matrix.
-A discussion on using sparse matrices and a novel solution for building the co-association matrix is presented \ref{sec:sparse coassoc}.
+A discussion on using sparse matrices and a novel solution for building the co-association matrix is presented in section \ref{sec:sparse coassoc}.
 
 As stated before, the focus of the work is on sparse matrices.
 Still, for the sake of completeness, the different strategies considered for the prototypes approach are discussed here.
@@ -128,7 +169,7 @@ One strategy is to use the \textbf{p-Nearest Neighbors} as prototypes, as alread
 Before building the co-association matrix, the $p$ closest patterns to each pattern are computed and stored in the $n \times p$ neighbor matrix.
 During the voting mechanism of EAC only the neighbors of each pattern are considered.
 This strategy has a space complexity of $O(2nk)$ and requires the computation of the k-Nearest Neighbors.
-A second strategy is to use \textbf{p random prototypes}, which will be set of unique $p$ patterns.
+A second strategy is to use \textbf{p random prototypes}, which will be a set of unique $p$ patterns.
 This will be the same for every pattern.
 Here the voting mechanism is altered so that if a pattern is clustered with any of the prototypes, the correspondent element in the co-association matrix is incremented.
 This has the advantage that only a $n \times p$ matrix needs to be stored along with a $p$ array for the chosen prototypes.
@@ -141,7 +182,7 @@ This is specially true for the p-Nearest Neighbors strategy since it is unlikely
 This means that the $n \times p$ co-association matrix may not have many zeros which translates in little advantage for using the sparsity augmentation approach the matrix of co-associations.
 % Still, one should note that the p-Nearest Neighbors strategy is closely related to a sparse representation.
 % these seem more like comments for results.
-% Still, this highly depends on the the number of neighbors relative to the number of patterns and also the granularity of the partitions.
+% Still, this highly depends on the number of neighbors relative to the number of patterns and also the granularity of the partitions.
 % If the number of neighbors is high, one of the neighbors can be sufficiently far away from the pattern to not clustered with it.
 % If the granularity of the partitions is high (i.e. there are a high number of small clusters) then each cluster may have sufficiently few patterns that neighbors are not included.
 
@@ -170,7 +211,7 @@ Furthermore, because of the extra data structures, the implementations from SciP
 Using the CSR format did not saturate memory but it took a completely unacceptable amount of time, many orders of magnitude above any of the formats recommended for building the matrix.
 
 After a search in the literature for efficient and scalable ways to build a sparse matrix proved fruitless, these problems motivated the design of a new method for building the matrix specialized for the characteristics of EAC.
-The solution devised is based on the CSR format, which has the desired properties of having a low memory trace and allows for fast computations.
+The solution devised is based on the CSR format (described previously in section \ref{sec:parallel_SL}), which has the desired properties of having a low memory trace and allows for fast computations.
 
 \subsection{EAC CSR}
 
@@ -178,12 +219,13 @@ The first step is making an initial assumption on the maximum number of associat
 A possible rule is $$max\_assocs = 3 \times bgs$$ where $bgs$ is the biggest cluster size in the ensemble.
 The biggest cluster size is a good heuristic for trying to predict the number of associations a pattern will have since it is the limit of how many associations each pattern will have in any partition.
 Furthermore, one would expect that the neighbors of each pattern will not vary significantly, i.e. the same neighbors will be clustered together with a pattern repeatedly in many partitions.
-This scheme for building the matrix uses 4 supporting arrays:
+This rule was motivated by the relationship between the maximum number of associations and the biggest cluster size, which will be presented in the results.
+This scheme for building the matrix uses 4 supporting arrays, 3 of which (\emph{indices}, \emph{data} and \emph{indptr}) are part of the standard CSR format. The arrays are:
 
 \begin{itemize}
 	\item \textbf{indices} - an array of $n \times max\_assocs$ size that stores the columns of each non-zero value of the matrix, i.e. the destination pattern to which each pattern associates with;
 	\item \textbf{data} - an array of $n \times max\_assocs$ size that stores all the non-zero values;
-	\item \textbf{indptr} - an array of $n$ size where the \emph{i-th} element is the pointer to the first non-zero value in the \emph{i-th} row.
+	\item \textbf{indptr} - an array of $n$ size where the \emph{i-th} element is the index of the \emph{indices} and \emph{data} arrays that holds the value and column of the first non-zero value in the \emph{i-th} row.
 	\item \textbf{degree} - an array of $n$ size that stores the number of non-zero values of each row.
 \end{itemize}
 
@@ -191,6 +233,12 @@ Each pattern (row) has a maximum of \emph{max\_assocs} pre-allocated that it can
 New associations that exceed this pre-allocated maximum are discarded.
 %Since each pattern has a maximum pre-defined number of associations, \emph{indptr} does not really need to exist since it can be easily deduced (e.g. $indices[n] = n \times max\_assocs$).
 The \emph{degree} array is the one keeping track of the number of associations of each pattern.
+The data types used are picked to be smallest necessary for the problem at hand.
+The \emph{data} array is usually composed of singly Byte unsigned integer values since the ensemble size is typically less than 255.
+The \emph{indices} array stores unsigned integers of the smallest size possible to store the number of patterns of the dataset.
+The data type of \emph{indptr} is an 8 Byte integer, since the number of associations of large problems are usually often bigger than $2^{32}$.
+Lastly, the \emph{degree} array stores 4 Byte unsigned integers.
+The last two data types never change, since the size of the \emph{indptr} and \emph{degree} arrays is usually negligible compared to the combined size of the \emph{data} and \emph{indices} arrays.
 Throughout this section, the interval of the \emph{indices} array corresponding to a specific pattern (row) is referred to as that pattern's \emph{indices} interval.
 If it is said that an association is added to the end of the \emph{indices} interval, this refers to the beginning of the part of the interval that is free for new associations.
 The term indices is used either in the context of the array, in which case it will appear as \emph{indices}, or as the plural of index, in which case it will appear as indices.
@@ -302,8 +350,7 @@ The \emph{o\_ptr} pointer is decremented anytime an association is written in th
 
 The co-association matrix is symmetric, which means that only half is necessary to describe the whole matrix.
 That fact has consequences on both memory usage and computational effort on building the matrix.
-It translates in a reduction to $49.5\%$ of the original required memory for the fully allocated matrix and $50\%$ for the sparse matrices.
-% In the case of the fully allocated matrix, this translates in a reduction to 49.5\% of the memory required.
+It translates in a asymptotical reduction to $50\%$ of the original required memory.
 Furthermore, only half the operations are made since only half the matrix is accessed, which also accelerates the building of the matrix.
 There is, however, a small overhead for translating the two dimensional index to the single dimensional index of the upper triangle matrix.
 When using a sparse matrix according to the EAC CSR scheme described above, there is no direct memory usage reduction.
@@ -311,7 +358,7 @@ However, the number of binary searches performed by inserting new associations i
 
 Even though there is no direct memory reduction for switching to the condensed matrix form, this scheme does open possibilities for it.
 Previously, the number of associations for each pattern (number of non zero values in each row) remained constant throughout the whole set of patterns.
-However, using a condensed scheme means that the number of associations decreases as one steps further to the end of the set, i.e. closer to the bottom the co-association matrix.
+However, using a condensed scheme means that the number of associations decreases as one steps further to the end of the set. %, i.e. closer to the bottom the co-association matrix.
 An example of this can be seen in the plot of the number of associations per pattern in a complete and condensed matrix of Fig. \ref{fig:coassoc degree}.
 It is clear that, since the number of associations that is actually stored in the matrix decreases throughout the matrix, the pre-allocated memory for each pattern can decrease accordingly.
 One possible strategy, illustrated in Fig. \ref{fig:coassoc degree}, is to decrease the maximum number of associations linearly.
@@ -340,7 +387,7 @@ Sparse condensed linear & $ 0.54 \times N \times max\_assocs$ & $372.8497$      
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.45]{methodology/eac_csr_cond_full_degree_100k}
-\caption{The left figure shows the number of associations per pattern in a complete matrix; the right figure shows the number of associations per pattern in a condensed matrix.}
+\caption{The left figure shows the number of associations per pattern in a complete matrix; the right figure shows the number of associations per pattern in a condensed matrix. Dataset used is a bidimensional mixture of 6 Gaussians with a total of $100 \: 000$ patterns.}
 \label{fig:coassoc degree}
 \end{figure}
 
@@ -368,10 +415,11 @@ These indices point to the \emph{destination} of the original graph.
 The original algorithm \cite{Sousa2015} assumes connected graphs, but this is not guaranteed in EAC's co-association matrix.
 In graph theory, given a connected graph $G = (V,E)$, there is a path between any $s,t \in V$, where $V$ is the set of vertices in $G$ and $E$ is the set of edges that connects the vertices.
 In an unconnected graph, this is not the case and unconnected subsets are called components, i.e. a connected component $C \subset V$ ensures that for each $u,v \in C$ there is a path between $u$ and $v$.
-In the present implementation, the issue of unconnected graphs was solved in the first step (finding the minimum edge connected to each vertex or supervertex). 
+The present implementation follows the original literature \cite{Sousa2015} for the exception of a modification that allows it to process unconnected graphs.
+The issue of unconnected graphs was solved in the first step (finding the minimum edge connected to each vertex or supervertex). 
 If a vertex has no edges connected to it (an outdegree of 0 since all edges are duplicated to cover both directions) then it is marked as a mirrored edge. 
 This means that the independent components will be marked as supervertices in all subsequent iterations of the algorithm. 
-The overhead of having these redundant vertices is low since the number of independent components is typically low compared to the number of vertices in the the graph and the processing of such vertices is very fast.
+The overhead of having these redundant vertices is low since the number of independent components is typically low compared to the number of vertices in the graph and the processing of such vertices is very fast.
 As a consequence, the stopping criteria becomes the lack of edges connected to the remaining vertices, which is the same as saying that all elements of the \emph{outdegree} array are zero. 
 This condition can be checked as a secondary result of the computation of the new \emph{first\_edge} array. 
 This step is performed by applying an exclusive prefix sum over the \emph{outdegree}. 
@@ -397,12 +445,12 @@ This is because links between independent vertices are not included in the MST.
 For this reason, the lifetime for going from independent edges to the heaviest link in the MST (where the first cut would be performed) is computed separately.
 If the maximum lifetime within the MST is bigger than the threshold, than the number of clusters is computed as in traditional EAC plus the number of independent components.
 Otherwise, the independent components will be the final clusters.
-Most of this process can be done by the GPU.
+Most of this process can be done by the GPU. 
 Library kernels were used to sort the array and compute the $arg max$, and a simple kernel was used to compute the lifetimes.
 
 \subsubsection{Building the new graph}
 The final MST (after performing the pruning) is then converted into a new, reduced graph.
-The function responsible for this takes the original graph and the final selection of edges that composing the MST and, afterwards, produces a graph in CSR format.
+The function responsible for this produces a graph in CSR format from the original graph and the final selection of edges composing the MST.
 The function has to count the number of edges for each vertex, compute the origin vertex of each edge (the original \emph{destination} array only contains the destination vertices) and, with that information, build the final graph.
 This process can be done by the GPU with simple mapping kernels and a modified binary search for determining the origin vertex.
 
@@ -410,12 +458,12 @@ This process can be done by the GPU with simple mapping kernels and a modified b
 The last step is computing the final clusters.
 Any incision in the MST translates in independent components in the constructed graph.
 This means that the problem of computing the clusters translates into a problem of finding independent connected components in a graph, a problem that usually goes by the name of Connected Component Labeling.
-To implement this part in the GPU, the aforementioned Borůvka algorithm was modified to output the an array \emph{labels} of length $|V|$ such that the $i-th$ position contained the label of the $i-th$ vertex.
+To implement this part in the GPU, the aforementioned Borůvka algorithm was modified to output an array \emph{labels} of length $|V|$ such that the $i-th$ position contains the label of the $i-th$ vertex.
 To this effect, the flow of the algorithm was slightly altered as shown in Figure \ref{fig:connected comps flow}. 
 The kernel dealing with the MST was removed and a kernel to update the labels at each iteration, shown in Algorithm \ref{alg:comp_labels}, was implemented.
 In the first iteration of the algorithm the converged colors are copied to the labels array.
 In every iteration the kernel to update the labels takes in the propagated colors and the array with the new vertex IDs.
-For each vertex in the array, the kernel first takes in the the color of the current vertex and maps it to the new color (one should notice that the color is actually a vertex ID and that that vertex has had its color updated).
+For each vertex in the array, the kernel first takes in the color of the current vertex and maps it to the new color (one should notice that the color is actually a vertex ID and that that vertex has had its color updated).
 Afterwards, the kernel maps the new color with the new vertex ID that color will take, to keep consistency with future iterations.
 
 \begin{figure}[hbtp]
@@ -449,12 +497,13 @@ Afterwards, the kernel maps the new color with the new vertex ID that color will
 
 
 \subsubsection{Memory transfer with the GPU}
-The whole algorithm of computing the SL clustering has been implemented in the GPU with minimizing the memory utilization in mind.
+The whole algorithm of computing the SL clustering has been implemented in the GPU, having the optimization of memory utilization in mind.
+The control logic is the only thing that is processed by the host. 
 Transferring the initial graph is the most relevant memory transfer.
 It has to be transfered twice: first for computing the MST and then to build the processed MST graph.
 This happens because the initial device arrays used for the graph are deallocated to give space for the arrays of subsequent iterations of the MST algorithm.
-This implementation design had in mind memory consumption in mind and could easily be avoided with the cost of having to store the bigger initial graph for the entire duration of the MST computation, which might be worthwhile if the GPU memory is abundant.
-The final labels array is transfered back to the host in the end of computation, but its size is small relative the to the size of the original graph.
+This implementation design had in mind memory consumption and could easily be avoided with the cost of having to store the bigger initial graph for the entire duration of the MST computation, which might be worthwhile if the GPU memory is abundant.
+The final labels array is transfered back to the host in the end of computation, but its size is small relative to the size of the original graph.
 Furthermore, because the control logic is processed by the host and it is dependent on some values computed by the device, extra memory transfers of single values (e.g. number of vertices and number of edges on each iteration) are necessary.
 These, however, may be safely dismissed since they are of little consequence in the overall computation time.
 
@@ -465,7 +514,7 @@ At this point it should be noted, for future reference, the contrast between the
 \citet{Sousa2015} used the native CUDA language to program the GPUs and highly optimized libraries.
 The implementation in the present work used none of the above.
 Accordingly, some performance may be lost.
-This if specially true for some highly optimized operations that can be found in some libraries, since those use optimization mechanism that are not available in used CUDA API offered by the Numba package.
+This if specially true for some highly optimized operations that can be found in some libraries, since those use optimization mechanisms that are not available in the used CUDA API offered by the Numba package.
 An evaluation of the interoperability between the technology stacks was made but, currently, this does not seem feasible.
 Nevertheless, and whenever possible, we tried to close the gap so that these shortcomings become less noticeable in the overall performance.
 
@@ -474,33 +523,32 @@ Nevertheless, and whenever possible, we tried to close the gap so that these sho
 
 
 The co-association matrix can become very large for large datasets.
-Even using the EAC CSR method to reduce memory usage, the memory used occupies a significant portion of main memory.
+Even using the EAC CSR method to reduce memory usage, it occupies a significant portion of main memory.
 Furthermore, the algorithm to compute a MST brings additional space complexity that make it infeasible to perform the final partition recovery on a large co-association matrix in main memory.
 External memory algorithms address this issue.
 % out of core processing %TODO check
-External memory algorithms (or out-of-core algorithms) refers to algorithms that are based on disk (or other large capacity but typically low latency storage technology), usually by loading small batches to main memory, processing them, saving the results and repeat until the whole computation is done.
+External memory algorithms (or out-of-core algorithms) refers to algorithms that are based on disk (or other large capacity but typically low latency storage technology), usually by loading small batches to main memory, processing them, saving the results and repeating until the whole computation is done.
 This section describes the process of building the MST with low memory usage.
 The details of converting the MST in a Single-Link clustering are described in chapter \ref{chapter:stateofart} and omitted here.
 
 \subsubsection{Kruskal's algorithm and implementation}
 
 % Kruskal algorithm
-The sequential MST algorithm used was Kruskal.
-The original paper of Kruskal's \cite{kruskal1956shortest} algorithm describes three approaches for finding a MST.
+The sequential MST algorithm used was Kruskal \cite{kruskal1956shortest}, which describes three approaches for finding a MST.
 The SciPy library offers an efficient implementation for the following construct (taken directly from the original paper of Kruskal's algorithm):
 \begin{displayquote}
 CONSTRUCTION A. Perform the following step as many times as possible: Among the edges of G not yet chosen, choose the shortest edge which does not form any loops with those edges already chosen. Clearly the set of edges eventually chosen must form a spanning tree of G, and in fact it forms a shortest spanning tree.
 \end{displayquote}
-If the graph if connected, the algorithm will stop before processing all edges when $|V| - 1$ edges are added to the MST.
+If the graph is connected, the algorithm will stop before processing all edges when $|V| - 1$ edges are added to the MST.
 Within the EAC context, it is very common for the co-association graph to have independent components which translates in every edge being processed.
 It should be noted that this implementation works on a sparse matrix in the CSR format.
 
 One of the main steps of the implementation is computing the order of the edges of the graph without sorting the edges themselves, an operation called \emph{argsort}.
-To illustrate this, the \emph{argsort} operation on the array $ \left [  4 , 5 , 2 , 1, 3 \right ]$ would yield $ \left [  3 , 2 , 4, 0 , 1 \right ]$ since the the smallest element is at position 3 (starting from 0), the second smalled at position 2, etc.
+To illustrate this, the \emph{argsort} operation on the array $ \left [  4 , 5 , 2 , 1, 3 \right ]$ would yield $ \left [  3 , 2 , 4, 0 , 1 \right ]$ since the smallest element is at position 3 (starting from 0), the second smallest at position 2, etc.
 This operation is useful to avoid computing the shortest edge in every iteration.
 Doing so would increase time complexity since a sorting algorithm may have an average time complexity to $O(n log n)$ (QuickSort algorithm) while a single minimum has a time complexity of $O(n)$.
 Computing the minimum at every iteration when every edge must be processed means that there will be $|E|$ iterations and so the total time complexity for the minimum operation alone will be $O(E ^ E)$ if processed edges are not removed or $O(E!)$ if they are.
-These time complexities are much higher than $O(E log E)$.
+These are much higher than Kruskal's time complexity of $O(E log E)$.
 The result of this operation is an array of length $|E|$ (i.e. the number of associations in EAC), which means it will occupy at least the same size as the array containing the weights of the edges.
 However, the total size is typically 8 times larger for EAC since the data type of the weights uses only one byte and the number of associations is very large, forcing the use a 8 byte integer for the \emph{argsort} output array.
 This is the real motivation to store the co-association matrix in disk and use an external sorting algorithm.

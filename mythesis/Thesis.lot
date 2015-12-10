@@ -1,0 +1,25 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Maximum theoretical speed-up for the labeling and update phases of K-Means based on experimental data. The datasets used range from $1000$ to $500 \tmspace +\medmuskip {.2222em} 000$ patterns, from $2$ to $1000$ dimensions and from $2$ to $2048$ centroids.\relax }}{35}{table.caption.31}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Memory used for different matrix types for the generic case and a real example of 100000 patterns. The relative reduction (R.R.) refers to the memory reduction relative to the type of matrix above, the absolute reduction (A.R.) refers to the reduction relative to the full complete matrix.\relax }}{42}{table.caption.34}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces \textbf {Alpha} machine specifications.\relax }}{52}{table.5.1}
+\contentsline {table}{\numberline {5.2}{\ignorespaces \textbf {Bravo} machine specifications.\relax }}{52}{table.5.2}
+\contentsline {table}{\numberline {5.3}{\ignorespaces \textbf {Charlie} machine specifications.\relax }}{53}{table.5.3}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Timing results for the different algorithms in the different tests. Fitness time refers to the time that took to compute the DB index of each solution of classical K-Means. All time values are the average over 20 rounds and are displayed in seconds.\relax }}{54}{table.caption.45}
+\contentsline {table}{\numberline {5.5}{\ignorespaces All values displayed are the average over 20 rounds, except for the Overall best which shows the best result in any round. The values represent the Davies-Bouldin fitness index (low is better).\relax }}{55}{table.caption.46}
+\contentsline {table}{\numberline {5.6}{\ignorespaces Time of computation of \citet {Horn2001b} algorithm for a mixture of 4 Gaussians of different cardinality and dimensionality.\relax }}{55}{table.caption.47}
+\contentsline {table}{\numberline {5.7}{\ignorespaces Effective bandwidth and computational throughput of labeling phase computed from results taken from running K-Means over datasets whose complexity ranged from $100$ to $10 \tmspace +\medmuskip {.2222em} 000 \tmspace +\medmuskip {.2222em} 000$ patterns, from $2$ to $1000$ dimensions and from $2$ to $2048$ centroids.\relax }}{58}{table.caption.50}
+\contentsline {table}{\numberline {5.8}{\ignorespaces Speed-up obtained in the labeling phase for different number of patterns per thread (PPT).\relax }}{58}{table.caption.51}
+\contentsline {table}{\numberline {5.9}{\ignorespaces Execution times for computing the condensed co-association matrix using different matrix strategies.\relax }}{59}{table.caption.52}
+\contentsline {table}{\numberline {5.10}{\ignorespaces Average speed-up of the GPU MST algorithm for different data sets, sorted by number of edges.\relax }}{60}{table.5.10}
+\contentsline {table}{\numberline {5.11}{\ignorespaces Cross-correlation between several characteristics of the graphs and the average speed-up.\relax }}{61}{table.caption.54}
+\contentsline {table}{\numberline {5.12}{\ignorespaces Difference between accuracies from the two implementations of EAC, using the same ensemble. Accuracy was measured using the H-index.\relax }}{62}{table.caption.55}
+\contentsline {table}{\numberline {5.13}{\ignorespaces Speed-ups obtained in the different phases of EAC, with independent production of ensembles.\relax }}{63}{table.caption.56}
+\contentsline {table}{\numberline {5.14}{\ignorespaces Different rules for computing $K_{min}$ and $K_{max}$. $n$ is the number of patterns and $sk$ is the number of patterns per cluster.\relax }}{63}{table.caption.57}
+\contentsline {table}{\numberline {5.15}{\ignorespaces Execution times for real-world large datasets. P and F refer to the number of patterns and features. P, C and R times refer to the production, combination and recovery times.\relax }}{73}{table.caption.73}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
