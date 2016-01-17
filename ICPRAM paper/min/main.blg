@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: apalike.bst
+Database file #1: library.bib
+Warning--entry type for "hdf5" isn't style-file defined
+--line 3114 of file library.bib
+Warning--empty year in pytables
+Warning--empty year in JonesSciPy
+Warning--there's a number but no volume in lindholm2008nvidia
+Warning--empty year in hdf5
+You've used 16 entries,
+            1935 wiz_defined-function locations,
+            575 strings with 6152 characters,
+and the built_in function-call counts, 6200 in all, are:
+= -- 637
+> -- 207
+< -- 17
++ -- 66
+- -- 66
+* -- 482
+:= -- 1050
+add.period$ -- 44
+call.type$ -- 16
+change.case$ -- 113
+chr.to.int$ -- 16
+cite$ -- 20
+duplicate$ -- 255
+empty$ -- 438
+format.name$ -- 92
+if$ -- 1240
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 12
+newline$ -- 79
+num.names$ -- 48
+pop$ -- 99
+preamble$ -- 1
+purify$ -- 113
+quote$ -- 0
+skip$ -- 205
+stack$ -- 0
+substring$ -- 470
+swap$ -- 52
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 96
+warning$ -- 4
+while$ -- 59
+width$ -- 0
+write$ -- 196
+(There were 5 warnings)

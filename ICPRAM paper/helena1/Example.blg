@@ -1,0 +1,11 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Example.aux
+The style file: apalike.bst
+Database file #1: library.bib
+Warning--entry type for "hdf5" isn't style-file defined
+--line 1247 of file library.bib
+Warning--empty year in pytables
+Warning--empty journal in AltetiAbad2007
+Warning--there's a number but no volume in lindholm2008nvidia
+Warning--empty journal in Sirotkovi2012
+Warning--empty year in hdf5
+(There were 6 warnings)

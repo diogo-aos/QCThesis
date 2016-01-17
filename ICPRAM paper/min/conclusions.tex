@@ -1,0 +1,16 @@
+\section{\uppercase{Conclusions}}
+\label{sec:conc}
+\noindent The main goal of scaling the EAC method for larger datasets than was previously possible was achieved.
+The EAC method is composed by three steps and, to scale the whole method, each step was optimized separately.
+In the process, EAC was also optimized for smaller datasets.
+In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means, the EAC CSR strategy and the SL-MST-Disk.
+%In essence, the main contributions to the EAC method, by step, were the GPU parallel K-Means in the production step, the EAC CSR strategy in the combination step and the SL-MST-Disk in the recovery step.
+New rules for $K_{min}$ were tested and the effects that these rules have on other properties of EAC were studied.
+Together, these contributions allow for the application of EAC to datasets whose complexity was not handled by the original implementation.
+
+Further work involves thorough evaluation in real world problems.
+Additional work may include further optimization of the Parallel GPU K-means by using shared memory and a better sorting of the co-association graph in \emph{SL-MST-Disk}.
+%By using using bigger chunks in main memory and possibly even using the GPU, sorting the co-association graph should become significantly faster.
+
+\section*{\uppercase{Acknowledgments}}
+\noindent This work was supported by the Portuguese Foundation for Science and Technology, scholarship number SFRH/BPD/103127/2014, and grant PTDC/EEI-SII/7092/2014.

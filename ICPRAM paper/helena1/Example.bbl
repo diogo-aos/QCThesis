@@ -1,0 +1,121 @@
+\begin{thebibliography}{}
+
+\bibitem[Alted et~al., ]{pytables}
+Alted, F., Vilata, I., and Others.
+\newblock {PyTables: Hierarchical Datasets in Python}.
+
+\bibitem[{Altet i Abad} and Balaguer, 2007]{AltetiAbad2007}
+{Altet i Abad}, F. and Balaguer, I.~V. (2007).
+\newblock {OPSI : The indexing system of PyTables 2 Professional Edition}.
+\newblock pages 1--27.
+
+\bibitem[Arthur et~al., 2007]{Arthur2007}
+Arthur, D., Arthur, D., Vassilvitskii, S., and Vassilvitskii, S. (2007).
+\newblock {k-means++: The advantages of careful seeding}.
+\newblock {\em Proceedings of the eighteenth annual ACM-SIAM symposium on
+  Discrete algorithms}, 8:1027--1035.
+
+\bibitem[Bai et~al., 2009]{Bai2009}
+Bai, H.~T., He, L.~L., Ouyang, D.~T., Li, Z.~S., and Li, H. (2009).
+\newblock {K-means on commodity GPUs with CUDA}.
+\newblock {\em 2009 WRI World Congress on Computer Science and Information
+  Engineering, CSIE 2009}, 3:651--655.
+
+\bibitem[Fred, 2001]{Fred2001}
+Fred, A. (2001).
+\newblock {Finding consistent clusters in data partitions}.
+\newblock {\em Multiple classifier systems}, pages 309--318.
+
+\bibitem[Fred and Jain, 2002]{Fred2002}
+Fred, A. N.~L. and Jain, A.~K. (2002).
+\newblock {Data clustering using evidence accumulation}.
+\newblock {\em Object recognition supported by user interaction for service
+  robots}, 4.
+
+\bibitem[Fred and Jain, 2005]{Fred2005}
+Fred, A. N.~L. and Jain, A.~K. (2005).
+\newblock {Combining multiple clusterings using evidence accumulation}.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  27(6):835--850.
+
+\bibitem[Gower and Ross, 1969]{Gower1969}
+Gower, J.~C. and Ross, G. J.~S. (1969).
+\newblock {Minimum Spanning Trees and Single Linkage Cluster Analysis}.
+\newblock {\em Journal of the Royal Statistical Society}, 18(1):54--64.
+
+\bibitem[Jain, 2010]{Jain2010}
+Jain, A.~K. (2010).
+\newblock {Data clustering: 50 years beyond K-means}.
+\newblock {\em Pattern Recognition Letters}, 31(8):651--666.
+
+\bibitem[Jain et~al., 1999]{Jain1999}
+Jain, a.~K., Murty, M.~N., and Flynn, P.~J. (1999).
+\newblock {Data clustering: a review}.
+\newblock {\em ACM Computing Surveys}, 31(3):264--323.
+
+\bibitem[Jones et~al., 2001]{JonesSciPy}
+Jones, E., Oliphant, T., Peterson, P., and Others (2001).
+\newblock {SciPy: Open source scientific tools for Python}.
+
+\bibitem[Kruskal, 1956]{kruskal1956shortest}
+Kruskal, J.~B. (1956).
+\newblock {On the shortest spanning subtree of a graph and the traveling
+  salesman problem}.
+\newblock {\em Proceedings of the American Mathematical society}, 7(1):48--50.
+
+\bibitem[Lichman, 2013]{Lichman:2013}
+Lichman, M. (2013).
+\newblock {\{UCI\} Machine Learning Repository}.
+
+\bibitem[Lindholm et~al., 2008]{lindholm2008nvidia}
+Lindholm, E., Nickolls, J., Oberman, S., and Montrym, J. (2008).
+\newblock Nvidia tesla: A unified graphics and computing architecture.
+\newblock {\em IEEE micro}, (2):39--55.
+
+\bibitem[Louren\c{c}o et~al., 2010]{Lourenco2010}
+Louren\c{c}o, A., Fred, A. L.~N., and Jain, A.~K. (2010).
+\newblock {On the scalability of evidence accumulation clustering}.
+\newblock {\em Proceedings - International Conference on Pattern Recognition},
+  0:782--785.
+
+\bibitem[Meila, 2003]{Meila2003}
+Meila, M. (2003).
+\newblock {Comparing clusterings by the variation of information}.
+\newblock {\em Learning theory and Kernel machines: 16th Annual Conference on
+  Learning Theory and 7th Kernel Workshop, COLT/Kernel 2003, Washington, DC,
+  USA, August 24-27, 2003: proceedings}, page 173.
+
+\bibitem[Sibson, 1973]{Sibson1973}
+Sibson, R. (1973).
+\newblock {SLINK: an optimally efficient algorithm for the single-link cluster
+  method}.
+\newblock {\em The Computer Journal}, 16(1):30--34.
+
+\bibitem[Sirotkovi et~al., 2012]{Sirotkovi2012}
+Sirotkovi, J., Dujmi, H., and Papi, V. (2012).
+\newblock {K-Means Image Segmentation on Massively Parallel GPU Architecture}.
+\newblock pages 489--494.
+
+\bibitem[Strehl and Ghosh, 2002]{Strehl2002}
+Strehl, A. and Ghosh, J. (2002).
+\newblock {Cluster Ensembles – A Knowledge Reuse Framework for}.
+\newblock {\em Journal of Machine Learning Research}, 3:583--617.
+
+\bibitem[{The HDF Group}, ]{hdf5}
+{The HDF Group}.
+\newblock {Hierarchical Data Format, version 5}.
+
+\bibitem[Zechner and Granitzer, 2009a]{Zechner2009}
+Zechner, M. and Granitzer, M. (2009a).
+\newblock {Accelerating k-means on the graphics processor via CUDA}.
+\newblock {\em Proceedings of the 1st International Conference on Intensive
+  Applications and Services, INTENSIVE 2009}, pages 7--15.
+
+\bibitem[Zechner and Granitzer, 2009b]{Zechner2009b}
+Zechner, M. and Granitzer, M. (2009b).
+\newblock {K-Means on the Graphics Processor: Design And Experimental
+  Analysis}.
+\newblock {\em International Journal on Advances in System and Measurements},
+  2(2):224--235.
+
+\end{thebibliography}

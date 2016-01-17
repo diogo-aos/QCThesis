@@ -1,0 +1,83 @@
+\section{\uppercase{Introduction}}
+\label{sec:intro}
+
+% Motivation and state-of-the-art...
+
+%new
+\noindent The unprecedented amount and variety of data that exists today has sparked the interest in performing automated analysis for generation of knowledge.
+Clustering algorithms offer a means to explore the structure of the data by organizing it into clusters.
+A vast body of work on clustering algorithms exists \cite{Jain2010}, but usually different methods are suited to datasets of different characteristics.
+Inspired by the work on sensor fusion and classifier combination, ensemble approaches \cite{Fred2001,Strehl2002} have been proposed to address the challenge of clustering a wider spectrum of different datasets.
+
+The present works builds on the Evidence Accumulation Clustering (EAC) framework presented by \cite{Fred2002,Fred2005}.
+The underlying idea of EAC is to take a collection of partitions, a \emph{clustering ensemble}, and combine it into a single partition of better quality.
+EAC has three steps:
+the \textbf{production} of the ensemble,
+the \textbf{combination} of the ensemble into a co-association matrix (a new representation based on co-occurrences in ensemble's clusters) and
+the \textbf{recovery} of the final partition.
+
+K-Means has been used for the production of the ensemble, varying the number of clusters within an interval $[K_{min}, K_{max}]$ for diversity.
+Co-associations can be interpreted as a proximity measure.
+Single-Link and Average-Link have been used for the recovery, as they operate over pair-wise dissimilarity matrices.
+
+EAC is robust, but its computational complexity restricts its application to small datasets.
+The two approaches for addressing the space complexity of EAC that have been proposed are (1) exploiting the sparsity of the co-association matrix Lourenço et. al (2010) and (2) consider only the $k$-Nearest Neighbors of each pattern in the co-association matrix.
+The present work aims to scale the EAC method to large datasets, using technology found on a typical workstation.
+This translates in optimizing for both speed and memory usage.
+We speed-up the production of ensemble by using the power of Graphics Processing Units (GPU).
+The space complexity of the co-association matrix is dealt by extending the work of \cite{Lourenco2010} on sparsity.
+We use the Single-Link algorithm to speed-up the recovery and make it applicable for large datasets by using external memory algorithms.
+
+Sections \ref{sec:production}, \ref{sec:combination} and \ref{sec:recovery} present the work done on optimizing each phase of EAC.
+The implemented optimizations are tested and the results presented in section \ref{sec:resul}.
+Finally, the conclusions can be found in section \ref{sec:conc}.
+
+%old
+% Advances in technology allow for the collection and storage of unprecedented amount and variety of data, of which there is an interest in performing automated analysis for generation of knowledge and new insights.
+% A growing body of formal methods aiming to model, structure and/or classify data already exist.
+% Of these, cluster analysis is an interesting tool, since it typically does not rely on external information about the data.
+% Clustering algorithms offer a means to explore the structure of the data by organizing it into clusters.
+
+% A vast body of work on clustering algorithms exists \cite{Jain2010}, but usually different methods are suited to datasets of different characteristics and are not able to discover all possible cluster shapes.
+% Inspired by the work on sensor fusion and classifier combination, ensemble clustering approaches \cite{Fred2001,Fred2002,Strehl2002} have been proposed to address that challenge.
+
+% The present works builds on the Evidence Accumulation Clustering (EAC) framework presented by \cite{Fred2002,Fred2005}.
+% The underlying idea of EAC is to take a collection of partitions, a \emph{clustering ensemble}, and combine it into a single partition of better quality than any in the ensemble.
+% Accordingly, EAC tries to find an optimal partition $P^*$ containing $k^*$ clusters that is consistent with and robust to small variations in the ensemble and has a good fit with ground truth, when available.
+% EAC makes no assumption on the number of clusters in each partition in the ensemble.
+% Its approach is divided in 3 steps:
+
+% \begin{enumerate}
+% \item \textbf{Production} of a clustering ensemble (the evidence);
+% \item \textbf{Combination} of the ensemble into a co-association matrix $C$, by means of a voting mechanism based on co-occurrences in the clusters of the $N$ partitions in the ensemble:
+
+% \begin{center}
+% $$
+% C_{i,j} = \frac{no. \; co-occurences \; in \; cluster}{N}
+% $$
+% \end{center}
+
+% \item \textbf{Recovery} of the natural clusters of the data.
+% \end{enumerate}
+
+% % introduce the creation of the ensemble
+% The ensemble is usually produced by random initialization of K-Means.
+% It is of interest to have diversity in the ensemble with the intention of better capturing the underlying structure of the data, which can be obtained by varying the number of clusters in the ensemble's partitions within an interval $[K_{min}, K_{max}]$.
+% The choice of this interval and its influence on the EAC's properties will be a topic of discussion further ahead.
+
+% The co-association between any two patterns can be interpreted as a proximity measure.
+% Hierarchical algorithms such as Single-Link or Average-Link have been used, since they operate over pair-wise dissimilarity matrices.
+% These output a dendrogram, which codes a hierarchy of a pattern set, and can be cut at different levels to produce a partition.
+
+% EAC is robust, but, currently, its computational complexity restricts its application to small datasets.
+% The two approaches for addressing the space complexity of EAC that have been proposed are (1) exploiting the sparse nature of the co-association matrix \cite{Lourenco2010} and (2) consider only the $k$-Nearest Neighbors of each pattern when building the co-association matrix.
+
+% The goal of the present work is to scale the EAC method to large datasets, using technology found on a typical workstation.
+% This translates in optimizing for both speed and memory usage.
+% We speed-up the production of ensemble by using the power of Graphics Processing Units.
+% The space complexity of the co-association matrix is dealt by exploiting its sparse nature, extending the work of \cite{Lourenco2010}.
+% We choose to use the Single-Link algorithm to speed-up the final clustering for small data and make it applicable for large datasets by using external memory algorithms.
+
+% The approaches for optimizing each of the steps are presented in sections \ref{sec:production}, \ref{sec:combination} and \ref{sec:recovery} for the production, combination and recovery steps, respectively.
+% The implemented optimizations are tested and the results presented in section \ref{sec:resul}.
+% Finally, the conclusions can be found in section \ref{sec:conc}.
